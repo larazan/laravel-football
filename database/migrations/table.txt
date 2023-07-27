@@ -1,0 +1,56 @@
+Competitions
+    name
+    slug
+
+Clubs
+    name
+    logo
+    stadium
+
+Matchs
+    competition
+    season
+    home team
+    away team
+    score home team
+    score away team
+    fixture_date
+    final_result W D L
+
+Players
+    name
+    date_birth
+    place_birth
+    nationality
+    height
+    weight
+    image
+    prefered_foot
+    contract_from
+    contract_until
+    shirt_number
+    role
+    position
+
+Statistics
+    competition
+    season
+    match
+    minute_play
+    goals
+    assists
+    subs_on
+    subs_off
+    yellow_card
+    red_card
+
+Staff
+    name
+    image
+    role
+
+Sponsors
+    title
+    image
+
+Faqs
