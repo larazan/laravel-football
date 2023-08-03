@@ -20,6 +20,7 @@ return new class extends Migration
             $table->date('birth_date')->nullable();
             $table->string('birth_location')->nullable();
             $table->string('nationality')->nullable();
+            $table->text('bio')->nullable();
             $table->tinyInteger('height')->nullable();
             $table->tinyInteger('weight')->nullable();
             $table->string('prefered_foot')->nullable();

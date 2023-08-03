@@ -13,20 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('articles', function (Blueprint $table) {
+        Schema::create('stadions', function (Blueprint $table) {
             $table->id();
-            $table->integer('category_id');
-            $table->foreignId('user_id')->constrained('users')->onUpdate('cascade')->onDelete('cascade');
-            $table->string('title');
+            $table->string('name');
             $table->string('slug');
-            $table->string('rand_id');
-            $table->datetime('published_at')->nullable();
-            $table->boolean('published')->default(false);
-            $table->string('status',10);
-            $table->text('body');
-            $table->text('article_tags')->nullable();
-            $table->string('meta_title')->nullable();
-            $table->string('meta_description')->nullable();
+            $table->string('city');
+            $table->integer('capacity')->nullable();
+            $table->enum('seat_quality', ['full kursi', 'tanpa kursi', 'campuran']);
+            $table->enum('vip', ['yes', 'no']);
             $table->string('original');
             $table->string('large')->nullable();
             $table->string('medium')->nullable();
@@ -43,6 +37,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('articles');
+        Schema::dropIfExists('stadions');
     }
 };

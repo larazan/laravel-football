@@ -13,14 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('competitions', function (Blueprint $table) {
+        Schema::create('awards', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('original')->nullable();
-            $table->text('info');
-            $table->string('status');
-            $table->string('thropy')->nullable();
+            $table->integer('competition_id')->unsigned();
+            $table->string('year');
+            $table->string('status', 10);
             $table->timestamps();
+
+            $table->foreign('competition_id')->references('id')->on('competitions')->onDelete('CASCADE');
         });
     }
 
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('competitions');
+        Schema::dropIfExists('awards');
     }
 };

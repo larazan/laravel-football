@@ -13,13 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('competitions', function (Blueprint $table) {
+        Schema::create('subscribes', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('original')->nullable();
-            $table->text('info');
-            $table->string('status');
-            $table->string('thropy')->nullable();
+            $table->string('email');
+            $table->string('status',10);
+            $table->integer('opened')->default(0);
             $table->timestamps();
         });
     }
@@ -31,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('competitions');
+        Schema::dropIfExists('subscribes');
     }
 };

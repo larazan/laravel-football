@@ -13,26 +13,21 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('statistics', function (Blueprint $table) {
+        Schema::create('match_reports', function (Blueprint $table) {
             $table->id();
-            $table->integer('competition_id')->unsigned();
             $table->string('season', 40);
+            $table->integer('competition_id')->unsigned();
             $table->integer('match_id')->unsigned();
-            $table->integer('minute_play')->nullable();
-            $table->integer('goals')->nullable();
-            $table->integer('assists')->nullable();
-            $table->integer('subs_on')->nullable();
-            $table->integer('subs_off')->nullable();
-            $table->integer('yellow_card')->nullable();
-            $table->integer('red_card')->nullable();
-            $table->string('status', 10);
+            $table->text('report')->nullable();
+            $table->string('original');
+            $table->string('medium')->nullable();
             $table->timestamps();
 
             $table->foreign('competition_id')->references('id')->on('competitions')->onDelete('CASCADE');
             $table->foreign('match_id')->references('id')->on('matchs')->onDelete('CASCADE');
         });
     }
-    
+
     /**
      * Reverse the migrations.
      *
@@ -40,6 +35,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('statistics');
+        Schema::dropIfExists('match_reports');
     }
 };

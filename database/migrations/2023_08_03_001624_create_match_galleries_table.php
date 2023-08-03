@@ -13,22 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('staffs', function (Blueprint $table) {
+        Schema::create('match_galleries', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('slug');
-            $table->string('role');
-            $table->date('birth_date')->nullable();
-            $table->string('birth_location')->nullable();
-            $table->string('nationality')->nullable();
-            $table->text('bio')->nullable();
-            $table->date('contract_from')->nullable();
-            $table->date('contract_until')->nullable();
+            $table->integer('match_id')->unsigned();
             $table->string('original');
+            $table->string('large')->nullable();
             $table->string('medium')->nullable();
             $table->string('small')->nullable();
-            $table->string('status',10);
             $table->timestamps();
+
+            $table->foreign('match_id')->references('id')->on('matchs')->onDelete('CASCADE');
         });
     }
 
@@ -39,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('staffs');
+        Schema::dropIfExists('match_galleries');
     }
 };
