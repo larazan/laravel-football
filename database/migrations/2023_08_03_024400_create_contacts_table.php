@@ -20,7 +20,9 @@ return new class extends Migration
             $table->string('email');
             $table->text('message');
             $table->string('status',10);
-            $table->integer('opened')->default(0);
+            $table->tinyInteger('opened')->default(0);
+            $table->string('feedback')->default('0');
+            $table->longText('reply')->nullable();
             $table->timestamps();
         });
     }

@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Matchs extends Model
 {
     use HasFactory;
+
+    protected $table = 'matchs';
+
+    protected $guarded = [];
 }

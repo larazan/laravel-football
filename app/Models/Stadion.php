@@ -5,13 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Player extends Model
+class Stadion extends Model
 {
     use HasFactory;
 
-    protected $guarded = [];
-
-    public const UPLOAD_DIR = 'uploads/players';
+    protected $guarded = [
+		'id',
+		'created_at',
+		'updated_at'
+	];
 
     public const SMALL = '135x141';
 	public const MEDIUM = '312x400';
