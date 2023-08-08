@@ -17,4 +17,9 @@ class Player extends Model
 	public const MEDIUM = '312x400';
 	public const LARGE = '600x656';
 	public const EXTRA_LARGE = '1125x1200';
+
+    public function lineups()
+    {
+        return $this->belongsToMany(Lineup::class)->latest();
+    }
 }

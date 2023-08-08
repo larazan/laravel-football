@@ -12,4 +12,5 @@ class Matchs extends Model
     protected $table = 'matchs';
 
     protected $guarded = [];
+
 }

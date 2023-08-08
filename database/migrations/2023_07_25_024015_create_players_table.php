@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('players', function (Blueprint $table) {
             $table->id();
+            $table->integer('club_id')->unsigned();
             $table->string('name');
             $table->string('slug');
             $table->date('birth_date')->nullable();
@@ -29,12 +30,14 @@ return new class extends Migration
             $table->tinyInteger('shirt_number')->nullable();
             $table->enum('role', ['Goalkeeper', 'Defender', 'Midfielder', 'Attacker']);
             $table->string('position')->nullable();
-            $table->string('original');
+            $table->string('original')->nullable();
             $table->string('large')->nullable();
             $table->string('medium')->nullable();
             $table->string('small')->nullable();
             $table->softDeletes();
             $table->timestamps();
+
+            $table->foreign('club_id')->references('id')->on('clubs')->onDelete('CASCADE');
         });
     }
 

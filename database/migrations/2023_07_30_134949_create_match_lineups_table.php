@@ -15,8 +15,6 @@ return new class extends Migration
     {
         Schema::create('match_lineups', function (Blueprint $table) {
             $table->id();
-            $table->string('season', 40);
-            $table->integer('competition_id')->unsigned();
             $table->integer('match_id')->unsigned();
             $table->integer('home_player1')->nullable();
             $table->integer('home_player2')->nullable();
@@ -50,9 +48,9 @@ return new class extends Migration
             $table->integer('away_player14')->nullable();
             $table->integer('away_player15')->nullable();
             $table->integer('away_player16')->nullable();
+            $table->string('status', 10);
             $table->timestamps();
 
-            $table->foreign('competition_id')->references('id')->on('competitions')->onDelete('CASCADE');
             $table->foreign('match_id')->references('id')->on('matchs')->onDelete('CASCADE');
         });
     }

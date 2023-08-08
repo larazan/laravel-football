@@ -15,13 +15,14 @@ return new class extends Migration
     {
         Schema::create('matchs', function (Blueprint $table) {
             $table->id();
+            $table->string('slug');
             $table->string('season', 40);
             $table->integer('competition_id')->unsigned();
             $table->integer('stadion_id')->unsigned();
             $table->integer('home_team')->unsigned();
             $table->integer('away_team')->unsigned();
-            $table->integer('full_time_home_goal');
-            $table->integer('full_time_away_goal');
+            $table->integer('full_time_home_goal')->nullable();
+            $table->integer('full_time_away_goal')->nullable();
             $table->dateTime('fixture_match');
             $table->enum('full_time_result', ['W', 'D', 'L']);
             $table->string('status', 10);

@@ -11,7 +11,7 @@ class MatchReport extends Model
 
     protected $table = 'match_reports';
 
-    public const UPLOAD_DIR = 'uploads/matchs';
+    public const UPLOAD_DIR = 'uploads/reports';
     
     protected $guarded = [
 		'id',

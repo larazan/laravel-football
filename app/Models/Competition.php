@@ -10,4 +10,6 @@ class Competition extends Model
     use HasFactory;
 
     protected $guarded = [];
+
+    public const UPLOAD_DIR = 'uploads/trophies';
 }

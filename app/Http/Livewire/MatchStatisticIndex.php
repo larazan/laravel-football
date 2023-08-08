@@ -4,10 +4,10 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 
-class MatchGallery extends Component
+class MatchStatisticIndex extends Component
 {
     public function render()
     {
-        return view('livewire.match-gallery');
+        return view('livewire.match-statistic-index');
     }
 }

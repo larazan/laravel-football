@@ -4,10 +4,10 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 
-class MatchReport extends Component
+class PlayerLineup extends Component
 {
     public function render()
     {
-        return view('livewire.match-report');
+        return view('livewire.player-lineup');
     }
 }
