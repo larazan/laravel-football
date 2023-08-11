@@ -15,10 +15,8 @@ return new class extends Migration
     {
         Schema::create('statistics', function (Blueprint $table) {
             $table->id();
-            $table->integer('competition_id')->unsigned();
-            $table->string('season', 40);
-            $table->integer('match_id')->unsigned();
-            $table->integer('player_id')->unsigned();
+            $table->unsignedBigInteger('match_id');
+            $table->unsignedBigInteger('player_id');
             $table->integer('minute_play')->nullable();
             $table->integer('goals')->nullable();
             $table->integer('assists')->nullable();
@@ -29,9 +27,8 @@ return new class extends Migration
             $table->string('status', 10);
             $table->timestamps();
 
-            $table->foreign('competition_id')->references('id')->on('competitions')->onDelete('CASCADE');
-            $table->foreign('match_id')->references('id')->on('matchs')->onDelete('CASCADE');
-            $table->foreign('player_id')->references('id')->on('players')->onDelete('CASCADE');
+            $table->foreign('match_id')->references('id')->on('matchs')->onDelete('cascade');
+            $table->foreign('player_id')->references('id')->on('players')->onDelete('cascade');
         });
     }
     

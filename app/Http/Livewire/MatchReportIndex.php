@@ -130,7 +130,8 @@ class MatchReportIndex extends Component
                     $matchReport->origin = $filePath;
                     $matchReport->medium = $resizedImage['medium'];
                 }
-
+                
+                $matchReport->save();
             }
         }
 

@@ -15,13 +15,13 @@ return new class extends Migration
     {
         Schema::create('match_reports', function (Blueprint $table) {
             $table->id();
-            $table->integer('match_id')->unsigned();
+            $table->unsignedBigInteger('match_id');
             $table->text('report')->nullable();
             $table->string('original');
             $table->string('medium')->nullable();
             $table->timestamps();
 
-            $table->foreign('match_id')->references('id')->on('matchs')->onDelete('CASCADE');
+            $table->foreign('match_id')->references('id')->on('matchs')->onDelete('cascade');
         });
     }
 

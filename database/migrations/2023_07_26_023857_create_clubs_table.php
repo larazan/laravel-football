@@ -18,12 +18,12 @@ return new class extends Migration
             $table->string('name');
             $table->string('slug');
             $table->string('logo')->nullable();
-            $table->integer('stadion_id')->unsigned();
+            $table->unsignedBigInteger('stadion_id');
             $table->text('info')->nullable();
             $table->string('status', 10);
             $table->timestamps();
 
-            $table->foreign('stadion_id')->references('id')->on('stadions')->onDelete('CASCADE');
+            $table->foreign('stadion_id')->references('id')->on('stadions')->onDelete('cascade');
         });
     }
 

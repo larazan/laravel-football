@@ -17,10 +17,10 @@ return new class extends Migration
             $table->id();
             $table->string('slug');
             $table->string('season', 40);
-            $table->integer('competition_id')->unsigned();
-            $table->integer('stadion_id')->unsigned();
-            $table->integer('home_team')->unsigned();
-            $table->integer('away_team')->unsigned();
+            $table->unsignedBigInteger('competition_id');
+            $table->unsignedBigInteger('stadion_id');
+            $table->unsignedBigInteger('home_team');
+            $table->unsignedBigInteger('away_team');
             $table->integer('full_time_home_goal')->nullable();
             $table->integer('full_time_away_goal')->nullable();
             $table->dateTime('fixture_match');
@@ -29,10 +29,10 @@ return new class extends Migration
             $table->softDeletes();
             $table->timestamps();
 
-            $table->foreign('competition_id')->references('id')->on('competitions')->onDelete('CASCADE');
-            $table->foreign('home_team')->references('id')->on('clubs')->onDelete('CASCADE');
-            $table->foreign('away_team')->references('id')->on('clubs')->onDelete('CASCADE');
-            $table->foreign('stadion_id')->references('id')->on('stadions')->onDelete('CASCADE');
+            $table->foreign('competition_id')->references('id')->on('competitions')->onDelete('cascade');
+            $table->foreign('home_team')->references('id')->on('clubs')->onDelete('cascade');
+            $table->foreign('away_team')->references('id')->on('clubs')->onDelete('cascade');
+            $table->foreign('stadion_id')->references('id')->on('stadions')->onDelete('cascade');
         });
     }
 

@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('players', function (Blueprint $table) {
             $table->id();
-            $table->integer('club_id')->unsigned();
+            $table->unsignedBigInteger('club_id');
             $table->string('name');
             $table->string('slug');
             $table->date('birth_date')->nullable();
@@ -37,7 +37,7 @@ return new class extends Migration
             $table->softDeletes();
             $table->timestamps();
 
-            $table->foreign('club_id')->references('id')->on('clubs')->onDelete('CASCADE');
+            $table->foreign('club_id')->references('id')->on('clubs')->onDelete('cascade');
         });
     }
 

@@ -72,7 +72,33 @@
                             </div>
                         </a>
                     </li>
-                    
+                    <!-- 
+                        competitions
+                        clubs
+                        awards
+                        players
+                        staffs
+                        stadions
+                        schedules
+                        matchs
+                            match report
+                            match statistic
+                            lineup
+                            player statistic
+                            gallery
+                        league table
+                        news
+                            article
+                            category
+                        media
+                        partners
+                        slide
+                        faqs
+                        newsletter
+                        settings
+
+
+                     -->
 
                 </ul>
             </div>

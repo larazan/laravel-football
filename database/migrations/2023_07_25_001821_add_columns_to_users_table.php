@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::table('users', function (Blueprint $table) {
             $table->string('name')->nullable()->change();
 			$table->renameColumn('name', 'first_name');
-			$table->string('last_name')->nullable()->after('first_name');
+			$table->string('last_name')->nullable()->after('name');
 			$table->string('phone')->nullable()->after('email');
 			// $table->boolean('isAdmin')->nullable()->default(0)->after('password');
 			$table->string('address1')->nullable()->after('phone');

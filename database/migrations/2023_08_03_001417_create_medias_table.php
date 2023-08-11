@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('medias', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('users')->onUpdate('cascade')->onDelete('cascade');
+            $table->unsignedBigInteger('user_id');
             $table->string('title');
             $table->string('slug');
             $table->string('rand_id');
@@ -30,6 +30,8 @@ return new class extends Migration
             $table->string('small')->nullable();
             $table->softDeletes();
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

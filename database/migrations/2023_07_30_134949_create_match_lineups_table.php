@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('match_lineups', function (Blueprint $table) {
             $table->id();
-            $table->integer('match_id')->unsigned();
+            $table->unsignedBigInteger('match_id');
             $table->integer('home_player1')->nullable();
             $table->integer('home_player2')->nullable();
             $table->integer('home_player3')->nullable();
@@ -51,7 +51,7 @@ return new class extends Migration
             $table->string('status', 10);
             $table->timestamps();
 
-            $table->foreign('match_id')->references('id')->on('matchs')->onDelete('CASCADE');
+            $table->foreign('match_id')->references('id')->on('matchs')->onDelete('cascade');
         });
     }
 

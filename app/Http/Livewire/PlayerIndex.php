@@ -38,6 +38,25 @@ class PlayerIndex extends Component
     public $prefered_foot;
     public $shirt_number;
     public $position;
+    public $positionOption = [
+        'Goalkeeper',
+        'Right Back',
+        'Center Back',
+        'Left Back',
+        'Right Wingback',
+        'Left Wingback',
+        'Defensive Midfielder',
+        'Right Winger',
+        'Midfielder Center',
+        'Deep Lying Playmaker',
+        'Left Winger',
+        'Inferted Winger',
+        'Inside Forward',
+        'Attacking Midfielder',
+        'Advance Playmaker',
+        'Second Stricker',
+        'Center Forward',
+    ];
     public $playerId;
     public $file;
     public $oldImage;
