@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\Admin\ArticleController;
+
 // Livewire
 use App\Http\Livewire\ArticleIndex;
 use App\Http\Livewire\AwardIndex;
@@ -10,7 +12,9 @@ use App\Http\Livewire\CategoryArticleIndex;
 use App\Http\Livewire\ClubIndex;
 use App\Http\Livewire\CompetitionIndex;
 use App\Http\Livewire\ContactIndex;
+use App\Http\Livewire\Dashboard;
 use App\Http\Livewire\FaqIndex;
+use App\Http\Livewire\LeagueIndex;
 use App\Http\Livewire\MatchGalleryIndex;
 use App\Http\Livewire\MatchIndex;
 use App\Http\Livewire\MatchLineup;
@@ -26,6 +30,7 @@ use App\Http\Livewire\StadionIndex;
 use App\Http\Livewire\StaffIndex;
 use App\Http\Livewire\StatisticIndex;
 use App\Http\Livewire\SubscribeIndex;
+use App\Http\Livewire\UserIndex;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,6 +48,14 @@ Route::get('/', function () {
 });
 
 Route::middleware(['auth:sanctum', 'verified', 'role:admin'])->prefix('admin')->name('admin.')->group(function () {
+    Route::get('dashboard', Dashboard::class);
+
+    Route::get('articles', ArticleIndex::class)->name('articles.index');
+    // 
+    Route::get('articles/create', [ArticleController::class, 'create']);
+    Route::post('articles/store', [ArticleController::class, 'store']);
+    Route::get('articles/edit/{articleID}', [ArticleController::class, 'edit']);
+    Route::put('articles/update', [ArticleController::class, 'update'])->name('updateArticle');
     Route::get('articles', ArticleIndex::class)->name('articles.index');
     //
 
@@ -52,6 +65,7 @@ Route::middleware(['auth:sanctum', 'verified', 'role:admin'])->prefix('admin')->
     Route::get('competitions', CompetitionIndex::class)->name('competitions.index');
     Route::get('contacts', ContactIndex::class)->name('contacts.index');
     Route::get('faqs', FaqIndex::class)->name('faqs.index');
+    Route::get('leagues', LeagueIndex::class)->name('leagues.index');
     Route::get('matchs', MatchIndex::class)->name('matchs.index');
     Route::get('matchs/{matchId}/match-gallery', MatchGalleryIndex::class)->name('match-gallery.index');
     Route::get('matchs/{matchId}/match-lineup', MatchLineup::class)->name('match-lineup.index');
@@ -67,6 +81,7 @@ Route::middleware(['auth:sanctum', 'verified', 'role:admin'])->prefix('admin')->
     Route::get('subscribers', SubscribeIndex::class)->name('subscribers.index');
     Route::get('settings', SettingIndex::class)->name('settings.index');
     Route::get('slides', SlideIndex::class)->name('slides.index');
+    Route::get('users', UserIndex::class)->name('users.index');
 });
 
 Route::middleware([
