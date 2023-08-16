@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Admin\ArticleController;
+use App\Http\Controllers\Admin\UserController;
 
 // Livewire
 use App\Http\Livewire\ArticleIndex;
@@ -22,6 +23,8 @@ use App\Http\Livewire\MatchReportIndex;
 use App\Http\Livewire\MatchStatisticIndex;
 use App\Http\Livewire\MediaIndex;
 use App\Http\Livewire\PlayerIndex;
+use App\Http\Livewire\PermissionIndex;
+use App\Http\Livewire\RoleIndex;
 use App\Http\Livewire\ScheduleIndex;
 use App\Http\Livewire\SettingIndex;
 use App\Http\Livewire\SlideIndex;
@@ -73,6 +76,8 @@ Route::middleware(['auth:sanctum', 'verified', 'role:admin'])->prefix('admin')->
     Route::get('matchs/{matchId}/match-statistic', MatchStatisticIndex::class)->name('match-statistic.index');
     Route::get('medias', MediaIndex::class)->name('medias.index');
     Route::get('players', PlayerIndex::class)->name('players.index');
+    Route::get('permissions', PermissionIndex::class)->name('permissions.index');
+    Route::get('roles', RoleIndex::class)->name('roles.index');
     Route::get('schedules', ScheduleIndex::class)->name('schedules.index');
     Route::get('sponsors', SponsorIndex::class)->name('sponsors.index');
     Route::get('stadions', StadionIndex::class)->name('stadions.index');
@@ -82,6 +87,12 @@ Route::middleware(['auth:sanctum', 'verified', 'role:admin'])->prefix('admin')->
     Route::get('settings', SettingIndex::class)->name('settings.index');
     Route::get('slides', SlideIndex::class)->name('slides.index');
     Route::get('users', UserIndex::class)->name('users.index');
+
+    Route::get('users', [UserController::class, 'show'])->name('users.show');
+    Route::post('users/{user}/roles', [UserController::class, 'assignRole'])->name('users.roles');
+    Route::delete('users/{user}/roles/{role}', [UserController::class, 'removeRole'])->name('users.roles.remove');
+    Route::post('users/{user}/permissions', [UserController::class, 'givePermission'])->name('users.permissions');
+    Route::delete('users/{user}/permissions/{permission}', [UserController::class, 'revokePermission'])->name('users.permissions.revoke');
 });
 
 Route::middleware([
