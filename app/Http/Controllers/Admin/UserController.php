@@ -11,7 +11,6 @@ use Spatie\Permission\Models\Role;
 class UserController extends Controller
 {
     //
-
     public function show(User $user)
     {
         $roles = Role::all();

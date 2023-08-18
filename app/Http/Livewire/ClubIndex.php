@@ -78,7 +78,7 @@ class ClubIndex extends Component
         $club->name = $this->name;
         $club->slug = Str::slug($this->name);
         $club->info = $this->info;
-        $club->stadion_id = $this->stadionId;
+        $club->stadion_id = $this->stadion;
         $club->status = $this->clubStatus;
 
         if (!empty($this->file)) {

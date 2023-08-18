@@ -317,12 +317,12 @@
                             </div>
                         </a>
                         <div class="tex ttj 2xl:block">
-                            <ul class="me re @if(!in_array(Request::segment(2), ['profile', 'settings', 'roles', 'permissions'])){{ 'hidden' }}@else{ !block }@endif" :class="open ? '!block' : 'hidden'">
-                                <li class="rt ww">
+                            <ul class="me re @if(!in_array(Request::segment(2), [ 'settings', 'roles', 'permissions'])){{ 'hidden' }}@else{ !block }@endif" :class="open ? '!block' : 'hidden'">
+                                <!-- <li class="rt ww">
                                     <a class="block @if(in_array(Request::segment(2), ['profile'])){{ 'text-indigo-500' }}@else{{ 'gq hover--text-slate-200' }}@endif wt wi ld" href="{{ url('admin/profile') }}">
                                         <span class="text-sm gp ttw tnn 2xl:opacity--100 wr">My Account</span>
                                     </a>
-                                </li>
+                                </li> -->
                                 <li class="rt ww">
                                     <a class="block @if(in_array(Request::segment(2), ['settings'])){{ 'text-indigo-500' }}@else{{ 'gq hover--text-slate-200' }}@endif wt wi ld" href="{{ url('admin/settings') }}">
                                         <span class="text-sm gp ttw tnn 2xl:opacity--100 wr">Setting</span>
