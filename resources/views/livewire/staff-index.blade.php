@@ -133,9 +133,7 @@
                             <th class="vi wy w_ vo lm">
                                 <div class="gh gt">Image</div>
                             </th>
-                            <th class="vi wy w_ vo lm">
-                                <div class="gh gt">Gender</div>
-                            </th>
+                            
                             <th class="vi wy w_ vo lm">
                                 <div class="gh gt">Birth</div>
                             </th>
@@ -174,9 +172,7 @@
                                 </div>
                                 <!-- <div class="gp ">-</div> -->
                             </td>
-                            <td class="vi wy w_ vo lm">
-                                <div class="gp ">Male</div>
-                            </td>
+                           
                             <td class="vi wy w_ vo lm">
                                 <div class="gt ">13 June 1983</div>
                             </td>
@@ -236,15 +232,6 @@
                                 </div>
                             </td>
 
-                            <td class="vi wy w_ vo lm">
-                                @if ($person->gender_id === 1)
-                                <div class="gt">Male</div>
-                                @endif
-
-                                @if ($person->gender_id === 2)
-                                <div class="gt">Female</div>
-                                @endif
-                            </td>
                             <td class="vi wy w_ vo lm">
                                 <div class="gt">{{ \Carbon\Carbon::parse($person->birth_date)->format('j F Y') }}</div>
                             </td>
@@ -325,23 +312,13 @@
                                             </label>
                                             <input wire:model="name" type="text" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                                         </div>
-                                        <div class="col-span-6 sm:col-span-3">
-                                            <label for="first-name" class="block text-sm font-medium text-gray-700">Gender</label>
-                                            <select wire:model="genderStatus" class="h-full rounded-r border-t border-r border-b block appearance-none w-full bg-white border-gray-300 text-gray-700 py-2 px-4 pr-8 leading-tight focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none">
-                                                <option value="">Select Option</option>
-                                                @foreach($genderStatuses as $key => $value)
-                                                <option value="{{ $key }}">{{ $value }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
+                                       
                                         <div class="flex flex-row justify-between">
                                             <div class="col-start-1 sm:col-span-3">
                                                 <label for="title" class="block text-sm font-medium text-gray-700">
                                                     Birth Date
                                                 </label>
-                                                {{--
-                                                    <input wire:model="birthDate" type="text" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
-                                                --}}
+                                                
                                                 <x-flatpicker wire:model="birthDate"></x-flatpicker>
                                             </div>
                                             <div class="col-start-1 sm:col-span-3">
@@ -363,39 +340,31 @@
                                                     Nationality
                                                 </label>
                                                 <div x-init="select2Alpine">
-                                                    <select wire:model="nationality" x-ref="select" class="form-control" id="select2-dropdown">
+                                                <select wire:model="nationality" x-ref="select" class="form-control" id="select2-dropdown">
                                                         <option value="">Select Option</option>
-                                                        @foreach($nationalities as $nationality)
-                                                        <option value="{{ $nationality->name }}">{{ $nationality->name }}</option>
+                                                        @foreach($countries as $country)
+                                                        <option value="{{ $country }}">{{ $country }}</option>
                                                         @endforeach
                                                     </select>
                                                 </div>
                                             </div>
                                             <div class="col-start-1 sm:col-span-3">
-                                                <label for="website" class="block text-sm font-medium text-gray-700">
-                                                    Website
-                                                </label>
-                                                <input wire:model="website" type="text" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                                                <label for="role" class="block text-sm font-medium text-gray-700">Role</label>
+                                                <input wire:model="role" type="text" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                                             </div>
                                         </div>
                                         <div class="flex flex-row justify-between">
                                             <div class="col-start-1 sm:col-span-3">
-                                                <label for="title" class="block text-sm font-medium text-gray-700">
-                                                    Facebook
+                                                <label for="contractFrom" class="block text-sm font-medium text-gray-700">
+                                                    Contract From
                                                 </label>
-                                                <input wire:model="facebook" type="text" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                                                <x-flatpicker wire:model="contractFrom"></x-flatpicker>
                                             </div>
                                             <div class="col-start-1 sm:col-span-3">
-                                                <label for="title" class="block text-sm font-medium text-gray-700">
-                                                    Instagram
+                                                <label for="contractUntil" class="block text-sm font-medium text-gray-700">
+                                                    Contract Until
                                                 </label>
-                                                <input wire:model="instagram" type="text" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
-                                            </div>
-                                            <div class="col-start-1 sm:col-span-3">
-                                                <label for="title" class="block text-sm font-medium text-gray-700">
-                                                    Twitter
-                                                </label>
-                                                <input wire:model="twitter" type="text" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                                                <x-flatpicker wire:model="contractUntil"></x-flatpicker>
                                             </div>
                                         </div>
 
@@ -403,12 +372,10 @@
                                             <label for="photo" class="block text-sm font-medium text-gray-700">
                                                 Person photo</label>
                                             <input wire:model="files" type="file" multiple autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
-                                            @if ($personImages)
-                                            <div class="flex space-x-4">
-                                                @foreach ($personImages as $image)
-                                                <img src="{{ asset('storage/'.$image->small) }}">
-                                                @endforeach
-                                            </div>
+                                            @if ($oldImage)
+                                            
+                                                <img src="{{ asset('storage/'.$oldImage) }}">
+                                               
                                             @endif
                                             @if ($file)
                                             Photo Preview:

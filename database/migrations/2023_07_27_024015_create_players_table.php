@@ -30,6 +30,9 @@ return new class extends Migration
             $table->tinyInteger('shirt_number')->nullable();
             $table->enum('role', ['Goalkeeper', 'Defender', 'Midfielder', 'Attacker']);
             $table->string('position')->nullable();
+            $table->string('facebook')->nullable();
+            $table->string('instagram')->nullable();
+            $table->string('twitter')->nullable();
             $table->string('original')->nullable();
             $table->string('large')->nullable();
             $table->string('medium')->nullable();

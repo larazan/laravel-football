@@ -8,7 +8,7 @@
 
         <!-- Left: Title -->
         <div class="ri _y">
-            <h1 class="gu teu text-slate-800 font-bold">Person ✨</h1>
+            <h1 class="gu teu text-slate-800 font-bold">Player ✨</h1>
         </div>
 
         <!-- Right: Actions -->
@@ -26,12 +26,12 @@
                 </button>
             </form>
 
-            <!-- Create person button -->
+            <!-- Create player button -->
             <button class="btn ho xi ye" wire:click="showCreateModal">
                 <svg class="oo sl du bf ub" viewBox="0 0 16 16">
                     <path d="M15 7H9V1c0-.6-.4-1-1-1S7 .4 7 1v6H1c-.6 0-1 .4-1 1s.4 1 1 1h6v6c0 .6.4 1 1 1s1-.4 1-1V9h6c.6 0 1-.4 1-1s-.4-1-1-1z"></path>
                 </svg>
-                <span class="hidden trm nq">Create Person</span>
+                <span class="hidden trm nq">Create Player</span>
             </button>
         </div>
 
@@ -109,7 +109,7 @@
     <!-- Table -->
     <div class="bg-white bd rounded-sm border border-slate-200 rc">
         <header class="vc vu">
-            <h2 class="gh text-slate-800">Persons <span class="gq gp"></span></h2>
+            <h2 class="gh text-slate-800">Players <span class="gq gp"></span></h2>
         </header>
         <div x-data="handleSelect">
 
@@ -134,7 +134,7 @@
                                 <div class="gh gt">Image</div>
                             </th>
                             <th class="vi wy w_ vo lm">
-                                <div class="gh gt">Gender</div>
+                                <div class="gh gt">Role</div>
                             </th>
                             <th class="vi wy w_ vo lm">
                                 <div class="gh gt">Birth</div>
@@ -212,8 +212,8 @@
                                 </div>
                             </td>
                         </tr>
-                        @if ($persons->count() > 0)
-                        @foreach ($persons as $person)
+                        @if ($players->count() > 0)
+                        @foreach ($players as $player)
                         <tr>
                             <td class="vi wy w_ vo lm of">
                                 <div class="flex items-center">
@@ -224,58 +224,54 @@
                                 </div>
                             </td>
                             <td class="vi wy w_ vo lm">
-                                <div class="gp text-slate-800 capitalize">{{ $person->name }}</div>
+                                <div class="gp text-slate-800 capitalize">{{ $player->name }}</div>
                             </td>
                             <td class="vi wy w_ vo lm">
                                 <div class="od sy ub mr-2 _b">
-                                    @if ($person->personImages->first())
-                                    <img src="{{ asset('storage/'.$person->personImages->first()->small) }}" class="rounded-full" width="40" height="40" alt="{{ $person->name }}">
+                                    @if ($player->playerImages->first())
+                                    <img src="{{ asset('storage/'.$player->small) }}" class="rounded-full" width="40" height="40" alt="{{ $player->name }}">
                                     @else
-                                    <img src="{{ asset('images/avatar-03.jpg') }}" class="rounded-full" width="40" height="40" alt="{{ $person->name }}">
+                                    <img src="{{ asset('images/avatar-03.jpg') }}" class="rounded-full" width="40" height="40" alt="{{ $player->name }}">
                                     @endif
                                 </div>
                             </td>
 
                             <td class="vi wy w_ vo lm">
-                                @if ($person->gender_id === 1)
-                                <div class="gt">Male</div>
-                                @endif
-
-                                @if ($person->gender_id === 2)
-                                <div class="gt">Female</div>
-                                @endif
+                               
+                                <div class="gt">{{ $player->role }}</div>
+                                
                             </td>
                             <td class="vi wy w_ vo lm">
-                                <div class="gt">{{ \Carbon\Carbon::parse($person->birth_date)->format('j F Y') }}</div>
+                                <div class="gt">{{ \Carbon\Carbon::parse($player->birth_date)->format('j F Y') }}</div>
                             </td>
                             <td class="vi wy w_ vo lm">
-                                <div class="gt">{{ $person->nationality }}</div>
+                                <div class="gt">{{ $player->nationality }}</div>
                             </td>
 
                             <td class="vi wy w_ vo lm">
-                                @if ($person->status === 'inactive')
-                                <div class="inline-flex gp hf yl rounded-full gn vp vd">{{ $person->status }}</div>
+                                @if ($player->status === 'inactive')
+                                <div class="inline-flex gp hf yl rounded-full gn vp vd">{{ $player->status }}</div>
                                 @endif
 
-                                @if ($person->status === 'active')
-                                <div class="inline-flex gp hc ys rounded-full gn vp vd">{{ $person->status }}</div>
+                                @if ($player->status === 'active')
+                                <div class="inline-flex gp hc ys rounded-full gn vp vd">{{ $player->status }}</div>
                                 @endif
                             </td>
 
                             <td class="vi wy w_ vo lm">
-                                <div>{{ $person->created_at->format('d-m-Y') }}</div>
+                                <div>{{ $player->created_at->format('d-m-Y') }}</div>
                             </td>
 
                             <td class="vi wy w_ vo lm of">
                                 <div class="fm">
-                                    <button class="gq xv rounded-full" wire:click="showEditModal({{ $person->id }})">
+                                    <button class="gq xv rounded-full" wire:click="showEditModal({{ $player->id }})">
                                         <span class=" d">Edit</span>
                                         <svg class="os sf du" viewBox="0 0 32 32">
                                             <path d="M19.7 8.3c-.4-.4-1-.4-1.4 0l-10 10c-.2.2-.3.4-.3.7v4c0 .6.4 1 1 1h4c.3 0 .5-.1.7-.3l10-10c.4-.4.4-1 0-1.4l-4-4zM12.6 22H10v-2.6l6-6 2.6 2.6-6 6zm7.4-7.4L17.4 12l1.6-1.6 2.6 2.6-1.6 1.6z"></path>
                                         </svg>
                                     </button>
 
-                                    <button class="yl xy rounded-full" wire:click="deleteId({{ $person->id }})">
+                                    <button class="yl xy rounded-full" wire:click="deleteId({{ $player->id }})">
                                         <span class=" d">Delete</span>
                                         <svg class="os sf du" viewBox="0 0 32 32">
                                             <path d="M13 15h2v6h-2zM17 15h2v6h-2z"></path>
@@ -298,15 +294,15 @@
         </div>
     </div>
 
-    {{ $persons->links() }}
+    {{ $players->links() }}
 
-    <x-jet-dialog-modal wire:model="showPersonModal" class="">
+    <x-jet-dialog-modal wire:model="showPlayerModal" class="">
 
-        @if ($personId)
-        <x-slot name="title" class="border-b">Update Person</x-slot>
+        @if ($playerId)
+        <x-slot name="title" class="border-b">Update Player</x-slot>
         @else
         <x-slot name="title" class="border-b bg-slate-200">
-            <span class="font-semibold">Create Person</span>
+            <span class="font-semibold">Create Player</span>
         </x-slot>
         @endif
 
@@ -321,18 +317,38 @@
                                     <div class="flex flex-col space-y-3">
                                         <div class="col-start-1 sm:col-span-3">
                                             <label for="title" class="block text-sm font-medium text-gray-700">
-                                                Person Name
+                                                Player Name
                                             </label>
                                             <input wire:model="name" type="text" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                                         </div>
                                         <div class="col-span-6 sm:col-span-3">
-                                            <label for="first-name" class="block text-sm font-medium text-gray-700">Gender</label>
-                                            <select wire:model="genderStatus" class="h-full rounded-r border-t border-r border-b block appearance-none w-full bg-white border-gray-300 text-gray-700 py-2 px-4 pr-8 leading-tight focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none">
+                                            <label for="club" class="block text-sm font-medium text-gray-700">Club</label>
+                                            <select wire:model="club" class="h-full rounded-r border-t border-r border-b block appearance-none w-full bg-white border-gray-300 text-gray-700 py-2 px-4 pr-8 leading-tight focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none">
                                                 <option value="">Select Option</option>
-                                                @foreach($genderStatuses as $key => $value)
-                                                <option value="{{ $key }}">{{ $value }}</option>
+                                                @foreach($clubs as $club)
+                                                <option value="{{ $club->id }}">{{ $club->name }}</option>
                                                 @endforeach
                                             </select>
+                                        </div>
+                                        <div class="flex flex-row justify-between">
+                                            <div class="col-start-1 sm:col-span-3">
+                                                <label for="role" class="block text-sm font-medium text-gray-700">Role</label>
+                                                <select wire:model="role" class="h-full rounded-r border-t border-r border-b block appearance-none w-full bg-white border-gray-300 text-gray-700 py-2 px-4 pr-8 leading-tight focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none">
+                                                    <option value="">Select Option</option>
+                                                    @foreach($roleOption as $rol)
+                                                    <option value="{{ $rol }}">{{ $rol }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            <div class="col-start-1 sm:col-span-3">
+                                                <label for="position" class="block text-sm font-medium text-gray-700">Position</label>
+                                                <select wire:model="position" class="h-full rounded-r border-t border-r border-b block appearance-none w-full bg-white border-gray-300 text-gray-700 py-2 px-4 pr-8 leading-tight focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none">
+                                                    <option value="">Select Option</option>
+                                                    @foreach($positionOption as $pos)
+                                                    <option value="{{ $pos }}">{{ $pos }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
                                         </div>
                                         <div class="flex flex-row justify-between">
                                             <div class="col-start-1 sm:col-span-3">
@@ -359,23 +375,37 @@
                                         </div>
                                         <div class="flex flex-row justify-between">
                                             <div class="col-start-1 sm:col-span-3">
+                                                <label for="height" class="block text-sm font-medium text-gray-700">
+                                                    Height
+                                                </label>
+                                                <input wire:model="height" type="text" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                                            </div>
+                                            <div class="col-start-1 sm:col-span-3">
+                                                <label for="weight" class="block text-sm font-medium text-gray-700">
+                                                    Weight
+                                                </label>
+                                                <input wire:model="weight" type="text" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                                            </div>
+                                        </div>
+                                        <div class="flex flex-row justify-between">
+                                            <div class="col-start-1 sm:col-span-3">
                                                 <label for="title" class="block text-sm font-medium text-gray-700">
                                                     Nationality
                                                 </label>
                                                 <div x-init="select2Alpine">
                                                     <select wire:model="nationality" x-ref="select" class="form-control" id="select2-dropdown">
                                                         <option value="">Select Option</option>
-                                                        @foreach($nationalities as $nationality)
-                                                        <option value="{{ $nationality->name }}">{{ $nationality->name }}</option>
+                                                        @foreach($countries as $country)
+                                                        <option value="{{ $country }}">{{ $country }}</option>
                                                         @endforeach
                                                     </select>
                                                 </div>
                                             </div>
                                             <div class="col-start-1 sm:col-span-3">
-                                                <label for="website" class="block text-sm font-medium text-gray-700">
-                                                    Website
+                                                <label for="shirtNumber" class="block text-sm font-medium text-gray-700">
+                                                    Shirt Number
                                                 </label>
-                                                <input wire:model="website" type="text" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                                                <input wire:model="shirtNumber" type="number" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                                             </div>
                                         </div>
                                         <div class="flex flex-row justify-between">
@@ -398,17 +428,29 @@
                                                 <input wire:model="twitter" type="text" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                                             </div>
                                         </div>
+                                        <div class="flex flex-row justify-between">
+                                            <div class="col-start-1 sm:col-span-3">
+                                                <label for="contractFrom" class="block text-sm font-medium text-gray-700">
+                                                    Contract From
+                                                </label>
+                                                <x-flatpicker wire:model="contractFrom"></x-flatpicker>
+                                            </div>
+                                            <div class="col-start-1 sm:col-span-3">
+                                                <label for="contractUntil" class="block text-sm font-medium text-gray-700">
+                                                    Contract Until
+                                                </label>
+                                                <x-flatpicker wire:model="contractUntil"></x-flatpicker>
+                                            </div>
+                                        </div>
 
                                         <div class="col-span-6 sm:col-span-3">
                                             <label for="photo" class="block text-sm font-medium text-gray-700">
-                                                Person photo</label>
+                                                Player photo</label>
                                             <input wire:model="files" type="file" multiple autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
-                                            @if ($personImages)
-                                            <div class="flex space-x-4">
-                                                @foreach ($personImages as $image)
-                                                <img src="{{ asset('storage/'.$image->small) }}">
-                                                @endforeach
-                                            </div>
+                                            @if ($oldImage)
+    
+                                            <img src="{{ asset('storage/'.$oldImage) }}">
+                                               
                                             @endif
                                             @if ($file)
                                             Photo Preview:
@@ -416,8 +458,8 @@
                                             @endif
                                         </div>
                                         <div class="col-span-6 sm:col-span-3">
-                                            <label for="personStatus" class="block text-sm font-medium text-gray-700">Status</label>
-                                            <select wire:model="personStatus" class="h-full rounded-r border-t border-r border-b block appearance-none w-full bg-white border-gray-300 text-gray-700 py-2 px-4 pr-8 leading-tight focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none">
+                                            <label for="playerStatus" class="block text-sm font-medium text-gray-700">Status</label>
+                                            <select wire:model="playerStatus" class="h-full rounded-r border-t border-r border-b block appearance-none w-full bg-white border-gray-300 text-gray-700 py-2 px-4 pr-8 leading-tight focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none">
                                                 <option value="">Select Option</option>
                                                 @foreach($statuses as $status)
                                                 <option value="{{ $status }}">{{ $status }}</option>
@@ -435,11 +477,11 @@
         <x-slot name="footer">
             <div class="border-slate-200">
                 <div class="flex flex-wrap justify-end fc">
-                    <x-m-button wire:click="closePersonModal" class="border-slate-200 hover:text-white hover--border-slate-300 g_">Cancel</x-m-button>
-                    @if ($personId)
-                    <x-m-button wire:click="updatePerson" class=" ho xi ye">Update</x-m-button>
+                    <x-m-button wire:click="closePlayerModal" class="border-slate-200 hover:text-white hover--border-slate-300 g_">Cancel</x-m-button>
+                    @if ($playerId)
+                    <x-m-button wire:click="updatePlayer" class=" ho xi ye">Update</x-m-button>
                     @else
-                    <x-m-button wire:click="createPerson" class=" ho xi ye2">Create</x-m-button>
+                    <x-m-button wire:click="createPlayer" class=" ho xi ye2">Create</x-m-button>
                     @endif
                 </div>
             </div>
@@ -492,9 +534,9 @@
 </div>
 
 <!-- modal detail -->
-<x-jet-dialog-modal wire:model="showPersonDetailModal" class="">
+<x-jet-dialog-modal wire:model="showPlayerDetailModal" class="">
     <x-slot name="title" class="border-b bg-slate-200">
-        <span class="font-semibold">Detail Person</span>
+        <span class="font-semibold">Detail Player</span>
     </x-slot>
     <x-slot name="content">
         <div class="border-t">

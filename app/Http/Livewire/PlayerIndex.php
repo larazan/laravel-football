@@ -27,16 +27,24 @@ class PlayerIndex extends Component
         'Attacker',
     ];
 
-    public $birth_date;
-    public $birth_location;
+    public $birthDate;
+    public $birthLocation;
     public $nationality;
     public $bio;
     public $height;
     public $weight;
-    public $contract_from;
-    public $contract_until;
-    public $prefered_foot;
-    public $shirt_number;
+    public $facebook;
+    public $instagram;
+    public $twitter;
+    public $contractFrom;
+    public $contractUntil;
+    public $preferedFoot;
+    public $footOption = [
+        'left',
+        'right',
+        'both',
+    ];
+    public $shirtNumber;
     public $position;
     public $positionOption = [
         'Goalkeeper',
@@ -57,6 +65,208 @@ class PlayerIndex extends Component
         'Second Stricker',
         'Center Forward',
     ];
+
+    public $countries = [
+        'Afghanistan',
+        'Albania',
+        'Algeria',
+        'Andorra',
+        'Angola',
+        'Antigua & Deps',
+        'Argentina',
+        'Armenia',
+        'Australia',
+        'Austria',
+        'Azerbaijan',
+        'Bahamas',
+        'Bahrain',
+        'Bangladesh',
+        'Barbados',
+        'Belarus',
+        'Belgium',
+        'Belize',
+        'Benin',
+        'Bermuda',
+        'Bhutan',
+        'Bolivia',
+        'Bosnia Herzegovina',
+        'Botswana',
+        'Brazil',
+        'Brunei',
+        'Bulgaria',
+        'Burkina',
+        'Burundi',
+        'Cambodia',
+        'Cameroon',
+        'Canada',
+        'Cape Verde',
+        'Central African Rep',
+        'Chad',
+        'Chile',
+        'China',
+        'Colombia',
+        'Comoros',
+        'Congo',
+        'Congo (Democratic Rep)',
+        'Costa Rica',
+        'Croatia',
+        'Cuba',
+        'Cyprus',
+        'Czech Republic',
+        'Denmark',
+        'Djibouti',
+        'Dominica',
+        'Dominican Republic',
+        'East Timor',
+        'Ecuador',
+        'Egypt',
+        'El Salvador',
+        'Equatorial Guinea',
+        'Eritrea',
+        'Estonia',
+        'Eswatini',
+        'Ethiopia',
+        'Fiji',
+        'Finland',
+        'France',
+        'Gabon',
+        'Gambia',
+        'Georgia',
+        'Germany',
+        'Ghana',
+        'Greece',
+        'Grenada',
+        'Guatemala',
+        'Guinea',
+        'Guinea-Bissau',
+        'Guyana',
+        'Haiti',
+        'Honduras',
+        'Hungary',
+        'Iceland',
+        'India',
+        'Indonesia',
+        'Iran',
+        'Iraq',
+        'Ireland (Republic)',
+        'Israel',
+        'Italy',
+        'Ivory Coast',
+        'Jamaica',
+        'Japan',
+        'Jordan',
+        'Kazakhstan',
+        'Kenya',
+        'Kiribati',
+        'Korea North',
+        'Korea South',
+        'Kosovo',
+        'Kuwait',
+        'Kyrgyzstan',
+        'Laos',
+        'Latvia',
+        'Lebanon',
+        'Lesotho',
+        'Liberia',
+        'Libya',
+        'Liechtenstein',
+        'Lithuania',
+        'Luxembourg',
+        'Macedonia',
+        'Madagascar',
+        'Malawi',
+        'Malaysia',
+        'Maldives',
+        'Mali',
+        'Malta',
+        'Marshall Islands',
+        'Mauritania',
+        'Mauritius',
+        'Mexico',
+        'Micronesia',
+        'Moldova',
+        'Monaco',
+        'Mongolia',
+        'Montenegro',
+        'Morocco',
+        'Mozambique',
+        'Myanmar',
+        'Namibia',
+        'Nauru',
+        'Nepal',
+        'Netherlands',
+        'New Zealand',
+        'Nicaragua',
+        'Niger',
+        'Nigeria',
+        'Norway',
+        'Oman',
+        'Pakistan',
+        'Palau',
+        'Palestine',
+        'Panama',
+        'Papua New Guinea',
+        'Paraguay',
+        'Peru',
+        'Philippines',
+        'Poland',
+        'Portugal',
+        'Qatar',
+        'Romania',
+        'Russian Federation',
+        'Rwanda',
+        'St Kitts & Nevis',
+        'St Lucia',
+        'Saint Vincent & the Grenadines',
+        'Samoa',
+        'San Marino',
+        'Sao Tome & Principe',
+        'Saudi Arabia',
+        'Senegal',
+        'Serbia',
+        'Seychelles',
+        'Sierra Leone',
+        'Singapore',
+        'Slovakia',
+        'Slovenia',
+        'Solomon Islands',
+        'Somalia',
+        'South Africa',
+        'South Sudan',
+        'Spain',
+        'Sri Lanka',
+        'Sudan',
+        'Suriname',
+        'Sweden',
+        'Switzerland',
+        'Syria',
+        'Taiwan',
+        'Tajikistan',
+        'Tanzania',
+        'Thailand',
+        'Togo',
+        'Tonga',
+        'Trinidad & Tobago',
+        'Tunisia',
+        'Turkey',
+        'Turkmenistan',
+        'Tuvalu',
+        'Uganda',
+        'Ukraine',
+        'United Arab Emirates',
+        'United Kingdom',
+        'United States',
+        'Uruguay',
+        'Uzbekistan',
+        'Vanuatu',
+        'Vatican City',
+        'Venezuela',
+        'Vietnam',
+        'Yemen',
+        'Zambia',
+        'Zimbabwe',
+    ];
+
     public $playerId;
     public $file;
     public $oldImage;
@@ -77,6 +287,12 @@ class PlayerIndex extends Component
         'name' => 'required',
             // 'file' => 'required|image|mimes:jpg,jpeg,png,svg,gif|max:2048',
     ];
+
+    public function mount()
+    {
+        $this->contractFrom = today()->format('Y-m-d');
+        $this->contractUntil = today()->format('Y-m-d');
+    } 
 
     public function showCreateModal()
     {
@@ -117,17 +333,20 @@ class PlayerIndex extends Component
         $player->name = $this->name;
         $player->slug = Str::slug($this->name);
         $player->role = $this->role;
-        $player->birth_date = $this->birth_date;
-        $player->birth_location = $this->birth_location;
+        $player->birth_date = $this->birthDate;
+        $player->birth_location = $this->birthLocation;
         $player->nationality = $this->nationality;
         $player->bio = $this->bio;
-        $player->contract_from = $this->contract_from;
-        $player->contract_until = $this->contract_until;
+        $player->contract_from = $this->contractFrom;
+        $player->contract_until = $this->contractUntil;
         $player->height = $this->height;
         $player->weight = $this->weight;
-        $player->prefered_foot = $this->prefered_foot;
-        $player->shirt_number = $this->shirt_number;
+        $player->prefered_foot = $this->preferedFoot;
+        $player->shirt_number = $this->shirtNumber;
         $player->position = $this->position;
+        $player->facebook = $this->facebook;
+        $player->instagram = $this->instagram;
+        $player->twitter = $this->twitter;
         $player->status = $this->playerStatus;
 
         if (!empty($this->file)) {
@@ -164,13 +383,18 @@ class PlayerIndex extends Component
         $this->clubId = $player->club_id;
         $this->name = $player->name;
         $this->role = $player->role;
-        $this->birth_date = $player->birth_date;
-        $this->birth_location = $player->birth_location;
+        $this->birthDate = $player->birth_date;
+        $this->birthLocation = $player->birth_location;
         $this->nationality = $player->nationality;
         $this->bio = $player->bio;
-        $this->contract_from = $player->contract_from;
-        $this->contract_until = $player->contract_until;
+        $this->contractFrom = $player->contract_from;
+        $this->contractUntil = $player->contract_until;
+        $this->preferedFoot = $player->prefered_foot;
+        $this->shirtNumber = $player->shirt_number;
         $this->oldImage = $player->small;
+        $this->facebook = $player->facebook;
+        $this->instagram = $player->instagram;
+        $this->twitter = $player->twitter;
         $this->playerStatus = $player->status;
 
         $this->showPlayerModal = true;
@@ -209,17 +433,20 @@ class PlayerIndex extends Component
                 $player->name = $this->name;
                 $player->slug = Str::slug($this->name);
                 $player->role = $this->role;
-                $player->birth_date = $this->birth_date;
-                $player->birth_location = $this->birth_location;
+                $player->birth_date = $this->birthDate;
+                $player->birth_location = $this->birthLocation;
                 $player->nationality = $this->nationality;
                 $player->bio = $this->bio;
-                $player->contract_from = $this->contract_from;
-                $player->contract_until = $this->contract_until;
+                $player->contract_from = $this->contractFrom;
+                $player->contract_until = $this->contractUntil;
                 $player->height = $this->height;
                 $player->weight = $this->weight;
-                $player->prefered_foot = $this->prefered_foot;
-                $player->shirt_number = $this->shirt_number;
+                $player->prefered_foot = $this->preferedFoot;
+                $player->shirt_number = $this->shirtNumber;
                 $player->position = $this->position;
+                $player->facebook = $this->facebook;
+                $player->instagram = $this->instagram;
+                $player->twitter = $this->twitter;
                 $player->status = $this->playerStatus;
 
                 if (!empty($this->file)) {

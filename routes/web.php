@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Admin\ArticleController;
 use App\Http\Controllers\Admin\UserController;
-
+use App\Http\Controllers\ContactController;
 // Livewire
 use App\Http\Livewire\ArticleIndex;
 use App\Http\Livewire\AwardIndex;
@@ -94,6 +94,9 @@ Route::middleware(['auth:sanctum', 'verified', 'role:admin'])->prefix('admin')->
     Route::post('users/{user}/permissions', [UserController::class, 'givePermission'])->name('users.permissions');
     Route::delete('users/{user}/permissions/{permission}', [UserController::class, 'revokePermission'])->name('users.permissions.revoke');
 });
+
+Route::get('/contact', [ContactController::class, 'show'])->name('contact.show');
+Route::post('/contact', [ContactController::class, 'submit'])->name('contact.submit');
 
 Route::middleware([
     'auth:sanctum',

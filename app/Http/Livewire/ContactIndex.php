@@ -2,7 +2,9 @@
 
 namespace App\Http\Livewire;
 
+use App\Mail\ReplyContactMail;
 use App\Models\Contact;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 use Livewire\WithPagination;
 use Livewire\Component;
@@ -12,9 +14,9 @@ class ContactIndex extends Component
     use WithPagination;
 
     public $showContactModal = false;
+    public $showAnswerModal = false;
 
-    public $firstName;
-    public $lastName;
+    public $name;
     public $email;
     public $message;
     public $opened;
@@ -82,8 +84,7 @@ class ContactIndex extends Component
         ]);
 
         Contact::create([
-          'first_name' => $this->firstName,
-          'last_name' => $this->lastName,
+          'name' => $this->name,
           'message' => $this->message,
           'opened' => $this->openedStatus,
           'status' => $this->contactStatus,
@@ -102,8 +103,7 @@ class ContactIndex extends Component
     public function loadContact()
     {
         $contact = Contact::findOrFail($this->contactId);
-        $this->firstName = $contact->first_name;
-        $this->lastName = $contact->last_name;
+        $this->name = $contact->name;
         $this->message = $contact->message;
         $this->openedStatus = $contact->opened;
         $this->contactStatus = $contact->status;
@@ -114,8 +114,7 @@ class ContactIndex extends Component
         $this->validate();
         $contact = Contact::findOrFail($this->contactId);
         $contact->update([
-            'first_name' => $this->firstName,
-            'last_name' => $this->lastName,
+            'name' => $this->name,
             'message' => $this->message,
             'opened' => $this->openedStatus,
             'status' => $this->contactStatus,
@@ -148,12 +147,45 @@ class ContactIndex extends Component
     public function render()
     {
         return view('livewire.contact-index', [
-            'contacts' => Contact::search('first_name', $this->search)->orderBy('first_name', $this->sort)->paginate($this->perPage)
+            'contacts' => Contact::search('name', $this->search)->orderBy('name', $this->sort)->paginate($this->perPage)
         ]);
     }
 
-    public function reply()
+    // Reply
+
+    public function showReplyModal($contactId)
     {
-        
+        $this->contactId = $contactId;
+        $contact = Contact::findOrFail($this->contactId);
+        $this->name = $contact->name;
+        $this->message = $contact->message;
+
+        $this->showAnswerModal = true;
+    }
+
+    public function replyContact($contactId)
+    {
+        $this->contactId = $contactId;
+        $contact = Contact::findOrFail($this->contactId);
+        $this->name = $contact->name;
+        $this->email = $contact->email;
+        $this->message = $contact->message;
+        // save reply
+        $contact->reply = $this->reply;
+        $contact->feedback = 1;
+        $contact->save();
+        // email reply
+        Mail::to($this->email)->send(new ReplyContactMail($this->name, $this->email, $this->message, $this->reply));
+    
+        $this->reset();
+        $this->showAnswerModal = false;
+        $this->dispatchBrowserEvent('banner-message', ['style' => 'success', 'message' => 'Reply created']);
+    }
+
+    public function closeReplyModal()
+    {
+        $this->showAnswerModal = false;
+        $this->reset();
+        $this->resetValidation();
     }
 }
