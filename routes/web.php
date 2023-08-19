@@ -3,7 +3,9 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Admin\ArticleController;
+use App\Http\Controllers\Admin\MediaController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ContactController;
 // Livewire
 use App\Http\Livewire\ArticleIndex;
@@ -16,6 +18,7 @@ use App\Http\Livewire\ContactIndex;
 use App\Http\Livewire\Dashboard;
 use App\Http\Livewire\FaqIndex;
 use App\Http\Livewire\LeagueIndex;
+use App\Http\Livewire\TeamLeagueIndex;
 use App\Http\Livewire\MatchGalleryIndex;
 use App\Http\Livewire\MatchIndex;
 use App\Http\Livewire\MatchLineup;
@@ -69,6 +72,7 @@ Route::middleware(['auth:sanctum', 'verified', 'role:admin'])->prefix('admin')->
     Route::get('contacts', ContactIndex::class)->name('contacts.index');
     Route::get('faqs', FaqIndex::class)->name('faqs.index');
     Route::get('leagues', LeagueIndex::class)->name('leagues.index');
+    Route::get('team-leagues', TeamLeagueIndex::class)->name('team-leagues.index');
     Route::get('matchs', MatchIndex::class)->name('matchs.index');
     Route::get('matchs/{matchId}/match-gallery', MatchGalleryIndex::class)->name('match-gallery.index');
     Route::get('matchs/{matchId}/match-lineup', MatchLineup::class)->name('match-lineup.index');
@@ -95,8 +99,12 @@ Route::middleware(['auth:sanctum', 'verified', 'role:admin'])->prefix('admin')->
     Route::delete('users/{user}/permissions/{permission}', [UserController::class, 'revokePermission'])->name('users.permissions.revoke');
 });
 
+// Contact
 Route::get('/contact', [ContactController::class, 'show'])->name('contact.show');
 Route::post('/contact', [ContactController::class, 'submit'])->name('contact.submit');
+
+// Comment
+Route::post('{post}/comment/store', [CommentController::class, 'show'])->name('comment.store');
 
 Route::middleware([
     'auth:sanctum',

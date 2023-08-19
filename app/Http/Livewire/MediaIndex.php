@@ -193,7 +193,9 @@ class MediaIndex extends Component
 
     public function render()
     {
-        return view('livewire.media-index');
+        return view('livewire.media-index', [
+            'medias' => Media::search('title', $this->search)->orderBy('title', $this->sort)->paginate($this->perPage),
+        ]);
     }
 
     private function _resizeImage($image, $fileName, $folder)

@@ -15,10 +15,12 @@ return new class extends Migration
     {
         Schema::create('comments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained();
             $table->morphs('commentable');
-            $table->text('body');
-            $table->boolean('is_active')->default(false);
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->string('name');
+            $table->string('email');
+            $table->mediumText('comment');
+            $table->unsignedBigInteger('parent_id')->nullable();
             $table->timestamps();
         });
     }
