@@ -18,6 +18,11 @@ class Player extends Model
 	public const LARGE = '600x656';
 	public const EXTRA_LARGE = '1125x1200';
 
+    public function club()
+    {
+        return $this->belongsTo(Club::class);
+    }
+
     public function lineups()
     {
         return $this->belongsToMany(Lineup::class)->latest();

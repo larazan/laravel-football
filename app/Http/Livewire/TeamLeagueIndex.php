@@ -14,6 +14,7 @@ class TeamLeagueIndex extends Component
 
     public $showTeamModal = false;
     public $season;
+    public $seasonOption;
     public $date;
     public $team;
     public $teamId;
@@ -35,7 +36,7 @@ class TeamLeagueIndex extends Component
         $yearNow = Carbon::now()->format('Y');
         for ($i=$yearNow; $i < $yearNow + 2 ; $i++) {
             $seas = $i . '/' . $i + 1;
-            array_push($this->seasons, $seas);
+            array_push($this->seasonOption, $seas);
         }
     }
 

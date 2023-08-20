@@ -141,8 +141,8 @@
                     <tbody class="text-sm le lr">
                         <!-- Row -->
                         
-                        @if ($categories->count() > 0)
-                        @foreach ($categories as $permission)
+                        @if ($permissions->count() > 0)
+                        @foreach ($permissions as $permission)
                         <tr>
                             <td class="vi wy w_ vo lm of">
                                 <div class="flex items-center">

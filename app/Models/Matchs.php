@@ -13,4 +13,13 @@ class Matchs extends Model
 
     protected $guarded = [];
 
+    public function competitions()
+    {
+        return $this->belongsToMany(Competition::class);
+    }
+
+    public function lineup()
+    {
+        return $this->hasOne(Lineup::class);
+    }
 }

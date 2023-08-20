@@ -12,4 +12,9 @@ class TeamLeague extends Model
     protected $table = 'team_league_statistics';
 
     protected $guarded = [];
+
+    public function clubs()
+    {
+        return $this->hasMany(Club::class);
+    }
 }

@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('staffs', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('club_id');
             $table->string('name');
             $table->string('slug');
             $table->string('role');
@@ -29,6 +30,8 @@ return new class extends Migration
             $table->string('small')->nullable();
             $table->string('status',10);
             $table->timestamps();
+
+            $table->foreign('club_id')->references('id')->on('clubs')->onDelete('cascade');
         });
     }
 

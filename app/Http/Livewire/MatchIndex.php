@@ -2,7 +2,6 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Schedule;
 use App\Models\Matchs;
 use App\Models\Competition;
 use App\Models\Club;
@@ -16,8 +15,8 @@ class MatchIndex extends Component
 {
     use WithPagination;
 
-    public $showScheduleModal = false;
-    public $schedule;
+    public $showMatchsModal = false;
+    public $match;
     public $season;
     public $seasons = [];
     public $competition;
@@ -32,14 +31,14 @@ class MatchIndex extends Component
     public $full_time_away_goal;
     public $fixture_match;
     public $date;
-    public $scheduleId;
+    public $matchId;
     public $full_time_result;
     public $results = [
         'W',
         'D',
         'L',
     ];
-    public $scheduleStatus = 'inactive';
+    public $matchStatus = 'inactive';
     public $statuses = [
         'active',
         'inactive'
@@ -58,7 +57,7 @@ class MatchIndex extends Component
 
     public function mount($id)
     {
-        $this->schedule = Schedule::find($id);
+        $this->match = Matchs::find($id);
         $this->date = today()->format('Y-m-d');
         $yearNow = Carbon::now()->format('Y');
         for ($i=$yearNow; $i < $yearNow + 2 ; $i++) {
@@ -69,7 +68,7 @@ class MatchIndex extends Component
 
     public function showCreateModal()
     {
-        $this->showScheduleModal = true;
+        $this->showMatchsModal = true;
     }
 
     public function closeConfirmModal()
@@ -85,17 +84,17 @@ class MatchIndex extends Component
 
     public function delete()
     {
-        Schedule::find($this->deleteId)->delete();
+        Matchs::find($this->deleteId)->delete();
         $this->showConfirmModal = false;
         $this->reset();
-        $this->dispatchBrowserEvent('banner-message', ['style' => 'danger', 'message' => 'Schedule deleted successfully']);
+        $this->dispatchBrowserEvent('banner-message', ['style' => 'danger', 'message' => 'Matchs deleted successfully']);
     }
 
-    public function createSchedule()
+    public function createMatchs()
     {
         $this->validate();
   
-        Schedule::create([
+        Matchs::create([
             'season' => $this->season,
             'competition_id' => $this->competitionId,
             'stadion_id' => $this->stadionId,
@@ -107,11 +106,11 @@ class MatchIndex extends Component
             'full_time_result' => $this->full_time_result,
 
             'slug' => $this->slugGenerate($this->season, $this->competitionId, $this->home_team_id, $this->away_team_id),
-            'status' => $this->scheduleStatus,
+            'status' => $this->matchStatus,
         ]);
 
         $this->reset();
-        $this->dispatchBrowserEvent('banner-message', ['style' => 'success', 'message' => 'Schedule created successfully']);
+        $this->dispatchBrowserEvent('banner-message', ['style' => 'success', 'message' => 'Matchs created successfully']);
     }
 
     public function slugGenerate($season, $competitionId, $homeId, $awayId)
@@ -131,32 +130,32 @@ class MatchIndex extends Component
         return $slug;
     } 
 
-    public function showEditModal($scheduleId)
+    public function showEditModal($matchId)
     {
-        $this->reset(['scheduleName']);
-        $this->scheduleId = $scheduleId;
-        $schedule = Schedule::find($scheduleId);
-        $this->season = $schedule->season;
-        $this->competitionId = $schedule->competition_id;
-        $this->stadionId = $schedule->stadion_id;
-        $this->home_team_id = $schedule->home_team;
-        $this->away_team_id = $schedule->away_team;
-        $this->full_time_home_goal = $schedule->full_time_home_goal;
-        $this->full_time_away_goal = $schedule->full_time_away_goal;
-        $this->fixture_match = $schedule->fixture_match;
-        $this->full_time_result = $schedule->full_time_result;
-        $this->scheduleStatus = $schedule->status;
-        $this->showScheduleModal = true;
+        $this->reset(['matchName']);
+        $this->matchId = $matchId;
+        $match = Matchs::find($matchId);
+        $this->season = $match->season;
+        $this->competitionId = $match->competition_id;
+        $this->stadionId = $match->stadion_id;
+        $this->home_team_id = $match->home_team;
+        $this->away_team_id = $match->away_team;
+        $this->full_time_home_goal = $match->full_time_home_goal;
+        $this->full_time_away_goal = $match->full_time_away_goal;
+        $this->fixture_match = $match->fixture_match;
+        $this->full_time_result = $match->full_time_result;
+        $this->matchStatus = $match->status;
+        $this->showMatchsModal = true;
     }
     
-    public function updateSchedule()
+    public function updateMatchs()
     {
-        $schedule = Schedule::findOrFail($this->scheduleId);
+        $match = Matchs::findOrFail($this->matchId);
         $this->validate();
         
-        if ($this->scheduleId) {
-            if ($schedule) {
-                $schedule->update([
+        if ($this->matchId) {
+            if ($match) {
+                $match->update([
                     'season' => $this->season,
                     'competition_id' => $this->competitionId,
                     'stadion_id' => $this->stadionId,
@@ -168,28 +167,28 @@ class MatchIndex extends Component
                     'full_time_result' => $this->full_time_result,
 
                     'slug' => $this->slugGenerate($this->season, $this->competitionId, $this->home_team_id, $this->away_team_id),
-                    'status' => $this->scheduleStatus,
+                    'status' => $this->matchStatus,
                 ]);
                 
             }
         }
 
         $this->reset();
-        $this->showScheduleModal = false;
-        $this->dispatchBrowserEvent('banner-message', ['style' => 'success', 'message' => 'Schedule updated successfully']);
+        $this->showMatchsModal = false;
+        $this->dispatchBrowserEvent('banner-message', ['style' => 'success', 'message' => 'Matchs updated successfully']);
     }
 
-    public function deleteSchedule($scheduleId)
+    public function deleteMatchs($matchId)
     {
-        $schedule = Schedule::findOrFail($scheduleId);
-        $schedule->delete();
+        $match = Matchs::findOrFail($matchId);
+        $match->delete();
         $this->reset();
-        $this->dispatchBrowserEvent('banner-message', ['style' => 'danger', 'message' => 'Schedule deleted successfully']);
+        $this->dispatchBrowserEvent('banner-message', ['style' => 'danger', 'message' => 'Matchs deleted successfully']);
     }
 
-    public function closeScheduleModal()
+    public function closeMatchsModal()
     {
-        $this->showScheduleModal = false;
+        $this->showMatchsModal = false;
     }
 
     public function resetFilters()

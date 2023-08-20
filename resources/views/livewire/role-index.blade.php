@@ -141,8 +141,8 @@
                     <tbody class="text-sm le lr">
                         <!-- Row -->
                         
-                        @if ($categories->count() > 0)
-                        @foreach ($categories as $role)
+                        @if ($roles->count() > 0)
+                        @foreach ($roles as $role)
                         <tr>
                             <td class="vi wy w_ vo lm of">
                                 <div class="flex items-center">

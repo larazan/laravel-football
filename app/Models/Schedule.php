@@ -10,4 +10,9 @@ class Schedule extends Model
     use HasFactory;
 
     protected $guarded = [];
+
+    public function competitions()
+    {
+        return $this->belongsToMany(Competition::class);
+    }
 }

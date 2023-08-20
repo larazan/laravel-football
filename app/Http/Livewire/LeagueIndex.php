@@ -11,6 +11,7 @@ class LeagueIndex extends Component
 {
     public $showLeagueModal = false;
     public $season;
+    public $seasonOption;
     public $date;
     public $totalPoints;
     public $totalGoals;
@@ -37,9 +38,8 @@ class LeagueIndex extends Component
     public $team;
     public $teamId;
 
-    public $search = '';
-    public $sort = 'asc';
-    public $perPage = 5;
+    public $perSeason;
+    
 
     public $showConfirmModal = false;
     public $deleteId = '';
@@ -54,7 +54,7 @@ class LeagueIndex extends Component
         $yearNow = Carbon::now()->format('Y');
         for ($i=$yearNow; $i < $yearNow + 2 ; $i++) {
             $seas = $i . '/' . $i + 1;
-            array_push($this->seasons, $seas);
+            array_push($this->seasonOption, $seas);
         }
     }
 

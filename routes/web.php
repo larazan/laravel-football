@@ -56,7 +56,6 @@ Route::get('/', function () {
 Route::middleware(['auth:sanctum', 'verified', 'role:admin'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('dashboard', Dashboard::class);
 
-    Route::get('articles', ArticleIndex::class)->name('articles.index');
     // 
     Route::get('articles/create', [ArticleController::class, 'create']);
     Route::post('articles/store', [ArticleController::class, 'store']);
@@ -78,7 +77,15 @@ Route::middleware(['auth:sanctum', 'verified', 'role:admin'])->prefix('admin')->
     Route::get('matchs/{matchId}/match-lineup', MatchLineup::class)->name('match-lineup.index');
     Route::get('matchs/{matchId}/match-report', MatchReportIndex::class)->name('match-report.index');
     Route::get('matchs/{matchId}/match-statistic', MatchStatisticIndex::class)->name('match-statistic.index');
+    
+    // 
+    Route::get('medias/create', [MediaController::class, 'create']);
+    Route::post('medias/store', [MediaController::class, 'store']);
+    Route::get('medias/edit/{mediaID}', [MediaController::class, 'edit']);
+    Route::put('medias/update', [MediaController::class, 'update'])->name('updateMedia');
     Route::get('medias', MediaIndex::class)->name('medias.index');
+    //
+
     Route::get('players', PlayerIndex::class)->name('players.index');
     Route::get('permissions', PermissionIndex::class)->name('permissions.index');
     Route::get('roles', RoleIndex::class)->name('roles.index');

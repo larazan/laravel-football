@@ -15,4 +15,9 @@ class Lineup extends Model
     {
         return $this->belongsToMany(Player::class);
     }
+
+    public function match()
+    {
+        return $this->belongsTo(Matchs::class);
+    }
 }
