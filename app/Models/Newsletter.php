@@ -11,8 +11,6 @@ class Newsletter extends Model
 
     protected $table = 'newsletter_subscribers';
 
-    public const UPLOAD_DIR = 'uploads/matchs';
-
 	protected $guarded = [
 		'id',
 		'created_at',

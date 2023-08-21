@@ -8,7 +8,7 @@
 
         <!-- Left: Title -->
         <div class="ri _y">
-            <h1 class="gu teu text-slate-800 font-bold">Schedule ✨</h1>
+            <h1 class="gu teu text-slate-800 font-bold">Advertising Segment ✨</h1>
         </div>
 
         <!-- Right: Actions -->
@@ -26,12 +26,12 @@
                 </button>
             </form>
 
-            <!-- Create schedule button -->
+            <!-- Create segment button -->
             <button class="btn ho xi ye" wire:click="showCreateModal">
                 <svg class="oo sl du bf ub" viewBox="0 0 16 16">
                     <path d="M15 7H9V1c0-.6-.4-1-1-1S7 .4 7 1v6H1c-.6 0-1 .4-1 1s.4 1 1 1h6v6c0 .6.4 1 1 1s1-.4 1-1V9h6c.6 0 1-.4 1-1s-.4-1-1-1z"></path>
                 </svg>
-                <span class="hidden trm nq">Create Schedule</span>
+                <span class="hidden trm nq">Create Segment</span>
             </button>
         </div>
 
@@ -107,7 +107,7 @@
     <!-- Table -->
     <div class="bg-white bd rounded-sm border border-slate-200 rc">
         <header class="vc vu">
-            <h2 class="gh text-slate-800">Schedules <span class="gq gp"></span></h2>
+            <h2 class="gh text-slate-800">Segments <span class="gq gp"></span></h2>
         </header>
         <div x-data="handleSelect">
 
@@ -126,24 +126,21 @@
                                 </div>
                             </th>
                             <th class="vi wy w_ vo lm">
-                                <div class="gh gt">Competition</div>
+                                <div class="gh gt">Title</div>
+                            </th>
+                           
+                            <th class="vi wy w_ vo lm">
+                                <div class="gh gt">Image</div>
                             </th>
                             <th class="vi wy w_ vo lm">
-                                <div class="gh gt">Season</div>
-                            </th>
-                            <th class="vi wy w_ vo lm">
-                                <div class="gh gt">H Team</div>
-                            </th>
-                            <th class="vi wy w_ vo lm">
-                                <div class="gh gt">A Team</div>
-                            </th>
-                            <th class="vi wy w_ vo lm">
-                                <div class="gh gt">Date</div>
+                                <div class="gh gt">Size</div>
                             </th>
                             <th class="vi wy w_ vo lm">
                                 <div class="gh gt">Status</div>
                             </th>
-                          
+                            <th class="vi wy w_ vo lm">
+                                <div class="gh gt">Date</div>
+                            </th>
                             <th class="vi wy w_ vo lm">
                                 <div class="gh gt">Actions</div>
                             </th>
@@ -153,7 +150,7 @@
                     <tbody class="text-sm le lr">
                         <!-- Row -->
                         
-                        @foreach ($schedules as $schedule)
+                        @foreach ($segments as $segment)
                         <tr>
                             <td class="vi wy w_ vo lm of">
                                 <div class="flex items-center">
@@ -164,42 +161,41 @@
                                 </div>
                             </td>
                             <td class="vi wy w_ vo lm">
-                                <div class="gp text-slate-800">{{ $schedule->competition_id }}</div>
+                                <div class="gp text-slate-800">{{ $segment->title }}</div>
                             </td>
                             <td class="vi wy w_ vo lm">
-                                <div class="gp text-slate-800">{{ $schedule->season }}</div>
-                            </td>
-
-                            <td class="vi wy w_ vo lm">
-                                <div>{{ $schedule->home_team_id }}</div>
-                            </td>
-                            <td class="vi wy w_ vo lm">
-                                <div>{{ $schedule->away_team_id }}</div>
+                                <div class="gp ">
+                                    @if ($segment->original)
+                                    <img src="{{ asset('storage/'.$segment->original) }}" class="object-scale-down h-48 w-96" alt="{{ $segment->title }}">
+                                    @endif
+                                </div>
                             </td>
                             <td class="vi wy w_ vo lm">
-                                <div>{{ $schedule->fixture_match->format('d-m-Y') }}</div>
+                                <div class="gp text-slate-800">{{ $segment->size }}</div>
                             </td>
-                           
                             <td class="vi wy w_ vo lm">
-                                @if ($schedule->status === 'inactive')
-                                <div class="inline-flex gp hf yl rounded-full gn vp vd">{{ $schedule->status }}</div>
+                                @if ($segment->status === 'inactive')
+                                <div class="inline-flex gp hf yl rounded-full gn vp vd">{{ $segment->status }}</div>
                                 @endif
 
-                                @if ($schedule->status === 'active')
-                                <div class="inline-flex gp hc ys rounded-full gn vp vd">{{ $schedule->status }}</div>
+                                @if ($segment->status === 'active')
+                                <div class="inline-flex gp hc ys rounded-full gn vp vd">{{ $segment->status }}</div>
                                 @endif
                             </td>
-                            
+                            <td class="vi wy w_ vo lm">
+                                <div>{{ $segment->created_at->format('d-m-Y') }}</div>
+                            </td>
+
                             <td class="vi wy w_ vo lm of">
                                 <div class="fm">
-                                    <button class="gq xv rounded-full" wire:click="showEditModal({{ $schedule->id }})">
+                                    <button class="gq xv rounded-full" wire:click="showEditModal({{ $segment->id }})">
                                         <span class=" d">Edit</span>
                                         <svg class="os sf du" viewBox="0 0 32 32">
                                             <path d="M19.7 8.3c-.4-.4-1-.4-1.4 0l-10 10c-.2.2-.3.4-.3.7v4c0 .6.4 1 1 1h4c.3 0 .5-.1.7-.3l10-10c.4-.4.4-1 0-1.4l-4-4zM12.6 22H10v-2.6l6-6 2.6 2.6-6 6zm7.4-7.4L17.4 12l1.6-1.6 2.6 2.6-1.6 1.6z"></path>
                                         </svg>
                                     </button>
 
-                                    <button class="yl xy rounded-full" wire:click="deleteId({{ $schedule->id }})">
+                                    <button class="yl xy rounded-full" wire:click="deleteId({{ $segment->id }})">
                                         <span class=" d">Delete</span>
                                         <svg class="os sf du" viewBox="0 0 32 32">
                                             <path d="M13 15h2v6h-2zM17 15h2v6h-2z"></path>
@@ -217,15 +213,15 @@
         </div>
     </div>
 
-    {{ $schedules->links() }}
+    {{ $segments->links() }}
 
-    <x-jet-dialog-modal wire:model="showScheduleModal" class="">
+    <x-jet-dialog-modal wire:model="showAdvertisingSegmentModal" class="">
 
-        @if ($scheduleId)
-        <x-slot name="title" class="border-b">Update Schedule</x-slot>
+        @if ($segmentId)
+        <x-slot name="title" class="border-b">Update Segment</x-slot>
         @else
         <x-slot name="title" class="border-b bg-slate-200">
-            <span class="font-semibold">Create Schedule</span>
+            <span class="font-semibold">Create Segment</span>
         </x-slot>
         @endif
 
@@ -238,69 +234,36 @@
                             <div class="">
                                 <div class="">
                                     <div class="flex flex-col space-y-3">
-                                        <div class="flex justify-between">
-                                            <div class="col-span-1 sm:col-span-3">
-                                                <label for="competitionId" class="block text-sm font-medium text-gray-700">Competition</label>
-                                                <select wire:model="competitionId" class="h-full rounded-r border-t border-r border-b block appearance-none w-full bg-white border-gray-300 text-gray-700 py-2 px-4 pr-8 leading-tight focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none">
-                                                    <option value="">Select Option</option>
-                                                    @foreach($competitions as $comp)
-                                                    <option value="{{ $comp->id }}">{{ $comp->name }}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                            <div class="col-span-1 sm:col-span-3">
-                                                <label for="season" class="block text-sm font-medium text-gray-700">Season</label>
-                                                <select wire:model="season" class="h-full rounded-r border-t border-r border-b block appearance-none w-full bg-white border-gray-300 text-gray-700 py-2 px-4 pr-8 leading-tight focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none">
-                                                    <option value="" >Select Option</option>
-                                                    @foreach($seasonOption as $season)
-                                                    <option value="{{ $season }}">{{ $season }}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
+                                        
+                                        <div class="col-start-1 sm:col-span-3">
+                                            <label for="title" class="block text-sm font-medium text-gray-700">
+                                                Title
+                                            </label>
+                                            <input wire:model="title" type="text" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                                         </div>
-                                        <div class="flex justify-between">
-                                            <div class="col-start-1 sm:col-span-3">
-                                                <label for="title" class="block text-sm font-medium text-gray-700">
-                                                    Fixture Date
-                                                </label>
-                                                <x-flatpicker wire:model="date"></x-flatpicker>
-                                            </div>
-                                            <div class="col-span-1 sm:col-span-3">
-                                                <label for="stadionId" class="block text-sm font-medium text-gray-700">Stadion</label>
-                                                <select wire:model="stadionId" class="h-full rounded-r border-t border-r border-b block appearance-none w-full bg-white border-gray-300 text-gray-700 py-2 px-4 pr-8 leading-tight focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none">
-                                                    <option value="" >Select Option</option>
-                                                    @foreach($stadions as $stad)
-                                                    <option value="{{ $stad->id }}">{{ $stad->name }}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
+                                        <div class="col-start-1 sm:col-span-3">
+                                            <label for="title" class="block text-sm font-medium text-gray-700">
+                                                Size
+                                            </label>
+                                            <input wire:model="size" type="text" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                                         </div>
-                                       
-                                        <div class="flex justify-between">
-                                            <div class="col-span-1 sm:col-span-3">
-                                                <label for="position" class="block text-sm font-medium text-gray-700">Position</label>
-                                                <select wire:model="position" class="h-full rounded-r border-t border-r border-b block appearance-none w-full bg-white border-gray-300 text-gray-700 py-2 px-4 pr-8 leading-tight focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none">
-                                                    <option value="" >Select Option</option>
-                                                    @foreach($positionOption as $pos)
-                                                    <option value="{{ $pos }}">{{ $pos }}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                            <div class="col-span-1 sm:col-span-3">
-                                                <label for="opponent" class="block text-sm font-medium text-gray-700">Opponent</label>
-                                                <select wire:model="opponent" class="h-full rounded-r border-t border-r border-b block appearance-none w-full bg-white border-gray-300 text-gray-700 py-2 px-4 pr-8 leading-tight focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none">
-                                                    <option value="" >Select Option</option>
-                                                    @foreach($clubs as $club)
-                                                    <option value="{{ $club->id }}">{{ $club->name }}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                        </div>
-
                                        
                                         <div class="col-span-6 sm:col-span-3">
+                                            <label for="photo" class="block text-sm font-medium text-gray-700">Image
+                                            </label>
+                                            <input wire:model="file" type="file" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                                            @if ($oldImage)
+                                            Photo Preview:
+                                            <img src="{{ asset('storage/'.$oldImage) }}">
+                                            @endif
+                                            @if ($file)
+                                            Photo Preview:
+                                            <img src="{{ $file->temporaryUrl() }}">
+                                            @endif
+                                        </div>
+                                        <div class="col-span-6 sm:col-span-3">
                                             <label for="first-name" class="block text-sm font-medium text-gray-700">Status</label>
-                                            <select wire:model="scheduleStatus" class="h-full rounded-r border-t border-r border-b block appearance-none w-full bg-white border-gray-300 text-gray-700 py-2 px-4 pr-8 leading-tight focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none">
+                                            <select wire:model="segmentStatus" class="h-full rounded-r border-t border-r border-b block appearance-none w-full bg-white border-gray-300 text-gray-700 py-2 px-4 pr-8 leading-tight focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none">
                                                 <option value="">Select Option</option>
                                                 @foreach($statuses as $status)
                                                 <option value="{{ $status }}">{{ $status }}</option>
@@ -319,11 +282,11 @@
         <x-slot name="footer">
             <div class="border-slate-200">
                 <div class="flex flex-wrap justify-end fc">
-                    <x-m-button wire:click="closeScheduleModal" class="border-slate-200 hover:text-white hover--border-slate-300 g_">Cancel</x-m-button>
-                    @if ($scheduleId)
-                    <x-m-button wire:click="updateSchedule" class=" ho xi ye">Update</x-m-button>
+                    <x-m-button wire:click="closeAdvertisingSegmentModal" class="border-slate-200 hover:text-white hover--border-slate-300 g_">Cancel</x-m-button>
+                    @if ($segmentId)
+                    <x-m-button wire:click="updateAdvertisingSegment" class=" ho xi ye">Update</x-m-button>
                     @else
-                    <x-m-button wire:click="createSchedule" class=" ho xi ye2">Create</x-m-button>
+                    <x-m-button wire:click="createAdvertisingSegment" class=" ho xi ye2">Create</x-m-button>
                     @endif
                 </div>
             </div>

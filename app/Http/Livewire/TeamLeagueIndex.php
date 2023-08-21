@@ -14,7 +14,7 @@ class TeamLeagueIndex extends Component
 
     public $showTeamModal = false;
     public $season;
-    public $seasonOption;
+    public $seasonOption = [];
     public $date;
     public $team;
     public $teamId;

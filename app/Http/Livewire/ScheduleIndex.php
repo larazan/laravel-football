@@ -19,7 +19,7 @@ class ScheduleIndex extends Component
     public $showScheduleModal = false;
     public $schedule;
     public $season;
-    public $seasons = [];
+    public $seasonOption = [];
     public $competition;
     public $competitionId;
     public $stadion;
@@ -32,6 +32,12 @@ class ScheduleIndex extends Component
     public $full_time_away_goal;
     public $fixture_match;
     public $date;
+    public $opponent;
+    public $position;
+    public $positionOption = [
+        'away',
+        'home'
+    ];
     public $scheduleId;
     public $scheduleStatus = 'inactive';
     public $statuses = [
@@ -57,7 +63,7 @@ class ScheduleIndex extends Component
         $yearNow = Carbon::now()->format('Y');
         for ($i=$yearNow; $i < $yearNow + 2 ; $i++) {
             $seas = $i . '/' . $i + 1;
-            array_push($this->seasons, $seas);
+            array_push($this->seasonOption, $seas);
         }
     }
 
