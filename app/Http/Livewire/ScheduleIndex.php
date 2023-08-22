@@ -16,6 +16,7 @@ class ScheduleIndex extends Component
 {
     use WithPagination;
 
+    public $currentClubId = 1;
     public $showScheduleModal = false;
     public $schedule;
     public $season;
@@ -95,12 +96,23 @@ class ScheduleIndex extends Component
     {
         $this->validate();
   
+        // 
+        if ($this->position === 'home') {
+            $homeTeam = $this->currentClubId;
+            $awayTeam = $this->opponent;
+        }
+
+        if ($this->position === 'away') {
+            $homeTeam = $this->opponent;
+            $awayTeam = $this->currentClubId;
+        }
+
         Schedule::create([
             'season' => $this->season,
             'competition_id' => $this->competitionId,
             'stadion_id' => $this->stadionId,
-            'home_team' => $this->home_team_id,
-            'away_team' => $this->away_team_id,
+            'home_team' => $homeTeam,
+            'away_team' => $awayTeam,
             'fixture_match' => $this->date,
             'full_time_home_goal' => $this->full_time_home_goal,
             'full_time_away_goal' => $this->full_time_away_goal,
@@ -114,8 +126,8 @@ class ScheduleIndex extends Component
             'season' => $this->season,
             'competition_id' => $this->competitionId,
             'stadion_id' => $this->stadionId,
-            'home_team' => $this->home_team_id,
-            'away_team' => $this->away_team_id,
+            'home_team' => $homeTeam,
+            'away_team' => $awayTeam,
             'fixture_match' => $this->date,
             'full_time_home_goal' => $this->full_time_home_goal,
             'full_time_away_goal' => $this->full_time_away_goal,
@@ -167,6 +179,17 @@ class ScheduleIndex extends Component
         $schedule = Schedule::findOrFail($this->scheduleId);
         $match = Matchs::findOrFail($this->scheduleId);
         $this->validate();
+
+        // 
+        if ($this->position === 'home') {
+            $homeTeam = $this->currentClubId;
+            $awayTeam = $this->opponent;
+        }
+
+        if ($this->position === 'away') {
+            $homeTeam = $this->opponent;
+            $awayTeam = $this->currentClubId;
+        }
         
         if ($this->scheduleId) {
             if ($schedule) {
@@ -174,8 +197,8 @@ class ScheduleIndex extends Component
                     'season' => $this->season,
                     'competition_id' => $this->competitionId,
                     'stadion_id' => $this->stadionId,
-                    'home_team' => $this->home_team_id,
-                    'away_team' => $this->away_team_id,
+                    'home_team' => $homeTeam,
+                    'away_team' => $awayTeam,
                     'fixture_match' => $this->date,
                     'full_time_home_goal' => $this->full_time_home_goal,
                     'full_time_away_goal' => $this->full_time_away_goal,
@@ -189,8 +212,8 @@ class ScheduleIndex extends Component
                     'season' => $this->season,
                     'competition_id' => $this->competitionId,
                     'stadion_id' => $this->stadionId,
-                    'home_team' => $this->home_team_id,
-                    'away_team' => $this->away_team_id,
+                    'home_team' => $homeTeam,
+                    'away_team' => $awayTeam,
                     'fixture_match' => $this->date,
                     'full_time_home_goal' => $this->full_time_home_goal,
                     'full_time_away_goal' => $this->full_time_away_goal,

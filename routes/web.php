@@ -31,7 +31,6 @@ use App\Http\Livewire\RoleIndex;
 use App\Http\Livewire\ScheduleIndex;
 use App\Http\Livewire\SettingIndex;
 use App\Http\Livewire\SlideIndex;
-use App\Http\Livewire\SponsorIndex;
 use App\Http\Livewire\StadionIndex;
 use App\Http\Livewire\StaffIndex;
 use App\Http\Livewire\StatisticIndex;
@@ -90,7 +89,6 @@ Route::middleware(['auth:sanctum', 'verified', 'role:admin'])->prefix('admin')->
     Route::get('permissions', PermissionIndex::class)->name('permissions.index');
     Route::get('roles', RoleIndex::class)->name('roles.index');
     Route::get('schedules', ScheduleIndex::class)->name('schedules.index');
-    Route::get('sponsors', SponsorIndex::class)->name('sponsors.index');
     Route::get('stadions', StadionIndex::class)->name('stadions.index');
     Route::get('staffs', StaffIndex::class)->name('staffs.index');
     Route::get('statistics', StatisticIndex::class)->name('statistics.index');
@@ -99,7 +97,7 @@ Route::middleware(['auth:sanctum', 'verified', 'role:admin'])->prefix('admin')->
     Route::get('slides', SlideIndex::class)->name('slides.index');
     Route::get('users', UserIndex::class)->name('users.index');
 
-    Route::get('users', [UserController::class, 'show'])->name('users.show');
+    // Route::get('users', [UserController::class, 'show'])->name('users.show');
     Route::post('users/{user}/roles', [UserController::class, 'assignRole'])->name('users.roles');
     Route::delete('users/{user}/roles/{role}', [UserController::class, 'removeRole'])->name('users.roles.remove');
     Route::post('users/{user}/permissions', [UserController::class, 'givePermission'])->name('users.permissions');

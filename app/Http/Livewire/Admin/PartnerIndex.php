@@ -19,6 +19,7 @@ class PartnerIndex extends Component
     public $partnerId;
     public $file;
     public $oldImage;
+    public $sizeTol = Partner::SMALL;
     public $partnerStatus = 'inactive';
     public $statuses = [
         'active',

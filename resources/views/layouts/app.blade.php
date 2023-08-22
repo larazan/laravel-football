@@ -11,14 +11,164 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
-
-    <link href="{{ URL::asset('admin/css/style.css') }}" rel="stylesheet" />
     
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     <!-- Styles -->
     @livewireStyles
+    <link href="{{ URL::asset('admin/css/style.css') }}" rel="stylesheet" />
+    <style>
+    .select2.select2-container {
+      width: 100% !important;
+    }
+
+    .select2.select2-container .select2-selection {
+      border: 1px solid #ccc;
+      -webkit-border-radius: 3px;
+      -moz-border-radius: 3px;
+      border-radius: 3px;
+      height: 34px;
+      margin-bottom: 15px;
+      outline: none !important;
+      transition: all .15s ease-in-out;
+    }
+
+    .select2.select2-container .select2-selection .select2-selection__rendered {
+      color: #333;
+      line-height: 32px;
+      padding-right: 33px;
+    }
+
+    .select2.select2-container .select2-selection .select2-selection__arrow {
+      background: #f8f8f8;
+      border-left: 1px solid #ccc;
+      -webkit-border-radius: 0 3px 3px 0;
+      -moz-border-radius: 0 3px 3px 0;
+      border-radius: 0 3px 3px 0;
+      height: 32px;
+      width: 33px;
+    }
+
+    .select2.select2-container.select2-container--open .select2-selection.select2-selection--single {
+      background: #f8f8f8;
+    }
+
+    .select2.select2-container.select2-container--open .select2-selection.select2-selection--single .select2-selection__arrow {
+      -webkit-border-radius: 0 3px 0 0;
+      -moz-border-radius: 0 3px 0 0;
+      border-radius: 0 3px 0 0;
+    }
+
+    .select2.select2-container.select2-container--open .select2-selection.select2-selection--multiple {
+      border: 1px solid #34495e;
+    }
+
+    .select2.select2-container .select2-selection--multiple {
+      height: auto;
+      min-height: 34px;
+    }
+
+    .select2.select2-container .select2-selection--multiple .select2-search--inline .select2-search__field {
+      margin-top: 2px;
+      margin-bottom: 2px;
+      height: 30px;
+      width: 100% !important;
+    }
+
+    .select2.select2-container .select2-selection--multiple .select2-selection__rendered {
+      display: block;
+      padding: 0 4px;
+      line-height: 29px;
+    }
+
+    .select2.select2-container .select2-selection--multiple .select2-selection__choice {
+      background-color: #f8f8f8;
+      border: 1px solid #ccc;
+      -webkit-border-radius: 3px;
+      -moz-border-radius: 3px;
+      border-radius: 3px;
+      margin: 4px 4px 0 0;
+      padding: 0 6px 0 22px;
+      height: 24px;
+      line-height: 24px;
+      font-size: 12px;
+      position: relative;
+    }
+
+    .select2.select2-container .select2-selection--multiple .select2-selection__choice .select2-selection__choice__remove {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 22px;
+      width: 22px;
+      margin: 0;
+      text-align: center;
+      color: #e74c3c;
+      font-weight: bold;
+      font-size: 16px;
+    }
+
+    .select2-container .select2-dropdown {
+      background: transparent;
+      border: none;
+      margin-top: -5px;
+    }
+
+    .select2-container .select2-dropdown .select2-search {
+      padding: 0;
+    }
+
+    .select2-container .select2-dropdown .select2-search input {
+      outline: none !important;
+      border: 1px solid #34495e !important;
+      border-bottom: none !important;
+      padding: 4px 6px !important;
+    }
+
+    .select2-container .select2-dropdown .select2-results {
+      padding: 0;
+    }
+
+    .select2-container .select2-dropdown .select2-results ul {
+      background: #fff;
+      border: 1px solid #34495e;
+    }
+
+    .select2-container .select2-dropdown .select2-results ul .select2-results__option--highlighted[aria-selected] {
+      background-color: #3498db;
+    }
+
+    .select2 input .select2-search__field {
+      min-width: 100% !important;
+    }
+
+
+    input[type=file] {
+      width: 100%;
+      max-width: 100%;
+      color: #444;
+      padding: 3px;
+      background: #fff;
+      border-radius: 3px;
+      border: 1px solid #555;
+    }
+
+    input[type=file]::file-selector-button {
+      margin-right: 20px;
+      border: none;
+      background: #1e293b;
+      padding: 6px 14px;
+      border-radius: 3px;
+      color: #fff;
+      cursor: pointer;
+      transition: background .2s ease-in-out;
+    }
+
+    input[type=file]::file-selector-button:hover {
+      background: #0d45a5;
+    }
+  </style>
     @stack('styles')
     <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
 

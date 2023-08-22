@@ -144,7 +144,7 @@
             </div>
         </div>
 
-    <x-jet-dialog-modal wire:model="showSettingModal" class="">
+    <x-dialog-modal wire:model="showSettingModal" class="">
         <x-slot name="title" class="border-b">Update Logo</x-slot>
         <x-slot name="content">
             <div class="border-t">
@@ -199,12 +199,12 @@
         <x-slot name="footer">
             <div class="border-slate-200">
                 <div class="flex flex-wrap justify-end fc">
-                    <x-m-button wire:click="closeSettingModal" class="border-slate-200 hover:text-white hover--border-slate-300 g_">Cancel</x-m-button>
-                    <x-m-button wire:click="updatePhoto" class=" ho xi ye">Update</x-m-button>
+                    <x-button wire:click="closeSettingModal" class="border-slate-200 hover:text-white hover--border-slate-300 g_">Cancel</x-button>
+                    <x-button wire:click="updatePhoto" class=" ho xi ye">Update</x-button>
                 </div>
             </div>
 
         </x-slot>
-    </x-jet-dialog-modal>
+    </x-dialog-modal>
 
     </div>

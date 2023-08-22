@@ -61,7 +61,7 @@
                 <button class="btn fe un bg-white border-slate-200 hover--border-slate-300 text-slate-500 hover--text-slate-600" aria-label="Select date range" aria-haspopup="true" @click.prevent="open = !open" :aria-expanded="open" aria-expanded="false">
                     <span class="flex items-center">
                         <svg class="oo sl du text-slate-500 ub mr-2" viewBox="0 0 16 16">
-                            <path d="M15 2h-2V0h-2v2H9V0H7v2H5V0H3v2H1a1 1 0 00-1 1v12a1 1 0 001 1h14a1 1 0 001-1V3a1 1 0 00-1-1zm-1 12H2V6h12v8z"></path>
+                            <path d="M15 2h-2V0h-2v2H9V0H7v2H5V0H3v2H1a1 1 0 00-1 1v12a1 1 0 001 1h14a1 1 0 001-1V3a1 1 0 00-1-1z1 12H2V6h12v8z"></path>
                         </svg>
                         <span x-text="$refs.options.children[selected].children[1].innerHTML">Last Month</span>
                     </span>
@@ -184,7 +184,7 @@
                             </td>
 
                             <td class="vi wy w_ vo lm">
-                                <div>{{ $competition->created_at->format('d-m-Y') }}</div>
+                                <div>{{ $competition->created_at->format('d-Y') }}</div>
                             </td>
 
                             <td class="vi wy w_ vo lm of">
@@ -200,7 +200,7 @@
                                     <span class=" d">Delete</span>
                                         <svg class="os sf du" viewBox="0 0 32 32">
                                             <path d="M13 15h2v6h-2zM17 15h2v6h-2z"></path>
-                                            <path d="M20 9c0-.6-.4-1-1-1h-6c-.6 0-1 .4-1 1v2H8v2h1v10c0 .6.4 1 1 1h12c.6 0 1-.4 1-1V13h1v-2h-4V9zm-6 1h4v1h-4v-1zm7 3v9H11v-9h10z"></path>
+                                            <path d="M20 9c0-.6-.4-1-1-1h-6c-.6 0-1 .4-1 1v2H8v2h1v10c0 .6.4 1 1 1h12c.6 0 1-.4 1-1V13h1v-2h-4V9z6 1h4v1h-4v-1zm7 3v9H11v-9h10z"></path>
                                         </svg>
                                     </button>
                                 </div>
@@ -219,10 +219,10 @@
         </div>
     </div>
 
-    <x-pagination-table />
+    
     {{ $competitions->links() }}
 
-    <x-jet-dialog-modal wire:model="showCompetitionModal" class="">
+    <x-dialog-modal wire:model="showCompetitionModal" class="">
 
         @if ($competitionId)
         <x-slot name="title" class="border-b">Update Competition</x-slot>
@@ -251,8 +251,7 @@
                                             @enderror
                                         </div>
                                         <div class="col-span-6 sm:col-span-3">
-                                            <label for="photo" class="block text-sm font-medium text-gray-700">Person
-                                                photo</label>
+                                            <label for="photo" class="block text-sm font-medium text-gray-700">Thropy Image</label>
                                             <input wire:model="filename" type="file" autocomplete="given-name"
                                                 class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                                                 @if ($oldImage)
@@ -290,20 +289,20 @@
         <x-slot name="footer">
             <div class="border-slate-200">
                 <div class="flex flex-wrap justify-end fc">
-                    <x-m-button wire:click="closeCompetitionModal" class="border-slate-200 hover:text-white hover--border-slate-300 g_">Cancel</x-m-button>
+                    <x-button wire:click="closeCompetitionModal" class="border-slate-200 hover:text-white hover--border-slate-300 g_">Cancel</x-button>
                     @if ($competitionId)
-                    <x-m-button wire:click="updateCompetition" class=" ho xi ye">Update</x-m-button>
+                    <x-button wire:click="updateCompetition" class=" ho xi ye">Update</x-button>
                     @else
-                    <x-m-button wire:click="createCompetition" class=" ho xi ye2">Create</x-m-button>
+                    <x-button wire:click="createCompetition" class=" ho xi ye2">Create</x-button>
                     @endif
                 </div>
             </div>
 
         </x-slot>
-    </x-jet-dialog-modal>
+    </x-dialog-modal>
 
     <!-- modal delete confirmation -->
-    <x-jet-dialog-modal wire:model="showConfirmModal" class="">
+    <x-dialog-modal wire:model="showConfirmModal" class="">
 
         
         <x-slot name="title" class="border-b bg-slate-200">
@@ -337,12 +336,12 @@
         <x-slot name="footer">
             <div class="border-slate-200">
                 <div class="flex flex-wrap justify-end fc">
-                    <x-m-button wire:click="closeConfirmModal" class="border-slate-200 hover:text-white  g_">Cancel</x-m-button>
-                    <x-m-button wire:click.prevent="delete()" class=" ho xi ye2">Delete</x-m-button>
+                    <x-button wire:click="closeConfirmModal" class="border-slate-200 hover:text-white  g_">Cancel</x-button>
+                    <x-button wire:click.prevent="delete()" class=" ho xi ye2">Delete</x-button>
                 </div>
             </div>
 
         </x-slot>
-    </x-jet-dialog-modal>
+    </x-dialog-modal>
 
 </div>

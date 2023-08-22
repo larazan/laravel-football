@@ -54,7 +54,7 @@
 
 **Gyro-Jets**
 
-19-16\. These devices are the newer version of the pen flare. They differ in that they are jet-powered rather than ballistic like the pen flares. They will reach a height of up to 300 meters (990 feet). To prepare them for firing, the flares are pushed until firmly seated into a crimped collar rather than a threaded screw-on type assembly. They are designed to better penetrate tree canopies, but do not rely on this to always happen. Always ensure you have a clear path in which to aim and fire all overhead pyrotechnics. Again, groups of threes are internationally recognized symbols of distress.
+19-16\. These devices are the newer version of the pen flare. They differ in that they are powered rather than ballistic like the pen flares. They will reach a height of up to 300 meters (990 feet). To prepare them for firing, the flares are pushed until firmly seated into a crimped collar rather than a threaded screw-on type assembly. They are designed to better penetrate tree canopies, but do not rely on this to always happen. Always ensure you have a clear path in which to aim and fire all overhead pyrotechnics. Again, groups of threes are internationally recognized symbols of distress.
 
 **Tracer Ammunition**
 

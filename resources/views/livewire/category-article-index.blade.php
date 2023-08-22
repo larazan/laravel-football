@@ -210,7 +210,7 @@
 
     {{ $categories->links() }}
 
-    <x-jet-dialog-modal wire:model="showCategoryModal" class="">
+    <x-dialog-modal wire:model="showCategoryModal" class="">
 
         @if ($categoryId)
         <x-slot name="title" class="border-b">Update Category</x-slot>
@@ -270,20 +270,20 @@
         <x-slot name="footer">
             <div class="border-slate-200">
                 <div class="flex flex-wrap justify-end fc">
-                    <x-m-button wire:click="closeCategoryModal" class="border-slate-200 hover:text-white hover--border-slate-300 g_">Cancel</x-m-button>
+                    <x-button wire:click="closeCategoryModal" class="border-slate-200 hover:text-white hover--border-slate-300 g_">Cancel</x-button>
                     @if ($categoryId)
-                    <x-m-button wire:click="updateCategory" class=" ho xi ye">Update</x-m-button>
+                    <x-button wire:click="updateCategory" class=" ho xi ye">Update</x-button>
                     @else
-                    <x-m-button wire:click="createCategory" class=" ho xi ye2">Create</x-m-button>
+                    <x-button wire:click="createCategory" class=" ho xi ye2">Create</x-button>
                     @endif
                 </div>
             </div>
 
         </x-slot>
-    </x-jet-dialog-modal>
+    </x-dialog-modal>
 
     <!-- modal delete confirmation -->
-    <x-jet-dialog-modal wire:model="showConfirmModal" class="">
+    <x-dialog-modal wire:model="showConfirmModal" class="">
 
         
         <x-slot name="title" class="border-b bg-slate-200">
@@ -317,12 +317,12 @@
         <x-slot name="footer">
             <div class="border-slate-200">
                 <div class="flex flex-wrap justify-end fc">
-                    <x-m-button wire:click="closeConfirmModal" class="border-slate-200 hover:text-white  g_">Cancel</x-m-button>
-                    <x-m-button wire:click.prevent="delete()" class=" ho xi ye2">Delete</x-m-button>
+                    <x-button wire:click="closeConfirmModal" class="border-slate-200 hover:text-white  g_">Cancel</x-button>
+                    <x-button wire:click.prevent="delete()" class=" ho xi ye2">Delete</x-button>
                 </div>
             </div>
 
         </x-slot>
-    </x-jet-dialog-modal>
+    </x-dialog-modal>
 
 </div>

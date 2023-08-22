@@ -183,7 +183,7 @@
 
     {{ $categories->links() }}
 
-    <x-jet-dialog-modal wire:model="showLeagueModal" class="">
+    <x-dialog-modal wire:model="showLeagueModal" class="">
 
         @if ($teamId)
         <x-slot name="title" class="border-b">Update Team</x-slot>
@@ -354,15 +354,15 @@
         <x-slot name="footer">
             <div class="border-slate-200">
                 <div class="flex flex-wrap justify-end fc">
-                    <x-m-button wire:click="closeTeamLeagueModal" class="border-slate-200 hover:text-white hover--border-slate-300 g_">Cancel</x-m-button>
+                    <x-button wire:click="closeTeamLeagueModal" class="border-slate-200 hover:text-white hover--border-slate-300 g_">Cancel</x-button>
                     @if ($teamId)
-                    <x-m-button wire:click="updateTeamLeague" class=" ho xi ye">Update</x-m-button>
+                    <x-button wire:click="updateTeamLeague" class=" ho xi ye">Update</x-button>
                     @endif
                 </div>
             </div>
 
         </x-slot>
-    </x-jet-dialog-modal>
+    </x-dialog-modal>
 
 
 </div>

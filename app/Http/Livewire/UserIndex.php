@@ -152,6 +152,8 @@ class UserIndex extends Component
 
     public function render()
     {
-        return view('livewire.user-index');
+        return view('livewire.user-index', [
+            'users' => User::search('first_name', $this->search)->orderBy('first_name', $this->sort)->paginate($this->perPage),
+        ]);
     }
 }
