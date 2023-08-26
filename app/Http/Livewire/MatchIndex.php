@@ -18,25 +18,30 @@ class MatchIndex extends Component
     public $showMatchsModal = false;
     public $match;
     public $season;
-    public $seasons = [];
+    public $seasonOption = [];
     public $competition;
     public $competitionId;
     public $stadion;
     public $stadionId;
-    public $home_team;
-    public $home_team_id;
-    public $away_team;
-    public $away_team_id;
-    public $full_time_home_goal;
-    public $full_time_away_goal;
-    public $fixture_match;
+    public $homeTeam;
+    public $homeTeamId;
+    public $awayTeam;
+    public $awayTeamId;
+    public $fullTimeHomeGoal;
+    public $fullTimeAwayGoal;
+    // public $fixtureMatch;
     public $date;
+    public $position;
+    public $positionOption = [
+        'away',
+        'home'
+    ];
     public $matchId;
-    public $full_time_result;
+    public $fullTimeResult;
     public $results = [
-        'W',
-        'D',
-        'L',
+        'W' => 'Win',
+        'D' => 'Draw',
+        'L' => 'Lose',
     ];
     public $matchStatus = 'inactive';
     public $statuses = [
@@ -55,14 +60,14 @@ class MatchIndex extends Component
         'season' =>  'required',
     ];
 
-    public function mount($id)
+    public function mount()
     {
-        $this->match = Matchs::find($id);
+        // $this->match = Matchs::find($id);
         $this->date = today()->format('Y-m-d');
         $yearNow = Carbon::now()->format('Y');
         for ($i=$yearNow; $i < $yearNow + 2 ; $i++) {
             $seas = $i . '/' . $i + 1;
-            array_push($this->seasons, $seas);
+            array_push($this->seasonOption, $seas);
         }
     }
 
@@ -93,19 +98,30 @@ class MatchIndex extends Component
     public function createMatchs()
     {
         $this->validate();
+
+        // 
+        if ($this->position === 'home') {
+            $homeTeam = $this->currentClubId;
+            $awayTeam = $this->opponent;
+        }
+
+        if ($this->position === 'away') {
+            $homeTeam = $this->opponent;
+            $awayTeam = $this->currentClubId;
+        }
   
         Matchs::create([
             'season' => $this->season,
             'competition_id' => $this->competitionId,
             'stadion_id' => $this->stadionId,
-            'home_team' => $this->home_team_id,
-            'away_team' => $this->away_team_id,
+            'home_team' => $homeTeam,
+            'away_team' => $awayTeam,
             'fixture_match' => $this->date,
-            'full_time_home_goal' => $this->full_time_home_goal,
-            'full_time_away_goal' => $this->full_time_away_goal,
-            'full_time_result' => $this->full_time_result,
+            'full_time_home_goal' => $this->fullTimeHomeGoal,
+            'full_time_away_goal' => $this->fullTimeAwayGoal,
+            'full_time_result' => $this->fullTimeResult,
 
-            'slug' => $this->slugGenerate($this->season, $this->competitionId, $this->home_team_id, $this->away_team_id),
+            'slug' => $this->slugGenerate($this->season, $this->competitionId, $homeTeam, $awayTeam),
             'status' => $this->matchStatus,
         ]);
 
@@ -117,33 +133,33 @@ class MatchIndex extends Component
     {
         // 2023_bundesliga_fcbayern_vs_hamburg
 
-        $competition = Competition::find($this->competitionId);
-        $this->competition = $competition->name;
+        $competition = Competition::find($competitionId);
+        $this->competition = $competition->slug;
 
-        $home = Club::find($this->home_team_id);
-        $this->home_team = $home->slug;
+        $home = Club::find($homeId);
+        $this->homeTeam = $home->slug;
 
-        $away = Club::find($this->away_team_id);
-        $this->away_team = $away->slug;
+        $away = Club::find($awayId);
+        $this->awayTeam = $away->slug;
 
-        $slug = $this->season . '_' . $this->competititon . '_' . $this->home_team . '_vs_' . $this->away_team . '_' . time();
+        $slug = $season . '_' . $this->competititon . '_' . $this->homeTeam . '_vs_' . $this->awayTeam . '_' . time();
         return $slug;
     } 
 
     public function showEditModal($matchId)
     {
-        $this->reset(['matchName']);
+        $this->reset(['name']);
         $this->matchId = $matchId;
         $match = Matchs::find($matchId);
         $this->season = $match->season;
         $this->competitionId = $match->competition_id;
         $this->stadionId = $match->stadion_id;
-        $this->home_team_id = $match->home_team;
-        $this->away_team_id = $match->away_team;
-        $this->full_time_home_goal = $match->full_time_home_goal;
-        $this->full_time_away_goal = $match->full_time_away_goal;
-        $this->fixture_match = $match->fixture_match;
-        $this->full_time_result = $match->full_time_result;
+        $this->homeTeamId = $match->home_team;
+        $this->awayTeamId = $match->away_team;
+        $this->fullTimeHomeGoal = $match->full_time_home_goal;
+        $this->fullTimeAwayGoal = $match->full_time_away_goal;
+        $this->date = $match->fixture_match;
+        $this->fullTimeResult = $match->full_time_result;
         $this->matchStatus = $match->status;
         $this->showMatchsModal = true;
     }
@@ -155,18 +171,29 @@ class MatchIndex extends Component
         
         if ($this->matchId) {
             if ($match) {
+                 // 
+                if ($this->position === 'home') {
+                    $homeTeam = $this->currentClubId;
+                    $awayTeam = $this->opponent;
+                }
+
+                if ($this->position === 'away') {
+                    $homeTeam = $this->opponent;
+                    $awayTeam = $this->currentClubId;
+                }
+
                 $match->update([
                     'season' => $this->season,
                     'competition_id' => $this->competitionId,
                     'stadion_id' => $this->stadionId,
-                    'home_team' => $this->home_team_id,
-                    'away_team' => $this->away_team_id,
+                    'home_team' => $homeTeam,
+                    'away_team' => $awayTeam,
                     'fixture_match' => $this->date,
-                    'full_time_home_goal' => $this->full_time_home_goal,
-                    'full_time_away_goal' => $this->full_time_away_goal,
-                    'full_time_result' => $this->full_time_result,
+                    'full_time_home_goal' => $this->fullTimeHomeGoal,
+                    'full_time_away_goal' => $this->fullTimeAwayGoal,
+                    'full_time_result' => $this->fullTimeResult,
 
-                    'slug' => $this->slugGenerate($this->season, $this->competitionId, $this->home_team_id, $this->away_team_id),
+                    'slug' => $this->slugGenerate($this->season, $this->competitionId, $homeTeam, $awayTeam),
                     'status' => $this->matchStatus,
                 ]);
                 
@@ -200,7 +227,7 @@ class MatchIndex extends Component
     {
         return view('livewire.match-index', [
             'matchs' => Matchs::search('id', $this->search)->orderBy('id', $this->sort)->paginate($this->perPage),
-            'competition' => Competition::OrderBy('name', 'asc')->get(),
+            'competitions' => Competition::OrderBy('name', 'asc')->get(),
             'stadions' => Stadion::OrderBy('name', 'asc')->get(),
             'clubs' => Club::OrderBy('name', 'asc')->get(),
         ]);

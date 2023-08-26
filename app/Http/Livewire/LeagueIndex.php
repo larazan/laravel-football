@@ -11,7 +11,7 @@ class LeagueIndex extends Component
 {
     public $showLeagueModal = false;
     public $season;
-    public $seasonOption;
+    public $seasonOption = [];
     public $date;
     public $totalPoints;
     public $totalGoals;
@@ -44,11 +44,13 @@ class LeagueIndex extends Component
     public $showConfirmModal = false;
     public $deleteId = '';
 
+    public $perPage = 20;
+
     // protected $rules = [
     //     'name' => 'required|unique:leagues',
     // ];
 
-    public function mount($id)
+    public function mount()
     {
         $this->date = today()->format('Y-m-d');
         $yearNow = Carbon::now()->format('Y');
@@ -214,7 +216,13 @@ class LeagueIndex extends Component
     public function render()
     {
         return view('livewire.league-index', [
+            'teams' => TeamLeague::OrderBy('id', 'asc')->paginate($this->perPage),
             'clubs' => Club::OrderBy('name', 'asc')->get(),
         ]);
+    }
+
+    public function addLeague()
+    {
+        return redirect('/admin/team-leagues');
     }
 }

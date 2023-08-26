@@ -16,6 +16,7 @@ class ClubIndex extends Component
     use WithFileUploads, WithPagination;
 
     public $showClubModal = false;
+    public $sizeTol = '600x600';
     public $name;
     public $info;
     public $stadion;
@@ -38,7 +39,7 @@ class ClubIndex extends Component
 
     protected $rule = [
         'name' => 'required',
-            // 'file' => 'required|image|mimes:jpg,jpeg,png,svg,gif|max:2048',
+        'file' => 'required|image|mimes:jpg,jpeg,png,svg,gif|max:2048',
     ];
 
     public function showCreateModal()

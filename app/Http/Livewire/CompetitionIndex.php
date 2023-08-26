@@ -16,6 +16,7 @@ class CompetitionIndex extends Component
     use WithFileUploads, WithPagination;
 
     public $showCompetitionModal = false;
+    public $sizeTol = '600x600';
     public $name;
     public $info;
     public $competitionId;
@@ -36,7 +37,7 @@ class CompetitionIndex extends Component
 
     protected $rule = [
         'name' => 'required',
-            // 'file' => 'required|image|mimes:jpg,jpeg,png,svg,gif|max:2048',
+        'file' => 'required|image|mimes:jpg,jpeg,png,svg,gif|max:2048',
     ];
 
     public function showCreateModal()

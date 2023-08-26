@@ -16,6 +16,7 @@ class PlayerIndex extends Component
     use WithFileUploads, WithPagination;
     
     public $showPlayerModal = false;
+    public $sizeTol = Player::LARGE;
     public $club;
     public $clubId;
     public $name;
@@ -292,6 +293,7 @@ class PlayerIndex extends Component
     {
         $this->contractFrom = today()->format('Y-m-d');
         $this->contractUntil = today()->format('Y-m-d');
+        $this->birthDate = today()->format('Y-m-d');
     } 
 
     public function showCreateModal()

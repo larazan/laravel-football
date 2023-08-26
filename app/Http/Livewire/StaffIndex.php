@@ -15,6 +15,7 @@ class StaffIndex extends Component
     use WithFileUploads, WithPagination;
     
     public $showStaffModal = false;
+    public $sizeTol = Staff::LARGE;
     public $name;
     public $role;
     public $birthDate;
@@ -249,6 +250,7 @@ class StaffIndex extends Component
     {
         $this->contractFrom = today()->format('Y-m-d');
         $this->contractUntil = today()->format('Y-m-d');
+        $this->birthDate = today()->format('Y-m-d');
     } 
 
     public function showCreateModal()

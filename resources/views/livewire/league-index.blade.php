@@ -25,7 +25,13 @@
                     </svg>
                 </button>
             </form>
-
+            <!-- Create partner button -->
+            <button class="btn ho xi ye" wire:click="addLeague">
+                <svg class="oo sl du bf ub" viewBox="0 0 16 16">
+                    <path d="M15 7H9V1c0-.6-.4-1-1-1S7 .4 7 1v6H1c-.6 0-1 .4-1 1s.4 1 1 1h6v6c0 .6.4 1 1 1s1-.4 1-1V9h6c.6 0 1-.4 1-1s-.4-1-1-1z"></path>
+                </svg>
+                <span class="hidden trm nq">Add Team League</span>
+            </button>
         </div>
 
     </div>
@@ -77,7 +83,7 @@
 
             <!-- Filter button -->
             <select wire:model="perSeason" id="filter" class="a">
-                <option value="" >Select Option</option>
+                <option value="" >Season</option>
                 @foreach($seasonOption as $season)
                 <option value="{{ $season }}">{{ $season }}</option>
                 @endforeach
@@ -90,7 +96,7 @@
     <!-- Table -->
     <div class="bg-white bd rounded-sm border border-slate-200 rc">
         <header class="vc vu">
-            <h2 class="gh text-slate-800">Categories <span class="gq gp"></span></h2>
+            <h2 class="gh text-slate-800">League Standing <span class="gq gp"></span></h2>
         </header>
         <div x-data="handleSelect">
 
@@ -181,13 +187,13 @@
         </div>
     </div>
 
-    {{ $categories->links() }}
+    {{ $teams->links() }}
 
     <x-dialog-modal wire:model="showLeagueModal" class="">
 
-        @if ($teamId)
+        
         <x-slot name="title" class="border-b">Update Team</x-slot>
-        @endif
+    
 
         <x-slot name="content">
             <div class="border-t">

@@ -241,7 +241,7 @@
                                         <div class="flex justify-between">
                                             <div class="col-span-1 sm:col-span-3">
                                                 <label for="competitionId" class="block text-sm font-medium text-gray-700">Competition</label>
-                                                <select wire:model="competitionId" class="h-full rounded-r border-t border-r border-b block appearance-none w-full bg-white border-gray-300 text-gray-700 py-2 px-4 pr-8 leading-tight focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none">
+                                                <select wire:model="competitionId" class="h-full2 rounded-r border-t border-r border-b block appearance-none w-full bg-white border-gray-300 text-gray-700 py-2 px-4 pr-8 leading-tight focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none">
                                                     <option value="">Select Option</option>
                                                     @foreach($competitions as $comp)
                                                     <option value="{{ $comp->id }}">{{ $comp->name }}</option>
@@ -250,7 +250,7 @@
                                             </div>
                                             <div class="col-span-1 sm:col-span-3">
                                                 <label for="season" class="block text-sm font-medium text-gray-700">Season</label>
-                                                <select wire:model="season" class="h-full rounded-r border-t border-r border-b block appearance-none w-full bg-white border-gray-300 text-gray-700 py-2 px-4 pr-8 leading-tight focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none">
+                                                <select wire:model="season" class="h-full2 rounded-r border-t border-r border-b block appearance-none w-full bg-white border-gray-300 text-gray-700 py-2 px-4 pr-8 leading-tight focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none">
                                                     <option value="" >Select Option</option>
                                                     @foreach($seasonOption as $season)
                                                     <option value="{{ $season }}">{{ $season }}</option>
@@ -267,7 +267,7 @@
                                             </div>
                                             <div class="col-span-1 sm:col-span-3">
                                                 <label for="stadionId" class="block text-sm font-medium text-gray-700">Stadion</label>
-                                                <select wire:model="stadionId" class="h-full rounded-r border-t border-r border-b block appearance-none w-full bg-white border-gray-300 text-gray-700 py-2 px-4 pr-8 leading-tight focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none">
+                                                <select wire:model="stadionId" class="h-full2 rounded-r border-t border-r border-b block appearance-none w-full bg-white border-gray-300 text-gray-700 py-2 px-4 pr-8 leading-tight focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none">
                                                     <option value="" >Select Option</option>
                                                     @foreach($stadions as $stad)
                                                     <option value="{{ $stad->id }}">{{ $stad->name }}</option>
@@ -278,8 +278,8 @@
                                        
                                         <div class="flex justify-between">
                                             <div class="col-span-1 sm:col-span-3">
-                                                <label for="position" class="block text-sm font-medium text-gray-700">Position</label>
-                                                <select wire:model="position" class="h-full rounded-r border-t border-r border-b block appearance-none w-full bg-white border-gray-300 text-gray-700 py-2 px-4 pr-8 leading-tight focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none">
+                                                <label for="position" class="block text-sm font-medium text-gray-700">Venue</label>
+                                                <select wire:model="position" class="h-full2 rounded-r border-t border-r border-b block appearance-none w-full bg-white border-gray-300 text-gray-700 py-2 px-4 pr-8 leading-tight focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none">
                                                     <option value="" >Select Option</option>
                                                     @foreach($positionOption as $pos)
                                                     <option value="{{ $pos }}">{{ $pos }}</option>
@@ -288,7 +288,7 @@
                                             </div>
                                             <div class="col-span-1 sm:col-span-3">
                                                 <label for="opponent" class="block text-sm font-medium text-gray-700">Opponent</label>
-                                                <select wire:model="opponent" class="h-full rounded-r border-t border-r border-b block appearance-none w-full bg-white border-gray-300 text-gray-700 py-2 px-4 pr-8 leading-tight focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none">
+                                                <select wire:model="opponent" class="h-full2 rounded-r border-t border-r border-b block appearance-none w-full bg-white border-gray-300 text-gray-700 py-2 px-4 pr-8 leading-tight focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none">
                                                     <option value="" >Select Option</option>
                                                     @foreach($clubs as $club)
                                                     <option value="{{ $club->id }}">{{ $club->name }}</option>
@@ -300,7 +300,7 @@
                                        
                                         <div class="col-span-6 sm:col-span-3">
                                             <label for="first-name" class="block text-sm font-medium text-gray-700">Status</label>
-                                            <select wire:model="scheduleStatus" class="h-full rounded-r border-t border-r border-b block appearance-none w-full bg-white border-gray-300 text-gray-700 py-2 px-4 pr-8 leading-tight focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none">
+                                            <select wire:model="scheduleStatus" class="h-full2 rounded-r border-t border-r border-b block appearance-none w-full bg-white border-gray-300 text-gray-700 py-2 px-4 pr-8 leading-tight focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none">
                                                 <option value="">Select Option</option>
                                                 @foreach($statuses as $status)
                                                 <option value="{{ $status }}">{{ $status }}</option>

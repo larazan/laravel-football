@@ -156,62 +156,7 @@
                     <!-- Table body -->
                     <tbody class="text-sm le lr">
                         <!-- Row -->
-                        <tr>
-                            <td class="vi wy w_ vo lm of">
-                                <div class="flex items-center">
-                                    <label class="inline-flex">
-                                        <span class="d">Select</span>
-                                        <input class="table-item i" type="checkbox" @click="uncheckParent">
-                                    </label>
-                                </div>
-                            </td>
-                            <td class="vi wy w_ vo lm">
-                                <div class="gp cursor-pointer text-indigo-400 hover:text-indigo-500" wire:click="showDetailModal(1)">Kim Jisoo</div>
-                            </td>
-                            <td class="vi wy w_ vo lm">
-                                <div class="od sy ub mr-2 _b">
-                                    <img class="rounded-full" src="{{ asset('images/user-40-11.jpg') }}" width="40" height="40" alt="User 01">
-                                </div>
-                                <!-- <div class="gp ">-</div> -->
-                            </td>
-                            <td class="vi wy w_ vo lm">
-                                <div class="gp ">Male</div>
-                            </td>
-                            <td class="vi wy w_ vo lm">
-                                <div class="gt ">13 June 1983</div>
-                            </td>
-
-                            <td class="vi wy w_ vo lm">
-                                <div class="gt ">korea</div>
-                            </td>
-
-                            <td class="vi wy w_ vo lm">
-                                <div class="inline-flex gp hf yl rounded-full gn vp vd">Overdue</div>
-                            </td>
-
-                            <td class="vi wy w_ vo lm">
-                                <div>22/07/2021</div>
-                            </td>
-
-                            <td class="vi wy w_ vo lm of">
-                                <div class="fm">
-                                    <button class="gq xv rounded-full">
-                                        <span class="d">Edit</span>
-                                        <svg class="os sf du" viewBox="0 0 32 32">
-                                            <path d="M19.7 8.3c-.4-.4-1-.4-1.4 0l-10 10c-.2.2-.3.4-.3.7v4c0 .6.4 1 1 1h4c.3 0 .5-.1.7-.3l10-10c.4-.4.4-1 0-1.4l-4-4zM12.6 22H10v-2.6l6-6 2.6 2.6-6 6zm7.4-7.4L17.4 12l1.6-1.6 2.6 2.6-1.6 1.6z"></path>
-                                        </svg>
-                                    </button>
-
-                                    <button class="yl xy rounded-full">
-                                        <span class="d">Delete</span>
-                                        <svg class="os sf du" viewBox="0 0 32 32">
-                                            <path d="M13 15h2v6h-2zM17 15h2v6h-2z"></path>
-                                            <path d="M20 9c0-.6-.4-1-1-1h-6c-.6 0-1 .4-1 1v2H8v2h1v10c0 .6.4 1 1 1h12c.6 0 1-.4 1-1V13h1v-2h-4V9zm-6 1h4v1h-4v-1zm7 3v9H11v-9h10z"></path>
-                                        </svg>
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
+                        
                         @if ($players->count() > 0)
                         @foreach ($players as $player)
                         <tr>
@@ -323,7 +268,7 @@
                                         </div>
                                         <div class="col-span-6 sm:col-span-3">
                                             <label for="club" class="block text-sm font-medium text-gray-700">Club</label>
-                                            <select wire:model="club" class="h-full rounded-r border-t border-r border-b block appearance-none w-full bg-white border-gray-300 text-gray-700 py-2 px-4 pr-8 leading-tight focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none">
+                                            <select wire:model="club" class=" rounded-r border-t border-r border-b block appearance-none w-full bg-white border-gray-300 text-gray-700 py-2 px-4 pr-8 leading-tight focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none">
                                                 <option value="">Select Option</option>
                                                 @foreach($clubs as $club)
                                                 <option value="{{ $club->id }}">{{ $club->name }}</option>
@@ -333,7 +278,7 @@
                                         <div class="flex flex-row justify-between">
                                             <div class="col-start-1 sm:col-span-3">
                                                 <label for="role" class="block text-sm font-medium text-gray-700">Role</label>
-                                                <select wire:model="role" class="h-full rounded-r border-t border-r border-b block appearance-none w-full bg-white border-gray-300 text-gray-700 py-2 px-4 pr-8 leading-tight focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none">
+                                                <select wire:model="role" class=" rounded-r border-t border-r border-b block appearance-none w-full bg-white border-gray-300 text-gray-700 py-2 px-4 pr-8 leading-tight focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none">
                                                     <option value="">Select Option</option>
                                                     @foreach($roleOption as $rol)
                                                     <option value="{{ $rol }}">{{ $rol }}</option>
@@ -342,7 +287,7 @@
                                             </div>
                                             <div class="col-start-1 sm:col-span-3">
                                                 <label for="position" class="block text-sm font-medium text-gray-700">Position</label>
-                                                <select wire:model="position" class="h-full rounded-r border-t border-r border-b block appearance-none w-full bg-white border-gray-300 text-gray-700 py-2 px-4 pr-8 leading-tight focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none">
+                                                <select wire:model="position" class=" rounded-r border-t border-r border-b block appearance-none w-full bg-white border-gray-300 text-gray-700 py-2 px-4 pr-8 leading-tight focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none">
                                                     <option value="">Select Option</option>
                                                     @foreach($positionOption as $pos)
                                                     <option value="{{ $pos }}">{{ $pos }}</option>
@@ -445,7 +390,7 @@
 
                                         <div class="col-span-6 sm:col-span-3">
                                             <label for="photo" class="block text-sm font-medium text-gray-700">
-                                                Player photo</label>
+                                                Player photo ({{ $sizeTol }})</label>
                                             <input wire:model="files" type="file" multiple autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                                             @if ($oldImage)
     
@@ -459,7 +404,7 @@
                                         </div>
                                         <div class="col-span-6 sm:col-span-3">
                                             <label for="playerStatus" class="block text-sm font-medium text-gray-700">Status</label>
-                                            <select wire:model="playerStatus" class="h-full rounded-r border-t border-r border-b block appearance-none w-full bg-white border-gray-300 text-gray-700 py-2 px-4 pr-8 leading-tight focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none">
+                                            <select wire:model="playerStatus" class=" rounded-r border-t border-r border-b block appearance-none w-full bg-white border-gray-300 text-gray-700 py-2 px-4 pr-8 leading-tight focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none">
                                                 <option value="">Select Option</option>
                                                 @foreach($statuses as $status)
                                                 <option value="{{ $status }}">{{ $status }}</option>

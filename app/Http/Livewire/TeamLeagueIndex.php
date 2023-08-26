@@ -30,7 +30,7 @@ class TeamLeagueIndex extends Component
     //     'name' => 'required|unique:leagues',
     // ];
 
-    public function mount($id)
+    public function mount()
     {
         $this->date = today()->format('Y-m-d');
         $yearNow = Carbon::now()->format('Y');

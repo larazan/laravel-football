@@ -19,7 +19,7 @@ class PartnerIndex extends Component
     public $partnerId;
     public $file;
     public $oldImage;
-    public $sizeTol = Partner::SMALL;
+    public $sizeTol = Partner::LARGE;
     public $partnerStatus = 'inactive';
     public $statuses = [
         'active',
@@ -35,7 +35,7 @@ class PartnerIndex extends Component
 
     protected $rule = [
         'title' => 'required',
-            // 'file' => 'required|image|mimes:jpg,jpeg,png,svg,gif|max:2048',
+        'file' => 'required|image|mimes:jpg,jpeg,png,svg,gif|max:2048',
     ];
 
     public function showCreateModal()

@@ -9,6 +9,7 @@ class Staff extends Model
 {
     use HasFactory;
 
+    protected $table = 'staffs';
     protected $guarded = [];
 
     public const UPLOAD_DIR = 'uploads/staffs';

@@ -15,6 +15,7 @@ class StadionIndex extends Component
     use WithFileUploads, WithPagination;
 
     public $showStadionModal = false;
+    public $sizeTol = Stadion::LARGE;
     public $name;
     public $city;
     public $capacity;
@@ -47,7 +48,7 @@ class StadionIndex extends Component
 
     protected $rule = [
         'name' => 'required',
-            // 'file' => 'required|image|mimes:jpg,jpeg,png,svg,gif|max:2048',
+        'file' => 'required|image|mimes:jpg,jpeg,png,svg,gif|max:2048',
     ];
 
     public function showCreateModal()

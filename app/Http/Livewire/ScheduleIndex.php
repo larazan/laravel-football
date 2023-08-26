@@ -25,13 +25,13 @@ class ScheduleIndex extends Component
     public $competitionId;
     public $stadion;
     public $stadionId;
-    public $home_team;
-    public $home_team_id;
-    public $away_team;
-    public $away_team_id;
-    public $full_time_home_goal;
-    public $full_time_away_goal;
-    public $fixture_match;
+    public $homeTeam;
+    public $homeTeamId;
+    public $awayTeam;
+    public $awayTeamId;
+    public $fullTimeHomeGoal;
+    public $fullTimeAwayGoal;
+    // public $fixtureMatch;
     public $date;
     public $opponent;
     public $position;
@@ -57,9 +57,9 @@ class ScheduleIndex extends Component
         'season' =>  'required',
     ];
 
-    public function mount($id)
+    public function mount()
     {
-        $this->schedule = Schedule::find($id);
+        // $this->schedule = Schedule::find($id);
         $this->date = today()->format('Y-m-d');
         $yearNow = Carbon::now()->format('Y');
         for ($i=$yearNow; $i < $yearNow + 2 ; $i++) {
@@ -114,10 +114,10 @@ class ScheduleIndex extends Component
             'home_team' => $homeTeam,
             'away_team' => $awayTeam,
             'fixture_match' => $this->date,
-            'full_time_home_goal' => $this->full_time_home_goal,
-            'full_time_away_goal' => $this->full_time_away_goal,
+            'full_time_home_goal' => $this->fullTimeHomeGoal,
+            'full_time_away_goal' => $this->fullTimeAwayGoal,
 
-            'slug' => $this->slugGenerate($this->season, $this->competitionId, $this->home_team_id, $this->away_team_id),
+            'slug' => $this->slugGenerate($this->season, $this->competitionId, $homeTeam, $awayTeam),
             'status' => $this->scheduleStatus,
         ]);
 
@@ -132,7 +132,7 @@ class ScheduleIndex extends Component
             'full_time_home_goal' => $this->full_time_home_goal,
             'full_time_away_goal' => $this->full_time_away_goal,
 
-            'slug' => $this->slugGenerate($this->season, $this->competitionId, $this->home_team_id, $this->away_team_id),
+            'slug' => $this->slugGenerate($this->season, $this->competitionId, $homeTeam, $awayTeam),
             'status' => $this->scheduleStatus,
         ]);
 
@@ -144,16 +144,16 @@ class ScheduleIndex extends Component
     {
         // 2023_bundesliga_fcbayern_vs_hamburg
 
-        $competition = Competition::find($this->competitionId);
-        $this->competition = $competition->name;
+        $competition = Competition::find($competitionId);
+        $this->competition = $competition->slug;
 
-        $home = Club::find($this->home_team_id);
-        $this->home_team = $home->slug;
+        $home = Club::find($homeId);
+        $this->homeTeam = $home->slug;
 
-        $away = Club::find($this->away_team_id);
-        $this->away_team = $away->slug;
+        $away = Club::find($awayId);
+        $this->awayTeam = $away->slug;
 
-        $slug = $this->season . '_' . $this->competititon . '_' . $this->home_team . '_vs_' . $this->away_team . '_' . time();
+        $slug = $season . '_' . $this->competititon . '_' . $this->homeTeam . '_vs_' . $this->awayTeam . '_' . time();
         return $slug;
     } 
 
@@ -165,11 +165,11 @@ class ScheduleIndex extends Component
         $this->season = $schedule->season;
         $this->competitionId = $schedule->competition_id;
         $this->stadionId = $schedule->stadion_id;
-        $this->home_team_id = $schedule->home_team;
-        $this->away_team_id = $schedule->away_team;
-        $this->full_time_home_goal = $schedule->full_time_home_goal;
-        $this->full_time_away_goal = $schedule->full_time_away_goal;
-        $this->fixture_match = $schedule->fixture_match;
+        $this->homeTeamId = $schedule->home_team;
+        $this->awayTeamId = $schedule->away_team;
+        $this->fullTimeHomeGoal = $schedule->full_time_home_goal;
+        $this->fullTimeAwayGoal = $schedule->full_time_away_goal;
+        $this->date = $schedule->fixture_match;
         $this->scheduleStatus = $schedule->status;
         $this->showScheduleModal = true;
     }
@@ -200,10 +200,10 @@ class ScheduleIndex extends Component
                     'home_team' => $homeTeam,
                     'away_team' => $awayTeam,
                     'fixture_match' => $this->date,
-                    'full_time_home_goal' => $this->full_time_home_goal,
-                    'full_time_away_goal' => $this->full_time_away_goal,
+                    'full_time_home_goal' => $this->fullTimeHomeGoal,
+                    'full_time_away_goal' => $this->fullTimeAwayGoal,
 
-                    'slug' => $this->slugGenerate($this->season, $this->competitionId, $this->home_team_id, $this->away_team_id),
+                    'slug' => $this->slugGenerate($this->season, $this->competitionId, $homeTeam, $awayTeam),
                     'status' => $this->scheduleStatus,
                 ]);
                 
@@ -215,10 +215,10 @@ class ScheduleIndex extends Component
                     'home_team' => $homeTeam,
                     'away_team' => $awayTeam,
                     'fixture_match' => $this->date,
-                    'full_time_home_goal' => $this->full_time_home_goal,
-                    'full_time_away_goal' => $this->full_time_away_goal,
+                    'full_time_home_goal' => $this->fullTimeHomeGoal,
+                    'full_time_away_goal' => $this->fullTimeAwayGoal,
 
-                    'slug' => $this->slugGenerate($this->season, $this->competitionId, $this->home_team_id, $this->away_team_id),
+                    'slug' => $this->slugGenerate($this->season, $this->competitionId, $homeTeam, $awayTeam),
                     'status' => $this->scheduleStatus,
                 ]);
             }
@@ -251,7 +251,7 @@ class ScheduleIndex extends Component
     {
         return view('livewire.schedule-index', [
             'schedules' => Schedule::search('id', $this->search)->orderBy('id', $this->sort)->paginate($this->perPage),
-            'competition' => Competition::OrderBy('name', 'asc')->get(),
+            'competitions' => Competition::OrderBy('name', 'asc')->get(),
             'stadions' => Stadion::OrderBy('name', 'asc')->get(),
             'clubs' => Club::OrderBy('name', 'asc')->get(),
         ]);

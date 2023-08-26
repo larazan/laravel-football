@@ -197,7 +197,7 @@
         </div>
     </div>
 
-    {{ $categories->links() }}
+    {{ $teams->links() }}
 
     <x-dialog-modal wire:model="showTeamModal" class="">
 

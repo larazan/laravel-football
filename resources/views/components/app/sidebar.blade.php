@@ -197,18 +197,41 @@
                         </a>
                     </li>
                     <!-- League table -->
-                    <li class="vn vr rounded-sm n_ ww @if(in_array(Request::segment(2), ['leagues'])){{ 'bg-slate-900' }}@else{{ '' }}@endif">
-                        <a class="block gj xc ld wt wi" href="{{ url('admin/leagues') }}">
-                            <div class="flex items-center">
-                            <svg class="ub so oi" viewBox="0 0 24 24">
-                                        <path class="du @if(in_array(Request::segment(2), ['leagues', 'brands', 'categories', 'attributes', 'product-slide', 'product-review'])){{ 'text-indigo-500' }}@else{{ 'gq' }}@endif" d="M13 15l11-7L11.504.136a1 1 0 00-1.019.007L0 7l13 8z"></path>
-                                        <path class="du @if(in_array(Request::segment(2), ['leagues', 'brands', 'categories', 'attributes', 'product-slide', 'product-review'])){{ 'text-indigo-500' }}@else{{ 'gz' }}@endif" d="M13 15L0 7v9c0 .355.189.685.496.864L13 24v-9z"></path>
-                                        <path class="du @if(in_array(Request::segment(2), ['leagues', 'brands', 'categories', 'attributes', 'product-slide', 'product-review'])){{ 'text-indigo-500' }}@else{{ 'g_' }}@endif" d="M13 15.047V24l10.573-7.181A.999.999 0 0024 16V8l-11 7.047z"></path>
+                    <li class="vn vr rounded-sm n_ ww @if(in_array(Request::segment(2), ['leagues', 'team-leagues'])){{ 'bg-slate-900' }}@else{{ '' }}@endif" x-data="{ open: false }">
+                        <a class="block gj xc ld wt wi" href="#0" @click.prevent="sidebarExpanded ? open = !open : sidebarExpanded = true">
+                            <div class="flex items-center fe">
+                                <div class="flex items-center">
+                                    <svg class="ub so oi" viewBox="0 0 24 24">
+                                        <path class="du @if(in_array(Request::segment(2), ['leagues', 'team-leagues'])){{ 'text-indigo-500' }}@else{{ 'gq' }}@endif" d="M13 15l11-7L11.504.136a1 1 0 00-1.019.007L0 7l13 8z"></path>
+                                        <path class="du @if(in_array(Request::segment(2), ['leagues', 'team-leagues'])){{ 'text-indigo-500' }}@else{{ 'gz' }}@endif" d="M13 15L0 7v9c0 .355.189.685.496.864L13 24v-9z"></path>
+                                        <path class="du @if(in_array(Request::segment(2), ['leagues', 'team-leagues'])){{ 'text-indigo-500' }}@else{{ 'g_' }}@endif" d="M13 15.047V24l10.573-7.181A.999.999 0 0024 16V8l-11 7.047z"></path>
                                     </svg>
-                                <span class="text-sm gp ml-3 ttw tnn 2xl:opacity--100 wr">Leagues</span>
+                                    <span class="text-sm gp ml-3 ttw tnn 2xl:opacity--100 wr">League</span>
+                                </div>
+                                <!-- Icon -->
+                                <div class="flex shrink-0 ml-2 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
+                                    <svg class="w-3 h-3 shrink-0 ml-1 fill-current text-slate-400 @if(in_array(Request::segment(2), ['leagues', 'team-leagues'])){{ 'rotate-180' }}@endif" :class="open ? 'rotate-180' : 'rotate-0'" viewBox="0 0 12 12">
+                                        <path d="M5.9 11.4L.5 6l1.4-1.4 4 4 4-4L11.3 6z" />
+                                    </svg>
+                                </div>
                             </div>
                         </a>
+                        <div class="tex ttj 2xl:block">
+                            <ul class="me re @if(!in_array(Request::segment(2), ['leagues', 'team-leagues'])){{ 'hidden' }}@else{ !block }@endif" :class="open ? '!block' : 'hidden'">
+                                <li class="rt ww">
+                                    <a class="block @if(in_array(Request::segment(2), ['leagues'])){{ 'text-indigo-500' }}@else{{ 'gq hover--text-slate-200' }}@endif wt wi ld" href="{{ url('admin/leagues') }}">
+                                        <span class="text-sm gp ttw tnn 2xl:opacity--100 wr">League</span>
+                                    </a>
+                                </li>
+                                <li class="rt ww">
+                                    <a class="block @if(in_array(Request::segment(2), ['team-leagues'])){{ 'text-indigo-500' }}@else{{ 'gq hover--text-slate-200' }}@endif wt wi ld" href="{{ url('admin/team-leagues') }}">
+                                        <span class="text-sm gp ttw tnn 2xl:opacity--100 wr">Team League</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
                     </li>
+                    <!--  -->
                     <!-- News -->
                     <li class="vn vr rounded-sm n_ ww @if(in_array(Request::segment(2), ['articles', 'category-article', 'medias'])){{ 'bg-slate-900' }}@else{{ '' }}@endif" x-data="{ open: false }">
                         <a class="block gj xc ld wt wi" href="#0" @click.prevent="sidebarExpanded ? open = !open : sidebarExpanded = true">

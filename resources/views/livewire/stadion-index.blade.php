@@ -268,7 +268,7 @@
                                         <div class="flex flex-row justify-between">
                                             <div class="col-start-1 sm:col-span-3">
                                                 <label for="seat" class="block text-sm font-medium text-gray-700">Seat</label>
-                                                <select wire:model="seat" class="h-full rounded-r border-t border-r border-b block appearance-none w-full bg-white border-gray-300 text-gray-700 py-2 px-4 pr-8 leading-tight focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none">
+                                                <select wire:model="seat" class="h-full2 rounded-r border-t border-r border-b block appearance-none w-full bg-white border-gray-300 text-gray-700 py-2 px-4 pr-8 leading-tight focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none">
                                                     <option value="">Select Option</option>
                                                     @foreach($seatQuality as $sea)
                                                     <option value="{{ $sea }}">{{ $sea }}</option>
@@ -277,7 +277,7 @@
                                             </div>
                                             <div class="col-start-1 sm:col-span-3">
                                                 <label for="vip" class="block text-sm font-medium text-gray-700">Vip</label>
-                                                <select wire:model="vip" class="h-full rounded-r border-t border-r border-b block appearance-none w-full bg-white border-gray-300 text-gray-700 py-2 px-4 pr-8 leading-tight focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none">
+                                                <select wire:model="vip" class="h-full2 rounded-r border-t border-r border-b block appearance-none w-full bg-white border-gray-300 text-gray-700 py-2 px-4 pr-8 leading-tight focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none">
                                                     <option value="">Select Option</option>
                                                     @foreach($vipStatus as $vi)
                                                     <option value="{{ $vi }}">{{ $vi }}</option>
@@ -286,8 +286,7 @@
                                             </div>
                                         </div>
                                         <div class="col-span-6 sm:col-span-3">
-                                            <label for="photo" class="block text-sm font-medium text-gray-700">Person
-                                                photo</label>
+                                            <label for="photo" class="block text-sm font-medium text-gray-700">Stadion Photo ({{ $sizeTol }})</label>
                                             <input wire:model="filename" type="file" autocomplete="given-name"
                                                 class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                                                 @if ($oldImage)

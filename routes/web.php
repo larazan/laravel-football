@@ -8,6 +8,8 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ContactController;
 // Livewire
+use App\Http\Livewire\Admin\AdvertisingIndex;
+use App\Http\Livewire\Admin\AdvSegmentIndex;
 use App\Http\Livewire\ArticleIndex;
 use App\Http\Livewire\AwardIndex;
 use App\Http\Livewire\CategoryIndex;
@@ -25,6 +27,7 @@ use App\Http\Livewire\MatchLineup;
 use App\Http\Livewire\MatchReportIndex;
 use App\Http\Livewire\MatchStatisticIndex;
 use App\Http\Livewire\MediaIndex;
+use App\Http\Livewire\Admin\PartnerIndex;
 use App\Http\Livewire\PlayerIndex;
 use App\Http\Livewire\PermissionIndex;
 use App\Http\Livewire\RoleIndex;
@@ -55,6 +58,8 @@ Route::get('/', function () {
 Route::middleware(['auth:sanctum', 'verified', 'role:admin'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('dashboard', Dashboard::class);
 
+    Route::get('adv-segments', AdvSegmentIndex::class)->name('adv-segments.index');
+    Route::get('advertisings', AdvertisingIndex::class)->name('advertisings.index');
     // 
     Route::get('articles/create', [ArticleController::class, 'create']);
     Route::post('articles/store', [ArticleController::class, 'store']);
@@ -85,6 +90,7 @@ Route::middleware(['auth:sanctum', 'verified', 'role:admin'])->prefix('admin')->
     Route::get('medias', MediaIndex::class)->name('medias.index');
     //
 
+    Route::get('partners', PartnerIndex::class)->name('partners.index');
     Route::get('players', PlayerIndex::class)->name('players.index');
     Route::get('permissions', PermissionIndex::class)->name('permissions.index');
     Route::get('roles', RoleIndex::class)->name('roles.index');
@@ -97,7 +103,7 @@ Route::middleware(['auth:sanctum', 'verified', 'role:admin'])->prefix('admin')->
     Route::get('slides', SlideIndex::class)->name('slides.index');
     Route::get('users', UserIndex::class)->name('users.index');
 
-    // Route::get('users', [UserController::class, 'show'])->name('users.show');
+    Route::get('users/{user}', [UserController::class, 'show'])->name('users.show');
     Route::post('users/{user}/roles', [UserController::class, 'assignRole'])->name('users.roles');
     Route::delete('users/{user}/roles/{role}', [UserController::class, 'removeRole'])->name('users.roles.remove');
     Route::post('users/{user}/permissions', [UserController::class, 'givePermission'])->name('users.permissions');

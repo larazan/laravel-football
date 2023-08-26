@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use App\Models\Award;
 use App\Models\Competition;
 use Illuminate\Support\Str;
+use Carbon\Carbon;
 use Livewire\WithPagination;
 use Livewire\Component;
 
@@ -15,6 +16,7 @@ class AwardIndex extends Component
     public $showAwardModal = false;
     public $currentYear;
     public $year;
+    public $years = [];
     public $awardId;
     public $competition;
     public $competitionId;
@@ -38,6 +40,10 @@ class AwardIndex extends Component
     public function mount()
     {
         $this->currentYear = now()->year;
+        $yearNow = Carbon::now()->format('Y');
+        for ($i=2010; $i < $yearNow + 2 ; $i++) { 
+            array_push($this->years, $i);
+        }
     } 
 
     public function updated($propertyName)
@@ -139,7 +145,7 @@ class AwardIndex extends Component
     {
         return view('livewire.award-index', [
             'awards' => Award::search('id', $this->search)->orderBy('id', $this->sort)->paginate($this->perPage),
-            'competitions' => Competition::OrderBy('name', $this->sortDirection)->get()
+            'competitions' => Competition::OrderBy('name', $this->sort)->get()
         ]);
     }
 }

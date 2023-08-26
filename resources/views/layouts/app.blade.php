@@ -17,6 +17,8 @@
 
     <!-- Styles -->
     @livewireStyles
+
+    <link href="{{ URL::asset('admin/css/app.css') }}" rel="stylesheet" />
     <link href="{{ URL::asset('admin/css/style.css') }}" rel="stylesheet" />
     <style>
     .select2.select2-container {

@@ -56,7 +56,6 @@
                 <div class="flex items-center">
                     <div class="hidden tnh text-sm gm mr-2 lm"><span class="table-items-count"></span> items selected</div>
                     <button class="btn bg-white border-slate-200 hover--border-slate-300 yl xy" wire:click="deleteSelected">Delete</button>
-                    <input type="hidden" wire:model="firstId" value="{{ $faq[0]->id }}" />
                 </div>
             </div>
 
