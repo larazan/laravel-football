@@ -21,7 +21,7 @@ return new class extends Migration
             $table->integer('capacity')->nullable();
             $table->enum('seat_quality', ['full kursi', 'tanpa kursi', 'campuran']);
             $table->enum('vip', ['yes', 'no']);
-            $table->string('original');
+            $table->string('original')->nullable();
             $table->string('large')->nullable();
             $table->string('medium')->nullable();
             $table->string('small')->nullable();

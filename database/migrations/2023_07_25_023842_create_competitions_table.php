@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('competitions', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('slug');
             $table->text('info');
             $table->string('thropy')->nullable();
             $table->string('status',10);

@@ -25,7 +25,7 @@ return new class extends Migration
             $table->text('bio')->nullable();
             $table->date('contract_from')->nullable();
             $table->date('contract_until')->nullable();
-            $table->string('original');
+            $table->string('original')->nullable();
             $table->string('medium')->nullable();
             $table->string('small')->nullable();
             $table->string('status',10);

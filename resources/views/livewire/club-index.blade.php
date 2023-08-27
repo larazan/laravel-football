@@ -219,7 +219,6 @@
         </div>
     </div>
 
-    <x-pagination-table />
     {{ $clubs->links() }}
 
     <x-dialog-modal wire:model="showClubModal" class="">

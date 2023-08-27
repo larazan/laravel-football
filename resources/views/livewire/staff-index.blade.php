@@ -135,7 +135,7 @@
                             </th>
                             
                             <th class="vi wy w_ vo lm">
-                                <div class="gh gt">Birth</div>
+                                <div class="gh gt">Role</div>
                             </th>
                             <th class="vi wy w_ vo lm">
                                 <div class="gh gt">Nation</div>
@@ -171,8 +171,8 @@
                             </td>
                             <td class="vi wy w_ vo lm">
                                 <div class="od sy ub mr-2 _b">
-                                    @if ($staff->staffImages->first())
-                                    <img src="{{ asset('storage/'.$staff->staffImages->first()->small) }}" class="rounded-full" width="40" height="40" alt="{{ $staff->name }}">
+                                    @if ($staff->small)
+                                    <img src="{{ asset('storage/'.$staff->small) }}" class="rounded-full" width="40" height="40" alt="{{ $staff->name }}">
                                     @else
                                     <img src="{{ asset('images/avatar-03.jpg') }}" class="rounded-full" width="40" height="40" alt="{{ $staff->name }}">
                                     @endif
@@ -180,7 +180,7 @@
                             </td>
 
                             <td class="vi wy w_ vo lm">
-                                <div class="gt">{{ \Carbon\Carbon::parse($staff->birth_date)->format('j F Y') }}</div>
+                                <div class="gt">{{ $staff->role }}</div>
                             </td>
                             <td class="vi wy w_ vo lm">
                                 <div class="gt">{{ $staff->nationality }}</div>

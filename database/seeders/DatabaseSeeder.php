@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\Competition;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -15,7 +17,12 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
-            AdminSeeder::class,
+            // AdminSeeder::class,
+            // StadionSeeder::class,
+            // ClubSeeder::class,
+            // PlayerSeeder::class,
+            // StaffSeeder::class,
+            CompetitionSeeder::class,
         ]);
         // \App\Models\User::factory(10)->create();
 

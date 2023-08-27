@@ -173,7 +173,7 @@
                             </td>
                             <td class="vi wy w_ vo lm">
                                 <div class="od sy ub mr-2 _b">
-                                    @if ($player->playerImages->first())
+                                    @if ($player->small)
                                     <img src="{{ asset('storage/'.$player->small) }}" class="rounded-full" width="40" height="40" alt="{{ $player->name }}">
                                     @else
                                     <img src="{{ asset('images/avatar-03.jpg') }}" class="rounded-full" width="40" height="40" alt="{{ $player->name }}">

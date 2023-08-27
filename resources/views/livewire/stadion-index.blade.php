@@ -219,7 +219,6 @@
         </div>
     </div>
 
-    <x-pagination-table />
     {{ $stadions->links() }}
 
     <x-dialog-modal wire:model="showStadionModal" class="">

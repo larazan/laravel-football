@@ -132,10 +132,13 @@
                                 <div class="gh gt">Season</div>
                             </th>
                             <th class="vi wy w_ vo lm">
-                                <div class="gh gt">H Team</div>
+                                <div class="gh gt">Home Team</div>
                             </th>
                             <th class="vi wy w_ vo lm">
-                                <div class="gh gt">A Team</div>
+                                <div class="gh gt">Away Team</div>
+                            </th>
+                            <th class="vi wy w_ vo lm">
+                                <div class="gh gt">Skor</div>
                             </th>
                             <th class="vi wy w_ vo lm">
                                 <div class="gh gt">Date</div>
@@ -152,7 +155,74 @@
                     <!-- Table body -->
                     <tbody class="text-sm le lr">
                         <!-- Row -->
-                        
+                        <tr>
+                            <td class="vi wy w_ vo lm of">
+                                <div class="flex items-center">
+                                    <label class="inline-flex">
+                                        <span class="d">Select</span>
+                                        <input class="table-item i" type="checkbox" @click="uncheckParent">
+                                    </label>
+                                </div>
+                            </td>
+                            <td class="vi wy w_ vo lm">
+                                <div class="gp text-slate-800">Bundesliga</div>
+                            </td>
+                            <td class="vi wy w_ vo lm">
+                                <div class="gp text-slate-800">2023 - 2024</div>
+                            </td>
+
+                            <td class="vi wy w_ vo lm">
+                                <div class="flex flex-col justify-center items-center">
+                                    <div class="">
+                                        <img src="{{ asset('images/bayern.png') }}" class="w-6 rounded" alt="foto" />
+                                    </div>
+                                    <span class="text-xs">Bayern Munich</span>
+                                </div>
+                            </td>
+                            <td class="vi wy w_ vo lm">
+                                <div class="flex flex-col justify-center items-center">
+                                    <div class="">
+                                        <img src="{{ asset('images/manchester-city.png') }}" class="w-6 rounded" alt="foto" />
+                                    </div>
+                                    <span class="text-xs">Manchester City</span>
+                                </div>
+                                
+                            </td>
+                            <td class="vi wy w_ vo lm">
+                                <div>1 : 2</div>
+                            </td>
+                            <td class="vi wy w_ vo lm">
+                                <div>2023-08-10</div>
+                            </td>
+                            <td class="vi wy w_ vo lm">
+                                <div class="inline-flex gp hc ys rounded-full gn vp vd">Active</div>
+                            </td>
+                            
+                            <td class="vi wy w_ vo lm of">
+                                <div class="fm">
+                                    <button class="gq xv rounded-full" >
+                                        <span class=" d">Detail</span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 32" stroke-width="2" stroke="currentColor" class=" du w-6 h-6">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zM4 19.235v-.11a6.375 6.375 0 0112.75 0v.109A12.318 12.318 0 0110.374 21c-2.331 0-4.512-.645-6.374-1.766z" />
+                                        </svg>
+                                    </button>
+                                    <button class="gq xv rounded-full" wire:click="showEditModal(1)">
+                                        <span class=" d">Edit</span>
+                                        <svg class="os sf du" viewBox="0 0 32 32">
+                                            <path d="M19.7 8.3c-.4-.4-1-.4-1.4 0l-10 10c-.2.2-.3.4-.3.7v4c0 .6.4 1 1 1h4c.3 0 .5-.1.7-.3l10-10c.4-.4.4-1 0-1.4l-4-4zM12.6 22H10v-2.6l6-6 2.6 2.6-6 6zm7.4-7.4L17.4 12l1.6-1.6 2.6 2.6-1.6 1.6z"></path>
+                                        </svg>
+                                    </button>
+
+                                    <button class="yl xy rounded-full" wire:click="deleteId(1)">
+                                        <span class=" d">Delete</span>
+                                        <svg class="os sf du" viewBox="0 0 32 32">
+                                            <path d="M13 15h2v6h-2zM17 15h2v6h-2z"></path>
+                                            <path d="M20 9c0-.6-.4-1-1-1h-6c-.6 0-1 .4-1 1v2H8v2h1v10c0 .6.4 1 1 1h12c.6 0 1-.4 1-1V13h1v-2h-4V9zm-6 1h4v1h-4v-1zm7 3v9H11v-9h10z"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
                         @foreach ($matchs as $match)
                         <tr>
                             <td class="vi wy w_ vo lm of">

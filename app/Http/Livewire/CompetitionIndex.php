@@ -75,6 +75,7 @@ class CompetitionIndex extends Component
 
         $competition = new Competition();
         $competition->name = $this->name;
+        $competition->slug = Str::slug($this->name);
         $competition->info = $this->info;
         $competition->status = $this->competitionStatus;
 
@@ -117,6 +118,7 @@ class CompetitionIndex extends Component
 
                 $competition = Competition::where('id', $this->competitionId);
                 $competition->name = $this->name;
+                $competition->slug = Str::slug($this->name);
                 $competition->info = $this->info;
                 $competition->status = $this->competitionStatus;
 
