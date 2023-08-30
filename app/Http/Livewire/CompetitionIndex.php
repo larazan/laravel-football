@@ -35,9 +35,9 @@ class CompetitionIndex extends Component
     public $showConfirmModal = false;
     public $deleteId = '';
 
-    protected $rule = [
+    protected $rules = [
         'name' => 'required',
-        'file' => 'required|image|mimes:jpg,jpeg,png,svg,gif|max:2048',
+        // 'file' => 'required|image|mimes:jpg,jpeg,png,svg,gif|max:2048',
     ];
 
     public function showCreateModal()
@@ -69,9 +69,6 @@ class CompetitionIndex extends Component
         $this->validate();
   
         $new = Str::slug($this->name) . '_' . time();
-        // IMAGE
-        $filename = $new . '.' . $this->file->getClientOriginalName();
-        $filePath = $this->file->storeAs(Competition::UPLOAD_DIR, $filename, 'public');
 
         $competition = new Competition();
         $competition->name = $this->name;
@@ -80,6 +77,9 @@ class CompetitionIndex extends Component
         $competition->status = $this->competitionStatus;
 
         if (!empty($this->file)) {
+            // IMAGE
+            $filename = $new . '.' . $this->file->getClientOriginalName();
+            $filePath = $this->file->storeAs(Competition::UPLOAD_DIR, $filename, 'public');
             $competition->thropy = $filePath;
         }
 
@@ -104,19 +104,16 @@ class CompetitionIndex extends Component
     
     public function updateCompetition()
     {
-        $competition = Competition::findOrFail($this->competitionId);
         $this->validate();
+
+        $competition = Competition::findOrFail($this->competitionId);
   
         $new = Str::slug($this->name) . '_' . time();
-        $filename = $new . '.' . $this->file->getClientOriginalName();
         
         if ($this->competitionId) {
             if ($competition) {
-               
-                // IMAGE
-                $filePath = $this->file->storeAs(Competition::UPLOAD_DIR, $filename, 'public');
 
-                $competition = Competition::where('id', $this->competitionId);
+                // $competition = Competition::where('id', $this->competitionId);
                 $competition->name = $this->name;
                 $competition->slug = Str::slug($this->name);
                 $competition->info = $this->info;
@@ -125,6 +122,10 @@ class CompetitionIndex extends Component
                 if (!empty($this->file)) {
                     // delete image
 			        $this->deleteImage($this->competitionId);
+
+                    // IMAGE
+                    $filename = $new . '.' . $this->file->getClientOriginalName();
+                    $filePath = $this->file->storeAs(Competition::UPLOAD_DIR, $filename, 'public');
 
                     $competition->thropy = $filePath;
                 }

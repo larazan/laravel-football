@@ -33,9 +33,9 @@ class PartnerIndex extends Component
     public $showConfirmModal = false;
     public $deleteId = '';
 
-    protected $rule = [
+    protected $rules = [
         'title' => 'required',
-        'file' => 'required|image|mimes:jpg,jpeg,png,svg,gif|max:2048',
+        // 'file' => 'required|image|mimes:jpg,jpeg,png,svg,gif|max:2048',
     ];
 
     public function showCreateModal()
@@ -67,16 +67,16 @@ class PartnerIndex extends Component
         $this->validate();
   
         $new = Str::slug($this->title) . '_' . time();
-        // IMAGE
-        $filename = $new . '.' . $this->file->getClientOriginalName();
-        $filePath = $this->file->storeAs(Partner::UPLOAD_DIR, $filename, 'public');
-
-        $partner = new Partner();
+        
+        $partner = new Partner;
         $partner->title = $this->title;
         $partner->status = $this->partnerStatus;
 
         if (!empty($this->file)) {
-            $partner->origin = $filePath;
+            // IMAGE
+            $filename = $new . '.' . $this->file->getClientOriginalName();
+            $filePath = $this->file->storeAs(Partner::UPLOAD_DIR, $filename, 'public');
+            $partner->original = $filePath;
         }
 
         $partner->save();
@@ -99,19 +99,15 @@ class PartnerIndex extends Component
     
     public function updatePartner()
     {
-        $partner = Partner::findOrFail($this->partnerId);
         $this->validate();
-  
+        $partner = Partner::findOrFail($this->partnerId);
+        
         $new = Str::slug($this->title) . '_' . time();
-        $filename = $new . '.' . $this->file->getClientOriginalName();
         
         if ($this->partnerId) {
             if ($partner) {
                
-                // IMAGE
-                $filePath = $this->file->storeAs(Partner::UPLOAD_DIR, $filename, 'public');
-
-                $partner = Partner::where('id', $this->partnerId);
+                // $partner = Partner::where('id', $this->partnerId);
                 $partner->title = $this->title;
                 $partner->status = $this->partnerStatus;
 
@@ -119,7 +115,10 @@ class PartnerIndex extends Component
                     // delete image
 			        $this->deleteImage($this->partnerId);
 
-                    $partner->origin = $filePath;
+                    // IMAGE
+                    $filename = $new . '.' . $this->file->getClientOriginalName();
+                    $filePath = $this->file->storeAs(Partner::UPLOAD_DIR, $filename, 'public');
+                    $partner->original = $filePath;
                 }
 
                 $partner->save();

@@ -32,14 +32,14 @@ class ClubIndex extends Component
 
     public $search = '';
     public $sort = 'asc';
-    public $perPage = 5;
+    public $perPage = 10;
 
     public $showConfirmModal = false;
     public $deleteId = '';
 
-    protected $rule = [
+    protected $rules = [
         'name' => 'required',
-        'file' => 'required|image|mimes:jpg,jpeg,png,svg,gif|max:2048',
+        // 'file' => 'required|image|mimes:jpg,jpeg,png,svg,gif|max:2048',
     ];
 
     public function showCreateModal()
@@ -71,9 +71,6 @@ class ClubIndex extends Component
         $this->validate();
   
         $new = Str::slug($this->name) . '_' . time();
-        // IMAGE
-        $filename = $new . '.' . $this->file->getClientOriginalName();
-        $filePath = $this->file->storeAs(Club::UPLOAD_DIR, $filename, 'public');
 
         $club = new Club();
         $club->name = $this->name;
@@ -83,6 +80,9 @@ class ClubIndex extends Component
         $club->status = $this->clubStatus;
 
         if (!empty($this->file)) {
+            // IMAGE
+            $filename = $new . '.' . $this->file->getClientOriginalName();
+            $filePath = $this->file->storeAs(Club::UPLOAD_DIR, $filename, 'public');
             $club->logo = $filePath;
         }
 
@@ -108,28 +108,26 @@ class ClubIndex extends Component
     
     public function updateClub()
     {
-        $club = Club::findOrFail($this->clubId);
         $this->validate();
+        $club = Club::findOrFail($this->clubId);
   
         $new = Str::slug($this->name) . '_' . time();
-        $filename = $new . '.' . $this->file->getClientOriginalName();
         
         if ($this->clubId) {
             if ($club) {
-               
-                // IMAGE
-                $filePath = $this->file->storeAs(Club::UPLOAD_DIR, $filename, 'public');
 
-                $club = Club::where('id', $this->clubId);
                 $club->name = $this->name;
                 $club->slug = Str::slug($this->name);
                 $club->info = $this->info;
-                $club->stadion_id = $this->stadionId;
+                $club->stadion_id = $this->stadion;
                 $club->status = $this->clubStatus;
 
                 if (!empty($this->file)) {
                     // delete image
 			        $this->deleteImage($this->clubId);
+                    // IMAGE
+                    $filename = $new . '.' . $this->file->getClientOriginalName();
+                    $filePath = $this->file->storeAs(Club::UPLOAD_DIR, $filename, 'public');
 
                     $club->logo = $filePath;
                 }

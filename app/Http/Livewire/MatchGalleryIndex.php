@@ -32,7 +32,7 @@ class MatchGalleryIndex extends Component
     public $showConfirmModal = false;
     public $deleteId = '';
 
-    protected $rule = [
+    protected $rules = [
             'file' => 'required|image|mimes:jpg,jpeg,png,svg,gif|max:2048',
     ];
 
@@ -70,16 +70,17 @@ class MatchGalleryIndex extends Component
         $this->validate();
   
         $new = Str::random(5) . '_' . time();
-        // IMAGE
-        $filename = $new . '.' . $this->file->getClientOriginalName();
-        $filePath = $this->file->storeAs(MatchGallery::UPLOAD_DIR, $filename, 'public');
-        $resizedImage = $this->_resizeImage($this->file, $filename, MatchGallery::UPLOAD_DIR);
 
         $matchGallery = new MatchGallery();
         $matchGallery->match_id = $this->matchId;
       
         if (!empty($this->file)) {
-            $matchGallery->origin = $filePath;
+            // IMAGE
+            $filename = $new . '.' . $this->file->getClientOriginalName();
+            $filePath = $this->file->storeAs(MatchGallery::UPLOAD_DIR, $filename, 'public');
+            $resizedImage = $this->_resizeImage($this->file, $filename, MatchGallery::UPLOAD_DIR);
+
+            $matchGallery->original = $filePath;
             $matchGallery->small = $resizedImage['small'];
             $matchGallery->medium = $resizedImage['medium'];
             $matchGallery->large = $resizedImage['large'];
@@ -103,27 +104,27 @@ class MatchGalleryIndex extends Component
     
     public function updateMatchGallery()
     {
-        $matchGallery = MatchGallery::findOrFail($this->matchGalleryId);
         $this->validate();
-  
+        $matchGallery = MatchGallery::findOrFail($this->matchGalleryId);
+    
         $new = Str::random(5) . '_' . time();
-        $filename = $new . '.' . $this->file->getClientOriginalName();
         
         if ($this->matchGalleryId) {
             if ($matchGallery) {
                
                 // IMAGE
+                $filename = $new . '.' . $this->file->getClientOriginalName();
                 $filePath = $this->file->storeAs(MatchGallery::UPLOAD_DIR, $filename, 'public');
                 $resizedImage = $this->_resizeImage($this->file, $filename, MatchGallery::UPLOAD_DIR);
 
-                $matchGallery = MatchGallery::where('id', $this->matchGalleryId);
+                // $matchGallery = MatchGallery::where('id', $this->matchGalleryId);
                 $matchGallery->match_id = $this->matchId;
 
                 if (!empty($this->file)) {
                     // delete image
 			        $this->deleteImage($this->matchGalleryId);
 
-                    $matchGallery->origin = $filePath;
+                    $matchGallery->original = $filePath;
                     $matchGallery->small = $resizedImage['small'];
                     $matchGallery->medium = $resizedImage['medium'];
                     $matchGallery->large = $resizedImage['large'];

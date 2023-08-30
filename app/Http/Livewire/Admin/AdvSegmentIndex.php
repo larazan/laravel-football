@@ -111,7 +111,7 @@ class AdvSegmentIndex extends Component
         if ($this->segmentId) {
             if ($segment) {
 
-                $segment = AdvertisingSegment::where('id', $this->segmentId)->first();
+                // $segment = AdvertisingSegment::where('id', $this->segmentId)->first();
                 $segment->title = $this->title;
                 $segment->size = $this->size;
                 $segment->status = $this->segmentStatus;

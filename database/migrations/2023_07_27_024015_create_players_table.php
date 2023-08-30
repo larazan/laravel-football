@@ -37,6 +37,7 @@ return new class extends Migration
             $table->string('large')->nullable();
             $table->string('medium')->nullable();
             $table->string('small')->nullable();
+            $table->string('status', 10);
             $table->softDeletes();
             $table->timestamps();
 

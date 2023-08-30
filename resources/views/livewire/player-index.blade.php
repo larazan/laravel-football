@@ -169,7 +169,7 @@
                                 </div>
                             </td>
                             <td class="vi wy w_ vo lm">
-                                <div class="gp text-slate-800 capitalize">{{ $player->name }}</div>
+                                <div class="gp text-slate-800 capitalize cursor-pointer hover:underline" wire:click="showDetailModal({{$player->id}})">{{ $player->name }}</div>
                             </td>
                             <td class="vi wy w_ vo lm">
                                 <div class="od sy ub mr-2 _b">
@@ -391,16 +391,15 @@
                                         <div class="col-span-6 sm:col-span-3">
                                             <label for="photo" class="block text-sm font-medium text-gray-700">
                                                 Player photo ({{ $sizeTol }})</label>
-                                            <input wire:model="files" type="file" multiple autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
-                                            @if ($oldImage)
-    
-                                            <img src="{{ asset('storage/'.$oldImage) }}">
-                                               
-                                            @endif
-                                            @if ($file)
-                                            Photo Preview:
-                                            <img src="{{ $file->temporaryUrl() }}">
-                                            @endif
+                                            <input wire:model="file" type="file" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                                                @if ($oldImage)
+                                                    Photo Preview:
+                                                    <img src="{{ asset('storage/'.$oldImage) }}">
+                                                @endif
+                                                @if ($file)
+                                                    Photo Preview:
+                                                    <img src="{{ $file->temporaryUrl() }}">
+                                                @endif
                                         </div>
                                         <div class="col-span-6 sm:col-span-3">
                                             <label for="playerStatus" class="block text-sm font-medium text-gray-700">Status</label>
@@ -491,21 +490,21 @@
                     <div class="je items-center2 vh">
                         <div class="flex flex-col space-x-2">
                             <a class="block ri _y rp zn tnv ub" href="#0">
-                                <img class="rounded-sm" src="{{ asset('images/Jisoo.jpg') }}" width="200" height="142" alt="Product 01">
+                                <img class="rounded-sm" src="{{ asset('images/benjamin_pavard.png') }}" width="200" height="142" alt="Product 01">
                             </a>
                         </div>
                         <div class="uw">
                             <a href="#0">
-                                <h3 class="text-2xl gh text-slate-800 rt font-bold">Kim Jisoo</h3>
+                                <h3 class="text-2xl gh text-slate-800 rt font-bold">Benjamin Pavard</h3>
                             </a>
                             <div class="flex flex-wrap">
                                 <!-- Unique Visitors -->
                                 <div class="flex items-center vr">
                                     <div class="rp">
                                         <div class="flex items-center">
-                                            <div class="text-xl font-bold text-slate-800 mr-2">Female</div>
+                                            <div class="text-xl font-bold text-slate-800 mr-2">Defender</div>
                                         </div>
-                                        <div class="text-sm text-slate-500">Gender</div>
+                                        <div class="text-sm text-slate-500">Role</div>
                                     </div>
                                     <div class="hidden qx of sf hu rp" aria-hidden="true"></div>
                                 </div>
@@ -513,7 +512,7 @@
                                 <div class="flex items-center vr">
                                     <div class="rp">
                                         <div class="flex items-center">
-                                            <div class="text-xl font-bold text-slate-800 mr-2">South Korea</div>
+                                            <div class="text-xl font-bold text-slate-800 mr-2">France</div>
                                         </div>
                                         <div class="text-sm text-slate-500">Nationality</div>
                                     </div>
@@ -524,39 +523,39 @@
                                 <div class="flex items-center">
                                     <div>
                                         <div class="flex items-center">
-                                            <div class="text-xl font-bold text-slate-800 mr-2">21</div>
+                                            <div class="text-xl font-bold text-slate-800 mr-2">5</div>
                                         </div>
-                                        <div class="text-sm text-slate-500">Year</div>
+                                        <div class="text-sm text-slate-500">Number</div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="flex justify-between py-4">
+                            <div class="flex w-full justify-between py-4">
                                 <div>
                                     <div class="flex text-sm text-slate-700 space-x-1">
                                         <div class="capitalize">birth date :</div>
                                         <div class="">1994-10-10</div>
                                     </div>
                                     <div class="flex text-sm text-slate-700 space-x-1">
-                                        <div class="capitalize">b. location :</div>
-                                        <div class="">Gwangju, South Korea</div>
+                                        <div class="capitalize">place birth :</div>
+                                        <div class="">France</div>
                                     </div>
                                     <div class="flex text-sm text-slate-700 space-x-1">
-                                        <div class="capitalize">website :</div>
-                                        <div class=""></div>
+                                        <div class="capitalize">height :</div>
+                                        <div class="">186 cm</div>
                                     </div>
                                 </div>
                                 <div class="flex flex-col justify-between ">
                                     <div class="flex text-sm text-slate-700 space-x-1">
                                         <div class="">Facebook :</div>
-                                        <div class="">@jisoo</div>
+                                        <div class="">@pavard</div>
                                     </div>
                                     <div class="flex text-sm text-slate-700 space-x-1">
                                         <div class="">Instagram :</div>
-                                        <div class="">@jisoo</div>
+                                        <div class="">@pavard</div>
                                     </div>
                                     <div class="flex text-sm text-slate-700 space-x-1">
                                         <div class="">Twitter :</div>
-                                        <div class="">@jisoo</div>
+                                        <div class="">@pavard</div>
                                     </div>
                                 </div>
                                 
@@ -567,61 +566,7 @@
                                     <br />
                                     <br />
                                     Prior to her debut, she appeared in numerous commercial films, in particular, Samsonite RED with actor Lee Min Ho and Smart Uniform and LG Stylus 2 with YG Entertainment's boy group iKON. She was also featured in her label-mates' music videos, such as Epik High's "Spoiler + Happen Ending" and Hi Suhyun's "I'm Different".
-                                    <br />
-                                    <br />
-                                    In 2015, she had her first drama appearance on KBS's The Producers as a guest. She debuted under YG Entertainment in the four-member girl group BLACKPINK on August 8th, 2016, with the mini album "Square One", which includes the hit songs "WHISTLE" and "BOOMBAYAH".
-                                    <br />
-                                    <br />
-                                    On August 18, 2020, it was announced that she would be playing her first lead role in the 2021 JTBC series, "Snowdrop". In March 2021, it was announced that she became a global ambassador for Dior fashion and beauty. Diors' creative director stated that Dior's Autumn/Winter 2021 collection was inspired by Kim. One of the 10 shades of Dior Addict Lip Glow lip balm, #025 Seoul Scarlet, is also inspired by her.
                                 </div>
-                                <!-- Product meta -->
-                                <div class="flex flex-wrap fe items-center">
-                                    <!-- Rating and price -->
-                                    <div class="flex flex-wrap items-center fc mr-2">
-                                        <!-- Rating -->
-                                        <div class="flex items-center fc">
-                                            <!-- Stars -->
-                                            <div class="flex fm">
-                                                <button>
-                                                    <span class="d">1 star</span>
-                                                    <svg class="oo sl du yn" viewBox="0 0 16 16">
-                                                        <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z"></path>
-                                                    </svg>
-                                                </button>
-                                                <button>
-                                                    <span class="d">2 stars</span>
-                                                    <svg class="oo sl du yn" viewBox="0 0 16 16">
-                                                        <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z"></path>
-                                                    </svg>
-                                                </button>
-                                                <button>
-                                                    <span class="d">3 stars</span>
-                                                    <svg class="oo sl du yn" viewBox="0 0 16 16">
-                                                        <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z"></path>
-                                                    </svg>
-                                                </button>
-                                                <button>
-                                                    <span class="d">4 stars</span>
-                                                    <svg class="oo sl du yn" viewBox="0 0 16 16">
-                                                        <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z"></path>
-                                                    </svg>
-                                                </button>
-                                                <button>
-                                                    <span class="d">5 stars</span>
-                                                    <svg class="oo sl du yf" viewBox="0 0 16 16">
-                                                        <path d="M10 5.934L8 0 6 5.934H0l4.89 3.954L2.968 16 8 12.223 13.032 16 11.11 9.888 16 5.934z"></path>
-                                                    </svg>
-                                                </button>
-                                            </div>
-                                            <!-- Rate -->
-                                            <div class="inline-flex text-sm gp ya">4.2</div>
-                                        </div>
-                                        <div class="gq">·</div>
-                                        <!-- Price -->
-
-                                    </div>
-                                </div>
-
 
                             </div>
                         </div>
@@ -633,7 +578,7 @@
     <x-slot name="footer">
         <div class="border-slate-200">
             <div class="flex flex-wrap justify-end fc">
-                <x-button wire:click="closeDetailModal" class="border-slate-200 hover:text-white  g_">Cancel</x-button>
+                <x-button wire:click="closeDetailModal" class="border-slate-200 hover:text-white  g_">Close</x-button>
             </div>
         </div>
 

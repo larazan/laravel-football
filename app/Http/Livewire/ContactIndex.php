@@ -88,7 +88,8 @@ class ContactIndex extends Component
           'message' => $this->message,
           'opened' => $this->openedStatus,
           'status' => $this->contactStatus,
-      ]);
+        ]);
+        
         $this->reset();
         $this->dispatchBrowserEvent('banner-message', ['style' => 'success', 'message' => 'Genre created successfully']);
     }

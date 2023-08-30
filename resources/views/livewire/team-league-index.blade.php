@@ -128,6 +128,7 @@
                             <th class="vi wy w_ vo lm">
                                 <div class="gh gt">Season</div>
                             </th>
+                            
                             <th class="vi wy w_ vo lm">
                                 <div class="gh gt">Team</div>
                             </th>
@@ -157,8 +158,16 @@
                             <td class="vi wy w_ vo lm">
                                 <div class="gp text-slate-800">{{ $team->season }}</div>
                             </td>
+                           
                             <td class="vi wy w_ vo lm">
-                                <div class="gp text-slate-800">{{ $team->team_id }}</div>
+                                <div class="flex flex-row items-center space-x-2">
+                                    @if ($team->club->logo)
+                                    <div class="">
+                                        <img src="{{ asset('storage/'.$team->club->logo) }}" class="w-6 rounded" alt="foto" />
+                                    </div>
+                                    @endif
+                                    <span class="text-xs">{{ $team->club->name }}</span>
+                                </div>
                             </td>
 
                             <td class="vi wy w_ vo lm">
@@ -232,7 +241,7 @@
                                             <select wire:model="team" class="h-full rounded-r border-t border-r border-b block appearance-none w-full bg-white border-gray-300 text-gray-700 py-2 px-4 pr-8 leading-tight focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none">
                                                 <option value="" >Select Option</option>
                                                 @foreach($clubs as $club)
-                                                <option value="{{ $club->id }}">{{ $club->name }}</option>
+                                                <option value="{{ $club->id }}"><img src="{{ asset('images/'.$club->logo) }}" class="object-scale-down h-48 w-96" alt="{{ $club->name }}"> {{ $club->name }}</option>
                                                 @endforeach
                                             </select>
                                         </div>

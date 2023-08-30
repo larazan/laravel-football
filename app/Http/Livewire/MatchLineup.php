@@ -140,8 +140,10 @@ class MatchLineup extends Component
     
     public function updateLineup()
     {
-        $lineup = Lineup::findOrFail($this->lineupId);
+        
         $this->validate();
+
+        $lineup = Lineup::findOrFail($this->lineupId);
   
         $new = Str::random(5) . '_' . time();
         $filename = $new . '.' . $this->file->getClientOriginalName();

@@ -238,10 +238,11 @@ class StaffIndex extends Component
     public $sort = 'asc';
     public $perPage = 5;
 
+    public $showStaffDetailModal = false;
     public $showConfirmModal = false;
     public $deleteId = '';
 
-    protected $rule = [
+    protected $rules = [
         'name' => 'required',
             // 'file' => 'required|image|mimes:jpg,jpeg,png,svg,gif|max:2048',
     ];
@@ -282,10 +283,6 @@ class StaffIndex extends Component
         $this->validate();
   
         $new = Str::slug($this->name) . '_' . time();
-        // IMAGE
-        $filename = $new . '.' . $this->file->getClientOriginalName();
-        $filePath = $this->file->storeAs(Staff::UPLOAD_DIR, $filename, 'public');
-        $resizedImage = $this->_resizeImage($this->file, $filename, Staff::UPLOAD_DIR);
 
         $staff = new Staff();
         $staff->name = $this->name;
@@ -300,7 +297,12 @@ class StaffIndex extends Component
         $staff->status = $this->staffStatus;
 
         if (!empty($this->file)) {
-            $staff->origin = $filePath;
+            // IMAGE
+            $filename = $new . '.' . $this->file->getClientOriginalName();
+            $filePath = $this->file->storeAs(Staff::UPLOAD_DIR, $filename, 'public');
+            $resizedImage = $this->_resizeImage($this->file, $filename, Staff::UPLOAD_DIR);
+
+            $staff->original = $filePath;
             $staff->small =$resizedImage['small'];
             $staff->medium = $resizedImage['medium'];
         }
@@ -329,23 +331,39 @@ class StaffIndex extends Component
 
         $this->showStaffModal = true;
     }
+
+    public function showDetailModal($staffId)
+    {
+        $this->reset(['name']);
+        $this->staffId = $staffId;
+        $staff = Staff::find($staffId);
+        $this->name = $staff->name;
+        $this->role = $staff->role;
+        $this->birthDate = $staff->birth_date;
+        $this->birthLocation = $staff->birth_location;
+        $this->nationality = $staff->nationality;
+        $this->bio = $staff->bio;
+        $this->contractFrom = $staff->contract_from;
+        $this->contractUntil = $staff->contract_until;
+        $this->oldImage = $staff->small;
+        $this->staffStatus = $staff->status;
+
+        $this->showStaffDetailModal = true;
+    }
     
     public function updateStaff()
     {
-        $staff = Staff::findOrFail($this->staffId);
+        
         $this->validate();
+
+        $staff = Staff::findOrFail($this->staffId);
   
         $new = Str::slug($this->name) . '_' . time();
-        $filename = $new . '.' . $this->file->getClientOriginalName();
         
         if ($this->staffId) {
             if ($staff) {
-               
-                // IMAGE
-                $filePath = $this->file->storeAs(Staff::UPLOAD_DIR, $filename, 'public');
-                $resizedImage = $this->_resizeImage($this->file, $filename, Staff::UPLOAD_DIR);
 
-                $staff = Staff::where('id', $this->staffId);
+                // $staff = Staff::where('id', $this->staffId);
                 $staff->name = $this->name;
                 $staff->slug = Str::slug($this->name);
                 $staff->role = $this->role;
@@ -361,7 +379,12 @@ class StaffIndex extends Component
                     // delete image
 			        $this->deleteImage($this->staffId);
 
-                    $staff->origin = $filePath;
+                    // IMAGE
+                    $filename = $new . '.' . $this->file->getClientOriginalName();
+                    $filePath = $this->file->storeAs(Staff::UPLOAD_DIR, $filename, 'public');
+                    $resizedImage = $this->_resizeImage($this->file, $filename, Staff::UPLOAD_DIR);
+
+                    $staff->original = $filePath;
                     $staff->small =$resizedImage['small'];
                     $staff->medium = $resizedImage['medium'];
                 }
@@ -389,6 +412,11 @@ class StaffIndex extends Component
     public function closeStaffModal()
     {
         $this->showStaffModal = false;
+    }
+
+    public function closeDetailModal()
+    {
+        $this->showStaffDetailModal = false;
     }
 
     public function resetFilters()

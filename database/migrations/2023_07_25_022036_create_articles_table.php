@@ -27,7 +27,7 @@ return new class extends Migration
             $table->text('article_tags')->nullable();
             $table->string('meta_title')->nullable();
             $table->string('meta_description')->nullable();
-            $table->string('original');
+            $table->string('original')->nullable();
             $table->string('large')->nullable();
             $table->string('medium')->nullable();
             $table->string('small')->nullable();

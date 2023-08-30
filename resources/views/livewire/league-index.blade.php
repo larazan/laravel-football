@@ -144,7 +144,14 @@
                                 <div class="gp text-slate-800">1</div>
                             </td>
                             <td class="vi wy w_ vo lm">
-                                <div class="gp text-slate-800">{{ $team->team_id }}</div>
+                                <div class="flex flex-row items-center space-x-2">
+                                    @if ($team->club->logo)
+                                    <div class="">
+                                        <img src="{{ asset('storage/'.$team->club->logo) }}" class="w-6 rounded" alt="foto" />
+                                    </div>
+                                    @endif
+                                    <span class="text-xs">{{ $team->club->name }}</span>
+                                </div>
                             </td>
                             <td class="vi wy w_ vo lm">
                                 <div class="gp text-slate-800">0</div>

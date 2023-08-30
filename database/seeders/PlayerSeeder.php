@@ -23,6 +23,7 @@ class PlayerSeeder extends Seeder
                 'slug' => 'manuel-neuer',
                 'role' => 'Goalkeeper',
                 'shirt_number' => 1,
+                'status' => 'active',
                 'created_at' => Carbon::now(),
             ],
             [
@@ -31,6 +32,7 @@ class PlayerSeeder extends Seeder
                 'slug' => 'sven-ulrich',
                 'role' => 'Goalkeeper',
                 'shirt_number' => 26,
+                'status' => 'active',
                 'created_at' => Carbon::now(),
             ],
             [
@@ -39,6 +41,7 @@ class PlayerSeeder extends Seeder
                 'slug' => 'yann-sommer',
                 'role' => 'Goalkeeper',
                 'shirt_number' => 27,
+                'status' => 'active',
                 'created_at' => Carbon::now(),
             ],
             [
@@ -47,6 +50,7 @@ class PlayerSeeder extends Seeder
                 'slug' => 'dayot-upamecano',
                 'role' => 'Defender',
                 'shirt_number' => 2,
+                'status' => 'active',
                 'created_at' => Carbon::now(),
             ],
             [
@@ -55,6 +59,7 @@ class PlayerSeeder extends Seeder
                 'slug' => 'kim-minjae',
                 'role' => 'Defender',
                 'shirt_number' => 3,
+                'status' => 'active',
                 'created_at' => Carbon::now(),
             ],
             [
@@ -63,6 +68,7 @@ class PlayerSeeder extends Seeder
                 'slug' => 'matthijs-de-ligt',
                 'role' => 'Defender',
                 'shirt_number' => 4,
+                'status' => 'active',
                 'created_at' => Carbon::now(),
             ],
             [
@@ -71,6 +77,7 @@ class PlayerSeeder extends Seeder
                 'slug' => 'benjamin-pavard',
                 'role' => 'Defender',
                 'shirt_number' => 5,
+                'status' => 'active',
                 'created_at' => Carbon::now(),
             ],
             [
@@ -79,6 +86,7 @@ class PlayerSeeder extends Seeder
                 'slug' => 'alphonso-davies',
                 'role' => 'Defender',
                 'shirt_number' => 19,
+                'status' => 'active',
                 'created_at' => Carbon::now(),
             ],
             [
@@ -87,6 +95,7 @@ class PlayerSeeder extends Seeder
                 'slug' => 'bouna-sarr',
                 'role' => 'Defender',
                 'shirt_number' => 20,
+                'status' => 'active',
                 'created_at' => Carbon::now(),
             ],
             [
@@ -95,6 +104,7 @@ class PlayerSeeder extends Seeder
                 'slug' => 'raphael-guerreiro',
                 'role' => 'Defender',
                 'shirt_number' => 22,
+                'status' => 'active',
                 'created_at' => Carbon::now(),
             ],
             [
@@ -103,6 +113,7 @@ class PlayerSeeder extends Seeder
                 'slug' => 'noussair-mazraoui',
                 'role' => 'Defender',
                 'shirt_number' => 40,
+                'status' => 'active',
                 'created_at' => Carbon::now(),
             ],
             [
@@ -111,6 +122,7 @@ class PlayerSeeder extends Seeder
                 'slug' => 'josip-stanisic',
                 'role' => 'Defender',
                 'shirt_number' => 44,
+                'status' => 'active',
                 'created_at' => Carbon::now(),
             ],
             [
@@ -119,6 +131,7 @@ class PlayerSeeder extends Seeder
                 'slug' => 'joshua-kimmich',
                 'role' => 'Midfielder',
                 'shirt_number' => 6,
+                'status' => 'active',
                 'created_at' => Carbon::now(),
             ],
             [
@@ -127,6 +140,7 @@ class PlayerSeeder extends Seeder
                 'slug' => 'leon-goretzka',
                 'role' => 'Midfielder',
                 'shirt_number' => 8,
+                'status' => 'active',
                 'created_at' => Carbon::now(),
             ],
             [
@@ -135,6 +149,7 @@ class PlayerSeeder extends Seeder
                 'slug' => 'paul-wanner',
                 'role' => 'Midfielder',
                 'shirt_number' => 14,
+                'status' => 'active',
                 'created_at' => Carbon::now(),
             ],
             [
@@ -143,6 +158,7 @@ class PlayerSeeder extends Seeder
                 'slug' => 'ryan-gravenberch',
                 'role' => 'Midfielder',
                 'shirt_number' => 38,
+                'status' => 'active',
                 'created_at' => Carbon::now(),
             ],
             [
@@ -151,6 +167,7 @@ class PlayerSeeder extends Seeder
                 'slug' => 'jamal-musiala',
                 'role' => 'Midfielder',
                 'shirt_number' => 42,
+                'status' => 'active',
                 'created_at' => Carbon::now(),
             ],
             [
@@ -159,6 +176,7 @@ class PlayerSeeder extends Seeder
                 'slug' => 'konrad-laimer',
                 'role' => 'Midfielder',
                 'shirt_number' => 27,
+                'status' => 'active',
                 'created_at' => Carbon::now(),
             ],
             [
@@ -167,6 +185,7 @@ class PlayerSeeder extends Seeder
                 'slug' => 'serge-gnabry',
                 'role' => 'Attacker',
                 'shirt_number' => 7,
+                'status' => 'active',
                 'created_at' => Carbon::now(),
             ],
             [
@@ -175,6 +194,7 @@ class PlayerSeeder extends Seeder
                 'slug' => 'harry-kane',
                 'role' => 'Attacker',
                 'shirt_number' => 9,
+                'status' => 'active',
                 'created_at' => Carbon::now(),
             ],
             [
@@ -183,6 +203,7 @@ class PlayerSeeder extends Seeder
                 'slug' => 'leroy-sane',
                 'role' => 'Attacker',
                 'shirt_number' => 10,
+                'status' => 'active',
                 'created_at' => Carbon::now(),
             ], 
             [
@@ -191,6 +212,7 @@ class PlayerSeeder extends Seeder
                 'slug' => 'kingsley-coman',
                 'role' => 'Attacker',
                 'shirt_number' => 11,
+                'status' => 'active',
                 'created_at' => Carbon::now(),
             ],
             [
@@ -199,6 +221,7 @@ class PlayerSeeder extends Seeder
                 'slug' => 'eric-maxim-choupo-moting',
                 'role' => 'Attacker',
                 'shirt_number' => 13,
+                'status' => 'active',
                 'created_at' => Carbon::now(),
             ],
             [
@@ -207,6 +230,7 @@ class PlayerSeeder extends Seeder
                 'slug' => 'thomas-muller',
                 'role' => 'Attacker',
                 'shirt_number' => 25,
+                'status' => 'active',
                 'created_at' => Carbon::now(),
             ], 
             [
@@ -215,6 +239,7 @@ class PlayerSeeder extends Seeder
                 'slug' => 'gabriel-vidovic',
                 'role' => 'Attacker',
                 'shirt_number' => 32,
+                'status' => 'active',
                 'created_at' => Carbon::now(),
             ],
             [
@@ -223,6 +248,7 @@ class PlayerSeeder extends Seeder
                 'slug' => 'mathys-tel',
                 'role' => 'Attacker',
                 'shirt_number' => 39,
+                'status' => 'active',
                 'created_at' => Carbon::now(),
             ],
             [
@@ -231,6 +257,7 @@ class PlayerSeeder extends Seeder
                 'slug' => 'arjon-ibrahimovic',
                 'role' => 'Attacker',
                 'shirt_number' => 46,
+                'status' => 'active',
                 'created_at' => Carbon::now(),
             ], 
             

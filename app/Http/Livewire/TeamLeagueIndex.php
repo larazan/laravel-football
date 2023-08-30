@@ -26,9 +26,9 @@ class TeamLeagueIndex extends Component
     public $showConfirmModal = false;
     public $deleteId = '';
 
-    // protected $rules = [
-    //     'name' => 'required|unique:leagues',
-    // ];
+    protected $rules = [
+        'season' => 'required',
+    ];
 
     public function mount()
     {
@@ -38,13 +38,6 @@ class TeamLeagueIndex extends Component
             $seas = $i . '/' . $i + 1;
             array_push($this->seasonOption, $seas);
         }
-    }
-
-    public function updated($propertyName)
-    {
-        $this->validateOnly($propertyName, [
-            
-        ]);
     }
 
     public function showCreateModal()
@@ -74,10 +67,16 @@ class TeamLeagueIndex extends Component
     public function createTeamLeague()
     {
 
-        TeamLeague::create([
-            'season' => $this->season,
-            'team_id' => $this->team,
-        ]);
+        // TeamLeague::create([
+        //     'season' => $this->season,
+        //     'team_id' => $this->team,
+        // ]);
+
+        $team = new TeamLeague;
+        $team->season = $this->season;
+        $team->team_id = $this->team;
+
+        $team->save();
 
         $this->reset();
         $this->dispatchBrowserEvent('banner-message', ['style' => 'success', 'message' => 'Team League created successfully']);
@@ -101,11 +100,15 @@ class TeamLeagueIndex extends Component
     {
         $this->validate();
         $team = TeamLeague::findOrFail($this->teamId);
-        $team->update([
-            'season' => $this->season,
-            'team_id' => $this->team,
+        // $team->update([
+        //     'season' => $this->season,
+        //     'team_id' => $this->team,
             
-        ]);
+        // ]);
+        $team->season = $this->season;
+        $team->team_id = $this->team;
+
+        $team->save();
         
         $this->reset();
         $this->showTeamModal = false;
@@ -134,7 +137,7 @@ class TeamLeagueIndex extends Component
     public function render()
     {
         return view('livewire.team-league-index', [
-            'teams' => TeamLeague::search('season', $this->search)->orderBy('season', $this->sort)->paginate($this->perPage),
+            'teams' => TeamLeague::search('id', $this->search)->orderBy('id', $this->sort)->paginate($this->perPage),
             'clubs' => Club::OrderBy('name', 'asc')->get(),
         ]);
     }

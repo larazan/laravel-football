@@ -161,7 +161,7 @@
                                 <div class="gp text-slate-800">{{ $award->year }}</div>
                             </td>
                             <td class="vi wy w_ vo lm">
-                                <div class="gp text-slate-800">{{ $award->competition_id }}</div>   
+                                <div class="gp text-slate-800">{{ $award->competition->name }}</div>   
                             </div>
                             </td>
                             <td class="vi wy w_ vo lm">

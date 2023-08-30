@@ -46,9 +46,9 @@ class StadionIndex extends Component
     public $showConfirmModal = false;
     public $deleteId = '';
 
-    protected $rule = [
+    protected $rules = [
         'name' => 'required',
-        'file' => 'required|image|mimes:jpg,jpeg,png,svg,gif|max:2048',
+        // 'file' => 'required|image|mimes:jpg,jpeg,png,svg,gif|max:2048',
     ];
 
     public function showCreateModal()
@@ -80,10 +80,6 @@ class StadionIndex extends Component
         $this->validate();
   
         $new = Str::slug($this->name) . '_' . time();
-        // IMAGE
-        $filename = $new . '.' . $this->file->getClientOriginalName();
-        $filePath = $this->file->storeAs(Stadion::UPLOAD_DIR, $filename, 'public');
-        $resizedImage = $this->_resizeImage($this->file, $filename, Stadion::UPLOAD_DIR);
 
         $stadion = new Stadion();
         $stadion->name = $this->name;
@@ -95,7 +91,12 @@ class StadionIndex extends Component
         $stadion->status = $this->stadionStatus;
 
         if (!empty($this->file)) {
-            $stadion->origin = $filePath;
+            // IMAGE
+            $filename = $new . '.' . $this->file->getClientOriginalName();
+            $filePath = $this->file->storeAs(Stadion::UPLOAD_DIR, $filename, 'public');
+            $resizedImage = $this->_resizeImage($this->file, $filename, Stadion::UPLOAD_DIR);
+
+            $stadion->original = $filePath;
             $stadion->small =$resizedImage['small'];
             $stadion->extra_large = $resizedImage['extra_large'];
         }
@@ -124,20 +125,16 @@ class StadionIndex extends Component
     
     public function updateStadion()
     {
-        $stadion = Stadion::findOrFail($this->stadionId);
         $this->validate();
+
+        $stadion = Stadion::findOrFail($this->stadionId);
   
         $new = Str::slug($this->name) . '_' . time();
-        $filename = $new . '.' . $this->file->getClientOriginalName();
         
         if ($this->stadionId) {
             if ($stadion) {
-               
-                // IMAGE
-                $filePath = $this->file->storeAs(Stadion::UPLOAD_DIR, $filename, 'public');
-                $resizedImage = $this->_resizeImage($this->file, $filename, Stadion::UPLOAD_DIR);
 
-                $stadion = Stadion::where('id', $this->stadionId);
+                // $stadion = Stadion::where('id', $this->stadionId);
                 $stadion->name = $this->name;
                 $stadion->slug = Str::slug($this->name);
                 $stadion->city = $this->city;
@@ -150,7 +147,12 @@ class StadionIndex extends Component
                     // delete image
 			        $this->deleteImage($this->stadionId);
 
-                    $stadion->origin = $filePath;
+                    // IMAGE
+                    $filename = $new . '.' . $this->file->getClientOriginalName();
+                    $filePath = $this->file->storeAs(Stadion::UPLOAD_DIR, $filename, 'public');
+                    $resizedImage = $this->_resizeImage($this->file, $filename, Stadion::UPLOAD_DIR);
+
+                    $stadion->original = $filePath;
                     $stadion->small =$resizedImage['small'];
                     $stadion->extra_large = $resizedImage['extra_large'];
                 }

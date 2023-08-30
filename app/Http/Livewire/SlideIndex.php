@@ -36,7 +36,7 @@ class SlideIndex extends Component
     public $showConfirmModal = false;
     public $deleteId = '';
 
-    protected $rule = [
+    protected $rules = [
         'title' => 'required',
             // 'file' => 'required|image|mimes:jpg,jpeg,png,svg,gif|max:2048',
     ];
@@ -70,10 +70,6 @@ class SlideIndex extends Component
         $this->validate();
   
         $new = Str::slug($this->title) . '_' . time();
-        // IMAGE
-        $filename = $new . '.' . $this->file->getClientOriginalName();
-        $filePath = $this->file->storeAs(Slide::UPLOAD_DIR, $filename, 'public');
-        $resizedImage = $this->_resizeImage($this->file, $filename, Slide::UPLOAD_DIR);
 
         $slide = new Slide();
         $slide->user_id = Auth::user()->id;
@@ -84,7 +80,12 @@ class SlideIndex extends Component
         $slide->status = $this->slideStatus;
 
         if (!empty($this->file)) {
-            $slide->origin = $filePath;
+            // IMAGE
+            $filename = $new . '.' . $this->file->getClientOriginalName();
+            $filePath = $this->file->storeAs(Slide::UPLOAD_DIR, $filename, 'public');
+            $resizedImage = $this->_resizeImage($this->file, $filename, Slide::UPLOAD_DIR);
+
+            $slide->original = $filePath;
             $slide->small =$resizedImage['small'];
             $slide->extra_large = $resizedImage['extra_large'];
         }
@@ -124,18 +125,15 @@ class SlideIndex extends Component
     
     public function updateSlide()
     {
-        $slide = Slide::findOrFail($this->slideId);
+       
         $this->validate();
+
+        $slide = Slide::findOrFail($this->slideId);
   
         $new = Str::slug($this->title) . '_' . time();
-        $filename = $new . '.' . $this->file->getClientOriginalName();
         
         if ($this->slideId) {
             if ($slide) {
-                
-                // IMAGE
-                $filePath = $this->file->storeAs(Slide::UPLOAD_DIR, $filename, 'public');
-                $resizedImage = $this->_resizeImage($this->file, $filename, Slide::UPLOAD_DIR);
 
                 // $slide->update([
                 //     'user_id' => Auth::user()->id,
@@ -149,7 +147,7 @@ class SlideIndex extends Component
                 //     'status' => $this->slideStatus,
                 // ]);
                 
-                $slide = Slide::where('id', $this->slideId);
+                // $slide = Slide::where('id', $this->slideId);
                 $slide->user_id = Auth::user()->id;
                 $slide->title = $this->title;
                 $slide->body = $this->body;
@@ -161,7 +159,12 @@ class SlideIndex extends Component
                     // delete image
 			        $this->deleteImage($this->slideId);
 
-                    $slide->origin = $filePath;
+                    // IMAGE
+                    $filename = $new . '.' . $this->file->getClientOriginalName();
+                    $filePath = $this->file->storeAs(Slide::UPLOAD_DIR, $filename, 'public');
+                    $resizedImage = $this->_resizeImage($this->file, $filename, Slide::UPLOAD_DIR);
+
+                    $slide->original = $filePath;
                     $slide->small =$resizedImage['small'];
                     $slide->extra_large = $resizedImage['extra_large'];
                 }

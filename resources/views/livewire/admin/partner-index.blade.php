@@ -162,9 +162,9 @@
                                 <div class="gp text-slate-800">{{ $partner->title }}</div>
                             </td>
                             <td class="vi wy w_ vo lm">
-                                <div class="gp ">
+                                <div class="gp bg-gray-700">
                                     @if ($partner->original)
-                                    <img src="{{ asset('storage/'.$partner->original) }}" class="object-scale-down h-48 w-96" alt="{{ $partner->title }}">
+                                    <img src="{{ asset($partner->original) }}" class="object-scale-down h-48 w-96 " alt="{{ $partner->title }}">
                                     @endif
                                 </div>
                             </td>

@@ -33,9 +33,9 @@ class AwardIndex extends Component
     public $showConfirmModal = false;
     public $deleteId = '';
 
-    // protected $rules = [
-    //     'name' => 'required|unique:awards',
-    // ];
+    protected $rules = [
+        // 'name' => 'required',
+    ];
 
     public function mount()
     {
@@ -79,15 +79,13 @@ class AwardIndex extends Component
 ///////
     public function createAward()
     {
-        $this->validate([
-            'name' => 'required',
-        ]);
 
         Award::create([
           'year' => $this->year,
           'competition_id' => $this->competition,
           'status' => $this->awardStatus,
-      ]);
+        ]);
+        
         $this->reset();
         $this->dispatchBrowserEvent('banner-message', ['style' => 'success', 'message' => 'Genre created successfully']);
     }

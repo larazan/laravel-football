@@ -44,7 +44,7 @@ class MatchStatisticIndex extends Component
     public $showConfirmModal = false;
     public $deleteId = '';
 
-    protected $rule = [
+    protected $rules = [
         'report' => 'required',
         // 'file' => 'required|image|mimes:jpg,jpeg,png,svg,gif|max:2048',
     ];
@@ -82,7 +82,7 @@ class MatchStatisticIndex extends Component
     {
         $this->validate();
 
-        $matchStatistic = new MatchStatistic();
+        $matchStatistic = new MatchStatistic;
         $matchStatistic->home_possession = $this->homePossession;
         $matchStatistic->home_offsides = $this->homeOffsides;
         $matchStatistic->home_fouls = $this->homeFouls;
@@ -134,14 +134,14 @@ class MatchStatisticIndex extends Component
     
     public function updateMatchStatistic()
     {
-        $matchStatistic = MatchStatistic::findOrFail($this->matchStatisticId);
         $this->validate();
+
+        $matchStatistic = MatchStatistic::findOrFail($this->matchStatisticId);
   
-        
         if ($this->matchStatisticId) {
             if ($matchStatistic) {
 
-                $matchStatistic = MatchStatistic::where('id', $this->matchStatisticId);
+                // $matchStatistic = MatchStatistic::where('id', $this->matchStatisticId);
                 $matchStatistic->home_possession = $this->homePossession;
                 $matchStatistic->home_offsides = $this->homeOffsides;
                 $matchStatistic->home_fouls = $this->homeFouls;

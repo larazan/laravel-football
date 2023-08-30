@@ -129,10 +129,10 @@
                                 <div class="gh gt">Name</div>
                             </th>
                             <th class="vi wy w_ vo lm">
-                                <div class="gh gt">Image</div>
+                                <div class="gh gt">Logo</div>
                             </th>
                             <th class="vi wy w_ vo lm">
-                                <div class="gh gt">Info</div>
+                                <div class="gh gt">Stadion</div>
                             </th>
                             <th class="vi wy w_ vo lm">
                                 <div class="gh gt">Status</div>
@@ -166,12 +166,12 @@
                             <td class="vi wy w_ vo lm">
                                 <div class="gp ">
                                     @if ($club->logo)
-                                    <img src="{{ asset('storage/'.$clubs->logo) }}" class="object-scale-down h-48 w-96" alt="{{ $club->name }}">
+                                    <img src="{{ asset('storage/'.$club->logo) }}" class="object-scale-down" alt="{{ $club->name }}">
                                     @endif    
                                 </div>
                             </td>
                             <td class="vi wy w_ vo lm">
-                                <div class="gp text-slate-800">{{ $club->info }}</div>
+                                <div class="gp text-slate-800">{{ $club->stadion->name }}</div>
                             </td>
                             <td class="vi wy w_ vo lm">
                                 @if ($club->status === 'inactive')
@@ -251,7 +251,7 @@
                                         </div>
                                         <div class="col-span-6 sm:col-span-3">
                                             <label for="photo" class="block text-sm font-medium text-gray-700">Club Logo ({{ $sizeTol }})</label>
-                                            <input wire:model="filename" type="file" autocomplete="given-name"
+                                            <input wire:model="file" type="file" autocomplete="given-name"
                                                 class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                                                 @if ($oldImage)
                                                     Photo Preview:

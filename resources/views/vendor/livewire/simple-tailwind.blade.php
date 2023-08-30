@@ -19,7 +19,7 @@
                     @endif
                 @endif
             </span>
-
+        
             <span>
                 {{-- Next Page Link --}}
                 @if ($paginator->hasMorePages())

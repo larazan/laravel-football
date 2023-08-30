@@ -42,9 +42,9 @@ class MediaIndex extends Component
     public $showConfirmModal = false;
     public $deleteId = '';
 
-    protected $rule = [
+    protected $rules = [
         'title' => 'required|min:3',
-        'file' => 'required|image|mimes:jpg,jpeg,png,svg,gif|max:2048',
+        // 'file' => 'required|image|mimes:jpg,jpeg,png,svg,gif|max:2048',
     ];
 
     public function mount($matchId)
@@ -81,10 +81,6 @@ class MediaIndex extends Component
         $this->validate();
   
         $new = Str::slug($this->title) . '_' . time();
-        // IMAGE
-        $filename = $new . '.' . $this->file->getClientOriginalName();
-        $filePath = $this->file->storeAs(Media::UPLOAD_DIR, $filename, 'public');
-        $resizedImage = $this->_resizeImage($this->file, $filename, Media::UPLOAD_DIR);
 
         $media = new Media();
         $media->user_id = Auth::user()->id;
@@ -98,7 +94,12 @@ class MediaIndex extends Component
         $media->status = $this->mediaStatus;
       
         if (!empty($this->file)) {
-            $media->origin = $filePath;
+             // IMAGE
+            $filename = $new . '.' . $this->file->getClientOriginalName();
+            $filePath = $this->file->storeAs(Media::UPLOAD_DIR, $filename, 'public');
+            $resizedImage = $this->_resizeImage($this->file, $filename, Media::UPLOAD_DIR);
+
+            $media->original = $filePath;
             $media->small = $resizedImage['small'];
             $media->medium = $resizedImage['medium'];
             $media->large = $resizedImage['large'];
@@ -128,20 +129,17 @@ class MediaIndex extends Component
     
     public function updateMedia()
     {
-        $media = Media::findOrFail($this->mediaId);
+       
         $this->validate();
+
+        $media = Media::findOrFail($this->mediaId);
   
         $new = Str::slug($this->title) . '_' . time();
-        $filename = $new . '.' . $this->file->getClientOriginalName();
         
         if ($this->mediaId) {
             if ($media) {
-               
-                // IMAGE
-                $filePath = $this->file->storeAs(Media::UPLOAD_DIR, $filename, 'public');
-                $resizedImage = $this->_resizeImage($this->file, $filename, Media::UPLOAD_DIR);
 
-                $media = Media::where('id', $this->mediaId);
+                // $media = Media::where('id', $this->mediaId);
                 $media->user_id = Auth::user()->id;
                 $media->title = $this->title;
                 $media->slug = Str::slug($this->title);
@@ -156,7 +154,12 @@ class MediaIndex extends Component
                     // delete image
 			        $this->deleteImage($this->mediaId);
 
-                    $media->origin = $filePath;
+                    // IMAGE
+                    $filename = $new . '.' . $this->file->getClientOriginalName();
+                    $filePath = $this->file->storeAs(Media::UPLOAD_DIR, $filename, 'public');
+                    $resizedImage = $this->_resizeImage($this->file, $filename, Media::UPLOAD_DIR);
+
+                    $media->original = $filePath;
                     $media->small = $resizedImage['small'];
                     $media->medium = $resizedImage['medium'];
                     $media->large = $resizedImage['large'];

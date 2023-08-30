@@ -13,8 +13,8 @@ class TeamLeague extends Model
 
     protected $guarded = [];
 
-    public function clubs()
+    public function club()
     {
-        return $this->hasMany(Club::class);
+        return $this->hasOne(Club::class, 'id', 'team_id');
     }
 }

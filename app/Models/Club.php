@@ -30,7 +30,7 @@ class Club extends Model
 
     public function stadion()
     {
-        return $this->hasOne(Stadion::class);
+        return $this->hasOne(Stadion::class, 'id', 'stadion_id');
     }
 
     public function leagues()

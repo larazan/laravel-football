@@ -281,10 +281,11 @@ class PlayerIndex extends Component
     public $sort = 'asc';
     public $perPage = 5;
 
+    public $showPlayerDetailModal = false;
     public $showConfirmModal = false;
     public $deleteId = '';
 
-    protected $rule = [
+    protected $rules = [
         'name' => 'required',
             // 'file' => 'required|image|mimes:jpg,jpeg,png,svg,gif|max:2048',
     ];
@@ -325,10 +326,6 @@ class PlayerIndex extends Component
         $this->validate();
   
         $new = Str::slug($this->name) . '_' . time();
-        // IMAGE
-        $filename = $new . '.' . $this->file->getClientOriginalName();
-        $filePath = $this->file->storeAs(Player::UPLOAD_DIR, $filename, 'public');
-        $resizedImage = $this->_resizeImage($this->file, $filename, Player::UPLOAD_DIR);
 
         $player = new Player();
         $player->club_id = $this->clubId;
@@ -352,7 +349,12 @@ class PlayerIndex extends Component
         $player->status = $this->playerStatus;
 
         if (!empty($this->file)) {
-            $player->origin = $filePath;
+            // IMAGE
+            $filename = $new . '.' . $this->file->getClientOriginalName();
+            $filePath = $this->file->storeAs(Player::UPLOAD_DIR, $filename, 'public');
+            $resizedImage = $this->_resizeImage($this->file, $filename, Player::UPLOAD_DIR);
+
+            $player->original = $filePath;
             $player->small =$resizedImage['small'];
             $player->medium = $resizedImage['medium'];
             $player->large = $resizedImage['large'];
@@ -401,21 +403,42 @@ class PlayerIndex extends Component
 
         $this->showPlayerModal = true;
     }
+
+    public function showDetailModal($playerId)
+    {
+        $this->reset(['name']);
+        $this->playerId = $playerId;
+        $player = Player::find($playerId);
+        $this->clubId = $player->club_id;
+        $this->name = $player->name;
+        $this->role = $player->role;
+        $this->birthDate = $player->birth_date;
+        $this->birthLocation = $player->birth_location;
+        $this->nationality = $player->nationality;
+        $this->bio = $player->bio;
+        $this->contractFrom = $player->contract_from;
+        $this->contractUntil = $player->contract_until;
+        $this->preferedFoot = $player->prefered_foot;
+        $this->shirtNumber = $player->shirt_number;
+        $this->oldImage = $player->small;
+        $this->facebook = $player->facebook;
+        $this->instagram = $player->instagram;
+        $this->twitter = $player->twitter;
+
+        $this->showPlayerDetailModal = true;
+    }
     
     public function updatePlayer()
     {
-        $player = Player::findOrFail($this->playerId);
+        
         $this->validate();
+
+        $player = Player::findOrFail($this->playerId);
   
         $new = Str::slug($this->name) . '_' . time();
-        $filename = $new . '.' . $this->file->getClientOriginalName();
         
         if ($this->playerId) {
             if ($player) {
-               
-                // IMAGE
-                $filePath = $this->file->storeAs(Player::UPLOAD_DIR, $filename, 'public');
-                $resizedImage = $this->_resizeImage($this->file, $filename, Player::UPLOAD_DIR);
 
                 // $player->update([
                 //     'name' => $this->name,
@@ -430,7 +453,7 @@ class PlayerIndex extends Component
                 //     'status' => $this->playerStatus,
                 // ]);
 
-                $player = Player::where('id', $this->playerId);
+                // $player = Player::where('id', $this->playerId);
                 $player->club_id = $this->clubId;
                 $player->name = $this->name;
                 $player->slug = Str::slug($this->name);
@@ -455,7 +478,12 @@ class PlayerIndex extends Component
                     // delete image
 			        $this->deleteImage($this->playerId);
 
-                    $player->origin = $filePath;
+                     // IMAGE
+                    $filename = $new . '.' . $this->file->getClientOriginalName();
+                    $filePath = $this->file->storeAs(Player::UPLOAD_DIR, $filename, 'public');
+                    $resizedImage = $this->_resizeImage($this->file, $filename, Player::UPLOAD_DIR);
+
+                    $player->original = $filePath;
                     $player->small =$resizedImage['small'];
                     $player->medium = $resizedImage['medium'];
                     $player->large = $resizedImage['large'];
@@ -484,6 +512,11 @@ class PlayerIndex extends Component
     public function closePlayerModal()
     {
         $this->showPlayerModal = false;
+    }
+
+    public function closeDetailModal()
+    {
+        $this->showPlayerDetailModal = false;
     }
 
     public function resetFilters()

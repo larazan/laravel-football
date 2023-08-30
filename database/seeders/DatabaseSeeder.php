@@ -5,6 +5,7 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 use App\Models\Competition;
+use App\Models\TeamLeague;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -22,7 +23,9 @@ class DatabaseSeeder extends Seeder
             // ClubSeeder::class,
             // PlayerSeeder::class,
             // StaffSeeder::class,
-            CompetitionSeeder::class,
+            // CompetitionSeeder::class,
+            // PartnerSeeder::class,
+            CategoryArticleSeeder::class,
         ]);
         // \App\Models\User::factory(10)->create();
 

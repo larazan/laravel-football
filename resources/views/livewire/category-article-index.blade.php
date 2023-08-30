@@ -131,9 +131,7 @@
                             <th class="vi wy w_ vo lm">
                                 <div class="gh gt">Parent</div>
                             </th>
-                            <th class="vi wy w_ vo lm">
-                                <div class="gh gt">Status</div>
-                            </th>
+                           
                             <th class="vi wy w_ vo lm">
                                 <div class="gh gt">Date</div>
                             </th>
@@ -161,15 +159,6 @@
                             </td>
                             <td class="vi wy w_ vo lm">
                                 <div class="gp ">{{ $category->parent ? $category->parent->name : '' }}</div>
-                            </td>
-                            <td class="vi wy w_ vo lm">
-                                @if ($category->status === 'inactive')
-                                    <div class="inline-flex gp hf yl rounded-full gn vp vd">{{ $category->status }}</div>
-                                @endif 
-
-                                @if ($category->status === 'active')
-                                    <div class="inline-flex gp hc ys rounded-full gn vp vd">{{ $category->status }}</div>
-                                @endif 
                             </td>
 
                             <td class="vi wy w_ vo lm">
@@ -249,15 +238,7 @@
                                             </select>
                                         </div>
 
-                                        <div class="col-span-6 sm:col-span-3">
-                                            <label for="first-name" class="block text-sm font-medium text-gray-700">Status</label>
-                                            <select wire:model="catStatus" class="h-full rounded-r border-t border-r border-b block appearance-none w-full bg-white border-gray-300 text-gray-700 py-2 px-4 pr-8 leading-tight focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none">
-                                                <option value="" >Select Option</option>
-                                                @foreach($statuses as $status)
-                                                <option value="{{ $status }}">{{ $status }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
+                                        
 
                                     </div>
                                 </div>

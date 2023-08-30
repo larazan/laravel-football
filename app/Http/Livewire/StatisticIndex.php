@@ -36,7 +36,7 @@ class StatisticIndex extends Component
     public $showConfirmModal = false;
     public $deleteId = '';
 
-    protected $rule = [
+    protected $rules = [
         // 'report' => 'required',
     ];
 
@@ -112,13 +112,14 @@ class StatisticIndex extends Component
     
     public function updateStatistic()
     {
-        $statistic = Statistic::findOrFail($this->statisticId);
         $this->validate();
-  
+
+        $statistic = Statistic::findOrFail($this->statisticId);
+        
         if ($this->statisticId) {
             if ($statistic) {
 
-                $statistic = Statistic::where('id', $this->statisticId);
+                // $statistic = Statistic::where('id', $this->statisticId);
                 $statistic->player_id = $this->playerId;
                 $statistic->minute_play = $this->minutePlay;
                 $statistic->goals = $this->goals;

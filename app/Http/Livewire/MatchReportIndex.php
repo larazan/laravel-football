@@ -33,9 +33,9 @@ class MatchReportIndex extends Component
     public $showConfirmModal = false;
     public $deleteId = '';
 
-    protected $rule = [
+    protected $rules = [
         'report' => 'required',
-        'file' => 'required|image|mimes:jpg,jpeg,png,svg,gif|max:2048',
+        // 'file' => 'required|image|mimes:jpg,jpeg,png,svg,gif|max:2048',
     ];
 
     public function mount($matchId)
@@ -72,10 +72,6 @@ class MatchReportIndex extends Component
         $this->validate();
   
         $new = Str::random(5) . '_' . time();
-        // IMAGE
-        $filename = $new . '.' . $this->file->getClientOriginalName();
-        $filePath = $this->file->storeAs(MatchReport::UPLOAD_DIR, $filename, 'public');
-        $resizedImage = $this->_resizeImage($this->file, $filename, MatchReport::UPLOAD_DIR);
 
         $matchReport = new MatchReport();
         $matchReport->report = $this->report;
@@ -83,7 +79,12 @@ class MatchReportIndex extends Component
       
 
         if (!empty($this->file)) {
-            $matchReport->origin = $filePath;
+            // IMAGE
+            $filename = $new . '.' . $this->file->getClientOriginalName();
+            $filePath = $this->file->storeAs(MatchReport::UPLOAD_DIR, $filename, 'public');
+            $resizedImage = $this->_resizeImage($this->file, $filename, MatchReport::UPLOAD_DIR);
+
+            $matchReport->original = $filePath;
             $matchReport->medium = $resizedImage['medium'];
         }
 
@@ -106,20 +107,17 @@ class MatchReportIndex extends Component
     
     public function updateMatchReport()
     {
-        $matchReport = MatchReport::findOrFail($this->matchReportId);
+        
         $this->validate();
+
+        $matchReport = MatchReport::findOrFail($this->matchReportId);
   
         $new = Str::random(5) . '_' . time();
-        $filename = $new . '.' . $this->file->getClientOriginalName();
         
         if ($this->matchReportId) {
             if ($matchReport) {
-               
-                // IMAGE
-                $filePath = $this->file->storeAs(MatchReport::UPLOAD_DIR, $filename, 'public');
-                $resizedImage = $this->_resizeImage($this->file, $filename, MatchReport::UPLOAD_DIR);
 
-                $matchReport = MatchReport::where('id', $this->matchReportId);
+                // $matchReport = MatchReport::where('id', $this->matchReportId);
                 $matchReport->report = $this->report;
                 $matchReport->match_id = $this->matchId;
 
@@ -127,7 +125,12 @@ class MatchReportIndex extends Component
                     // delete image
 			        $this->deleteImage($this->matchReportId);
 
-                    $matchReport->origin = $filePath;
+                     // IMAGE
+                    $filename = $new . '.' . $this->file->getClientOriginalName();
+                    $filePath = $this->file->storeAs(MatchReport::UPLOAD_DIR, $filename, 'public');
+                    $resizedImage = $this->_resizeImage($this->file, $filename, MatchReport::UPLOAD_DIR);
+
+                    $matchReport->original = $filePath;
                     $matchReport->medium = $resizedImage['medium'];
                 }
                 
