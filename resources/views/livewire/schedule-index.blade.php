@@ -141,6 +141,9 @@
                                 <div class="gh gt">Date</div>
                             </th>
                             <th class="vi wy w_ vo lm">
+                                <div class="gh gt">Hour</div>
+                            </th>
+                            <th class="vi wy w_ vo lm">
                                 <div class="gh gt">Status</div>
                             </th>
                           
@@ -164,20 +167,39 @@
                                 </div>
                             </td>
                             <td class="vi wy w_ vo lm">
-                                <div class="gp text-slate-800">{{ $schedule->competition_id }}</div>
+                                <div class="gp text-slate-800">{{ $schedule->competition->name }}</div>
                             </td>
                             <td class="vi wy w_ vo lm">
                                 <div class="gp text-slate-800">{{ $schedule->season }}</div>
                             </td>
 
                             <td class="vi wy w_ vo lm">
-                                <div>{{ $schedule->home_team_id }}</div>
+                                
+                                <div class="flex flex-col justify-center items-center">
+                                    @if ($schedule->home->logo)
+                                    <div class="">
+                                        <img src="{{ asset('storage/'.$schedule->home->logo) }}" class="w-6 rounded" alt="foto" />
+                                    </div>
+                                    @endif
+                                    <span class="text-xs">{{ $schedule->home->name }}</span>
+                                </div>
                             </td>
                             <td class="vi wy w_ vo lm">
-                                <div>{{ $schedule->away_team_id }}</div>
+                                
+                                <div class="flex flex-col justify-center items-center">
+                                    @if ($schedule->away->logo)
+                                    <div class="">
+                                        <img src="{{ asset('storage/'.$schedule->away->logo) }}" class="w-6 rounded" alt="foto" />
+                                    </div>
+                                    @endif
+                                    <span class="text-xs">{{ $schedule->away->name }}</span>
+                                </div>
                             </td>
                             <td class="vi wy w_ vo lm">
-                                <div>{{ $schedule->fixture_match->format('d-m-Y') }}</div>
+                                <div>{{ $schedule->fixture_match }}</div>
+                            </td>
+                            <td class="vi wy w_ vo lm">
+                                <div>{{ $schedule->hour }} : {{ $schedule->minute }}</div>
                             </td>
                            
                             <td class="vi wy w_ vo lm">
@@ -265,7 +287,29 @@
                                                 </label>
                                                 <x-flatpicker wire:model="date"></x-flatpicker>
                                             </div>
-                                            <div class="col-span-1 sm:col-span-3">
+                                            <div class="col-start-1 sm:col-span-3">
+                                                <label for="title" class="block text-sm font-medium text-gray-700">
+                                                    Hour
+                                                </label>
+                                                <div class="">
+                                                <div class="flex items-center space-x-1">
+                                                    <select name="hour" class="bg-transparent text-xl appearance-none outline-none">
+                                                    @foreach($hourOption as $h)
+                                                        <option value="{{ $h }}">{{ $h }}</option>
+                                                    @endforeach
+                                                    </select>
+                                                    <span class="text-xl">:</span>
+                                                    <select name="minute" class="bg-transparent text-xl appearance-none outline-none">
+                                                    @foreach($minuteOption as $m)
+                                                        <option value="{{ $m }}">{{ $m }}</option>
+                                                    @endforeach
+                                                    </select>
+                                                </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-span-6 sm:col-span-3">
                                                 <label for="stadionId" class="block text-sm font-medium text-gray-700">Stadion</label>
                                                 <select wire:model="stadionId" class="h-full2 rounded-r border-t border-r border-b block appearance-none w-full bg-white border-gray-300 text-gray-700 py-2 px-4 pr-8 leading-tight focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none">
                                                     <option value="" >Select Option</option>
@@ -274,7 +318,6 @@
                                                     @endforeach
                                                 </select>
                                             </div>
-                                        </div>
                                        
                                         <div class="flex justify-between">
                                             <div class="col-span-1 sm:col-span-3">

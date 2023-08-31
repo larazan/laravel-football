@@ -107,7 +107,7 @@
     <!-- Table -->
     <div class="bg-white bd rounded-sm border border-slate-200 rc">
         <header class="vc vu">
-            <h2 class="gh text-slate-800">Categories <span class="gq gp"></span></h2>
+            <h2 class="gh text-slate-800">Team League <span class="gq gp"></span></h2>
         </header>
         <div x-data="handleSelect">
 

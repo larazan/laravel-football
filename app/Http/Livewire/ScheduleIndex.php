@@ -31,7 +31,10 @@ class ScheduleIndex extends Component
     public $awayTeamId;
     public $fullTimeHomeGoal;
     public $fullTimeAwayGoal;
-    // public $fixtureMatch;
+    public $hour;
+    public $minute;
+    public $hourOption = [];
+    public $minuteOption = [];
     public $date;
     public $opponent;
     public $position;
@@ -65,6 +68,14 @@ class ScheduleIndex extends Component
         for ($i=$yearNow; $i < $yearNow + 2 ; $i++) {
             $seas = $i . '/' . $i + 1;
             array_push($this->seasonOption, $seas);
+        }
+
+        for ($i=1; $i < 24 ; $i++) { 
+            array_push($this->hourOption, $i);
+        }
+
+        for ($i=1; $i < 60 ; $i++) { 
+            array_push($this->minuteOption, $i);
         }
     }
 
@@ -116,6 +127,8 @@ class ScheduleIndex extends Component
             'fixture_match' => $this->date,
             'full_time_home_goal' => $this->fullTimeHomeGoal,
             'full_time_away_goal' => $this->fullTimeAwayGoal,
+            'hour' => $this->hour,
+            'minute' => $this->minute,
 
             'slug' => $this->slugGenerate($this->season, $this->competitionId, $homeTeam, $awayTeam),
             'status' => $this->scheduleStatus,
@@ -129,8 +142,10 @@ class ScheduleIndex extends Component
             'home_team' => $homeTeam,
             'away_team' => $awayTeam,
             'fixture_match' => $this->date,
-            'full_time_home_goal' => $this->full_time_home_goal,
-            'full_time_away_goal' => $this->full_time_away_goal,
+            'full_time_home_goal' => $this->fullTimeHomeGoal,
+            'full_time_away_goal' => $this->fullTimeAwayGoal,
+            'hour' => $this->hour,
+            'minute' => $this->minute,
 
             'slug' => $this->slugGenerate($this->season, $this->competitionId, $homeTeam, $awayTeam),
             'status' => $this->scheduleStatus,
@@ -153,7 +168,7 @@ class ScheduleIndex extends Component
         $away = Club::find($awayId);
         $this->awayTeam = $away->slug;
 
-        $slug = $season . '_' . $this->competititon . '_' . $this->homeTeam . '_vs_' . $this->awayTeam . '_' . time();
+        $slug = $season . '_' . $this->competitionId . '_' . $this->homeTeam . '_vs_' . $this->awayTeam . '_' . time();
         return $slug;
     } 
 
@@ -170,6 +185,8 @@ class ScheduleIndex extends Component
         $this->fullTimeHomeGoal = $schedule->full_time_home_goal;
         $this->fullTimeAwayGoal = $schedule->full_time_away_goal;
         $this->date = $schedule->fixture_match;
+        $this->hour = $schedule->hour;
+        $this->minute = $schedule->minute;
         $this->scheduleStatus = $schedule->status;
         $this->showScheduleModal = true;
     }
@@ -202,6 +219,8 @@ class ScheduleIndex extends Component
                     'fixture_match' => $this->date,
                     'full_time_home_goal' => $this->fullTimeHomeGoal,
                     'full_time_away_goal' => $this->fullTimeAwayGoal,
+                    'hour' => $this->hour,
+                    'minute' => $this->minute,
 
                     'slug' => $this->slugGenerate($this->season, $this->competitionId, $homeTeam, $awayTeam),
                     'status' => $this->scheduleStatus,
@@ -217,6 +236,8 @@ class ScheduleIndex extends Component
                     'fixture_match' => $this->date,
                     'full_time_home_goal' => $this->fullTimeHomeGoal,
                     'full_time_away_goal' => $this->fullTimeAwayGoal,
+                    'hour' => $this->hour,
+                    'minute' => $this->minute,
 
                     'slug' => $this->slugGenerate($this->season, $this->competitionId, $homeTeam, $awayTeam),
                     'status' => $this->scheduleStatus,

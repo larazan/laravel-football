@@ -144,6 +144,9 @@
                                 <div class="gh gt">Date</div>
                             </th>
                             <th class="vi wy w_ vo lm">
+                                <div class="gh gt">Hour</div>
+                            </th>
+                            <th class="vi wy w_ vo lm">
                                 <div class="gh gt">Status</div>
                             </th>
                           
@@ -234,20 +237,40 @@
                                 </div>
                             </td>
                             <td class="vi wy w_ vo lm">
-                                <div class="gp text-slate-800">{{ $match->competition_id }}</div>
+                                <div class="gp text-slate-800">{{ $match->competition->name }}</div>
                             </td>
                             <td class="vi wy w_ vo lm">
                                 <div class="gp text-slate-800">{{ $match->season }}</div>
                             </td>
 
                             <td class="vi wy w_ vo lm">
-                                <div>{{ $match->home_team_id }}</div>
+                                <div class="flex flex-col justify-center items-center">
+                                    @if ($match->home->logo)
+                                    <div class="">
+                                        <img src="{{ asset('storage/'.$match->home->logo) }}" class="w-6 rounded" alt="foto" />
+                                    </div>
+                                    @endif
+                                    <span class="text-xs">{{ $match->home->name }}</span>
+                                </div>
                             </td>
                             <td class="vi wy w_ vo lm">
-                                <div>{{ $match->away_team_id }}</div>
+                                <div class="flex flex-col justify-center items-center">
+                                    @if ($match->away->logo)
+                                    <div class="">
+                                        <img src="{{ asset('storage/'.$match->away->logo) }}" class="w-6 rounded" alt="foto" />
+                                    </div>
+                                    @endif
+                                    <span class="text-xs">{{ $match->away->name }}</span>
+                                </div>
                             </td>
                             <td class="vi wy w_ vo lm">
-                                <div>{{ $match->fixture_match->format('d-m-Y') }}</div>
+                                <div>{{ $match->full_time_home_goal }} : {{ $match->full_time_away_goal }}</div>
+                            </td>
+                            <td class="vi wy w_ vo lm">
+                                <div>{{ $match->fixture_match }}</div>
+                            </td>
+                            <td class="vi wy w_ vo lm">
+                                <div>{{ $schedule->hour }} : {{ $schedule->minute }}</div>
                             </td>
                            
                             <td class="vi wy w_ vo lm">

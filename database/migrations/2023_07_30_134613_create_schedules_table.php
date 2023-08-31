@@ -23,7 +23,7 @@ return new class extends Migration
             $table->unsignedBigInteger('away_team');
             $table->integer('full_time_home_goal')->nullable();
             $table->integer('full_time_away_goal')->nullable();
-            $table->dateTime('fixture_match');
+            $table->date('fixture_match');
             $table->string('status', 10);
             $table->softDeletes();
             $table->timestamps();
