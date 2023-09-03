@@ -16,11 +16,11 @@ class ScheduleIndex extends Component
 {
     use WithPagination;
 
-    public $currentClubId = 1;
+    public $currentClubId = 9;
     public $showScheduleModal = false;
     public $schedule;
     public $season;
-    public $seasonOption = [];
+    // public $seasonOption = [];
     public $competition;
     public $competitionId;
     public $stadion;
@@ -33,8 +33,6 @@ class ScheduleIndex extends Component
     public $fullTimeAwayGoal;
     public $hour;
     public $minute;
-    public $hourOption = [];
-    public $minuteOption = [];
     public $date;
     public $opponent;
     public $position;
@@ -62,21 +60,7 @@ class ScheduleIndex extends Component
 
     public function mount()
     {
-        // $this->schedule = Schedule::find($id);
         $this->date = today()->format('Y-m-d');
-        $yearNow = Carbon::now()->format('Y');
-        for ($i=$yearNow; $i < $yearNow + 2 ; $i++) {
-            $seas = $i . '/' . $i + 1;
-            array_push($this->seasonOption, $seas);
-        }
-
-        for ($i=1; $i < 24 ; $i++) { 
-            array_push($this->hourOption, $i);
-        }
-
-        for ($i=1; $i < 60 ; $i++) { 
-            array_push($this->minuteOption, $i);
-        }
     }
 
     public function showCreateModal()
@@ -168,7 +152,7 @@ class ScheduleIndex extends Component
         $away = Club::find($awayId);
         $this->awayTeam = $away->slug;
 
-        $slug = $season . '_' . $this->competitionId . '_' . $this->homeTeam . '_vs_' . $this->awayTeam . '_' . time();
+        $slug = $season . '_' . $this->competition . '_' . $this->homeTeam . '_vs_' . $this->awayTeam . '_' . time();
         return $slug;
     } 
 
@@ -254,6 +238,10 @@ class ScheduleIndex extends Component
     {
         $schedule = Schedule::findOrFail($scheduleId);
         $schedule->delete();
+
+        $match = Matchs::findOrFail($scheduleId);
+        $match->delete();
+        
         $this->reset();
         $this->dispatchBrowserEvent('banner-message', ['style' => 'danger', 'message' => 'Schedule deleted successfully']);
     }
@@ -270,11 +258,33 @@ class ScheduleIndex extends Component
 
     public function render()
     {
+        $seasons = [];
+        $this->date = today()->format('Y-m-d');
+        $yearNow = Carbon::now()->format('Y');
+        for ($i=$yearNow; $i < $yearNow + 2 ; $i++) {
+            $seas = $i . '/' . $i + 1;
+            array_push($seasons, $seas);
+        }
+
+        $hours = [];
+        for ($i=0; $i < 24 ; $i++) { 
+            array_push($hours, sprintf("%02d", $i));
+        }
+
+        $minutes = [];
+        for ($i=0; $i < 60 ; $i++) { 
+            array_push($minutes, sprintf("%02d", $i));
+        }
+
         return view('livewire.schedule-index', [
             'schedules' => Schedule::search('id', $this->search)->orderBy('id', $this->sort)->paginate($this->perPage),
             'competitions' => Competition::OrderBy('name', 'asc')->get(),
             'stadions' => Stadion::OrderBy('name', 'asc')->get(),
             'clubs' => Club::OrderBy('name', 'asc')->get(),
+            'seasonOption' => $seasons,
+            'hourOption' => $hours,
+            'minuteOption' => $minutes,
+            
         ]);
     }
 }

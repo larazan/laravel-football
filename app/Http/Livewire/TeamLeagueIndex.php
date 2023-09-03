@@ -14,14 +14,14 @@ class TeamLeagueIndex extends Component
 
     public $showTeamModal = false;
     public $season;
-    public $seasonOption = [];
+    // public $seasonOption = [];
     public $date;
     public $team;
     public $teamId;
 
     public $search = '';
     public $sort = 'asc';
-    public $perPage = 5;
+    public $perPage = 10;
 
     public $showConfirmModal = false;
     public $deleteId = '';
@@ -30,14 +30,27 @@ class TeamLeagueIndex extends Component
         'season' => 'required',
     ];
 
-    public function mount()
+    // public function mount()
+    // {
+    //     $this->date = today()->format('Y-m-d');
+    //     $yearNow = Carbon::now()->format('Y');
+    //     for ($i=$yearNow; $i < $yearNow + 2 ; $i++) {
+    //         $seas = $i . '/' . $i + 1;
+    //         array_push($this->seasonOption, $seas);
+    //     }
+    // }
+
+    public function seasoned()
     {
+        $seasons = [];
         $this->date = today()->format('Y-m-d');
         $yearNow = Carbon::now()->format('Y');
         for ($i=$yearNow; $i < $yearNow + 2 ; $i++) {
             $seas = $i . '/' . $i + 1;
-            array_push($this->seasonOption, $seas);
+            array_push($seasons, $seas);
         }
+
+        return $seasons;
     }
 
     public function showCreateModal()
@@ -66,12 +79,16 @@ class TeamLeagueIndex extends Component
 ///////
     public function createTeamLeague()
     {
+        $arr = [
+            ['team_id', '=', $this->team],
+            ['season', '=', $this->season],
+        ];
 
-        // TeamLeague::create([
-        //     'season' => $this->season,
-        //     'team_id' => $this->team,
-        // ]);
-
+        if (TeamLeague::where($arr)->exists()) {
+            $this->dispatchBrowserEvent('banner-message', ['style' => 'error', 'message' => 'Team League already created']);
+            return;
+        }
+       
         $team = new TeamLeague;
         $team->season = $this->season;
         $team->team_id = $this->team;
@@ -136,9 +153,18 @@ class TeamLeagueIndex extends Component
     
     public function render()
     {
+        $seasons = [];
+        $this->date = today()->format('Y-m-d');
+        $yearNow = Carbon::now()->format('Y');
+        for ($i=$yearNow; $i < $yearNow + 2 ; $i++) {
+            $seas = $i . '/' . $i + 1;
+            array_push($seasons, $seas);
+        }
+
         return view('livewire.team-league-index', [
             'teams' => TeamLeague::search('id', $this->search)->orderBy('id', $this->sort)->paginate($this->perPage),
             'clubs' => Club::OrderBy('name', 'asc')->get(),
+            'seasonOption' => $seasons,
         ]);
     }
 }

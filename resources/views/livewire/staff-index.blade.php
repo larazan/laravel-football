@@ -174,7 +174,7 @@
                                     @if ($staff->small)
                                     <img src="{{ asset('storage/'.$staff->small) }}" class="rounded-full" width="40" height="40" alt="{{ $staff->name }}">
                                     @else
-                                    <img src="{{ asset('images/avatar-03.jpg') }}" class="rounded-full" width="40" height="40" alt="{{ $staff->name }}">
+                                    <img src="{{ asset('images/generic-male-avatar-300x284.jpg') }}" class="rounded-full" width="40" height="40" alt="{{ $staff->name }}">
                                     @endif
                                 </div>
                             </td>

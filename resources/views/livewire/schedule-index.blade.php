@@ -126,27 +126,25 @@
                                 </div>
                             </th>
                             <th class="vi wy w_ vo lm">
-                                <div class="gh gt">Competition</div>
-                            </th>
-                            <th class="vi wy w_ vo lm">
-                                <div class="gh gt">Season</div>
-                            </th>
-                            <th class="vi wy w_ vo lm">
-                                <div class="gh gt">H Team</div>
-                            </th>
-                            <th class="vi wy w_ vo lm">
-                                <div class="gh gt">A Team</div>
-                            </th>
-                            <th class="vi wy w_ vo lm">
                                 <div class="gh gt">Date</div>
                             </th>
                             <th class="vi wy w_ vo lm">
-                                <div class="gh gt">Hour</div>
+                                <div class="gh gt">Time</div>
                             </th>
+                            <th class="vi wy w_ vo lm">
+                                <div class="gh gt">Opposition</div>
+                            </th>
+                            <th class="vi wy w_ vo lm">
+                                <div class="gh gt">Venue</div>
+                            </th>
+                            <th class="vi wy w_ vo lm">
+                                <div class="gh gt">Competition</div>
+                            </th>
+
                             <th class="vi wy w_ vo lm">
                                 <div class="gh gt">Status</div>
                             </th>
-                          
+
                             <th class="vi wy w_ vo lm">
                                 <div class="gh gt">Actions</div>
                             </th>
@@ -155,7 +153,7 @@
                     <!-- Table body -->
                     <tbody class="text-sm le lr">
                         <!-- Row -->
-                        
+
                         @foreach ($schedules as $schedule)
                         <tr>
                             <td class="vi wy w_ vo lm of">
@@ -167,15 +165,15 @@
                                 </div>
                             </td>
                             <td class="vi wy w_ vo lm">
-                                <div class="gp text-slate-800">{{ $schedule->competition->name }}</div>
+                                <div>{{ $schedule->fixture_match }}</div>
                             </td>
                             <td class="vi wy w_ vo lm">
-                                <div class="gp text-slate-800">{{ $schedule->season }}</div>
+                                <div>{{ $schedule->hour }} : {{ $schedule->minute }}</div>
                             </td>
 
                             <td class="vi wy w_ vo lm">
-                                
-                                <div class="flex flex-col justify-center items-center">
+                                @if ($schedule->home_team != $currentClubId)
+                                <div class="flex flex-row items-center space-x-2">
                                     @if ($schedule->home->logo)
                                     <div class="">
                                         <img src="{{ asset('storage/'.$schedule->home->logo) }}" class="w-6 rounded" alt="foto" />
@@ -183,10 +181,9 @@
                                     @endif
                                     <span class="text-xs">{{ $schedule->home->name }}</span>
                                 </div>
-                            </td>
-                            <td class="vi wy w_ vo lm">
-                                
-                                <div class="flex flex-col justify-center items-center">
+
+                                @else
+                                <div class="flex flex-row items-center space-x-2">
                                     @if ($schedule->away->logo)
                                     <div class="">
                                         <img src="{{ asset('storage/'.$schedule->away->logo) }}" class="w-6 rounded" alt="foto" />
@@ -194,14 +191,21 @@
                                     @endif
                                     <span class="text-xs">{{ $schedule->away->name }}</span>
                                 </div>
+                                @endif
                             </td>
                             <td class="vi wy w_ vo lm">
-                                <div>{{ $schedule->fixture_match }}</div>
+                                <div class="gp text-slate-800">
+                                    @if ($schedule->home_team != $currentClubId)
+                                    A
+                                    @else
+                                    H
+                                    @endif
+                                </div>
                             </td>
+
                             <td class="vi wy w_ vo lm">
-                                <div>{{ $schedule->hour }} : {{ $schedule->minute }}</div>
+                                <div class="gp text-slate-800">{{ $schedule->competition->name }}</div>
                             </td>
-                           
                             <td class="vi wy w_ vo lm">
                                 @if ($schedule->status === 'inactive')
                                 <div class="inline-flex gp hf yl rounded-full gn vp vd">{{ $schedule->status }}</div>
@@ -211,7 +215,7 @@
                                 <div class="inline-flex gp hc ys rounded-full gn vp vd">{{ $schedule->status }}</div>
                                 @endif
                             </td>
-                            
+
                             <td class="vi wy w_ vo lm of">
                                 <div class="fm">
                                     <button class="gq xv rounded-full" wire:click="showEditModal({{ $schedule->id }})">
@@ -273,7 +277,7 @@
                                             <div class="col-span-1 sm:col-span-3">
                                                 <label for="season" class="block text-sm font-medium text-gray-700">Season</label>
                                                 <select wire:model="season" class="h-full2 rounded-r border-t border-r border-b block appearance-none w-full bg-white border-gray-300 text-gray-700 py-2 px-4 pr-8 leading-tight focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none">
-                                                    <option value="" >Select Option</option>
+                                                    <option value="">Select Option</option>
                                                     @foreach($seasonOption as $season)
                                                     <option value="{{ $season }}">{{ $season }}</option>
                                                     @endforeach
@@ -292,64 +296,68 @@
                                                     Hour
                                                 </label>
                                                 <div class="">
-                                                <div class="flex items-center space-x-1">
-                                                    <select name="hour" class="bg-transparent text-xl appearance-none outline-none">
-                                                    @foreach($hourOption as $h)
-                                                        <option value="{{ $h }}">{{ $h }}</option>
-                                                    @endforeach
-                                                    </select>
-                                                    <span class="text-xl">:</span>
-                                                    <select name="minute" class="bg-transparent text-xl appearance-none outline-none">
-                                                    @foreach($minuteOption as $m)
-                                                        <option value="{{ $m }}">{{ $m }}</option>
-                                                    @endforeach
-                                                    </select>
-                                                </div>
+                                                    <div class="flex items-center space-x-1">
+                                                        <select wire:model="hour" class="bg-transparent text-xl appearance-none outline-none">
+                                                            @foreach($hourOption as $h)
+                                                            <option value="{{ $h }}">{{ $h }}</option>
+                                                            @endforeach
+                                                        </select>
+                                                        <span class="text-xl">:</span>
+                                                        <select wire:model="minute" class="bg-transparent text-xl appearance-none outline-none">
+                                                            @foreach($minuteOption as $m)
+                                                            <option value="{{ $m }}">{{ $m }}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
 
-                                        <div class="col-span-6 sm:col-span-3">
+                                        <div class="flex justify-between">
+                                            <div class="col-span-6 sm:col-span-3">
                                                 <label for="stadionId" class="block text-sm font-medium text-gray-700">Stadion</label>
                                                 <select wire:model="stadionId" class="h-full2 rounded-r border-t border-r border-b block appearance-none w-full bg-white border-gray-300 text-gray-700 py-2 px-4 pr-8 leading-tight focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none">
-                                                    <option value="" >Select Option</option>
+                                                    <option value="">Select Option</option>
                                                     @foreach($stadions as $stad)
                                                     <option value="{{ $stad->id }}">{{ $stad->name }}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
-                                       
-                                        <div class="flex justify-between">
                                             <div class="col-span-1 sm:col-span-3">
                                                 <label for="position" class="block text-sm font-medium text-gray-700">Venue</label>
                                                 <select wire:model="position" class="h-full2 rounded-r border-t border-r border-b block appearance-none w-full bg-white border-gray-300 text-gray-700 py-2 px-4 pr-8 leading-tight focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none">
-                                                    <option value="" >Select Option</option>
+                                                    <option value="">Select Option</option>
                                                     @foreach($positionOption as $pos)
                                                     <option value="{{ $pos }}">{{ $pos }}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
+                                        </div>
+
+                                        <div class="flex justify-between">
+
                                             <div class="col-span-1 sm:col-span-3">
                                                 <label for="opponent" class="block text-sm font-medium text-gray-700">Opponent</label>
                                                 <select wire:model="opponent" class="h-full2 rounded-r border-t border-r border-b block appearance-none w-full bg-white border-gray-300 text-gray-700 py-2 px-4 pr-8 leading-tight focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none">
-                                                    <option value="" >Select Option</option>
+                                                    <option value="">Select Option</option>
                                                     @foreach($clubs as $club)
-                                                    <option value="{{ $club->id }}">{{ $club->name }}</option>
+                                                    <option value="{{ $club->id }}"> {{ $club->name }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            <div class="col-span-1 sm:col-span-3">
+                                                <label for="first-name" class="block text-sm font-medium text-gray-700">Status</label>
+                                                <select wire:model="scheduleStatus" class="h-full2 rounded-r border-t border-r border-b block appearance-none w-full bg-white border-gray-300 text-gray-700 py-2 px-4 pr-8 leading-tight focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none">
+                                                    <option value="">Select Option</option>
+                                                    @foreach($statuses as $status)
+                                                    <option value="{{ $status }}">{{ $status }}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
                                         </div>
 
-                                       
-                                        <div class="col-span-6 sm:col-span-3">
-                                            <label for="first-name" class="block text-sm font-medium text-gray-700">Status</label>
-                                            <select wire:model="scheduleStatus" class="h-full2 rounded-r border-t border-r border-b block appearance-none w-full bg-white border-gray-300 text-gray-700 py-2 px-4 pr-8 leading-tight focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none">
-                                                <option value="">Select Option</option>
-                                                @foreach($statuses as $status)
-                                                <option value="{{ $status }}">{{ $status }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
+
+
 
                                     </div>
                                 </div>

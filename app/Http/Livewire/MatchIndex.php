@@ -18,7 +18,6 @@ class MatchIndex extends Component
     public $showMatchsModal = false;
     public $match;
     public $season;
-    public $seasonOption = [];
     public $competition;
     public $competitionId;
     public $stadion;
@@ -62,13 +61,6 @@ class MatchIndex extends Component
 
     public function mount()
     {
-        // $this->match = Matchs::find($id);
-        $this->date = today()->format('Y-m-d');
-        $yearNow = Carbon::now()->format('Y');
-        for ($i=$yearNow; $i < $yearNow + 2 ; $i++) {
-            $seas = $i . '/' . $i + 1;
-            array_push($this->seasonOption, $seas);
-        }
     }
 
     public function showCreateModal()
@@ -225,11 +217,20 @@ class MatchIndex extends Component
 
     public function render()
     {
+        $seasons = [];
+        $this->date = today()->format('Y-m-d');
+        $yearNow = Carbon::now()->format('Y');
+        for ($i=$yearNow; $i < $yearNow + 2 ; $i++) {
+            $seas = $i . '/' . $i + 1;
+            array_push($seasons, $seas);
+        }
+
         return view('livewire.match-index', [
             'matchs' => Matchs::search('id', $this->search)->orderBy('id', $this->sort)->paginate($this->perPage),
             'competitions' => Competition::OrderBy('name', 'asc')->get(),
             'stadions' => Stadion::OrderBy('name', 'asc')->get(),
             'clubs' => Club::OrderBy('name', 'asc')->get(),
+            'seasonOption' => $seasons,
         ]);
     }
 }

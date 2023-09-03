@@ -14,13 +14,13 @@ return new class extends Migration
     public function up()
     {
         Schema::table('schedules', function (Blueprint $table) {
-            $table->integer('hour')->after('fixture_match')->nullable();
-            $table->integer('minute')->after('hour')->nullable();
+            $table->string('hour', 3)->after('fixture_match')->nullable();
+            $table->string('minute', 3)->after('hour')->nullable();
         });
 
         Schema::table('matchs', function (Blueprint $table) {
-            $table->integer('hour')->after('fixture_match')->nullable();
-            $table->integer('minute')->after('hour')->nullable();
+            $table->string('hour', 3)->after('fixture_match')->nullable();
+            $table->string('minute', 3)->after('hour')->nullable();
         });
 
         Schema::table('settings', function (Blueprint $table) {

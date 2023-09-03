@@ -5,13 +5,13 @@ namespace App\Http\Livewire;
 use App\Models\TeamLeague;
 use App\Models\Club;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
 class LeagueIndex extends Component
 {
     public $showLeagueModal = false;
     public $season;
-    public $seasonOption = [];
     public $date;
     public $totalPoints;
     public $totalGoals;
@@ -46,18 +46,13 @@ class LeagueIndex extends Component
 
     public $perPage = 20;
 
-    // protected $rules = [
-    //     'name' => 'required|unique:leagues',
-    // ];
+    protected $rules = [
+        // 'name' => 'required|unique:leagues',
+    ];
 
     public function mount()
     {
-        $this->date = today()->format('Y-m-d');
-        $yearNow = Carbon::now()->format('Y');
-        for ($i=$yearNow; $i < $yearNow + 2 ; $i++) {
-            $seas = $i . '/' . $i + 1;
-            array_push($this->seasonOption, $seas);
-        }
+    
     }
 
     public function updated($propertyName)
@@ -215,9 +210,18 @@ class LeagueIndex extends Component
 
     public function render()
     {
+        $seasons = [];
+        $this->date = today()->format('Y-m-d');
+        $yearNow = Carbon::now()->format('Y');
+        for ($i=$yearNow; $i < $yearNow + 2 ; $i++) {
+            $seas = $i . '/' . $i + 1;
+            array_push($seasons, $seas);
+        }
+
         return view('livewire.league-index', [
             'teams' => TeamLeague::OrderBy('id', 'asc')->paginate($this->perPage),
             'clubs' => Club::OrderBy('name', 'asc')->get(),
+            'seasonOption' => $seasons,
         ]);
     }
 
