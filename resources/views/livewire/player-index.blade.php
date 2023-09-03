@@ -1,7 +1,7 @@
 <div class="vs jj ttm vl ou uf na">
 
-<!-- Loading -->
-<x-loading-indicator />
+    <!-- Loading -->
+    <x-loading-indicator />
 
     <!-- Page header -->
     <div class="je jd jc ii">
@@ -156,7 +156,7 @@
                     <!-- Table body -->
                     <tbody class="text-sm le lr">
                         <!-- Row -->
-                        
+
                         @if ($players->count() > 0)
                         @foreach ($players as $player)
                         <tr>
@@ -182,9 +182,9 @@
                             </td>
 
                             <td class="vi wy w_ vo lm">
-                               
+
                                 <div class="gt">{{ $player->role }}</div>
-                                
+
                             </td>
                             <td class="vi wy w_ vo lm">
                                 <div class="gt">{{ \Carbon\Carbon::parse($player->birth_date)->format('j F Y') }}</div>
@@ -392,14 +392,14 @@
                                             <label for="photo" class="block text-sm font-medium text-gray-700">
                                                 Player photo ({{ $sizeTol }})</label>
                                             <input wire:model="file" type="file" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
-                                                @if ($oldImage)
-                                                    Photo Preview:
-                                                    <img src="{{ asset('storage/'.$oldImage) }}">
-                                                @endif
-                                                @if ($file)
-                                                    Photo Preview:
-                                                    <img src="{{ $file->temporaryUrl() }}">
-                                                @endif
+                                            @if ($oldImage)
+                                            Photo Preview:
+                                            <img src="{{ asset('storage/'.$oldImage) }}">
+                                            @endif
+                                            @if ($file)
+                                            Photo Preview:
+                                            <img src="{{ $file->temporaryUrl() }}">
+                                            @endif
                                         </div>
                                         <div class="col-span-6 sm:col-span-3">
                                             <label for="playerStatus" class="block text-sm font-medium text-gray-700">Status</label>
@@ -440,13 +440,10 @@
             <span class="font-semibold">Delete Confirm</span>
         </x-slot>
 
-
         <x-slot name="content">
             <div class="border-t">
                 <div class="vc vu ">
                     <div class="fw">
-
-
                         <div class="">
                             <div class="">
                                 <div class="flex flex-col space-y-3">
@@ -475,9 +472,7 @@
         </x-slot>
     </x-dialog-modal>
 
-</div>
-
-<!-- modal detail -->
+    <!-- modal detail -->
 <x-dialog-modal wire:model="showPlayerDetailModal" class="">
     <x-slot name="title" class="border-b bg-slate-200">
         <span class="font-semibold">Detail Player</span>
@@ -486,7 +481,6 @@
         <div class="border-t">
             <div class="vc vu ">
                 <div class="fw">
-
                     <div class="je items-center2 vh">
                         <div class="flex flex-col space-x-2">
                             <a class="block ri _y rp zn tnv ub" href="#0">
@@ -558,22 +552,21 @@
                                         <div class="">@pavard</div>
                                     </div>
                                 </div>
-                                
-                            </div>
-                                
-                                <div class="text-sm ru">
-                                    Kim Ji Soo is a South Korean actress, model, singer, and member of the girl group BLACKPINK.
-                                    <br />
-                                    <br />
-                                    Prior to her debut, she appeared in numerous commercial films, in particular, Samsonite RED with actor Lee Min Ho and Smart Uniform and LG Stylus 2 with YG Entertainment's boy group iKON. She was also featured in her label-mates' music videos, such as Epik High's "Spoiler + Happen Ending" and Hi Suhyun's "I'm Different".
-                                </div>
 
                             </div>
+
+                            <div class="text-sm ru">
+                                Kim Ji Soo is a South Korean actress, model, singer, and member of the girl group BLACKPINK.
+                                <br />
+                                <br />
+                                Prior to her debut, she appeared in numerous commercial films, in particular, Samsonite RED with actor Lee Min Ho and Smart Uniform and LG Stylus 2 with YG Entertainment's boy group iKON. She was also featured in her label-mates' music videos, such as Epik High's "Spoiler + Happen Ending" and Hi Suhyun's "I'm Different".
+                            </div>
+
                         </div>
-
                     </div>
                 </div>
             </div>
+        </div>
     </x-slot>
     <x-slot name="footer">
         <div class="border-slate-200">
@@ -581,25 +574,28 @@
                 <x-button wire:click="closeDetailModal" class="border-slate-200 hover:text-white  g_">Close</x-button>
             </div>
         </div>
-
     </x-slot>
 </x-dialog-modal>
+
+</div>
+
+
 
 
 
 @push('js')
 <script src="https://cdn.ckeditor.com/ckeditor5/27.1.0/classic/ckeditor.js"></script>
 <script>
-    ClassicEditor
-        .create(document.querySelector('#bio'))
-        .then(editor => {
-            editor.model.document.on('change:data', () => {
-                @this.set('bio', editor.getData());
-            })
-        })
-        .catch(error => {
-            console.error(error);
-        });
+    // ClassicEditor
+    //     .create(document.querySelector('#bio'))
+    //     .then(editor => {
+    //         editor.model.document.on('change:data', () => {
+    //             @this.set('bio', editor.getData());
+    //         })
+    //     })
+    //     .catch(error => {
+    //         console.error(error);
+    //     });
 </script>
 <script>
     function select2Alpine() {

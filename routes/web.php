@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\MediaController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\DashboardController;
 // Livewire
 use App\Http\Livewire\Admin\AdvertisingIndex;
 use App\Http\Livewire\Admin\AdvSegmentIndex;
@@ -109,6 +110,8 @@ Route::middleware(['auth:sanctum', 'verified', 'role:admin'])->prefix('admin')->
     Route::post('users/{user}/permissions', [UserController::class, 'givePermission'])->name('users.permissions');
     Route::delete('users/{user}/permissions/{permission}', [UserController::class, 'revokePermission'])->name('users.permissions.revoke');
 });
+
+Route::get('/tes', [DashboardController::class, 'index'])->name('tes.index');
 
 // Contact
 Route::get('/contact', [ContactController::class, 'show'])->name('contact.show');

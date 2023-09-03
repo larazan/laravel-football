@@ -147,7 +147,7 @@
                     <!-- Table body -->
                     <tbody class="text-sm le lr">
                         <!-- Row -->
-                        
+                        @if ($partners->count() > 0)
                         @foreach ($partners as $partner)
                         <tr>
                             <td class="vi wy w_ vo lm of">
@@ -202,6 +202,11 @@
                             </td>
                         </tr>
                         @endforeach
+                        @else
+                        <tr>
+                            <td class="vi wy w_ vo lm" colspan="8">No records found</td>
+                        </tr>
+                        @endif
                     </tbody>
                 </table>
 

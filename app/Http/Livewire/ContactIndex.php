@@ -37,7 +37,7 @@ class ContactIndex extends Component
 
     public $search = '';
     public $sort = 'asc';
-    public $perPage = 5;
+    public $perPage = 10;
 
     public $showConfirmModal = false;
     public $deleteId = '';

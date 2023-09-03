@@ -15,6 +15,7 @@ class PlayerIndex extends Component
 {
     use WithFileUploads, WithPagination;
     
+    public $counter = 0;
     public $showPlayerModal = false;
     public $sizeTol = Player::LARGE;
     public $club;
@@ -279,7 +280,7 @@ class PlayerIndex extends Component
 
     public $search = '';
     public $sort = 'asc';
-    public $perPage = 5;
+    public $perPage = 10;
 
     public $showPlayerDetailModal = false;
     public $showConfirmModal = false;
@@ -427,6 +428,12 @@ class PlayerIndex extends Component
 
         $this->showPlayerDetailModal = true;
     }
+
+    public function closeDetailModal()
+    {
+        $this->reset();
+        $this->showPlayerDetailModal = false;
+    }
     
     public function updatePlayer()
     {
@@ -514,10 +521,7 @@ class PlayerIndex extends Component
         $this->showPlayerModal = false;
     }
 
-    public function closeDetailModal()
-    {
-        $this->showPlayerDetailModal = false;
-    }
+    
 
     public function resetFilters()
     {

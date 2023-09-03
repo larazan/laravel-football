@@ -401,9 +401,7 @@
         </x-slot>
     </x-dialog-modal>
 
-</div>
-
-<!-- modal detail -->
+    <!-- modal detail -->
 <x-dialog-modal wire:model="showStaffDetailModal" class="">
     <x-slot name="title" class="border-b bg-slate-200">
         <span class="font-semibold">Detail Staff</span>
@@ -510,6 +508,10 @@
 
     </x-slot>
 </x-dialog-modal>
+
+</div>
+
+
 
 
 

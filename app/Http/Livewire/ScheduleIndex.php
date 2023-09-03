@@ -49,7 +49,8 @@ class ScheduleIndex extends Component
 
     public $search = '';
     public $sort = 'asc';
-    public $perPage = 5;
+    public $perPage = 10;
+    public $seasoned;
 
     public $showConfirmModal = false;
     public $deleteId = '';
@@ -60,7 +61,7 @@ class ScheduleIndex extends Component
 
     public function mount()
     {
-        $this->date = today()->format('Y-m-d');
+        // $this->date = today()->format('Y-m-d');
     }
 
     public function showCreateModal()
@@ -111,8 +112,8 @@ class ScheduleIndex extends Component
             'fixture_match' => $this->date,
             'full_time_home_goal' => $this->fullTimeHomeGoal,
             'full_time_away_goal' => $this->fullTimeAwayGoal,
-            'hour' => $this->hour,
-            'minute' => $this->minute,
+            'hour' => strval($this->hour),
+            'minute' => strval($this->minute),
 
             'slug' => $this->slugGenerate($this->season, $this->competitionId, $homeTeam, $awayTeam),
             'status' => $this->scheduleStatus,
@@ -128,8 +129,8 @@ class ScheduleIndex extends Component
             'fixture_match' => $this->date,
             'full_time_home_goal' => $this->fullTimeHomeGoal,
             'full_time_away_goal' => $this->fullTimeAwayGoal,
-            'hour' => $this->hour,
-            'minute' => $this->minute,
+            'hour' => strval($this->hour),
+            'minute' => strval($this->minute),
 
             'slug' => $this->slugGenerate($this->season, $this->competitionId, $homeTeam, $awayTeam),
             'status' => $this->scheduleStatus,
@@ -203,8 +204,8 @@ class ScheduleIndex extends Component
                     'fixture_match' => $this->date,
                     'full_time_home_goal' => $this->fullTimeHomeGoal,
                     'full_time_away_goal' => $this->fullTimeAwayGoal,
-                    'hour' => $this->hour,
-                    'minute' => $this->minute,
+                    'hour' => strval($this->hour),
+                    'minute' => strval($this->minute),
 
                     'slug' => $this->slugGenerate($this->season, $this->competitionId, $homeTeam, $awayTeam),
                     'status' => $this->scheduleStatus,
@@ -220,8 +221,8 @@ class ScheduleIndex extends Component
                     'fixture_match' => $this->date,
                     'full_time_home_goal' => $this->fullTimeHomeGoal,
                     'full_time_away_goal' => $this->fullTimeAwayGoal,
-                    'hour' => $this->hour,
-                    'minute' => $this->minute,
+                    'hour' => strval($this->hour),
+                    'minute' => strval($this->minute),
 
                     'slug' => $this->slugGenerate($this->season, $this->competitionId, $homeTeam, $awayTeam),
                     'status' => $this->scheduleStatus,
@@ -276,8 +277,17 @@ class ScheduleIndex extends Component
             array_push($minutes, sprintf("%02d", $i));
         }
 
+        $seasonNow = Carbon::now()->format('Y') . '/' . Carbon::now()->format('Y') + 1;
+
+        $dates = Schedule::selectRaw('id, slug, season, competition_id, stadion_id, home_team, away_team, fixture_match, hour, minute, DATE_FORMAT(fixture_match, "%M") as match_date')
+            ->orderBy('match_date', 'asc')
+            ->where('season', $seasonNow)
+            ->get()
+            ->groupBy('match_date');
+
         return view('livewire.schedule-index', [
-            'schedules' => Schedule::search('id', $this->search)->orderBy('id', $this->sort)->paginate($this->perPage),
+            'dates' => $dates,
+            // 'schedules' => Schedule::search('id', $this->search)->orderBy('id', $this->sort)->paginate($this->perPage),
             'competitions' => Competition::OrderBy('name', 'asc')->get(),
             'stadions' => Stadion::OrderBy('name', 'asc')->get(),
             'clubs' => Club::OrderBy('name', 'asc')->get(),

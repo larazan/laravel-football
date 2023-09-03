@@ -57,7 +57,7 @@
             </div>
 
             <!-- Dropdown -->
-            <!-- <div class="y" x-data="{ open: false, selected: 2 }">
+            <div class="y" x-data="{ open: false, selected: 2 }">
                 <button class="btn fe un bg-white border-slate-200 hover--border-slate-300 text-slate-500 hover--text-slate-600" aria-label="Select date range" aria-haspopup="true" @click.prevent="open = !open" :aria-expanded="open" aria-expanded="false">
                     <span class="flex items-center">
                         <svg class="oo sl du text-slate-500 ub mr-2" viewBox="0 0 16 16">
@@ -78,28 +78,38 @@
                             <span>Today</span>
                         </button>
 
-                        <button tabindex="0" class="flex items-center ou xr vf vn al text-indigo-500" :class="selected === 2 &amp;&amp; 'text-indigo-500'" @click="selected = 2;open = false" @focus="open = true" @focusout="open = false">
-                            <svg class="ub mr-2 du text-indigo-500" :class="selected !== 2 &amp;&amp; 'invisible'" width="12" height="9" viewBox="0 0 12 9">
+                        <button tabindex="0" class="flex items-center ou xr vf vn al" :class="selected === 1 &amp;&amp; 'text-indigo-500'" @click="selected = 1;open = false" @focus="open = true" @focusout="open = false">
+                            <svg class="ub mr-2 du text-indigo-500" :class="selected !== 1 &amp;&amp; 'invisible'" width="12" height="9" viewBox="0 0 12 9">
                                 <path d="M10.28.28L3.989 6.575 1.695 4.28A1 1 0 00.28 5.695l3 3a1 1 0 001.414 0l7-7A1 1 0 0010.28.28z"></path>
                             </svg>
                             <span>Last Month</span>
                         </button>
 
+                        <button tabindex="0" class="flex items-center ou xr vf vn al" :class="selected === 2 &amp;&amp; 'text-indigo-500'" @click="selected = 2;open = false" @focus="open = true" @focusout="open = false">
+                            <svg class="ub mr-2 du text-indigo-500" :class="selected !== 2 &amp;&amp; 'invisible'" width="12" height="9" viewBox="0 0 12 9">
+                                <path d="M10.28.28L3.989 6.575 1.695 4.28A1 1 0 00.28 5.695l3 3a1 1 0 001.414 0l7-7A1 1 0 0010.28.28z"></path>
+                            </svg>
+                            <span>Last 12 Month</span>
+                        </button>
+                        
+                        <button tabindex="0" class="flex items-center ou xr vf vn al" :class="selected === 3 &amp;&amp; 'text-indigo-500'" @click="selected = 3;open = false" @focus="open = true" @focusout="open = false">
+                            <svg class="ub mr-2 du text-indigo-500" :class="selected !== 3 &amp;&amp; 'invisible'" width="12" height="9" viewBox="0 0 12 9">
+                                <path d="M10.28.28L3.989 6.575 1.695 4.28A1 1 0 00.28 5.695l3 3a1 1 0 001.414 0l7-7A1 1 0 0010.28.28z"></path>
+                            </svg>
+                            <span>All Time</span>
+                        </button>
+
                     </div>
                 </div>
-            </div> -->
+            </div>
 
             <!-- Filter button -->
-            <select wire:model="sort" id="sort" class="a">
-                <option value="asc">Asc</option>
-                <option value="desc">Desc</option>
+            <select wire:model="seasoned" class="a">
+                @foreach ($seasonOption as $sea)
+                <option value="{{ $sea }}">{{ $sea }}</option>
+                @endforeach
             </select>
 
-            <select wire:model="perPage" id="filter" class="a">
-                <option value="5">5 Per Page</option>
-                <option value="10">10 Per Page</option>
-                <option value="15">15 Per Page</option>
-            </select>
         </div>
 
     </div>
@@ -153,7 +163,11 @@
                     <!-- Table body -->
                     <tbody class="text-sm le lr">
                         <!-- Row -->
-
+                    @foreach ($dates as $date => $schedules)
+                        <tr>
+                            <td class="vi wy w_ vo lm" colspan="8">{{ $date }}</td>
+                        </tr>
+                        @if ($schedules->count() > 0)
                         @foreach ($schedules as $schedule)
                         <tr>
                             <td class="vi wy w_ vo lm of">
@@ -236,14 +250,22 @@
                             </td>
                         </tr>
                         @endforeach
+                        @else
+                        <tr>
+                            <td class="vi wy w_ vo lm" colspan="8">No records found</td>
+                        </tr>
+                        @endif
+                    @endforeach
                     </tbody>
                 </table>
 
             </div>
         </div>
     </div>
-
-    {{ $schedules->links() }}
+    
+    {{-- 
+     {{ $schedules->links() }} 
+    --}}
 
     <x-dialog-modal wire:model="showScheduleModal" class="">
 

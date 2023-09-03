@@ -210,7 +210,6 @@
         </div>
     </div>
 
-    <x-pagination-table />
     {{ $awards->links() }}
 
     <x-dialog-modal wire:model="showAwardModal" class="">
