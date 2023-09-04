@@ -257,9 +257,14 @@
                     <div class="fw">
 
                         <form>
-                            <div class="">
-                                <div class="">
-                                    <div class="flex flex-col space-y-3">
+                            <div class="my-3 md:mt-0 md:col-span-2" x-data="{tab: 0}">
+                                <div class="mb-5 flex border border-black overflow-hidden">
+                                    <button class="px-4 py-2 w-full font-bold" x-on:click.prevent="tab = 0">Detail</button>
+                                    <button class="px-4 py-2 w-full font-bold" x-on:click.prevent="tab = 1">Bio</button>
+                                    <button class="px-4 py-2 w-full font-bold" x-on:click.prevent="tab = 2">Image</button>
+                                </div>
+                                <div>
+                                    <div class="mt-6 flex flex-col space-y-3" x-show="tab === 0">
                                         <div class="col-start-1 sm:col-span-3">
                                             <label for="title" class="block text-sm font-medium text-gray-700">
                                                 Player Name
@@ -295,14 +300,64 @@
                                                 </select>
                                             </div>
                                         </div>
+
+                                        <div class="flex flex-row justify-between">
+                                            <div class="col-start-1 sm:col-span-3">
+                                                <label for="title" class="block text-sm font-medium text-gray-700">
+                                                    Nationality
+                                                </label>
+                                                <div x-init="select2Alpine">
+                                                    <select wire:model="nationality" x-ref="select" class="form-control" id="select2-dropdown">
+                                                        <option value="">Select Option</option>
+                                                        @foreach($countries as $country)
+                                                        <option value="{{ $country }}">{{ $country }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-start-1 sm:col-span-3">
+                                                <label for="shirtNumber" class="block text-sm font-medium text-gray-700">
+                                                    Shirt Number
+                                                </label>
+                                                <input wire:model="shirtNumber" type="number" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                                            </div>
+                                        </div>
+
+                                        <div class="flex flex-row justify-between">
+                                            <div class="col-start-1 sm:col-span-3">
+                                                <label for="contractFrom" class="block text-sm font-medium text-gray-700">
+                                                    Contract From
+                                                </label>
+                                                <x-flatpicker wire:model="contractFrom"></x-flatpicker>
+                                            </div>
+                                            <div class="col-start-1 sm:col-span-3">
+                                                <label for="contractUntil" class="block text-sm font-medium text-gray-700">
+                                                    Contract Until
+                                                </label>
+                                                <x-flatpicker wire:model="contractUntil"></x-flatpicker>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-span-6 sm:col-span-3">
+                                            <label for="playerStatus" class="block text-sm font-medium text-gray-700">Status</label>
+                                            <select wire:model="playerStatus" class=" rounded-r border-t border-r border-b block appearance-none w-full bg-white border-gray-300 text-gray-700 py-2 px-4 pr-8 leading-tight focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none">
+                                                <option value="">Select Option</option>
+                                                @foreach($statuses as $status)
+                                                <option value="{{ $status }}">{{ $status }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="mt-6 flex flex-col space-y-3" x-show="tab === 1">
                                         <div class="flex flex-row justify-between">
                                             <div class="col-start-1 sm:col-span-3">
                                                 <label for="title" class="block text-sm font-medium text-gray-700">
                                                     Birth Date
                                                 </label>
                                                 {{--
-                                                    <input wire:model="birthDate" type="text" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
-                                                --}}
+                                                        <input wire:model="birthDate" type="text" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                                                    --}}
                                                 <x-flatpicker wire:model="birthDate"></x-flatpicker>
                                             </div>
                                             <div class="col-start-1 sm:col-span-3">
@@ -335,27 +390,6 @@
                                         <div class="flex flex-row justify-between">
                                             <div class="col-start-1 sm:col-span-3">
                                                 <label for="title" class="block text-sm font-medium text-gray-700">
-                                                    Nationality
-                                                </label>
-                                                <div x-init="select2Alpine">
-                                                    <select wire:model="nationality" x-ref="select" class="form-control" id="select2-dropdown">
-                                                        <option value="">Select Option</option>
-                                                        @foreach($countries as $country)
-                                                        <option value="{{ $country }}">{{ $country }}</option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-start-1 sm:col-span-3">
-                                                <label for="shirtNumber" class="block text-sm font-medium text-gray-700">
-                                                    Shirt Number
-                                                </label>
-                                                <input wire:model="shirtNumber" type="number" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
-                                            </div>
-                                        </div>
-                                        <div class="flex flex-row justify-between">
-                                            <div class="col-start-1 sm:col-span-3">
-                                                <label for="title" class="block text-sm font-medium text-gray-700">
                                                     Facebook
                                                 </label>
                                                 <input wire:model="facebook" type="text" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
@@ -373,21 +407,9 @@
                                                 <input wire:model="twitter" type="text" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                                             </div>
                                         </div>
-                                        <div class="flex flex-row justify-between">
-                                            <div class="col-start-1 sm:col-span-3">
-                                                <label for="contractFrom" class="block text-sm font-medium text-gray-700">
-                                                    Contract From
-                                                </label>
-                                                <x-flatpicker wire:model="contractFrom"></x-flatpicker>
-                                            </div>
-                                            <div class="col-start-1 sm:col-span-3">
-                                                <label for="contractUntil" class="block text-sm font-medium text-gray-700">
-                                                    Contract Until
-                                                </label>
-                                                <x-flatpicker wire:model="contractUntil"></x-flatpicker>
-                                            </div>
-                                        </div>
+                                    </div>
 
+                                    <div class="mt-6 flex flex-col space-y-3" x-show="tab === 2">
                                         <div class="col-span-6 sm:col-span-3">
                                             <label for="photo" class="block text-sm font-medium text-gray-700">
                                                 Player photo ({{ $sizeTol }})</label>
@@ -400,15 +422,6 @@
                                             Photo Preview:
                                             <img src="{{ $file->temporaryUrl() }}">
                                             @endif
-                                        </div>
-                                        <div class="col-span-6 sm:col-span-3">
-                                            <label for="playerStatus" class="block text-sm font-medium text-gray-700">Status</label>
-                                            <select wire:model="playerStatus" class=" rounded-r border-t border-r border-b block appearance-none w-full bg-white border-gray-300 text-gray-700 py-2 px-4 pr-8 leading-tight focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none">
-                                                <option value="">Select Option</option>
-                                                @foreach($statuses as $status)
-                                                <option value="{{ $status }}">{{ $status }}</option>
-                                                @endforeach
-                                            </select>
                                         </div>
                                     </div>
                                 </div>
@@ -473,109 +486,109 @@
     </x-dialog-modal>
 
     <!-- modal detail -->
-<x-dialog-modal wire:model="showPlayerDetailModal" class="">
-    <x-slot name="title" class="border-b bg-slate-200">
-        <span class="font-semibold">Detail Player</span>
-    </x-slot>
-    <x-slot name="content">
-        <div class="border-t">
-            <div class="vc vu ">
-                <div class="fw">
-                    <div class="je items-center2 vh">
-                        <div class="flex flex-col space-x-2">
-                            <a class="block ri _y rp zn tnv ub" href="#0">
-                                <img class="rounded-sm" src="{{ asset('images/benjamin_pavard.png') }}" width="200" height="142" alt="Product 01">
-                            </a>
-                        </div>
-                        <div class="uw">
-                            <a href="#0">
-                                <h3 class="text-2xl gh text-slate-800 rt font-bold">Benjamin Pavard</h3>
-                            </a>
-                            <div class="flex flex-wrap">
-                                <!-- Unique Visitors -->
-                                <div class="flex items-center vr">
-                                    <div class="rp">
-                                        <div class="flex items-center">
-                                            <div class="text-xl font-bold text-slate-800 mr-2">Defender</div>
+    <x-dialog-modal wire:model="showPlayerDetailModal" class="">
+        <x-slot name="title" class="border-b bg-slate-200">
+            <span class="font-semibold">Detail Player</span>
+        </x-slot>
+        <x-slot name="content">
+            <div class="border-t">
+                <div class="vc vu ">
+                    <div class="fw">
+                        <div class="je items-center2 vh">
+                            <div class="flex flex-col space-x-2">
+                                <a class="block ri _y rp zn tnv ub" href="#0">
+                                    <img class="rounded-sm" src="{{ asset('images/benjamin_pavard.png') }}" width="200" height="142" alt="Product 01">
+                                </a>
+                            </div>
+                            <div class="uw">
+                                <a href="#0">
+                                    <h3 class="text-2xl gh text-slate-800 rt font-bold">Benjamin Pavard</h3>
+                                </a>
+                                <div class="flex flex-wrap">
+                                    <!-- Unique Visitors -->
+                                    <div class="flex items-center vr">
+                                        <div class="rp">
+                                            <div class="flex items-center">
+                                                <div class="text-xl font-bold text-slate-800 mr-2">Defender</div>
+                                            </div>
+                                            <div class="text-sm text-slate-500">Role</div>
                                         </div>
-                                        <div class="text-sm text-slate-500">Role</div>
+                                        <div class="hidden qx of sf hu rp" aria-hidden="true"></div>
                                     </div>
-                                    <div class="hidden qx of sf hu rp" aria-hidden="true"></div>
-                                </div>
-                                <!-- Total Pageviews -->
-                                <div class="flex items-center vr">
-                                    <div class="rp">
-                                        <div class="flex items-center">
-                                            <div class="text-xl font-bold text-slate-800 mr-2">France</div>
+                                    <!-- Total Pageviews -->
+                                    <div class="flex items-center vr">
+                                        <div class="rp">
+                                            <div class="flex items-center">
+                                                <div class="text-xl font-bold text-slate-800 mr-2">France</div>
+                                            </div>
+                                            <div class="text-sm text-slate-500">Nationality</div>
                                         </div>
-                                        <div class="text-sm text-slate-500">Nationality</div>
+                                        <div class="hidden qx of sf hu rp" aria-hidden="true"></div>
                                     </div>
-                                    <div class="hidden qx of sf hu rp" aria-hidden="true"></div>
-                                </div>
 
-                                <!-- Visit Duration-->
-                                <div class="flex items-center">
+                                    <!-- Visit Duration-->
+                                    <div class="flex items-center">
+                                        <div>
+                                            <div class="flex items-center">
+                                                <div class="text-xl font-bold text-slate-800 mr-2">5</div>
+                                            </div>
+                                            <div class="text-sm text-slate-500">Number</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex w-full justify-between py-4">
                                     <div>
-                                        <div class="flex items-center">
-                                            <div class="text-xl font-bold text-slate-800 mr-2">5</div>
+                                        <div class="flex text-sm text-slate-700 space-x-1">
+                                            <div class="capitalize">birth date :</div>
+                                            <div class="">1994-10-10</div>
                                         </div>
-                                        <div class="text-sm text-slate-500">Number</div>
+                                        <div class="flex text-sm text-slate-700 space-x-1">
+                                            <div class="capitalize">place birth :</div>
+                                            <div class="">France</div>
+                                        </div>
+                                        <div class="flex text-sm text-slate-700 space-x-1">
+                                            <div class="capitalize">height :</div>
+                                            <div class="">186 cm</div>
+                                        </div>
                                     </div>
+                                    <div class="flex flex-col justify-between ">
+                                        <div class="flex text-sm text-slate-700 space-x-1">
+                                            <div class="">Facebook :</div>
+                                            <div class="">@pavard</div>
+                                        </div>
+                                        <div class="flex text-sm text-slate-700 space-x-1">
+                                            <div class="">Instagram :</div>
+                                            <div class="">@pavard</div>
+                                        </div>
+                                        <div class="flex text-sm text-slate-700 space-x-1">
+                                            <div class="">Twitter :</div>
+                                            <div class="">@pavard</div>
+                                        </div>
+                                    </div>
+
                                 </div>
-                            </div>
-                            <div class="flex w-full justify-between py-4">
-                                <div>
-                                    <div class="flex text-sm text-slate-700 space-x-1">
-                                        <div class="capitalize">birth date :</div>
-                                        <div class="">1994-10-10</div>
-                                    </div>
-                                    <div class="flex text-sm text-slate-700 space-x-1">
-                                        <div class="capitalize">place birth :</div>
-                                        <div class="">France</div>
-                                    </div>
-                                    <div class="flex text-sm text-slate-700 space-x-1">
-                                        <div class="capitalize">height :</div>
-                                        <div class="">186 cm</div>
-                                    </div>
-                                </div>
-                                <div class="flex flex-col justify-between ">
-                                    <div class="flex text-sm text-slate-700 space-x-1">
-                                        <div class="">Facebook :</div>
-                                        <div class="">@pavard</div>
-                                    </div>
-                                    <div class="flex text-sm text-slate-700 space-x-1">
-                                        <div class="">Instagram :</div>
-                                        <div class="">@pavard</div>
-                                    </div>
-                                    <div class="flex text-sm text-slate-700 space-x-1">
-                                        <div class="">Twitter :</div>
-                                        <div class="">@pavard</div>
-                                    </div>
+
+                                <div class="text-sm ru">
+                                    Kim Ji Soo is a South Korean actress, model, singer, and member of the girl group BLACKPINK.
+                                    <br />
+                                    <br />
+                                    Prior to her debut, she appeared in numerous commercial films, in particular, Samsonite RED with actor Lee Min Ho and Smart Uniform and LG Stylus 2 with YG Entertainment's boy group iKON. She was also featured in her label-mates' music videos, such as Epik High's "Spoiler + Happen Ending" and Hi Suhyun's "I'm Different".
                                 </div>
 
                             </div>
-
-                            <div class="text-sm ru">
-                                Kim Ji Soo is a South Korean actress, model, singer, and member of the girl group BLACKPINK.
-                                <br />
-                                <br />
-                                Prior to her debut, she appeared in numerous commercial films, in particular, Samsonite RED with actor Lee Min Ho and Smart Uniform and LG Stylus 2 with YG Entertainment's boy group iKON. She was also featured in her label-mates' music videos, such as Epik High's "Spoiler + Happen Ending" and Hi Suhyun's "I'm Different".
-                            </div>
-
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </x-slot>
-    <x-slot name="footer">
-        <div class="border-slate-200">
-            <div class="flex flex-wrap justify-end fc">
-                <x-button wire:click="closeDetailModal" class="border-slate-200 hover:text-white  g_">Close</x-button>
+        </x-slot>
+        <x-slot name="footer">
+            <div class="border-slate-200">
+                <div class="flex flex-wrap justify-end fc">
+                    <x-button wire:click="closeDetailModal" class="border-slate-200 hover:text-white  g_">Close</x-button>
+                </div>
             </div>
-        </div>
-    </x-slot>
-</x-dialog-modal>
+        </x-slot>
+    </x-dialog-modal>
 
 </div>
 

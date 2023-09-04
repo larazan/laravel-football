@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Schedule;
+use App\Models\TeamLeague;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 
@@ -21,5 +22,12 @@ class DashboardController extends Controller
         // dd($dates);
 
         return view('admin.dashboards.index', compact('dates'));
+    }
+
+    public function position()
+    {
+        $positions = TeamLeague::selectRaw();
+
+        return view('admin.dashboards.league', compact('positions'));
     }
 }
