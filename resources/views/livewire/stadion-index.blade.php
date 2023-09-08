@@ -261,7 +261,7 @@
                                                 <label for="capacity" class="block text-sm font-medium text-gray-700">
                                                     Capacity
                                                 </label>
-                                                <input wire:model="capacity" type="number" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                                                <input wire:model="capacity" type="text" onkeypress="return onlyNumberKey(event)"  autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                                             </div>
                                         </div>
                                         <div class="flex flex-row justify-between">

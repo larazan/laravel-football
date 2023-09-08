@@ -149,7 +149,7 @@
                             <th class="vi wy w_ vo lm">
                                 <div class="gh gt">Status</div>
                             </th>
-                          
+
                             <th class="vi wy w_ vo lm">
                                 <div class="gh gt">Actions</div>
                             </th>
@@ -189,7 +189,7 @@
                                     </div>
                                     <span class="text-xs">Manchester City</span>
                                 </div>
-                                
+
                             </td>
                             <td class="vi wy w_ vo lm">
                                 <div>1 : 2</div>
@@ -203,10 +203,10 @@
                             <td class="vi wy w_ vo lm">
                                 <div class="inline-flex gp hc ys rounded-full gn vp vd">Active</div>
                             </td>
-                            
+
                             <td class="vi wy w_ vo lm of">
                                 <div class="fm">
-                                    <button class="gq xv rounded-full" >
+                                    <button class="gq xv rounded-full">
                                         <span class=" d">Detail</span>
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 32" stroke-width="2" stroke="currentColor" class=" du w-6 h-6">
                                             <path stroke-linecap="round" stroke-linejoin="round" d="M19 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zM4 19.235v-.11a6.375 6.375 0 0112.75 0v.109A12.318 12.318 0 0110.374 21c-2.331 0-4.512-.645-6.374-1.766z" />
@@ -276,7 +276,7 @@
                             <td class="vi wy w_ vo lm">
                                 <div>{{ $match->hour }} : {{ $match->minute }}</div>
                             </td>
-                           
+
                             <td class="vi wy w_ vo lm">
                                 @if ($match->status === 'inactive')
                                 <div class="inline-flex gp hf yl rounded-full gn vp vd">{{ $match->status }}</div>
@@ -286,13 +286,25 @@
                                 <div class="inline-flex gp hc ys rounded-full gn vp vd">{{ $match->status }}</div>
                                 @endif
                             </td>
-                            
+
                             <td class="vi wy w_ vo lm of">
                                 <div class="fm">
-                                <button class="gq xv rounded-full" >
-                                        <span class=" d">Detail</span>
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 32" stroke-width="2" stroke="currentColor" class=" du w-6 h-6">
-                                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zM4 19.235v-.11a6.375 6.375 0 0112.75 0v.109A12.318 12.318 0 0110.374 21c-2.331 0-4.512-.645-6.374-1.766z" />
+                                    <button class="gq xv rounded-full">
+                                        <span class=" d">Lineup</span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z" />
+                                        </svg>
+                                    </button>
+                                    <button class="gq xv rounded-full">
+                                        <span class=" d">statistic</span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0l-1 3m8.5-3l1 3m0 0l.5 1.5m-.5-1.5h-9.5m0 0l-.5 1.5m.75-9l3-3 2.148 2.148A12.061 12.061 0 0116.5 7.605" />
+                                        </svg>
+                                    </button>
+                                    <button class="gq xv rounded-full">
+                                        <span class=" d">Report</span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M11.35 3.836c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75 2.25 2.25 0 00-.1-.664m-5.8 0A2.251 2.251 0 0113.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m8.9-4.414c.376.023.75.05 1.124.08 1.131.094 1.976 1.057 1.976 2.192V16.5A2.25 2.25 0 0118 18.75h-2.25m-7.5-10.5H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V18.75m-7.5-10.5h6.375c.621 0 1.125.504 1.125 1.125v9.375m-8.25-3l1.5 1.5 3-3.75" />
                                         </svg>
                                     </button>
                                     <button class="gq xv rounded-full" wire:click="showEditModal({{ $match->id }})">
@@ -359,7 +371,7 @@
                                             <div class="col-span-1 sm:col-span-3">
                                                 <label for="season" class="block text-sm font-medium text-gray-700">Season</label>
                                                 <select wire:model="season" class="h-full2 rounded-r border-t border-r border-b block appearance-none w-full bg-white border-gray-300 text-gray-700 py-2 px-4 pr-8 leading-tight focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none">
-                                                    <option value="" >Select Option</option>
+                                                    <option value="">Select Option</option>
                                                     @foreach($seasonOption as $season)
                                                     <option value="{{ $season }}">{{ $season }}</option>
                                                     @endforeach
@@ -376,19 +388,19 @@
                                             <div class="col-span-1 sm:col-span-3">
                                                 <label for="stadionId" class="block text-sm font-medium text-gray-700">Stadion</label>
                                                 <select wire:model="stadionId" class="h-full2 rounded-r border-t border-r border-b block appearance-none w-full bg-white border-gray-300 text-gray-700 py-2 px-4 pr-8 leading-tight focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none">
-                                                    <option value="" >Select Option</option>
+                                                    <option value="">Select Option</option>
                                                     @foreach($stadions as $stad)
                                                     <option value="{{ $stad->id }}">{{ $stad->name }}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
                                         </div>
-                                       
+
                                         <div class="flex justify-between">
                                             <div class="col-span-1 sm:col-span-3">
                                                 <label for="position" class="block text-sm font-medium text-gray-700">Venue</label>
                                                 <select wire:model="position" class="h-full2 rounded-r border-t border-r border-b block appearance-none w-full bg-white border-gray-300 text-gray-700 py-2 px-4 pr-8 leading-tight focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none">
-                                                    <option value="" >Select Option</option>
+                                                    <option value="">Select Option</option>
                                                     @foreach($positionOption as $pos)
                                                     <option value="{{ $pos }}">{{ $pos }}</option>
                                                     @endforeach
@@ -397,7 +409,7 @@
                                             <div class="col-span-1 sm:col-span-3">
                                                 <label for="opponent" class="block text-sm font-medium text-gray-700">Opponent</label>
                                                 <select wire:model="opponent" class="h-full2 rounded-r border-t border-r border-b block appearance-none w-full bg-white border-gray-300 text-gray-700 py-2 px-4 pr-8 leading-tight focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none">
-                                                    <option value="" >Select Option</option>
+                                                    <option value="">Select Option</option>
                                                     @foreach($clubs as $club)
                                                     <option value="{{ $club->id }}">{{ $club->name }}</option>
                                                     @endforeach
@@ -409,39 +421,37 @@
                                                 <label for="city" class="block text-sm font-medium text-gray-700">
                                                     Home Goal
                                                 </label>
-                                                
-                                                <input wire:model="fullTimeHomeGoal" type="text" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                                                <input wire:model="fullTimeHomeGoal" type="text" id="numbers-only" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                                             </div>
                                             <div class="col-start-1 sm:col-span-3">
                                                 <label for="capacity" class="block text-sm font-medium text-gray-700">
                                                     Away Goal
                                                 </label>
-                                                <input wire:model="fullTimeAwayGoal" type="text" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                                                <input wire:model="fullTimeAwayGoal" type="text" id="numbers-only" onkeypress="return onlyNumberKey(event)" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                                             </div>
                                         </div>
 
-                                       
-                                        <div class="col-start-6 sm:col-span-3">
-                                            <label for="capacity" class="block text-sm font-medium text-gray-700">
-                                                Full Time Result
-                                            </label>
-                                            <select wire:model="fullTimeResult" class="h-full2 rounded-r border-t border-r border-b block appearance-none w-full bg-white border-gray-300 text-gray-700 py-2 px-4 pr-8 leading-tight focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none">
-                                                <option value="" >Select Option</option>
-                                                @foreach($results as $key => $value)
-                                                <option value="{{ $key }}">{{ $value }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                        
-                                       
-                                        <div class="col-span-6 sm:col-span-3">
-                                            <label for="first-name" class="block text-sm font-medium text-gray-700">Status</label>
-                                            <select wire:model="matchStatus" class="h-full rounded-r border-t border-r border-b block appearance-none w-full bg-white border-gray-300 text-gray-700 py-2 px-4 pr-8 leading-tight focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none">
-                                                <option value="">Select Option</option>
-                                                @foreach($statuses as $status)
-                                                <option value="{{ $status }}">{{ $status }}</option>
-                                                @endforeach
-                                            </select>
+                                        <div class="flex flex-row justify-between">
+                                            <div class="col-start-1 sm:col-span-3">
+                                                <label for="capacity" class="block text-sm font-medium text-gray-700">
+                                                    Full Time Result
+                                                </label>
+                                                <select wire:model="fullTimeResult" class="h-full2 rounded-r border-t border-r border-b block appearance-none w-full bg-white border-gray-300 text-gray-700 py-2 px-4 pr-8 leading-tight focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none">
+                                                    <option value="">Select Option</option>
+                                                    @foreach($results as $key => $value)
+                                                    <option value="{{ $key }}">{{ $value }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            <div class="col-start-1 sm:col-span-3">
+                                                <label for="first-name" class="block text-sm font-medium text-gray-700">Status</label>
+                                                <select wire:model="matchStatus" class="h-full2 rounded-r border-t border-r border-b block appearance-none w-full bg-white border-gray-300 text-gray-700 py-2 px-4 pr-8 leading-tight focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none">
+                                                    <option value="">Select Option</option>
+                                                    @foreach($statuses as $status)
+                                                    <option value="{{ $status }}">{{ $status }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
                                         </div>
 
                                     </div>

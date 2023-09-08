@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\Setting;
+use App\Models\Club;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
@@ -30,6 +31,7 @@ class SettingIndex extends Component
     public $twitter; 
     public $facebook; 
     public $instagram; 
+    public $pinnedClub; 
     public $icon;
     public $settingId = 1;
 
@@ -126,6 +128,7 @@ class SettingIndex extends Component
             'twitter' => $this->twitter,
             'facebook' => $this->facebook,
             'instagram' => $this->instagram,
+            'pinned_club' => $this->pinnedClub,
             'icon' => $filePath,
         ]);
 
@@ -140,7 +143,9 @@ class SettingIndex extends Component
 
     public function render()
     {
-        return view('livewire.setting-index');
+        return view('livewire.setting-index', [
+            'clubs' => Club::orderBy('id', 'asc')->get(),
+        ]);
     }
 
     private function _resizeImage($image, $fileName, $folder)

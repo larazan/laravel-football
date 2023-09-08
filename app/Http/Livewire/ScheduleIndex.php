@@ -38,7 +38,8 @@ class ScheduleIndex extends Component
     public $position;
     public $positionOption = [
         'away',
-        'home'
+        'home',
+        // 'neutral'
     ];
     public $scheduleId;
     public $scheduleStatus = 'inactive';

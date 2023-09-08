@@ -252,8 +252,8 @@
                         <form>
                             <div class="my-3 md:mt-0 md:col-span-2" x-data="{tab: 0}">
                                 <div class="mb-5 flex border border-black overflow-hidden">
-                                    <button class="px-4 py-2 w-full font-bold" x-on:click.prevent="tab = 0">Detail</button>
-                                    <button class="px-4 py-2 w-full font-bold" x-on:click.prevent="tab = 1">Image</button>
+                                    <button class="px-4 py-2 w-full font-bold" :class="{ 'active bg-gray-800 text-white': tab === 0 }" x-on:click.prevent="tab = 0">Detail</button>
+                                    <button class="px-4 py-2 w-full font-bold" :class="{ 'active bg-gray-800 text-white': tab === 1 }" x-on:click.prevent="tab = 1">Image</button>
                                 </div>
                                 <div>
                                     <div class="mt-6 flex flex-col space-y-3" x-show="tab === 0">
@@ -421,19 +421,23 @@
                         <div class="je items-center2 vh">
                             <div class="flex flex-col space-x-2">
                                 <a class="block ri _y rp zn tnv ub" href="#0">
-                                    <img class="rounded-sm" src="{{ asset('images/Thomas-Tuchel.png') }}" width="200" height="142" alt="Product 01">
+                                @if ($oldImage)
+                                    <img src="{{ asset('storage/'.$oldImage) }}">
+                                    @else
+                                    <img class="rounded-sm" src="{{ asset('images/generic-male-avatar-300x284.jpg') }}" width="200" height="142" alt="Player 01">
+                                    @endif  
                                 </a>
                             </div>
                             <div class="uw">
                                 <a href="#0">
-                                    <h3 class="text-2xl gh text-slate-800 rt font-bold">Thomas Tuchel</h3>
+                                    <h3 class="text-2xl gh text-slate-800 rt font-bold">{{ $name }}</h3>
                                 </a>
                                 <div class="flex flex-wrap">
                                     <!-- Unique Visitors -->
                                     <div class="flex items-center vr">
                                         <div class="rp">
                                             <div class="flex items-center">
-                                                <div class="text-xl font-bold text-slate-800 mr-2">Manager</div>
+                                                <div class="text-xl font-bold text-slate-800 mr-2">{{ $role }}</div>
                                             </div>
                                             <div class="text-sm text-slate-500">Role</div>
                                         </div>
@@ -443,7 +447,7 @@
                                     <div class="flex items-center vr">
                                         <div class="rp">
                                             <div class="flex items-center">
-                                                <div class="text-xl font-bold text-slate-800 mr-2">Germany</div>
+                                                <div class="text-xl font-bold text-slate-800 mr-2">{{ $nationality }}</div>
                                             </div>
                                             <div class="text-sm text-slate-500">Nationality</div>
                                         </div>
@@ -461,42 +465,33 @@
                                     </div>
                                 </div>
                                 <div class="flex justify-between py-4">
-                                    <div>
+                                    <div class="w-1/2">
                                         <div class="flex text-sm text-slate-700 space-x-1">
-                                            <div class="capitalize">birth date :</div>
-                                            <div class="">1994-10-10</div>
+                                            <div class="w-1/2 capitalize">birth date :</div>
+                                            <div class="w-1/2 ">{{ $birthDate }}</div>
                                         </div>
                                         <div class="flex text-sm text-slate-700 space-x-1">
-                                            <div class="capitalize">place birth :</div>
-                                            <div class="">Gwangju, South Korea</div>
+                                            <div class="w-1/2 capitalize">place birth :</div>
+                                            <div class="w-1/2 ">{{ $birthLocation }}</div>
                                         </div>
-                                        <div class="flex text-sm text-slate-700 space-x-1">
-                                            <div class="capitalize">website :</div>
-                                            <div class=""></div>
-                                        </div>
+                                        
                                     </div>
-                                    <div class="flex flex-col justify-between ">
+                                    <div class="w-1/2 flex flex-col justify-between ">
                                         <div class="flex text-sm text-slate-700 space-x-1">
-                                            <div class="">Facebook :</div>
-                                            <div class="">@jisoo</div>
+                                            <div class="w-1/2 ">Contract From :</div>
+                                            <div class="w-1/2 ">{{ $contractFrom }}</div>
                                         </div>
                                         <div class="flex text-sm text-slate-700 space-x-1">
-                                            <div class="">Instagram :</div>
-                                            <div class="">@jisoo</div>
+                                            <div class="w-1/2 ">Contract Until :</div>
+                                            <div class="w-1/2 ">{{ $contractUntil }}</div>
                                         </div>
-                                        <div class="flex text-sm text-slate-700 space-x-1">
-                                            <div class="">Twitter :</div>
-                                            <div class="">@jisoo</div>
-                                        </div>
+                                       
                                     </div>
 
                                 </div>
 
                                 <div class="text-sm ru">
-                                    Kim Ji Soo is a South Korean actress, model, singer, and member of the girl group BLACKPINK.
-                                    <br />
-                                    <br />
-                                    Prior to her debut, she appeared in numerous commercial films, in particular, Samsonite RED with actor Lee Min Ho and Smart Uniform and LG Stylus 2 with YG Entertainment's boy group iKON. She was also featured in her label-mates' music videos, such as Epik High's "Spoiler + Happen Ending" and Hi Suhyun's "I'm Different".
+                                    {{ $bio }}
                                 </div>
 
                             </div>

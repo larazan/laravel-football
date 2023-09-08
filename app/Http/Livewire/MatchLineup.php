@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\Lineup;
+use App\Models\Matchs;
 use App\Models\Player;
 use Illuminate\Support\Str;
 use Livewire\WithPagination;
@@ -13,7 +14,6 @@ class MatchLineup extends Component
 {
     use WithFileUploads, WithPagination;
     
-    public $showLineupModal = false;
     public $matchId;
     public $lineupId;
     public $home_player1;
@@ -51,13 +51,10 @@ class MatchLineup extends Component
 
     public $lineup;
     public $queryPlayer = '';
-    public $home_players = [];
-    public $away_players = [];
-    public $lineupStatus = 'inactive';
-    public $statuses = [
-        'active',
-        'inactive'
-    ];
+    public $homePlayers = [];
+    public $awayPlayers = [];
+    public $allHomePlayers = [];
+    public $allAwayPlayers = [];
 
     public $search = '';
     public $sort = 'asc';
@@ -69,98 +66,61 @@ class MatchLineup extends Component
     public function mount($matchId)
     {
         $this->matchId = $matchId;
+    
+        $this->allHomePlayers = [
+            []
+        ];
+
+        $this->allAwayPlayers = [
+            []
+        ];
     }
 
-    public function updateQueryPlayer()
+    public function addHomePlayer()
     {
-        $this->home_players = Player::search('name', $this->queryPlayer)->get();
-        $this->away_players = Player::search('name', $this->queryPlayer)->get();
+        $this->allHomePlayers[] = ['player_id' => ''];
     }
 
-    public function addPlayer($playerId)
+    public function addAwayPlayer()
     {
-        $player = Player::findOrFail($playerId);
-        $this->lineup->players()->attach($player);
-        $this->reset('queryPlayer');
-        $this->emit('playerAdded');
+        $this->allAwayPlayers[] = ['player_id' => ''];
     }
 
-    public function detachPlayer($playerId)
+    public function removeHomePlayer($index)
     {
-        $this->lineup->players()->detach($playerId);
-        $this->emit('playerDetached');
+        unset($this->allHomePlayers[$index]);
+        $this->allHomePlayers = array_values($this->allHomePlayers);
     }
 
-    public function showCreateModal()
+    public function removeAwayPlayer($index)
     {
-        $this->showLineupModal = true;
+        unset($this->allAwayPlayers[$index]);
+        $this->allAwayPlayers = array_values($this->allAwayPlayers);
     }
 
-    public function closeConfirmModal()
-    {
-        $this->showConfirmModal = false;
-    }
 
-    public function deleteId($id)
+    public function createHomeLineup()
     {
-        $this->showConfirmModal = true;
-        $this->deleteId = $id;
-    }
-
-    public function delete()
-    {
-        Lineup::find($this->deleteId)->delete();
-        $this->showConfirmModal = false;
-        $this->reset();
-        $this->dispatchBrowserEvent('banner-message', ['style' => 'danger', 'message' => 'Lineup deleted successfully']);
-    }
-
-    public function createLineup()
-    {
-        $this->validate();
+        // $this->validate();
+        $index = 1;
+        $index2 = 1;
 
         $lineup = new Lineup();
         $lineup->match_id = $this->matchId;
-        $lineup->home_player1 = $this->home_player1;
+        foreach ($this->allHomePlayers as $key => $player) {
+            $lineup->home_player . $index = $player['player_id'];
+            $index++;
+        }
+
+        foreach ($this->allAwayPlayers as $key => $player) {
+            $lineup->away_player . $index = $player['player_id'];
+            $index2++;
+        }
       
         $lineup->save();
 
         $this->reset();
         $this->dispatchBrowserEvent('banner-message', ['style' => 'success', 'message' => 'Lineup created successfully']);
-    }
-
-    public function showEditModal($lineupId)
-    {
-        $this->reset(['name']);
-        $this->lineupId = $lineupId;
-        $lineup = Lineup::find($lineupId);
-
-        $this->showLineupModal = true;
-    }
-    
-    public function updateLineup()
-    {
-        
-        $this->validate();
-
-        $lineup = Lineup::findOrFail($this->lineupId);
-  
-        $new = Str::random(5) . '_' . time();
-        $filename = $new . '.' . $this->file->getClientOriginalName();
-        
-        if ($this->lineupId) {
-            if ($lineup) {
-
-                $lineup = Lineup::where('id', $this->lineupId);
-                $lineup->match_id = $this->matchId;
-
-                $lineup->save();
-            }
-        }
-
-        $this->reset();
-        $this->showLineupModal = false;
-        $this->dispatchBrowserEvent('banner-message', ['style' => 'success', 'message' => 'Lineup updated successfully']);
     }
 
     public function deleteLineup($lineupId)
@@ -174,11 +134,7 @@ class MatchLineup extends Component
         $this->dispatchBrowserEvent('banner-message', ['style' => 'danger', 'message' => 'Lineup deleted successfully']);
     }
 
-    public function closeLineupModal()
-    {
-        $this->showLineupModal = false;
-    }
-
+    
     public function resetFilters()
     {
         $this->reset();
@@ -186,6 +142,14 @@ class MatchLineup extends Component
 
     public function render()
     {
-        return view('livewire.match-lineup');
+        $match = Matchs::findOrFail($this->matchId);
+        $home_team = $match->home_team;
+        $away_team = $match->away_team;
+        
+        return view('livewire.match-lineup', [
+            'matchs' => Matchs::where('id', $this->matchId)->get(),
+            'home_players' => Player::where('club_id', $home_team)->get(), 
+            'away_players' => Player::where('club_id', $away_team)->get(), 
+        ]);
     }
 }

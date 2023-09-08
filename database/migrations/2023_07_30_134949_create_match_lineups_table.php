@@ -48,7 +48,6 @@ return new class extends Migration
             $table->integer('away_player14')->nullable();
             $table->integer('away_player15')->nullable();
             $table->integer('away_player16')->nullable();
-            $table->string('status', 10);
             $table->timestamps();
 
             $table->foreign('match_id')->references('id')->on('matchs')->onDelete('cascade');

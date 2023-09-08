@@ -15,8 +15,9 @@
             <div class="flex ak zc qv">
 
                 <!-- Sidebar -->
+                {{-- 
                 <x-settings.settings-navigation />
-
+                --}}
                 <!-- Panel -->
                 <div class="uw">
 
@@ -63,6 +64,18 @@
                                 <div class="jr2 w-1/2">
                                     <label class="block text-sm gp rt" for="name">Phone</label>
                                     <input id="phone" class="s ou" type="phone" wire:model="phone">
+                                </div>
+                            </div>
+
+                            <div class="je jc fg jm jb rw">
+                                <div class="jr2 w-full">
+                                    <label class="block text-sm gp rt" for="name">Pinned Club</label>
+                                    <select wire:model="pinnedClub" class=" rounded-r border-t border-r border-b block appearance-none w-full bg-white border-gray-300 text-gray-700 py-2 px-4 pr-8 leading-tight focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none">
+                                        <option value="">Select Option</option>
+                                        @foreach($clubs as $club)
+                                        <option value="{{ $club->id }}">{{ $club->name }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
                             

@@ -18,6 +18,7 @@ class Setting extends Model
         'address',
         'phone',
         'email', 
+        'pinned_club',
         'twitter', 
         'facebook', 
         'instagram', 

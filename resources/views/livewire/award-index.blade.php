@@ -132,6 +132,9 @@
                                 <div class="gh gt">Competition</div>
                             </th>
                             <th class="vi wy w_ vo lm">
+                                <div class="gh gt">Image</div>
+                            </th>
+                            <th class="vi wy w_ vo lm">
                                 <div class="gh gt">Status</div>
                             </th>
                             <th class="vi wy w_ vo lm">
@@ -162,7 +165,14 @@
                             </td>
                             <td class="vi wy w_ vo lm">
                                 <div class="gp text-slate-800">{{ $award->competition->name }}</div>   
-                            </div>
+                                
+                            </td>
+                            <td class="vi wy w_ vo lm">
+                                <div class="gp ">
+                                    @if ($award->competition->thropy)
+                                    <img src="{{ asset('storage/'.$award->competition->thropy) }}" class="object-scale-down w-20" alt="{{ $award->competition->name }}">
+                                    @endif    
+                                </div>
                             </td>
                             <td class="vi wy w_ vo lm">
                                 @if ($award->status === 'inactive')

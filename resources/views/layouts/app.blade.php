@@ -224,6 +224,24 @@
                 "progressBar": true,
             }
         });
+
+        var inputField = document.querySelector('#numbers-only');
+
+        inputField.onkeydown = function(event) {
+          // Only allow if the e.key value is a number or if it's 'Backspace'
+          if(isNaN(event.key) && event.key !== 'Backspace') {
+            event.preventDefault();
+          }
+        };
+
+        function onlyNumberKey(evt) {
+             
+             // Only ASCII character in that range allowed
+             var ASCIICode = (evt.which) ? evt.which : evt.keyCode
+             if (ASCIICode > 31 && (ASCIICode < 48 || ASCIICode > 57))
+                 return false;
+             return true;
+         }
     </script>
 
 </body>

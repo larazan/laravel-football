@@ -259,9 +259,9 @@
                         <form>
                             <div class="my-3 md:mt-0 md:col-span-2" x-data="{tab: 0}">
                                 <div class="mb-5 flex border border-black overflow-hidden">
-                                    <button class="px-4 py-2 w-full font-bold" x-on:click.prevent="tab = 0">Detail</button>
-                                    <button class="px-4 py-2 w-full font-bold" x-on:click.prevent="tab = 1">Bio</button>
-                                    <button class="px-4 py-2 w-full font-bold" x-on:click.prevent="tab = 2">Image</button>
+                                    <button class="px-4 py-2 w-full font-bold" :class="{ 'active bg-gray-800 text-white': tab === 0 }" x-on:click.prevent="tab = 0">Detail</button>
+                                    <button class="px-4 py-2 w-full font-bold" :class="{ 'active bg-gray-800 text-white': tab === 1 }" x-on:click.prevent="tab = 1">Bio</button>
+                                    <button class="px-4 py-2 w-full font-bold" :class="{ 'active bg-gray-800 text-white': tab === 2 }" x-on:click.prevent="tab = 2">Image</button>
                                 </div>
                                 <div>
                                     <div class="mt-6 flex flex-col space-y-3" x-show="tab === 0">
@@ -319,7 +319,7 @@
                                                 <label for="shirtNumber" class="block text-sm font-medium text-gray-700">
                                                     Shirt Number
                                                 </label>
-                                                <input wire:model="shirtNumber" type="number" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                                                <input wire:model="shirtNumber" type="text" id="numbers-only" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                                             </div>
                                         </div>
 
@@ -378,13 +378,13 @@
                                                 <label for="height" class="block text-sm font-medium text-gray-700">
                                                     Height
                                                 </label>
-                                                <input wire:model="height" type="text" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                                                <input wire:model="height" type="text" onkeypress="return onlyNumberKey(event)"  autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                                             </div>
                                             <div class="col-start-1 sm:col-span-3">
                                                 <label for="weight" class="block text-sm font-medium text-gray-700">
                                                     Weight
                                                 </label>
-                                                <input wire:model="weight" type="text" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                                                <input wire:model="weight" type="text" onkeypress="return onlyNumberKey(event)"  autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                                             </div>
                                         </div>
                                         <div class="flex flex-row justify-between">
@@ -496,20 +496,24 @@
                     <div class="fw">
                         <div class="je items-center2 vh">
                             <div class="flex flex-col space-x-2">
-                                <a class="block ri _y rp zn tnv ub" href="#0">
-                                    <img class="rounded-sm" src="{{ asset('images/benjamin_pavard.png') }}" width="200" height="142" alt="Product 01">
-                                </a>
+                                <div class="block ri _y rp zn tnv ub" href="#0">
+                                    @if ($oldImage)
+                                    <img src="{{ asset('storage/'.$oldImage) }}">
+                                    @else
+                                    <img class="rounded-sm" src="{{ asset('images/generic-male-avatar-300x284.jpg') }}" width="200" height="142" alt="Player 01">
+                                    @endif                
+                                </div>
                             </div>
                             <div class="uw">
                                 <a href="#0">
-                                    <h3 class="text-2xl gh text-slate-800 rt font-bold">Benjamin Pavard</h3>
+                                    <h3 class="text-2xl gh text-slate-800 rt font-bold">{{ $name }}</h3>
                                 </a>
                                 <div class="flex flex-wrap">
                                     <!-- Unique Visitors -->
                                     <div class="flex items-center vr">
                                         <div class="rp">
                                             <div class="flex items-center">
-                                                <div class="text-xl font-bold text-slate-800 mr-2">Defender</div>
+                                                <div class="text-xl font-bold text-slate-800 mr-2">{{ $role }}</div>
                                             </div>
                                             <div class="text-sm text-slate-500">Role</div>
                                         </div>
@@ -519,7 +523,7 @@
                                     <div class="flex items-center vr">
                                         <div class="rp">
                                             <div class="flex items-center">
-                                                <div class="text-xl font-bold text-slate-800 mr-2">France</div>
+                                                <div class="text-xl font-bold text-slate-800 mr-2">{{ $nationality }}</div>
                                             </div>
                                             <div class="text-sm text-slate-500">Nationality</div>
                                         </div>
@@ -530,49 +534,46 @@
                                     <div class="flex items-center">
                                         <div>
                                             <div class="flex items-center">
-                                                <div class="text-xl font-bold text-slate-800 mr-2">5</div>
+                                                <div class="text-xl font-bold text-slate-800 mr-2">{{ $shirtNumber }}</div>
                                             </div>
                                             <div class="text-sm text-slate-500">Number</div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="flex w-full justify-between py-4">
-                                    <div>
-                                        <div class="flex text-sm text-slate-700 space-x-1">
-                                            <div class="capitalize">birth date :</div>
-                                            <div class="">1994-10-10</div>
+                                    <div class="w-1/2">
+                                        <div class="w-full flex text-sm text-slate-700 ">
+                                            <div class="w-1/2 capitalize">birth date :</div>
+                                            <div class="w-1/2">{{ $birthDate }}</div>
                                         </div>
-                                        <div class="flex text-sm text-slate-700 space-x-1">
-                                            <div class="capitalize">place birth :</div>
-                                            <div class="">France</div>
+                                        <div class="flex text-sm text-slate-700">
+                                            <div class="w-1/2 capitalize">place birth :</div>
+                                            <div class="w-1/2">{{ $birthLocation }}</div>
                                         </div>
-                                        <div class="flex text-sm text-slate-700 space-x-1">
-                                            <div class="capitalize">height :</div>
-                                            <div class="">186 cm</div>
+                                        <div class="flex text-sm text-slate-700">
+                                            <div class="w-1/2 capitalize">height :</div>
+                                            <div class="w-1/2">{{ $height }} cm</div>
                                         </div>
                                     </div>
-                                    <div class="flex flex-col justify-between ">
-                                        <div class="flex text-sm text-slate-700 space-x-1">
-                                            <div class="">Facebook :</div>
-                                            <div class="">@pavard</div>
+                                    <div class="w-1/2 flex flex-col ">
+                                        <div class="flex text-sm text-slate-700">
+                                            <div class="w-1/2 ">Facebook :</div>
+                                            <div class="w-1/2 ">{{ $facebook }}</div>
                                         </div>
-                                        <div class="flex text-sm text-slate-700 space-x-1">
-                                            <div class="">Instagram :</div>
-                                            <div class="">@pavard</div>
+                                        <div class="flex text-sm text-slate-700">
+                                            <div class="w-1/2 ">Instagram :</div>
+                                            <div class="w-1/2 ">{{ $instagram }}</div>
                                         </div>
-                                        <div class="flex text-sm text-slate-700 space-x-1">
-                                            <div class="">Twitter :</div>
-                                            <div class="">@pavard</div>
+                                        <div class="flex text-sm text-slate-700">
+                                            <div class="w-1/2 ">Twitter :</div>
+                                            <div class="w-1/2 ">{{ $twitter }}</div>
                                         </div>
                                     </div>
 
                                 </div>
 
                                 <div class="text-sm ru">
-                                    Kim Ji Soo is a South Korean actress, model, singer, and member of the girl group BLACKPINK.
-                                    <br />
-                                    <br />
-                                    Prior to her debut, she appeared in numerous commercial films, in particular, Samsonite RED with actor Lee Min Ho and Smart Uniform and LG Stylus 2 with YG Entertainment's boy group iKON. She was also featured in her label-mates' music videos, such as Epik High's "Spoiler + Happen Ending" and Hi Suhyun's "I'm Different".
+                                    {{ $bio }}
                                 </div>
 
                             </div>

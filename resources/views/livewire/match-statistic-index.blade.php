@@ -31,36 +31,72 @@
             <h2 class="gh text-slate-800">Team Comparison <span class="gq gp"></span></h2>
         </header>
         <div class="flex flex-col py-4 px-6 space-y-1 mx-auto w-full">
+            @foreach ($matchs as $match)
             <div class="flex justify-between items-center h-14 py-1.5 border-y ">
                 <div class="flex w-1/6 items-center">
                     <div class="w-8">
-                        <image src="{{ asset('images/bayern.png') }}" alt />
+                        @if ($match->home->logo)
+                        <div class="">
+                            <img src="{{ asset('storage/'.$match->home->logo) }}" class="w-8 rounded" alt="foto" />
+                        </div>
+                        @endif
+
                     </div>
                     <div class="ml-2">
                         <span class="text-sm font-bold text-[#002f6c]">
-                            FC Bayern Munich
+                            {{ $match->home->name }}
                         </span>
                     </div>
                 </div>
                 <div class=" w-4/6">
-
+                    <div class="w-full flex flex-col justify-center text-center">
+                        <div class="flex space-x-2 items-center justify-center">
+                            <span class="text-xs font-semibold text-gray-600">
+                                {{ $match->competition->name }}
+                            </span>
+                            <div>
+                                <span class="text-xs font-semibold text-gray-600">
+                                    {{ $match->season }}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="justify-center">
+                            <span class="text-xs font-semibold text-gray-600">
+                                Stadium: Allianz Arena, Munich
+                            </span>
+                        </div>
+                        <div class="justify-center">
+                            <span class="text-xs font-semibold text-gray-600">
+                                {{ $match->fixture_match }}, {{ $match->hour }}:{{ $match->minute }}
+                            </span>
+                        </div>
+                    </div>
                 </div>
                 <div class="flex w-1/6 justify-end items-center">
                     <div class="mr-2">
                         <span class="text-sm font-bold text-[#002f6c]">
-                            Manchester City
+                            {{ $match->away->name }}
                         </span>
                     </div>
                     <div class="w-8">
-                        <Image src="{{ asset('images/manchester-city.png') }}" alt />
+                        @if ($match->away->logo)
+                        <div class="">
+                            <img src="{{ asset('storage/'.$match->away->logo) }}" class="w-8 rounded" alt="foto" />
+                        </div>
+                        @endif
                     </div>
                 </div>
             </div>
+            @endforeach
+        </div>
+        <div class="flex flex-col py-4 px-6 space-y-1 mx-auto w-full">
+            @if ($statistics->count() > 0 )
+            @foreach ($statistics as $statistic)
             <div class="flex w-full justify-between items-center h-10 py-1.5">
                 <div class="flex w-1/6">
                     <div>
-                        <span class="text-sm font-bold text-[#002f6c]">18</span>
-                    </div>
+                        <span class="text-sm font-bold text-[#002f6c]">{{ $statistic->home_total_shots }}</span>
+                    </div> 
                 </div>
                 <div class="w-4/6">
                     <div class="flex w-full mx-auto justify-center">
@@ -69,14 +105,14 @@
                 </div>
                 <div class="flex w-1/6 justify-end">
                     <div>
-                        <span class="text-sm font-bold text-[#002f6c]">19</span>
+                        <span class="text-sm font-bold text-[#002f6c]">{{ $statistic->away_total_shots }}</span>
                     </div>
                 </div>
             </div>
             <div class="flex w-full justify-between items-center h-10 py-1.5">
                 <div class="flex w-1/6">
                     <div>
-                        <span class="text-sm font-bold text-[#002f6c]">9</span>
+                        <span class="text-sm font-bold text-[#002f6c]">{{ $statistic->home_shots_on_target }}</span>
                     </div>
                 </div>
                 <div class="w-4/6">
@@ -86,14 +122,14 @@
                 </div>
                 <div class="flex w-1/6 justify-end">
                     <div>
-                        <span class="text-sm font-bold text-[#002f6c]">4</span>
+                        <span class="text-sm font-bold text-[#002f6c]">{{ $statistic->away_shots_on_target }}</span>
                     </div>
                 </div>
             </div>
             <div class="flex w-full justify-between items-center h-10 py-1.5">
                 <div class="flex w-1/6">
                     <div>
-                        <span class="text-sm font-bold text-[#002f6c]">67%</span>
+                        <span class="text-sm font-bold text-[#002f6c]">{{ $statistic->home_possession }}%</span>
                     </div>
                 </div>
                 <div class="w-4/6">
@@ -103,14 +139,14 @@
                 </div>
                 <div class="flex w-1/6 justify-end">
                     <div>
-                        <span class="text-sm font-bold text-[#002f6c]">33%</span>
+                        <span class="text-sm font-bold text-[#002f6c]">{{ $statistic->away_possession }}%</span>
                     </div>
                 </div>
             </div>
             <div class="flex w-full justify-between items-center h-10 py-1.5">
                 <div class="flex w-1/6">
                     <div>
-                        <span class="text-sm font-bold text-[#002f6c]">637</span>
+                        <span class="text-sm font-bold text-[#002f6c]">{{ $statistic->home_passes }}</span>
                     </div>
                 </div>
                 <div class="w-4/6">
@@ -120,14 +156,14 @@
                 </div>
                 <div class="flex w-1/6 justify-end">
                     <div>
-                        <span class="text-sm font-bold text-[#002f6c]">316</span>
+                        <span class="text-sm font-bold text-[#002f6c]">{{ $statistic->away_passes }}</span>
                     </div>
                 </div>
             </div>
             <div class="flex w-full justify-between items-center h-10 py-1.5">
                 <div class="flex w-1/6">
                     <div>
-                        <span class="text-sm font-bold text-[#002f6c]">86%</span>
+                        <span class="text-sm font-bold text-[#002f6c]">{{ $statistic->home_pass_accuracy }}%</span>
                     </div>
                 </div>
                 <div class="w-4/6">
@@ -137,14 +173,14 @@
                 </div>
                 <div class="flex w-1/6 justify-end">
                     <div>
-                        <span class="text-sm font-bold text-[#002f6c]">72%</span>
+                        <span class="text-sm font-bold text-[#002f6c]">{{ $statistic->away_pass_accuracy }}%</span>
                     </div>
                 </div>
             </div>
             <div class="flex w-full justify-between items-center h-10 py-1.5">
                 <div class="flex w-1/6">
                     <div>
-                        <span class="text-sm font-bold text-[#002f6c]">13</span>
+                        <span class="text-sm font-bold text-[#002f6c]">{{ $statistic->home_fouls }}</span>
                     </div>
                 </div>
                 <div class="w-4/6">
@@ -154,14 +190,14 @@
                 </div>
                 <div class="flex w-1/6 justify-end">
                     <div>
-                        <span class="text-sm font-bold text-[#002f6c]">11</span>
+                        <span class="text-sm font-bold text-[#002f6c]">{{ $statistic->away_fouls }}</span>
                     </div>
                 </div>
             </div>
             <div class="flex w-full justify-between items-center h-10 py-1.5">
                 <div class="flex w-1/6">
                     <div>
-                        <span class="text-sm font-bold text-[#002f6c]">4</span>
+                        <span class="text-sm font-bold text-[#002f6c]">{{ $statistic->home_yellow_cards }}</span>
                     </div>
                 </div>
                 <div class="w-4/6">
@@ -171,14 +207,14 @@
                 </div>
                 <div class="flex w-1/6 justify-end">
                     <div>
-                        <span class="text-sm font-bold text-[#002f6c]">4</span>
+                        <span class="text-sm font-bold text-[#002f6c]">{{ $statistic->away_yellow_cards }}</span>
                     </div>
                 </div>
             </div>
             <div class="flex w-full justify-between items-center h-10 py-1.5">
                 <div class="flex w-1/6">
                     <div>
-                        <span class="text-sm font-bold text-[#002f6c]">0</span>
+                        <span class="text-sm font-bold text-[#002f6c]">{{ $statistic->home_red_cards }}</span>
                     </div>
                 </div>
                 <div class="w-4/6">
@@ -188,14 +224,14 @@
                 </div>
                 <div class="flex w-1/6 justify-end">
                     <div>
-                        <span class="text-sm font-bold text-[#002f6c]">1</span>
+                        <span class="text-sm font-bold text-[#002f6c]">{{ $statistic->away_red_cards }}</span>
                     </div>
                 </div>
             </div>
             <div class="flex w-full justify-between items-center h-10 py-1.5">
                 <div class="flex w-1/6">
                     <div>
-                        <span class="text-sm font-bold text-[#002f6c]">3</span>
+                        <span class="text-sm font-bold text-[#002f6c]">{{ $statistic->home_offsides }}</span>
                     </div>
                 </div>
                 <div class="w-4/6">
@@ -205,14 +241,14 @@
                 </div>
                 <div class="flex w-1/6 justify-end">
                     <div>
-                        <span class="text-sm font-bold text-[#002f6c]">2</span>
+                        <span class="text-sm font-bold text-[#002f6c]">{{ $statistic->away_offsides }}</span>
                     </div>
                 </div>
             </div>
             <div class="flex w-full justify-between items-center h-10 py-1.5">
                 <div class="flex w-1/6">
                     <div>
-                        <span class="text-sm font-bold text-[#002f6c]">11</span>
+                        <span class="text-sm font-bold text-[#002f6c]">{{ $statistic->home_corners }}</span>
                     </div>
                 </div>
                 <div class="w-4/6">
@@ -222,12 +258,17 @@
                 </div>
                 <div class="flex w-1/6 justify-end">
                     <div>
-                        <span class="text-sm font-bold text-[#002f6c]">3</span>
+                        <span class="text-sm font-bold text-[#002f6c]">{{ $statistic->away_corners }}</span>
                     </div>
                 </div>
             </div>
+            @endforeach
+            @else
+            <div class="w-full flex justify-center">
+                <span class="text-sm font-semibold italic">Couldn't get data, Please fill the statistics first!</span>
+            </div>
+            @endif
         </div>
-
     </div>
 
 
@@ -247,67 +288,162 @@
                     <div class="fw">
 
                         <form>
-                            <div class="">
-                                <div class="">
-                                    <div class="flex flex-col space-y-3">
+                            <div class="my-3 md:mt-0 md:col-span-2" x-data="{tab: 0}">
+                                <div class="mb-5 flex border border-black overflow-hidden">
+                                    <button class="px-4 py-2 w-full font-bold" :class="{ 'active bg-gray-800 text-white': tab === 0 }" x-on:click.prevent="tab = 0">Home Team</button>
+                                    <button class="px-4 py-2 w-full font-bold" :class="{ 'active bg-gray-800 text-white': tab === 1 }" x-on:click.prevent="tab = 1">Away Team</button>
+                                </div>
+                                <div>
+                                    <div class="mt-6 flex flex-col space-y-3" x-show="tab === 0">
                                         <div class="flex flex-row justify-between">
                                             <div class="col-start-1 sm:col-span-3">
                                                 <label for="title" class="block text-sm font-medium text-gray-700">
-                                                    Player Name
+                                                    Total Shots
                                                 </label>
-                                                <input wire:model="name" type="text" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                                                <input wire:model="homeTotalShots" onkeypress="return onlyNumberKey(event)" type="text" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                                             </div>
                                             <div class="col-start-1 sm:col-span-3">
                                                 <label for="title" class="block text-sm font-medium text-gray-700">
-                                                    Player Name
+                                                    Shots on Target
                                                 </label>
-                                                <input wire:model="name" type="text" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                                                <input wire:model="homeShotsOnTarget" onkeypress="return onlyNumberKey(event)" type="text" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                                             </div>
                                         </div>
-                                        
+
                                         <div class="flex flex-row justify-between">
                                             <div class="col-start-1 sm:col-span-3">
                                                 <label for="title" class="block text-sm font-medium text-gray-700">
-                                                    Birth Date
+                                                    Possesion
                                                 </label>
-                                                <input wire:model="birthDate" type="text" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                                                <input wire:model="homePossession" onkeypress="return onlyNumberKey(event)" type="text" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                                             </div>
                                             <div class="col-start-1 sm:col-span-3">
                                                 <label for="title" class="block text-sm font-medium text-gray-700">
-                                                    Birth Location
+                                                    Passess
                                                 </label>
-                                                <input wire:model="birthLocation" type="text" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                                                <input wire:model="homePasses" onkeypress="return onlyNumberKey(event)" type="text" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                                             </div>
                                         </div>
-                                        
+
                                         <div class="flex flex-row justify-between">
                                             <div class="col-start-1 sm:col-span-3">
                                                 <label for="height" class="block text-sm font-medium text-gray-700">
-                                                    Height
+                                                    Pass Accuracy
                                                 </label>
-                                                <input wire:model="height" type="text" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                                                <input wire:model="homePassAccuracy" onkeypress="return onlyNumberKey(event)" type="text" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                                             </div>
                                             <div class="col-start-1 sm:col-span-3">
                                                 <label for="weight" class="block text-sm font-medium text-gray-700">
-                                                    Weight
+                                                    Fouls
                                                 </label>
-                                                <input wire:model="weight" type="text" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                                                <input wire:model="homeFouls" onkeypress="return onlyNumberKey(event)" type="text" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                                             </div>
                                         </div>
-                                       
-                                        
+
                                         <div class="flex flex-row justify-between">
                                             <div class="col-start-1 sm:col-span-3">
-                                                <label for="contractFrom" class="block text-sm font-medium text-gray-700">
-                                                    Contract From
+                                                <label for="height" class="block text-sm font-medium text-gray-700">
+                                                    Yellow Cards
                                                 </label>
-                                                <x-flatpicker wire:model="contractFrom"></x-flatpicker>
+                                                <input wire:model="homeYellowCards" onkeypress="return onlyNumberKey(event)" type="text" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                                             </div>
                                             <div class="col-start-1 sm:col-span-3">
-                                                <label for="contractUntil" class="block text-sm font-medium text-gray-700">
-                                                    Contract Until
+                                                <label for="weight" class="block text-sm font-medium text-gray-700">
+                                                    Red Cards
                                                 </label>
-                                                <x-flatpicker wire:model="contractUntil"></x-flatpicker>
+                                                <input wire:model="homeRedCards" onkeypress="return onlyNumberKey(event)" type="text" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                                            </div>
+                                        </div>
+
+                                        <div class="flex flex-row justify-between">
+                                            <div class="col-start-1 sm:col-span-3">
+                                                <label for="height" class="block text-sm font-medium text-gray-700">
+                                                    Offsides
+                                                </label>
+                                                <input wire:model="homeOffsides" onkeypress="return onlyNumberKey(event)" type="text" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                                            </div>
+                                            <div class="col-start-1 sm:col-span-3">
+                                                <label for="weight" class="block text-sm font-medium text-gray-700">
+                                                    Corners
+                                                </label>
+                                                <input wire:model="homeCorners" onkeypress="return onlyNumberKey(event)" type="text" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="mt-6 flex flex-col space-y-3" x-show="tab === 1">
+                                        <div class="flex flex-row justify-between">
+                                            <div class="col-start-1 sm:col-span-3">
+                                                <label for="title" class="block text-sm font-medium text-gray-700">
+                                                    Total Shots
+                                                </label>
+                                                <input wire:model="awayTotalShots" onkeypress="return onlyNumberKey(event)" type="text" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                                            </div>
+                                            <div class="col-start-1 sm:col-span-3">
+                                                <label for="title" class="block text-sm font-medium text-gray-700">
+                                                    Shots on Target
+                                                </label>
+                                                <input wire:model="awayShotsOnTarget" onkeypress="return onlyNumberKey(event)" type="text" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                                            </div>
+                                        </div>
+
+                                        <div class="flex flex-row justify-between">
+                                            <div class="col-start-1 sm:col-span-3">
+                                                <label for="title" class="block text-sm font-medium text-gray-700">
+                                                    Possesion
+                                                </label>
+                                                <input wire:model="awayPossession" onkeypress="return onlyNumberKey(event)" type="text" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                                            </div>
+                                            <div class="col-start-1 sm:col-span-3">
+                                                <label for="title" class="block text-sm font-medium text-gray-700">
+                                                    Passess
+                                                </label>
+                                                <input wire:model="awayPasses" onkeypress="return onlyNumberKey(event)" type="text" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                                            </div>
+                                        </div>
+
+                                        <div class="flex flex-row justify-between">
+                                            <div class="col-start-1 sm:col-span-3">
+                                                <label for="height" class="block text-sm font-medium text-gray-700">
+                                                    Pass Accuracy
+                                                </label>
+                                                <input wire:model="awayPassAccuracy" onkeypress="return onlyNumberKey(event)" type="text" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                                            </div>
+                                            <div class="col-start-1 sm:col-span-3">
+                                                <label for="weight" class="block text-sm font-medium text-gray-700">
+                                                    Fouls
+                                                </label>
+                                                <input wire:model="awayFouls" onkeypress="return onlyNumberKey(event)" type="text" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                                            </div>
+                                        </div>
+
+                                        <div class="flex flex-row justify-between">
+                                            <div class="col-start-1 sm:col-span-3">
+                                                <label for="height" class="block text-sm font-medium text-gray-700">
+                                                    Yellow Cards
+                                                </label>
+                                                <input wire:model="awayYellowCards" onkeypress="return onlyNumberKey(event)" type="text" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                                            </div>
+                                            <div class="col-start-1 sm:col-span-3">
+                                                <label for="weight" class="block text-sm font-medium text-gray-700">
+                                                    Red Cards
+                                                </label>
+                                                <input wire:model="awayRedCards" onkeypress="return onlyNumberKey(event)" type="text" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                                            </div>
+                                        </div>
+
+                                        <div class="flex flex-row justify-between">
+                                            <div class="col-start-1 sm:col-span-3">
+                                                <label for="height" class="block text-sm font-medium text-gray-700">
+                                                    Offsides
+                                                </label>
+                                                <input wire:model="awayOffsides" onkeypress="return onlyNumberKey(event)" type="text" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                                            </div>
+                                            <div class="col-start-1 sm:col-span-3">
+                                                <label for="weight" class="block text-sm font-medium text-gray-700">
+                                                    Corners
+                                                </label>
+                                                <input wire:model="awayCorners" onkeypress="return onlyNumberKey(event)" type="text" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                                             </div>
                                         </div>
 

@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\MatchStatistic;
+use App\Models\Matchs;
 use Illuminate\Support\Str;
 use Livewire\WithPagination;
 use Livewire\Component;
@@ -20,7 +21,10 @@ class MatchStatisticIndex extends Component
     public $homeShotsOnTarget;
     public $homeCorners;
     public $homePasses;
+    public $homePassAccuracy;
     public $homeCrosses;
+    public $homeYellowCards;
+    public $homeRedCards;
     public $awayPossession;
     public $awayOffsides;
     public $awayFouls;
@@ -28,7 +32,10 @@ class MatchStatisticIndex extends Component
     public $awayShotsOnTarget;
     public $awayCorners;
     public $awayPasses;
+    public $awayPassAccuracy;
     public $awayCrosses;
+    public $awayYellowCards;
+    public $awayRedCards;
     public $matchStatisticId;
     
     public $matchStatisticStatus = 'inactive';
@@ -45,13 +52,27 @@ class MatchStatisticIndex extends Component
     public $deleteId = '';
 
     protected $rules = [
-        'report' => 'required',
+        // 'report' => 'required',
         // 'file' => 'required|image|mimes:jpg,jpeg,png,svg,gif|max:2048',
     ];
 
     public function mount($matchId)
     {
         $this->matchId = $matchId;
+        $statistics = MatchStatistic::where('match_id', $this->matchId)->get();
+        if ($statistics->count() > 0)
+        {
+            $this->matchStatisticId = $statistics->id;
+        }  
+    }
+
+    public function updated()
+    {
+        $statistics = MatchStatistic::where('match_id', $this->matchId)->get();
+        if ($statistics->count() > 0)
+        {
+            $this->matchStatisticId = $statistics->id;
+        }  
     }
 
     public function showCreateModal()
@@ -90,7 +111,10 @@ class MatchStatisticIndex extends Component
         $matchStatistic->home_shots_on_target = $this->homeShotsOnTarget;
         $matchStatistic->home_corners = $this->homeCorners;
         $matchStatistic->home_passes = $this->homePasses;
+        $matchStatistic->home_pass_accuracy = $this->homePassAccuracy;
         $matchStatistic->home_crosses = $this->homeCrosses;
+        $matchStatistic->home_yellow_cards = $this->homeYellowCards;
+        $matchStatistic->home_red_cards = $this->homeRedCards;
         $matchStatistic->away_possession = $this->awayPossession;
         $matchStatistic->away_offsides = $this->awayOffsides;
         $matchStatistic->away_fouls = $this->awayFouls;
@@ -98,7 +122,10 @@ class MatchStatisticIndex extends Component
         $matchStatistic->away_shots_on_target = $this->awayShotsOnTarget;
         $matchStatistic->away_corners = $this->awayCorners;
         $matchStatistic->away_passes = $this->awayPasses;
+        $matchStatistic->away_pass_accuracy = $this->awayPassAccuracy;
         $matchStatistic->away_crosses = $this->awayCrosses;
+        $matchStatistic->away_yellow_cards = $this->awayYellowCards;
+        $matchStatistic->away_red_cards = $this->awayRedCards;
         $matchStatistic->match_id = $this->matchId;
 
         $matchStatistic->save();
@@ -149,7 +176,10 @@ class MatchStatisticIndex extends Component
                 $matchStatistic->home_shots_on_target = $this->homeShotsOnTarget;
                 $matchStatistic->home_corners = $this->homeCorners;
                 $matchStatistic->home_passes = $this->homePasses;
+                $matchStatistic->home_pass_accuracy = $this->homePassAccuracy;
                 $matchStatistic->home_crosses = $this->homeCrosses;
+                $matchStatistic->home_yellow_cards = $this->homeYellowCards;
+                $matchStatistic->home_red_cards = $this->homeRedCards;
                 $matchStatistic->away_possession = $this->awayPossession;
                 $matchStatistic->away_offsides = $this->awayOffsides;
                 $matchStatistic->away_fouls = $this->awayFouls;
@@ -157,7 +187,10 @@ class MatchStatisticIndex extends Component
                 $matchStatistic->away_shots_on_target = $this->awayShotsOnTarget;
                 $matchStatistic->away_corners = $this->awayCorners;
                 $matchStatistic->away_passes = $this->awayPasses;
+                $matchStatistic->away_pass_accuracy = $this->awayPassAccuracy;
                 $matchStatistic->away_crosses = $this->awayCrosses;
+                $matchStatistic->away_yellow_cards = $this->awayYellowCards;
+                $matchStatistic->away_red_cards = $this->awayRedCards;
                 $matchStatistic->match_id = $this->matchId;
 
                 $matchStatistic->save();
@@ -191,7 +224,8 @@ class MatchStatisticIndex extends Component
     public function render()
     {
         return view('livewire.match-statistic-index', [
-            'statistics' => MatchStatistic::search('id', $this->search)->orderBy('id', $this->sort)->paginate($this->perPage),
+            'matchs' => Matchs::where('id', $this->matchId)->get(),
+            'statistics' => MatchStatistic::where('match_id', $this->matchId)->get(),
         ]);
     }
 }

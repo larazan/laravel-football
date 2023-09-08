@@ -395,6 +395,8 @@ class PlayerIndex extends Component
         $this->contractFrom = $player->contract_from;
         $this->contractUntil = $player->contract_until;
         $this->preferedFoot = $player->prefered_foot;
+        $this->height = $player->height;
+        $this->weight = $player->weight;
         $this->shirtNumber = $player->shirt_number;
         $this->oldImage = $player->small;
         $this->facebook = $player->facebook;
@@ -421,6 +423,8 @@ class PlayerIndex extends Component
         $this->contractUntil = $player->contract_until;
         $this->preferedFoot = $player->prefered_foot;
         $this->shirtNumber = $player->shirt_number;
+        $this->height = $player->height;
+        $this->weight = $player->weight;
         $this->oldImage = $player->small;
         $this->facebook = $player->facebook;
         $this->instagram = $player->instagram;
