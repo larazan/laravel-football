@@ -27,12 +27,14 @@
             </form>
 
             <!-- Create match button -->
+            {{-- 
             <button class="btn ho xi ye" wire:click="showCreateModal">
                 <svg class="oo sl du bf ub" viewBox="0 0 16 16">
                     <path d="M15 7H9V1c0-.6-.4-1-1-1S7 .4 7 1v6H1c-.6 0-1 .4-1 1s.4 1 1 1h6v6c0 .6.4 1 1 1s1-.4 1-1V9h6c.6 0 1-.4 1-1s-.4-1-1-1z"></path>
                 </svg>
                 <span class="hidden trm nq">Create Match</span>
             </button>
+            --}}
         </div>
 
     </div>
@@ -90,10 +92,18 @@
             </div> -->
 
             <!-- Filter button -->
+            <select wire:model="perSeason" class="a">
+                @foreach ($seasonOption as $sea)
+                <option value="{{ $sea }}">{{ $sea }}</option>
+                @endforeach
+            </select>
+
+            {{-- 
             <select wire:model="sort" id="sort" class="a">
                 <option value="asc">Asc</option>
                 <option value="desc">Desc</option>
             </select>
+            --}}
 
             <select wire:model="perPage" id="filter" class="a">
                 <option value="5">5 Per Page</option>
@@ -107,7 +117,7 @@
     <!-- Table -->
     <div class="bg-white bd rounded-sm border border-slate-200 rc">
         <header class="vc vu">
-            <h2 class="gh text-slate-800">Matchss <span class="gq gp"></span></h2>
+            <h2 class="gh text-slate-800">Matchs <span class="gq gp"></span></h2>
         </header>
         <div x-data="handleSelect">
 
@@ -158,77 +168,7 @@
                     <!-- Table body -->
                     <tbody class="text-sm le lr">
                         <!-- Row -->
-                        <tr>
-                            <td class="vi wy w_ vo lm of">
-                                <div class="flex items-center">
-                                    <label class="inline-flex">
-                                        <span class="d">Select</span>
-                                        <input class="table-item i" type="checkbox" @click="uncheckParent">
-                                    </label>
-                                </div>
-                            </td>
-                            <td class="vi wy w_ vo lm">
-                                <div class="gp text-slate-800">Bundesliga</div>
-                            </td>
-                            <td class="vi wy w_ vo lm">
-                                <div class="gp text-slate-800">2023 - 2024</div>
-                            </td>
-
-                            <td class="vi wy w_ vo lm">
-                                <div class="flex flex-col justify-center items-center">
-                                    <div class="">
-                                        <img src="{{ asset('images/bayern.png') }}" class="w-6 rounded" alt="foto" />
-                                    </div>
-                                    <span class="text-xs">Bayern Munich</span>
-                                </div>
-                            </td>
-                            <td class="vi wy w_ vo lm">
-                                <div class="flex flex-col justify-center items-center">
-                                    <div class="">
-                                        <img src="{{ asset('images/manchester-city.png') }}" class="w-6 rounded" alt="foto" />
-                                    </div>
-                                    <span class="text-xs">Manchester City</span>
-                                </div>
-
-                            </td>
-                            <td class="vi wy w_ vo lm">
-                                <div>1 : 2</div>
-                            </td>
-                            <td class="vi wy w_ vo lm">
-                                <div>2023-08-10</div>
-                            </td>
-                            <td class="vi wy w_ vo lm">
-                                <div>14:30</div>
-                            </td>
-                            <td class="vi wy w_ vo lm">
-                                <div class="inline-flex gp hc ys rounded-full gn vp vd">Active</div>
-                            </td>
-
-                            <td class="vi wy w_ vo lm of">
-                                <div class="fm">
-                                    <button class="gq xv rounded-full">
-                                        <span class=" d">Detail</span>
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 32" stroke-width="2" stroke="currentColor" class=" du w-6 h-6">
-                                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zM4 19.235v-.11a6.375 6.375 0 0112.75 0v.109A12.318 12.318 0 0110.374 21c-2.331 0-4.512-.645-6.374-1.766z" />
-                                        </svg>
-                                    </button>
-                                    <button class="gq xv rounded-full" wire:click="showEditModal(1)">
-                                        <span class=" d">Edit</span>
-                                        <svg class="os sf du" viewBox="0 0 32 32">
-                                            <path d="M19.7 8.3c-.4-.4-1-.4-1.4 0l-10 10c-.2.2-.3.4-.3.7v4c0 .6.4 1 1 1h4c.3 0 .5-.1.7-.3l10-10c.4-.4.4-1 0-1.4l-4-4zM12.6 22H10v-2.6l6-6 2.6 2.6-6 6zm7.4-7.4L17.4 12l1.6-1.6 2.6 2.6-1.6 1.6z"></path>
-                                        </svg>
-                                    </button>
-
-                                    <button class="yl xy rounded-full" wire:click="deleteId(1)">
-                                        <span class=" d">Delete</span>
-                                        <svg class="os sf du" viewBox="0 0 32 32">
-                                            <path d="M13 15h2v6h-2zM17 15h2v6h-2z"></path>
-                                            <path d="M20 9c0-.6-.4-1-1-1h-6c-.6 0-1 .4-1 1v2H8v2h1v10c0 .6.4 1 1 1h12c.6 0 1-.4 1-1V13h1v-2h-4V9zm-6 1h4v1h-4v-1zm7 3v9H11v-9h10z"></path>
-                                        </svg>
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
+                        
                         @if ($matchs->count() > 0)
                         @foreach ($matchs as $match)
                         <tr>
@@ -289,19 +229,19 @@
 
                             <td class="vi wy w_ vo lm of">
                                 <div class="fm">
-                                    <button class="gq xv rounded-full">
+                                    <button class="gq xv rounded-full" wire:click="routeToLineup({{ $match->id }})">
                                         <span class=" d">Lineup</span>
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                             <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z" />
                                         </svg>
                                     </button>
-                                    <button class="gq xv rounded-full">
+                                    <button class="gq xv rounded-full" wire:click="routeToStatistic({{ $match->id }})">
                                         <span class=" d">statistic</span>
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                             <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0l-1 3m8.5-3l1 3m0 0l.5 1.5m-.5-1.5h-9.5m0 0l-.5 1.5m.75-9l3-3 2.148 2.148A12.061 12.061 0 0116.5 7.605" />
                                         </svg>
                                     </button>
-                                    <button class="gq xv rounded-full">
+                                    <button class="gq xv rounded-full" wire:click="routeToReport({{ $match->id }})">
                                         <span class=" d">Report</span>
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                             <path stroke-linecap="round" stroke-linejoin="round" d="M11.35 3.836c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75 2.25 2.25 0 00-.1-.664m-5.8 0A2.251 2.251 0 0113.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m8.9-4.414c.376.023.75.05 1.124.08 1.131.094 1.976 1.057 1.976 2.192V16.5A2.25 2.25 0 0118 18.75h-2.25m-7.5-10.5H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V18.75m-7.5-10.5h6.375c.621 0 1.125.504 1.125 1.125v9.375m-8.25-3l1.5 1.5 3-3.75" />

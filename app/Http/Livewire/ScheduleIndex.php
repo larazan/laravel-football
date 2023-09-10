@@ -6,6 +6,7 @@ use App\Models\Schedule;
 use App\Models\Matchs;
 use App\Models\Competition;
 use App\Models\Club;
+use App\Models\Setting;
 use App\Models\Stadion;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
@@ -16,7 +17,8 @@ class ScheduleIndex extends Component
 {
     use WithPagination;
 
-    public $currentClubId = 9;
+    public $currentClubId;
+    public $current;
     public $showScheduleModal = false;
     public $schedule;
     public $season;
@@ -51,7 +53,7 @@ class ScheduleIndex extends Component
     public $search = '';
     public $sort = 'asc';
     public $perPage = 10;
-    public $seasoned;
+    public $perSeason;
 
     public $showConfirmModal = false;
     public $deleteId = '';
@@ -60,9 +62,23 @@ class ScheduleIndex extends Component
         'season' =>  'required',
     ];
 
+    public function boot()
+    {
+        $this->currentClubId = Schedule::pinnedClub();
+    }
+
     public function mount()
     {
         // $this->date = today()->format('Y-m-d');
+        $yearNow = Carbon::now()->format('Y');
+        $this->perSeason = $yearNow . '/' . $yearNow + 1;
+    }
+
+    public function hydrate()
+    {
+        $this->currentClubId = Schedule::pinnedClub();
+        $yearNow = Carbon::now()->format('Y');
+        $this->perSeason = $yearNow . '/' . $yearNow + 1;
     }
 
     public function showCreateModal()
@@ -160,7 +176,7 @@ class ScheduleIndex extends Component
 
     public function showEditModal($scheduleId)
     {
-        $this->reset(['scheduleName']);
+        $this->reset();
         $this->scheduleId = $scheduleId;
         $schedule = Schedule::find($scheduleId);
         $this->season = $schedule->season;
@@ -263,7 +279,7 @@ class ScheduleIndex extends Component
         $seasons = [];
         $this->date = today()->format('Y-m-d');
         $yearNow = Carbon::now()->format('Y');
-        for ($i=$yearNow; $i < $yearNow + 2 ; $i++) {
+        for ($i=$yearNow - 1; $i < $yearNow + 2 ; $i++) {
             $seas = $i . '/' . $i + 1;
             array_push($seasons, $seas);
         }
@@ -282,7 +298,7 @@ class ScheduleIndex extends Component
 
         $dates = Schedule::selectRaw('id, slug, season, competition_id, stadion_id, home_team, away_team, fixture_match, hour, minute, DATE_FORMAT(fixture_match, "%M") as match_date')
             ->orderBy('match_date', 'asc')
-            ->where('season', $seasonNow)
+            ->where('season', $this->perSeason)
             ->get()
             ->groupBy('match_date');
 

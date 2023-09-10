@@ -137,7 +137,7 @@
                                 <div class="gh gt">Role</div>
                             </th>
                             <th class="vi wy w_ vo lm">
-                                <div class="gh gt">Birth</div>
+                                <div class="gh gt">Club</div>
                             </th>
                             <th class="vi wy w_ vo lm">
                                 <div class="gh gt">Nation</div>
@@ -187,7 +187,15 @@
 
                             </td>
                             <td class="vi wy w_ vo lm">
-                                <div class="gt">{{ \Carbon\Carbon::parse($player->birth_date)->format('j F Y') }}</div>
+                                <div class="flex flex-row items-center space-x-2">
+                                    @if ($player->club->logo)
+                                    <div class="">
+                                        <img src="{{ asset('storage/'.$player->club->logo) }}" class="w-6 rounded" alt="foto" />
+                                    </div>
+                                    @endif
+                                    <span class="text-xs">{{ $player->club->name }}</span>
+                                </div>
+                                
                             </td>
                             <td class="vi wy w_ vo lm">
                                 <div class="gt">{{ $player->nationality }}</div>

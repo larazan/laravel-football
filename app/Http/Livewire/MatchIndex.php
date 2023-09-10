@@ -51,6 +51,7 @@ class MatchIndex extends Component
     public $search = '';
     public $sort = 'asc';
     public $perPage = 10;
+    public $perSeason;
 
     public $showConfirmModal = false;
     public $deleteId = '';
@@ -61,6 +62,14 @@ class MatchIndex extends Component
 
     public function mount()
     {
+        $yearNow = Carbon::now()->format('Y');
+        $this->perSeason = $yearNow . '/' . $yearNow + 1;
+    }
+
+    public function hydrate()
+    {
+        $yearNow = Carbon::now()->format('Y');
+        $this->perSeason = $yearNow . '/' . $yearNow + 1;
     }
 
     public function showCreateModal()
@@ -140,7 +149,7 @@ class MatchIndex extends Component
 
     public function showEditModal($matchId)
     {
-        $this->reset(['name']);
+        $this->reset();
         $this->matchId = $matchId;
         $match = Matchs::find($matchId);
         $this->season = $match->season;
@@ -220,17 +229,32 @@ class MatchIndex extends Component
         $seasons = [];
         $this->date = today()->format('Y-m-d');
         $yearNow = Carbon::now()->format('Y');
-        for ($i=$yearNow; $i < $yearNow + 2 ; $i++) {
+        for ($i=$yearNow - 1; $i < $yearNow + 2 ; $i++) {
             $seas = $i . '/' . $i + 1;
             array_push($seasons, $seas);
         }
 
         return view('livewire.match-index', [
-            'matchs' => Matchs::search('id', $this->search)->orderBy('id', $this->sort)->paginate($this->perPage),
+            'matchs' => Matchs::where('season', $this->perSeason)->orderBy('id', $this->sort)->paginate($this->perPage),
             'competitions' => Competition::OrderBy('name', 'asc')->get(),
             'stadions' => Stadion::OrderBy('name', 'asc')->get(),
             'clubs' => Club::OrderBy('name', 'asc')->get(),
             'seasonOption' => $seasons,
         ]);
+    }
+
+    public function routeToLineup($matchId)
+    {
+        return redirect('/admin/matchs/'.$matchId.'/match-lineup');
+    }
+
+    public function routeToStatistic($matchId)
+    {
+        return redirect('/admin/matchs/'.$matchId.'/match-statistic');
+    }
+
+    public function routeToReport($matchId)
+    {
+        return redirect('/admin/matchs/'.$matchId.'/match-report');
     }
 }

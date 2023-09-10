@@ -46,20 +46,21 @@ class LeagueIndex extends Component
 
     public $perPage = 20;
 
-    protected $rules = [
-        // 'name' => 'required|unique:leagues',
-    ];
+    // protected $rules = [
+    //     // 'name' => 'required|unique:leagues',
+    // ];
 
     public function mount()
     {
-    
+        $yearNow = Carbon::now()->format('Y');
+        $this->perSeason = $yearNow . '/' . $yearNow + 1;
     }
 
     public function updated($propertyName)
     {
-        $this->validateOnly($propertyName, [
+        // $this->validateOnly($propertyName, [
             
-        ]);
+        // ]);
     }
 
     public function showCreateModal()
@@ -156,7 +157,7 @@ class LeagueIndex extends Component
 
     public function updateTeamLeague()
     {
-        $this->validate();
+        // $this->validate();
         $league = TeamLeague::findOrFail($this->leagueId);
         $league->update([
             'season' => $this->season,
@@ -213,13 +214,13 @@ class LeagueIndex extends Component
         $seasons = [];
         $this->date = today()->format('Y-m-d');
         $yearNow = Carbon::now()->format('Y');
-        for ($i=$yearNow; $i < $yearNow + 2 ; $i++) {
+        for ($i=$yearNow - 1; $i < $yearNow + 2 ; $i++) {
             $seas = $i . '/' . $i + 1;
             array_push($seasons, $seas);
         }
 
         return view('livewire.league-index', [
-            'teams' => TeamLeague::OrderBy('id', 'asc')->paginate($this->perPage),
+            'teams' => TeamLeague::search('season', $this->perSeason)->orderBy('id', 'asc')->get(),
             'clubs' => Club::OrderBy('name', 'asc')->get(),
             'seasonOption' => $seasons,
         ]);

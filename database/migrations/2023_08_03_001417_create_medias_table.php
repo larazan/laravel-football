@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('status',10);
             $table->text('body');
             $table->string('video_url');
-            $table->string('original');
+            $table->string('original')->nullable();
             $table->string('large')->nullable();
             $table->string('medium')->nullable();
             $table->string('small')->nullable();

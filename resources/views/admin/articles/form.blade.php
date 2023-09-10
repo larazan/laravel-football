@@ -43,8 +43,8 @@
                                 </div>
 
                                 <div wire:ignore class="col-start-1 sm:col-span-3">
-                                    {!! Form::label('editor1', 'Body', ['class' => 'block text-sm font-medium text-gray-700' ]) !!}
-                                    {!! Form::textarea('editor1', null, ['class' => 'mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 ', 'rows' => 4, 'cols' => 10]) !!}
+                                    {!! Form::label('body', 'Body', ['class' => 'block text-sm font-medium text-gray-700' ]) !!}
+                                    {!! Form::textarea('body', null, ['class' => 'mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 ', 'rows' => 4, 'cols' => 10]) !!}
                                 </div>
 
                                 <div class="col-start-1 sm:col-span-3">
@@ -160,7 +160,7 @@
 
 <script src="https://cdn.ckeditor.com/4.21.0/standard/ckeditor.js"></script>
 <script type="text/javascript">
-    CKEDITOR.replace('editor1', {
+    CKEDITOR.replace('body', {
         filebrowserUploadUrl: "{{route('ckeditor.upload', ['_token' => csrf_token() ])}}",
         filebrowserUploadMethod: 'form'
     });

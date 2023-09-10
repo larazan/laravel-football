@@ -51,7 +51,7 @@ class ArticleController extends Controller
         // var_dump($params); exit();
         $params['category_id'] =  $params['categoryId'];
         $params['slug'] =  Str::slug($params['title']);
-        $params['body'] = $params['editor1'];
+        $params['body'] = $params['body'];
         $params['user_id'] = Auth::user()->id;
         $params['rand_id'] = Str::random(10);
         $params['author'] = $params['author'];
@@ -131,7 +131,7 @@ class ArticleController extends Controller
         $params = $request->except('_token');
         $params['category_id'] =  $params['categoryId'];
         $params['slug'] =  Str::slug($params['title']);
-        $params['body'] = $params['editor1'];
+        $params['body'] = $params['body'];
         $params['user_id'] = Auth::user()->id;
         $params['rand_id'] = Str::random(10);
         $params['author'] = $params['author'];

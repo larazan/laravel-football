@@ -22,6 +22,7 @@ class TeamLeagueIndex extends Component
     public $search = '';
     public $sort = 'asc';
     public $perPage = 10;
+    public $perSeason;
 
     public $showConfirmModal = false;
     public $deleteId = '';
@@ -30,15 +31,18 @@ class TeamLeagueIndex extends Component
         'season' => 'required',
     ];
 
-    // public function mount()
-    // {
-    //     $this->date = today()->format('Y-m-d');
-    //     $yearNow = Carbon::now()->format('Y');
-    //     for ($i=$yearNow; $i < $yearNow + 2 ; $i++) {
-    //         $seas = $i . '/' . $i + 1;
-    //         array_push($this->seasonOption, $seas);
-    //     }
-    // }
+    public function mount()
+    {
+        $this->date = today()->format('Y-m-d');
+        $yearNow = Carbon::now()->format('Y');
+        $this->perSeason = $yearNow . '/' . $yearNow + 1;
+    }
+
+    public function hydrate()
+    {
+        $yearNow = Carbon::now()->format('Y');
+        $this->perSeason = $yearNow . '/' . $yearNow + 1;
+    }
 
     public function seasoned()
     {
@@ -156,13 +160,13 @@ class TeamLeagueIndex extends Component
         $seasons = [];
         $this->date = today()->format('Y-m-d');
         $yearNow = Carbon::now()->format('Y');
-        for ($i=$yearNow; $i < $yearNow + 2 ; $i++) {
+        for ($i=$yearNow - 1; $i < $yearNow + 2 ; $i++) {
             $seas = $i . '/' . $i + 1;
             array_push($seasons, $seas);
         }
 
         return view('livewire.team-league-index', [
-            'teams' => TeamLeague::search('id', $this->search)->orderBy('id', $this->sort)->paginate($this->perPage),
+            'teams' => TeamLeague::where('season', $this->perSeason)->orderBy('id', $this->sort)->paginate($this->perPage),
             'clubs' => Club::OrderBy('name', 'asc')->get(),
             'seasonOption' => $seasons,
         ]);

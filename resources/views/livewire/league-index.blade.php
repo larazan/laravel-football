@@ -84,8 +84,8 @@
             <!-- Filter button -->
             <select wire:model="perSeason" id="filter" class="a">
                 <option value="" >Season</option>
-                @foreach($seasonOption as $season)
-                <option value="{{ $season }}">{{ $season }}</option>
+                @foreach($seasonOption as $seas)
+                <option value="{{ $seas }}">{{ $seas }}</option>
                 @endforeach
             </select>
             
@@ -194,7 +194,7 @@
         </div>
     </div>
 
-    {{ $teams->links() }}
+    
 
     <x-dialog-modal wire:model="showLeagueModal" class="">
 

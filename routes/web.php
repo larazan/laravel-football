@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\CkeditorFileUploadController;
 // Livewire
 use App\Http\Livewire\Admin\AdvertisingIndex;
 use App\Http\Livewire\Admin\AdvSegmentIndex;
@@ -129,3 +130,6 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 });
+
+// CKEDITOR IMAGE STORE
+Route::post('ckeditor', [CkeditorFileUploadController::class, 'store'])->name('ckeditor.upload');

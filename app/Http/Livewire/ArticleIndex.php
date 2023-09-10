@@ -259,4 +259,9 @@ class ArticleIndex extends Component
              
         return true;
     }
+
+    public function editArticle($articleId)
+    {
+        return redirect('/admin/articles/edit/'.$articleId);
+    }
 }

@@ -20,6 +20,7 @@ class MediaController extends Controller
      public function __construct()
      {
          $this->data['statuses'] = Media::statuses();
+         $this->data['sizeTol'] = Media::LARGE;
      }
  
      /**
@@ -45,7 +46,7 @@ class MediaController extends Controller
          $params = $request->except('_token');
          // var_dump($params); exit();
          $params['slug'] =  Str::slug($params['title']);
-         $params['body'] = $params['editor1'];
+         $params['body'] = $params['body'];
          $params['user_id'] = Auth::user()->id;
          $params['rand_id'] = Str::random(10);
          $params['url'] = $params['url'];
@@ -119,7 +120,7 @@ class MediaController extends Controller
  
          $params = $request->except('_token');
          $params['slug'] =  Str::slug($params['title']);
-         $params['body'] = $params['editor1'];
+         $params['body'] = $params['body'];
          $params['user_id'] = Auth::user()->id;
          $params['rand_id'] = Str::random(10);
          $params['url'] = $params['url'];

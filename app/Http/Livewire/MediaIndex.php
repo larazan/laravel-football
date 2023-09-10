@@ -25,6 +25,7 @@ class MediaIndex extends Component
         'no' => false,
     ];
     public $body;
+    // public $content;
     public $videoUrl;
     public $mediaId;
     public $file;
@@ -47,7 +48,7 @@ class MediaIndex extends Component
         // 'file' => 'required|image|mimes:jpg,jpeg,png,svg,gif|max:2048',
     ];
 
-    public function mount($matchId)
+    public function mount()
     {
         $this->publishedAt = today()->format('Y-m-d');
     }
@@ -78,6 +79,7 @@ class MediaIndex extends Component
 
     public function createMedia()
     {
+        dd($this->body);
         $this->validate();
   
         $new = Str::slug($this->title) . '_' . time();
@@ -89,7 +91,7 @@ class MediaIndex extends Component
         $media->rand_id = Str::random(10);
         $media->body = $this->body;
         $media->published_at = $this->publishedAt;
-        $media->published = $this->published;
+        $media->published = false;
         $media->video_url = $this->videoUrl;
         $media->status = $this->mediaStatus;
       
@@ -113,7 +115,8 @@ class MediaIndex extends Component
 
     public function showEditModal($mediaId)
     {
-        $this->reset(['name']);
+        $this->reset();
+
         $this->mediaId = $mediaId;
         $media = Media::find($mediaId);
         $this->title = $media->title;
@@ -187,6 +190,7 @@ class MediaIndex extends Component
     public function closeMediaModal()
     {
         $this->showMediaModal = false;
+        $this->reset();
     }
 
     public function resetFilters()
@@ -273,5 +277,10 @@ class MediaIndex extends Component
         // }
              
         return true;
+    }
+
+    public function editMedia($mediaId)
+    {
+        return redirect('/admin/medias/edit/'.$mediaId);
     }
 }

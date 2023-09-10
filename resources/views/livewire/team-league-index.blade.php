@@ -90,6 +90,13 @@
             </div> -->
 
             <!-- Filter button -->
+            <select wire:model="perSeason" id="filter" class="a">
+                <option value="" >Season</option>
+                @foreach($seasonOption as $seas)
+                <option value="{{ $seas }}">{{ $seas }}</option>
+                @endforeach
+            </select>
+            
             <select wire:model="sort" id="sort" class="a">
                 <option value="asc">Asc</option>
                 <option value="desc">Desc</option>

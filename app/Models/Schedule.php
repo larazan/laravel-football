@@ -11,6 +11,14 @@ class Schedule extends Model
 
     protected $guarded = [];
 
+    // public const PINNED = self::pinnedClub();
+
+    public static function pinnedClub()
+    {
+        $setting = Setting::findOrFail(1);
+        return $setting->pinned_club;
+    }
+
     public function competitions()
     {
         return $this->belongsToMany(Competition::class);

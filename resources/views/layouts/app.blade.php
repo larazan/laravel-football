@@ -16,6 +16,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     <!-- Styles -->
+    @trixassets
     @livewireStyles
 
     <link href="{{ URL::asset('admin/css/app.css') }}" rel="stylesheet" />

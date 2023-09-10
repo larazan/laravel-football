@@ -25,6 +25,7 @@ class SettingSeeder extends Seeder
                 'address' => 'lorem ipsum dolor sit amet',
                 'phone' => '08885885544',
                 'email' => 'admin@mail.com',
+                'pinned_club' => 9,
                 'twitter' => '@fcbayern',
                 'facebook' => '@fcbayern',
                 'instagram' => '@fcbayern',

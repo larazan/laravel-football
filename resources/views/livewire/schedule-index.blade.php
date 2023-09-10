@@ -104,7 +104,7 @@
             </div>
 
             <!-- Filter button -->
-            <select wire:model="seasoned" class="a">
+            <select wire:model="perSeason" class="a">
                 @foreach ($seasonOption as $sea)
                 <option value="{{ $sea }}">{{ $sea }}</option>
                 @endforeach

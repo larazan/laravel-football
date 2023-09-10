@@ -25,7 +25,8 @@ class DatabaseSeeder extends Seeder
             // StaffSeeder::class,
             // CompetitionSeeder::class,
             // PartnerSeeder::class,
-            CategoryArticleSeeder::class,
+            // CategoryArticleSeeder::class,
+            SettingSeeder::class,
         ]);
         // \App\Models\User::factory(10)->create();
 

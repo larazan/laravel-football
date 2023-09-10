@@ -1,5 +1,5 @@
 @php
-	$formTitle = !empty($article) ? 'Update' : 'New'    
+	$formTitle = !empty($media) ? 'Update' : 'New'    
 @endphp
 
 <x-app-layout>
@@ -8,34 +8,24 @@
 
         <div class="container max-w-screen-lg mx-auto cl border-slate-200">
             <div>
-                <h2 class="gu tef text-slate-800 font-bold">{{ $formTitle }} News</h2>
+                <h2 class="gu tef text-slate-800 font-bold">{{ $formTitle }} Media</h2>
                 <!-- <p class="text-gray-500 mb-6">Form is mobile responsive. Give it a try.</p> -->
 
                 <div class="bg-white rounded shadow-lg p-4 px-4 md:p-8 mb-6">
                     <div class="flex w-full text-sm grid-cols-1 space-x-3">
                         <div class="w-1/4 text-gray-600">
-                            <p class="font-medium text-lg">News Details</p>
+                            <p class="font-medium text-lg">Media Details</p>
                             <p>Please fill out all the fields.</p>
                         </div>
 
                         <div class="w-3/4 lg:col-span-2">
-                            @if (!empty($article))
-                                {!! Form::model($article, ['url' => ['admin/articles/edit', $article->id], 'method' => 'PUT', 'enctype' => 'multipart/form-data']) !!}
+                            @if (!empty($media))
+                                {!! Form::model($media, ['url' => ['admin/medias/edit', $media->id], 'method' => 'PUT', 'enctype' => 'multipart/form-data']) !!}
                                 {!! Form::hidden('id') !!}
                             @else
-                                {!! Form::open(['url' => 'admin/articles/store', 'enctype' => 'multipart/form-data']) !!}
+                                {!! Form::open(['url' => 'admin/medias/store', 'enctype' => 'multipart/form-data']) !!}
                             @endif
                             <div class="flex flex-col space-y-4">
-                           
-                                <div class="col-span-6 sm:col-span-3">
-                                    {!! Form::label('categoryId', 'Category', ['class' => 'block text-sm font-medium text-gray-700' ]) !!}
-                                    <select name="categoryId" class="h-full mt-1 rounded-r border-t border-r border-b block appearance-none w-full bg-white border-gray-300 text-gray-700 py-2 px-4 pr-8 leading-tight focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none">
-                                        <option value="">Select Category</option>
-                                        @foreach($categories as $cat)
-                                        <option value="{{ $cat->id }}">{{ $cat->name }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
 
                                 <div class="col-start-1 sm:col-span-3">
                                     {!! Form::label('title', 'Title', ['class' => 'block text-sm font-medium text-gray-700' ]) !!}
@@ -43,8 +33,8 @@
                                 </div>
 
                                 <div wire:ignore class="col-start-1 sm:col-span-3">
-                                    {!! Form::label('editor1', 'Body', ['class' => 'block text-sm font-medium text-gray-700' ]) !!}
-                                    {!! Form::textarea('editor1', null, ['class' => 'mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 ', 'rows' => 4, 'cols' => 10]) !!}
+                                    {!! Form::label('body', 'Body', ['class' => 'block text-sm font-medium text-gray-700' ]) !!}
+                                    {!! Form::textarea('body', null, ['class' => 'mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 ', 'rows' => 4, 'cols' => 10]) !!}
                                 </div>
 
                                 <div class="col-start-1 sm:col-span-3">
@@ -61,7 +51,7 @@
                                     <label for="title" class="block text-sm font-medium text-gray-700">
                                         Tags
                                     </label>
-                                    <input name="articleTags" type="text" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm"  style="appearance: none;
+                                    <input name="mediaTags" type="text" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm"  style="appearance: none;
                                                     background-color: #fff;
                                                     border-color: #000;
                                                     border-width: 1px;
@@ -71,35 +61,27 @@
                                                     padding-bottom: 0.5rem;
                                                     padding-left: 0.75rem;
                                                     font-size: 1rem;
-                                                    line-height: 1.5rem;" autofocus wire:model="articleTags" />
+                                                    line-height: 1.5rem;" autofocus wire:model="mediaTags" />
                                 </div>
 
-                                <div class="flex flex-row justify-between space-x-2">
-                                    <div class="col-start-1 sm:col-span-3">
-                                        {!! Form::label('url', 'Url', ['class' => 'block text-sm font-medium text-gray-700' ]) !!}
-                                        {!! Form::text('url', null, ['class' => 'mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md']) !!}
-                                    </div>
-                                    <div class="col-start-1 sm:col-span-3">
-                                        {!! Form::label('embed', 'Embed Url', ['class' => 'block text-sm font-medium text-gray-700' ]) !!}
-                                        {!! Form::text('embedUrl', null, ['class' => 'mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md']) !!}
-                                    </div>
-                                </div>
                                 <div class="flex flex-row justify-between space-x-2">
                                     <div class="col-start-1 sm:col-span-3">
                                         {!! Form::label('published_at', 'Published At', ['class' => 'block text-sm font-medium text-gray-700' ]) !!}
                                         {!! Form::text('published_at', null, ['class' => 'mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md', 'id' => 'published_at']) !!}
                                     </div>
-                                    <div class="col-start-1 sm:col-span-3">
-                                        {!! Form::label('author', 'Author', ['class' => 'block text-sm font-medium text-gray-700' ]) !!}
-                                        {!! Form::text('author', null, ['class' => 'mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md']) !!}
-                                    </div>
+                                   
                                 </div>
 
+                                <div class="col-start-1 sm:col-span-3">
+                                    {!! Form::label('embed', 'Embed Url', ['class' => 'block text-sm font-medium text-gray-700' ]) !!}
+                                    {!! Form::text('embedUrl', null, ['class' => 'mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md']) !!}
+                                </div>
+                               
                                 <div class="col-span-6 sm:col-span-3">
-                                    {!! Form::label('featured_image', 'Image', ['class' => 'block text-sm font-medium text-gray-700' ]) !!}
-                                    @if (!empty($article))
+                                    {!! Form::label('featured_image', 'Image ('. $sizeTol. ')', ['class' => 'block text-sm font-medium text-gray-700' ]) !!}
+                                    @if (!empty($media))
                                     <div style="width:fit-content; border: 1px solid grey; padding: 5px; margin: 10px 10px 10px 0;">
-                                        <img src="{{ asset('storage/articles/'. $article->small) }}" />
+                                        <img src="{{ asset('storage/medias/'. $media->small) }}" />
                                     </div>
                                     @endif
                                     {!! Form::file('featured_image', ['class' => 'mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md', 'placeholder' => 'post image', 'id' => 'image', 'onchange' => 'previewImage();']) !!}
@@ -111,8 +93,8 @@
                                 </div>
                                 <div class="col-span-6 sm:col-span-3">
                                     {!! Form::label('status', 'Status', ['class' => 'block text-sm font-medium text-gray-700' ]) !!}
-                                    {!! Form::select('articleStatus', $statuses , null, ['class' => 'h-full rounded-r border-t border-r border-b block appearance-none w-full bg-white border-gray-300 text-gray-700 py-2 px-4 pr-8 leading-tight focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none', 'placeholder' => '-- Set Status --']) !!}
-                                    <!-- <select name="articleStatus" class="h-full rounded-r border-t border-r border-b block appearance-none w-full bg-white border-gray-300 text-gray-700 py-2 px-4 pr-8 leading-tight focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none">
+                                    {!! Form::select('mediaStatus', $statuses , null, ['class' => 'h-full rounded-r border-t border-r border-b block appearance-none w-full bg-white border-gray-300 text-gray-700 py-2 px-4 pr-8 leading-tight focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none', 'placeholder' => '-- Set Status --']) !!}
+                                    <!-- <select name="mediaStatus" class="h-full rounded-r border-t border-r border-b block appearance-none w-full bg-white border-gray-300 text-gray-700 py-2 px-4 pr-8 leading-tight focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none">
                                         <option value="">Select Option</option>
                                         @foreach($statuses as $status)
                                         <option value="{{ $status }}">{{ $status }}</option>
@@ -130,7 +112,7 @@
 
                                 <div class="md:col-span-5 text-right">
                                     <div class="inline-flex items-end space-x-2">
-                                        <a href="{{ url('admin/articles') }}" class="btn border-slate-200 hover--border-slate-300 text-indigo-500">Back</a>
+                                        <a href="{{ url('admin/medias') }}" class="btn border-slate-200 hover--border-slate-300 text-indigo-500">Back</a>
                                         <button type="submit" class="btn ho xi ye">Submit</button>
                                     </div>
                                 </div>
@@ -152,7 +134,7 @@
 <script src="https://unpkg.com/@yaireo/tagify/dist/tagify.polyfills.min.js"></script>
 <script>
     // The DOM element you wish to replace with Tagify
-    var input = document.querySelector('input[name=articleTags]');
+    var input = document.querySelector('input[name=mediaTags]');
     // initialize Tagify on the above input node reference
     new Tagify(input);
 </script>
@@ -160,7 +142,7 @@
 
 <script src="https://cdn.ckeditor.com/4.21.0/standard/ckeditor.js"></script>
 <script type="text/javascript">
-    CKEDITOR.replace('editor1', {
+    CKEDITOR.replace('body', {
         filebrowserUploadUrl: "{{route('ckeditor.upload', ['_token' => csrf_token() ])}}",
         filebrowserUploadMethod: 'form'
     });
