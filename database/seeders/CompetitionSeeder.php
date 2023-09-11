@@ -21,6 +21,7 @@ class CompetitionSeeder extends Seeder
                 'name' => 'Bundesliga',
                 'slug' => 'bundesliga',
                 'info' => 'lorem ipsum dolor sit amet',
+                'thropy' => 'uploads/trophies/bundesliga_1693413132.dfb_pokale.png',
                 'status' => 'active',
                 'created_at' => Carbon::now(),
             ],
@@ -28,16 +29,11 @@ class CompetitionSeeder extends Seeder
                 'name' => 'Champion League',
                 'slug' => 'champion-league',
                 'info' => 'lorem ipsum dolor sit amet',
+                'thropy' => 'uploads/trophies/champion-league_1693670776.cl_pokale.png',
                 'status' => 'active',
                 'created_at' => Carbon::now(),
             ],
-            [
-                'name' => 'Dfb Pokal',
-                'slug' => 'dfb-pokal',
-                'info' => 'lorem ipsum dolor sit amet',
-                'status' => 'active',
-                'created_at' => Carbon::now(),
-            ],
+           
         ];
 
         Competition::insert($data);

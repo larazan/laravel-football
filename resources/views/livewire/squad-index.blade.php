@@ -8,7 +8,7 @@
 
         <!-- Left: Title -->
         <div class="ri _y">
-            <h1 class="gu teu text-slate-800 font-bold">Player ✨</h1>
+            <h1 class="gu teu text-slate-800 font-bold">Squad ✨</h1>
         </div>
 
         <!-- Right: Actions -->
@@ -27,12 +27,7 @@
             </form>
 
             <!-- Create player button -->
-            <button class="btn ho xi ye" wire:click="showCreateModal">
-                <svg class="oo sl du bf ub" viewBox="0 0 16 16">
-                    <path d="M15 7H9V1c0-.6-.4-1-1-1S7 .4 7 1v6H1c-.6 0-1 .4-1 1s.4 1 1 1h6v6c0 .6.4 1 1 1s1-.4 1-1V9h6c.6 0 1-.4 1-1s-.4-1-1-1z"></path>
-                </svg>
-                <span class="hidden trm nq">Create Player</span>
-            </button>
+           
         </div>
 
     </div>
@@ -88,8 +83,6 @@
                     </div>
                 </div>
             </div>
-
-
 
             <!-- Filter button -->
             <select wire:model="sort" id="sort" class="a">
@@ -249,242 +242,6 @@
 
     {{ $players->links() }}
 
-    <x-dialog-modal wire:model="showPlayerModal" class="">
-
-        @if ($playerId)
-        <x-slot name="title" class="border-b">Update Player</x-slot>
-        @else
-        <x-slot name="title" class="border-b bg-slate-200">
-            <span class="font-semibold">Create Player</span>
-        </x-slot>
-        @endif
-
-        <x-slot name="content">
-            <div class="border-t">
-                <div class="vc vu ">
-                    <div class="fw">
-
-                        <form>
-                            <div class="my-3 md:mt-0 md:col-span-2" x-data="{tab: 0}">
-                                <div class="mb-5 flex border border-black overflow-hidden">
-                                    <button class="px-4 py-2 w-full font-bold" :class="{ 'active bg-gray-800 text-white': tab === 0 }" x-on:click.prevent="tab = 0">Detail</button>
-                                    <button class="px-4 py-2 w-full font-bold" :class="{ 'active bg-gray-800 text-white': tab === 1 }" x-on:click.prevent="tab = 1">Bio</button>
-                                    <button class="px-4 py-2 w-full font-bold" :class="{ 'active bg-gray-800 text-white': tab === 2 }" x-on:click.prevent="tab = 2">Image</button>
-                                </div>
-                                <div>
-                                    <div class="mt-6 flex flex-col space-y-3" x-show="tab === 0">
-                                        <div class="col-start-1 sm:col-span-3">
-                                            <label for="title" class="block text-sm font-medium text-gray-700">
-                                                Player Name
-                                            </label>
-                                            <input wire:model="name" type="text" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
-                                        </div>
-                                        <div class="col-span-6 sm:col-span-3">
-                                            <label for="club" class="block text-sm font-medium text-gray-700">Club</label>
-                                            <select wire:model="club" class=" rounded-r border-t border-r border-b block appearance-none w-full bg-white border-gray-300 text-gray-700 py-2 px-4 pr-8 leading-tight focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none">
-                                                <option value="">Select Option</option>
-                                                @foreach($clubs as $club)
-                                                <option value="{{ $club->id }}">{{ $club->name }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                        <div class="flex flex-row justify-between">
-                                            
-                                            <div class="col-start-1 sm:col-span-3">
-                                                <label for="position" class="block text-sm font-medium text-gray-700">Position</label>
-                                                <select wire:model="position" class=" rounded-r border-t border-r border-b block appearance-none w-full bg-white border-gray-300 text-gray-700 py-2 px-4 pr-8 leading-tight focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none">
-                                                    <option value="">Select Option</option>
-                                                    @foreach($positionOption as $pos)
-                                                    <option value="{{ $pos->id }}">{{ $pos->name }}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                        </div>
-
-                                        <div class="flex flex-row justify-between">
-                                            <div class="col-start-1 sm:col-span-3">
-                                                <label for="title" class="block text-sm font-medium text-gray-700">
-                                                    Nationality
-                                                </label>
-                                                <div x-init="select2Alpine">
-                                                    <select wire:model="nationality" x-ref="select" class="form-control" id="select2-dropdown">
-                                                        <option value="">Select Option</option>
-                                                        @foreach($countries as $country)
-                                                        <option value="{{ $country }}">{{ $country }}</option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-start-1 sm:col-span-3">
-                                                <label for="shirtNumber" class="block text-sm font-medium text-gray-700">
-                                                    Shirt Number
-                                                </label>
-                                                <input wire:model="shirtNumber" type="text" id="numbers-only" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
-                                            </div>
-                                        </div>
-
-                                        <div class="flex flex-row justify-between">
-                                            <div class="col-start-1 sm:col-span-3">
-                                                <label for="contractFrom" class="block text-sm font-medium text-gray-700">
-                                                    Contract From
-                                                </label>
-                                                <x-flatpicker wire:model="contractFrom"></x-flatpicker>
-                                            </div>
-                                            <div class="col-start-1 sm:col-span-3">
-                                                <label for="contractUntil" class="block text-sm font-medium text-gray-700">
-                                                    Contract Until
-                                                </label>
-                                                <x-flatpicker wire:model="contractUntil"></x-flatpicker>
-                                            </div>
-                                        </div>
-
-
-                                        <div class="col-span-6 sm:col-span-3">
-                                            <label for="playerStatus" class="block text-sm font-medium text-gray-700">Status</label>
-                                            <select wire:model="playerStatus" class=" rounded-r border-t border-r border-b block appearance-none w-full bg-white border-gray-300 text-gray-700 py-2 px-4 pr-8 leading-tight focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none">
-                                                <option value="">Select Option</option>
-                                                @foreach($statuses as $status)
-                                                <option value="{{ $status }}">{{ $status }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="mt-6 flex flex-col space-y-3" x-show="tab === 1">
-                                        <div class="flex flex-row justify-between">
-                                            <div class="col-start-1 sm:col-span-3">
-                                                <label for="title" class="block text-sm font-medium text-gray-700">
-                                                    Birth Date
-                                                </label>
-                                                {{--
-                                                        <input wire:model="birthDate" type="text" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
-                                                    --}}
-                                                <x-flatpicker wire:model="birthDate"></x-flatpicker>
-                                            </div>
-                                            <div class="col-start-1 sm:col-span-3">
-                                                <label for="title" class="block text-sm font-medium text-gray-700">
-                                                    Birth Location
-                                                </label>
-                                                <input wire:model="birthLocation" type="text" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
-                                            </div>
-                                        </div>
-                                        <div wire:ignore class="col-start-1 sm:col-span-3">
-                                            <label for="bio" class="block text-sm font-medium text-gray-700">
-                                                Bio
-                                            </label>
-                                            <textarea wire:model="bio" id="bio" cols="50" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">{{ $bio }}</textarea>
-                                        </div>
-                                        <div class="flex flex-row justify-between">
-                                            <div class="col-start-1 sm:col-span-3">
-                                                <label for="height" class="block text-sm font-medium text-gray-700">
-                                                    Height
-                                                </label>
-                                                <input wire:model="height" type="text" onkeypress="return onlyNumberKey(event)"  autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
-                                            </div>
-                                            <div class="col-start-1 sm:col-span-3">
-                                                <label for="weight" class="block text-sm font-medium text-gray-700">
-                                                    Weight
-                                                </label>
-                                                <input wire:model="weight" type="text" onkeypress="return onlyNumberKey(event)"  autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
-                                            </div>
-                                        </div>
-                                        <div class="flex flex-row justify-between">
-                                            <div class="col-start-1 sm:col-span-3">
-                                                <label for="title" class="block text-sm font-medium text-gray-700">
-                                                    Facebook
-                                                </label>
-                                                <input wire:model="facebook" type="text" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
-                                            </div>
-                                            <div class="col-start-1 sm:col-span-3">
-                                                <label for="title" class="block text-sm font-medium text-gray-700">
-                                                    Instagram
-                                                </label>
-                                                <input wire:model="instagram" type="text" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
-                                            </div>
-                                            <div class="col-start-1 sm:col-span-3">
-                                                <label for="title" class="block text-sm font-medium text-gray-700">
-                                                    Twitter
-                                                </label>
-                                                <input wire:model="twitter" type="text" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="mt-6 flex flex-col space-y-3" x-show="tab === 2">
-                                        <div class="col-span-6 sm:col-span-3">
-                                            <label for="photo" class="block text-sm font-medium text-gray-700">
-                                                Player photo ({{ $sizeTol }})</label>
-                                            <input wire:model="file" type="file" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
-                                            @if ($oldImage)
-                                            Photo Preview:
-                                            <img src="{{ asset('storage/'.$oldImage) }}">
-                                            @endif
-                                            @if ($file)
-                                            Photo Preview:
-                                            <img src="{{ $file->temporaryUrl() }}">
-                                            @endif
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </x-slot>
-        <x-slot name="footer">
-            <div class="border-slate-200">
-                <div class="flex flex-wrap justify-end fc">
-                    <x-button wire:click="closePlayerModal" class="border-slate-200 hover:text-white hover--border-slate-300 g_">Cancel</x-button>
-                    @if ($playerId)
-                    <x-button wire:click="updatePlayer" class=" ho xi ye">Update</x-button>
-                    @else
-                    <x-button wire:click="createPlayer" class=" ho xi ye2">Create</x-button>
-                    @endif
-                </div>
-            </div>
-
-        </x-slot>
-    </x-dialog-modal>
-
-    <!-- modal delete confirmation -->
-    <x-dialog-modal wire:model="showConfirmModal" class="">
-
-        <x-slot name="title" class="border-b bg-slate-200">
-            <span class="font-semibold">Delete Confirm</span>
-        </x-slot>
-
-        <x-slot name="content">
-            <div class="border-t">
-                <div class="vc vu ">
-                    <div class="fw">
-                        <div class="">
-                            <div class="">
-                                <div class="flex flex-col space-y-3">
-                                    <div class="flex max-w-auto text-center justify-center items-center">
-                                        <div class="text-lg font-semibold ">
-                                            <p>Are you sure want to delete?</p>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </x-slot>
-        <x-slot name="footer">
-            <div class="border-slate-200">
-                <div class="flex flex-wrap justify-end fc">
-                    <x-button wire:click="closeConfirmModal" class="border-slate-200 hover:text-white  g_">Cancel</x-button>
-                    <x-button wire:click.prevent="delete()" class=" ho xi ye2">Delete</x-button>
-                </div>
-            </div>
-
-        </x-slot>
-    </x-dialog-modal>
-
     <!-- modal detail -->
     <x-dialog-modal wire:model="showPlayerDetailModal" class="">
         <x-slot name="title" class="border-b bg-slate-200">
@@ -513,7 +270,7 @@
                                     <div class="flex items-center vr">
                                         <div class="rp">
                                             <div class="flex items-center">
-                                                <div class="text-xl font-bold text-slate-800 mr-2">{{ $role }}</div>
+                                                <div class="text-xl font-bold text-slate-800 mr-2">{{ $position }}</div>
                                             </div>
                                             <div class="text-sm text-slate-500">Role</div>
                                         </div>

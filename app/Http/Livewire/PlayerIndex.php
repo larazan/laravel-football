@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use Livewire\WithFileUploads;
 use App\Models\Player;
+use App\Models\Position;
 use App\Models\Club;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
@@ -21,14 +22,6 @@ class PlayerIndex extends Component
     public $club;
     public $clubId;
     public $name;
-    public $role = 'Midfielder';
-    public $roleOption = [
-        'Goalkeeper',
-        'Defender',
-        'Midfielder',
-        'Attacker',
-    ];
-
     public $birthDate;
     public $birthLocation;
     public $nationality;
@@ -48,25 +41,6 @@ class PlayerIndex extends Component
     ];
     public $shirtNumber;
     public $position;
-    public $positionOption = [
-        'Goalkeeper',
-        'Right Back',
-        'Center Back',
-        'Left Back',
-        'Right Wingback',
-        'Left Wingback',
-        'Defensive Midfielder',
-        'Right Winger',
-        'Midfielder Center',
-        'Deep Lying Playmaker',
-        'Left Winger',
-        'Inferted Winger',
-        'Inside Forward',
-        'Attacking Midfielder',
-        'Advance Playmaker',
-        'Second Stricker',
-        'Center Forward',
-    ];
 
     public $countries = [
         'Afghanistan',
@@ -332,7 +306,6 @@ class PlayerIndex extends Component
         $player->club_id = $this->clubId;
         $player->name = $this->name;
         $player->slug = Str::slug($this->name);
-        $player->role = $this->role;
         $player->birth_date = $this->birthDate;
         $player->birth_location = $this->birthLocation;
         $player->nationality = $this->nationality;
@@ -343,7 +316,7 @@ class PlayerIndex extends Component
         $player->weight = $this->weight;
         $player->prefered_foot = $this->preferedFoot;
         $player->shirt_number = $this->shirtNumber;
-        $player->position = $this->position;
+        $player->position_id = $this->position;
         $player->facebook = $this->facebook;
         $player->instagram = $this->instagram;
         $player->twitter = $this->twitter;
@@ -387,7 +360,7 @@ class PlayerIndex extends Component
         $player = Player::find($playerId);
         $this->clubId = $player->club_id;
         $this->name = $player->name;
-        $this->role = $player->role;
+        $this->position = $player->position_id;
         $this->birthDate = $player->birth_date;
         $this->birthLocation = $player->birth_location;
         $this->nationality = $player->nationality;
@@ -414,7 +387,7 @@ class PlayerIndex extends Component
         $player = Player::find($playerId);
         $this->clubId = $player->club_id;
         $this->name = $player->name;
-        $this->role = $player->role;
+        $this->position = $player->position_id;
         $this->birthDate = $player->birth_date;
         $this->birthLocation = $player->birth_location;
         $this->nationality = $player->nationality;
@@ -468,7 +441,6 @@ class PlayerIndex extends Component
                 $player->club_id = $this->clubId;
                 $player->name = $this->name;
                 $player->slug = Str::slug($this->name);
-                $player->role = $this->role;
                 $player->birth_date = $this->birthDate;
                 $player->birth_location = $this->birthLocation;
                 $player->nationality = $this->nationality;
@@ -479,7 +451,7 @@ class PlayerIndex extends Component
                 $player->weight = $this->weight;
                 $player->prefered_foot = $this->preferedFoot;
                 $player->shirt_number = $this->shirtNumber;
-                $player->position = $this->position;
+                $player->position_id = $this->position;
                 $player->facebook = $this->facebook;
                 $player->instagram = $this->instagram;
                 $player->twitter = $this->twitter;
@@ -525,8 +497,6 @@ class PlayerIndex extends Component
         $this->showPlayerModal = false;
     }
 
-    
-
     public function resetFilters()
     {
         $this->reset();
@@ -537,6 +507,7 @@ class PlayerIndex extends Component
         return view('livewire.player-index', [
             'players' => Player::search('name', $this->search)->orderBy('name', $this->sort)->paginate($this->perPage),
             'clubs' => Club::OrderBy('name', 'asc')->get(),
+            'positionOption' => Position::OrderBy('name', 'asc')->get(),
         ]);
     }
 

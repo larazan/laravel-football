@@ -38,4 +38,9 @@ class Player extends Model
     {
         return $this->belongsToMany(Lineup::class)->latest();
     }
+
+    public function position()
+    {
+        return $this->belongsTo(Position::class);
+    }
 }
