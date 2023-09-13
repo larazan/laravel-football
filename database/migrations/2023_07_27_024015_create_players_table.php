@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('slug');
             $table->date('birth_date')->nullable();
             $table->string('birth_location')->nullable();
-            $table->string('nationality')->nullable();
+            $table->unsignedBigInteger('country_id')->nullable();
             $table->text('bio')->nullable();
             $table->tinyInteger('height')->nullable();
             $table->tinyInteger('weight')->nullable();
@@ -42,6 +42,7 @@ return new class extends Migration
             $table->timestamps();
 
             $table->foreign('club_id')->references('id')->on('clubs')->onDelete('cascade');
+            $table->foreign('country_id')->references('id')->on('countries')->onDelete('cascade');
         });
     }
 

@@ -198,7 +198,12 @@
                                 
                             </td>
                             <td class="vi wy w_ vo lm">
-                                <div class="gt">{{ $player->nationality }}</div>
+                            <div class="flex flex-row items-center space-x-2">
+                                @if ($player->country_id)
+                                    <img src="{{ asset('vendor/blade-flags/country-'.$player->country->code.'.svg') }}" class="w-6 rounded" alt="foto" />
+                                <div class="gt">{{ $player->country->code }}</div>
+                                @endif
+                                </div>
                             </td>
 
                             <td class="vi wy w_ vo lm">
@@ -310,7 +315,7 @@
                                                     <select wire:model="nationality" x-ref="select" class="form-control" id="select2-dropdown">
                                                         <option value="">Select Option</option>
                                                         @foreach($countries as $country)
-                                                        <option value="{{ $country }}">{{ $country }}</option>
+                                                        <option value="{{ $country->id }}">{{ $country->name }}</option>
                                                         @endforeach
                                                     </select>
                                                 </div>
@@ -513,7 +518,7 @@
                                     <div class="flex items-center vr">
                                         <div class="rp">
                                             <div class="flex items-center">
-                                                <div class="text-xl font-bold text-slate-800 mr-2">{{ $role }}</div>
+                                                <div class="text-xl font-bold text-slate-800 mr-2">{{ $position }}</div>
                                             </div>
                                             <div class="text-sm text-slate-500">Role</div>
                                         </div>

@@ -113,7 +113,7 @@ class PermissionIndex extends Component
     public function render()
     {
         return view('livewire.permission-index', [
-            'permissions' => Permission::all(),
+            'permissions' => Permission::OrderBy('id', $this->sort)->paginate($this->perPage),
         ]);
     }
 }

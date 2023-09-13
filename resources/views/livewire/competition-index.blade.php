@@ -184,7 +184,7 @@
                             </td>
 
                             <td class="vi wy w_ vo lm">
-                                <div>{{ $competition->created_at->format('d-Y') }}</div>
+                                <div>{{ $competition->created_at->format('d-m-Y') }}</div>
                             </td>
 
                             <td class="vi wy w_ vo lm of">

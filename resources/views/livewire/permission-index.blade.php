@@ -192,7 +192,7 @@
         </div>
     </div>
 
-    {{ $categories->links() }}
+    {{ $permissions->links() }}
 
     <x-dialog-modal wire:model="showPermissionModal" class="">
 

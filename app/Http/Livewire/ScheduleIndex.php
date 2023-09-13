@@ -307,7 +307,7 @@ class ScheduleIndex extends Component
             // 'schedules' => Schedule::search('id', $this->search)->orderBy('id', $this->sort)->paginate($this->perPage),
             'competitions' => Competition::OrderBy('name', 'asc')->get(),
             'stadions' => Stadion::OrderBy('name', 'asc')->get(),
-            'clubs' => Club::OrderBy('name', 'asc')->get(),
+            'clubs' => Club::OrderBy('id', 'asc')->get(),
             'seasonOption' => $seasons,
             'hourOption' => $hours,
             'minuteOption' => $minutes,

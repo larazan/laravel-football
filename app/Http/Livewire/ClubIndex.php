@@ -38,7 +38,7 @@ class ClubIndex extends Component
     public $deleteId = '';
 
     protected $rules = [
-        'name' => 'required',
+        'name' => 'required|unique:clubs,name',
         // 'file' => 'required|image|mimes:jpg,jpeg,png,svg,gif|max:2048',
     ];
 

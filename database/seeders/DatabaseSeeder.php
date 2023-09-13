@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             AdminSeeder::class,
             StadionSeeder::class,
+            CountrySeeder::class,
             ClubSeeder::class,
             PositionSeeder::class,
             PlayerSeeder::class,
@@ -29,7 +30,9 @@ class DatabaseSeeder extends Seeder
             PartnerSeeder::class,
             CategoryArticleSeeder::class,
             SettingSeeder::class,
-            
+            // AwardSeeder::class,
+            SegmentSeeder::class,
+    
         ]);
         // \App\Models\User::factory(10)->create();
 

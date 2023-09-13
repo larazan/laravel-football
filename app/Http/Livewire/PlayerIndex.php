@@ -6,6 +6,7 @@ use Livewire\WithFileUploads;
 use App\Models\Player;
 use App\Models\Position;
 use App\Models\Club;
+use App\Models\Country;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\ImageManagerStatic as Image;
@@ -41,207 +42,6 @@ class PlayerIndex extends Component
     ];
     public $shirtNumber;
     public $position;
-
-    public $countries = [
-        'Afghanistan',
-        'Albania',
-        'Algeria',
-        'Andorra',
-        'Angola',
-        'Antigua & Deps',
-        'Argentina',
-        'Armenia',
-        'Australia',
-        'Austria',
-        'Azerbaijan',
-        'Bahamas',
-        'Bahrain',
-        'Bangladesh',
-        'Barbados',
-        'Belarus',
-        'Belgium',
-        'Belize',
-        'Benin',
-        'Bermuda',
-        'Bhutan',
-        'Bolivia',
-        'Bosnia Herzegovina',
-        'Botswana',
-        'Brazil',
-        'Brunei',
-        'Bulgaria',
-        'Burkina',
-        'Burundi',
-        'Cambodia',
-        'Cameroon',
-        'Canada',
-        'Cape Verde',
-        'Central African Rep',
-        'Chad',
-        'Chile',
-        'China',
-        'Colombia',
-        'Comoros',
-        'Congo',
-        'Congo (Democratic Rep)',
-        'Costa Rica',
-        'Croatia',
-        'Cuba',
-        'Cyprus',
-        'Czech Republic',
-        'Denmark',
-        'Djibouti',
-        'Dominica',
-        'Dominican Republic',
-        'East Timor',
-        'Ecuador',
-        'Egypt',
-        'El Salvador',
-        'Equatorial Guinea',
-        'Eritrea',
-        'Estonia',
-        'Eswatini',
-        'Ethiopia',
-        'Fiji',
-        'Finland',
-        'France',
-        'Gabon',
-        'Gambia',
-        'Georgia',
-        'Germany',
-        'Ghana',
-        'Greece',
-        'Grenada',
-        'Guatemala',
-        'Guinea',
-        'Guinea-Bissau',
-        'Guyana',
-        'Haiti',
-        'Honduras',
-        'Hungary',
-        'Iceland',
-        'India',
-        'Indonesia',
-        'Iran',
-        'Iraq',
-        'Ireland (Republic)',
-        'Israel',
-        'Italy',
-        'Ivory Coast',
-        'Jamaica',
-        'Japan',
-        'Jordan',
-        'Kazakhstan',
-        'Kenya',
-        'Kiribati',
-        'Korea North',
-        'Korea South',
-        'Kosovo',
-        'Kuwait',
-        'Kyrgyzstan',
-        'Laos',
-        'Latvia',
-        'Lebanon',
-        'Lesotho',
-        'Liberia',
-        'Libya',
-        'Liechtenstein',
-        'Lithuania',
-        'Luxembourg',
-        'Macedonia',
-        'Madagascar',
-        'Malawi',
-        'Malaysia',
-        'Maldives',
-        'Mali',
-        'Malta',
-        'Marshall Islands',
-        'Mauritania',
-        'Mauritius',
-        'Mexico',
-        'Micronesia',
-        'Moldova',
-        'Monaco',
-        'Mongolia',
-        'Montenegro',
-        'Morocco',
-        'Mozambique',
-        'Myanmar',
-        'Namibia',
-        'Nauru',
-        'Nepal',
-        'Netherlands',
-        'New Zealand',
-        'Nicaragua',
-        'Niger',
-        'Nigeria',
-        'Norway',
-        'Oman',
-        'Pakistan',
-        'Palau',
-        'Palestine',
-        'Panama',
-        'Papua New Guinea',
-        'Paraguay',
-        'Peru',
-        'Philippines',
-        'Poland',
-        'Portugal',
-        'Qatar',
-        'Romania',
-        'Russian Federation',
-        'Rwanda',
-        'St Kitts & Nevis',
-        'St Lucia',
-        'Saint Vincent & the Grenadines',
-        'Samoa',
-        'San Marino',
-        'Sao Tome & Principe',
-        'Saudi Arabia',
-        'Senegal',
-        'Serbia',
-        'Seychelles',
-        'Sierra Leone',
-        'Singapore',
-        'Slovakia',
-        'Slovenia',
-        'Solomon Islands',
-        'Somalia',
-        'South Africa',
-        'South Sudan',
-        'Spain',
-        'Sri Lanka',
-        'Sudan',
-        'Suriname',
-        'Sweden',
-        'Switzerland',
-        'Syria',
-        'Taiwan',
-        'Tajikistan',
-        'Tanzania',
-        'Thailand',
-        'Togo',
-        'Tonga',
-        'Trinidad & Tobago',
-        'Tunisia',
-        'Turkey',
-        'Turkmenistan',
-        'Tuvalu',
-        'Uganda',
-        'Ukraine',
-        'United Arab Emirates',
-        'United Kingdom',
-        'United States',
-        'Uruguay',
-        'Uzbekistan',
-        'Vanuatu',
-        'Vatican City',
-        'Venezuela',
-        'Vietnam',
-        'Yemen',
-        'Zambia',
-        'Zimbabwe',
-    ];
 
     public $playerId;
     public $file;
@@ -308,7 +108,7 @@ class PlayerIndex extends Component
         $player->slug = Str::slug($this->name);
         $player->birth_date = $this->birthDate;
         $player->birth_location = $this->birthLocation;
-        $player->nationality = $this->nationality;
+        $player->country_id = $this->nationality;
         $player->bio = $this->bio;
         $player->contract_from = $this->contractFrom;
         $player->contract_until = $this->contractUntil;
@@ -363,7 +163,7 @@ class PlayerIndex extends Component
         $this->position = $player->position_id;
         $this->birthDate = $player->birth_date;
         $this->birthLocation = $player->birth_location;
-        $this->nationality = $player->nationality;
+        $this->nationality = $player->country_id;
         $this->bio = $player->bio;
         $this->contractFrom = $player->contract_from;
         $this->contractUntil = $player->contract_until;
@@ -387,10 +187,10 @@ class PlayerIndex extends Component
         $player = Player::find($playerId);
         $this->clubId = $player->club_id;
         $this->name = $player->name;
-        $this->position = $player->position_id;
+        $this->position = $player->position->name;
         $this->birthDate = $player->birth_date;
         $this->birthLocation = $player->birth_location;
-        $this->nationality = $player->nationality;
+        $this->nationality = $player->country_id;
         $this->bio = $player->bio;
         $this->contractFrom = $player->contract_from;
         $this->contractUntil = $player->contract_until;
@@ -443,7 +243,7 @@ class PlayerIndex extends Component
                 $player->slug = Str::slug($this->name);
                 $player->birth_date = $this->birthDate;
                 $player->birth_location = $this->birthLocation;
-                $player->nationality = $this->nationality;
+                $player->country_id = $this->nationality;
                 $player->bio = $this->bio;
                 $player->contract_from = $this->contractFrom;
                 $player->contract_until = $this->contractUntil;
@@ -508,6 +308,7 @@ class PlayerIndex extends Component
             'players' => Player::search('name', $this->search)->orderBy('name', $this->sort)->paginate($this->perPage),
             'clubs' => Club::OrderBy('name', 'asc')->get(),
             'positionOption' => Position::OrderBy('name', 'asc')->get(),
+            'countries' => Country::orderBy('name', 'asc')->get(),
         ]);
     }
 

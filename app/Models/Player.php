@@ -43,4 +43,9 @@ class Player extends Model
     {
         return $this->belongsTo(Position::class);
     }
+
+    public function country()
+    {
+        return $this->belongsTo(Country::class);
+    }
 }

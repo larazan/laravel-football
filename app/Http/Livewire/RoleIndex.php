@@ -118,7 +118,7 @@ class RoleIndex extends Component
     public function render()
     {
         return view('livewire.role-index', [
-            'roles' => Role::all(),
+            'roles' => Role::orderBy('id', $this->sort)->paginate($this->perPage),
             'permissions' => Permission::all(),
         ]);
     }

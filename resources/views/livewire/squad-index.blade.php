@@ -53,7 +53,7 @@
 
             <!-- Dropdown -->
             <div class="y" x-data="{ open: false, selected: 2 }">
-                <!-- <button class="btn fe un bg-white border-slate-200 hover--border-slate-300 text-slate-500 hover--text-slate-600" aria-label="Select date range" aria-haspopup="true" @click.prevent="open = !open" :aria-expanded="open" aria-expanded="false">
+                 <button class="btn fe un bg-white border-slate-200 hover--border-slate-300 text-slate-500 hover--text-slate-600" aria-label="Select date range" aria-haspopup="true" @click.prevent="open = !open" :aria-expanded="open" aria-expanded="false">
                     <span class="flex items-center">
                         <svg class="oo sl du text-slate-500 ub mr-2" viewBox="0 0 16 16">
                             <path d="M15 2h-2V0h-2v2H9V0H7v2H5V0H3v2H1a1 1 0 00-1 1v12a1 1 0 001 1h14a1 1 0 001-1V3a1 1 0 00-1-1zm-1 12H2V6h12v8z"></path>
@@ -63,7 +63,7 @@
                     <svg class="ub nz du gq" width="11" height="7" viewBox="0 0 11 7">
                         <path d="M5.4 6.8L0 1.4 1.4 0l4 4 4-4 1.4 1.4z"></path>
                     </svg>
-                </button> -->
+                </button> 
                 <div class="tk g z q ou bg-white border border-slate-200 va rounded bd la re" @click.outside="open = false" @keydown.escape.window="open = false" x-show="open" x-transition:enter="wt wa ws au" x-transition:enter-start="opacity-0 uq" x-transition:enter-end="ba uj" x-transition:leave="wt wa ws" x-transition:leave-start="ba" x-transition:leave-end="opacity-0" style="display: none;">
                     <div class="gp text-sm g_" x-ref="options">
                         <button tabindex="0" class="flex items-center ou xr vf vn al" :class="selected === 0 &amp;&amp; 'text-indigo-500'" @click="selected = 0;open = false" @focus="open = true" @focusout="open = false">
@@ -91,9 +91,9 @@
             </select>
 
             <select wire:model="perPage" id="filter" class="a">
-                <option value="5">5 Per Page</option>
-                <option value="10">10 Per Page</option>
-                <option value="15">15 Per Page</option>
+                <option value="20">20 Per Page</option>
+                <option value="30">30 Per Page</option>
+                <option value="40">40 Per Page</option>
             </select>
         </div>
 
@@ -121,19 +121,21 @@
                                 </div>
                             </th>
                             <th class="vi wy w_ vo lm">
-                                <div class="gh gt">Name</div>
-                            </th>
-                            <th class="vi wy w_ vo lm">
                                 <div class="gh gt">Image</div>
                             </th>
                             <th class="vi wy w_ vo lm">
+                                <div class="gh gt">Name</div>
+                            </th>
+                            
+                            <th class="vi wy w_ vo lm">
                                 <div class="gh gt">Role</div>
                             </th>
-                            <th class="vi wy w_ vo lm">
-                                <div class="gh gt">Club</div>
-                            </th>
+                            
                             <th class="vi wy w_ vo lm">
                                 <div class="gh gt">Nation</div>
+                            </th>
+                            <th class="vi wy w_ vo lm">
+                                <div class="gh gt">Age</div>
                             </th>
                             <th class="vi wy w_ vo lm">
                                 <div class="gh gt">Status</div>
@@ -161,9 +163,7 @@
                                     </label>
                                 </div>
                             </td>
-                            <td class="vi wy w_ vo lm">
-                                <div class="gp text-slate-800 capitalize cursor-pointer hover:underline" wire:click="showDetailModal({{$player->id}})">{{ $player->name }}</div>
-                            </td>
+                           
                             <td class="vi wy w_ vo lm">
                                 <div class="od sy ub mr-2 _b">
                                     @if ($player->small)
@@ -173,25 +173,29 @@
                                     @endif
                                 </div>
                             </td>
-
+                            <td class="vi wy w_ vo lm">
+                                <div class="gp text-slate-800 capitalize cursor-pointer hover:underline" wire:click="showDetailModal({{$player->id}})">{{ $player->name }}</div>
+                            </td>
                             <td class="vi wy w_ vo lm">
 
                                 <div class="gt">{{ $player->position->name }}</div>
 
                             </td>
+                           
                             <td class="vi wy w_ vo lm">
                                 <div class="flex flex-row items-center space-x-2">
-                                    @if ($player->club->logo)
-                                    <div class="">
-                                        <img src="{{ asset('storage/'.$player->club->logo) }}" class="w-6 rounded" alt="foto" />
-                                    </div>
-                                    @endif
-                                    <span class="text-xs">{{ $player->club->name }}</span>
+                                @if ($player->country_id)
+                                    <img src="{{ asset('vendor/blade-flags/country-'.$player->country->code.'.svg') }}" class="w-6 rounded" alt="foto" />
+                                <div class="gt">{{ $player->country->code }}</div>
+                                @endif
                                 </div>
-                                
                             </td>
                             <td class="vi wy w_ vo lm">
-                                <div class="gt">{{ $player->nationality }}</div>
+                                @if ($player->birth_date > 0)
+                                <div class="gt">{{ \Carbon\Carbon::parse($player->birth_date)->age }} years</div>
+                                @else
+                                    -
+                                @endif
                             </td>
 
                             <td class="vi wy w_ vo lm">

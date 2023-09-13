@@ -34,7 +34,7 @@ class SquadIndex extends Component
 
     public $search = '';
     public $sort = 'asc';
-    public $perPage = 10;
+    public $perPage = 30;
 
     public $showPlayerDetailModal = false;
     public $showConfirmModal = false;
@@ -90,7 +90,7 @@ class SquadIndex extends Component
     public function render()
     {
         return view('livewire.squad-index', [
-            'players' => Player::search('name', $this->search)->where('club_id', $this->clubId)->orderBy('name', $this->sort)->paginate($this->perPage),
+            'players' => Player::search('name', $this->search)->where('club_id', $this->clubId)->orderBy('position_id', $this->sort)->paginate($this->perPage),
         ]);
     }
 }

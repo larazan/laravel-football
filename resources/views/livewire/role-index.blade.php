@@ -192,7 +192,7 @@
         </div>
     </div>
 
-    {{ $categories->links() }}
+    {{ $roles->links() }}
 
     <x-dialog-modal wire:model="showRoleModal" class="">
 
