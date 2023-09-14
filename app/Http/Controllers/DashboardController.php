@@ -27,10 +27,10 @@ class DashboardController extends Controller
 
     public function position()
     {
-        $positions = DB::select(DB::raw(
-            SELECT
+        $positions = DB::select(DB::raw("
+            SELECT 
                 tname AS Team, Sum(P) AS P,Sum(W) AS W,Sum(D) AS D,Sum(L) AS L,
-                SUM(F) as F,SUM(A) AS A,SUM(GD) AS GD,SUM(Pts) AS Pts
+                SUM(F) AS F,SUM(A) AS A,SUM(GD) AS GD,SUM(Pts) AS Pts
                 FROM(
                 SELECT
                     hteam Team,
@@ -59,7 +59,7 @@ class DashboardController extends Controller
                 JOIN teams t ON tot.Team=t.id
                 GROUP BY Team
                 ORDER BY SUM(Pts) DESC
-        ));
+        "));
 
         return view('admin.dashboards.league', compact('positions'));
     }

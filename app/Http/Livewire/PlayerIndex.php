@@ -8,6 +8,7 @@ use App\Models\Position;
 use App\Models\Club;
 use App\Models\Country;
 use Illuminate\Support\Str;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\ImageManagerStatic as Image;
 use Livewire\WithPagination;
@@ -29,6 +30,8 @@ class PlayerIndex extends Component
     public $bio;
     public $height;
     public $weight;
+    public $age;
+    public $code;
     public $facebook;
     public $instagram;
     public $twitter;
@@ -190,7 +193,6 @@ class PlayerIndex extends Component
         $this->position = $player->position->name;
         $this->birthDate = $player->birth_date;
         $this->birthLocation = $player->birth_location;
-        $this->nationality = $player->country_id;
         $this->bio = $player->bio;
         $this->contractFrom = $player->contract_from;
         $this->contractUntil = $player->contract_until;
@@ -198,6 +200,9 @@ class PlayerIndex extends Component
         $this->shirtNumber = $player->shirt_number;
         $this->height = $player->height;
         $this->weight = $player->weight;
+        $this->nationality = $player->country_id;
+        $this->code = $player->country->code;
+        $this->age = Carbon::parse($player->birth_date)->age;
         $this->oldImage = $player->small;
         $this->facebook = $player->facebook;
         $this->instagram = $player->instagram;

@@ -42,18 +42,6 @@ class AwardSeeder extends Seeder
                 'created_at' => Carbon::now(),
             ],
             [
-                'competition_id' => 3,
-                'year' => '2020',
-                'status' => 'active',
-                'created_at' => Carbon::now(),
-            ],
-            [
-                'competition_id' => 3,
-                'year' => '2019',
-                'status' => 'active',
-                'created_at' => Carbon::now(),
-            ],
-            [
                 'competition_id' => 2,
                 'year' => '2020',
                 'status' => 'active',

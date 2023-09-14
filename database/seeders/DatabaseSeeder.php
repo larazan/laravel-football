@@ -30,8 +30,10 @@ class DatabaseSeeder extends Seeder
             PartnerSeeder::class,
             CategoryArticleSeeder::class,
             SettingSeeder::class,
-            // AwardSeeder::class,
+            AwardSeeder::class,
             SegmentSeeder::class,
+            RoleSeeder::class,
+            UserSeeder::class,
     
         ]);
         // \App\Models\User::factory(10)->create();

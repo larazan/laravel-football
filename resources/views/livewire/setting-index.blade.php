@@ -101,9 +101,12 @@
                             <h3 class="gf gb text-slate-800 font-bold rt">Logo</h3>
                             <div class="text-sm">You can change logo here.</div>
                             <div class="flex items-center">
+                            @if ($oldImage)
                                 <div class="mr-4">
-                                    <img class="ue sg rounded" src="{{ asset('images/user-36-01.jpg') }}" width="32" height="32" alt="logo" width="80" height="80" alt="User upload">
+                                    <img class="ue sg rounded" src="{{ asset('storage/'.$oldImage) }}" width="32" height="32" alt="logo" width="80" height="80" alt="User upload">
                                 </div>
+                            @endif
+                                
                                 <button class="r ho xi ye" wire:click="showEditModal">Change</button>
                             </div>
                         </section>

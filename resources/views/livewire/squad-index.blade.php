@@ -284,9 +284,9 @@
                                     <div class="flex items-center vr">
                                         <div class="rp">
                                             <div class="flex items-center">
-                                                <div class="text-xl font-bold text-slate-800 mr-2">{{ $nationality }}</div>
+                                                <div class="text-xl font-bold text-slate-800 mr-2">{{ $age }}</div>
                                             </div>
-                                            <div class="text-sm text-slate-500">Nationality</div>
+                                            <div class="text-sm text-slate-500">Age</div>
                                         </div>
                                         <div class="hidden qx of sf hu rp" aria-hidden="true"></div>
                                     </div>
@@ -312,8 +312,15 @@
                                             <div class="w-1/2">{{ $birthLocation }}</div>
                                         </div>
                                         <div class="flex text-sm text-slate-700">
-                                            <div class="w-1/2 capitalize">height :</div>
-                                            <div class="w-1/2">{{ $height }} cm</div>
+                                            <div class="w-1/2 capitalize">nationality :</div>
+                                            <div class="w-1/2">
+                                            <div class="flex flex-row items-center space-x-2">
+                                            @if ($nationality)
+                                                <img src="{{ asset('vendor/blade-flags/country-'.$code.'.svg') }}" class="w-6 rounded" alt="foto" />
+                                            <div class="gt">{{ $code }}</div>
+                                            @endif
+                                            </div>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="w-1/2 flex flex-col ">

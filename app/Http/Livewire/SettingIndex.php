@@ -57,6 +57,31 @@ class SettingIndex extends Component
             $this->facebook = $setting->facebook;
             $this->instagram = $setting->instagram;
             $this->icon = $setting->icon;
+            $this->oldImage = $setting->small;
+            $this->pinnedClub = $setting->pinned_club;
+        }
+        
+    }
+
+    public function hydrate()
+    {
+        $setting = Setting::find($this->settingId);
+
+        if ($setting) {
+            $this->title = $setting->title;
+            $this->metaDescription = $setting->meta_description;
+            $this->metaKeyword = $setting->meta_keyword;
+            $this->shortDes = $setting->short_des;
+            $this->description = $setting->description;
+            $this->email = $setting->email;
+            $this->phone = $setting->phone;
+            $this->address = $setting->address;
+            $this->twitter = $setting->twitter;
+            $this->facebook = $setting->facebook;
+            $this->instagram = $setting->instagram;
+            $this->icon = $setting->icon;
+            $this->oldImage = $setting->small;
+            $this->pinnedClub = $setting->pinned_club;
         }
         
     }
@@ -144,6 +169,7 @@ class SettingIndex extends Component
     public function render()
     {
         return view('livewire.setting-index', [
+            'settings' => Setting::where('id', $this->settingId)->get(),
             'clubs' => Club::orderBy('id', 'asc')->get(),
         ]);
     }

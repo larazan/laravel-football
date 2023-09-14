@@ -59,7 +59,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::middleware(['auth:sanctum', 'verified', 'role:admin'])->prefix('admin')->name('admin.')->group(function () {
+Route::middleware(['auth:sanctum', 'verified', 'role:admin|author|sales'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('dashboard', Dashboard::class);
 
     Route::get('adv-segments', AdvSegmentIndex::class)->name('adv-segments.index');

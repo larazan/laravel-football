@@ -415,10 +415,30 @@
                                     </div>
 
                                     <div class="mt-6 flex flex-col space-y-3" x-show="tab === 2">
-                                        <div class="col-span-6 sm:col-span-3">
+                                        <div 
+                                            class="col-span-6 sm:col-span-3"
+                                            x-data="{ isUploading: false, progress: 5 }"
+                                            x-on:livewire-upload-start="isUploading = true"
+                                            x-on:livewire-upload-finish="isUploading = false; progress = 5"
+                                            x-on:livewire-upload-error="isUploading = false"
+                                            x-on:livewire-upload-progress="progress = $event.detail.progress"
+                                        >
                                             <label for="photo" class="block text-sm font-medium text-gray-700">
                                                 Player photo ({{ $sizeTol }})</label>
-                                            <input wire:model="file" type="file" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                                            <input wire:model="file" type="file" autocomplete="given-name" 
+                                                class="
+                                                    mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md
+                                                    file:bg-gradient-to-b file:from-blue-500 file:to-blue-600 
+                                                    file:px-6 file:py-3 file:m-5
+                                                    file:border-none
+                                                    file:rounded
+                                                    file:text-white
+                                                    file:cursor-pointer
+                                                    file:shadow-lg file:shadow-blue-600/50" 
+                                            />
+                                            <div x-show.transition="isUploading" class="mt-3 w-full bg-slate-100 mb-6">
+                                                <div class="ho ye2 rounded text-xs font-medium py-[1px] text-center" x-bind:style="`width: ${progress}%`">%</div>
+                                            </div>
                                             @if ($oldImage)
                                             Photo Preview:
                                             <img src="{{ asset('storage/'.$oldImage) }}">
@@ -528,9 +548,9 @@
                                     <div class="flex items-center vr">
                                         <div class="rp">
                                             <div class="flex items-center">
-                                                <div class="text-xl font-bold text-slate-800 mr-2">{{ $nationality }}</div>
+                                                <div class="text-xl font-bold text-slate-800 mr-2">{{ $age }}</div>
                                             </div>
-                                            <div class="text-sm text-slate-500">Nationality</div>
+                                            <div class="text-sm text-slate-500">Age</div>
                                         </div>
                                         <div class="hidden qx of sf hu rp" aria-hidden="true"></div>
                                     </div>
@@ -556,8 +576,15 @@
                                             <div class="w-1/2">{{ $birthLocation }}</div>
                                         </div>
                                         <div class="flex text-sm text-slate-700">
-                                            <div class="w-1/2 capitalize">height :</div>
-                                            <div class="w-1/2">{{ $height }} cm</div>
+                                            <div class="w-1/2 capitalize">nationality :</div>
+                                            <div class="w-1/2">
+                                            <div class="flex flex-row items-center space-x-2">
+                                            @if ($nationality)
+                                                <img src="{{ asset('vendor/blade-flags/country-'.$code.'.svg') }}" class="w-6 rounded" alt="foto" />
+                                            <div class="gt">{{ $code }}</div>
+                                            @endif
+                                            </div>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="w-1/2 flex flex-col ">
