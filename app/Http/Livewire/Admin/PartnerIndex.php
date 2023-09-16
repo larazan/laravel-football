@@ -145,6 +145,7 @@ class PartnerIndex extends Component
     public function closePartnerModal()
     {
         $this->showPartnerModal = false;
+        $this->reset();
     }
 
     public function resetFilters()

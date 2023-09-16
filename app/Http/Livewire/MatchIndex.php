@@ -217,6 +217,7 @@ class MatchIndex extends Component
     public function closeMatchsModal()
     {
         $this->showMatchsModal = false;
+        $this->reset();
     }
 
     public function resetFilters()

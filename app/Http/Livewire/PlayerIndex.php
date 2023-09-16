@@ -300,6 +300,7 @@ class PlayerIndex extends Component
     public function closePlayerModal()
     {
         $this->showPlayerModal = false;
+        $this->reset();
     }
 
     public function resetFilters()
@@ -389,5 +390,10 @@ class PlayerIndex extends Component
         // }
              
         return true;
+    }
+
+    public function routeToDownloadExcel()
+    {
+        return redirect('/admin/reports/player');
     }
 }

@@ -103,6 +103,7 @@ class PermissionIndex extends Component
     public function closePermissionModal()
     {
         $this->showPermissionModal = false;
+        $this->reset();
     }
 
     public function resetFilters()

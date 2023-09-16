@@ -156,6 +156,7 @@ class ClubIndex extends Component
     public function closeClubModal()
     {
         $this->showClubModal = false;
+        $this->reset();
     }
 
     public function resetFilters()

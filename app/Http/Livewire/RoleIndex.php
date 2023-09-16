@@ -12,13 +12,14 @@ class RoleIndex extends Component
 {
     use WithPagination;
 
-    public $role;
+    public $roler;
     public $showRoleModal = false;
     public $name;
     public $roleId;
 
     public $permissionName;
     public $permissionId;
+    public $allPermission = [];
 
     public $search = '';
     public $sort = 'asc';
@@ -31,6 +32,11 @@ class RoleIndex extends Component
     public $statuses = [
         'active',
         'inactive'
+    ];
+
+    protected $listeners = [
+        'permissionAdded' => 'permissionAdded',
+        'permissionDetached' => 'permissionDetached',
     ];
 
     protected $rules = [
@@ -75,12 +81,13 @@ class RoleIndex extends Component
 
     public function showEditModal($roleId)
     {
-        $this->reset(['name']);
+        $this->reset();
         $this->roleId = $roleId;
-        $role = Role::find($roleId);
+        $role = Role::findOrFail($roleId);
         $this->name = $role->name;
-        // $this->roleStatus = $role->status;
         $this->showRoleModal = true;
+
+        $this->roler = Role::findOrFail($roleId);
     }
     
     public function updateRole()
@@ -108,6 +115,7 @@ class RoleIndex extends Component
     public function closeRoleModal()
     {
         $this->showRoleModal = false;
+        $this->reset();
     }
 
     public function resetFilters()
@@ -123,19 +131,31 @@ class RoleIndex extends Component
         ]);
     }
 
-    public function givePermission($role)
-    {
-        if($role->hasPermissionTo($this->permissionName)){
+    // public function givePermission($role)
+    // {
+    //     if($role->hasPermissionTo($this->permissionName)){
 
-        }
-        $role->givePermissionTo($this->permissionName);
+    //     }
+    //     $role->givePermissionTo($this->permissionName);
+    // }
+
+    // public function revokePermission($role)
+    // {
+    //     if($role->hasPermissionTo($this->permissionId)){
+    //         $role->revokePermissionTo($this->permissionId);
+    //     }
+    //     $this->dispatchBrowserEvent('banner-message', ['style' => 'danger', 'message' => 'Permission deleted successfully']);
+    // }
+
+    public function permissionAdded()
+    {
+        $this->dispatchBrowserEvent('banner-message', ['style' => 'success', 'message' => 'Permission Added']);
+        $this->reset();
     }
 
-    public function revokePermission($role)
+    public function permissionDetached()
     {
-        if($role->hasPermissionTo($this->permissionId)){
-            $role->revokePermissionTo($this->permissionId);
-        }
-        $this->dispatchBrowserEvent('banner-message', ['style' => 'danger', 'message' => 'Permission deleted successfully']);
+        $this->dispatchBrowserEvent('banner-message', ['style' => 'success', 'message' => 'Permission detached']);
+        $this->reset();
     }
 }

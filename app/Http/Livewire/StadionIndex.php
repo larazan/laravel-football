@@ -180,6 +180,7 @@ class StadionIndex extends Component
     public function closeStadionModal()
     {
         $this->showStadionModal = false;
+        $this->reset();
     }
 
     public function resetFilters()

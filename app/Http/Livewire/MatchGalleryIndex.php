@@ -152,6 +152,7 @@ class MatchGalleryIndex extends Component
     public function closeMatchGalleryModal()
     {
         $this->showMatchGalleryModal = false;
+        $this->reset();
     }
 
     public function resetFilters()

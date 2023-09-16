@@ -11,8 +11,6 @@ use Spatie\Activitylog\LogOptions;
 class Player extends Model
 {
     use HasFactory, LogsActivity;
-    
-    protected $guarded = ['id'];
 
     public function getActivitylogOptions(): LogOptions
     {
@@ -21,6 +19,8 @@ class Player extends Model
         ->setDescriptionForEvent(fn(string $eventName) => "This model has been {$eventName} by: ". Auth::user()->name);;
         // Chain fluent methods for configuration options
     }
+
+    protected $guarded = ['id'];
 
     public const UPLOAD_DIR = 'uploads/players';
 

@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\ArticleController;
 use App\Http\Controllers\Admin\MediaController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\ReportController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\DashboardController;
@@ -13,7 +14,10 @@ use App\Http\Controllers\CkeditorFileUploadController;
 use App\Http\Livewire\Admin\AdvertisingIndex;
 use App\Http\Livewire\Admin\AdvSegmentIndex;
 use App\Http\Livewire\ArticleIndex;
+use App\Http\Livewire\AttributeIndex;
+use App\Http\Livewire\AttributeOptionIndex;
 use App\Http\Livewire\AwardIndex;
+use App\Http\Livewire\BrandIndex;
 use App\Http\Livewire\CategoryIndex;
 use App\Http\Livewire\CategoryArticleIndex;
 use App\Http\Livewire\ClubIndex;
@@ -33,6 +37,8 @@ use App\Http\Livewire\Admin\PartnerIndex;
 use App\Http\Livewire\PlayerIndex;
 use App\Http\Livewire\PermissionIndex;
 use App\Http\Livewire\PositionIndex;
+use App\Http\Livewire\ProductIndex;
+use App\Http\Livewire\ProductSliderIndex;
 use App\Http\Livewire\RoleIndex;
 use App\Http\Livewire\ScheduleIndex;
 use App\Http\Livewire\SettingIndex;
@@ -71,9 +77,12 @@ Route::middleware(['auth:sanctum', 'verified', 'role:admin|author|sales'])->pref
     Route::put('articles/update', [ArticleController::class, 'update'])->name('updateArticle');
     Route::get('articles', ArticleIndex::class)->name('articles.index');
     //
-
+    Route::get('attributes', AttributeIndex::class)->name('attributes.index');
+    Route::get('attributes/{attributeID}/options', AttributeOptionIndex::class)->name('attribute-options.index');
     Route::get('awards', AwardIndex::class)->name('awards.index');
+    Route::get('brands', BrandIndex::class)->name('brands.index');
     Route::get('category-article', CategoryArticleIndex::class)->name('category-article.index');
+    Route::get('categories', CategoryIndex::class)->name('categories.index');
     Route::get('clubs', ClubIndex::class)->name('clubs.index');
     Route::get('competitions', CompetitionIndex::class)->name('competitions.index');
     Route::get('contacts', ContactIndex::class)->name('contacts.index');
@@ -98,6 +107,8 @@ Route::middleware(['auth:sanctum', 'verified', 'role:admin|author|sales'])->pref
     Route::get('players', PlayerIndex::class)->name('players.index');
     Route::get('permissions', PermissionIndex::class)->name('permissions.index');
     Route::get('positions', PositionIndex::class)->name('positions.index');
+    Route::get('products', ProductIndex::class)->name('products.index');
+    Route::get('product-slide', ProductSliderIndex::class)->name('product-slider.index');
     Route::get('roles', RoleIndex::class)->name('roles.index');
     Route::get('schedules', ScheduleIndex::class)->name('schedules.index');
     Route::get('squads', SquadIndex::class)->name('squads.index');
@@ -114,6 +125,8 @@ Route::middleware(['auth:sanctum', 'verified', 'role:admin|author|sales'])->pref
     Route::delete('users/{user}/roles/{role}', [UserController::class, 'removeRole'])->name('users.roles.remove');
     Route::post('users/{user}/permissions', [UserController::class, 'givePermission'])->name('users.permissions');
     Route::delete('users/{user}/permissions/{permission}', [UserController::class, 'revokePermission'])->name('users.permissions.revoke');
+
+    Route::get('reports/player', [ReportController::class, 'export_player']);
 });
 
 Route::get('/tes', [DashboardController::class, 'index'])->name('tes.index');

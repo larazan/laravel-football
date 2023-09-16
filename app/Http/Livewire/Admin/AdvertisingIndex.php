@@ -173,6 +173,7 @@ class AdvertisingIndex extends Component
     public function closeAdvertisingModal()
     {
         $this->showAdvertisingModal = false;
+        $this->reset();
     }
 
     public function resetFilters()

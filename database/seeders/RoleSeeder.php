@@ -17,170 +17,164 @@ class RoleSeeder extends Seeder
      */
     public function run()
     {
-        //
-        $roles = [
-            ['name' => 'author', 'guard_name' => 'web', 'created_at' => Carbon::now()],
-            ['name' => 'sales', 'guard_name' => 'web', 'created_at' => Carbon::now()],
-            ['name' => 'manager', 'guard_name' => 'web', 'created_at' => Carbon::now()],
-        ];
+        Role::create(['name' => 'author']);
+        Role::create(['name' => 'sales']);
+        Role::create(['name' => 'manager']);
 
-        $permissions = [
-            //competition
-            ['name' => 'add-competition', 'guard_name' => 'web', 'created_at' => Carbon::now()],
-            ['name' => 'edit-competition', 'guard_name' => 'web', 'created_at' => Carbon::now()],
-            ['name' => 'delete-competition', 'guard_name' => 'web', 'created_at' => Carbon::now()],
+        
+        //competition
+        Permission::create(['name' => 'add-competition']);
+        Permission::create(['name' => 'edit-competition']);
+        Permission::create(['name' => 'delete-competition']);
 
-            //award
-            ['name' => 'add-award', 'guard_name' => 'web', 'created_at' => Carbon::now()],
-            ['name' => 'edit-award', 'guard_name' => 'web', 'created_at' => Carbon::now()],
-            ['name' => 'delete-award', 'guard_name' => 'web', 'created_at' => Carbon::now()],
+        //award
+        Permission::create(['name' => 'add-award']);
+        Permission::create(['name' => 'edit-award']);
+        Permission::create(['name' => 'delete-award']);
 
-            //club
-            ['name' => 'add-club', 'guard_name' => 'web', 'created_at' => Carbon::now()],
-            ['name' => 'edit-club', 'guard_name' => 'web', 'created_at' => Carbon::now()],
-            ['name' => 'delete-club', 'guard_name' => 'web', 'created_at' => Carbon::now()],
+        //club
+        Permission::create(['name' => 'add-club']);
+        Permission::create(['name' => 'edit-club']);
+        Permission::create(['name' => 'delete-club']);
 
-            //stadion
-            ['name' => 'add-stadion', 'guard_name' => 'web', 'created_at' => Carbon::now()],
-            ['name' => 'edit-stadion', 'guard_name' => 'web', 'created_at' => Carbon::now()],
-            ['name' => 'delete-stadion', 'guard_name' => 'web', 'created_at' => Carbon::now()],
+        //stadion
+        Permission::create(['name' => 'add-stadion']);
+        Permission::create(['name' => 'edit-stadion']);
+        Permission::create(['name' => 'delete-stadion']);
 
-            //player
-            ['name' => 'add-player', 'guard_name' => 'web', 'created_at' => Carbon::now()],
-            ['name' => 'edit-player', 'guard_name' => 'web', 'created_at' => Carbon::now()],
-            ['name' => 'delete-player', 'guard_name' => 'web', 'created_at' => Carbon::now()],
+        //player
+        Permission::create(['name' => 'add-player']);
+        Permission::create(['name' => 'edit-player']);
+        Permission::create(['name' => 'delete-player']);
 
-            //staff
-            ['name' => 'add-staff', 'guard_name' => 'web', 'created_at' => Carbon::now()],
-            ['name' => 'edit-staff', 'guard_name' => 'web', 'created_at' => Carbon::now()],
-            ['name' => 'delete-staff', 'guard_name' => 'web', 'created_at' => Carbon::now()],
+        //staff
+        Permission::create(['name' => 'add-staff']);
+        Permission::create(['name' => 'edit-staff']);
+        Permission::create(['name' => 'delete-staff']);
 
-            //position
-            ['name' => 'add-position', 'guard_name' => 'web', 'created_at' => Carbon::now()],
-            ['name' => 'edit-position', 'guard_name' => 'web', 'created_at' => Carbon::now()],
-            ['name' => 'delete-position', 'guard_name' => 'web', 'created_at' => Carbon::now()],
+        //position
+        Permission::create(['name' => 'add-position']);
+        Permission::create(['name' => 'edit-position']);
+        Permission::create(['name' => 'delete-position']);
 
-            //squad
-            ['name' => 'add-squad', 'guard_name' => 'web', 'created_at' => Carbon::now()],
-            ['name' => 'edit-squad', 'guard_name' => 'web', 'created_at' => Carbon::now()],
-            ['name' => 'delete-squad', 'guard_name' => 'web', 'created_at' => Carbon::now()],
+        //squad
+        Permission::create(['name' => 'add-squad']);
+        Permission::create(['name' => 'edit-squad']);
+        Permission::create(['name' => 'delete-squad']);
 
-            //partner
-            ['name' => 'add-partner', 'guard_name' => 'web', 'created_at' => Carbon::now()],
-            ['name' => 'edit-partner', 'guard_name' => 'web', 'created_at' => Carbon::now()],
-            ['name' => 'delete-partner', 'guard_name' => 'web', 'created_at' => Carbon::now()],
+        //partner
+        Permission::create(['name' => 'add-partner']);
+        Permission::create(['name' => 'edit-partner']);
+        Permission::create(['name' => 'delete-partner']);
 
-            //schedule
-            ['name' => 'add-schedule', 'guard_name' => 'web', 'created_at' => Carbon::now()],
-            ['name' => 'edit-schedule', 'guard_name' => 'web', 'created_at' => Carbon::now()],
-            ['name' => 'delete-schedule', 'guard_name' => 'web', 'created_at' => Carbon::now()],
+        //schedule
+        Permission::create(['name' => 'add-schedule']);
+        Permission::create(['name' => 'edit-schedule']);
+        Permission::create(['name' => 'delete-schedule']);
 
-             //match
-             ['name' => 'add-match', 'guard_name' => 'web', 'created_at' => Carbon::now()],
-             ['name' => 'edit-match', 'guard_name' => 'web', 'created_at' => Carbon::now()],
-             ['name' => 'delete-match', 'guard_name' => 'web', 'created_at' => Carbon::now()],
+            //match
+            Permission::create(['name' => 'add-match']);
+            Permission::create(['name' => 'edit-match']);
+            Permission::create(['name' => 'delete-match']);
 
-             //league
-            ['name' => 'add-league', 'guard_name' => 'web', 'created_at' => Carbon::now()],
-            ['name' => 'edit-league', 'guard_name' => 'web', 'created_at' => Carbon::now()],
-            ['name' => 'delete-league', 'guard_name' => 'web', 'created_at' => Carbon::now()],
+            //league
+        Permission::create(['name' => 'add-league']);
+        Permission::create(['name' => 'edit-league']);
+        Permission::create(['name' => 'delete-league']);
 
-             //team-league
-             ['name' => 'add-team-league', 'guard_name' => 'web', 'created_at' => Carbon::now()],
-             ['name' => 'edit-team-league', 'guard_name' => 'web', 'created_at' => Carbon::now()],
-             ['name' => 'delete-team-league', 'guard_name' => 'web', 'created_at' => Carbon::now()],
+            //team-league
+            Permission::create(['name' => 'add-team-league']);
+            Permission::create(['name' => 'edit-team-league']);
+            Permission::create(['name' => 'delete-team-league']);
 
-              //article
-            ['name' => 'add-article', 'guard_name' => 'web', 'created_at' => Carbon::now()],
-            ['name' => 'edit-article', 'guard_name' => 'web', 'created_at' => Carbon::now()],
-            ['name' => 'delete-article', 'guard_name' => 'web', 'created_at' => Carbon::now()],
+            //article
+        Permission::create(['name' => 'add-article']);
+        Permission::create(['name' => 'edit-article']);
+        Permission::create(['name' => 'delete-article']);
 
-            //category-article
-            ['name' => 'add-category-article', 'guard_name' => 'web', 'created_at' => Carbon::now()],
-            ['name' => 'edit-category-article', 'guard_name' => 'web', 'created_at' => Carbon::now()],
-            ['name' => 'delete-category-article', 'guard_name' => 'web', 'created_at' => Carbon::now()],
+        //category-article
+        Permission::create(['name' => 'add-category-article']);
+        Permission::create(['name' => 'edit-category-article']);
+        Permission::create(['name' => 'delete-category-article']);
 
-            //media
-            ['name' => 'add-media', 'guard_name' => 'web', 'created_at' => Carbon::now()],
-            ['name' => 'edit-media', 'guard_name' => 'web', 'created_at' => Carbon::now()],
-            ['name' => 'delete-media', 'guard_name' => 'web', 'created_at' => Carbon::now()],
+        //media
+        Permission::create(['name' => 'add-media']);
+        Permission::create(['name' => 'edit-media']);
+        Permission::create(['name' => 'delete-media']);
 
-            //segment
-            ['name' => 'add-segment', 'guard_name' => 'web', 'created_at' => Carbon::now()],
-            ['name' => 'edit-segment', 'guard_name' => 'web', 'created_at' => Carbon::now()],
-            ['name' => 'delete-segment', 'guard_name' => 'web', 'created_at' => Carbon::now()],
+        //segment
+        Permission::create(['name' => 'add-segment']);
+        Permission::create(['name' => 'edit-segment']);
+        Permission::create(['name' => 'delete-segment']);
 
-            //adv
-            ['name' => 'add-adv', 'guard_name' => 'web', 'created_at' => Carbon::now()],
-            ['name' => 'edit-adv', 'guard_name' => 'web', 'created_at' => Carbon::now()],
-            ['name' => 'delete-adv', 'guard_name' => 'web', 'created_at' => Carbon::now()],
+        //adv
+        Permission::create(['name' => 'add-adv']);
+        Permission::create(['name' => 'edit-adv']);
+        Permission::create(['name' => 'delete-adv']);
 
-            //user
-            ['name' => 'add-user', 'guard_name' => 'web', 'created_at' => Carbon::now()],
-            ['name' => 'edit-user', 'guard_name' => 'web', 'created_at' => Carbon::now()],
-            ['name' => 'delete-user', 'guard_name' => 'web', 'created_at' => Carbon::now()],
+        //user
+        Permission::create(['name' => 'add-user']);
+        Permission::create(['name' => 'edit-user']);
+        Permission::create(['name' => 'delete-user']);
 
-            //setting
-            ['name' => 'add-setting', 'guard_name' => 'web', 'created_at' => Carbon::now()],
-            ['name' => 'edit-setting', 'guard_name' => 'web', 'created_at' => Carbon::now()],
-            ['name' => 'delete-setting', 'guard_name' => 'web', 'created_at' => Carbon::now()],
+        //setting
+        Permission::create(['name' => 'add-setting']);
+        Permission::create(['name' => 'edit-setting']);
+        Permission::create(['name' => 'delete-setting']);
 
-            //role
-            ['name' => 'add-role', 'guard_name' => 'web', 'created_at' => Carbon::now()],
-            ['name' => 'edit-role', 'guard_name' => 'web', 'created_at' => Carbon::now()],
-            ['name' => 'delete-role', 'guard_name' => 'web', 'created_at' => Carbon::now()],
+        //role
+        Permission::create(['name' => 'add-role']);
+        Permission::create(['name' => 'edit-role']);
+        Permission::create(['name' => 'delete-role']);
 
-            //permission
-            ['name' => 'add-permission', 'guard_name' => 'web', 'created_at' => Carbon::now()],
-            ['name' => 'edit-permission', 'guard_name' => 'web', 'created_at' => Carbon::now()],
-            ['name' => 'delete-permission', 'guard_name' => 'web', 'created_at' => Carbon::now()],
+        //permission
+        Permission::create(['name' => 'add-permission']);
+        Permission::create(['name' => 'edit-permission']);
+        Permission::create(['name' => 'delete-permission']);
 
-            //faq
-            ['name' => 'add-faq', 'guard_name' => 'web', 'created_at' => Carbon::now()],
-            ['name' => 'edit-faq', 'guard_name' => 'web', 'created_at' => Carbon::now()],
-            ['name' => 'delete-faq', 'guard_name' => 'web', 'created_at' => Carbon::now()],
+        //faq
+        Permission::create(['name' => 'add-faq']);
+        Permission::create(['name' => 'edit-faq']);
+        Permission::create(['name' => 'delete-faq']);
 
-            //slide
-            ['name' => 'add-slide', 'guard_name' => 'web', 'created_at' => Carbon::now()],
-            ['name' => 'edit-slide', 'guard_name' => 'web', 'created_at' => Carbon::now()],
-            ['name' => 'delete-slide', 'guard_name' => 'web', 'created_at' => Carbon::now()],
+        //slide
+        Permission::create(['name' => 'add-slide']);
+        Permission::create(['name' => 'edit-slide']);
+        Permission::create(['name' => 'delete-slide']);
 
-            //category
-            ['name' => 'add-category', 'guard_name' => 'web', 'created_at' => Carbon::now()],
-            ['name' => 'edit-category', 'guard_name' => 'web', 'created_at' => Carbon::now()],
-            ['name' => 'delete-category', 'guard_name' => 'web', 'created_at' => Carbon::now()],
-            //brand
-            ['name' => 'add-brand', 'guard_name' => 'web', 'created_at' => Carbon::now()],
-            ['name' => 'edit-brand', 'guard_name' => 'web', 'created_at' => Carbon::now()],
-            ['name' => 'delete-brand', 'guard_name' => 'web', 'created_at' => Carbon::now()],
-            //product
-            ['name' => 'add-product', 'guard_name' => 'web', 'created_at' => Carbon::now()],
-            ['name' => 'edit-product', 'guard_name' => 'web', 'created_at' => Carbon::now()],
-            ['name' => 'delete-product', 'guard_name' => 'web', 'created_at' => Carbon::now()],
-            //attribute
-            ['name' => 'add-attribute', 'guard_name' => 'web', 'created_at' => Carbon::now()],
-            ['name' => 'edit-attribute', 'guard_name' => 'web', 'created_at' => Carbon::now()],
-            ['name' => 'delete-attribute', 'guard_name' => 'web', 'created_at' => Carbon::now()],
-            //product-slide
-            ['name' => 'add-product-slide', 'guard_name' => 'web', 'created_at' => Carbon::now()],
-            ['name' => 'edit-product-slide', 'guard_name' => 'web', 'created_at' => Carbon::now()],
-            ['name' => 'delete-product-slide', 'guard_name' => 'web', 'created_at' => Carbon::now()],
-            //basket
-            ['name' => 'add-basket', 'guard_name' => 'web', 'created_at' => Carbon::now()],
-            ['name' => 'edit-basket', 'guard_name' => 'web', 'created_at' => Carbon::now()],
-            ['name' => 'delete-basket', 'guard_name' => 'web', 'created_at' => Carbon::now()],
-            //order
-            ['name' => 'add-order', 'guard_name' => 'web', 'created_at' => Carbon::now()],
-            ['name' => 'edit-order', 'guard_name' => 'web', 'created_at' => Carbon::now()],
-            ['name' => 'delete-order', 'guard_name' => 'web', 'created_at' => Carbon::now()],
-            //shipment
-            ['name' => 'add-shipment', 'guard_name' => 'web', 'created_at' => Carbon::now()],
-            ['name' => 'edit-shipment', 'guard_name' => 'web', 'created_at' => Carbon::now()],
-            ['name' => 'delete-shipment', 'guard_name' => 'web', 'created_at' => Carbon::now()],
-        ];
-
-        Role::insert($roles);
-        Permission::insert($permissions);
+        //category
+        Permission::create(['name' => 'add-category']);
+        Permission::create(['name' => 'edit-category']);
+        Permission::create(['name' => 'delete-category']);
+        //brand
+        Permission::create(['name' => 'add-brand']);
+        Permission::create(['name' => 'edit-brand']);
+        Permission::create(['name' => 'delete-brand']);
+        //product
+        Permission::create(['name' => 'add-product']);
+        Permission::create(['name' => 'edit-product']);
+        Permission::create(['name' => 'delete-product']);
+        //attribute
+        Permission::create(['name' => 'add-attribute']);
+        Permission::create(['name' => 'edit-attribute']);
+        Permission::create(['name' => 'delete-attribute']);
+        //product-slide
+        Permission::create(['name' => 'add-product-slide']);
+        Permission::create(['name' => 'edit-product-slide']);
+        Permission::create(['name' => 'delete-product-slide']);
+        //basket
+        Permission::create(['name' => 'add-basket']);
+        Permission::create(['name' => 'edit-basket']);
+        Permission::create(['name' => 'delete-basket']);
+        //order
+        Permission::create(['name' => 'add-order']);
+        Permission::create(['name' => 'edit-order']);
+        Permission::create(['name' => 'delete-order']);
+        //shipment
+        Permission::create(['name' => 'add-shipment']);
+        Permission::create(['name' => 'edit-shipment']);
+        Permission::create(['name' => 'delete-shipment']);
+        
 
         // ADMIN
         $roleAdmin = Role::findByName('admin');

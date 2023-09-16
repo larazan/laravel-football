@@ -157,6 +157,7 @@ class MatchReportIndex extends Component
     public function closeMatchReportModal()
     {
         $this->showMatchReportModal = false;
+        $this->reset();
     }
 
     public function resetFilters()

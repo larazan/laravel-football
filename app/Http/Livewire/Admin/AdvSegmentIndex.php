@@ -146,6 +146,7 @@ class AdvSegmentIndex extends Component
     public function closeAdvertisingSegmentModal()
     {
         $this->showAdvertisingSegmentModal = false;
+        $this->reset();
     }
 
     public function resetFilters()

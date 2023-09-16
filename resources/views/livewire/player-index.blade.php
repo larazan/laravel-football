@@ -25,7 +25,8 @@
                     </svg>
                 </button>
             </form>
-
+            
+            <button class="btn bg-white border-slate-200 hover--border-slate-300 yl xy" wire:click="routeToDownloadExcel">Download Excel</button>
             <!-- Create player button -->
             <button class="btn ho xi ye" wire:click="showCreateModal">
                 <svg class="oo sl du bf ub" viewBox="0 0 16 16">
@@ -198,7 +199,7 @@
                                 
                             </td>
                             <td class="vi wy w_ vo lm">
-                            <div class="flex flex-row items-center space-x-2">
+                                <div class="flex flex-row items-center space-x-2">
                                 @if ($player->country_id)
                                     <img src="{{ asset('vendor/blade-flags/country-'.$player->country->code.'.svg') }}" class="w-6 rounded" alt="foto" />
                                 <div class="gt">{{ $player->country->code }}</div>

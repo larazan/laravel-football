@@ -102,6 +102,7 @@ class SubscribeIndex extends Component
     public function closeNewsletterSubscriberModal()
     {
         $this->showNewsletterSubscriberModal = false;
+        $this->reset();
     }
 
     public function resetFilters()

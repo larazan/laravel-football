@@ -222,8 +222,14 @@
                                                 <div class="go re yl">{{ $message }}</div>
                                             @enderror
                                         </div>
-                                       
-
+                                        @if ($roleId)
+                                        <div class="" >
+                                            @if ($roler)
+                                            <div>{{ $roler->name }}</div>
+                                            <livewire:multi-permission :role="$roler" />
+                                            @endif
+                                        </div>
+                                        @endif
                                     </div>
                                 </div>
                             </div>

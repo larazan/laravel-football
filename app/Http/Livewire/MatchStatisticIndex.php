@@ -214,6 +214,7 @@ class MatchStatisticIndex extends Component
     public function closeMatchStatisticModal()
     {
         $this->showMatchStatisticModal = false;
+        $this->reset();
     }
 
     public function resetFilters()

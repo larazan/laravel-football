@@ -267,6 +267,7 @@ class ScheduleIndex extends Component
     public function closeScheduleModal()
     {
         $this->showScheduleModal = false;
+        $this->reset();
     }
 
     public function resetFilters()

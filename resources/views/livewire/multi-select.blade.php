@@ -1,7 +1,7 @@
 <select wire:model="selected" class="hidden" x-cloak id="select">
   @foreach ($stations as $station)
   <option value="{{ $station->id }}">{{ $station->name }}</option>
-  @endforeach  
+  @endforeach
 </select>
 
 <div x-data="dropdown()" x-init="loadOptions()" class="w-full md:w-1/2 flex flex-col items-center h-64 mx-auto">
@@ -79,51 +79,57 @@
 </div>
 
 
-        <script>
+<script>
   function dropdown() {
-                return {
-                    options: [],
-                    selected: [],
-                    show: false,
-                    open() { this.show = true },
-                    close() { this.show = false },
-                    isOpen() { return this.show === true },
-                    select(index, event) {
+    return {
+      options: [],
+      selected: [],
+      show: false,
+      open() {
+        this.show = true
+      },
+      close() {
+        this.show = false
+      },
+      isOpen() {
+        return this.show === true
+      },
+      select(index, event) {
 
-                        if (!this.options[index].selected) {
+        if (!this.options[index].selected) {
 
-                            this.options[index].selected = true;
-                            this.options[index].element = event.target;
-                            this.selected.push(index);
+          this.options[index].selected = true;
+          this.options[index].element = event.target;
+          this.selected.push(index);
 
-                        } else {
-                            this.selected.splice(this.selected.lastIndexOf(index), 1);
-                            this.options[index].selected = false
-                        }
-                    },
-                    remove(index, option) {
-                        this.options[option].selected = false;
-                        this.selected.splice(index, 1);
-
-
-                    },
-                    loadOptions() {
-                        const options = document.getElementById('select').options;
-                        for (let i = 0; i < options.length; i++) {
-                            this.options.push({
-                                value: options[i].value,
-                                text: options[i].innerText,
-                                selected: options[i].getAttribute('selected') != null ? options[i].getAttribute('selected') : false
-                            });
-                        }
+        } else {
+          this.selected.splice(this.selected.lastIndexOf(index), 1);
+          this.options[index].selected = false
+        }
+      },
+      remove(index, option) {
+        this.options[option].selected = false;
+        this.selected.splice(index, 1);
 
 
-                    },
-                    selectedValues(){
-                        return this.selected.map((option)=>{
-                            return this.options[option].value;
-                        })
-                    }
-                }
-            }
-        </script>
+      },
+      loadOptions() {
+        const options = document.getElementById('select').options;
+        for (let i = 0; i < options.length; i++) {
+          this.options.push({
+            value: options[i].value,
+            text: options[i].innerText,
+            selected: options[i].getAttribute('selected') != null ? options[i].getAttribute('selected') : false
+          });
+        }
+
+
+      },
+      selectedValues() {
+        return this.selected.map((option) => {
+          return this.options[option].value;
+        })
+      }
+    }
+  }
+</script>

@@ -152,6 +152,7 @@ class StatisticIndex extends Component
     public function closeStatisticModal()
     {
         $this->showStatisticModal = false;
+        $this->reset();
     }
 
     public function resetFilters()

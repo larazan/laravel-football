@@ -111,6 +111,7 @@ class PositionIndex extends Component
     public function closePositionModal()
     {
         $this->showPositionModal = false;
+        $this->reset();
     }
 
     public function resetFilters()

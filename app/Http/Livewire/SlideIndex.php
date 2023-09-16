@@ -193,6 +193,7 @@ class SlideIndex extends Component
     public function closeSlideModal()
     {
         $this->showSlideModal = false;
+        $this->reset();
     }
 
     public function resetFilters()

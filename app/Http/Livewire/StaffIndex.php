@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use Livewire\WithFileUploads;
 use App\Models\Staff;
+use App\Models\Country;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\ImageManagerStatic as Image;
@@ -21,6 +22,7 @@ class StaffIndex extends Component
     public $birthDate;
     public $birthLocation;
     public $nationality;
+    public $country;
     public $bio;
     public $contractFrom;
     public $contractUntil;
@@ -33,207 +35,7 @@ class StaffIndex extends Component
         'inactive'
     ];
 
-    public $countries = [
-        'Afghanistan',
-        'Albania',
-        'Algeria',
-        'Andorra',
-        'Angola',
-        'Antigua & Deps',
-        'Argentina',
-        'Armenia',
-        'Australia',
-        'Austria',
-        'Azerbaijan',
-        'Bahamas',
-        'Bahrain',
-        'Bangladesh',
-        'Barbados',
-        'Belarus',
-        'Belgium',
-        'Belize',
-        'Benin',
-        'Bermuda',
-        'Bhutan',
-        'Bolivia',
-        'Bosnia Herzegovina',
-        'Botswana',
-        'Brazil',
-        'Brunei',
-        'Bulgaria',
-        'Burkina',
-        'Burundi',
-        'Cambodia',
-        'Cameroon',
-        'Canada',
-        'Cape Verde',
-        'Central African Rep',
-        'Chad',
-        'Chile',
-        'China',
-        'Colombia',
-        'Comoros',
-        'Congo',
-        'Congo (Democratic Rep)',
-        'Costa Rica',
-        'Croatia',
-        'Cuba',
-        'Cyprus',
-        'Czech Republic',
-        'Denmark',
-        'Djibouti',
-        'Dominica',
-        'Dominican Republic',
-        'East Timor',
-        'Ecuador',
-        'Egypt',
-        'El Salvador',
-        'Equatorial Guinea',
-        'Eritrea',
-        'Estonia',
-        'Eswatini',
-        'Ethiopia',
-        'Fiji',
-        'Finland',
-        'France',
-        'Gabon',
-        'Gambia',
-        'Georgia',
-        'Germany',
-        'Ghana',
-        'Greece',
-        'Grenada',
-        'Guatemala',
-        'Guinea',
-        'Guinea-Bissau',
-        'Guyana',
-        'Haiti',
-        'Honduras',
-        'Hungary',
-        'Iceland',
-        'India',
-        'Indonesia',
-        'Iran',
-        'Iraq',
-        'Ireland (Republic)',
-        'Israel',
-        'Italy',
-        'Ivory Coast',
-        'Jamaica',
-        'Japan',
-        'Jordan',
-        'Kazakhstan',
-        'Kenya',
-        'Kiribati',
-        'Korea North',
-        'Korea South',
-        'Kosovo',
-        'Kuwait',
-        'Kyrgyzstan',
-        'Laos',
-        'Latvia',
-        'Lebanon',
-        'Lesotho',
-        'Liberia',
-        'Libya',
-        'Liechtenstein',
-        'Lithuania',
-        'Luxembourg',
-        'Macedonia',
-        'Madagascar',
-        'Malawi',
-        'Malaysia',
-        'Maldives',
-        'Mali',
-        'Malta',
-        'Marshall Islands',
-        'Mauritania',
-        'Mauritius',
-        'Mexico',
-        'Micronesia',
-        'Moldova',
-        'Monaco',
-        'Mongolia',
-        'Montenegro',
-        'Morocco',
-        'Mozambique',
-        'Myanmar',
-        'Namibia',
-        'Nauru',
-        'Nepal',
-        'Netherlands',
-        'New Zealand',
-        'Nicaragua',
-        'Niger',
-        'Nigeria',
-        'Norway',
-        'Oman',
-        'Pakistan',
-        'Palau',
-        'Palestine',
-        'Panama',
-        'Papua New Guinea',
-        'Paraguay',
-        'Peru',
-        'Philippines',
-        'Poland',
-        'Portugal',
-        'Qatar',
-        'Romania',
-        'Russian Federation',
-        'Rwanda',
-        'St Kitts & Nevis',
-        'St Lucia',
-        'Saint Vincent & the Grenadines',
-        'Samoa',
-        'San Marino',
-        'Sao Tome & Principe',
-        'Saudi Arabia',
-        'Senegal',
-        'Serbia',
-        'Seychelles',
-        'Sierra Leone',
-        'Singapore',
-        'Slovakia',
-        'Slovenia',
-        'Solomon Islands',
-        'Somalia',
-        'South Africa',
-        'South Sudan',
-        'Spain',
-        'Sri Lanka',
-        'Sudan',
-        'Suriname',
-        'Sweden',
-        'Switzerland',
-        'Syria',
-        'Taiwan',
-        'Tajikistan',
-        'Tanzania',
-        'Thailand',
-        'Togo',
-        'Tonga',
-        'Trinidad & Tobago',
-        'Tunisia',
-        'Turkey',
-        'Turkmenistan',
-        'Tuvalu',
-        'Uganda',
-        'Ukraine',
-        'United Arab Emirates',
-        'United Kingdom',
-        'United States',
-        'Uruguay',
-        'Uzbekistan',
-        'Vanuatu',
-        'Vatican City',
-        'Venezuela',
-        'Vietnam',
-        'Yemen',
-        'Zambia',
-        'Zimbabwe',
-    ];
-
+    
     public $search = '';
     public $sort = 'asc';
     public $perPage = 10;
@@ -290,7 +92,7 @@ class StaffIndex extends Component
         $staff->role = $this->role;
         $staff->birth_date = $this->birthDate;
         $staff->birth_location = $this->birthLocation;
-        $staff->nationality = $this->nationality;
+        $staff->country_id = $this->nationality;
         $staff->bio = $this->bio;
         $staff->contract_from = $this->contractFrom;
         $staff->contract_until = $this->contractUntil;
@@ -322,7 +124,7 @@ class StaffIndex extends Component
         $this->role = $staff->role;
         $this->birthDate = $staff->birth_date;
         $this->birthLocation = $staff->birth_location;
-        $this->nationality = $staff->nationality;
+        $this->nationality = $staff->country_id;
         $this->bio = $staff->bio;
         $this->contractFrom = $staff->contract_from;
         $this->contractUntil = $staff->contract_until;
@@ -334,14 +136,15 @@ class StaffIndex extends Component
 
     public function showDetailModal($staffId)
     {
-        $this->reset(['name']);
+        $this->reset();
         $this->staffId = $staffId;
         $staff = Staff::find($staffId);
         $this->name = $staff->name;
         $this->role = $staff->role;
         $this->birthDate = $staff->birth_date;
         $this->birthLocation = $staff->birth_location;
-        $this->nationality = $staff->nationality;
+        $this->nationality = $staff->country_id;
+        $this->country = $staff->country->name;
         $this->bio = $staff->bio;
         $this->contractFrom = $staff->contract_from;
         $this->contractUntil = $staff->contract_until;
@@ -369,7 +172,7 @@ class StaffIndex extends Component
                 $staff->role = $this->role;
                 $staff->birth_date = $this->birthDate;
                 $staff->birth_location = $this->birthLocation;
-                $staff->nationality = $this->nationality;
+                $staff->country_id = $this->nationality;
                 $staff->bio = $this->bio;
                 $staff->contract_from = $this->contractFrom;
                 $staff->contract_until = $this->contractUntil;
@@ -417,6 +220,7 @@ class StaffIndex extends Component
     public function closeDetailModal()
     {
         $this->showStaffDetailModal = false;
+        $this->reset();
     }
 
     public function resetFilters()
@@ -427,7 +231,8 @@ class StaffIndex extends Component
     public function render()
     {
         return view('livewire.staff-index', [
-            'staffs' => Staff::search('name', $this->search)->orderBy('name', $this->sort)->paginate($this->perPage)
+            'staffs' => Staff::search('name', $this->search)->orderBy('name', $this->sort)->paginate($this->perPage),
+            'countries' => Country::orderBy('name', 'asc')->get(),
         ]);
     }
 

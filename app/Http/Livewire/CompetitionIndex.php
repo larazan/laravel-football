@@ -154,6 +154,7 @@ class CompetitionIndex extends Component
     public function closeCompetitionModal()
     {
         $this->showCompetitionModal = false;
+        $this->reset();
     }
 
     public function resetFilters()
