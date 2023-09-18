@@ -1,9 +1,11 @@
+fix reset
 role & permission
 log activity all model
 player statistic
 league position db raw
 training materi & schedules
-online store 
+online store
+bulk delete 
 excel export
 email notif
     newsletter

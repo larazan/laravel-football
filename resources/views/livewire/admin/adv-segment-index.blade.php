@@ -183,7 +183,7 @@
                                 @endif
                             </td>
                             <td class="vi wy w_ vo lm">
-                                <div>{{ $segment->created_at->format('d-m-Y') }}</div>
+                                <div>{{ $segment->created_at }}</div>
                             </td>
 
                             <td class="vi wy w_ vo lm of">

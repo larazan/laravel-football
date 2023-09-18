@@ -1,7 +1,7 @@
 <div class="vs jj ttm vl ou uf na">
 
-<!-- Loading -->
-<x-loading-indicator />
+    <!-- Loading -->
+    <x-loading-indicator />
 
     <!-- Page header -->
     <div class="je jd jc ii">
@@ -135,7 +135,7 @@
                                 <div class="gh gt">Phone</div>
                             </th>
                             <th class="vi wy w_ vo lm">
-                                <div class="gh gt">Status</div>
+                                <div class="gh gt">Role</div>
                             </th>
                             <th class="vi wy w_ vo lm">
                                 <div class="gh gt">Date</div>
@@ -148,7 +148,7 @@
                     <!-- Table body -->
                     <tbody class="text-sm le lr">
                         <!-- Row -->
-                        
+
                         @if ($users->count() > 0)
                         @foreach ($users as $user)
                         <tr>
@@ -170,13 +170,13 @@
                                 <div class="gp text-slate-800">{{ $user->phone }}</div>
                             </td>
                             <td class="vi wy w_ vo lm">
-                                @if ($user->isAdmin === 1)
-                                    <div class="inline-flex gp hf yl rounded-full gn vp vd">user</div>
-                                @endif 
-
-                                @if ($user->isAdmin === 3)
-                                    <div class="inline-flex gp hc ys rounded-full gn vp vd">admin</div>
-                                @endif 
+                                <div class="flex flex-wrap">
+                                    @if ($user->roles)
+                                    @foreach ($user->roles as $user_role)
+                                    <div class="flex mr-2 mt-2 rounded px-2 py-1 text-white text-xs bg-red-500  cursor-pointer">{{ $user_role->name }}</div>
+                                    @endforeach
+                                    @endif
+                                </div>
                             </td>
 
                             <td class="vi wy w_ vo lm">
@@ -185,14 +185,7 @@
 
                             <td class="vi wy w_ vo lm of">
                                 <div class="fm">
-                                    <button class="gq xv rounded-full" wire:click="routeToRole({{ $user->id }})">
-                                        <span class=" d">Role</span>
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5">
-                                        <path fill-rule="evenodd" d="M8 7a5 5 0 113.61 4.804l-1.903 1.903A1 1 0 019 14H8v1a1 1 0 01-1 1H6v1a1 1 0 01-1 1H3a1 1 0 01-1-1v-2a1 1 0 01.293-.707L8.196 8.39A5.002 5.002 0 018 7zm5-3a.75.75 0 000 1.5A1.5 1.5 0 0114.5 7 .75.75 0 0016 7a3 3 0 00-3-3z" clip-rule="evenodd" />
-                                        </svg>
-
-                                    </button>
-
+                                   
                                     <button class="gq xv rounded-full" wire:click="showEditModal({{ $user->id }})">
                                         <span class=" d">Edit</span>
                                         <svg class="os sf du" viewBox="0 0 32 32">
@@ -201,7 +194,7 @@
                                     </button>
 
                                     <button class="yl xy rounded-full" wire:click="deleteId({{ $user->id }})">
-                                    <span class=" d">Delete</span>
+                                        <span class=" d">Delete</span>
                                         <svg class="os sf du" viewBox="0 0 32 32">
                                             <path d="M13 15h2v6h-2zM17 15h2v6h-2z"></path>
                                             <path d="M20 9c0-.6-.4-1-1-1h-6c-.6 0-1 .4-1 1v2H8v2h1v10c0 .6.4 1 1 1h12c.6 0 1-.4 1-1V13h1v-2h-4V9zm-6 1h4v1h-4v-1zm7 3v9H11v-9h10z"></path>
@@ -241,16 +234,20 @@
                     <div class="fw">
 
                         <form>
-                            <div class="">
+                            <div class="my-3 md:mt-0 md:col-span-2" x-data="{tab: 0}">
+                                <div class="mb-5 flex border border-black overflow-hidden">
+                                    <button class="px-4 py-2 w-full font-bold" :class="{ 'active bg-gray-800 text-white': tab === 0 }" x-on:click.prevent="tab = 0">Detail</button>
+                                    <button class="px-4 py-2 w-full font-bold" :class="{ 'active bg-gray-800 text-white': tab === 1 }" x-on:click.prevent="tab = 1">Role</button>
+                                </div>
                                 <div class="">
-                                    <div class="flex flex-col space-y-3">
+                                    <div class="mt-6 flex flex-col space-y-3" x-show="tab === 0">
                                         <div class="col-start-1 sm:col-span-3">
                                             <label for="title" class="block text-sm font-medium text-gray-700">
                                                 First Name
                                             </label>
                                             <input wire:model="firstName" type="text" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                                             @error('firstName')
-                                                <div class="go re yl">{{ $message }}</div>
+                                            <div class="go re yl">{{ $message }}</div>
                                             @enderror
                                         </div>
                                         <div class="col-start-1 sm:col-span-3">
@@ -259,7 +256,7 @@
                                             </label>
                                             <input wire:model="lastName" type="text" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                                             @error('lastName')
-                                                <div class="go re yl">{{ $message }}</div>
+                                            <div class="go re yl">{{ $message }}</div>
                                             @enderror
                                         </div>
                                         <div class="col-start-1 sm:col-span-3">
@@ -268,7 +265,7 @@
                                             </label>
                                             <input wire:model="email" type="email" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                                             @error('email')
-                                                <div class="go re yl">{{ $message }}</div>
+                                            <div class="go re yl">{{ $message }}</div>
                                             @enderror
                                         </div>
                                         <div class="col-start-1 sm:col-span-3">
@@ -277,7 +274,7 @@
                                             </label>
                                             <input wire:model="phone" type="text" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                                             @error('phone')
-                                                <div class="go re yl">{{ $message }}</div>
+                                            <div class="go re yl">{{ $message }}</div>
                                             @enderror
                                         </div>
                                         <div class="col-start-1 sm:col-span-3">
@@ -286,7 +283,7 @@
                                             </label>
                                             <input wire:model="password" type="password" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                                             @error('password')
-                                                <div class="go re yl">{{ $message }}</div>
+                                            <div class="go re yl">{{ $message }}</div>
                                             @enderror
                                         </div>
                                         <div class="col-start-1 sm:col-span-3">
@@ -295,18 +292,47 @@
                                             </label>
                                             <input wire:model="passwordConfirmation" type="password" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                                             @error('passwordConfirmation')
-                                                <div class="go re yl">{{ $message }}</div>
+                                            <div class="go re yl">{{ $message }}</div>
                                             @enderror
                                         </div>
-                                        <div class="col-span-6 sm:col-span-3">
-                                            <label for="first-name" class="block text-sm font-medium text-gray-700">Status</label>
-                                            <select wire:model="userStatus" class="h-full rounded-r border-t border-r border-b block appearance-none w-full bg-white border-gray-300 text-gray-700 py-2 px-4 pr-8 leading-tight focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none">
-                                                <option value="" >Select Option</option>
-                                                @foreach($statuses as $key => $value )
-                                                <option value="{{ $key }}">{{ $value }}</option>
+
+
+                                    </div>
+                                    <div class="mt-6 flex flex-col space-y-3" x-show="tab === 1">
+                                        @if ($userId)
+                                        <div class="">
+                                            @if ($userSelected->roles)
+                                                @foreach ($userSelected->roles as $user_role)
+                                                <div>{{ $user_role->name }}</div>
                                                 @endforeach
-                                            </select>
+                                            @endif
                                         </div>
+                                        <div>
+                                            <div class="w-full m-2 flex flex-wrap ">
+                                                @if ($userSelected->roles)
+                                                    @foreach ($userSelected->roles as $user_role)
+                                                    <div wire:click="removeRole({{ $user_role->name }})" class="flex mr-2 mt-2 rounded px-2 py-1 text-white text-xs bg-gray-800 hover:bg-red-500 cursor-pointer">{{ $user_role->name }}</div>
+                                                    @endforeach
+                                                @endif
+                                            </div>
+                                            <input wire:model="queryRole" type="text" class="rounded w-full" placeholder="Search Role">
+                                            @if (!empty($queryRole))
+                                            <div class="w-full">
+                                                @if (!empty($roles))
+                                                    @foreach ($roles as $roler)
+                                                    <div wire:click="assignRole({{ $roler->name }})" class="w-full p-2 m-2 bg-green-300 hover:bg-green-400 cursor-pointer">
+                                                        {{ $roler->name }}
+                                                    </div>
+                                                    @endforeach
+                                                @endif
+                                            </div>
+                                            @endif
+                                        </div>
+                                        @else
+                                        <div class="w-full flex justify-center items-center">
+                                            <span>Daftar dulu!</span>
+                                        </div>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
@@ -333,31 +359,31 @@
     <!-- modal delete confirmation -->
     <x-dialog-modal wire:model="showConfirmModal" class="">
 
-        
+
         <x-slot name="title" class="border-b bg-slate-200">
             <span class="font-semibold">Delete Confirm</span>
         </x-slot>
-        
+
 
         <x-slot name="content">
             <div class="border-t">
                 <div class="vc vu ">
                     <div class="fw">
 
-                        
+
+                        <div class="">
                             <div class="">
-                                <div class="">
-                                    <div class="flex flex-col space-y-3">
-                                        <div class="flex max-w-auto text-center justify-center items-center">
-                                            <div class="text-lg font-semibold ">
+                                <div class="flex flex-col space-y-3">
+                                    <div class="flex max-w-auto text-center justify-center items-center">
+                                        <div class="text-lg font-semibold ">
                                             <p>Are you sure want to delete?</p>
-                                            </div>
                                         </div>
-                                        
                                     </div>
+
                                 </div>
                             </div>
-                        
+                        </div>
+
                     </div>
                 </div>
             </div>

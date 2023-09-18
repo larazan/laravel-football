@@ -274,9 +274,9 @@
                                             <label for="title" class="block text-sm font-medium text-gray-700">
                                                 Body
                                             </label>
-                                            <textarea wire:model="body" class="form-control required" name="body" id="body"></textarea>
+                                            <!-- <textarea wire:model="body" class="form-control required" name="body" id="body"></textarea> -->
 
-                                            {{--
+                                            
                                             <div wire:ignore>
                                                 <trix-editor 
                                                     class="formatted-content" 
@@ -285,10 +285,11 @@
                                                     x-on:trix-change="$dispatch('input', event.target.value)"
                                                     wire:model.debounce.300ms="body"
                                                     wire:key="uniqueKey"
+                                                    :initial-value="{{ $body }}"
                                                 >
                                                 </trix-editor>
                                             </div>
-                                            --}}
+                                            
 
                                         </div>
 

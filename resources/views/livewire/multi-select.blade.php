@@ -1,6 +1,6 @@
 <select wire:model="selected" class="hidden" x-cloak id="select">
-  @foreach ($stations as $station)
-  <option value="{{ $station->id }}">{{ $station->name }}</option>
+  @foreach ($stadions as $stadion)
+  <option value="{{ $stadion->id }}">{{ $stadion->name }}</option>
   @endforeach
 </select>
 
@@ -13,7 +13,7 @@
           <div class="flex flex-auto flex-wrap">
             <template x-for="(option,index) in selected" :key="options[option].value">
               <div class="flex justify-center items-center m-1 font-medium py-1 px-1 bg-white rounded bg-gray-100 border">
-                <div class="text-xs font-normal leading-none max-w-full flex-initial x-model=" options[option] x-text="options[option].text"></div>
+                <div class="text-xs font-normal leading-none max-w-full flex-initial xodel=" options[option] x-text="options[option].text"></div>
                 <div class="flex flex-auto flex-row-reverse">
                   <div x-on:click.stop="remove(index,option)">
                     <svg class="fill-current h-4 w-4 " role="button" viewBox="0 0 20 20">
@@ -59,7 +59,7 @@
               <div class="cursor-pointer w-full border-gray-100 rounded-t border-b hover:bg-gray-100" @click="select(index,$event)">
                 <div class="flex w-full items-center p-2 pl-2 border-transparent border-l-2 relative">
                   <div class="w-full items-center flex justify-between">
-                    <div class="mx-2 leading-6" x-model="option" x-text="option.text"></div>
+                    <div class="mx-2 leading-6" xodel="option" x-text="option.text"></div>
                     <div x-show="option.selected">
                       <svg class="svg-icon" viewBox="0 0 20 20">
                         <path fill="none" d="M7.197,16.963H7.195c-0.204,0-0.399-0.083-0.544-0.227l-6.039-6.082c-0.3-0.302-0.297-0.788,0.003-1.087
@@ -78,7 +78,7 @@
   </div>
 </div>
 
-
+@push('js')
 <script>
   function dropdown() {
     return {
@@ -133,3 +133,4 @@
     }
   }
 </script>
+@endpush

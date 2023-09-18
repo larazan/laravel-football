@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\User;
+use Spatie\Permission\Models\Role;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
 use Livewire\WithPagination;
@@ -12,6 +13,9 @@ class UserIndex extends Component
 {
     use WithPagination;
 
+    public $queryRole = '';
+    public $roles = [];
+
     public $showUserModal = false;
     public $firstName;
     public $lastName;
@@ -20,6 +24,8 @@ class UserIndex extends Component
     public $password;
     public $passwordConfirmation;
     public $userId;
+    public $userSelected;
+    public $role;
     public $userStatus = 0;
     public $statuses = [
         0 => 'user',
@@ -41,6 +47,21 @@ class UserIndex extends Component
         'phone' => 'required|min:10',
         'userStatus' => 'required'
     ];
+
+    public function mount()
+    {
+
+    }
+
+    public function updated()
+    {
+
+    }
+
+    public function updatedQueryRole()
+    {
+        $this->roles = Role::search('name', $this->queryRole)->get();
+    }
 
     public function showCreateModal()
     {
@@ -84,7 +105,7 @@ class UserIndex extends Component
 
     public function showEditModal($userId)
     {
-        $this->reset(['firstName']);
+        $this->reset();
         $this->userId = $userId;
         $user = User::find($userId);
         $this->firstName = $user->first_name;
@@ -93,6 +114,8 @@ class UserIndex extends Component
         $this->phone = $user->phone;
         $this->userStatus = $user->status;
         $this->showUserModal = true;
+
+        $this->userSelected = User::findOrFail($userId);
     }
     
     public function updateUser()
@@ -145,15 +168,36 @@ class UserIndex extends Component
         $this->reset(['search', 'sort', 'perPage']);
     }
 
-    public function updated($propertyName)
-    {
-        $this->validateOnly($propertyName);
-    }
+    // public function updated($propertyName)
+    // {
+    //     $this->validateOnly($propertyName);
+    // }
 
     public function render()
     {
         return view('livewire.user-index', [
             'users' => User::search('first_name', $this->search)->orderBy('first_name', $this->sort)->paginate($this->perPage),
+            'roles' => Role::all(),
         ]);
+    }
+
+    public function assignRole($roleName)
+    {
+        if ($this->userSelected->hasRole($roleName)) {
+            $this->dispatchBrowserEvent('banner-message', ['style' => 'danger', 'message' => 'Role exists']);
+        }
+
+        $this->userSelected->assignRole($roleName);
+        $this->dispatchBrowserEvent('banner-message', ['style' => 'success', 'message' => 'Role assigned']);
+    }
+
+    public function removeRole($roleName)
+    {
+        if ($this->userSelected->hasRole($roleName)) {
+            $this->userSelected->removeRole($roleName);
+            $this->dispatchBrowserEvent('banner-message', ['style' => 'success', 'message' => 'Role removed']);
+        }
+
+        $this->dispatchBrowserEvent('banner-message', ['style' => 'danger', 'message' => 'Role not exists']);
     }
 }

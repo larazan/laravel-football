@@ -207,7 +207,7 @@ class ProductIndex extends Component
             if ($product) {
                 $randId = Str::random(18);
 
-                $product = Product::where('id', $this->productId)->first();;
+                $product = Product::where('id', $this->productId)->first();
                 $product->user_id = Auth::user()->id;
                 $product->rand_id = $randId;
                 $product->name = $this->name;

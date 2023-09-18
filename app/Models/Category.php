@@ -16,7 +16,7 @@ class Category extends Model
     {
         return LogOptions::defaults()
         ->logUnguarded()
-        ->setDescriptionForEvent(fn(string $eventName) => "This model has been {$eventName} by: ". Auth::user()->name);;
+        ->setDescriptionForEvent(fn(string $eventName) => "This model has been {$eventName} by: ". Auth::user()->name);
         // Chain fluent methods for configuration options
     }
 

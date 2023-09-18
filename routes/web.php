@@ -42,6 +42,7 @@ use App\Http\Livewire\ProductSliderIndex;
 use App\Http\Livewire\RoleIndex;
 use App\Http\Livewire\ScheduleIndex;
 use App\Http\Livewire\SettingIndex;
+use App\Http\Livewire\SearchSelect;
 use App\Http\Livewire\SlideIndex;
 use App\Http\Livewire\SquadIndex;
 use App\Http\Livewire\StadionIndex;
@@ -49,6 +50,8 @@ use App\Http\Livewire\StaffIndex;
 use App\Http\Livewire\StatisticIndex;
 use App\Http\Livewire\SubscribeIndex;
 use App\Http\Livewire\UserIndex;
+
+use App\Http\Livewire\MultiSelect;
 
 /*
 |--------------------------------------------------------------------------
@@ -127,6 +130,9 @@ Route::middleware(['auth:sanctum', 'verified', 'role:admin|author|sales'])->pref
     Route::delete('users/{user}/permissions/{permission}', [UserController::class, 'revokePermission'])->name('users.permissions.revoke');
 
     Route::get('reports/player', [ReportController::class, 'export_player']);
+
+    Route::get('multi', MultiSelect::class)->name('multi.index');
+    Route::get('select', SearchSelect::class)->name('select.index');
 });
 
 Route::get('/tes', [DashboardController::class, 'index'])->name('tes.index');

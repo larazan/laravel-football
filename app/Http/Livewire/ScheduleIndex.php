@@ -17,6 +17,8 @@ class ScheduleIndex extends Component
 {
     use WithPagination;
 
+    public $selectedClub = 8;
+   
     public $currentClubId;
     public $current;
     public $showScheduleModal = false;

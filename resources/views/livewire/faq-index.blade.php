@@ -52,10 +52,10 @@
         <div class="sn am jo az jp ft">
 
             <!-- Delete button -->
-            <div class="table-items-action hidden">
+            <div class="table-items-action" :class:"{ {{ count($mySelected) > 0 ? '' : 'hidden' }} }">
                 <div class="flex items-center">
-                    <div class="hidden tnh text-sm gm mr-2 lm"><span class="table-items-count"></span> items selected</div>
-                    <button class="btn bg-white border-slate-200 hover--border-slate-300 yl xy" wire:click="deleteSelected">Delete</button>
+                    <div class="hidden2 tnh text-sm gm mr-2 lm"><span class="table-items-count">{{ count($mySelected) }}</span> items selected</div>
+                    <button class="btn bg-white border-slate-200 hover--border-slate-300 yl xy" wire:click.prevent="deleteSelected">Delete</button>
                 </div>
             </div>
 
@@ -77,7 +77,7 @@
     <!-- Table -->
     <div class="bg-white bd rounded-sm border border-slate-200 rc">
         <header class="vc vu">
-            <h2 class="gh text-slate-800">Faqs Movies <span class="gq gp"></span></h2>
+            <h2 class="gh text-slate-800">Faqs List<span class="gq gp"></span></h2>
         </header>
         <div x-data="handleSelect">
 
@@ -92,6 +92,7 @@
                                     <label class="inline-flex">
                                         <span class="d">Select all</span>
                                         <input id="parent-checkbox" class="i" type="checkbox" @click="toggleAll" wire:model="selectAll">
+                                        <input type="hidden" wire:model="firstId" value="{{  $faqs[0]->id }}" />
                                     </label>
                                 </div>
                             </th>
@@ -116,52 +117,7 @@
                     <!-- Table body -->
                     <tbody class="text-sm le lr">
                         <!-- Row -->
-                        <tr>
-                            <td class="vi wy w_ vo lm of">
-                                <div class="flex items-center">
-                                    <label class="inline-flex">
-                                        <span class="d">Select</span>
-                                        <input class="table-item i" type="checkbox" @click="uncheckParent">
-                                    </label>
-                                </div>
-                            </td>
-                            <td class="vi wy w_ vo lm">
-                                <div class="gp text-slate-800">
-                                The standard Lorem Ipsum passage, used since the .....
-                                </div>
-                            </td>
-                            <td class="vi wy w_ vo lm">
-                                <div class="gp text-slate-800">
-                                Lorem ipsum dolor sit amet, consectetur adipis.....
-                                </div>
-                            </td>
-                            <td class="vi wy w_ vo lm">
-                                <div class="inline-flex gp hf yl rounded-full gn vp vd">Overdue</div>
-                            </td>
-
-                            <td class="vi wy w_ vo lm">
-                                <div>22/07/2021</div>
-                            </td>
-
-                            <td class="vi wy w_ vo lm of">
-                                <div class="fm">
-                                    <button class="gq xv rounded-full">
-                                        <span class="d">Edit</span>
-                                        <svg class="os sf du" viewBox="0 0 32 32">
-                                            <path d="M19.7 8.3c-.4-.4-1-.4-1.4 0l-10 10c-.2.2-.3.4-.3.7v4c0 .6.4 1 1 1h4c.3 0 .5-.1.7-.3l10-10c.4-.4.4-1 0-1.4l-4-4zM12.6 22H10v-2.6l6-6 2.6 2.6-6 6zm7.4-7.4L17.4 12l1.6-1.6 2.6 2.6-1.6 1.6z"></path>
-                                        </svg>
-                                    </button>
-
-                                    <button class="yl xy rounded-full">
-                                        <span class="d">Delete</span>
-                                        <svg class="os sf du" viewBox="0 0 32 32">
-                                            <path d="M13 15h2v6h-2zM17 15h2v6h-2z"></path>
-                                            <path d="M20 9c0-.6-.4-1-1-1h-6c-.6 0-1 .4-1 1v2H8v2h1v10c0 .6.4 1 1 1h12c.6 0 1-.4 1-1V13h1v-2h-4V9zm-6 1h4v1h-4v-1zm7 3v9H11v-9h10z"></path>
-                                        </svg>
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
+                       
 
                         @if ($faqs->count() > 0)
                         @foreach ($faqs as $faq)
@@ -175,10 +131,10 @@
                                 </div>
                             </td>
                             <td class="vi wy w_ vo lm">
-                                <div class="gp text-slate-800">{{ substr($faq->question, 0, 120) }}...</div>
+                                <div class="gp text-slate-800">{{ substr($faq->question, 0, 80) }}...</div>
                             </td>
                             <td class="vi wy w_ vo lm">
-                                <div class="gp ">{{ substr($faq->answer, 0, 120) }}...</div>
+                                <div class="gp ">{{ substr($faq->answer, 0, 80) }}...</div>
                             </td>
                             <td class="vi wy w_ vo lm">
                                 @if ($faq->status === 'inactive')
@@ -254,6 +210,7 @@
                                                 Faq Question
                                             </label>
                                             <textarea wire:model="question" type="text" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" ></textarea>
+                                            
                                             @error('question')
                                                 <div class="go re yl">{{ $message }}</div>
                                             @enderror
@@ -344,37 +301,43 @@
 
 </div>
 
+
 @push('js')
 <script>
-    // A basic demo function to handle "select all" functionality
-    document.addEventListener('alpine:init', () => {
-        Alpine.data('handleSelect', () => ({
-            selectall: false,
-            selectAction() {
-                countEl = document.querySelector('.table-items-action');
-                if (!countEl) return;
-                checkboxes = document.querySelectorAll('input.table-item:checked');
-                document.querySelector('.table-items-count').innerHTML = checkboxes.length;
-                if (checkboxes.length > 0) {
-                    countEl.classList.remove('hidden');
-                } else {
-                    countEl.classList.add('hidden');
-                }
-            },
-            toggleAll() {
-                this.selectall = !this.selectall;
-                checkboxes = document.querySelectorAll('input.table-item');
-                [...checkboxes].map((el) => {
-                    el.checked = this.selectall;
-                });
-                this.selectAction();
-            },
-            uncheckParent() {
-                this.selectall = false;
-                document.getElementById('parent-checkbox').checked = false;
-                this.selectAction();
-            }
-        }))
+    $('.page-item').on('click', function(event) {
+        Livewire.emit('resetMySelected');
     })
+    // A basic demo function to handle "select all" functionality
+    // document.addEventListener('alpine:init', () => {
+    //     Alpine.data('handleSelect', () => ({
+    //         selectall: false,
+    //         selectAction() {
+    //             countEl = document.querySelector('.table-items-action');
+    //             if (!countEl) return;
+    //             checkboxes = document.querySelectorAll('input.table-item:checked');
+    //             document.querySelector('.table-items-count').innerHTML = checkboxes.length;
+    //             if (checkboxes.length > 0) {
+    //                 countEl.classList.remove('hidden');
+    //             } else {
+    //                 countEl.classList.add('hidden');
+    //             }
+    //         },
+    //         toggleAll() {
+    //             this.selectall = !this.selectall;
+    //             checkboxes = document.querySelectorAll('input.table-item');
+    //             [...checkboxes].map((el) => {
+    //                 el.checked = this.selectall;
+    //             });
+    //             this.selectAction();
+    //         },
+    //         uncheckParent() {
+    //             this.selectall = false;
+    //             document.getElementById('parent-checkbox').checked = false;
+    //             this.selectAction();
+    //         }
+    //     }))
+    // })
+
+    
 </script>
 @endpush

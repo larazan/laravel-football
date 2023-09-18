@@ -25,6 +25,8 @@ class FaqIndex extends Component
     public $sort = 'asc';
     public $perPage = 10;
 
+    protected $listeners = ['resetMySelected' => 'resetSelected'];
+
     public $mySelected = [];
     public $selectAll = false;
     public $firstId = NULL;
@@ -39,8 +41,10 @@ class FaqIndex extends Component
 
     public function updatedSelectAll($value)
     {
+
+        // dd($value);
         if ($value) {
-            $this->mySelected = Faq::where('id', '>=', $this->firstId)->limit(5)->pluck('id');
+            $this->mySelected = Faq::where('id', '>=', $this->firstId)->limit($this->perPage)->pluck('id');
         } else {
             $this->mySelected = [];
         }
@@ -48,7 +52,8 @@ class FaqIndex extends Component
 
     public function updatedMySelected($value)
     {
-        if (count($value) == 5) {
+        // dd($value);
+        if (count($value) == $this->perPage) {
             $this->selectAll = true;
         } else {
             $this->selectAll = false;
@@ -149,13 +154,13 @@ class FaqIndex extends Component
     public function resetFilters()
     {
         $this->reset();
-        $this->reset(['search', 'sort', 'perPage']);
+        $this->reset(['search', 'sort', 'perPage', 'question', 'answer']);
     }
     
     public function render()
     {
         $faqs = Faq::OrderBy('created_at', $this->sort)->paginate($this->perPage);
-        // $this->firstId = $faqs[0]->id;
+        $this->firstId = count($faqs) > 0 ? $faqs[0]->id : 0;
         return view('livewire.faq-index', [
             'faqs' => $faqs
         ]);

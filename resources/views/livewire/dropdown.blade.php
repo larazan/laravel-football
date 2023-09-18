@@ -38,7 +38,7 @@
                             <input
                                     x-ref="search"
                                     x-show="open"
-                                    x-model="search"
+                                    xodel="search"
                                     @keydown.enter.stop.prevent="selectOption()"
                                     @keydown.arrow-up.prevent="focusPreviousOption()"
                                     @keydown.arrow-down.prevent="focusNextOption()"
