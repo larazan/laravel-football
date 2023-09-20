@@ -21,7 +21,7 @@ class TeamLeagueIndex extends Component
 
     public $search = '';
     public $sort = 'asc';
-    public $perPage = 10;
+    public $perPage = 20;
     public $perSeason;
 
     public $showConfirmModal = false;
@@ -34,6 +34,12 @@ class TeamLeagueIndex extends Component
     public function mount()
     {
         $this->date = today()->format('Y-m-d');
+        $yearNow = Carbon::now()->format('Y');
+        $this->perSeason = $yearNow . '/' . $yearNow + 1;
+    }
+
+    public function boot()
+    {
         $yearNow = Carbon::now()->format('Y');
         $this->perSeason = $yearNow . '/' . $yearNow + 1;
     }
@@ -100,6 +106,8 @@ class TeamLeagueIndex extends Component
         $team->save();
 
         $this->reset();
+        $yearNow = Carbon::now()->format('Y');
+        $this->perSeason = $yearNow . '/' . $yearNow + 1;
         $this->dispatchBrowserEvent('banner-message', ['style' => 'success', 'message' => 'Team League created successfully']);
     }
 
@@ -164,6 +172,7 @@ class TeamLeagueIndex extends Component
             $seas = $i . '/' . $i + 1;
             array_push($seasons, $seas);
         }
+
 
         return view('livewire.team-league-index', [
             'teams' => TeamLeague::where('season', $this->perSeason)->orderBy('id', $this->sort)->paginate($this->perPage),

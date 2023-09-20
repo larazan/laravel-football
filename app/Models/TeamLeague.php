@@ -14,9 +14,10 @@ class TeamLeague extends Model
 
     public function getActivitylogOptions(): LogOptions
     {
+        $us = Auth::user() ? Auth::user()->first_name .' '. Auth::user()->last_name : "admin";
         return LogOptions::defaults()
         ->logUnguarded()
-        ->setDescriptionForEvent(fn(string $eventName) => "This model has been {$eventName} by: ". Auth::user()->name);
+        ->setDescriptionForEvent(fn(string $eventName) => "This model has been {$eventName} by: ". $us);
         // Chain fluent methods for configuration options
     }
 

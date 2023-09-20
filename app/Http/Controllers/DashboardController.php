@@ -29,7 +29,7 @@ class DashboardController extends Controller
     {
         $positions = DB::select(DB::raw("
             SELECT 
-                tname AS Team, Sum(P) AS P,Sum(W) AS W,Sum(D) AS D,Sum(L) AS L,
+                name AS Team, Sum(P) AS P,Sum(W) AS W,Sum(D) AS D,Sum(L) AS L,
                 SUM(F) AS F,SUM(A) AS A,SUM(GD) AS GD,SUM(Pts) AS Pts
                 FROM(
                 SELECT

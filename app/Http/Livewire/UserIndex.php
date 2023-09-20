@@ -31,6 +31,8 @@ class UserIndex extends Component
         0 => 'user',
         1 => 'admin',
     ];
+    public $visible;
+    public $reveal;
 
     public $search = '';
     public $sort = 'asc';
@@ -50,12 +52,18 @@ class UserIndex extends Component
 
     public function mount()
     {
-
+        $this->visible = false;
+        $this->reveal = false;
     }
 
     public function updated()
     {
 
+    }
+
+    public function togglePassword()
+    {
+        $this->visible = !$this->visible;
     }
 
     public function updatedQueryRole()
@@ -65,6 +73,7 @@ class UserIndex extends Component
 
     public function showCreateModal()
     {
+        $this->reset(['firstName', 'lastName', 'email', 'phone', 'password']);
         $this->showUserModal = true;
     }
 
@@ -83,7 +92,7 @@ class UserIndex extends Component
     {
         User::find($this->deleteId)->delete();
         $this->showConfirmModal = false;
-        $this->reset();
+        $this->reset(['firstName', 'lastName', 'email', 'phone', 'password']);
         $this->dispatchBrowserEvent('banner-message', ['style' => 'danger', 'message' => 'User deleted successfully']);
     }
 
@@ -105,7 +114,7 @@ class UserIndex extends Component
 
     public function showEditModal($userId)
     {
-        $this->reset();
+        $this->reset(['firstName', 'lastName', 'email', 'phone', 'password']);
         $this->userId = $userId;
         $user = User::find($userId);
         $this->firstName = $user->first_name;
@@ -158,14 +167,13 @@ class UserIndex extends Component
     public function closeUserModal()
     {
         $this->showUserModal = false;
-        $this->reset();
+        $this->reset(['firstName', 'lastName', 'email', 'phone', 'password']);
         $this->resetValidation();
     }
 
     public function resetFilters()
     {
-        $this->reset();
-        $this->reset(['search', 'sort', 'perPage']);
+        $this->reset(['search', 'sort', 'perPage', 'firstName', 'lastName', 'email', 'phone', 'password']);
     }
 
     // public function updated($propertyName)

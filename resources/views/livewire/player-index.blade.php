@@ -26,7 +26,7 @@
                 </button>
             </form>
             
-            <button class="btn bg-white border-slate-200 hover--border-slate-300 yl xy" wire:click="routeToDownloadExcel">Download Excel</button>
+            
             <!-- Create player button -->
             <button class="btn ho xi ye" wire:click="showCreateModal">
                 <svg class="oo sl du bf ub" viewBox="0 0 16 16">
@@ -43,7 +43,7 @@
 
         <!-- Left side -->
         <div class="ri _y">
-
+        <button class="btn bg-white border-slate-200 hover--border-slate-300 yl xy" wire:click="routeToDownloadExcel">Download Excel</button>
         </div>
 
         <!-- Right side -->
@@ -56,7 +56,7 @@
                     <button class="btn bg-white border-slate-200 hover--border-slate-300 yl xy">Delete</button>
                 </div>
             </div>
-
+            
             <!-- Dropdown -->
             <div class="y" x-data="{ open: false, selected: 2 }">
                 <!-- <button class="btn fe un bg-white border-slate-200 hover--border-slate-300 text-slate-500 hover--text-slate-600" aria-label="Select date range" aria-haspopup="true" @click.prevent="open = !open" :aria-expanded="open" aria-expanded="false">
@@ -305,6 +305,12 @@
                                                     @endforeach
                                                 </select>
                                             </div>
+                                            <div class="col-start-1 sm:col-span-3">
+                                                <label for="shirtNumber" class="block text-sm font-medium text-gray-700">
+                                                    Shirt Number
+                                                </label>
+                                                <input wire:model="shirtNumber" type="text" id="numbers-only" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                                            </div>
                                         </div>
 
                                         <div class="flex flex-row justify-between">
@@ -321,12 +327,7 @@
                                                     </select>
                                                 </div>
                                             </div>
-                                            <div class="col-start-1 sm:col-span-3">
-                                                <label for="shirtNumber" class="block text-sm font-medium text-gray-700">
-                                                    Shirt Number
-                                                </label>
-                                                <input wire:model="shirtNumber" type="text" id="numbers-only" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
-                                            </div>
+                                            
                                         </div>
 
                                         <div class="flex flex-row justify-between">
@@ -361,9 +362,7 @@
                                                 <label for="title" class="block text-sm font-medium text-gray-700">
                                                     Birth Date
                                                 </label>
-                                                {{--
-                                                        <input wire:model="birthDate" type="text" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
-                                                    --}}
+                                                
                                                 <x-flatpicker wire:model="birthDate"></x-flatpicker>
                                             </div>
                                             <div class="col-start-1 sm:col-span-3">
@@ -378,6 +377,10 @@
                                                 Bio
                                             </label>
                                             <textarea wire:model="bio" id="bio" cols="50" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">{{ $bio }}</textarea>
+                                            <div class="body-content" wire:ignore>
+                            <trix-editor class="trix-content" x-ref="trix" wire:model.debounce.500ms="content"
+                                wire:key="trix-content-unique-key"></trix-editor>
+                        </div>
                                         </div>
                                         <div class="flex flex-row justify-between">
                                             <div class="col-start-1 sm:col-span-3">
@@ -545,7 +548,7 @@
                                         </div>
                                         <div class="hidden qx of sf hu rp" aria-hidden="true"></div>
                                     </div>
-                                    <!-- Total Pageviews -->
+                                    <!-- age -->
                                     <div class="flex items-center vr">
                                         <div class="rp">
                                             <div class="flex items-center">
@@ -556,7 +559,7 @@
                                         <div class="hidden qx of sf hu rp" aria-hidden="true"></div>
                                     </div>
 
-                                    <!-- Visit Duration-->
+                                    <!-- number-->
                                     <div class="flex items-center">
                                         <div>
                                             <div class="flex items-center">

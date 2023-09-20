@@ -1,12 +1,14 @@
 fix reset
 role & permission
 log activity all model
+add column start/end date competition
 player statistic
 league position db raw
 training materi & schedules
 online store
 bulk delete 
 excel export
+chart
 email notif
     newsletter
     order

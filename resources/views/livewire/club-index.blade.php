@@ -42,7 +42,7 @@
 
         <!-- Left side -->
         <div class="ri _y">
-
+        <button class="btn bg-white border-slate-200 hover--border-slate-300 yl xy" wire:click="routeToDownloadExcel">Download Excel</button>
         </div>
 
         <!-- Right side -->

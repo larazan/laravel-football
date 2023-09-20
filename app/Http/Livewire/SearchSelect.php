@@ -7,9 +7,9 @@ use Livewire\Component;
 
 class SearchSelect extends Component
 {
-    public $personel_adi = '';
-    public $kullanicilar;
-    public $yonetici_id = NULL;
+    public $playerName = '';
+    public $players;
+    public $playerId = NULL;
 
     protected $rules = [
 
@@ -17,13 +17,13 @@ class SearchSelect extends Component
 
     public function mount()
     {
-        $this->kullanicilar = Player::all();
+        $this->players = Player::all();
     }
 
-    public function getPersonellerProperty()
+    public function getPlayerProperty()
     {
-        if ($this->personel_adi != NULL) {
-            return Player::where('name', 'like', '%'.$this->personel_adi.'%')->paginate(10);
+        if ($this->playerName != NULL) {
+            return Player::where('name', 'like', '%'.$this->playerName.'%')->paginate(10);
         } else {
             return Player::all();
         }

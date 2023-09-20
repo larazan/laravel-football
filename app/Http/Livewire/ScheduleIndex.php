@@ -17,7 +17,7 @@ class ScheduleIndex extends Component
 {
     use WithPagination;
 
-    public $selectedClub = 8;
+    public $selectedClub = 9;
    
     public $currentClubId;
     public $current;
@@ -111,6 +111,11 @@ class ScheduleIndex extends Component
     {
         $this->validate();
   
+        if ($this->opponent == $this->currentClubId) {
+            $this->dispatchBrowserEvent('banner-message', ['style' => 'danger', 'message' => 'Couldnt choose opponent of own club']);
+            return;
+        }
+
         // 
         if ($this->position === 'home') {
             $homeTeam = $this->currentClubId;
@@ -311,6 +316,7 @@ class ScheduleIndex extends Component
             'competitions' => Competition::OrderBy('name', 'asc')->get(),
             'stadions' => Stadion::OrderBy('name', 'asc')->get(),
             'clubs' => Club::OrderBy('id', 'asc')->get(),
+            'teams' => Club::OrderBy('id', 'asc')->get()->toArray(),
             'seasonOption' => $seasons,
             'hourOption' => $hours,
             'minuteOption' => $minutes,

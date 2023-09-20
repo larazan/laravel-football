@@ -15,6 +15,7 @@ class SettingIndex extends Component
 {
     use WithFileUploads;
 
+    public $selectedClub;
     public $showSettingModal = false;
 
     public $title;
@@ -31,7 +32,7 @@ class SettingIndex extends Component
     public $twitter; 
     public $facebook; 
     public $instagram; 
-    public $pinnedClub; 
+    // public $pinnedClub; 
     public $icon;
     public $settingId = 1;
 
@@ -42,6 +43,7 @@ class SettingIndex extends Component
 
     public function mount()
     {
+        // $this->selectedClub = 0;
         $setting = Setting::find($this->settingId);
 
         if ($setting) {
@@ -58,7 +60,7 @@ class SettingIndex extends Component
             $this->instagram = $setting->instagram;
             $this->icon = $setting->icon;
             $this->oldImage = $setting->small;
-            $this->pinnedClub = $setting->pinned_club;
+            $this->selectedClub = $setting->pinned_club > 0 ? $setting->pinned_club : 0;
         }
         
     }
@@ -81,7 +83,7 @@ class SettingIndex extends Component
             $this->instagram = $setting->instagram;
             $this->icon = $setting->icon;
             $this->oldImage = $setting->small;
-            $this->pinnedClub = $setting->pinned_club;
+            $this->selectedClub = $setting->pinned_club;
         }
         
     }
@@ -153,7 +155,7 @@ class SettingIndex extends Component
             'twitter' => $this->twitter,
             'facebook' => $this->facebook,
             'instagram' => $this->instagram,
-            'pinned_club' => $this->pinnedClub,
+            'pinned_club' => $this->selectedClub,
             'icon' => $filePath,
         ]);
 
@@ -170,6 +172,7 @@ class SettingIndex extends Component
     {
         return view('livewire.setting-index', [
             'settings' => Setting::where('id', $this->settingId)->get(),
+            'teams' => Club::OrderBy('id', 'asc')->get()->toArray(),
             'clubs' => Club::orderBy('id', 'asc')->get(),
         ]);
     }
