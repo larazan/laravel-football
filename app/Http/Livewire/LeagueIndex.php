@@ -37,6 +37,7 @@ class LeagueIndex extends Component
     public $leagueId;
     public $team;
     public $teamId;
+    public $clubName;
 
     public $perSeason;
     
@@ -56,12 +57,6 @@ class LeagueIndex extends Component
         $this->perSeason = $yearNow . '/' . $yearNow + 1;
     }
 
-    public function updated($propertyName)
-    {
-        // $this->validateOnly($propertyName, [
-            
-        // ]);
-    }
 
     public function showCreateModal()
     {
@@ -131,7 +126,8 @@ class LeagueIndex extends Component
     {
         $league = TeamLeague::findOrFail($this->leagueId);
         $this->season = $league->season; 
-        $this->team = $league->team_id;
+        $this->teamId = $league->team_id;
+        $this->clubName = $league->club->name;
         $this->totalPoints = $league->total_points;
         $this->totalGoals = $league->total_goals;
         $this->totalGoalsreceived = $league->total_goalsreceived;
@@ -220,7 +216,7 @@ class LeagueIndex extends Component
         }
 
         return view('livewire.league-index', [
-            'teams' => TeamLeague::search('season', $this->perSeason)->orderBy('id', 'asc')->get(),
+            'teams' => TeamLeague::where('season', $this->perSeason)->orderBy('id', 'asc')->get(),
             'clubs' => Club::OrderBy('name', 'asc')->get(),
             'seasonOption' => $seasons,
         ]);

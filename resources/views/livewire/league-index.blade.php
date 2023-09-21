@@ -199,7 +199,7 @@
     <x-dialog-modal wire:model="showLeagueModal" class="">
 
         
-        <x-slot name="title" class="border-b">Update Team</x-slot>
+        <x-slot name="title" class="border-b">Update Team {{ $clubName }}</x-slot>
     
 
         <x-slot name="content">
@@ -228,13 +228,13 @@
                                         <div class="flex flex-row justify-between">
                                             <div class="col-start-1 sm:col-span-3">
                                                 <label for="totalGoalsreceived" class="block text-sm font-medium text-gray-700">
-                                                total Goals received
+                                                Total Goals received
                                                 </label>
                                                 <input wire:model="totalGoalsreceived" type="number" min="0" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                                             </div>
                                             <div class="col-start-1 sm:col-span-3">
                                                 <label for="totalGoalsdiff" class="block text-sm font-medium text-gray-700">
-                                                total Goals different
+                                                Total Goals different
                                                 </label>
                                                 <input wire:model="totalGoalsdiff" type="number" min="0" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                                             </div>
@@ -242,19 +242,19 @@
                                         <div class="flex flex-row justify-between">
                                             <div class="col-start-1 sm:col-span-3">
                                                 <label for="totalWins" class="block text-sm font-medium text-gray-700">
-                                                total Wins
+                                                Total Wins
                                                 </label>
                                                 <input wire:model="totalWins" type="number" min="0" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                                             </div>
                                             <div class="col-start-1 sm:col-span-3">
                                                 <label for="totalDraws" class="block text-sm font-medium text-gray-700">
-                                                total Draws
+                                                Total Draws
                                                 </label>
                                                 <input wire:model="totalDraws" type="number" min="0" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                                             </div>
                                             <div class="col-start-1 sm:col-span-3">
                                                 <label for="totalLosses" class="block text-sm font-medium text-gray-700">
-                                                total Losses
+                                                Total Losses
                                                 </label>
                                                 <input wire:model="totalLosses" type="number" min="0" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                                             </div>
@@ -262,13 +262,13 @@
                                         <div class="flex flex-row justify-between">
                                             <div class="col-start-1 sm:col-span-3">
                                                 <label for="homePoints" class="block text-sm font-medium text-gray-700">
-                                                home Points
+                                                Home Points
                                                 </label>
                                                 <input wire:model="homePoints" type="number" min="0" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                                             </div>
                                             <div class="col-start-1 sm:col-span-3">
                                                 <label for="homeGoals" class="block text-sm font-medium text-gray-700">
-                                                home Goals
+                                                Home Goals
                                                 </label>
                                                 <input wire:model="homeGoals" type="number" min="0" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                                             </div>
@@ -276,13 +276,13 @@
                                         <div class="flex flex-row justify-between">
                                             <div class="col-start-1 sm:col-span-3">
                                                 <label for="homeGoalsreceived" class="block text-sm font-medium text-gray-700">
-                                                home Goals received
+                                                Home Goals received
                                                 </label>
                                                 <input wire:model="homeGoalsreceived" type="number" min="0" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                                             </div>
                                             <div class="col-start-1 sm:col-span-3">
                                                 <label for="homeGoalsdiff" class="block text-sm font-medium text-gray-700">
-                                                home Goals different
+                                                Home Goals different
                                                 </label>
                                                 <input wire:model="homeGoalsdiff" type="number" min="0" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                                             </div>
@@ -290,19 +290,19 @@
                                         <div class="flex flex-row justify-between">
                                             <div class="col-start-1 sm:col-span-3">
                                                 <label for="homeWins" class="block text-sm font-medium text-gray-700">
-                                                home Wins
+                                                Home Wins
                                                 </label>
                                                 <input wire:model="homeWins" type="number" min="0" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                                             </div>
                                             <div class="col-start-1 sm:col-span-3">
                                                 <label for="homeDraws" class="block text-sm font-medium text-gray-700">
-                                                home Draws
+                                                Home Draws
                                                 </label>
                                                 <input wire:model="homeDraws" type="number" min="0" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                                             </div>
                                             <div class="col-start-1 sm:col-span-3">
                                                 <label for="homeLosses" class="block text-sm font-medium text-gray-700">
-                                                home Losses
+                                                Home Losses
                                                 </label>
                                                 <input wire:model="homeLosses" type="number" min="0" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                                             </div>
@@ -310,13 +310,13 @@
                                         <div class="flex flex-row justify-between">
                                             <div class="col-start-1 sm:col-span-3">
                                                 <label for="awayPoints" class="block text-sm font-medium text-gray-700">
-                                                away Points
+                                                Away Points
                                                 </label>
                                                 <input wire:model="awayPoints" type="number" min="0" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                                             </div>
                                             <div class="col-start-1 sm:col-span-3">
                                                 <label for="awayGoals" class="block text-sm font-medium text-gray-700">
-                                                away Goals
+                                                Away Goals
                                                 </label>
                                                 <input wire:model="awayGoals" type="number" min="0" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                                             </div>
@@ -324,13 +324,13 @@
                                         <div class="flex flex-row justify-between">
                                             <div class="col-start-1 sm:col-span-3">
                                                 <label for="awayGoalsreceived" class="block text-sm font-medium text-gray-700">
-                                                away Goals received
+                                                Away Goals received
                                                 </label>
                                                 <input wire:model="awayGoalsreceived" type="number" min="0" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                                             </div>
                                             <div class="col-start-1 sm:col-span-3">
                                                 <label for="awayGoalsdiff" class="block text-sm font-medium text-gray-700">
-                                                away Goals different
+                                                Away Goals different
                                                 </label>
                                                 <input wire:model="awayGoalsdiff" type="number" min="0" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                                             </div>
@@ -338,19 +338,19 @@
                                         <div class="flex flex-row justify-between">
                                             <div class="col-start-1 sm:col-span-3">
                                                 <label for="awayWins" class="block text-sm font-medium text-gray-700">
-                                                away Wins
+                                                Away Wins
                                                 </label>
                                                 <input wire:model="awayWins" type="number" min="0" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                                             </div>
                                             <div class="col-start-1 sm:col-span-3">
                                                 <label for="awayDraws" class="block text-sm font-medium text-gray-700">
-                                                away Draws
+                                                Away Draws
                                                 </label>
                                                 <input wire:model="awayDraws" type="number" min="0" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                                             </div>
                                             <div class="col-start-1 sm:col-span-3">
                                                 <label for="awayLosses" class="block text-sm font-medium text-gray-700">
-                                                away Losses
+                                                Away Losses
                                                 </label>
                                                 <input wire:model="awayLosses" type="number" min="0" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                                             </div>
