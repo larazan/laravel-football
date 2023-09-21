@@ -1,3 +1,19 @@
-<div>
-    {{-- Success is as dangerous as failure. --}}
+<div wire:ignore>
+    <input id="{{ $trixId }}" type="hidden" name="content" value="{{ $value }}">
+    <trix-editor wire:ignore input="{{ $trixId }}"></trix-editor>
 </div>
+
+@push('styles')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/trix/1.3.1/trix.min.css" />
+@endpush
+
+@push('js')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/trix/1.3.1/trix.min.js"></script>
+<script>
+        var trixEditor = document.getElementById("{{ $trixId }}")
+
+        addEventListener("trix-blur", function(event) {
+            @this.set('value', trixEditor.getAttribute('value'))
+        })
+    </script>
+@endpush

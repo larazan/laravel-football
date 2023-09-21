@@ -12,11 +12,12 @@ class TeamLeagueIndex extends Component
 {
     use  WithPagination;
 
+    public $selectedClub;
     public $showTeamModal = false;
     public $season;
     // public $seasonOption = [];
     public $date;
-    public $team;
+    // public $team;
     public $teamId;
 
     public $search = '';
@@ -36,6 +37,7 @@ class TeamLeagueIndex extends Component
         $this->date = today()->format('Y-m-d');
         $yearNow = Carbon::now()->format('Y');
         $this->perSeason = $yearNow . '/' . $yearNow + 1;
+        $this->selectedClub = 0;
     }
 
     public function boot()
@@ -90,7 +92,7 @@ class TeamLeagueIndex extends Component
     public function createTeamLeague()
     {
         $arr = [
-            ['team_id', '=', $this->team],
+            ['team_id', '=', $this->selectedClub],
             ['season', '=', $this->season],
         ];
 
@@ -101,7 +103,7 @@ class TeamLeagueIndex extends Component
        
         $team = new TeamLeague;
         $team->season = $this->season;
-        $team->team_id = $this->team;
+        $team->team_id = $this->selectedClub;
 
         $team->save();
 
@@ -122,7 +124,7 @@ class TeamLeagueIndex extends Component
     {
         $team = TeamLeague::findOrFail($this->teamId);
         $this->season = $team->season; 
-        $this->team = $team->team_id;
+        $this->selectedClub = $team->team_id;
     }
 
     public function updateTeamLeague()
@@ -135,7 +137,7 @@ class TeamLeagueIndex extends Component
             
         // ]);
         $team->season = $this->season;
-        $team->team_id = $this->team;
+        $team->team_id = $this->selectedClub;
 
         $team->save();
         
@@ -176,6 +178,7 @@ class TeamLeagueIndex extends Component
 
         return view('livewire.team-league-index', [
             'teams' => TeamLeague::where('season', $this->perSeason)->orderBy('id', $this->sort)->paginate($this->perPage),
+            'klubs' => Club::OrderBy('id', 'asc')->get()->toArray(),
             'clubs' => Club::OrderBy('name', 'asc')->get(),
             'seasonOption' => $seasons,
         ]);

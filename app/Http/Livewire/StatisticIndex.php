@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\Statistic;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
 use Livewire\WithPagination;
 use Livewire\Component;
@@ -43,6 +44,8 @@ class StatisticIndex extends Component
     public function mount($matchId)
     {
         $this->matchId = $matchId;
+        $playerID = Route::current()->parameter('playerId');
+        $this->playerId = $playerID;
     }
 
     public function showCreateModal()

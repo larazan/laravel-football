@@ -243,11 +243,29 @@
                                                 <div class="go re yl">{{ $message }}</div>
                                             @enderror
                                         </div>
-                                        <div class="col-span-6 sm:col-span-3">
+                                        <div 
+                                            class="col-span-6 sm:col-span-3"
+                                            x-data="{ isUploading: false, progress: 5 }"
+                                            x-on:livewire-upload-start="isUploading = true"
+                                            x-on:livewire-upload-finish="isUploading = false; progress = 5"
+                                            x-on:livewire-upload-error="isUploading = false"
+                                            x-on:livewire-upload-progress="progress = $event.detail.progress"
+                                        >
                                             <label for="photo" class="block text-sm font-medium text-gray-700">Person
                                                 photo</label>
                                             <input wire:model="filename" type="file" autocomplete="given-name"
-                                                class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                                                class="
+                                                    mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md
+                                                    file:bg-gradient-to-b file:from-blue-500 file:to-blue-600 
+                                                    file:px-6 file:py-3 file:m-5
+                                                    file:border-none
+                                                    file:rounded
+                                                    file:text-white
+                                                    file:cursor-pointer
+                                                    file:shadow-lg file:shadow-blue-600/50"
+                                            />
+                                            <div x-show.transition="isUploading" class="mt-3 w-full bg-slate-100 mb-6">
+                                            <div class="ho ye2 rounded text-xs font-medium py-[1px] text-center" x-bind:style="`width: ${progress}%`">%</div>
                                                 @if ($oldImage)
                                                     Photo Preview:
                                                     <img src="{{ asset('storage/'.$oldImage) }}">

@@ -25,8 +25,8 @@
                     </svg>
                 </button>
             </form>
-            
-            
+
+
             <!-- Create player button -->
             <button class="btn ho xi ye" wire:click="showCreateModal">
                 <svg class="oo sl du bf ub" viewBox="0 0 16 16">
@@ -43,7 +43,7 @@
 
         <!-- Left side -->
         <div class="ri _y">
-        <button class="btn bg-white border-slate-200 hover--border-slate-300 yl xy" wire:click="routeToDownloadExcel">Download Excel</button>
+            <button class="btn bg-white border-slate-200 hover--border-slate-300 yl xy" wire:click="export">Download Excel</button>
         </div>
 
         <!-- Right side -->
@@ -56,7 +56,7 @@
                     <button class="btn bg-white border-slate-200 hover--border-slate-300 yl xy">Delete</button>
                 </div>
             </div>
-            
+
             <!-- Dropdown -->
             <div class="y" x-data="{ open: false, selected: 2 }">
                 <!-- <button class="btn fe un bg-white border-slate-200 hover--border-slate-300 text-slate-500 hover--text-slate-600" aria-label="Select date range" aria-haspopup="true" @click.prevent="open = !open" :aria-expanded="open" aria-expanded="false">
@@ -196,14 +196,14 @@
                                     @endif
                                     <span class="text-xs">{{ $player->club->name }}</span>
                                 </div>
-                                
+
                             </td>
                             <td class="vi wy w_ vo lm">
                                 <div class="flex flex-row items-center space-x-2">
-                                @if ($player->country_id)
+                                    @if ($player->country_id)
                                     <img src="{{ asset('vendor/blade-flags/country-'.$player->country->code.'.svg') }}" class="w-6 rounded" alt="foto" />
-                                <div class="gt">{{ $player->country->code }}</div>
-                                @endif
+                                    <div class="gt">{{ $player->country->code }}</div>
+                                    @endif
                                 </div>
                             </td>
 
@@ -287,15 +287,54 @@
                                         </div>
                                         <div class="col-span-6 sm:col-span-3">
                                             <label for="club" class="block text-sm font-medium text-gray-700">Club</label>
-                                            <select wire:model="club" class=" rounded-r border-t border-r border-b block appearance-none w-full bg-white border-gray-300 text-gray-700 py-2 px-4 pr-8 leading-tight focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none">
-                                                <option value="">Select Option</option>
-                                                @foreach($clubs as $club)
-                                                <option value="{{ $club->id }}">{{ $club->name }}</option>
-                                                @endforeach
-                                            </select>
+
+                                            <!-- Dropdown -->
+                                            <div class="relative absolute2 " x-data="{ open: false, selected: {{ $selectedClub }} }">
+                                                <button class="btn fe uo bg-white border-slate-200 hover--border-slate-300 text-slate-500 hover--text-slate-600" aria-label="Select date range" aria-haspopup="true" @click.prevent="open = !open" :aria-expanded="open" aria-expanded="false">
+                                                    <div class="flex items-center">
+
+                                                        <div class="mr-2">
+                                                            @if ($selectedClub > 0)
+                                                            <img src="{{ asset('storage/'.$teams[$selectedClub-1]['logo']) }}" class="w-6 rounded" alt="foto" />
+                                                            @endif
+                                                        </div>
+                                                        <span x-text="selected === 0 ? $refs.options.children[selected].children[1].innerHTML : $refs.options.children[selected].children[2].innerHTML">Last Month</span>
+                                                    </div>
+                                                    <svg class="ub nz du gq" width="11" height="7" viewBox="0 0 11 7">
+                                                        <path d="M5.4 6.8L0 1.4 1.4 0l4 4 4-4 1.4 1.4z"></path>
+                                                    </svg>
+                                                </button>
+                                                <div class="tx g z q z-80 ou visible bg-white border border-slate-200 va w-40 rounded bd la re absolute" @click.outside="open = false" @keydown.escape.window="open = false" x-show="open" x-transition:enter="wt wa ws au" x-transition:enter-start="opacity-0 uq" x-transition:enter-end="ba uj" x-transition:leave="wt wa ws" x-transition:leave-start="ba" x-transition:leave-end="opacity-0" style="display: none;">
+                                                    <div class="gp text-sm g_" x-ref="options">
+                                                        <div tabindex="0" class="flex items-center  ou xr vf vn al" :class="selected === 0 &amp;&amp; 'text-indigo-500'" @click="selected = 0;open = false" @focus="open = true" @focusout="open = false">
+                                                            <svg class="ub mr-2 du text-indigo-500 invisible" :class="selected !== 0 &amp;&amp; 'invisible'" width="12" height="9" viewBox="0 0 12 9">
+                                                                <path d="M10.28.28L3.989 6.575 1.695 4.28A1 1 0 00.28 5.695l3 3a1 1 0 001.414 0l7-7A1 1 0 0010.28.28z"></path>
+                                                            </svg>
+
+                                                            <span>Select Club</span>
+
+                                                        </div>
+                                                        @foreach ($clubs as $club)
+                                                        <div tabindex="0" class="flex items-center  ou xr vf vn al" :class="selected === {{ $club->id }} &amp;&amp; 'text-indigo-500'" @click="selected = {{ $club->id }};open = false; $wire.selectedClub= {{ $club->id }}" @focus="open = true" @focusout="open = false">
+                                                            <svg class="ub mr-2 du text-indigo-500 invisible" :class="selected !== {{ $club->id }} &amp;&amp; 'invisible'" width="12" height="9" viewBox="0 0 12 9">
+                                                                <path d="M10.28.28L3.989 6.575 1.695 4.28A1 1 0 00.28 5.695l3 3a1 1 0 001.414 0l7-7A1 1 0 0010.28.28z"></path>
+                                                            </svg>
+                                                            @if ($club->logo)
+                                                            <div class="mr-2">
+                                                                <img src="{{ asset('storage/'.$club->logo) }}" class="w-6 rounded" alt="foto" />
+                                                            </div>
+                                                            @endif
+                                                            <span>{{ $club->name }}</span>
+                                                        </div>
+                                                        @endforeach
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- end dropdown -->
                                         </div>
                                         <div class="flex flex-row justify-between">
-                                            
+
                                             <div class="col-start-1 sm:col-span-3">
                                                 <label for="position" class="block text-sm font-medium text-gray-700">Position</label>
                                                 <select wire:model="position" class=" rounded-r border-t border-r border-b block appearance-none w-full bg-white border-gray-300 text-gray-700 py-2 px-4 pr-8 leading-tight focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none">
@@ -327,7 +366,7 @@
                                                     </select>
                                                 </div>
                                             </div>
-                                            
+
                                         </div>
 
                                         <div class="flex flex-row justify-between">
@@ -362,7 +401,7 @@
                                                 <label for="title" class="block text-sm font-medium text-gray-700">
                                                     Birth Date
                                                 </label>
-                                                
+
                                                 <x-flatpicker wire:model="birthDate"></x-flatpicker>
                                             </div>
                                             <div class="col-start-1 sm:col-span-3">
@@ -378,22 +417,21 @@
                                             </label>
                                             <textarea wire:model="bio" id="bio" cols="50" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">{{ $bio }}</textarea>
                                             <div class="body-content" wire:ignore>
-                            <trix-editor class="trix-content" x-ref="trix" wire:model.debounce.500ms="content"
-                                wire:key="trix-content-unique-key"></trix-editor>
-                        </div>
+                                                <trix-editor class="trix-content" x-ref="trix" wire:model.debounce.500ms="content" wire:key="trix-content-unique-key"></trix-editor>
+                                            </div>
                                         </div>
                                         <div class="flex flex-row justify-between">
                                             <div class="col-start-1 sm:col-span-3">
                                                 <label for="height" class="block text-sm font-medium text-gray-700">
                                                     Height
                                                 </label>
-                                                <input wire:model="height" type="text" onkeypress="return onlyNumberKey(event)"  autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                                                <input wire:model="height" type="text" onkeypress="return onlyNumberKey(event)" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                                             </div>
                                             <div class="col-start-1 sm:col-span-3">
                                                 <label for="weight" class="block text-sm font-medium text-gray-700">
                                                     Weight
                                                 </label>
-                                                <input wire:model="weight" type="text" onkeypress="return onlyNumberKey(event)"  autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                                                <input wire:model="weight" type="text" onkeypress="return onlyNumberKey(event)" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                                             </div>
                                         </div>
                                         <div class="flex flex-row justify-between">
@@ -419,18 +457,10 @@
                                     </div>
 
                                     <div class="mt-6 flex flex-col space-y-3" x-show="tab === 2">
-                                        <div 
-                                            class="col-span-6 sm:col-span-3"
-                                            x-data="{ isUploading: false, progress: 5 }"
-                                            x-on:livewire-upload-start="isUploading = true"
-                                            x-on:livewire-upload-finish="isUploading = false; progress = 5"
-                                            x-on:livewire-upload-error="isUploading = false"
-                                            x-on:livewire-upload-progress="progress = $event.detail.progress"
-                                        >
+                                        <div class="col-span-6 sm:col-span-3" x-data="{ isUploading: false, progress: 5 }" x-on:livewire-upload-start="isUploading = true" x-on:livewire-upload-finish="isUploading = false; progress = 5" x-on:livewire-upload-error="isUploading = false" x-on:livewire-upload-progress="progress = $event.detail.progress">
                                             <label for="photo" class="block text-sm font-medium text-gray-700">
                                                 Player photo ({{ $sizeTol }})</label>
-                                            <input wire:model="file" type="file" autocomplete="given-name" 
-                                                class="
+                                            <input wire:model="file" type="file" autocomplete="given-name" class="
                                                     mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md
                                                     file:bg-gradient-to-b file:from-blue-500 file:to-blue-600 
                                                     file:px-6 file:py-3 file:m-5
@@ -438,8 +468,7 @@
                                                     file:rounded
                                                     file:text-white
                                                     file:cursor-pointer
-                                                    file:shadow-lg file:shadow-blue-600/50" 
-                                            />
+                                                    file:shadow-lg file:shadow-blue-600/50" />
                                             <div x-show.transition="isUploading" class="mt-3 w-full bg-slate-100 mb-6">
                                                 <div class="ho ye2 rounded text-xs font-medium py-[1px] text-center" x-bind:style="`width: ${progress}%`">%</div>
                                             </div>
@@ -530,7 +559,7 @@
                                     <img src="{{ asset('storage/'.$oldImage) }}">
                                     @else
                                     <img class="rounded-sm" src="{{ asset('images/generic-male-avatar-300x284.jpg') }}" width="200" height="142" alt="Player 01">
-                                    @endif                
+                                    @endif
                                 </div>
                             </div>
                             <div class="uw">
@@ -582,12 +611,12 @@
                                         <div class="flex text-sm text-slate-700">
                                             <div class="w-1/2 capitalize">nationality :</div>
                                             <div class="w-1/2">
-                                            <div class="flex flex-row items-center space-x-2">
-                                            @if ($nationality)
-                                                <img src="{{ asset('vendor/blade-flags/country-'.$code.'.svg') }}" class="w-6 rounded" alt="foto" />
-                                            <div class="gt">{{ $code }}</div>
-                                            @endif
-                                            </div>
+                                                <div class="flex flex-row items-center space-x-2">
+                                                    @if ($nationality)
+                                                    <img src="{{ asset('vendor/blade-flags/country-'.$code.'.svg') }}" class="w-6 rounded" alt="foto" />
+                                                    <div class="gt">{{ $code }}</div>
+                                                    @endif
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

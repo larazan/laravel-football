@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\ArticleController;
 use App\Http\Controllers\Admin\MediaController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\PlayerStatisticController;
 use App\Http\Controllers\Admin\ReportController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ContactController;
@@ -97,6 +98,7 @@ Route::middleware(['auth:sanctum', 'verified', 'role:admin|author|sales'])->pref
     Route::get('matchs/{matchId}/match-lineup', MatchLineup::class)->name('match-lineup.index');
     Route::get('matchs/{matchId}/match-report', MatchReportIndex::class)->name('match-report.index');
     Route::get('matchs/{matchId}/match-statistic', MatchStatisticIndex::class)->name('match-statistic.index');
+    Route::get('matchs/{matchId}/player/{playerId}', StatisticIndex::class)->name('player-statistic.index');
     
     // 
     Route::get('medias/create', [MediaController::class, 'create']);
@@ -117,7 +119,6 @@ Route::middleware(['auth:sanctum', 'verified', 'role:admin|author|sales'])->pref
     Route::get('squads', SquadIndex::class)->name('squads.index');
     Route::get('stadions', StadionIndex::class)->name('stadions.index');
     Route::get('staffs', StaffIndex::class)->name('staffs.index');
-    Route::get('statistics', StatisticIndex::class)->name('statistics.index');
     Route::get('subscribers', SubscribeIndex::class)->name('subscribers.index');
     Route::get('settings', SettingIndex::class)->name('settings.index');
     Route::get('slides', SlideIndex::class)->name('slides.index');

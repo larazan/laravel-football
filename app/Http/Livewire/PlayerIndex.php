@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Exports\ExportPlayer;
 use Livewire\WithFileUploads;
 use App\Models\Player;
 use App\Models\Position;
@@ -13,16 +14,18 @@ use Illuminate\Support\Facades\Storage;
 use Intervention\Image\ImageManagerStatic as Image;
 use Livewire\WithPagination;
 use Livewire\Component;
+use Maatwebsite\Excel\Facades\Excel;
 
 class PlayerIndex extends Component
 {
     use WithFileUploads, WithPagination;
     
+    public $selectedClub;
     public $counter = 0;
     public $showPlayerModal = false;
     public $sizeTol = Player::LARGE;
     public $club;
-    public $clubId;
+    // public $selectedClub;
     public $name;
     public $birthDate;
     public $birthLocation;
@@ -73,6 +76,7 @@ class PlayerIndex extends Component
         $this->contractFrom = today()->format('Y-m-d');
         $this->contractUntil = today()->format('Y-m-d');
         $this->birthDate = today()->format('Y-m-d');
+        $this->selectedClub = 11;
     } 
 
     public function showCreateModal()
@@ -106,7 +110,7 @@ class PlayerIndex extends Component
         $new = Str::slug($this->name) . '_' . time();
 
         $player = new Player();
-        $player->club_id = $this->clubId;
+        $player->club_id = $this->selectedClub;
         $player->name = $this->name;
         $player->slug = Str::slug($this->name);
         $player->birth_date = $this->birthDate;
@@ -161,7 +165,7 @@ class PlayerIndex extends Component
         $this->reset(['name']);
         $this->playerId = $playerId;
         $player = Player::find($playerId);
-        $this->clubId = $player->club_id;
+        $this->selectedClub = $player->club_id;
         $this->name = $player->name;
         $this->position = $player->position_id;
         $this->birthDate = $player->birth_date;
@@ -188,7 +192,7 @@ class PlayerIndex extends Component
         $this->reset(['name']);
         $this->playerId = $playerId;
         $player = Player::find($playerId);
-        $this->clubId = $player->club_id;
+        $this->selectedClub = $player->club_id;
         $this->name = $player->name;
         $this->position = $player->position->name;
         $this->birthDate = $player->birth_date;
@@ -243,7 +247,7 @@ class PlayerIndex extends Component
                 // ]);
 
                 // $player = Player::where('id', $this->playerId);
-                $player->club_id = $this->clubId;
+                $player->club_id = $this->selectedClub;
                 $player->name = $this->name;
                 $player->slug = Str::slug($this->name);
                 $player->birth_date = $this->birthDate;
@@ -313,6 +317,7 @@ class PlayerIndex extends Component
         return view('livewire.player-index', [
             'players' => Player::search('name', $this->search)->orderBy('name', $this->sort)->paginate($this->perPage),
             'clubs' => Club::OrderBy('name', 'asc')->get(),
+            'teams' => Club::OrderBy('id', 'asc')->get()->toArray(),
             'positionOption' => Position::OrderBy('name', 'asc')->get(),
             'countries' => Country::orderBy('name', 'asc')->get(),
         ]);
@@ -395,5 +400,10 @@ class PlayerIndex extends Component
     public function routeToDownloadExcel()
     {
         return redirect('/admin/reports/player');
+    }
+
+    public function export()
+    {
+        return Excel::download(new ExportPlayer, 'players.xlsx');
     }
 }

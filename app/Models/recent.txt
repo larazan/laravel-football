@@ -4,6 +4,7 @@ log activity all model
 add column start/end date competition
 player statistic
 league position db raw
+trix editor
 training materi & schedules
 online store
 bulk delete 

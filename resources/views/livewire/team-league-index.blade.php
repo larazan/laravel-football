@@ -104,11 +104,7 @@
                 <option value="desc">Desc</option>
             </select>
 
-            <select wire:model="perPage" id="filter" class="a">
-                @foreach ($seasonOption as $sea)
-                <option value="{{ $sea }}">{{ $sea }}</option>
-                @endforeach
-            </select>
+           
         </div>
 
     </div>
@@ -246,16 +242,52 @@
                                             </select>
                                         </div>
                                         <div class="col-span-6 sm:col-span-3">
-                                            <label for="team" class="block text-sm font-medium text-gray-700">Team</label>
-                                            <select wire:model="team" class="h-full rounded-r border-t border-r border-b block appearance-none w-full bg-white border-gray-300 text-gray-700 py-2 px-4 pr-8 leading-tight focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none">
-                                                <option value="" >Select Option</option>
-                                                @foreach($clubs as $club)
-                                                <option value="{{ $club->id }}"><img src="{{ asset('images/'.$club->logo) }}" class="object-scale-down h-48 w-96" alt="{{ $club->name }}"> {{ $club->name }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                        <div>
-                                            <livewire:search-select />
+                                            <label for="team" class="block text-sm font-medium text-gray-700">Team {{ $selectedClub }}</label>
+                                            
+                                            <!-- Dropdown -->
+                                            <div class="relative absolute2 " x-data="{ open: false, selected: {{ $selectedClub }} }">
+                                                <button class="btn fe uo bg-white border-slate-200 hover--border-slate-300 text-slate-500 hover--text-slate-600" aria-label="Select date range" aria-haspopup="true" @click.prevent="open = !open" :aria-expanded="open" aria-expanded="false">
+                                                    <div class="flex items-center">
+
+                                                        <div class="mr-2">
+                                                        @if ($selectedClub > 0)
+                                                            <img src="{{ asset('storage/'.$klubs[$selectedClub-1]['logo']) }}" class="w-6 rounded" alt="foto" />
+                                                        @endif
+                                                        </div>
+                                                        <span x-text="selected === 0 ? $refs.options.children[selected].children[1].innerHTML : $refs.options.children[selected].children[2].innerHTML">Last Month</span>
+                                                    </div>
+                                                    <svg class="ub nz du gq" width="11" height="7" viewBox="0 0 11 7">
+                                                        <path d="M5.4 6.8L0 1.4 1.4 0l4 4 4-4 1.4 1.4z"></path>
+                                                    </svg>
+                                                </button>
+                                                <div class="tx g z q z-80 ou visible bg-white border border-slate-200 va w-40 rounded bd la re absolute" @click.outside="open = false" @keydown.escape.window="open = false" x-show="open" x-transition:enter="wt wa ws au" x-transition:enter-start="opacity-0 uq" x-transition:enter-end="ba uj" x-transition:leave="wt wa ws" x-transition:leave-start="ba" x-transition:leave-end="opacity-0" style="display: none;">
+                                                    <div class="gp text-sm g_" x-ref="options">
+                                                        <div tabindex="0" class="flex items-center  ou xr vf vn al" :class="selected === 0 &amp;&amp; 'text-indigo-500'" @click="selected = 0;open = false" @focus="open = true" @focusout="open = false">
+                                                            <svg class="ub mr-2 du text-indigo-500 invisible" :class="selected !== 0 &amp;&amp; 'invisible'" width="12" height="9" viewBox="0 0 12 9">
+                                                                <path d="M10.28.28L3.989 6.575 1.695 4.28A1 1 0 00.28 5.695l3 3a1 1 0 001.414 0l7-7A1 1 0 0010.28.28z"></path>
+                                                            </svg>
+
+                                                            <span>Select Club</span>
+
+                                                        </div>
+                                                        @foreach ($clubs as $club)
+                                                        <div tabindex="0" class="flex items-center  ou xr vf vn al" :class="selected === {{ $club->id }} &amp;&amp; 'text-indigo-500'" @click="selected = {{ $club->id }};open = false; $wire.selectedClub= {{ $club->id }}" @focus="open = true" @focusout="open = false">
+                                                            <svg class="ub mr-2 du text-indigo-500 invisible" :class="selected !== {{ $club->id }} &amp;&amp; 'invisible'" width="12" height="9" viewBox="0 0 12 9">
+                                                                <path d="M10.28.28L3.989 6.575 1.695 4.28A1 1 0 00.28 5.695l3 3a1 1 0 001.414 0l7-7A1 1 0 0010.28.28z"></path>
+                                                            </svg>
+                                                            @if ($club->logo)
+                                                            <div class="mr-2">
+                                                                <img src="{{ asset('storage/'.$club->logo) }}" class="w-6 rounded" alt="foto" />
+                                                            </div>
+                                                            @endif
+                                                            <span>{{ $club->name }}</span>
+                                                        </div>
+                                                        @endforeach
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        <!-- end dropdown -->
                                         </div>
                                         
                                     </div>

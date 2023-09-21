@@ -43,27 +43,20 @@
 
         <!-- Left side -->
         <div class="ri _y">
-        <button class="btn bg-white border-slate-200 hover--border-slate-300 yl xy" wire:click="routeToDownloadExcel">Download Excel</button>
+            <button class="btn bg-white border-slate-200 hover--border-slate-300 yl xy" wire:click="export">Download Excel</button>
         </div>
 
         <!-- Right side -->
         <div class="sn am jo az jp ft">
-
-            <!-- Delete button -->
-            <div class="table-items-action hidden">
-                <div class="flex items-center">
-                    <div class="hidden tnh text-sm gm mr-2 lm"><span class="table-items-count"></span> items selected</div>
-                    <button class="btn bg-white border-slate-200 hover--border-slate-300 yl xy">Delete</button>
-                </div>
-            </div>
-
             <!-- Dropdown -->
-            <div class="relative" x-data="{ open: false, selected: {{ $selectedClub }} }">
+            <div class="relative absolute2 " x-data="{ open: false, selected: {{ $selectedClub }} }">
                 <button class="btn fe uo bg-white border-slate-200 hover--border-slate-300 text-slate-500 hover--text-slate-600" aria-label="Select date range" aria-haspopup="true" @click.prevent="open = !open" :aria-expanded="open" aria-expanded="false">
                     <div class="flex items-center">
 
                         <div class="mr-2">
+                            @if ($selectedClub > 0)
                             <img src="{{ asset('storage/'.$teams[$selectedClub-1]['logo']) }}" class="w-6 rounded" alt="foto" />
+                            @endif
                         </div>
                         <span x-text="selected === 0 ? $refs.options.children[selected].children[1].innerHTML : $refs.options.children[selected].children[2].innerHTML">Last Month</span>
                     </div>
@@ -71,18 +64,19 @@
                         <path d="M5.4 6.8L0 1.4 1.4 0l4 4 4-4 1.4 1.4z"></path>
                     </svg>
                 </button>
-                <div class="tx g z q ou bg-white border border-slate-200 va w-40 rounded bd la re" @click.outside="open = false" @keydown.escape.window="open = false" x-show="open" x-transition:enter="wt wa ws au" x-transition:enter-start="opacity-0 uq" x-transition:enter-end="ba uj" x-transition:leave="wt wa ws" x-transition:leave-start="ba" x-transition:leave-end="opacity-0" style="display: none;">
+                <div class="tx g z q z-80 ou visible bg-white border border-slate-200 va w-40 rounded bd la re absolute" @click.outside="open = false" @keydown.escape.window="open = false" x-show="open" x-transition:enter="wt wa ws au" x-transition:enter-start="opacity-0 uq" x-transition:enter-end="ba uj" x-transition:leave="wt wa ws" x-transition:leave-start="ba" x-transition:leave-end="opacity-0" style="display: none;">
                     <div class="gp text-sm g_" x-ref="options">
-                        <button tabindex="0" class="flex items-center  ou xr vf vn al" :class="selected === 0 &amp;&amp; 'text-indigo-500'" @click="selected = 0;open = false" @focus="open = true" @focusout="open = false">
+                        <div tabindex="0" class="flex items-center  ou xr vf vn al" :class="selected === 0 &amp;&amp; 'text-indigo-500'" @click="selected = 0;open = false" @focus="open = true" @focusout="open = false">
                             <svg class="ub mr-2 du text-indigo-500 invisible" :class="selected !== 0 &amp;&amp; 'invisible'" width="12" height="9" viewBox="0 0 12 9">
                                 <path d="M10.28.28L3.989 6.575 1.695 4.28A1 1 0 00.28 5.695l3 3a1 1 0 001.414 0l7-7A1 1 0 0010.28.28z"></path>
                             </svg>
 
                             <span>Select Club</span>
 
-                        </button>
+                        </div>
                         @foreach ($clubs as $club)
-                        <button tabindex="0" class="flex items-center  ou xr vf vn al" :class="selected === {{ $club->id }} &amp;&amp; 'text-indigo-500'" @click="selected = {{ $club->id }};open = false; $wire.selectedClub= {{ $club->id }}" @focus="open = true" @focusout="open = false">
+                        @if ($club->id != $currentClubId)
+                        <div tabindex="0" class="flex items-center  ou xr vf vn al" :class="selected === {{ $club->id }} &amp;&amp; 'text-indigo-500'" @click="selected = {{ $club->id }};open = false; $wire.selectedClub= {{ $club->id }}" @focus="open = true" @focusout="open = false">
                             <svg class="ub mr-2 du text-indigo-500 invisible" :class="selected !== {{ $club->id }} &amp;&amp; 'invisible'" width="12" height="9" viewBox="0 0 12 9">
                                 <path d="M10.28.28L3.989 6.575 1.695 4.28A1 1 0 00.28 5.695l3 3a1 1 0 001.414 0l7-7A1 1 0 0010.28.28z"></path>
                             </svg>
@@ -92,38 +86,19 @@
                             </div>
                             @endif
                             <span>{{ $club->name }}</span>
-                        </button>
+                        </div>
+                        @endif
                         @endforeach
-                        {{--
-                        <button tabindex="0" class="flex items-center ou xr vf vn al" :class="selected === 0 &amp;&amp; 'text-indigo-500'" @click="selected = 0;open = false" @focus="open = true" @focusout="open = false">
-                            <svg class="ub mr-2 du text-indigo-500 invisible" :class="selected !== 0 &amp;&amp; 'invisible'" width="12" height="9" viewBox="0 0 12 9">
-                                <path d="M10.28.28L3.989 6.575 1.695 4.28A1 1 0 00.28 5.695l3 3a1 1 0 001.414 0l7-7A1 1 0 0010.28.28z"></path>
-                            </svg>
-                            <span>Today</span>
-                        </button>
-                        
-                        <button tabindex="0" class="flex items-center ou xr vf vn al" :class="selected === 1 &amp;&amp; 'text-indigo-500'" @click="selected = 1;open = false" @focus="open = true" @focusout="open = false">
-                            <svg class="ub mr-2 du text-indigo-500" :class="selected !== 1 &amp;&amp; 'invisible'" width="12" height="9" viewBox="0 0 12 9">
-                                <path d="M10.28.28L3.989 6.575 1.695 4.28A1 1 0 00.28 5.695l3 3a1 1 0 001.414 0l7-7A1 1 0 0010.28.28z"></path>
-                            </svg>
-                            <span>Last Month</span>
-                        </button>
 
-                        <button tabindex="0" class="flex items-center ou xr vf vn al" :class="selected === 2 &amp;&amp; 'text-indigo-500'" @click="selected = 2;open = false" @focus="open = true" @focusout="open = false">
-                            <svg class="ub mr-2 du text-indigo-500" :class="selected !== 2 &amp;&amp; 'invisible'" width="12" height="9" viewBox="0 0 12 9">
-                                <path d="M10.28.28L3.989 6.575 1.695 4.28A1 1 0 00.28 5.695l3 3a1 1 0 001.414 0l7-7A1 1 0 0010.28.28z"></path>
-                            </svg>
-                            <span>Last 12 Month</span>
-                        </button>
-                        
-                        <button tabindex="0" class="flex items-center ou xr vf vn al" :class="selected === 3 &amp;&amp; 'text-indigo-500'" @click="selected = 3;open = false" @focus="open = true" @focusout="open = false">
-                            <svg class="ub mr-2 du text-indigo-500" :class="selected !== 3 &amp;&amp; 'invisible'" width="12" height="9" viewBox="0 0 12 9">
-                                <path d="M10.28.28L3.989 6.575 1.695 4.28A1 1 0 00.28 5.695l3 3a1 1 0 001.414 0l7-7A1 1 0 0010.28.28z"></path>
-                            </svg>
-                            <span>All Time</span>
-                        </button>
-                        --}}
                     </div>
+                </div>
+            </div>
+
+            <!-- Delete button -->
+            <div class="table-items-action hidden">
+                <div class="flex items-center">
+                    <div class="hidden tnh text-sm gm mr-2 lm"><span class="table-items-count"></span> items selected</div>
+                    <button class="btn bg-white border-slate-200 hover--border-slate-300 yl xy">Delete</button>
                 </div>
             </div>
 
@@ -339,9 +314,9 @@
                                         <div class="flex justify-between">
                                             <div class="col-start-1 sm:col-span-3">
                                                 <label for="title" class="block text-sm font-medium text-gray-700">
-                                                    Fixture Date
+                                                    Fixture Date {{ $fixtureDate }}
                                                 </label>
-                                                <x-flatpicker wire:model="date"></x-flatpicker>
+                                                <x-flatpicker wire:model="fixtureDate"></x-flatpicker>
                                             </div>
                                             <div class="col-start-1 sm:col-span-3">
                                                 <label for="title" class="block text-sm font-medium text-gray-700">
@@ -389,17 +364,53 @@
                                         <div class="flex justify-between">
 
                                             <div class="col-span-1 sm:col-span-3">
-                                                <label for="opponent" class="block text-sm font-medium text-gray-700">Opponent</label>
-                                                <select wire:model="opponent" class="h-full2 rounded-r border-t border-r border-b block appearance-none w-full bg-white border-gray-300 text-gray-700 py-2 px-4 pr-8 leading-tight focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none">
-                                                    <option value="">Select Option</option>
-                                                    @foreach($clubs as $club)
-                                                    @if ($club->id != $currentClubId)
-                                                        <option value="{{ $club->id }}"> {{ $club->name }}</option>
-                                                    @endif
-                                                    
-                                                    @endforeach
-                                                </select>
+                                                <label for="opponent" class="block text-sm font-medium text-gray-700">Opponent {{ $selectedClub }}</label>
 
+                                                <!-- Dropdown -->
+                                                <div class="relative absolute2 " x-data="{ open: false, selected: {{ $selectedClub }} }">
+                                                    <button class="btn fe uo bg-white border-slate-200 hover--border-slate-300 text-slate-500 hover--text-slate-600" aria-label="Select date range" aria-haspopup="true" @click.prevent="open = !open" :aria-expanded="open" aria-expanded="false">
+                                                        <div class="flex items-center">
+
+                                                            <div class="mr-2">
+                                                                @if ($selectedClub > 0)
+                                                                <img src="{{ asset('storage/'.$teams[$selectedClub-1]['logo']) }}" class="w-6 rounded" alt="foto" />
+                                                                @endif
+                                                            </div>
+                                                            <span x-text="selected === 0 ? $refs.options.children[selected].children[1].innerHTML : $refs.options.children[selected].children[2].innerHTML">Last Month</span>
+                                                        </div>
+                                                        <svg class="ub nz du gq" width="11" height="7" viewBox="0 0 11 7">
+                                                            <path d="M5.4 6.8L0 1.4 1.4 0l4 4 4-4 1.4 1.4z"></path>
+                                                        </svg>
+                                                    </button>
+                                                    <div class="tx g z q z-80 ou visible bg-white border border-slate-200 va w-40 rounded bd la re absolute" @click.outside="open = false" @keydown.escape.window="open = false" x-show="open" x-transition:enter="wt wa ws au" x-transition:enter-start="opacity-0 uq" x-transition:enter-end="ba uj" x-transition:leave="wt wa ws" x-transition:leave-start="ba" x-transition:leave-end="opacity-0" style="display: none;">
+                                                        <div class="gp text-sm g_" x-ref="options">
+                                                            <div tabindex="0" class="flex items-center  ou xr vf vn al" :class="selected === 0 &amp;&amp; 'text-indigo-500'" @click="selected = 0;open = false" @focus="open = true" @focusout="open = false">
+                                                                <svg class="ub mr-2 du text-indigo-500 invisible" :class="selected !== 0 &amp;&amp; 'invisible'" width="12" height="9" viewBox="0 0 12 9">
+                                                                    <path d="M10.28.28L3.989 6.575 1.695 4.28A1 1 0 00.28 5.695l3 3a1 1 0 001.414 0l7-7A1 1 0 0010.28.28z"></path>
+                                                                </svg>
+
+                                                                <span>Select Club</span>
+
+                                                            </div>
+                                                            @foreach ($clubs as $club)
+                                                            @if ($club->id != $currentClubId)
+                                                            <div tabindex="0" class="flex items-center  ou xr vf vn al" :class="selected === {{ $club->id }} &amp;&amp; 'text-indigo-500'" @click="selected = {{ $club->id }};open = false; $wire.selectedClub= {{ $club->id }}" @focus="open = true" @focusout="open = false">
+                                                                <svg class="ub mr-2 du text-indigo-500 invisible" :class="selected !== {{ $club->id }} &amp;&amp; 'invisible'" width="12" height="9" viewBox="0 0 12 9">
+                                                                    <path d="M10.28.28L3.989 6.575 1.695 4.28A1 1 0 00.28 5.695l3 3a1 1 0 001.414 0l7-7A1 1 0 0010.28.28z"></path>
+                                                                </svg>
+                                                                @if ($club->logo)
+                                                                <div class="mr-2">
+                                                                    <img src="{{ asset('storage/'.$club->logo) }}" class="w-6 rounded" alt="foto" />
+                                                                </div>
+                                                                @endif
+                                                                <span>{{ $club->name }}</span>
+                                                            </div>
+                                                            @endif
+                                                            @endforeach
+
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                             <div class="col-span-1 sm:col-span-3">
                                                 <label for="first-name" class="block text-sm font-medium text-gray-700">Status</label>
@@ -411,51 +422,6 @@
                                                 </select>
                                             </div>
                                         </div>
-
-                                        <div>
-                                            <!-- Dropdown -->
-            <div class="relative absolute2 " x-data="{ open: false, selected: {{ $selectedClub }} }">
-                <button class="btn fe uo bg-white border-slate-200 hover--border-slate-300 text-slate-500 hover--text-slate-600" aria-label="Select date range" aria-haspopup="true" @click.prevent="open = !open" :aria-expanded="open" aria-expanded="false">
-                    <div class="flex items-center">
-
-                        <div class="mr-2">
-                            <img src="{{ asset('storage/'.$teams[$selectedClub-1]['logo']) }}" class="w-6 rounded" alt="foto" />
-                        </div>
-                        <span x-text="selected === 0 ? $refs.options.children[selected].children[1].innerHTML : $refs.options.children[selected].children[2].innerHTML">Last Month</span>
-                    </div>
-                    <svg class="ub nz du gq" width="11" height="7" viewBox="0 0 11 7">
-                        <path d="M5.4 6.8L0 1.4 1.4 0l4 4 4-4 1.4 1.4z"></path>
-                    </svg>
-                </button>
-                <div class="tx g z q z-80 ou visible bg-white border border-slate-200 va w-40 rounded bd la re absolute" @click.outside="open = false" @keydown.escape.window="open = false" x-show="open" x-transition:enter="wt wa ws au" x-transition:enter-start="opacity-0 uq" x-transition:enter-end="ba uj" x-transition:leave="wt wa ws" x-transition:leave-start="ba" x-transition:leave-end="opacity-0" style="display: none;">
-                    <div class="gp text-sm g_" x-ref="options">
-                        <button tabindex="0" class="flex items-center  ou xr vf vn al" :class="selected === 0 &amp;&amp; 'text-indigo-500'" @click="selected = 0;open = false" @focus="open = true" @focusout="open = false">
-                            <svg class="ub mr-2 du text-indigo-500 invisible" :class="selected !== 0 &amp;&amp; 'invisible'" width="12" height="9" viewBox="0 0 12 9">
-                                <path d="M10.28.28L3.989 6.575 1.695 4.28A1 1 0 00.28 5.695l3 3a1 1 0 001.414 0l7-7A1 1 0 0010.28.28z"></path>
-                            </svg>
-
-                            <span>Select Club</span>
-
-                        </button>
-                        @foreach ($clubs as $club)
-                        <button tabindex="0" class="flex items-center  ou xr vf vn al" :class="selected === {{ $club->id }} &amp;&amp; 'text-indigo-500'" @click="selected = {{ $club->id }};open = false; $wire.selectedClub= {{ $club->id }}" @focus="open = true" @focusout="open = false">
-                            <svg class="ub mr-2 du text-indigo-500 invisible" :class="selected !== {{ $club->id }} &amp;&amp; 'invisible'" width="12" height="9" viewBox="0 0 12 9">
-                                <path d="M10.28.28L3.989 6.575 1.695 4.28A1 1 0 00.28 5.695l3 3a1 1 0 001.414 0l7-7A1 1 0 0010.28.28z"></path>
-                            </svg>
-                            @if ($club->logo)
-                            <div class="mr-2">
-                                <img src="{{ asset('storage/'.$club->logo) }}" class="w-6 rounded" alt="foto" />
-                            </div>
-                            @endif
-                            <span>{{ $club->name }}</span>
-                        </button>
-                        @endforeach
-                      
-                    </div>
-                </div>
-            </div>
-                                        </div>
-
 
                                     </div>
                                 </div>
@@ -524,10 +490,3 @@
     </x-dialog-modal>
 
 </div>
-
-@push('style')
-<style>
-
-</style>
-
-@endpush

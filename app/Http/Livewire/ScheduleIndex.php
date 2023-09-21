@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Exports\ScheduleExport;
 use App\Models\Schedule;
 use App\Models\Matchs;
 use App\Models\Competition;
@@ -12,12 +13,13 @@ use Illuminate\Support\Str;
 use Carbon\Carbon;
 use Livewire\WithPagination;
 use Livewire\Component;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ScheduleIndex extends Component
 {
     use WithPagination;
 
-    public $selectedClub = 9;
+    public $selectedClub;
    
     public $currentClubId;
     public $current;
@@ -37,8 +39,8 @@ class ScheduleIndex extends Component
     public $fullTimeAwayGoal;
     public $hour;
     public $minute;
-    public $date;
-    public $opponent;
+    public $fixtureDate;
+    // public $selectedClub;
     public $position;
     public $positionOption = [
         'away',
@@ -64,14 +66,17 @@ class ScheduleIndex extends Component
         'season' =>  'required',
     ];
 
+    public function mount()
+    {
+        $this->fixtureDate = today()->format('Y-m-d');
+        $yearNow = Carbon::now()->format('Y');
+        $this->perSeason = $yearNow . '/' . $yearNow + 1;
+        $this->selectedClub = 7;
+    }
+
     public function boot()
     {
         $this->currentClubId = Schedule::pinnedClub();
-    }
-
-    public function mount()
-    {
-        // $this->date = today()->format('Y-m-d');
         $yearNow = Carbon::now()->format('Y');
         $this->perSeason = $yearNow . '/' . $yearNow + 1;
     }
@@ -109,21 +114,22 @@ class ScheduleIndex extends Component
 
     public function createSchedule()
     {
+        
         $this->validate();
   
-        if ($this->opponent == $this->currentClubId) {
-            $this->dispatchBrowserEvent('banner-message', ['style' => 'danger', 'message' => 'Couldnt choose opponent of own club']);
-            return;
-        }
+        // if ($this->selectedClub == $this->currentClubId) {
+        //     $this->dispatchBrowserEvent('banner-message', ['style' => 'danger', 'message' => 'Couldnt choose selectedClub of own club']);
+        //     return;
+        // }
 
         // 
         if ($this->position === 'home') {
             $homeTeam = $this->currentClubId;
-            $awayTeam = $this->opponent;
+            $awayTeam = $this->selectedClub;
         }
 
         if ($this->position === 'away') {
-            $homeTeam = $this->opponent;
+            $homeTeam = $this->selectedClub;
             $awayTeam = $this->currentClubId;
         }
 
@@ -133,7 +139,7 @@ class ScheduleIndex extends Component
             'stadion_id' => $this->stadionId,
             'home_team' => $homeTeam,
             'away_team' => $awayTeam,
-            'fixture_match' => $this->date,
+            'fixture_match' => $this->fixtureDate,
             'full_time_home_goal' => $this->fullTimeHomeGoal,
             'full_time_away_goal' => $this->fullTimeAwayGoal,
             'hour' => strval($this->hour),
@@ -150,7 +156,7 @@ class ScheduleIndex extends Component
             'stadion_id' => $this->stadionId,
             'home_team' => $homeTeam,
             'away_team' => $awayTeam,
-            'fixture_match' => $this->date,
+            'fixture_match' => $this->fixtureDate,
             'full_time_home_goal' => $this->fullTimeHomeGoal,
             'full_time_away_goal' => $this->fullTimeAwayGoal,
             'hour' => strval($this->hour),
@@ -183,7 +189,8 @@ class ScheduleIndex extends Component
 
     public function showEditModal($scheduleId)
     {
-        $this->reset();
+        $this->reset(['selectedClub']);
+        $this->currentClubId = Schedule::pinnedClub();
         $this->scheduleId = $scheduleId;
         $schedule = Schedule::find($scheduleId);
         $this->season = $schedule->season;
@@ -191,13 +198,21 @@ class ScheduleIndex extends Component
         $this->stadionId = $schedule->stadion_id;
         $this->homeTeamId = $schedule->home_team;
         $this->awayTeamId = $schedule->away_team;
+        if ($schedule->home_team == $this->currentClubId) {
+            $this->selectedClub = $schedule->away_team;
+        } else {
+            $this->selectedClub = $schedule->home_team;
+        }
+
         $this->fullTimeHomeGoal = $schedule->full_time_home_goal;
         $this->fullTimeAwayGoal = $schedule->full_time_away_goal;
-        $this->date = $schedule->fixture_match;
+        $this->fixtureDate = $schedule->fixture_match;
         $this->hour = $schedule->hour;
         $this->minute = $schedule->minute;
         $this->scheduleStatus = $schedule->status;
         $this->showScheduleModal = true;
+
+        
     }
     
     public function updateSchedule()
@@ -209,11 +224,11 @@ class ScheduleIndex extends Component
         // 
         if ($this->position === 'home') {
             $homeTeam = $this->currentClubId;
-            $awayTeam = $this->opponent;
+            $awayTeam = $this->selectedClub;
         }
 
         if ($this->position === 'away') {
-            $homeTeam = $this->opponent;
+            $homeTeam = $this->selectedClub;
             $awayTeam = $this->currentClubId;
         }
         
@@ -225,7 +240,7 @@ class ScheduleIndex extends Component
                     'stadion_id' => $this->stadionId,
                     'home_team' => $homeTeam,
                     'away_team' => $awayTeam,
-                    'fixture_match' => $this->date,
+                    'fixture_match' => $this->fixtureDate,
                     'full_time_home_goal' => $this->fullTimeHomeGoal,
                     'full_time_away_goal' => $this->fullTimeAwayGoal,
                     'hour' => strval($this->hour),
@@ -242,7 +257,7 @@ class ScheduleIndex extends Component
                     'stadion_id' => $this->stadionId,
                     'home_team' => $homeTeam,
                     'away_team' => $awayTeam,
-                    'fixture_match' => $this->date,
+                    'fixture_match' => $this->fixtureDate,
                     'full_time_home_goal' => $this->fullTimeHomeGoal,
                     'full_time_away_goal' => $this->fullTimeAwayGoal,
                     'hour' => strval($this->hour),
@@ -274,7 +289,8 @@ class ScheduleIndex extends Component
     public function closeScheduleModal()
     {
         $this->showScheduleModal = false;
-        $this->reset();
+        $this->reset(['search', 'perSeason']);
+        $this->resetValidation();
     }
 
     public function resetFilters()
@@ -285,7 +301,6 @@ class ScheduleIndex extends Component
     public function render()
     {
         $seasons = [];
-        $this->date = today()->format('Y-m-d');
         $yearNow = Carbon::now()->format('Y');
         for ($i=$yearNow - 1; $i < $yearNow + 2 ; $i++) {
             $seas = $i . '/' . $i + 1;
@@ -304,8 +319,8 @@ class ScheduleIndex extends Component
 
         $seasonNow = Carbon::now()->format('Y') . '/' . Carbon::now()->format('Y') + 1;
 
-        $dates = Schedule::selectRaw('id, slug, season, competition_id, stadion_id, home_team, away_team, fixture_match, hour, minute, DATE_FORMAT(fixture_match, "%M") as match_date')
-            ->orderBy('match_date', 'asc')
+        $dates = Schedule::selectRaw('id, slug, season, competition_id, stadion_id, home_team, away_team, fixture_match, hour, minute, DATE_FORMAT(fixture_match, "%M") as match_date, DATE_FORMAT(fixture_match, "%m") as match_month')
+            ->orderBy('match_month', 'asc')
             ->where('season', $this->perSeason)
             ->get()
             ->groupBy('match_date');
@@ -322,5 +337,10 @@ class ScheduleIndex extends Component
             'minuteOption' => $minutes,
             
         ]);
+    }
+
+    public function export()
+    {
+        return Excel::download(new ScheduleExport, 'schedules.xlsx');
     }
 }
