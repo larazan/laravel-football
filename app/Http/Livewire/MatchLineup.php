@@ -152,4 +152,9 @@ class MatchLineup extends Component
             'away_players' => Player::where('club_id', $away_team)->get(), 
         ]);
     }
+
+    public function backTo()
+    {
+        return redirect('/admin/matchs');
+    }
 }

@@ -22,7 +22,8 @@ class Competition extends Model
 
     protected $guarded = [];
 
-    public const UPLOAD_DIR = 'uploads/trophies';
+    public const UPLOAD_DIR = 'uploads/competitions';
+    
 
     public function clubs()
     {

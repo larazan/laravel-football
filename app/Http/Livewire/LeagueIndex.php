@@ -57,6 +57,11 @@ class LeagueIndex extends Component
         $this->perSeason = $yearNow . '/' . $yearNow + 1;
     }
 
+    public function updated()
+    {
+        $yearNow = Carbon::now()->format('Y');
+        $this->perSeason = $yearNow . '/' . $yearNow + 1;
+    }
 
     public function showCreateModal()
     {
@@ -216,7 +221,7 @@ class LeagueIndex extends Component
         }
 
         return view('livewire.league-index', [
-            'teams' => TeamLeague::where('season', $this->perSeason)->orderBy('id', 'asc')->get(),
+            'teams' => TeamLeague::where('season', $this->perSeason)->orderBy('total_points', 'desc')->get(),
             'clubs' => Club::OrderBy('name', 'asc')->get(),
             'seasonOption' => $seasons,
         ]);

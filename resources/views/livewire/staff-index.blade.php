@@ -167,7 +167,7 @@
                                 </div>
                             </td>
                             <td class="vi wy w_ vo lm">
-                                <div class="gp text-slate-800 capitalize cursor-pointer" wire:click="showDetailModal({{$staff->id}})">{{ $staff->name }}</div>
+                                <div class="gh text-indigo-400 capitalize cursor-pointer" wire:click="showDetailModal({{$staff->id}})">{{ $staff->name }}</div>
                             </td>
                             <td class="vi wy w_ vo lm">
                                 <div class="od sy ub mr-2 _b">

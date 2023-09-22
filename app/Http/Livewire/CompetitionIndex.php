@@ -80,7 +80,7 @@ class CompetitionIndex extends Component
             // IMAGE
             $filename = $new . '.' . $this->file->getClientOriginalName();
             $filePath = $this->file->storeAs(Competition::UPLOAD_DIR, $filename, 'public');
-            $competition->thropy = $filePath;
+            $competition->logo = $filePath;
         }
 
         $competition->save();
@@ -96,7 +96,7 @@ class CompetitionIndex extends Component
         $competition = Competition::find($competitionId);
         $this->name = $competition->name;
         $this->info = $competition->info;
-        $this->oldImage = $competition->thropy;
+        $this->oldImage = $competition->logo;
         $this->competitionStatus = $competition->status;
 
         $this->showCompetitionModal = true;
@@ -127,7 +127,7 @@ class CompetitionIndex extends Component
                     $filename = $new . '.' . $this->file->getClientOriginalName();
                     $filePath = $this->file->storeAs(Competition::UPLOAD_DIR, $filename, 'public');
 
-                    $competition->thropy = $filePath;
+                    $competition->logo = $filePath;
                 }
 
                 $competition->save();
@@ -166,8 +166,8 @@ class CompetitionIndex extends Component
         $competitionImage = Competition::where(['id' => $id])->first();
 		$path = 'storage/';
 
-        if (Storage::exists($path.$competitionImage->thropy)) {
-            Storage::delete($path.$competitionImage->thropy);
+        if (Storage::exists($path.$competitionImage->logo)) {
+            Storage::delete($path.$competitionImage->logo);
 		}
 		
         return true;

@@ -181,7 +181,7 @@
                                 </div>
                             </td>
                             <td class="vi wy w_ vo lm">
-                                <div class="gp text-slate-800">{{ $match->competition->name }}</div>
+                                <div class="gh text-slate-800">{{ $match->competition->name }}</div>
                             </td>
                             <td class="vi wy w_ vo lm">
                                 <div class="gp text-slate-800">{{ $match->season }}</div>

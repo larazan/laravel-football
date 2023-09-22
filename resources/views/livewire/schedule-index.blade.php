@@ -165,7 +165,7 @@
                         @if ($dates->count() > 0)
                         @foreach ($dates as $date => $schedules)
                         <tr>
-                            <td class="vi wy w_ vo lm" colspan="8">{{ $date }}</td>
+                            <td class="vi wy w_ vo lm gh" colspan="8">{{ $date }}</td>
                         </tr>
                         @if ($schedules->count() > 0)
                         @foreach ($schedules as $schedule)

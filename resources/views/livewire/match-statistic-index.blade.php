@@ -24,6 +24,16 @@
 
     </div>
 
+    <!-- More actions -->
+    <div class="je jd jc ii">
+
+        <!-- Left side -->
+        <div class="ri _y">
+            <button class="btn bg-white border-slate-200 hover--border-slate-300 yl xy" wire:click="backTo">Back</button>
+        </div>
+
+    </div>
+
 
     <!-- Table -->
     <div class="bg-white bd w-full rounded-sm border border-slate-200 rc">
@@ -458,7 +468,9 @@
         <x-slot name="footer">
             <div class="border-slate-200">
                 <div class="flex flex-wrap justify-end fc">
+                     
                     <x-button wire:click="closeMatchStatisticModal" class="border-slate-200 hover:text-white hover--border-slate-300 g_">Cancel</x-button>
+                    
                     @if ($matchStatisticId)
                     <x-button wire:click="updateMatchStatistic" class=" ho xi ye">Update</x-button>
                     @else

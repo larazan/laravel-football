@@ -15,6 +15,7 @@
         <div class="sn am jo az jp ft">
 
             <!-- Search form -->
+            {{-- 
             <form class="y">
                 <label for="action-search" class="d">Search</label>
                 <input wire:model="search" id="action-search" class="s me xq" type="search" placeholder="Search by name">
@@ -25,6 +26,7 @@
                     </svg>
                 </button>
             </form>
+            --}}
             <!-- Create partner button -->
             <button class="btn ho xi ye" wire:click="addLeague">
                 <svg class="oo sl du bf ub" viewBox="0 0 16 16">

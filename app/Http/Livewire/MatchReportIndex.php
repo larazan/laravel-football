@@ -245,4 +245,9 @@ class MatchReportIndex extends Component
              
         return true;
     }
+
+    public function backTo()
+    {
+        return redirect('/admin/matchs');
+    }
 }

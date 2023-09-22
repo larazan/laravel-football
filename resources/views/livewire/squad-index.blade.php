@@ -143,11 +143,11 @@
                                 </div>
                             </td>
                             <td class="vi wy w_ vo lm">
-                                <div class="gp text-slate-800 capitalize cursor-pointer hover:underline" wire:click="showDetailModal({{$player->id}})">{{ $player->name }}</div>
+                                <div class="gh capitalize cursor-pointer hover:underline text-indigo-400" wire:click="showDetailModal({{$player->id}})">{{ $player->name }}</div>
                             </td>
                             <td class="vi wy w_ vo lm">
 
-                                <div class="gt">{{ $player->position->name }}</div>
+                                <div class="gt ">{{ $player->position->name }}</div>
 
                             </td>
                            

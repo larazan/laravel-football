@@ -8,7 +8,7 @@
 
         <!-- Left: Title -->
         <div class="ri _y">
-            <h1 class="gu teu text-slate-800 font-bold">Competition ✨</h1>
+            <h1 class="gu teu text-slate-800 font-bold">Trophy ✨</h1>
         </div>
         
         <!-- Right: Actions -->
@@ -26,12 +26,12 @@
                 </button>
             </form>
 
-            <!-- Create competition button -->
+            <!-- Create trophy button -->
             <button class="btn ho xi ye" wire:click="showCreateModal">
                 <svg class="oo sl du bf ub" viewBox="0 0 16 16">
                     <path d="M15 7H9V1c0-.6-.4-1-1-1S7 .4 7 1v6H1c-.6 0-1 .4-1 1s.4 1 1 1h6v6c0 .6.4 1 1 1s1-.4 1-1V9h6c.6 0 1-.4 1-1s-.4-1-1-1z"></path>
                 </svg>
-                <span class="hidden trm nq">Create Competition</span>
+                <span class="hidden trm nq">Create Trophy</span>
             </button>
         </div>
 
@@ -107,7 +107,7 @@
     <!-- Table -->
     <div class="bg-white bd rounded-sm border border-slate-200 rc">
         <header class="vc vu">
-            <h2 class="gh text-slate-800">Competitions <span class="gq gp"></span></h2>
+            <h2 class="gh text-slate-800">Trophys <span class="gq gp"></span></h2>
         </header>
         <div x-data="handleSelect">
 
@@ -126,17 +126,12 @@
                                 </div>
                             </th>
                             <th class="vi wy w_ vo lm">
-                                <div class="gh gt">Name</div>
+                                <div class="gh gt">Competition</div>
                             </th>
                             <th class="vi wy w_ vo lm">
                                 <div class="gh gt">Image</div>
                             </th>
-                            <th class="vi wy w_ vo lm">
-                                <div class="gh gt">Info</div>
-                            </th>
-                            <th class="vi wy w_ vo lm">
-                                <div class="gh gt">Status</div>
-                            </th>
+                            
                             <th class="vi wy w_ vo lm">
                                 <div class="gh gt">Date</div>
                             </th>
@@ -149,8 +144,8 @@
                     <tbody class="text-sm le lr">
                         <!-- Row -->
                         
-                        @if ($competitions->count() > 0)
-                        @foreach ($competitions as $competition)
+                        @if ($trophies->count() > 0)
+                        @foreach ($trophies as $trophy)
                         <tr>
                             <td class="vi wy w_ vo lm of">
                                 <div class="flex items-center">
@@ -161,42 +156,31 @@
                                 </div>
                             </td>
                             <td class="vi wy w_ vo lm">
-                                <div class="gp text-slate-800">{{ $competition->name }}</div>
+                                <div class="gp text-slate-800">{{ $trophy->competition_id }}</div>
                             </td>
                             <td class="vi wy w_ vo lm">
                                 <div class="gp ">
-                                    @if ($competition->logo)
-                                    <img src="{{ asset('storage/'.$competition->logo) }}" class="object-scale-down w-20" alt="{{ $competition->name }}">
+                                    @if ($trophy->thropy)
+                                    <img src="{{ asset('storage/'.$trophy->thropy) }}" class="object-scale-down w-20" alt="{{ $trophy->name }}">
                                     @endif    
                                 </div>
                             </td>
-                            <td class="vi wy w_ vo lm">
-                                <div class="gp text-slate-800">{{ $competition->info }}</div>
-                            </td>
-                            <td class="vi wy w_ vo lm">
-                                @if ($competition->status === 'inactive')
-                                    <div class="inline-flex gp hf yl rounded-full gn vp vd">{{ $competition->status }}</div>
-                                @endif 
-
-                                @if ($competition->status === 'active')
-                                    <div class="inline-flex gp hc ys rounded-full gn vp vd">{{ $competition->status }}</div>
-                                @endif 
-                            </td>
+                            
 
                             <td class="vi wy w_ vo lm">
-                                <div>{{ $competition->created_at->format('d-m-Y') }}</div>
+                                <div>{{ $trophy->created_at->format('d-m-Y') }}</div>
                             </td>
 
                             <td class="vi wy w_ vo lm of">
                                 <div class="fm">
-                                    <button class="gq xv rounded-full" wire:click="showEditModal({{ $competition->id }})">
+                                    <button class="gq xv rounded-full" wire:click="showEditModal({{ $trophy->id }})">
                                     <span class=" d">Edit</span>
                                         <svg class="os sf du" viewBox="0 0 32 32">
                                             <path d="M19.7 8.3c-.4-.4-1-.4-1.4 0l-10 10c-.2.2-.3.4-.3.7v4c0 .6.4 1 1 1h4c.3 0 .5-.1.7-.3l10-10c.4-.4.4-1 0-1.4l-4-4zM12.6 22H10v-2.6l6-6 2.6 2.6-6 6zm7.4-7.4L17.4 12l1.6-1.6 2.6 2.6-1.6 1.6z"></path>
                                         </svg>
                                     </button>
 
-                                    <button class="yl xy rounded-full" wire:click="deleteId({{ $competition->id }})">
+                                    <button class="yl xy rounded-full" wire:click="deleteId({{ $trophy->id }})">
                                     <span class=" d">Delete</span>
                                     <svg class="os sf du" viewBox="0 0 32 32">
                                             <path d="M13 15h2v6h-2zM17 15h2v6h-2z"></path>
@@ -220,15 +204,15 @@
     </div>
 
     
-    {{ $competitions->links() }}
+    {{ $trophies->links() }}
 
-    <x-dialog-modal wire:model="showCompetitionModal" class="">
+    <x-dialog-modal wire:model="showTrophyModal" class="">
 
-        @if ($competitionId)
-        <x-slot name="title" class="border-b">Update Competition</x-slot>
+        @if ($trophyId)
+        <x-slot name="title" class="border-b">Update Trophy</x-slot>
         @else
         <x-slot name="title" class="border-b bg-slate-200">
-            <span class="font-semibold">Create Competition</span>
+            <span class="font-semibold">Create Trophy</span>
         </x-slot>
         @endif
 
@@ -245,10 +229,12 @@
                                             <label for="title" class="block text-sm font-medium text-gray-700">
                                                 Competition Name
                                             </label>
-                                            <input wire:model="name" type="text" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
-                                            @error('name')
-                                                <div class="go re yl">{{ $message }}</div>
-                                            @enderror
+                                            <select wire:model="competition" class="h-full rounded-r border-t border-r border-b block appearance-none w-full bg-white border-gray-300 text-gray-700 py-2 px-4 pr-8 leading-tight focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none">
+                                                <option value="" >Select Option</option>
+                                                @foreach($competitions as $comp)
+                                                <option value="{{ $comp->id }}">{{ $comp->name }}</option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                         <div 
                                             class="col-span-6 sm:col-span-3"
@@ -282,21 +268,8 @@
                                                     <img src="{{ $file->temporaryUrl() }}">
                                                 @endif
                                         </div>
-                                        <div class="col-start-1 sm:col-span-3">
-                                            <label for="title" class="block text-sm font-medium text-gray-700">
-                                                Info
-                                            </label>
-                                            <textarea wire:model="info" cols="50" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" ></textarea>
-                                        </div>
-                                        <div class="col-span-6 sm:col-span-3">
-                                            <label for="first-name" class="block text-sm font-medium text-gray-700">Status</label>
-                                            <select wire:model="competitionStatus" class="h-full rounded-r border-t border-r border-b block appearance-none w-full bg-white border-gray-300 text-gray-700 py-2 px-4 pr-8 leading-tight focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none">
-                                                <option value="" >Select Option</option>
-                                                @foreach($statuses as $status)
-                                                <option value="{{ $status }}">{{ $status }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
+                                      
+                                       
                                     </div>
                                 </div>
                             </div>
@@ -308,11 +281,11 @@
         <x-slot name="footer">
             <div class="border-slate-200">
                 <div class="flex flex-wrap justify-end fc">
-                    <x-button wire:click="closeCompetitionModal" class="border-slate-200 hover:text-white hover--border-slate-300 g_">Cancel</x-button>
-                    @if ($competitionId)
-                    <x-button wire:click="updateCompetition" class=" ho xi ye">Update</x-button>
+                    <x-button wire:click="closeTrophyModal" class="border-slate-200 hover:text-white hover--border-slate-300 g_">Cancel</x-button>
+                    @if ($trophyId)
+                    <x-button wire:click="updateTrophy" class=" ho xi ye">Update</x-button>
                     @else
-                    <x-button wire:click="createCompetition" class=" ho xi ye2">Create</x-button>
+                    <x-button wire:click="createTrophy" class=" ho xi ye2">Create</x-button>
                     @endif
                 </div>
             </div>

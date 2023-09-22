@@ -161,7 +161,7 @@
                                 </div>
                             </td>
                             <td class="vi wy w_ vo lm">
-                                <div class="gp text-slate-800">{{ $club->name }}</div>
+                                <div class="gh text-slate-800">{{ $club->name }}</div>
                             </td>
                             <td class="vi wy w_ vo lm">
                                 <div class="gp ">

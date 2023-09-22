@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use App\Models\MatchStatistic;
 use App\Models\Matchs;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
 use Livewire\WithPagination;
 use Livewire\Component;
@@ -56,6 +57,16 @@ class MatchStatisticIndex extends Component
         // 'file' => 'required|image|mimes:jpg,jpeg,png,svg,gif|max:2048',
     ];
 
+    public function boot()
+    {
+        $this->matchId = Route::current()->parameter('matchId');
+        $statistics = MatchStatistic::where('match_id', $this->matchId)->get();
+        if ($statistics->count() > 0)
+        {
+            $this->matchStatisticId = $statistics->id;
+        }  
+    }
+
     public function mount($matchId)
     {
         $this->matchId = $matchId;
@@ -68,11 +79,17 @@ class MatchStatisticIndex extends Component
 
     public function updated()
     {
+        $this->matchId = Route::current()->parameter('matchId');
         $statistics = MatchStatistic::where('match_id', $this->matchId)->get();
         if ($statistics->count() > 0)
         {
             $this->matchStatisticId = $statistics->id;
         }  
+    }
+
+    public function updatingMatchId()
+    {
+        $this->matchId = Route::current()->parameter('matchId');
     }
 
     public function showCreateModal()
@@ -224,9 +241,15 @@ class MatchStatisticIndex extends Component
 
     public function render()
     {
+        
         return view('livewire.match-statistic-index', [
             'matchs' => Matchs::where('id', $this->matchId)->get(),
             'statistics' => MatchStatistic::where('match_id', $this->matchId)->get(),
         ]);
+    }
+
+    public function backTo()
+    {
+        return redirect('/admin/matchs');
     }
 }

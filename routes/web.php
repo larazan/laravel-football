@@ -50,6 +50,7 @@ use App\Http\Livewire\StadionIndex;
 use App\Http\Livewire\StaffIndex;
 use App\Http\Livewire\StatisticIndex;
 use App\Http\Livewire\SubscribeIndex;
+use App\Http\Livewire\TrophyIndex;
 use App\Http\Livewire\UserIndex;
 
 use App\Http\Livewire\MultiSelect;
@@ -122,6 +123,7 @@ Route::middleware(['auth:sanctum', 'verified', 'role:admin|author|sales'])->pref
     Route::get('subscribers', SubscribeIndex::class)->name('subscribers.index');
     Route::get('settings', SettingIndex::class)->name('settings.index');
     Route::get('slides', SlideIndex::class)->name('slides.index');
+    Route::get('trophies', TrophyIndex::class)->name('trophies.index');
     Route::get('users', UserIndex::class)->name('users.index');
 
     Route::get('users/{user}', [UserController::class, 'show'])->name('users.show');

@@ -64,7 +64,8 @@ class SquadIndex extends Component
         $this->birthDate = $player->birth_date;
         $this->birthLocation = $player->birth_location;
         $this->nationality = $player->country_id;
-        $this->code = $player->country->code;
+        
+        $this->code = $player->country_id > 0 ? $player->country->code : '';
         $this->bio = $player->bio;
         $this->contractFrom = $player->contract_from;
         $this->contractUntil = $player->contract_until;

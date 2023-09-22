@@ -11,10 +11,17 @@
             <h1 class="gu teu text-slate-800 font-bold">Lineup ✨</h1>
         </div>
 
-       
-
     </div>
 
+    <!-- More actions -->
+    <div class="je jd jc ii">
+
+        <!-- Left side -->
+        <div class="ri _y">
+            <button class="btn bg-white border-slate-200 hover--border-slate-300 yl xy" wire:click="backTo">Back</button>
+        </div>
+
+    </div>
 
     <!-- Table -->
     <div class="bg-white bd w-full rounded-sm border border-slate-200 rc">
