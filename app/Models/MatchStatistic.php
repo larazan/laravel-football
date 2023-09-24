@@ -22,10 +22,30 @@ class MatchStatistic extends Model
 
     protected $table = 'match_statistics';
 
-    protected $guarded = [
-		'id',
-		'created_at',
-		'updated_at'
+    protected $fillable = [
+		'match_id',
+		'home_possession',
+		'home_offsides',
+		'home_fouls',
+		'home_total_shots',
+		'home_shots_on_target',
+		'home_corners',
+		'home_passes',
+		'home_pass_accuracy',
+		'home_crosses',
+		'home_yellow_cards',
+		'home_red_cards',
+		'away_possession',
+		'away_offsides',
+		'away_fouls',
+		'away_total_shots',
+		'away_shots_on_target',
+		'away_corners',
+		'away_passes',
+		'away_pass_accuracy',
+		'away_crosses',
+		'away_yellow_cards',
+		'away_red_cards',
 	];
 
     /**

@@ -16,5 +16,13 @@ class Contact extends Model
     // ];
     protected $table = 'contacts';
 
-    protected $guarded = [];
+    protected $fillable = [
+        'name',
+        'email',
+        'message',
+        'status',
+        'opened',
+        'feedback',
+        'reply',
+    ];
 }

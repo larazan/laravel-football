@@ -23,7 +23,31 @@ class TeamLeague extends Model
 
     protected $table = 'team_league_statistics';
 
-    protected $guarded = [];
+    protected $fillable = [
+        'season',
+        'team_id',
+        'total_points',
+        'total_goals',
+        'total_goalsreceived',
+        'total_goalsdiff',
+        'total_wins',
+        'total_draws',
+        'total_losses',
+        'home_points',
+        'home_goals',
+        'home_goalsreceived',
+        'home_goalsdiff',
+        'home_wins',
+        'home_draws',
+        'home_losses',
+        'away_points',
+        'away_goals',
+        'away_goalsreceived',
+        'away_goalsdiff',
+        'away_wins',
+        'away_draws',
+        'away_losses',
+    ];
 
     public function club()
     {

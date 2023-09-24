@@ -20,10 +20,18 @@ class Stadion extends Model
         // Chain fluent methods for configuration options
     }
 
-    protected $guarded = [
-		'id',
-		'created_at',
-		'updated_at'
+    protected $fillable = [
+		'name',
+        'slug',
+        'city',
+        'capacity',
+        'seat_quality',
+        'vip',
+        'original',
+        'large',
+        'medium',
+        'small',
+        'status',
 	];
 
 	public const UPLOAD_DIR = 'uploads/stadions';

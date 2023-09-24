@@ -34,6 +34,17 @@ class PlayerIndex extends Component
     public $height;
     public $weight;
     public $age;
+    public $level;
+    public $levelOption = [
+        'senior',
+        'u20',
+        'u16',
+    ];
+    public $gender;
+    public $genderOption = [
+        'men',
+        'women',
+    ];
     public $code;
     public $facebook;
     public $instagram;
@@ -111,6 +122,8 @@ class PlayerIndex extends Component
 
         $player = new Player();
         $player->club_id = $this->selectedClub;
+        $player->level = 'senior';
+        $player->gender = 'men';
         $player->name = $this->name;
         $player->slug = Str::slug($this->name);
         $player->birth_date = $this->birthDate;
@@ -166,6 +179,8 @@ class PlayerIndex extends Component
         $this->playerId = $playerId;
         $player = Player::find($playerId);
         $this->selectedClub = $player->club_id;
+        $this->level = $player->level;
+        $this->gender = $player->gender;
         $this->name = $player->name;
         $this->position = $player->position_id;
         $this->birthDate = $player->birth_date;
@@ -193,6 +208,8 @@ class PlayerIndex extends Component
         $this->playerId = $playerId;
         $player = Player::find($playerId);
         $this->selectedClub = $player->club_id;
+        $this->level = $player->level;
+        $this->gender = $player->gender;
         $this->name = $player->name;
         $this->position = $player->position->name;
         $this->birthDate = $player->birth_date;
@@ -248,6 +265,8 @@ class PlayerIndex extends Component
 
                 // $player = Player::where('id', $this->playerId);
                 $player->club_id = $this->selectedClub;
+                $player->level = 'senior';
+                $player->gender = 'men';
                 $player->name = $this->name;
                 $player->slug = Str::slug($this->name);
                 $player->birth_date = $this->birthDate;
@@ -309,13 +328,13 @@ class PlayerIndex extends Component
 
     public function resetFilters()
     {
-        $this->reset();
+        $this->reset(['search', 'sort', 'perPage']);
     }
 
     public function render()
     {
         return view('livewire.player-index', [
-            'players' => Player::search('name', $this->search)->orderBy('name', $this->sort)->paginate($this->perPage),
+            'players' => Player::search('name', $this->search)->where('level', 'senior')->where('gender', 'men')->orderBy('name', $this->sort)->paginate($this->perPage),
             'clubs' => Club::OrderBy('name', 'asc')->get(),
             'teams' => Club::OrderBy('id', 'asc')->get()->toArray(),
             'positionOption' => Position::OrderBy('name', 'asc')->get(),

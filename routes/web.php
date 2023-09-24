@@ -52,6 +52,8 @@ use App\Http\Livewire\StatisticIndex;
 use App\Http\Livewire\SubscribeIndex;
 use App\Http\Livewire\TrophyIndex;
 use App\Http\Livewire\UserIndex;
+use App\Http\Livewire\JuniorFootBall;
+use App\Http\Livewire\WomenFootBall;
 
 use App\Http\Livewire\MultiSelect;
 
@@ -111,6 +113,8 @@ Route::middleware(['auth:sanctum', 'verified', 'role:admin|author|sales'])->pref
 
     Route::get('partners', PartnerIndex::class)->name('partners.index');
     Route::get('players', PlayerIndex::class)->name('players.index');
+    Route::get('womens', WomenFootBall::class)->name('womens.index');
+    Route::get('unders', JuniorFootBall::class)->name('unders.index');
     Route::get('permissions', PermissionIndex::class)->name('permissions.index');
     Route::get('positions', PositionIndex::class)->name('positions.index');
     Route::get('products', ProductIndex::class)->name('products.index');

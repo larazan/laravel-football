@@ -68,11 +68,11 @@ class MatchLineup extends Component
         $this->matchId = $matchId;
     
         $this->allHomePlayers = [
-            []
+            [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [],
         ];
 
         $this->allAwayPlayers = [
-            []
+            [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [],
         ];
     }
 
@@ -101,6 +101,7 @@ class MatchLineup extends Component
 
     public function createHomeLineup()
     {
+        dd($this->allHomePlayers);
         // $this->validate();
         $index = 1;
         $index2 = 1;

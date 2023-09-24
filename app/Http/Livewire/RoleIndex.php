@@ -120,7 +120,7 @@ class RoleIndex extends Component
 
     public function resetFilters()
     {
-        $this->reset();
+        $this->reset(['search', 'sort', 'perPage']);
     }
 
     public function render()

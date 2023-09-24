@@ -131,6 +131,9 @@
                                 <div class="gh gt">Score</div>
                             </th>
                             <th class="vi wy w_ vo lm">
+                                <div class="gh gt">Points</div>
+                            </th>
+                            <th class="vi wy w_ vo lm">
                                 <div class="gh gt">Actions</div>
                             </th>
                         </tr>
@@ -156,21 +159,23 @@
                                 </div>
                             </td>
                             <td class="vi wy w_ vo lm">
-                                <div class="gp text-slate-800">0</div>
+                                <div class="gp text-slate-800">{{ $team->total_wins + $team->total_draws + $team->total_losses }}</div>
                             </td>
                             <td class="vi wy w_ vo lm">
-                                <div class="gp text-slate-800">0</div>
+                                <div class="gp text-slate-800">{{ $team->total_wins }}</div>
                             </td>
                             <td class="vi wy w_ vo lm">
-                                <div class="gp text-slate-800">0</div>
+                                <div class="gp text-slate-800">{{ $team->total_draws }}</div>
                             </td>
                             <td class="vi wy w_ vo lm">
-                                <div class="gp text-slate-800">0</div>
+                                <div class="gp text-slate-800">{{ $team->total_losses }}</div>
                             </td>
                             <td class="vi wy w_ vo lm">
-                                <div class="gp text-slate-800">0 : 0</div>
+                                <div class="gp text-slate-800">{{ $team->total_goals }} : {{ $team->total_goalsreceived }}</div>
                             </td>
-                           
+                            <td class="vi wy w_ vo lm">
+                                <div class="gp text-slate-800">{{ $team->total_points }}</div>
+                            </td>
 
                             <td class="vi wy w_ vo lm of">
                                 <div class="fm">

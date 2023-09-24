@@ -9,5 +9,16 @@ class Statistic extends Model
 {
     use HasFactory;
 
-    protected $guarded = [];
+    protected $fillable = [
+        'match_id',
+        'player_id',
+        'minute_play',
+        'goals',
+        'assists',
+        'subs_on',
+        'subs_off',
+        'yellow_card',
+        'red_card',
+        'status',
+    ];
 }

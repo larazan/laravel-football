@@ -20,7 +20,13 @@ class Competition extends Model
         // Chain fluent methods for configuration options
     }
 
-    protected $guarded = [];
+    protected $guarded = [
+        'name',
+        'slug',
+        'info',
+        'logo',
+        'status',
+    ];
 
     public const UPLOAD_DIR = 'uploads/competitions';
     

@@ -22,7 +22,21 @@ class Matchs extends Model
 
     protected $table = 'matchs';
 
-    protected $guarded = [];
+    protected $fillable = [
+        'slug',
+        'season',
+        'competition_id',
+        'stadion_id',
+        'home_team',
+        'away_team',
+        'full_time_home_goal',
+        'full_time_away_goal',
+        'fixture_match',
+        'hour',
+        'minute',
+        'full_time_result',
+        'status',
+    ];
 
     public function competitions()
     {

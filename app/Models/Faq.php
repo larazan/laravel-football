@@ -16,9 +16,13 @@ class Faq extends Model
     {
         return LogOptions::defaults()
         ->logUnguarded()
-        ->setDescriptionForEvent(fn(string $eventName) => "This model has been {$eventName} by: ". Auth::user() ? Auth::user()->first_name .' '. Auth::user()->last_name : 'admin');
+        ->setDescriptionForEvent(fn(string $eventName) => "This model has been {$eventName} by: ". "admin");
         // Chain fluent methods for configuration options
     }
 
-    protected $guarded = [];
+    protected $fillable = [
+        'question',
+        'answer',
+        'status',
+    ];
 }

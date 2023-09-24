@@ -20,7 +20,13 @@ class AdvertisingSegment extends Model
         // Chain fluent methods for configuration options
     }
 
-    protected $guarded = [];
+    // protected $guarded = [];
+    protected $fillable = [
+        'title',
+        'size',
+        'original',
+        'status',
+    ];
 
     public const UPLOAD_DIR = 'uploads/advsegments';
 

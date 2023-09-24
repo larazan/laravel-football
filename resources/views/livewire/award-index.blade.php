@@ -169,8 +169,8 @@
                             </td>
                             <td class="vi wy w_ vo lm">
                                 <div class="gp ">
-                                    @if ($award->competition->thropy)
-                                    <img src="{{ asset('storage/'.$award->competition->thropy) }}" class="object-scale-down w-20" alt="{{ $award->competition->name }}">
+                                    @if ($award->troph->trophy)
+                                    <img src="{{ asset('storage/'.$award->troph->trophy) }}" class="object-scale-down w-20" alt="{{ $award->competition->name }}">
                                     @endif    
                                 </div>
                             </td>

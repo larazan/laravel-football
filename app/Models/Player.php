@@ -20,7 +20,32 @@ class Player extends Model
         // Chain fluent methods for configuration options
     }
 
-    protected $guarded = ['id'];
+    protected $fillable = [
+        'club_id',
+        'level',
+        'name',
+        'slug',
+        'gender',
+        'birth_date',
+        'birth_location',
+        'country_id',
+        'bio',
+        'height',
+        'weight',
+        'prefered_foot',
+        'contract_from',
+        'contract_until',
+        'shirt_number',
+        'position_id',
+        'facebook',
+        'instagram',
+        'twitter',
+        'original',
+        'large',
+        'medium',
+        'small',
+        'status',
+    ];
 
     public const UPLOAD_DIR = 'uploads/players';
 

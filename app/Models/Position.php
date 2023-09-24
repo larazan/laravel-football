@@ -24,7 +24,6 @@ class Position extends Model
         'name',
         'slug',
         'parent_id',
-        'status',
     ];
 
     public function parent() {

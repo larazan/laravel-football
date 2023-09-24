@@ -12,6 +12,19 @@ class Advertising extends Model
 {
     use HasFactory, LogsActivity;
 
+    // protected $guarded = [];
+
+    protected $fillable = [
+        'segment_id',
+        'title',
+        'start',
+        'end',
+        'url',
+        'original',
+        'small',
+        'status',
+    ];
+
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()

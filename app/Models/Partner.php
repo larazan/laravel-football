@@ -20,10 +20,10 @@ class Partner extends Model
         // Chain fluent methods for configuration options
     }
 
-    protected $guarded = [
-		'id',
-		'created_at',
-		'updated_at'
+    protected $fillable = [
+		'title',
+        'original',
+        'status',
 	];
 
 	public const UPLOAD_DIR = 'uploads/sponsors';

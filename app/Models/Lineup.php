@@ -20,6 +20,8 @@ class Lineup extends Model
         // Chain fluent methods for configuration options
     }
 
+    protected $table = "match_lineup";
+
     protected $guarded = [];
 
     public function players()

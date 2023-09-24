@@ -92,7 +92,7 @@ class LeagueIndex extends Component
 
         TeamLeague::create([
             'season' => $this->season,
-            'team_id' => $this->team,
+            'team_id' => $this->teamId,
             'total_points' => $this->totalPoints,
             'total_goals' => $this->totalGoals,
             'total_goalsreceived' => $this->totalGoalsreceived,
@@ -162,7 +162,7 @@ class LeagueIndex extends Component
         $league = TeamLeague::findOrFail($this->leagueId);
         $league->update([
             'season' => $this->season,
-            'team_id' => $this->team,
+            'team_id' => $this->teamId,
             'total_points' => $this->totalPoints,
             'total_goals' => $this->totalGoals,
             'total_goalsreceived' => $this->totalGoalsreceived,
@@ -207,7 +207,7 @@ class LeagueIndex extends Component
 
     public function resetFilters()
     {
-        $this->reset();
+        $this->reset(['search', 'sort', 'perPage']);
     }
 
     public function render()

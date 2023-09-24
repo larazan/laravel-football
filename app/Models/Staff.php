@@ -21,7 +21,22 @@ class Staff extends Model
     }
 
     protected $table = 'staffs';
-    protected $guarded = [];
+    protected $fillable = [
+        'club_id',
+        'name',
+        'slug',
+        'role',
+        'birth_date',
+        'birth_location',
+        'country_id',
+        'bio',
+        'contract_from',
+        'contract_until',
+        'original',
+        'medium',
+        'small',
+        'status',
+    ];
 
     public const UPLOAD_DIR = 'uploads/staffs';
 

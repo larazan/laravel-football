@@ -20,10 +20,16 @@ class Slide extends Model
         // Chain fluent methods for configuration options
     }
 
-    protected $guarded = [
-		'id',
-		'created_at',
-		'updated_at',
+    protected $fillable = [
+		'user_id',
+		'title',
+		'url',
+		'position',
+		'status',
+		'body',
+		'original',
+		'extra_large',
+		'small',
 	];
 
 	public const UPLOAD_DIR = 'uploads/slides';

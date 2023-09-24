@@ -36,7 +36,7 @@ class TrophyIndex extends Component
 
     protected $rules = [
         // 'name' => 'required',
-        // 'file' => 'required|image|mimes:jpg,jpeg,png,svg,gif|max:2048',
+        'file' => 'required|image|mimes:jpg,jpeg,png,svg,gif|max:2048',
     ];
 
     public function showCreateModal()
@@ -150,7 +150,7 @@ class TrophyIndex extends Component
 
     public function resetFilters()
     {
-        $this->reset();
+        $this->reset(['search', 'sort', 'perPage']);
     }
 
     public function deleteImage($id = null) {

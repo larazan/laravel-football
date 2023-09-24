@@ -20,10 +20,19 @@ class Award extends Model
         // Chain fluent methods for configuration options
     }
 
-    protected $guarded = [];
+    protected $fillable = [
+        'competition_id',
+        'year',
+        'status',
+    ];
 
     public function competition()
     {
         return $this->hasOne(Competition::class, 'id', 'competition_id');
+    }
+
+    public function troph()
+    {
+        return $this->hasOne(Trophy::class, 'competition_id', 'competition_id');
     }
 }

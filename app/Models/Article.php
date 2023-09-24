@@ -21,7 +21,24 @@ class Article extends Model
         // Chain fluent methods for configuration options
     }
 
-    protected $guarded = [];
+    protected $fillable = [
+        'category_id',
+        'user_id',
+        'title',
+        'slug',
+        'rand_id',
+        'published_at',
+        'published',
+        'status',
+        'body',
+        'article_tags',
+        'meta_title',
+        'meta_description',
+        'original',
+        'large',
+        'medium',
+        'small',
+    ];
 
     public const UPLOAD_DIR = 'uploads/articles';
 

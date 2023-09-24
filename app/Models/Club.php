@@ -20,7 +20,14 @@ class Club extends Model
         // Chain fluent methods for configuration options
     }
 
-    protected $guarded = [];
+    protected $fillable = [
+        'name',
+        'slug',
+        'logo',
+        'stadion_id',
+        'info'.
+        'status',
+    ];
 
     public const UPLOAD_DIR = 'uploads/clubs';
 

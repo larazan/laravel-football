@@ -22,10 +22,20 @@ class Media extends Model
     }
 
 	protected $table = 'medias';
-    protected $guarded = [
-		'id',
-		'created_at',
-		'updated_at'
+    protected $fillable = [
+		'user_id',
+		'title',
+		'slug',
+		'rand_id',
+		'published_at',
+		'published',
+		'status',
+		'body',
+		'video_url',
+		'original',
+		'large',
+		'medium',
+		'small',
 	];
 
 	public const UPLOAD_DIR = 'uploads/medias';

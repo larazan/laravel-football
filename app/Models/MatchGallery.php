@@ -24,10 +24,12 @@ class MatchGallery extends Model
 
     public const UPLOAD_DIR = 'uploads/matchs';
 
-	protected $guarded = [
-		'id',
-		'created_at',
-		'updated_at'
+	protected $fillable = [
+		'match_id',
+		'original',
+		'large',
+		'medium',
+		'small',
 	];
 
 	public const SMALL = '135x141';

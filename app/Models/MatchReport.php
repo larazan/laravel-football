@@ -24,10 +24,11 @@ class MatchReport extends Model
 
     public const UPLOAD_DIR = 'uploads/reports';
     
-    protected $guarded = [
-		'id',
-		'created_at',
-		'updated_at'
+    protected $fillable = [
+		'match_id',
+		'report',
+		'original',
+		'medium',
 	];
 
     public const SMALL = '135x141';

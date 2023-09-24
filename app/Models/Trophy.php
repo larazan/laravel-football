@@ -11,6 +11,11 @@ class Trophy extends Model
 
     protected $table = 'trophies';
 
+    protected $fillable = [
+        'competition_id',
+        'trophy',
+    ];
+
     public const UPLOAD_DIR = 'uploads/trophies';
 
     public function competitions()

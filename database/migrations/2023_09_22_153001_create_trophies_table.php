@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('trophies', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('competition_id');
-            $table->string('thropy')->nullable();
+            $table->string('trophy')->nullable();
             $table->timestamps();
 
             $table->foreign('competition_id')->references('id')->on('competitions')->onDelete('cascade');

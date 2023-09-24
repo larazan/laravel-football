@@ -11,9 +11,9 @@ class Newsletter extends Model
 
     protected $table = 'newsletter_subscribers';
 
-	protected $guarded = [
-		'id',
-		'created_at',
-		'updated_at'
+	protected $fillable = [
+		'email',
+		'status',
+		'opened',
 	];
 }

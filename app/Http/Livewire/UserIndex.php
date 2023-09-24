@@ -173,7 +173,7 @@ class UserIndex extends Component
 
     public function resetFilters()
     {
-        $this->reset(['search', 'sort', 'perPage', 'firstName', 'lastName', 'email', 'phone', 'password']);
+        $this->reset(['search', 'sort', 'perPage']);
     }
 
     // public function updated($propertyName)
