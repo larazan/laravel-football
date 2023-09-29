@@ -10,10 +10,10 @@
 @push('js')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/trix/1.3.1/trix.min.js"></script>
 <script>
-        var trixEditor = document.getElementById("{{ $trixId }}")
+    var trixEditor = document.getElementById("{{ $trixId }}")
 
-        addEventListener("trix-blur", function(event) {
-            @this.set('value', trixEditor.getAttribute('value'))
-        })
-    </script>
+    addEventListener("trix-blur", function(event) {
+        @this.set('value', trixEditor.getAttribute('value'))
+    })
+</script>
 @endpush

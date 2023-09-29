@@ -7,6 +7,7 @@ use Livewire\Component;
 
 class SearchSelect extends Component
 {
+    public $selectedPlayer;
     public $playerName = '';
     public $players;
     public $playerId = NULL;
@@ -18,6 +19,7 @@ class SearchSelect extends Component
     public function mount()
     {
         $this->players = Player::all();
+        $this->selectedPlayer = null;
     }
 
     public function getPlayerProperty()
@@ -31,6 +33,8 @@ class SearchSelect extends Component
 
     public function render()
     {
-        return view('livewire.search-select');
+        return view('livewire.search-select', [
+            'people' => Player::orderBy('id', 'asc')->get()->toArray()
+        ]);
     }
 }

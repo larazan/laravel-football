@@ -146,12 +146,19 @@ class AdvSegmentIndex extends Component
     public function closeAdvertisingSegmentModal()
     {
         $this->showAdvertisingSegmentModal = false;
-        $this->reset();
+        $this->reset(
+            [
+                'segmentId',
+                'title',
+                'size',
+                'segmentStatus',
+            ]
+        );
     }
 
     public function resetFilters()
     {
-        $this->reset();
+        $this->reset(['search', 'sort', 'perPage']);
     }
 
     private function _resizeImage($image, $fileName, $folder)

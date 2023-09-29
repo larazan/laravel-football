@@ -3,9 +3,17 @@
         <div class="w-full md:w-1/2 flex flex-col items-center h-64 mx-auto">
             <div class="relative w-full col-span-6 md:col-span-3" x-data="{open:false, aktif:'', selected:''}">
                 <button type="button" class="relative w-full form-input" @click="open = !open" >
-                    <div class="flex justify-start" x-text="selected =='' ? 'Select Player' : selected">
-                        please select
-                    </div>
+                    
+                    @if ($selectedPlayer !== null)
+                        <div class="flex justify-start">
+                        {{ $people[$selectedPlayer-1]['name'] }}
+                        </div>
+                    @else
+                        <div class="flex justify-start" x-text="selected =='' ? 'Select Player' : selected">
+                            please select
+                        </div>
+                    @endif
+                    
                     <!--  -->
                     <div class="absolute inset-y-0 right-0 z-10 flex items-center px-2 text-gray-700 pointer-events-none">
                         <!-- svg -->
@@ -35,7 +43,7 @@
                         
                         @if (count($this->player) > 0)
                             @foreach ($this->player as $ele)
-                            <div type="button" class="flex justify-start cursor-pointer w-full border-gray-100 rounded-t border-b hover:bg-gray-100 focus:outline-none" :class="{'bg-green-500' :aktif=='{{ $ele->id }}'}" @click="aktif='{{ $ele->id }}', selected='{{ $ele->name }}', open=false, $wire.playerId=aktif">
+                            <div type="button" class="flex justify-start cursor-pointer w-full border-gray-100 rounded-t border-b hover:bg-gray-100 focus:outline-none" :class="{'bg-green-500' :aktif=='{{ $ele->id }}'}" @click="aktif='{{ $ele->id }}', selected='{{ $ele->name }}', open=false, $wire.playerId=aktif, $wire.selectedPlayer={{ $ele->id }}">
                                 <div class="flex w-full items-center p-2 pl-2 border-transparent border-l-2 relative">
                                     <div class="w-full items-center flex justify-between">
                                         {{ $ele->name }}
@@ -54,5 +62,19 @@
                 </div>
             </div>
         </div>
+    </div>
+
+    <div>{{ $selectedPlayer }}</div>
+
+    <div class="mt-10 mx-auto w-1/2">
+        <livewire:select2
+            :selected="1"
+            :items="['Apple','Banana','Strawberry']"
+            label="Favorite fruit"
+        />
+    </div>
+
+    <div class="mt-10 mx-auto w-1/2">
+        <livewire:tags />
     </div>
 </div>

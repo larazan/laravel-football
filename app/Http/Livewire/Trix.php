@@ -17,6 +17,7 @@ class Trix extends Component
     }
 
     public function updatedValue($value){
+        // dd($value);
         $this->emit(self::EVENT_VALUE_UPDATED, $this->value);
     }
 

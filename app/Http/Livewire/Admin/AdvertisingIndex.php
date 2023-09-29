@@ -173,12 +173,22 @@ class AdvertisingIndex extends Component
     public function closeAdvertisingModal()
     {
         $this->showAdvertisingModal = false;
-        $this->reset();
+        $this->reset(
+            [
+                'advertisingId',
+                'segmentId',
+                'title',
+                'start',
+                'end',
+                'url',
+                'advertisingStatus',
+            ]
+        );
     }
 
     public function resetFilters()
     {
-        $this->reset();
+        $this->reset(['search', 'sort', 'perPage']);
     }
 
     private function _resizeImage($image, $fileName, $folder)

@@ -145,12 +145,18 @@ class PartnerIndex extends Component
     public function closePartnerModal()
     {
         $this->showPartnerModal = false;
-        $this->reset();
+        $this->reset(
+            [
+                'partnerId',
+                'title',
+                'partnerStatus',
+            ]
+        );
     }
 
     public function resetFilters()
     {
-        $this->reset();
+        $this->reset(['search', 'sort', 'perPage']);
     }
 
     public function deleteImage($id = null) {
