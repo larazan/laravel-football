@@ -311,9 +311,14 @@
                     <div class="fw">
 
                         <form>
-                            <div class="">
-                                <div class="">
-                                    <div class="flex flex-col space-y-3">
+                            <div class="my-3 md:mt-0 md:col-span-2" x-data="{tab: 0}">
+                                <div class="mb-5 flex border border-black overflow-hidden">
+                                    <button class="px-4 py-2 w-full font-bold" :class="{ 'active bg-gray-800 text-white': tab === 0 }" x-on:click.prevent="tab = 0">General</button>
+                                    <button class="px-4 py-2 w-full font-bold" :class="{ 'active bg-gray-800 text-white': tab === 1 }" x-on:click.prevent="tab = 1">Meta</button>
+                                    <button class="px-4 py-2 w-full font-bold" :class="{ 'active bg-gray-800 text-white': tab === 2 }" x-on:click.prevent="tab = 2">Image</button>
+                                </div>
+                                <div>
+                                    <div class="mt-6 flex flex-col space-y-3" x-show="tab === 0">
                                         <div class="flex flex-row justify-between">
                                             <div class="col-start-1 sm:col-span-3">
                                                 <label for="name" class="block text-sm font-medium text-gray-700">
@@ -376,20 +381,46 @@
                                             </div>
                                         </div>
                                         
+                                        
+                                        
                                         <div class="flex flex-row space-x-4 justify-between">
-                                            <div class="col-start-1 sm:col-span-3">
-                                                <label for="metaTitle" class="block text-sm font-medium text-gray-700">
-                                                    Meta Title
-                                                </label>
-                                                <textarea wire:model="metaTitle" cols="50" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" >{{ $metaTitle }}</textarea>
+                                            <div class="col-span-6 sm:col-span-3 w-1/2">
+                                                <label for="first-name" class="block text-sm font-medium text-gray-700">Publish</label>
+                                                <select wire:model="publishStatus" class="h-full2 rounded-r border-t border-r border-b block appearance-none w-full bg-white border-gray-300 text-gray-700 py-2 px-4 pr-8 leading-tight focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none">
+                                                    <option value="" >Select Option</option>
+                                                    @foreach($status as $key => $value)
+                                                    <option class="capitalize" value="{{ $key }}">{{ $value }}</option>
+                                                    @endforeach
+                                                </select>
                                             </div>
-                                            <div class="col-start-1 sm:col-span-3">
-                                                <label for="metaDesc" class="block text-sm font-medium text-gray-700">
-                                                    Meta Description
-                                                </label>
-                                                <textarea wire:model="metaDesc" cols="50" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" >{{ $metaDesc }}</textarea>
+                                            <div class="col-span-6 sm:col-span-3 w-1/2">
+                                                <label for="first-name" class="block text-sm font-medium text-gray-700">Status</label>
+                                                <select wire:model="productStatus" class="h-full2 rounded-r border-t border-r border-b block appearance-none w-full bg-white border-gray-300 text-gray-700 py-2 px-4 pr-8 leading-tight focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none">
+                                                    <option value="" >Select Option</option>
+                                                    @foreach($statuses as $status)
+                                                    <option class="capitalize" value="{{ $status }}">{{ $status }}</option>
+                                                    @endforeach
+                                                </select>
                                             </div>
                                         </div>
+                                    </div>
+                                    <div class="mt-6 flex flex-col space-y-3" x-show="tab === 1">
+                                        
+                                        <div class="col-start-1 sm:col-span-3">
+                                            <label for="metaTitle" class="block text-sm font-medium text-gray-700">
+                                                Meta Title
+                                            </label>
+                                            <input wire:model="metaTitle" type="text" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                                        </div>
+                                        <div class="col-start-1 sm:col-span-3">
+                                            <label for="metaDesc" class="block text-sm font-medium text-gray-700">
+                                                Meta Description
+                                            </label>
+                                            <textarea wire:model="metaDesc" cols="50" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" >{{ $metaDesc }}</textarea>
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="mt-6 flex flex-col space-y-3" x-show="tab === 2">
                                         <div class="col-span-6 sm:col-span-3">
                                             <label for="files" class="block text-sm font-medium text-gray-700">
                                                 Image
@@ -404,26 +435,6 @@
                                                     Image Preview:
                                                     <img src="{{ $file->temporaryUrl() }}">
                                                 @endif
-                                        </div>
-                                        <div class="flex flex-row space-x-4 justify-between">
-                                            <div class="col-span-6 sm:col-span-3 w-1/2">
-                                                <label for="first-name" class="block text-sm font-medium text-gray-700">Publish</label>
-                                                <select wire:model="publishStatus" class="h-full rounded-r border-t border-r border-b block appearance-none w-full bg-white border-gray-300 text-gray-700 py-2 px-4 pr-8 leading-tight focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none">
-                                                    <option value="" >Select Option</option>
-                                                    @foreach($status as $key => $value)
-                                                    <option class="capitalize" value="{{ $key }}">{{ $value }}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                            <div class="col-span-6 sm:col-span-3 w-1/2">
-                                                <label for="first-name" class="block text-sm font-medium text-gray-700">Status</label>
-                                                <select wire:model="productStatus" class="h-full rounded-r border-t border-r border-b block appearance-none w-full bg-white border-gray-300 text-gray-700 py-2 px-4 pr-8 leading-tight focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none">
-                                                    <option value="" >Select Option</option>
-                                                    @foreach($statuses as $status)
-                                                    <option class="capitalize" value="{{ $status }}">{{ $status }}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
                                         </div>
                                     </div>
                                 </div>

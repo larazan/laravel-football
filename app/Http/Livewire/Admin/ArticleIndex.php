@@ -11,12 +11,17 @@ use Intervention\Image\ImageManagerStatic as Image;
 use Livewire\WithPagination;
 use Livewire\WithFileUploads;
 use Livewire\Component;
+use App\Http\Livewire\Trix;
 
 class ArticleIndex extends Component
 {
     use WithFileUploads, WithPagination;
 
     public $showArticleModal = false;
+    public $categoryItem;
+    public $showInput = false;
+    public $showMessage = false;
+    public $trixId;
     public $title;
     public $body;
     public $status;
@@ -29,6 +34,8 @@ class ArticleIndex extends Component
     public $embedUrl;
     public $publishedAt;
     public $oldImage;
+    public $metaTitle;
+    public $metaDesc;
     public $articleStatus = 'inactive';
     public $statuses = [
         'active',
@@ -42,6 +49,10 @@ class ArticleIndex extends Component
     public $showConfirmModal = false;
     public $deleteId = '';
 
+    protected $listeners = [
+        Trix::EVENT_VALUE_UPDATED
+    ];
+
     protected $rules = [
         'title' => 'required|min:3',
         // 'file' => 'required|image|mimes:jpg,jpeg,png,svg,gif|max:2048',
@@ -50,6 +61,37 @@ class ArticleIndex extends Component
     public function mount()
     {
         $this->publishedAt = today()->format('Y-m-d');
+        $this->trixId = 'trix-' . uniqid();
+        $this->articleTags = ['sss', 'vvv'];
+    }
+
+    public function openInput()
+    {
+        $this->showInput = true;
+    }
+
+    public function categoryAdd()
+    {
+        $this->validate(
+            [
+                'categoryItem' => 'required|string' 
+            ]
+        );
+
+        $category = new CategoryArticle();
+        $category->name = $this->categoryItem;
+        $category->slug = Str::slug($this->categoryItem);
+            
+        if ($category->save()) {
+            $this->showMessage = true;
+        }
+
+        $this->showInput = false;
+    }
+
+    public function trix_value_updated($value)
+    {
+        $this->body = $value;
     }
 
     public function showCreateModal()
@@ -82,27 +124,54 @@ class ArticleIndex extends Component
         $this->validate();
   
         $new = Str::slug($this->title) . '_' . time();
-        $filename = $new . '.' . $this->file->getClientOriginalName();
-        $filePath = $this->file->storeAs(Article::UPLOAD_DIR, $filename, 'public');
-        $resizedImage = $this->_resizeImage($this->file, $filename, Article::UPLOAD_DIR);
-  
-        Article::create([
-            'category_id' => $this->categoryId,
-            'user_id' => Auth::user()->id,
-            'title' => $this->title,
-            'slug' => Str::slug($this->title),
-            'rand_id' => Str::random(10),
-            'body' => $this->body,
-            'article_tags' => $this->articleTags,
-            'author' => $this->author,
-            'url' => $this->url,
-            'embed_url' => $this->embedUrl,
-            'published_at' => $this->publishedAt,
-            'original' => $filePath,
-            'small' => $resizedImage['small'],
-            'medium' => $resizedImage['medium'],
-            'status' => $this->articleStatus,
-        ]);
+        
+        // Article::create([
+        //     'category_id' => $this->categoryId,
+        //     'user_id' => Auth::user()->id,
+        //     'title' => $this->title,
+        //     'slug' => Str::slug($this->title),
+        //     'rand_id' => Str::random(10),
+        //     'body' => $this->body,
+        //     'article_tags' => $this->articleTags,
+        //     'author' => $this->author,
+        //     'url' => $this->url,
+        //     'embed_url' => $this->embedUrl,
+        //     'published_at' => $this->publishedAt,
+        //     'meta_title' => $this->metaTitle,
+        //     'meta_description' => $this->metaDesc,
+        //     'original' => $filePath,
+        //     'small' => $resizedImage['small'],
+        //     'medium' => $resizedImage['medium'],
+        //     'status' => $this->articleStatus,
+        // ]);
+
+        $article = new Article();
+        $article->category_id = $this->categoryId;
+        $article->user_id = Auth::user()->id;
+        $article->title = $this->title;
+        $article->slug = Str::slug($this->title);
+        $article->rand_id = Str::random(10);
+        $article->body = $this->body;
+        $article->article_tags = $this->articleTags;
+        $article->author = $this->author;
+        $article->url = $this->url;
+        $article->embed_url = $this->embedUrl;
+        $article->published_at = $this->publishedAt;
+        $article->meta_title = $this->metaTitle;
+        $article->meta_description = $this->metaDesc;
+        $article->status = $this->articleStatus;
+
+        if (!empty($this->file)) {
+            $filename = $new . '.' . $this->file->getClientOriginalName();
+            $filePath = $this->file->storeAs(Article::UPLOAD_DIR, $filename, 'public');
+            $resizedImage = $this->_resizeImage($this->file, $filename, Article::UPLOAD_DIR);
+
+            $article->original = $filePath;
+            $article->small = $resizedImage['small'];
+            $article->medium = $resizedImage['medium'];
+        }
+
+        $article->save();
 
         $this->reset();
         $this->dispatchBrowserEvent('banner-message', ['style' => 'success', 'message' => 'Article created successfully']);
@@ -121,6 +190,8 @@ class ArticleIndex extends Component
         $this->url = $article->url;
         $this->embedUrl = $article->embed_url;
         $this->publishedAt = $article->published_at;
+        $this->metaTitle = $article->meta_title;
+        $this->metaDesc = $article->meta_description;
         $this->oldImage = $article->small;
         $this->articleStatus = $article->status;
         $this->showArticleModal = true;
@@ -132,33 +203,59 @@ class ArticleIndex extends Component
         $this->validate();
   
         $new = Str::slug($this->title) . '_' . time();
-        $filename = $new . '.' . $this->file->getClientOriginalName();
         
         if ($this->articleId) {
             if ($article) {
-               // delete image
-			    $this->deleteImage($this->articleId);
-                $filePath = $this->file->storeAs(Article::UPLOAD_DIR, $filename, 'public');
-                $resizedImage = $this->_resizeImage($this->file, $filename, Article::UPLOAD_DIR);
 
-                $article->update([
-                    'category_id' => $this->categoryId,
-                    'user_id' => Auth::user()->id,
-                    'title' => $this->title,
-                    'slug' => Str::slug($this->title),
-                    'rand_id' => Str::random(10),
-                    'body' => $this->body,
-                    'article_tags' => $this->articleTags,
-                    'author' => $this->author,
-                    'url' => $this->url,
-                    'embed_url' => $this->embedUrl,
-                    'published_at' => $this->publishedAt,
-                    'original' => $filePath,
-                    'small' => $resizedImage['small'],
-                    'medium' => $resizedImage['medium'],
-                    'status' => $this->articleStatus,
-                ]);
+                // $article->update([
+                //     'category_id' => $this->categoryId,
+                //     'user_id' => Auth::user()->id,
+                //     'title' => $this->title,
+                //     'slug' => Str::slug($this->title),
+                //     'rand_id' => Str::random(10),
+                //     'body' => $this->body,
+                //     'article_tags' => $this->articleTags,
+                //     'author' => $this->author,
+                //     'url' => $this->url,
+                //     'embed_url' => $this->embedUrl,
+                //     'published_at' => $this->publishedAt,
+                //     'meta_title' => $this->metaTitle,
+                //     'meta_description' => $this->metaDesc,
+                //     'original' => $filePath,
+                //     'small' => $resizedImage['small'],
+                //     'medium' => $resizedImage['medium'],
+                //     'status' => $this->articleStatus,
+                // ]);
+
+                $article->category_id = $this->categoryId;
+                $article->user_id = Auth::user()->id;
+                $article->title = $this->title;
+                $article->slug = Str::slug($this->title);
+                $article->rand_id = Str::random(10);
+                $article->body = $this->body;
+                $article->article_tags = $this->articleTags;
+                $article->author = $this->author;
+                $article->url = $this->url;
+                $article->embed_url = $this->embedUrl;
+                $article->published_at = $this->publishedAt;
+                $article->meta_title = $this->metaTitle;
+                $article->meta_description = $this->metaDesc;
+                $article->status = $this->articleStatus;
+
+                if (!empty($this->file)) {
+                    // delete image
+                    $this->deleteImage($this->articleId);
+
+                    $filename = $new . '.' . $this->file->getClientOriginalName();
+                    $filePath = $this->file->storeAs(Article::UPLOAD_DIR, $filename, 'public');
+                    $resizedImage = $this->_resizeImage($this->file, $filename, Article::UPLOAD_DIR);
                 
+                    $article->original = $filePath;
+                    $article->small = $resizedImage['small'];
+                    $article->medium = $resizedImage['medium'];
+                }
+                
+                $article->save();
             }
         }
 

@@ -65,7 +65,7 @@ class CategoryArticleIndex extends Component
           'name' => $this->name,
           'slug' => Str::slug($this->name),
           'parent_id' => $this->parentId,
-          'status' => $this->catStatus,
+        //   'status' => $this->catStatus,
         ]);
 
         $this->reset();
@@ -79,7 +79,7 @@ class CategoryArticleIndex extends Component
         $category = CategoryArticle::find($categoryId);
         $this->name = $category->name;
         $this->parentId = $category->parent_id;
-        $this->catStatus = $category->status;
+        // $this->catStatus = $category->status;
         $this->showCategoryModal = true;
     }
     
@@ -92,7 +92,7 @@ class CategoryArticleIndex extends Component
             'name' => $this->name,
             'slug'     => Str::slug($this->name),
             'parent_id' => $this->parentId,
-            'status' => $this->catStatus,
+            // 'status' => $this->catStatus,
         ]);
 
         $this->reset();

@@ -246,29 +246,7 @@
                                                 <div class="go re yl">{{ $message }}</div>
                                             @enderror
                                         </div>
-                                        <div class="col-start-1 sm:col-span-3" wire:ignore>
-                                            <label for="title" class="block text-sm font-medium text-gray-700">
-                                                Tags
-                                            </label>
-                                            <input
-                                                type="text"
-                                                class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm"
-                                                name="tags"
-                                                style="appearance: none;
-                                                    background-color: #fff;
-                                                    border-color: #000;
-                                                    border-width: 1px;
-                                                    border-radius: 0;
-                                                    padding-top: 0.5rem;
-                                                    padding-right: 0.75rem;
-                                                    padding-bottom: 0.5rem;
-                                                    padding-left: 0.75rem;
-                                                    font-size: 1rem;
-                                                    line-height: 1.5rem;"
-                                                autofocus
-                                                wire:model="articleTags"
-                                            />
-                                        </div>
+                                        
                                         <div class="col-span-6 sm:col-span-3">
                                             <label for="first-name" class="block text-sm font-medium text-gray-700">Status</label>
                                             <select wire:model="faqStatus" class="h-full rounded-r border-t border-r border-b block appearance-none w-full bg-white border-gray-300 text-gray-700 py-2 px-4 pr-8 leading-tight focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none">
@@ -349,26 +327,17 @@
 
 @push('styles')
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/trix/1.3.1/trix.min.css" />
-<link href="https://unpkg.com/@yaireo/tagify/dist/tagify.css" rel="stylesheet" type="text/css" />
 @endpush
 
 @push('js')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/trix/1.3.1/trix.min.js"></script>
-<script src="https://unpkg.com/@yaireo/tagify"></script>
-<script src="https://unpkg.com/@yaireo/tagify/dist/tagify.polyfills.min.js"></script>
 <script>
     var trixEditor = document.getElementById("{{ $trixId }}")
 
     addEventListener("trix-blur", function(event) {
         @this.set('answer', trixEditor.getAttribute('value'))
     })
-    // The DOM element you wish to replace with Tagify
-    var input = document.querySelector('input[name=tags]');
-    // initialize Tagify on the above input node reference
-    var tagify = new Tagify(input);
-    tagify.addTags(['banana', 'orange', 'apple']);
-
-    console.log(input);
+   
 </script>
 @endpush
 

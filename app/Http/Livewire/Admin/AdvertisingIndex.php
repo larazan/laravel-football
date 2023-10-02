@@ -133,7 +133,7 @@ class AdvertisingIndex extends Component
         if ($this->advertisingId) {
             if ($advertising) {
 
-                $advertising = Advertising::where('id', $this->advertisingId)->first();
+                // $advertising = Advertising::where('id', $this->advertisingId)->first();
                 $advertising->segment_id = $this->segmentId;
                 $advertising->title = $this->title;
                 $advertising->start = $this->start;

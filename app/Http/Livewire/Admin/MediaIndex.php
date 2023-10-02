@@ -10,6 +10,7 @@ use Intervention\Image\ImageManagerStatic as Image;
 use Livewire\WithPagination;
 use Livewire\WithFileUploads;
 use Livewire\Component;
+use App\Http\Livewire\Trix;
 
 class MediaIndex extends Component
 {
@@ -17,6 +18,7 @@ class MediaIndex extends Component
     
     public $showMediaModal = false;
 
+    public $trixId;
     public $title;
     public $publishedAt;
     public $published;
@@ -48,9 +50,19 @@ class MediaIndex extends Component
         // 'file' => 'required|image|mimes:jpg,jpeg,png,svg,gif|max:2048',
     ];
 
+    protected $listeners = [
+        Trix::EVENT_VALUE_UPDATED
+    ];
+
     public function mount()
     {
         $this->publishedAt = today()->format('Y-m-d');
+        $this->trixId = 'trix-' . uniqid();
+    }
+
+    public function trix_value_updated($value)
+    {
+        $this->body = $value;
     }
 
     public function showCreateModal()
@@ -168,6 +180,7 @@ class MediaIndex extends Component
                     $media->large = $resizedImage['large'];
                 }
 
+                $media->save();
             }
         }
 

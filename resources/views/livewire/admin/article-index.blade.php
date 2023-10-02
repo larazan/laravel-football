@@ -1,9 +1,9 @@
 <div class="vs jj ttm vl ou uf na">
 
-<!-- Loading -->
-<x-loading-indicator />
- 
-<!-- Page header -->
+    <!-- Loading -->
+    <x-loading-indicator />
+
+    <!-- Page header -->
     <div class="je jd jc ii">
 
         <!-- Left: Title -->
@@ -27,18 +27,18 @@
             </form>
 
             <!-- Create article button -->
-            <!-- <button class="btn ho xi ye" wire:click="showCreateModal">
+            <button class="btn ho xi ye" wire:click="showCreateModal">
                 <svg class="oo sl du bf ub" viewBox="0 0 16 16">
                     <path d="M15 7H9V1c0-.6-.4-1-1-1S7 .4 7 1v6H1c-.6 0-1 .4-1 1s.4 1 1 1h6v6c0 .6.4 1 1 1s1-.4 1-1V9h6c.6 0 1-.4 1-1s-.4-1-1-1z"></path>
                 </svg>
                 <span class="hidden trm nq">Create Article</span>
-            </button> -->
-            <a href="{{ url('admin/articles/create') }}" class="btn ho xi ye">
-            <svg class="oo sl du bf ub" viewBox="0 0 16 16">
+            </button>
+            <!-- <a href="{{ url('admin/articles/create') }}" class="btn ho xi ye">
+                <svg class="oo sl du bf ub" viewBox="0 0 16 16">
                     <path d="M15 7H9V1c0-.6-.4-1-1-1S7 .4 7 1v6H1c-.6 0-1 .4-1 1s.4 1 1 1h6v6c0 .6.4 1 1 1s1-.4 1-1V9h6c.6 0 1-.4 1-1s-.4-1-1-1z"></path>
                 </svg>
                 <span class="hidden trm nq">Create Article</span>
-            </a>
+            </a> -->
         </div>
 
     </div>
@@ -131,7 +131,8 @@
                                     </label>
                                 </div>
                             </th>
-                            <th class="vi wy w_ vo lm">Title</div>
+                            <th class="vi wy w_ vo lm">
+                                <div class="gh gt">Title</div>
                             </th>
                             <th class="vi wy w_ vo lm">
                                 <div class="gh gt">Image</div>
@@ -173,7 +174,7 @@
                             </td>
                             <td class="vi wy w_ vo lm">
                                 <div class="gp ">
-                                <img src="{{ asset('storage/'.$articles->small) }}" class="object-scale-down h-48 w-96" alt="{{ $article->title }}">
+                                    <img src="{{ asset('storage/'.$articles->small) }}" class="object-scale-down h-48 w-96" alt="{{ $article->title }}">
                                 </div>
                             </td>
                             <td class="vi wy w_ vo lm">
@@ -184,12 +185,12 @@
                             </td>
                             <td class="vi wy w_ vo lm">
                                 @if ($article->status === 'inactive')
-                                    <div class="inline-flex gp hf yl rounded-full gn vp vd">{{ $article->status }}</div>
-                                @endif 
+                                <div class="inline-flex gp hf yl rounded-full gn vp vd">{{ $article->status }}</div>
+                                @endif
 
                                 @if ($article->status === 'active')
-                                    <div class="inline-flex gp hc ys rounded-full gn vp vd">{{ $article->status }}</div>
-                                @endif 
+                                <div class="inline-flex gp hc ys rounded-full gn vp vd">{{ $article->status }}</div>
+                                @endif
                             </td>
 
                             <td class="vi wy w_ vo lm">
@@ -198,7 +199,7 @@
 
                             <td class="vi wy w_ vo lm of">
                                 <div class="fm">
-                                    <button class="gq xv rounded-full" wire:click="editArticle({{ $article->id }})">
+                                    <button class="gq xv rounded-full" wire:click="showEditModal({{ $article->id }})">
                                         <span class=" d">Edit</span>
                                         <svg class="os sf du" viewBox="0 0 32 32">
                                             <path d="M19.7 8.3c-.4-.4-1-.4-1.4 0l-10 10c-.2.2-.3.4-.3.7v4c0 .6.4 1 1 1h4c.3 0 .5-.1.7-.3l10-10c.4-.4.4-1 0-1.4l-4-4zM12.6 22H10v-2.6l6-6 2.6 2.6-6 6zm7.4-7.4L17.4 12l1.6-1.6 2.6 2.6-1.6 1.6z"></path>
@@ -228,7 +229,7 @@
         </div>
     </div>
 
-    
+
     {{ $articles->links() }}
 
     <x-dialog-modal wire:model="showArticleModal" class="">
@@ -247,55 +248,110 @@
                     <div class="fw">
 
                         <form>
-                            <div class="">
-                                <div class="">
-                                    <div class="flex flex-col space-y-3">
-                                        <div class="col-span-6 sm:col-span-3">
-                                            <label for="first-name" class="block text-sm font-medium text-gray-700">Status</label>
-                                            <select wire:model="categoryId" class="h-full rounded-r border-t border-r border-b block appearance-none w-full bg-white border-gray-300 text-gray-700 py-2 px-4 pr-8 leading-tight focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none">
-                                                <option value="" >Select Category</option>
-                                                @foreach($categories as $cat)
-                                                <option value="{{ $cat->id }}">{{ $cat->name }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
+                            <div class="my-3 md:mt-0 md:col-span-2" x-data="{tab: 0}">
+                                <div class="mb-5 flex border border-black overflow-hidden">
+                                    <button class="px-4 py-2 w-full font-bold" :class="{ 'active bg-gray-800 text-white': tab === 0 }" x-on:click.prevent="tab = 0">General</button>
+                                    <button class="px-4 py-2 w-full font-bold" :class="{ 'active bg-gray-800 text-white': tab === 1 }" x-on:click.prevent="tab = 1">Meta</button>
+                                    <button class="px-4 py-2 w-full font-bold" :class="{ 'active bg-gray-800 text-white': tab === 2 }" x-on:click.prevent="tab = 2">Image</button>
+                                </div>
+                                <div>
+                                    <div class="mt-6 flex flex-col space-y-3" x-show="tab === 0">
+                                        <div class="flex flex-col space-y-3" x-data="{openInput : false}">
+                                            <div class="w-full flex flex-row justify-between">
+                                                <div class="w-1/2 flex flex-col col-span-6 sm:col-span-3">
+                                                    <label for="first-name" class="flex flex-row items-center space-x-2 text-sm font-medium text-gray-700">
+                                                        Category
+                                                        @if ($showMessage)
+                                                        <span class="ml-2 text-xs text-green-700 italic">category added!</span>
+                                                        @endif
+                                                    </label>
+                                                    <select wire:model="categoryId" class="h-full2 w-full rounded-r border-t border-r border-b block appearance-none w-full bg-white border-gray-300 text-gray-700 py-2 px-4 pr-8 leading-tight focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none">
+                                                        <option value="">Select Category</option>
+                                                        @foreach($categories as $cat)
+                                                        <option value="{{ $cat->id }}">{{ $cat->name }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                                
+                                                <div class="flex items-end">
+                                                    <div class="btn bg-white cursor-pointer border-slate-200 hover--border-slate-300 yl xy" @click="openInput = ! openInput">Add new Category</div>
+                                                </div>
+                                            </div>    
+                                            <div 
+                                                class="w-full flex flex-row pb-4 space-x-2 border-b items-center" 
+                                                x-show="openInput"
+                                                x-transition:enter="transition ease-out duration-300"
+                                                x-transition:enter-start="opacity-0 scale-90"
+                                                x-transition:enter-end="opacity-100 scale-100"
+                                                x-transition:leave="transition ease-in duration-300"
+                                                x-transition:leave-start="opacity-100 scale-100"
+                                                x-transition:leave-end="opacity-0 scale-90"
+                                            >
+                                                <div class="w-1/2">
+                                                    <input wire:model="categoryItem"  class="w-full s me2 xq2" type="text">
+                                                </div>
+                                                <div class="flex items-end">
+                                                    <div class="btn  cursor-pointer border-slate-200 hover--border-slate-300 ho xi ye" wire:click="categoryAdd" @click="openInput = ! openInput">Save</div>
+                                                    <div class="btn  cursor-pointer border-slate-200 hover--border-slate-300 ha xo ye" @click="openInput = ! openInput">Close</div>
+                                                </div>
+                                            </div>
+                                        </div>    
                                         <div class="col-start-1 sm:col-span-3">
                                             <label for="title" class="block text-sm font-medium text-gray-700">
                                                 Article Title
                                             </label>
                                             <input wire:model="title" type="text" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                                         </div>
-                                        <div wire:ignore class="col-start-1 sm:col-span-3">
+                                        <div class="col-start-1 sm:col-span-3">
                                             <label for="title" class="block text-sm font-medium text-gray-700">
                                                 Body
                                             </label>
-                                            <textarea wire:model="body" name="body" id="body" cols="50" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" >{{ $body }}</textarea>
+                                            @if ($articleId)
+                                            <div x-data="{ trix: @entangle($body).defer }">
+                                                <input value="{{ $body }}" id="{{ $body }}" name="{{ $body }}" type="hidden" />
+                                                <div wire:ignore x-on:trix-change.debounce.500ms=" trix=$refs.trixInput.value">
+                                                    <trix-editor x-ref="trixInput" input="{{ $body }}" class="overflow-y-scroll" style="height: 10rem;"></trix-editor>
+                                                </div>
+                                            </div>
+                                            @else
+                                            <div wire:ignore>
+                                                <input id="{{ $trixId }}" type="hidden" name="content" value="{{ $body }}" />
+                                                <trix-editor wire:ignore input="{{ $trixId }}" class="overflow-y-scroll" style="height: 10rem;"></trix-editor>
+                                            </div>
+                                            @endif
                                         </div>
-                                        
+
                                         <div class="col-start-1 sm:col-span-3">
                                             <label for="title" class="block text-sm font-medium text-gray-700">
                                                 Tags
                                             </label>
-                                            <input
-                                                type="text"
-                                                class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm"
-                                                name="tags"
-                                                style="appearance: none;
-                                                    background-color: #fff;
-                                                    border-color: #000;
-                                                    border-width: 1px;
-                                                    border-radius: 0;
-                                                    padding-top: 0.5rem;
-                                                    padding-right: 0.75rem;
-                                                    padding-bottom: 0.5rem;
-                                                    padding-left: 0.75rem;
-                                                    font-size: 1rem;
-                                                    line-height: 1.5rem;"
-                                                autofocus
-                                                wire:model="articleTags"
-                                            />
+                                            <div>
+                                                <div x-data="{tags: @entangle('articleTags'), newTag: '' }">
+                                                    <template x-for="tag in tags">
+                                                        <input type="hidden" :value="tag" name="tags">
+                                                    </template>
+
+                                                    <div class="max-w-sm w-full ">
+                                                        <div class="tags-input">
+
+                                                            <input class="shadow appearance-none border rounded2 w-full py-3 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Enter some tags" @keydown.enter.prevent="if (newTag.trim() !== '') tags.push(newTag.trim()); newTag = ''" @keydown.backspace="if (newTag.trim() === '') tags.pop()" x-model="newTag" />
+
+                                                            <template x-for="tag in tags" :key="tag">
+                                                                <div class="bg-gray-200 inline-flex items-center text-sm rounded mt-2 mr-1">
+                                                                    <span class="ml-2 mr-1 leading-relaxed truncate max-w-xs" x-text="tag"></span>
+                                                                    <button type="button" class="w-6 h-8 inline-block align-middle text-gray-500 hover:text-gray-600 focus:outline-none" @click="tags = tags.filter(i => i !== tag)">
+                                                                        <svg class="w-6 h-6 fill-current mx-auto" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                                                            <path fill-rule="evenodd" d="M15.78 14.36a1 1 0 0 1-1.42 1.42l-2.82-2.83-2.83 2.83a1 1 0 1 1-1.42-1.42l2.83-2.82L7.3 8.7a1 1 0 0 1 1.42-1.42l2.83 2.83 2.82-2.83a1 1 0 0 1 1.42 1.42l-2.83 2.83 2.83 2.82z" />
+                                                                        </svg>
+                                                                    </button>
+                                                                </div>
+                                                            </template>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
-                                        
+
                                         <div class="flex flex-row justify-between">
                                             <div class="col-start-1 sm:col-span-3">
                                                 <label for="title" class="block text-sm font-medium text-gray-700">
@@ -310,15 +366,14 @@
                                                 <input wire:model="embedUrl" type="text" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                                             </div>
                                         </div>
+
                                         <div class="flex flex-row justify-between">
                                             <div class="col-start-1 sm:col-span-3">
                                                 <label for="title" class="block text-sm font-medium text-gray-700">
                                                     Published At
                                                 </label>
-                                                {{-- 
-                                                    <input wire:model="publishedAt" type="text" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
-                                                --}}
-                                                    <x-flatpicker wire:model="publishedAt"></x-flatpicker>
+
+                                                <x-flatpicker wire:model="publishedAt"></x-flatpicker>
                                             </div>
                                             <div class="col-start-1 sm:col-span-3">
                                                 <label for="title" class="block text-sm font-medium text-gray-700">
@@ -327,31 +382,50 @@
                                                 <input wire:model="author" type="text" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                                             </div>
                                         </div>
-                                        <div class="col-span-6 sm:col-span-3">
-                                            <label for="photo" class="block text-sm font-medium text-gray-700">
-                                                Image
-                                            </label>
-                                            <input wire:model="file" type="file" autocomplete="given-name"
-                                                class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
-                                                @if ($oldImage)
-                                                    Photo Preview:
-                                                    <img src="{{ asset('storage/'.$oldImage) }}">
-                                                @endif
-                                                @if ($file)
-                                                    Photo Preview:
-                                                    <img src="{{ $file->temporaryUrl() }}">
-                                                @endif
-                                        </div>
+
                                         <div class="col-span-6 sm:col-span-3">
                                             <label for="first-name" class="block text-sm font-medium text-gray-700">Status</label>
                                             <select wire:model="articleStatus" class="h-full rounded-r border-t border-r border-b block appearance-none w-full bg-white border-gray-300 text-gray-700 py-2 px-4 pr-8 leading-tight focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none">
-                                                <option value="" >Select Option</option>
+                                                <option value="">Select Option</option>
                                                 @foreach($statuses as $status)
                                                 <option value="{{ $status }}">{{ $status }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
                                     </div>
+
+                                    <div class="mt-6 flex flex-col space-y-3" x-show="tab === 1">
+                                        <div class="col-start-1 sm:col-span-3">
+                                            <label for="title" class="block text-sm font-medium text-gray-700">
+                                                Meta Title
+                                            </label>
+                                            <input wire:model="metaTitle" type="text" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                                        </div>
+                                        <div class="col-start-1 sm:col-span-3">
+                                            <label for="title" class="block text-sm font-medium text-gray-700">
+                                                Meta Description
+                                            </label>
+                                            <textarea wire:model="metaDesc" type="text" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"></textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="mt-6 flex flex-col space-y-3" x-show="tab === 2">
+                                        <div class="col-span-6 sm:col-span-3">
+                                            <label for="photo" class="block text-sm font-medium text-gray-700">
+                                                Image
+                                            </label>
+                                            <input wire:model="file" type="file" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                                            @if ($oldImage)
+                                            Photo Preview:
+                                            <img src="{{ asset('storage/'.$oldImage) }}">
+                                            @endif
+                                            @if ($file)
+                                            Photo Preview:
+                                            <img src="{{ $file->temporaryUrl() }}">
+                                            @endif
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
                         </form>
@@ -377,31 +451,31 @@
     <!-- modal delete confirmation -->
     <x-dialog-modal wire:model="showConfirmModal" class="">
 
-        
+
         <x-slot name="title" class="border-b bg-slate-200">
             <span class="font-semibold">Delete Confirm</span>
         </x-slot>
-        
+
 
         <x-slot name="content">
             <div class="border-t">
                 <div class="vc vu ">
                     <div class="fw">
 
-                        
+
+                        <div class="">
                             <div class="">
-                                <div class="">
-                                    <div class="flex flex-col space-y-3">
-                                        <div class="flex max-w-auto text-center justify-center items-center">
-                                            <div class="text-lg font-semibold ">
+                                <div class="flex flex-col space-y-3">
+                                    <div class="flex max-w-auto text-center justify-center items-center">
+                                        <div class="text-lg font-semibold ">
                                             <p>Are you sure want to delete?</p>
-                                            </div>
                                         </div>
-                                        
                                     </div>
+
                                 </div>
                             </div>
-                        
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -420,30 +494,16 @@
 </div>
 
 @push('styles')
-<link href="https://unpkg.com/@yaireo/tagify/dist/tagify.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/trix/1.3.1/trix.min.css" />
 @endpush
 
 @push('js')
-<script src="https://unpkg.com/@yaireo/tagify"></script>
-<script src="https://unpkg.com/@yaireo/tagify/dist/tagify.polyfills.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/trix/1.3.1/trix.min.js"></script>
 <script>
-    // The DOM element you wish to replace with Tagify
-    var input = document.querySelector('input[name=tags]');
-    // initialize Tagify on the above input node reference
-    new Tagify(input);
-</script>
-<script src="https://cdn.ckeditor.com/ckeditor5/27.1.0/classic/ckeditor.js"></script>
-<script>
-    ClassicEditor
-        .create(document.querySelector('#body'))
-        .then(editor => {
-            editor.model.document.on('change:data', () => {
-                @this.set('body', editor.getData());
-            })
-        })
-        .catch(error => {
-            console.error(error);
-        });
+    var trixEditor = document.getElementById("{{ $trixId }}")
+
+    addEventListener("trix-blur", function(event) {
+        @this.set('body', trixEditor.getAttribute('value'))
+    })
 </script>
 @endpush
-

@@ -13,7 +13,6 @@ class FaqIndex extends Component
     use WithPagination;
 
     public $trixId;
-    public $articleTags;
     public $showFaqModal = false;
     public $question;
     public $answer;
@@ -116,8 +115,6 @@ class FaqIndex extends Component
     {
         dd($this->answer);
         // $this->validate();
-
-        dd($this->articleTags);
 
         Faq::create([
           'question' => $this->question,

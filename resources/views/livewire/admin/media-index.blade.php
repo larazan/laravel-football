@@ -27,22 +27,22 @@
             </form>
 
             <!-- Create media button -->
-            {{-- 
+
             <button class="btn ho xi ye" wire:click="showCreateModal">
                 <svg class="oo sl du bf ub" viewBox="0 0 16 16">
                     <path d="M15 7H9V1c0-.6-.4-1-1-1S7 .4 7 1v6H1c-.6 0-1 .4-1 1s.4 1 1 1h6v6c0 .6.4 1 1 1s1-.4 1-1V9h6c.6 0 1-.4 1-1s-.4-1-1-1z"></path>
                 </svg>
                 <span class="hidden trm nq">Create Media</span>
             </button>
-            --}}
-            
-            <a href="{{ url('admin/medias/create') }}" class="btn ho xi ye">
+
+
+            <!-- <a href="{{ url('admin/medias/create') }}" class="btn ho xi ye">
             <svg class="oo sl du bf ub" viewBox="0 0 16 16">
                 <path d="M15 7H9V1c0-.6-.4-1-1-1S7 .4 7 1v6H1c-.6 0-1 .4-1 1s.4 1 1 1h6v6c0 .6.4 1 1 1s1-.4 1-1V9h6c.6 0 1-.4 1-1s-.4-1-1-1z"></path>
             </svg>
             <span class="hidden trm nq">Create Media</span>
-            </a>
-            
+            </a> -->
+
         </div>
 
     </div>
@@ -210,7 +210,7 @@
 
                             <td class="vi wy w_ vo lm of">
                                 <div class="fm">
-                                    <button class="gq xv rounded-full" wire:click="editMedia({{ $media->id }})">
+                                    <button class="gq xv rounded-full" wire:click="showEditModal({{ $media->id }})">
                                         <span class=" d">Edit</span>
                                         <svg class="os sf du" viewBox="0 0 32 32">
                                             <path d="M19.7 8.3c-.4-.4-1-.4-1.4 0l-10 10c-.2.2-.3.4-.3.7v4c0 .6.4 1 1 1h4c.3 0 .5-.1.7-.3l10-10c.4-.4.4-1 0-1.4l-4-4zM12.6 22H10v-2.6l6-6 2.6 2.6-6 6zm7.4-7.4L17.4 12l1.6-1.6 2.6 2.6-1.6 1.6z"></path>
@@ -262,44 +262,38 @@
                             <div class="">
                                 <div class="">
                                     <div class="flex flex-col space-y-3">
-
                                         <div class="col-start-1 sm:col-span-3">
                                             <label for="title" class="block text-sm font-medium text-gray-700">
                                                 Media Title
                                             </label>
                                             <input wire:model="title" type="text" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                                         </div>
-
-                                        <div wire:ignore class="col-start-1 sm:col-span-3">
+                                        <div class="col-start-1 sm:col-span-3">
                                             <label for="title" class="block text-sm font-medium text-gray-700">
                                                 Body
                                             </label>
-                                            <!-- <textarea wire:model="body" class="form-control required" name="body" id="body"></textarea> -->
-
-                                            
-                                            <div wire:ignore>
-                                                <trix-editor 
-                                                    class="formatted-content" 
-                                                    x-data
-                                                    x-ref="trix" 
-                                                    x-on:trix-change="$dispatch('input', event.target.value)"
-                                                    wire:model.debounce.300ms="body"
-                                                    wire:key="uniqueKey"
-                                                    :initial-value="{{ $body }}"
-                                                >
-                                                </trix-editor>
+                                            @if ($mediaId)
+                                            <div x-data="{ trix: @entangle($body).defer }">
+                                                <input value="{{ $body }}" id="{{ $body }}" name="{{ $body }}" type="hidden" />
+                                                <div wire:ignore x-on:trix-change.debounce.500ms=" trix=$refs.trixInput.value">
+                                                    <trix-editor x-ref="trixInput" input="{{ $body }}" class="overflow-y-scroll" style="height: 10rem;"></trix-editor>
+                                                </div>
                                             </div>
-                                            
+                                            @else
+                                            <div wire:ignore>
+                                                <input id="{{ $trixId }}" type="hidden" name="content" value="{{ $body }}" />
+                                                <trix-editor wire:ignore input="{{ $trixId }}" class="overflow-y-scroll" style="height: 10rem;"></trix-editor>
+                                            </div>
+                                            @endif
+
 
                                         </div>
-
                                         <div class="col-start-1 sm:col-span-3">
                                             <label for="videoUrl" class="block text-sm font-medium text-gray-700">
                                                 Video Embed Url
                                             </label>
                                             <input wire:model="videoUrl" type="text" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                                         </div>
-
                                         <div class="flex flex-row justify-between">
                                             <div class="col-start-1 sm:col-span-3">
                                                 <label for="title" class="block text-sm font-medium text-gray-700">
@@ -403,21 +397,18 @@
 
 </div>
 
+@push('styles')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/trix/1.3.1/trix.min.css" />
+@endpush
 
 @push('js')
-
-<script src="https://cdn.ckeditor.com/ckeditor5/27.1.0/classic/ckeditor.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/trix/1.3.1/trix.min.js"></script>
 <script>
-    ClassicEditor
-        .create(document.querySelector('#body'))
-        .then(editor => {
-            editor.model.document.on('change:data', () => {
-                @this.set('body', editor.getData());
-            })
-        })
-        .catch(error => {
-            console.error(error);
-        });
+    var trixEditor = document.getElementById("{{ $trixId }}")
+
+    addEventListener("trix-blur", function(event) {
+        @this.set('body', trixEditor.getAttribute('value'))
+    })
 </script>
 
 @endpush
