@@ -5,6 +5,8 @@ namespace App\Http\Livewire\Admin;
 use App\Models\Product;
 use App\Models\ProductImage;
 use App\Models\ProductInventory;
+use App\Models\Category;
+use App\Models\Brand;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
@@ -20,7 +22,7 @@ class ProductIndex extends Component
 
     public $showProductModal = false;
     public $showProductDetailModal = false;
-
+    public $trixId;
     public $sku;
     public $type;
     public $name;
@@ -45,6 +47,8 @@ class ProductIndex extends Component
     public $height;
     public $length;
     public $width;
+    public $brand;
+    public $category;
     public $oldImage;
     public $productImages;
     public $productStatus = 'inactive';
@@ -67,7 +71,7 @@ class ProductIndex extends Component
 
     public function mount()
     {
-       
+        $this->trixId = 'trix-' . uniqid();
     }
 
     public function showCreateModal()
@@ -103,6 +107,8 @@ class ProductIndex extends Component
         $product = new Product();
         $product->user_id = Auth::user()->id;
         $product->rand_id = $randId;
+        $product->brand_id = $this->brand;
+        $product->category_id = $this->category;
         $product->name = $this->name;
         $product->slug = Str::slug($this->name) . '_' . $randId;
         $product->sku = $this->sku;
@@ -153,6 +159,8 @@ class ProductIndex extends Component
         $this->reset(['name']);
         $this->productId = $productId;
         $product = Product::find($productId);
+        $this->brand = $product->brand_id;
+        $this->category = $product->category_id;
         $this->sku = $product->sku;
         $this->type = $product->type;
         $this->name = $product->name;
@@ -200,16 +208,18 @@ class ProductIndex extends Component
     
     public function updateProduct()
     {
-        $product = Product::findOrFail($this->productId);
         $this->validate();
+        $product = Product::findOrFail($this->productId);
         
         if ($this->productId) {
             if ($product) {
                 $randId = Str::random(18);
 
-                $product = Product::where('id', $this->productId)->first();
+                // $product = Product::where('id', $this->productId)->first();
                 $product->user_id = Auth::user()->id;
                 $product->rand_id = $randId;
+                $product->brand_id = $this->brand;
+                $product->category_id = $this->category;
                 $product->name = $this->name;
                 $product->slug = Str::slug($this->name) . '_' . $randId;
                 $product->sku = $this->sku;
@@ -285,6 +295,8 @@ class ProductIndex extends Component
     public function render()
     {
         return view('livewire.admin.product-index', [
+            'categories' => Category::OrderBy('name', 'asc')->get(),
+            'brands' => Brand::OrderBy('name', 'asc')->get(),
             'products' => Product::search('name', $this->search)->orderBy('name', $this->sort)->paginate($this->perPage)
         ]);
     }

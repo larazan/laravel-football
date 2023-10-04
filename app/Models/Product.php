@@ -47,6 +47,8 @@ class Product extends Model
 		'height',
 		'details',
 		'status',
+		'brand_id',
+		'category_id',
 	];
 
 	// protected $primaryKey = 'uuid';

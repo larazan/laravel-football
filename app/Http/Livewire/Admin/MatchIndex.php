@@ -258,4 +258,9 @@ class MatchIndex extends Component
     {
         return redirect('/admin/matchs/'.$matchId.'/match-report');
     }
+
+    public function routeToGallery($matchId)
+    {
+        return redirect('/admin/matchs/'.$matchId.'/match-gallery');
+    }
 }

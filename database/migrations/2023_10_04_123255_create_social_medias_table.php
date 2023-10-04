@@ -13,15 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('match_reports', function (Blueprint $table) {
+        Schema::create('social_medias', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('match_id');
-            $table->text('report')->nullable();
-            $table->string('original')->nullable();
-            $table->string('medium')->nullable();
+            $table->string('name');
+            $table->string('link');
+            $table->string('icon')->nullable();
+            $table->string('status');
             $table->timestamps();
-
-            $table->foreign('match_id')->references('id')->on('matchs')->onDelete('cascade');
         });
     }
 
@@ -32,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('match_reports');
+        Schema::dropIfExists('social_medias');
     }
 };

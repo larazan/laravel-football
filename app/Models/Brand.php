@@ -26,7 +26,7 @@ class Brand extends Model
 		'updated_at',
 	];
 
-	public const UPLOAD_DIR = 'brands';
+	public const UPLOAD_DIR = 'uploads/brands';
 
 	public const ACTIVE = 'active';
 	public const INACTIVE = 'inactive';
@@ -53,6 +53,6 @@ class Brand extends Model
 
     public function products()
     {
-        return $this->belongsToMany('App\Models\Product', 'product_brands');
+        return $this->belongsToMany(Product::class, 'brand_id');
     }
 }

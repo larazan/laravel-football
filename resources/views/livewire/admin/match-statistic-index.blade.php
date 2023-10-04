@@ -38,7 +38,7 @@
     <!-- Table -->
     <div class="bg-white bd w-full rounded-sm border border-slate-200 rc">
         <header class="vc vu">
-            <h2 class="gh text-slate-800">Team Comparison <span class="gq gp"></span></h2>
+            <h2 class="gh text-slate-800">Team Comparison <span class="gq gp">{{ $matchId }}</span></h2>
         </header>
         <div class="flex flex-col py-4 px-6 space-y-1 mx-auto w-full">
             @foreach ($matchs as $match)
@@ -102,171 +102,311 @@
         <div class="flex flex-col py-4 px-6 space-y-1 mx-auto w-full">
             @if ($statistics->count() > 0 )
             @foreach ($statistics as $statistic)
-            <div class="flex w-full justify-between items-center h-10 py-1.5">
-                <div class="flex w-1/6">
+            <div class="flex ou justify-between items-center h-10 py-1.5">
+                <div class="flex" style="width: 5%">
                     <div>
                         <span class="text-sm font-bold text-[#002f6c]">{{ $statistic->home_total_shots }}</span>
-                    </div> 
-                </div>
-                <div class="w-4/6">
-                    <div class="flex w-full mx-auto justify-center">
-                        <span class="text-sm font-bold text-[#002f6c]">Shots</span>
                     </div>
                 </div>
-                <div class="flex w-1/6 justify-end">
+                <div class="ou ">
+                    <div class="flex flex-row ou space-x-2 mx-auto justify-center items-center">
+                        <div class="" style="width: 43%">
+                            <div class="overflow-hidden transform rotate-180 h-3 text-xs flex rounded bg-gray-300">
+                                <div style="width: 30%" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-indigo-500"></div>
+                            </div>
+                        </div>
+                        <div class="" style="width: 14%">
+                            <div class="flex justify-center">
+                                <span class="text-sm font-bold text-[#002f6c]">Shots</span>
+                            </div>
+                        </div>
+                        <div class="" style="width: 43%">
+                            <div class="overflow-hidden h-3 text-xs flex rounded bg-gray-300">
+                                <div style="width: 30%" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-indigo-500"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex justify-end" style="width: 5%">
                     <div>
                         <span class="text-sm font-bold text-[#002f6c]">{{ $statistic->away_total_shots }}</span>
                     </div>
                 </div>
             </div>
-            <div class="flex w-full justify-between items-center h-10 py-1.5">
-                <div class="flex w-1/6">
+            <div class="flex ou justify-between items-center h-10 py-1.5">
+                <div class="flex" style="width: 5%">
                     <div>
                         <span class="text-sm font-bold text-[#002f6c]">{{ $statistic->home_shots_on_target }}</span>
                     </div>
                 </div>
-                <div class="w-4/6">
-                    <div class="flex w-full mx-auto justify-center">
-                        <span class="text-sm font-bold text-[#002f6c]">Shots on target</span>
+                <div class="ou ">
+                    <div class="flex flex-row ou space-x-2 mx-auto justify-center items-center">
+                        <div class="" style="width: 43%">
+                            <div class="overflow-hidden transform rotate-180 h-3 text-xs flex rounded bg-gray-300">
+                                <div style="width: 30%" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-indigo-500"></div>
+                            </div>
+                        </div>
+                        <div class="" style="width: 14%">
+                            <div class="flex justify-center text-center">
+                                <span class="text-sm font-bold text-[#002f6c]">Shots on target</span>
+                            </div>
+                        </div>
+                        <div class="" style="width: 43%">
+                            <div class="overflow-hidden h-3 text-xs flex rounded bg-gray-300">
+                                <div style="width: 30%" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-indigo-500"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="flex w-1/6 justify-end">
+                <div class="flex justify-end" style="width: 5%">
                     <div>
                         <span class="text-sm font-bold text-[#002f6c]">{{ $statistic->away_shots_on_target }}</span>
                     </div>
                 </div>
             </div>
-            <div class="flex w-full justify-between items-center h-10 py-1.5">
-                <div class="flex w-1/6">
+            <div class="flex ou justify-between items-center h-10 py-1.5">
+                <div class="flex" style="width: 5%">
                     <div>
                         <span class="text-sm font-bold text-[#002f6c]">{{ $statistic->home_possession }}%</span>
                     </div>
                 </div>
-                <div class="w-4/6">
-                    <div class="flex w-full mx-auto justify-center">
-                        <span class="text-sm font-bold text-[#002f6c]">Possession</span>
+                <div class="ou ">
+                    <div class="flex flex-row ou space-x-2 mx-auto justify-center items-center">
+                        <div class="" style="width: 43%">
+                            <div class="overflow-hidden transform rotate-180 h-3 text-xs flex rounded bg-gray-300">
+                                <div style="width: 30%" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-indigo-500"></div>
+                            </div>
+                        </div>
+                        <div class="" style="width: 14%">
+                            <div class="flex justify-center">
+                                <span class="text-sm font-bold text-[#002f6c]">Possession</span>
+                            </div>
+                        </div>
+                        <div class="" style="width: 43%">
+                            <div class="overflow-hidden h-3 text-xs flex rounded bg-gray-300">
+                                <div style="width: 30%" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-indigo-500"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="flex w-1/6 justify-end">
+                <div class="flex justify-end" style="width: 5%">
                     <div>
                         <span class="text-sm font-bold text-[#002f6c]">{{ $statistic->away_possession }}%</span>
                     </div>
                 </div>
             </div>
-            <div class="flex w-full justify-between items-center h-10 py-1.5">
-                <div class="flex w-1/6">
+            <div class="flex ou justify-between items-center h-10 py-1.5">
+                <div class="flex" style="width: 5%">
                     <div>
                         <span class="text-sm font-bold text-[#002f6c]">{{ $statistic->home_passes }}</span>
                     </div>
                 </div>
-                <div class="w-4/6">
-                    <div class="flex w-full mx-auto justify-center">
-                        <span class="text-sm font-bold text-[#002f6c]">Passes</span>
+                <div class="ou ">
+                    <div class="flex flex-row ou space-x-2 mx-auto justify-center items-center">
+                        <div class="" style="width: 43%">
+                            <div class="overflow-hidden transform rotate-180 h-3 text-xs flex rounded bg-gray-300">
+                                <div style="width: 30%" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-indigo-500"></div>
+                            </div>
+                        </div>
+                        <div class="" style="width: 14%">
+                            <div class="flex justify-center">
+                                <span class="text-sm font-bold text-[#002f6c]">Passes</span>
+                            </div>
+                        </div>
+                        <div class="" style="width: 43%">
+                            <div class="overflow-hidden h-3 text-xs flex rounded bg-gray-300">
+                                <div style="width: 30%" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-indigo-500"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="flex w-1/6 justify-end">
+                <div class="flex justify-end" style="width: 5%">
                     <div>
                         <span class="text-sm font-bold text-[#002f6c]">{{ $statistic->away_passes }}</span>
                     </div>
                 </div>
             </div>
-            <div class="flex w-full justify-between items-center h-10 py-1.5">
-                <div class="flex w-1/6">
+            <div class="flex ou justify-between items-center h-10 py-1.5">
+                <div class="flex" style="width: 5%">
                     <div>
                         <span class="text-sm font-bold text-[#002f6c]">{{ $statistic->home_pass_accuracy }}%</span>
                     </div>
                 </div>
-                <div class="w-4/6">
-                    <div class="flex w-full mx-auto justify-center">
-                        <span class="text-sm font-bold text-[#002f6c]">Pass accuracy</span>
+                <div class="ou ">
+                    <div class="flex flex-row ou space-x-2 mx-auto justify-center items-center">
+                        <div class="" style="width: 43%">
+                            <div class="overflow-hidden transform rotate-180 h-3 text-xs flex rounded bg-gray-300">
+                                <div style="width: 30%" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-indigo-500"></div>
+                            </div>
+                        </div>
+                        <div class="" style="width: 14%">
+                            <div class="flex justify-center text-center">
+                                <span class="text-sm font-bold text-[#002f6c]">Pass accuracy</span>
+                            </div>
+                        </div>
+                        <div class="" style="width: 43%">
+                            <div class="overflow-hidden h-3 text-xs flex rounded bg-gray-300">
+                                <div style="width: 30%" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-indigo-500"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="flex w-1/6 justify-end">
+                <div class="flex justify-end" style="width: 5%">
                     <div>
                         <span class="text-sm font-bold text-[#002f6c]">{{ $statistic->away_pass_accuracy }}%</span>
                     </div>
                 </div>
             </div>
-            <div class="flex w-full justify-between items-center h-10 py-1.5">
-                <div class="flex w-1/6">
+            <div class="flex ou justify-between items-center h-10 py-1.5">
+                <div class="flex" style="width: 5%">
                     <div>
                         <span class="text-sm font-bold text-[#002f6c]">{{ $statistic->home_fouls }}</span>
                     </div>
                 </div>
-                <div class="w-4/6">
-                    <div class="flex w-full mx-auto justify-center">
-                        <span class="text-sm font-bold text-[#002f6c]">Fouls</span>
+                <div class="ou ">
+                    <div class="flex flex-row ou space-x-2 mx-auto justify-center items-center">
+                        <div class="" style="width: 43%">
+                            <div class="overflow-hidden transform rotate-180 h-3 text-xs flex rounded bg-gray-300">
+                                <div style="width: 30%" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-indigo-500"></div>
+                            </div>
+                        </div>
+                        <div class="" style="width: 14%">
+                            <div class="flex justify-center">
+                                <span class="text-sm font-bold text-[#002f6c]">Fouls</span>
+                            </div>
+                        </div>
+                        <div class="" style="width: 43%">
+                            <div class="overflow-hidden h-3 text-xs flex rounded bg-gray-300">
+                                <div style="width: 30%" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-indigo-500"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="flex w-1/6 justify-end">
+                <div class="flex justify-end" style="width: 5%">
                     <div>
                         <span class="text-sm font-bold text-[#002f6c]">{{ $statistic->away_fouls }}</span>
                     </div>
                 </div>
             </div>
-            <div class="flex w-full justify-between items-center h-10 py-1.5">
-                <div class="flex w-1/6">
+            <div class="flex ou justify-between items-center h-10 py-1.5">
+                <div class="flex" style="width: 5%">
                     <div>
                         <span class="text-sm font-bold text-[#002f6c]">{{ $statistic->home_yellow_cards }}</span>
                     </div>
                 </div>
-                <div class="w-4/6">
-                    <div class="flex w-full mx-auto justify-center">
-                        <span class="text-sm font-bold text-[#002f6c]">Yellow cards</span>
+                <div class="ou ">
+                    <div class="flex flex-row ou space-x-2 mx-auto justify-center items-center">
+                        <div class="" style="width: 43%">
+                            <div class="overflow-hidden transform rotate-180 h-3 text-xs flex rounded bg-gray-300">
+                                <div style="width: 30%" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-indigo-500"></div>
+                            </div>
+                        </div>
+                        <div class="" style="width: 14%">
+                            <div class="flex justify-center">
+                                <span class="text-sm font-bold text-[#002f6c]">Yellow cards</span>
+                            </div>
+                        </div>
+                        <div class="" style="width: 43%">
+                            <div class="overflow-hidden h-3 text-xs flex rounded bg-gray-300">
+                                <div style="width: 30%" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-indigo-500"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="flex w-1/6 justify-end">
+                <div class="flex justify-end" style="width: 5%">
                     <div>
                         <span class="text-sm font-bold text-[#002f6c]">{{ $statistic->away_yellow_cards }}</span>
                     </div>
                 </div>
             </div>
-            <div class="flex w-full justify-between items-center h-10 py-1.5">
-                <div class="flex w-1/6">
+            <div class="flex ou justify-between items-center h-10 py-1.5">
+                <div class="flex" style="width: 5%">
                     <div>
                         <span class="text-sm font-bold text-[#002f6c]">{{ $statistic->home_red_cards }}</span>
                     </div>
                 </div>
-                <div class="w-4/6">
-                    <div class="flex w-full mx-auto justify-center">
-                        <span class="text-sm font-bold text-[#002f6c]">Red cards</span>
+                <div class="ou ">
+                    <div class="flex flex-row ou space-x-2 mx-auto justify-center items-center">
+                        <div class="" style="width: 43%">
+                            <div class="overflow-hidden transform rotate-180 h-3 text-xs flex rounded bg-gray-300">
+                                <div style="width: 30%" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-indigo-500"></div>
+                            </div>
+                        </div>
+                        <div class="" style="width: 14%">
+                            <div class="flex justify-center">
+                                <span class="text-sm font-bold text-[#002f6c]">Red cards</span>
+                            </div>
+                        </div>
+                        <div class="" style="width: 43%">
+                            <div class="overflow-hidden h-3 text-xs flex rounded bg-gray-300">
+                                <div style="width: 30%" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-indigo-500"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="flex w-1/6 justify-end">
+                <div class="flex justify-end" style="width: 5%">
                     <div>
                         <span class="text-sm font-bold text-[#002f6c]">{{ $statistic->away_red_cards }}</span>
                     </div>
                 </div>
             </div>
-            <div class="flex w-full justify-between items-center h-10 py-1.5">
-                <div class="flex w-1/6">
+            <div class="flex ou justify-between items-center h-10 py-1.5">
+                <div class="flex" style="width: 5%">
                     <div>
                         <span class="text-sm font-bold text-[#002f6c]">{{ $statistic->home_offsides }}</span>
                     </div>
                 </div>
-                <div class="w-4/6">
-                    <div class="flex w-full mx-auto justify-center">
-                        <span class="text-sm font-bold text-[#002f6c]">Offsides</span>
+                <div class="ou ">
+                    <div class="flex flex-row ou space-x-2 mx-auto justify-center items-center">
+                        <div class="" style="width: 43%">
+                            <div class="overflow-hidden transform rotate-180 h-3 text-xs flex rounded bg-gray-300">
+                                <div style="width: 30%" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-indigo-500"></div>
+                            </div>
+                        </div>
+                        <div class="" style="width: 14%">
+                            <div class="flex justify-center">
+                                <span class="text-sm font-bold text-[#002f6c]">Offsides</span>
+                            </div>
+                        </div>
+                        <div class="" style="width: 43%">
+                            <div class="overflow-hidden h-3 text-xs flex rounded bg-gray-300">
+                                <div style="width: 30%" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-indigo-500"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="flex w-1/6 justify-end">
+                <div class="flex justify-end" style="width: 5%">
                     <div>
                         <span class="text-sm font-bold text-[#002f6c]">{{ $statistic->away_offsides }}</span>
                     </div>
                 </div>
             </div>
-            <div class="flex w-full justify-between items-center h-10 py-1.5">
-                <div class="flex w-1/6">
+            <div class="flex ou justify-between items-center h-10 py-1.5">
+                <div class="flex" style="width: 5%">
                     <div>
                         <span class="text-sm font-bold text-[#002f6c]">{{ $statistic->home_corners }}</span>
                     </div>
                 </div>
-                <div class="w-4/6">
-                    <div class="flex w-full mx-auto justify-center">
-                        <span class="text-sm font-bold text-[#002f6c]">Corners</span>
+                <div class="ou ">
+                    <div class="flex flex-row ou space-x-2 mx-auto justify-center items-center">
+                        <div class="" style="width: 43%">
+                            <div class="overflow-hidden transform rotate-180 h-3 text-xs flex rounded bg-gray-300">
+                                <div style="width: 30%" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-indigo-500"></div>
+                            </div>
+                        </div>
+                        <div class="" style="width: 14%">
+                            <div class="flex justify-center">
+                                <span class="text-sm font-bold text-[#002f6c]">Corners</span>
+                            </div>
+                        </div>
+                        <div class="" style="width: 43%">
+                            <div class="overflow-hidden h-3 text-xs flex rounded bg-gray-300">
+                                <div style="width: 30%" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-indigo-500"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="flex w-1/6 justify-end">
+                <div class="flex justify-end" style="width: 5%">
                     <div>
                         <span class="text-sm font-bold text-[#002f6c]">{{ $statistic->away_corners }}</span>
                     </div>
@@ -323,7 +463,7 @@
                                         <div class="flex flex-row justify-between">
                                             <div class="col-start-1 sm:col-span-3">
                                                 <label for="title" class="block text-sm font-medium text-gray-700">
-                                                    Possesion
+                                                    Possesion %
                                                 </label>
                                                 <input wire:model="homePossession" onkeypress="return onlyNumberKey(event)" type="text" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                                             </div>
@@ -338,7 +478,7 @@
                                         <div class="flex flex-row justify-between">
                                             <div class="col-start-1 sm:col-span-3">
                                                 <label for="height" class="block text-sm font-medium text-gray-700">
-                                                    Pass Accuracy
+                                                    Pass Accuracy %
                                                 </label>
                                                 <input wire:model="homePassAccuracy" onkeypress="return onlyNumberKey(event)" type="text" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                                             </div>
@@ -400,7 +540,7 @@
                                         <div class="flex flex-row justify-between">
                                             <div class="col-start-1 sm:col-span-3">
                                                 <label for="title" class="block text-sm font-medium text-gray-700">
-                                                    Possesion
+                                                    Possesion %
                                                 </label>
                                                 <input wire:model="awayPossession" onkeypress="return onlyNumberKey(event)" type="text" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                                             </div>
@@ -415,7 +555,7 @@
                                         <div class="flex flex-row justify-between">
                                             <div class="col-start-1 sm:col-span-3">
                                                 <label for="height" class="block text-sm font-medium text-gray-700">
-                                                    Pass Accuracy
+                                                    Pass Accuracy %
                                                 </label>
                                                 <input wire:model="awayPassAccuracy" onkeypress="return onlyNumberKey(event)" type="text" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                                             </div>
@@ -468,9 +608,9 @@
         <x-slot name="footer">
             <div class="border-slate-200">
                 <div class="flex flex-wrap justify-end fc">
-                     
+
                     <x-button wire:click="closeMatchStatisticModal" class="border-slate-200 hover:text-white hover--border-slate-300 g_">Cancel</x-button>
-                    
+
                     @if ($matchStatisticId)
                     <x-button wire:click="updateMatchStatistic" class=" ho xi ye">Update</x-button>
                     @else

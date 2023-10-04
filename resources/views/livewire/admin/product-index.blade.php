@@ -319,6 +319,28 @@
                                 </div>
                                 <div>
                                     <div class="mt-6 flex flex-col space-y-3" x-show="tab === 0">
+                                        
+                                        <div class="flex flex-row space-x-4 justify-between">
+                                            <div class="col-span-6 sm:col-span-3 w-1/2">
+                                                <label for="first-name" class="block text-sm font-medium text-gray-700">Category</label>
+                                                <select wire:model="category" class="h-full2 rounded-r border-t border-r border-b block appearance-none w-full bg-white border-gray-300 text-gray-700 py-2 px-4 pr-8 leading-tight focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none">
+                                                    <option value="" >Select Option</option>
+                                                    @foreach($categories as $category)
+                                                    <option class="capitalize" value="{{ $category->id }}">{{ $category->name }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            <div class="col-span-6 sm:col-span-3 w-1/2">
+                                                <label for="first-name" class="block text-sm font-medium text-gray-700">Brand</label>
+                                                <select wire:model="brand" class="h-full2 rounded-r border-t border-r border-b block appearance-none w-full bg-white border-gray-300 text-gray-700 py-2 px-4 pr-8 leading-tight focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none">
+                                                    <option value="" >Select Option</option>
+                                                    @foreach($brands as $brand)
+                                                    <option class="capitalize" value="{{ $brand->id }}">{{ $brand->name }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+
                                         <div class="flex flex-row justify-between">
                                             <div class="col-start-1 sm:col-span-3">
                                                 <label for="name" class="block text-sm font-medium text-gray-700">
@@ -333,11 +355,34 @@
                                                 <input wire:model="sku" type="text" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                                             </div>
                                         </div>  
+
                                         <div wire:ignore class="col-start-1 sm:col-span-3">
                                             <label for="description" class="block text-sm font-medium text-gray-700">
                                                 Description
                                             </label>
-                                            <textarea wire:model="description" name="description" id="description" cols="50" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" >{{ $description }}</textarea>
+                                            @if ($productId)
+                                                <div 
+                                                    x-data="{ trix: @entangle($description).defer }"
+                                                >
+                                                    <input value="{{ $description }}" id="{{ $description }}" name="{{ $description }}" type="hidden" ">
+                                                    <div 
+                                                        wire:ignore
+                                                        x-on:trix-change.debounce.500ms="trix = $refs.trixInput.value"                                                
+                                                    >
+                                                        <trix-editor 
+                                                            x-ref="trixInput"
+                                                            input="{{ $description }}" 
+                                                            class="overflow-y-scroll" 
+                                                            style="height: 10rem;">
+                                                        </trix-editor>
+                                                    </div>
+                                                </div>      
+                                            @else
+                                                <div wire:ignore>
+                                                    <input id="{{ $trixId }}" type="hidden" name="content" value="{{ $description }}">
+                                                    <trix-editor wire:ignore input="{{ $trixId }}"></trix-editor>
+                                                </div>
+                                            @endif
                                         </div>
                                         <div class="flex flex-row justify-between space-x-2">
                                             <div class="col-start-1 sm:col-span-3">
@@ -380,8 +425,6 @@
                                                 <input wire:model="width" type="text" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                                             </div>
                                         </div>
-                                        
-                                        
                                         
                                         <div class="flex flex-row space-x-4 justify-between">
                                             <div class="col-span-6 sm:col-span-3 w-1/2">
@@ -638,19 +681,18 @@
 
 </div>
 
+@push('styles')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/trix/1.3.1/trix.min.css" />
+@endpush
+
 @push('js')
-<script src="https://cdn.ckeditor.com/ckeditor5/27.1.0/classic/ckeditor.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/trix/1.3.1/trix.min.js"></script>
 <script>
- 
-    ClassicEditor
-        .create(document.querySelector('#description'))
-        .then(editor => {
-            editor.model.document.on('change:data', () => {
-                @this.set('description', editor.getData());
-            })
-        })
-        .catch(error => {
-            console.error(error);
-        });
+    var trixEditor = document.getElementById("{{ $trixId }}")
+
+    addEventListener("trix-blur", function(event) {
+        @this.set('description', trixEditor.getAttribute('value'))
+    })
+   
 </script>
 @endpush

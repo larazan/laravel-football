@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Admin;
 
+use App\Models\Matchs;
 use App\Models\MatchReport;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
@@ -168,6 +169,7 @@ class MatchReportIndex extends Component
     public function render()
     {
         return view('livewire.admin.match-report-index', [
+            'matchs' => Matchs::where('id', $this->matchId)->get(),
             'reports' => MatchReport::search('id', $this->search)->orderBy('id', $this->sort)->paginate($this->perPage),
         ]);
     }

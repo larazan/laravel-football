@@ -2,8 +2,10 @@
 
 namespace App\Http\Livewire\Admin;
 
+use App\Models\Matchs;
 use App\Models\MatchGallery;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\ImageManagerStatic as Image;
 use Livewire\WithPagination;
@@ -15,6 +17,8 @@ class MatchGalleryIndex extends Component
     use WithFileUploads, WithPagination;
     
     public $showMatchGalleryModal = false;
+    public $url;
+    public $paramID;
     public $matchId;
     public $matchGalleryId;
     public $file;
@@ -39,6 +43,15 @@ class MatchGalleryIndex extends Component
     public function mount($matchId)
     {
         $this->matchId = $matchId;
+        $this->url = url()->current();
+        $this->paramID = Route::current()->parameter('matchId');
+    }
+   
+
+    public function updatedMatchId()
+    {
+        $this->paramID = Route::current()->parameter('matchId');
+        $this->matchId = Route::current()->parameter('matchId');
     }
 
     public function showCreateModal()
@@ -152,7 +165,9 @@ class MatchGalleryIndex extends Component
     public function closeMatchGalleryModal()
     {
         $this->showMatchGalleryModal = false;
-        $this->reset();
+        $this->reset([
+            'matchGalleryId'
+        ]);
     }
 
     public function resetFilters()
@@ -161,8 +176,11 @@ class MatchGalleryIndex extends Component
     }
 
     public function render()
-    {
+    {   
+        
+
         return view('livewire.admin.match-gallery-index', [
+            'matchs' => Matchs::where('id', $this->matchId)->get(),
             'galleries' => MatchGallery::search('id', $this->search)->orderBy('id', $this->sort)->paginate($this->perPage),
         ]);
     }
@@ -239,5 +257,10 @@ class MatchGalleryIndex extends Component
         // }
              
         return true;
+    }
+
+    public function backTo()
+    {
+        return redirect('/admin/matchs');
     }
 }

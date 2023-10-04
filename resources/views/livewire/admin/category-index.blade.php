@@ -131,9 +131,7 @@
                             <th class="vi wy w_ vo lm">
                                 <div class="gh gt">Parent</div>
                             </th>
-                            <th class="vi wy w_ vo lm">
-                                <div class="gh gt">Status</div>
-                            </th>
+                           
                             <th class="vi wy w_ vo lm">
                                 <div class="gh gt">Date</div>
                             </th>
@@ -163,15 +161,7 @@
                             <td class="vi wy w_ vo lm">
                                 <div class="gp ">{{ $category->parent ? $category->parent->name : '' }}</div>
                             </td>
-                            <td class="vi wy w_ vo lm">
-                                @if ($category->status === 'inactive')
-                                    <div class="inline-flex gp hf yl rounded-full gn vp vd">{{ $cast->status }}</div>
-                                @endif 
-
-                                @if ($category->status === 'active')
-                                    <div class="inline-flex gp hc ys rounded-full gn vp vd">{{ $cast->status }}</div>
-                                @endif 
-                            </td>
+                            
 
                             <td class="vi wy w_ vo lm">
                                 <div>{{ $category->created_at->format('d-m-Y') }}</div>

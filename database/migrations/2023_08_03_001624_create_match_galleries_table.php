@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('match_galleries', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('match_id');
-            $table->string('original');
+            $table->string('original')->nullable();
             $table->string('large')->nullable();
             $table->string('medium')->nullable();
             $table->string('small')->nullable();

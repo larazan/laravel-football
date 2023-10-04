@@ -64,6 +64,6 @@ class Attribute extends Model
 
     public function attributeOptions()
     {
-        return $this->hasMany('App\Models\AttributeOption');
+        return $this->hasMany(AttributeOption::class);
     }
 }

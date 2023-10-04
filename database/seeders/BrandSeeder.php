@@ -2,12 +2,12 @@
 
 namespace Database\Seeders;
 
-use App\Models\Category;
+use App\Models\Brand;
 use Carbon\Carbon;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class CategorySeeder extends Seeder
+class BrandSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -19,27 +19,31 @@ class CategorySeeder extends Seeder
         //
         $data = [
             [
-                'name' => 'Shirt',
-                'slug' => 'shirt',
+                'name' => 'Adidas',
+                'slug' => 'adidas',
+                'status' => 'active',
                 'created_at' => Carbon::now(),
             ],
             [
-                'name' => 'Shock',
-                'slug' => 'shock',
+                'name' => 'Nike',
+                'slug' => 'nike',
+                'status' => 'active',
                 'created_at' => Carbon::now(),
             ],
             [
-                'name' => 'Shoes',
-                'slug' => 'shoes',
+                'name' => 'Under Armor',
+                'slug' => 'under-armor',
+                'status' => 'active',
                 'created_at' => Carbon::now(),
             ],
             [
-                'name' => 'Hat',
-                'slug' => 'hat',
+                'name' => 'Puma',
+                'slug' => 'puma',
+                'status' => 'active',
                 'created_at' => Carbon::now(),
             ],
         ];
 
-        Category::insert($data);
+        Brand::insert($data);
     }
 }

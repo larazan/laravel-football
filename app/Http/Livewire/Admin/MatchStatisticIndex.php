@@ -53,33 +53,24 @@ class MatchStatisticIndex extends Component
     public $deleteId = '';
 
     protected $rules = [
-        // 'report' => 'required',
-        // 'file' => 'required|image|mimes:jpg,jpeg,png,svg,gif|max:2048',
+        'homePossession' => 'required',
+        'awayPossession' => 'required',
     ];
 
-    public function boot()
-    {
-        $this->matchId = Route::current()->parameter('matchId');
-        $statistics = MatchStatistic::where('match_id', $this->matchId)->get();
-        if ($statistics->count() > 0)
-        {
-            $this->matchStatisticId = $statistics->id;
-        }  
-    }
-
+    
     public function mount($matchId)
     {
         $this->matchId = $matchId;
         $statistics = MatchStatistic::where('match_id', $this->matchId)->get();
-        if ($statistics->count() > 0)
-        {
-            $this->matchStatisticId = $statistics->id;
-        }  
+        // if ($statistics->count() > 0)
+        // {
+        //     $this->matchStatisticId = $statistics->id;
+        // }  
     }
 
     public function updated()
     {
-        $this->matchId = Route::current()->parameter('matchId');
+        
         $statistics = MatchStatistic::where('match_id', $this->matchId)->get();
         if ($statistics->count() > 0)
         {
@@ -129,7 +120,7 @@ class MatchStatisticIndex extends Component
         $matchStatistic->home_corners = $this->homeCorners;
         $matchStatistic->home_passes = $this->homePasses;
         $matchStatistic->home_pass_accuracy = $this->homePassAccuracy;
-        $matchStatistic->home_crosses = $this->homeCrosses;
+        $matchStatistic->home_crosses = $this->homeCrosses ? $this->homeCrosses : 0;
         $matchStatistic->home_yellow_cards = $this->homeYellowCards;
         $matchStatistic->home_red_cards = $this->homeRedCards;
         $matchStatistic->away_possession = $this->awayPossession;
@@ -140,7 +131,7 @@ class MatchStatisticIndex extends Component
         $matchStatistic->away_corners = $this->awayCorners;
         $matchStatistic->away_passes = $this->awayPasses;
         $matchStatistic->away_pass_accuracy = $this->awayPassAccuracy;
-        $matchStatistic->away_crosses = $this->awayCrosses;
+        $matchStatistic->away_crosses = $this->awayCrosses ? $this->awayCrosses : 0;
         $matchStatistic->away_yellow_cards = $this->awayYellowCards;
         $matchStatistic->away_red_cards = $this->awayRedCards;
         $matchStatistic->match_id = $this->matchId;
@@ -231,7 +222,7 @@ class MatchStatisticIndex extends Component
     public function closeMatchStatisticModal()
     {
         $this->showMatchStatisticModal = false;
-        $this->reset();
+        $this->reset(['matchStatisticId']);
     }
 
     public function resetFilters()

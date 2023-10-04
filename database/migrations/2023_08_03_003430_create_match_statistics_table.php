@@ -22,7 +22,7 @@ return new class extends Migration
             $table->tinyInteger('home_total_shots')->default(0);
             $table->tinyInteger('home_shots_on_target')->default(0);
             $table->tinyInteger('home_corners')->default(0);
-            $table->tinyInteger('home_passes')->default(0);
+            $table->integer('home_passes')->default(0);
             $table->tinyInteger('home_crosses')->default(0);
             $table->tinyInteger('away_possession')->default(0);
             $table->tinyInteger('away_offsides')->default(0);
@@ -30,7 +30,7 @@ return new class extends Migration
             $table->tinyInteger('away_total_shots')->default(0);
             $table->tinyInteger('away_shots_on_target')->default(0);
             $table->tinyInteger('away_corners')->default(0);
-            $table->tinyInteger('away_passes')->default(0);
+            $table->integer('away_passes')->default(0);
             $table->tinyInteger('away_crosses')->default(0);
             $table->timestamps();
 

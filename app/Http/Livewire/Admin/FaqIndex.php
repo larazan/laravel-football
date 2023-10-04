@@ -44,7 +44,8 @@ class FaqIndex extends Component
         'answer' => 'required',
     ];
 
-    public function mount(){
+    public function mount()
+    {
         $this->trixId = 'trix-' . uniqid();
     }
 
@@ -113,14 +114,14 @@ class FaqIndex extends Component
 
     public function createFaq()
     {
-        dd($this->answer);
-        // $this->validate();
+
+        $this->validate();
 
         Faq::create([
-          'question' => $this->question,
-          'answer' => $this->answer,
-          'status' => $this->faqStatus,
-      ]);
+            'question' => $this->question,
+            'answer' => $this->answer,
+            'status' => $this->faqStatus,
+        ]);
         $this->reset();
         $this->dispatchBrowserEvent('banner-message', ['style' => 'success', 'message' => 'Faq created successfully']);
     }
@@ -135,10 +136,9 @@ class FaqIndex extends Component
         $this->faqStatus = $faq->status;
         $this->showFaqModal = true;
     }
-    
+
     public function updateFaq()
     {
-        dd($this->answer);
         $this->validate();
 
         $faq = Faq::findOrFail($this->faqId);
@@ -171,7 +171,7 @@ class FaqIndex extends Component
     {
         $this->reset(['search', 'sort', 'perPage']);
     }
-    
+
     public function render()
     {
         $faqs = Faq::OrderBy('created_at', $this->sort)->paginate($this->perPage);

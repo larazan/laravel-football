@@ -44,6 +44,7 @@ use App\Http\Livewire\Admin\RoleIndex;
 use App\Http\Livewire\Admin\ScheduleIndex;
 use App\Http\Livewire\Admin\SettingIndex;
 use App\Http\Livewire\Admin\SlideIndex;
+use App\Http\Livewire\Admin\SocialMediaIndex;
 use App\Http\Livewire\Admin\SquadIndex;
 use App\Http\Livewire\Admin\StadionIndex;
 use App\Http\Livewire\Admin\StaffIndex;
@@ -129,6 +130,7 @@ Route::middleware(['auth:sanctum', 'verified', 'role:admin|author|sales'])->pref
     Route::get('subscribers', SubscribeIndex::class)->name('subscribers.index');
     Route::get('settings', SettingIndex::class)->name('settings.index');
     Route::get('slides', SlideIndex::class)->name('slides.index');
+    Route::get('social-medias', SocialMediaIndex::class)->name('social-medias.index');
     Route::get('trophies', TrophyIndex::class)->name('trophies.index');
     Route::get('users', UserIndex::class)->name('users.index');
 

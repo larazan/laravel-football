@@ -36,6 +36,8 @@ class DatabaseSeeder extends Seeder
             // UserSeeder::class,
             // FaqSeeder::class,
             FootbalerSeeder::class,
+            CategorySeeder::class,
+            BrandSeeder::class,
     
         ]);
         // \App\Models\User::factory(10)->create();

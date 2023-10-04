@@ -219,10 +219,10 @@
     <x-dialog-modal wire:model="showPartnerModal" class="">
 
         @if ($partnerId)
-        <x-slot name="title" class="border-b">Update Segment</x-slot>
+        <x-slot name="title" class="border-b">Update Partner</x-slot>
         @else
         <x-slot name="title" class="border-b bg-slate-200">
-            <span class="font-semibold">Create Segment</span>
+            <span class="font-semibold">Create Partner</span>
         </x-slot>
         @endif
 
