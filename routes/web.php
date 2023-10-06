@@ -24,6 +24,7 @@ use App\Http\Livewire\Admin\CategoryArticleIndex;
 use App\Http\Livewire\Admin\ClubIndex;
 use App\Http\Livewire\Admin\CompetitionIndex;
 use App\Http\Livewire\Admin\ContactIndex;
+use App\Http\Livewire\Admin\CouponIndex;
 use App\Http\Livewire\Dashboard;
 use App\Http\Livewire\Admin\FaqIndex;
 use App\Http\Livewire\Admin\LeagueIndex;
@@ -96,6 +97,7 @@ Route::middleware(['auth:sanctum', 'verified', 'role:admin|author|sales'])->pref
     Route::get('clubs', ClubIndex::class)->name('clubs.index');
     Route::get('competitions', CompetitionIndex::class)->name('competitions.index');
     Route::get('contacts', ContactIndex::class)->name('contacts.index');
+    Route::get('coupons', CouponIndex::class)->name('coupons.index');
     Route::get('faqs', FaqIndex::class)->name('faqs.index');
     Route::get('leagues', LeagueIndex::class)->name('leagues.index');
     Route::get('team-leagues', TeamLeagueIndex::class)->name('team-leagues.index');

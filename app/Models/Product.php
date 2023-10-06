@@ -81,13 +81,8 @@ class Product extends Model
 	 */
 	public function user()
 	{
-		return $this->belongsTo('App\Models\User');
+		return $this->belongsTo(User::class);
 	}
-
-	public function shop()
-    {
-        return $this->belongsTo(Shop::class, 'shop_id');
-    }
 
 	/**
 	 * Define relationship with the ProductInventory
@@ -106,17 +101,12 @@ class Product extends Model
 	 */
 	public function categories()
 	{
-		return $this->belongsToMany('App\Models\Category', 'product_categories');
+		return $this->belongsToMany(Category::class);
 	}
 
 	public function brands()
 	{
-		return $this->belongsToMany('App\Models\Brand', 'product_brands');
-	}
-
-	public function ingredients()
-	{
-		return $this->belongsToMany('App\Models\Ingredient', 'product_ingredients');
+		return $this->belongsToMany(Brand::class);
 	}
 
 	/**
