@@ -12,6 +12,11 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\CkeditorFileUploadController;
 // Livewire
+use App\Http\Livewire\Admin\AboutUs;
+use App\Http\Livewire\Admin\PrivacyPolicy;
+use App\Http\Livewire\Admin\TermCondition;
+use App\Http\Livewire\Admin\RefundPolicy;
+use App\Http\Livewire\Admin\ShippingPolicy;
 use App\Http\Livewire\Admin\AdvertisingIndex;
 use App\Http\Livewire\Admin\AdvSegmentIndex;
 use App\Http\Livewire\Admin\ArticleIndex;
@@ -25,6 +30,7 @@ use App\Http\Livewire\Admin\ClubIndex;
 use App\Http\Livewire\Admin\CompetitionIndex;
 use App\Http\Livewire\Admin\ContactIndex;
 use App\Http\Livewire\Admin\CouponIndex;
+use App\Http\Livewire\Admin\CurrencyIndex;
 use App\Http\Livewire\Dashboard;
 use App\Http\Livewire\Admin\FaqIndex;
 use App\Http\Livewire\Admin\LeagueIndex;
@@ -78,7 +84,12 @@ Route::get('/', function () {
 
 Route::middleware(['auth:sanctum', 'verified', 'role:admin|author|sales'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('dashboard', Dashboard::class);
-
+    
+    Route::get('about-us', AboutUs::class)->name('about-us.index');
+    Route::get('privacy-policy', PrivacyPolicy::class)->name('privacy-policy.index');
+    Route::get('term-condition', TermCondition::class)->name('term-condition.index');
+    Route::get('refund-policy', RefundPolicy::class)->name('refund-policy.index');
+    Route::get('shipping-policy', ShippingPolicy::class)->name('shipping-policy.index');
     Route::get('adv-segments', AdvSegmentIndex::class)->name('adv-segments.index');
     Route::get('advertisings', AdvertisingIndex::class)->name('advertisings.index');
     // 
@@ -98,6 +109,7 @@ Route::middleware(['auth:sanctum', 'verified', 'role:admin|author|sales'])->pref
     Route::get('competitions', CompetitionIndex::class)->name('competitions.index');
     Route::get('contacts', ContactIndex::class)->name('contacts.index');
     Route::get('coupons', CouponIndex::class)->name('coupons.index');
+    Route::get('currencies', CurrencyIndex::class)->name('currencies.index');
     Route::get('faqs', FaqIndex::class)->name('faqs.index');
     Route::get('leagues', LeagueIndex::class)->name('leagues.index');
     Route::get('team-leagues', TeamLeagueIndex::class)->name('team-leagues.index');
@@ -151,6 +163,7 @@ Route::middleware(['auth:sanctum', 'verified', 'role:admin|author|sales'])->pref
 });
 
 Route::get('/tes', [DashboardController::class, 'index'])->name('tes.index');
+Route::get('/pesan', [DashboardController::class, 'testMessage'])->name('tes.pesan');
 
 // Contact
 Route::get('/contact', [ContactController::class, 'show'])->name('contact.show');

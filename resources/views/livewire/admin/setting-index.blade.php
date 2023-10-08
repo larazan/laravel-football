@@ -15,9 +15,9 @@
         <div class="flex ak zc qv">
 
             <!-- Sidebar -->
-            {{--
+            
                 <x-settings.settings-navigation />
-                --}}
+                
             <!-- Panel -->
             <div class="uw">
 

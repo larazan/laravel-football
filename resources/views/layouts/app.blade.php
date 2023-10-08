@@ -2,33 +2,33 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+  <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
-    
-    <!-- Scripts -->
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.bunny.net">
+  <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
-    <!-- Styles -->
-   
-    @trixassets
-    @livewireStyles
+  <!-- Scripts -->
+  @vite(['resources/css/app.css', 'resources/js/app.js'])
 
-    <link href="{{ URL::asset('admin/css/app.css') }}" rel="stylesheet" />
-    <link href="{{ URL::asset('admin/css/style.css') }}" rel="stylesheet" />
+  <!-- Styles -->
 
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  @trixassets
+  @livewireStyles
+
+  <link href="{{ URL::asset('admin/css/app.css') }}" rel="stylesheet" />
+  <link href="{{ URL::asset('admin/css/style.css') }}" rel="stylesheet" />
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
-    <style>
+  <style>
     .select2.select2-container {
       width: 100% !important;
     }
@@ -179,72 +179,76 @@
       background: #0d45a5;
     }
   </style>
-    @stack('styles')
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
+  @stack('styles')
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
 
 </head>
 
 <body class="font-inter antialiased bg-slate-100 text-slate-600" :class="{ 'sidebar-expanded': sidebarExpanded }" x-data="{ sidebarOpen: false, sidebarExpanded: localStorage.getItem('sidebar-expanded') == 'true' }" x-init="$watch('sidebarExpanded', value => localStorage.setItem('sidebar-expanded', value))">
-    <!-- <x-banner /> -->
-    <script>
-        if (localStorage.getItem('sidebar-expanded') == 'true') {
-            document.querySelector('body').classList.add('sidebar-expanded');
-        } else {
-            document.querySelector('body').classList.remove('sidebar-expanded');
-        }
-    </script>
+  <!-- <x-banner /> -->
+  <script>
+    if (localStorage.getItem('sidebar-expanded') == 'true') {
+      document.querySelector('body').classList.add('sidebar-expanded');
+    } else {
+      document.querySelector('body').classList.remove('sidebar-expanded');
+    }
+  </script>
 
-    <!-- Page wrapper -->
-    <div class="flex h-screen overflow-hidden ss la ">
+  <!-- Page wrapper -->
+  <div class="flex h-screen overflow-hidden ss la ">
 
-        <x-app.sidebar />
+    <x-app.sidebar />
 
-        <!-- Content area -->
-        <div class="relative flex flex-col flex-1 overflow-y-auto overflow-x-hidden @if($attributes['background']){{ $attributes['background'] }}@endif y flex ak ug ll lc bg-white" x-ref="contentarea">
+    <!-- Content area -->
+    <div class="relative flex flex-col flex-1 overflow-y-auto overflow-x-hidden @if($attributes['background']){{ $attributes['background'] }}@endif y flex ak ug ll lc bg-white" x-ref="contentarea">
 
-            <x-app.header />
+      <x-app.header />
 
-            <main>
-                {{ $slot }}
-            </main>
-
-        </div>
+      <main>
+        {{ $slot }}
+      </main>
 
     </div>
 
-    @stack('modals')
+  </div>
 
-    @livewireScripts
-    @stack('js')
-    <script src="https://cdn.jsdelivr.net/gh/livewire/sortable@v0.x.x/dist/livewire-sortable.js"></script>
+  @stack('modals')
 
-    <script>
-        window.addEventListener('banner-message', event => {
-            toastr[event.detail.style](event.detail.message,
-                event.detail.title ?? ''), toastr.options = {
-                "closeButton": true,
-                "progressBar": true,
-            }
-        });
+  @livewireScripts
+  @stack('js')
+  <script src="https://cdn.jsdelivr.net/gh/livewire/sortable@v0.x.x/dist/livewire-sortable.js"></script>
 
-        var inputField = document.querySelector('#numbers-only');
+  <script>
+    window.addEventListener('banner-message', event => {
+      toastr[event.detail.style](event.detail.message,
+        event.detail.title ?? ''), toastr.options = {
+        "closeButton": true,
+        "progressBar": true,
+      }
+    });
 
-        inputField.onkeydown = function(event) {
-          // Only allow if the e.key value is a number or if it's 'Backspace'
-          if(isNaN(event.key) && event.key !== 'Backspace') {
-            event.preventDefault();
-          }
-        };
+    @if (Session::has('pesan'))
+      toastr.{{Session::get('alert')}}("{{Session::get('pesan')}}");
+    @endif  
 
-        function onlyNumberKey(evt) {
-             
-             // Only ASCII character in that range allowed
-             var ASCIICode = (evt.which) ? evt.which : evt.keyCode
-             if (ASCIICode > 31 && (ASCIICode < 48 || ASCIICode > 57))
-                 return false;
-             return true;
-         }
-    </script>
+    var inputField = document.querySelector('#numbers-only');
+
+    inputField.onkeydown = function(event) {
+      // Only allow if the e.key value is a number or if it's 'Backspace'
+      if (isNaN(event.key) && event.key !== 'Backspace') {
+        event.preventDefault();
+      }
+    };
+
+    function onlyNumberKey(evt) {
+
+      // Only ASCII character in that range allowed
+      var ASCIICode = (evt.which) ? evt.which : evt.keyCode
+      if (ASCIICode > 31 && (ASCIICode < 48 || ASCIICode > 57))
+        return false;
+      return true;
+    }
+  </script>
 
 </body>
 

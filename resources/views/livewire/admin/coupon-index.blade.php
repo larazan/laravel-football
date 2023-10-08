@@ -155,8 +155,8 @@
                     <tbody class="text-sm le lr">
                         <!-- Row -->
 
-                        @if ($categories->count() > 0)
-                        @foreach ($categories as $coupon)
+                        @if ($coupons->count() > 0)
+                        @foreach ($coupons as $coupon)
                         <tr>
                             <td class="vi wy w_ vo lm of">
                                 <div class="flex items-center">

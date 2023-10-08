@@ -2,14 +2,29 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Article;
+use App\Models\CategoryArticle;
 use App\Models\Schedule;
 use App\Models\TeamLeague;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
 {
+    public function testMessage()
+    {
+
+        $notifikasi = array(
+            'pesan' => 'Artikel berhasil dibuat',
+            'alert' => 'warning',
+        );
+
+        return redirect('admin/articles')->with($notifikasi);
+    }
+
+
     public function index()
     {
         $seasonNow = Carbon::now()->format('Y') . '/' . Carbon::now()->format('Y') + 1;

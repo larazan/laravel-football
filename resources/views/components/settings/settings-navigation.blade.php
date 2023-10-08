@@ -24,7 +24,7 @@
                             <svg class="oo sl ub du @if(in_array(Request::segment(2), ['roles'])){{ 'text-indigo-400 ' }}@else{{ 'gq' }}@endif mr-2" viewBox="0 0 16 16">
                                 <path d="M3.414 2L9 7.586V16H7V8.414l-5-5V6H0V1a1 1 0 011-1h5v2H3.414zM15 0a1 1 0 011 1v5h-2V3.414l-3.172 3.172-1.414-1.414L12.586 2H10V0h5z"></path>
                             </svg>
-                            <span class="text-sm gp @if(in_array(Request::segment(2), ['roles'])){{ 'text-indigo-500 ' }}@else{{ 'g_ xp' }}@endif">Roles</span>
+                            <span class="text-sm gp @if(in_array(Request::segment(2), ['roles'])){{ 'text-indigo-500 ' }}@else{{ 'g_ xp' }}@endif">About Us</span>
                         </a>
                     </li>
                     <li class="rv qm qg">
@@ -32,7 +32,7 @@
                             <svg class="oo sl ub du @if(in_array(Request::segment(2), ['permissions'])){{ 'text-indigo-400 ' }}@else{{ 'gq' }}@endif mr-2" viewBox="0 0 16 16">
                                 <path d="M5 9h11v2H5V9zM0 9h3v2H0V9zm5 4h6v2H5v-2zm-5 0h3v2H0v-2zm5-8h7v2H5V5zM0 5h3v2H0V5zm5-4h11v2H5V1zM0 1h3v2H0V1z"></path>
                             </svg>
-                            <span class="text-sm gp @if(in_array(Request::segment(2), ['permissions'])){{ 'text-indigo-500 ' }}@else{{ 'g_ xp' }}@endif">Permission</span>
+                            <span class="text-sm gp @if(in_array(Request::segment(2), ['permissions'])){{ 'text-indigo-500 ' }}@else{{ 'g_ xp' }}@endif">Privacy policy</span>
                         </a>
                     </li>
                     <li class="rv qm qg">
@@ -40,12 +40,13 @@
                             <svg class="oo sl ub du gq mr-2" viewBox="0 0 16 16">
                                 <path d="M15 4c.6 0 1 .4 1 1v10c0 .6-.4 1-1 1H3c-1.7 0-3-1.3-3-3V3c0-1.7 1.3-3 3-3h7c.6 0 1 .4 1 1v3h4zM2 3v1h7V2H3c-.6 0-1 .4-1 1zm12 11V6H2v7c0 .6.4 1 1 1h11zm-3-5h2v2h-2V9z"></path>
                             </svg>
-                            <span class="text-sm gp g_ xp">Billing &amp; Invoices</span>
+                            <span class="text-sm gp g_ xp">Terms &amp; Condition</span>
                         </a>
                     </li>
                 </ul>
             </div>
             <!-- Group 2 -->
+            {{-- 
             <div>
                 <div class="go gh gq gv ro">Experience</div>
                 <ul class="flex a_ qx ra qm">
@@ -59,4 +60,5 @@
                     </li>
                 </ul>
             </div>
+            --}}
         </div>
