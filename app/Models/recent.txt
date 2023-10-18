@@ -9,6 +9,9 @@ training materi & schedules
 online store
 formation
 bulk delete 
+bulk export
+bulk import
+attribute
 excel export
 chart
 email notif
@@ -20,6 +23,9 @@ Polymorph
     comment 
 
 API
+EVENT
+ORDER
+TRANSACTION
 
 Setting
     currency

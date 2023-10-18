@@ -301,7 +301,7 @@
                                                 <label for="title" class="block text-sm font-medium text-gray-700">
                                                     Min Purchase
                                                 </label>
-                                                <input wire:model="minPurchase" value="0" min="0" max="999999999999.99" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                                                <input wire:model="minPurchase" type="number" value="0" min="0" max="999999999999.99" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                                             </div>
                                             <div class="col-start-1 sm:col-span-3">
                                                 <label for="title" class="block text-sm font-medium text-gray-700">
@@ -316,7 +316,7 @@
                                                 <label for="title" class="block text-sm font-medium text-gray-700">
                                                     Discount Type
                                                 </label>
-                                                <select wire:model="discountType" class="h-full rounded-r border-t border-r border-b block appearance-none w-full bg-white border-gray-300 text-gray-700 py-2 px-4 pr-8 leading-tight focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none">
+                                                <select wire:model="discountType" class="h-full2 rounded-r border-t border-r border-b block appearance-none w-full bg-white border-gray-300 text-gray-700 py-2 px-4 pr-8 leading-tight focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none">
                                                     <option value="">Select Option</option>
                                                     @foreach($discountOption as $dis)
                                                     <option value="{{ $dis }}">{{ $dis }}</option>
@@ -327,7 +327,7 @@
                                                 <label for="title" class="block text-sm font-medium text-gray-700">
                                                     Coupon Type
                                                 </label>
-                                                <select wire:model="couponType" class="h-full rounded-r border-t border-r border-b block appearance-none w-full bg-white border-gray-300 text-gray-700 py-2 px-4 pr-8 leading-tight focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none">
+                                                <select wire:model="couponType" class="h-full2 rounded-r border-t border-r border-b block appearance-none w-full bg-white border-gray-300 text-gray-700 py-2 px-4 pr-8 leading-tight focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none">
                                                     <option value="">Select Option</option>
                                                     @foreach($couponOption as $coup)
                                                     <option value="{{ $coup }}">{{ $coup }}</option>

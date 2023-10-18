@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Article;
+use App\Models\Event;
 use App\Models\CategoryArticle;
 use App\Models\Schedule;
 use App\Models\TeamLeague;
@@ -13,6 +14,24 @@ use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
 {
+
+    public function tesEvents()
+    {
+        $eve = Event::all()
+        ->map( fn ($item) => [
+            'id' => $item->id,
+            'title' => $item->title,
+            'start' => $item->start_date,
+            'end' => date('Y-m-d',strtotime($item->end_date. '+1 days')),
+            'category' => $item->category,
+            'className' => ['bg-'. $item->category]
+        ]);
+
+        // $events = json_encode(Event::all());
+        $events = json_encode($eve);
+        dd($events);
+    }
+
     public function testMessage()
     {
 

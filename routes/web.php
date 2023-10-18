@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Admin\ArticleController;
+use App\Http\Controllers\Admin\EventController;
 use App\Http\Controllers\Admin\MediaController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\PlayerStatisticController;
@@ -62,6 +63,7 @@ use App\Http\Livewire\Admin\UserIndex;
 use App\Http\Livewire\Admin\JuniorFootBall;
 use App\Http\Livewire\Admin\WomenFootBall;
 
+use App\Http\Livewire\Calendar;
 use App\Http\Livewire\SearchSelect;
 use App\Http\Livewire\MultiSelect;
 use App\Http\Livewire\Tags;
@@ -156,13 +158,18 @@ Route::middleware(['auth:sanctum', 'verified', 'role:admin|author|sales'])->pref
 
     Route::get('reports/player', [ReportController::class, 'export_player']);
 
+    Route::get('calendar', Calendar::class)->name('calendar.index');
     Route::get('multi', MultiSelect::class)->name('multi.index');
     Route::get('select', SearchSelect::class)->name('select.index');
     Route::get('tag', Tags::class)->name('tag.index');
     Route::get('trix', Trix::class)->name('trix.index');
+
+    // Route::resource('events', EventController::class);
+    // Route::get('events/list', [EventController::class, 'listEvent'])->name('events.list');
 });
 
 Route::get('/tes', [DashboardController::class, 'index'])->name('tes.index');
+Route::get('/eve', [DashboardController::class, 'tesEvents'])->name('eve.index');
 Route::get('/pesan', [DashboardController::class, 'testMessage'])->name('tes.pesan');
 
 // Contact
@@ -184,3 +191,10 @@ Route::middleware([
 
 // CKEDITOR IMAGE STORE
 Route::post('ckeditor', [CkeditorFileUploadController::class, 'store'])->name('ckeditor.upload');
+
+Route::prefix('schedule')->group(function () {
+    Route::get('/index', \App\Http\Livewire\Schedule\Index::class)->name('schedule.index');
+});
+
+Route::resource('events', EventController::class);
+Route::get('events/list', [EventController::class, 'listEvent'])->name('events.list');

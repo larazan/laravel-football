@@ -137,9 +137,7 @@
                             <th class="vi wy w_ vo lm">
                                 <div class="gh gt">Exchange Rate</div>
                             </th>
-                            <th class="vi wy w_ vo lm">
-                                <div class="gh gt">Date</div>
-                            </th>
+                            
                             <th class="vi wy w_ vo lm">
                                 <div class="gh gt">Actions</div>
                             </th>
@@ -161,15 +159,17 @@
                                 </div>
                             </td>
                             <td class="vi wy w_ vo lm">
-                                <div class="gp text-slate-800">{{ $currency->name }}</div>
+                                <div class="gp text-slate-800">{{ $currency->country }}</div>
                             </td>
                             <td class="vi wy w_ vo lm">
-                                <div class="gp ">{{ $currency->parent ? $currency->parent->name : '' }}</div>
+                                <div class="gp ">{{ $currency->currency_code }}</div>
                             </td>
-                            
+                            <td class="vi wy w_ vo lm">
+                                <div class="gp ">{{ $currency->currency_symbol }}</div>
+                            </td>
 
                             <td class="vi wy w_ vo lm">
-                                <div>{{ $currency->created_at->format('d-m-Y') }}</div>
+                                <div class="gp ">{{ $currency->exchange_rate }}</div>
                             </td>
 
                             <td class="vi wy w_ vo lm of">

@@ -6,7 +6,7 @@
     <!-- Sidebar backdrop (mobile only) -->
     <div 
         class="m w bg-slate-900 pu tb tex ted bz wr" 
-        :class="sidebarOpen ? 'ba opacity-100' : 'opacity-0 pointer-events-none'" 
+        :class="sidebarOpen ? 'ba opacity-100' : 'opacity-0 pointer-calendar-none'" 
         aria-hidden="true" 
         x-cloak>
     </div>
@@ -216,10 +216,14 @@
                         <a class="block gj xc ld wt wi" href="#0" @click.prevent="sidebarExpanded ? open = !open : sidebarExpanded = true">
                             <div class="flex items-center fe">
                                 <div class="flex items-center">
-                                    <svg class="ub so oi" viewBox="0 0 24 24">
+                                <svg class="ub so oi" viewBox="0 0 24 24">
+                                    <path class="du @if(in_array(Request::segment(2), ['womens', 'unders', 'squads'])){{ 'text-indigo-500' }}@else{{ 'g_' }}@endif" d="M19 5h1v14h-2V7.414L5.707 19.707 5 19H4V5h2v11.586L18.293 4.293 19 5Z"></path>
+                                    <path class="du @if(in_array(Request::segment(2), ['womens', 'unders', 'squads'])){{ 'text-indigo-300' }}@else{{ 'gq' }}@endif" d="M5 9a4 4 0 1 1 0-8 4 4 0 0 1 0 8Zm14 0a4 4 0 1 1 0-8 4 4 0 0 1 0 8ZM5 23a4 4 0 1 1 0-8 4 4 0 0 1 0 8Zm14 0a4 4 0 1 1 0-8 4 4 0 0 1 0 8Z"></path>
+                                </svg>
+                                    <!-- <svg class="ub so oi" viewBox="0 0 24 24">
                                         <path class="du @if(in_array(Request::segment(2), ['womens', 'unders', 'squads'])){{ 'text-indigo-500' }}@else{{ 'g_' }}@endif" d="M18.974 8H22a2 2 0 012 2v6h-2v5a1 1 0 01-1 1h-2a1 1 0 01-1-1v-5h-2v-6a2 2 0 012-2h.974zM20 7a2 2 0 11-.001-3.999A2 2 0 0120 7zM2.974 8H6a2 2 0 012 2v6H6v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5H0v-6a2 2 0 012-2h.974zM4 7a2 2 0 11-.001-3.999A2 2 0 014 7z"></path>
                                         <path class="du @if(in_array(Request::segment(2), ['womens', 'unders', 'squads'])){{ 'text-indigo-300' }}@else{{ 'gq' }}@endif" d="M12 6a3 3 0 110-6 3 3 0 010 6zm2 18h-4a1 1 0 01-1-1v-6H6v-6a3 3 0 013-3h6a3 3 0 013 3v6h-3v6a1 1 0 01-1 1z"></path>
-                                    </svg>
+                                    </svg> -->
                                     <span class="text-sm gp ml-3 ttw tnn 2xl:opacity--100 wr">Squads</span>
                                 </div>
                                 <!-- Icon -->
@@ -336,9 +340,14 @@
                         <a class="block gj xc ld wt wi" href="{{ url('admin/matchs') }}">
                             <div class="flex items-center">
                                 <svg class="ub so oi" viewBox="0 0 24 24">
+                                    <path class="du @if(in_array(Request::segment(2), ['matchs'])){{ 'text-indigo-500' }}@else{{ 'g_' }}@endif" d="M8 1v2H3v19h18V3h-5V1h7v23H1V1z"></path>
+                                    <path class="du @if(in_array(Request::segment(2), ['matchs'])){{ 'text-indigo-500' }}@else{{ 'g_' }}@endif" d="M1 1h22v23H1z"></path>
+                                    <path class="du @if(in_array(Request::segment(2), ['matchs'])){{ 'text-indigo-300' }}@else{{ 'gq' }}@endif" d="M15 10.586L16.414 12 11 17.414 7.586 14 9 12.586l2 2zM5 0h14v4H5z"></path>
+                                </svg>
+                                <!-- <svg class="ub so oi" viewBox="0 0 24 24">
                                     <path class="du @if(in_array(Request::segment(2), ['matchs'])){{ 'text-indigo-500' }}@else{{ 'g_' }}@endif" d="M1 3h22v20H1z"></path>
                                     <path class="du @if(in_array(Request::segment(2), ['matchs'])){{ 'text-indigo-300' }}@else{{ 'gq' }}@endif" d="M21 3h2v4H1V3h2V1h4v2h10V1h4v2Z"></path>
-                                </svg>
+                                </svg> -->
                                 <span class="text-sm gp ml-3 ttw tnn 2xl:opacity--100 wr">Matchs</span>
                             </div>
                         </a>
@@ -429,16 +438,32 @@
                             </ul>
                         </div>
                     </li>
+                    <!-- Event -->
+                    <li class="vn vr rounded-sm n_ ww @if(in_array(Request::segment(2), ['calendar'])){{ 'bg-slate-900' }}@else{{ '' }}@endif">
+                        <a class="block gj xc ld wt wi" href="{{ url('admin/calendar') }}">
+                            <div class="flex items-center">
+                                <svg class="ub so oi" viewBox="0 0 24 24">
+                                    <path class="du @if(in_array(Request::segment(2), ['calendar'])){{ 'text-indigo-500' }}@else{{ 'g_' }}@endif" d="M1 3h22v20H1z"></path>
+                                    <path class="du @if(in_array(Request::segment(2), ['calendar'])){{ 'text-indigo-300' }}@else{{ 'gq' }}@endif" d="M21 3h2v4H1V3h2V1h4v2h10V1h4v2Z"></path>
+                                </svg>
+                                <span class="text-sm gp ml-3 ttw tnn 2xl:opacity--100 wr">Events</span>
+                            </div>
+                        </a>
+                    </li>
                     <!-- Advertising -->
                     <li class="vn vr rounded-sm n_ ww @if(in_array(Request::segment(2), ['adv-segments', 'advertisings'])){{ 'bg-slate-900' }}@else{{ '' }}@endif" x-data="{ open: false }">
                         <a class="block gj xc ld wt wi" href="#0" @click.prevent="sidebarExpanded ? open = !open : sidebarExpanded = true">
                             <div class="flex items-center fe">
                                 <div class="flex items-center">
                                     <svg class="ub so oi" viewBox="0 0 24 24">
+                                        <circle class="du @if(in_array(Request::segment(2), ['adv-segments', 'advertisings'])){{ 'text-indigo-500' }}@else{{ 'gq' }}@endif" cx="16" cy="8" r="8"></circle>
+                                        <circle class="du @if(in_array(Request::segment(2), ['adv-segments', 'advertisings'])){{ 'text-indigo-300' }}@else{{ 'g_' }}@endif" cx="8" cy="16" r="8"></circle>
+                                    </svg>
+                                    <!-- <svg class="ub so oi" viewBox="0 0 24 24">
                                         <path class="du @if(in_array(Request::segment(2), ['adv-segments', 'advertisings'])){{ 'text-indigo-500' }}@else{{ 'gq' }}@endif" d="M13 15l11-7L11.504.136a1 1 0 00-1.019.007L0 7l13 8z"></path>
                                         <path class="du @if(in_array(Request::segment(2), ['adv-segments', 'advertisings'])){{ 'text-indigo-500' }}@else{{ 'gz' }}@endif" d="M13 15L0 7v9c0 .355.189.685.496.864L13 24v-9z"></path>
                                         <path class="du @if(in_array(Request::segment(2), ['adv-segments', 'advertisings'])){{ 'text-indigo-500' }}@else{{ 'g_' }}@endif" d="M13 15.047V24l10.573-7.181A.999.999 0 0024 16V8l-11 7.047z"></path>
-                                    </svg>
+                                    </svg> -->
                                     
                                     <span class="text-sm gp ml-3 ttw tnn 2xl:opacity--100 wr">Advertisement</span>
                                 </div>

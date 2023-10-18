@@ -35,9 +35,10 @@ class DatabaseSeeder extends Seeder
             // RoleSeeder::class,
             // UserSeeder::class,
             // FaqSeeder::class,
-            FootbalerSeeder::class,
-            CategorySeeder::class,
-            BrandSeeder::class,
+            // FootbalerSeeder::class,
+            // CategorySeeder::class,
+            // BrandSeeder::class,
+            EventSeeder::class,
     
         ]);
         // \App\Models\User::factory(10)->create();
