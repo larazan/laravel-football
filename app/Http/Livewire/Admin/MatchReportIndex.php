@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Admin;
 use App\Models\Matchs;
 use App\Models\MatchReport;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\ImageManagerStatic as Image;
 use Livewire\WithPagination;
@@ -164,6 +165,28 @@ class MatchReportIndex extends Component
     public function resetFilters()
     {
         $this->reset();
+    }
+
+    public function updateReport()
+    {
+        $this->validate();
+  
+        $new = Str::random(5) . '_' . time();
+
+        if (!empty($this->file)) {
+            // IMAGE
+            $filename = $new . '.' . $this->file->getClientOriginalName();
+            $filePath = $this->file->storeAs(MatchReport::UPLOAD_DIR, $filename, 'public');
+            $resizedImage = $this->_resizeImage($this->file, $filename, MatchReport::UPLOAD_DIR);
+        }
+
+        MatchReport::updateOrCreate(['match_id' => $this->matchId], [
+            'report' =>  $this->report,
+            'original' =>  $filePath,
+            'medium' =>  $resizedImage['medium'],
+        ]);
+
+        $this->dispatchBrowserEvent('banner-message', ['style' => 'success', 'message' => 'Match Report updated successfully']);
     }
 
     public function render()

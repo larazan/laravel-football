@@ -164,8 +164,8 @@ Route::middleware(['auth:sanctum', 'verified', 'role:admin|author|sales'])->pref
     Route::get('tag', Tags::class)->name('tag.index');
     Route::get('trix', Trix::class)->name('trix.index');
 
-    // Route::resource('events', EventController::class);
-    // Route::get('events/list', [EventController::class, 'listEvent'])->name('events.list');
+    Route::resource('events', EventController::class);
+    Route::get('events/list', [EventController::class, 'listEvent'])->name('events.list');
 });
 
 Route::get('/tes', [DashboardController::class, 'index'])->name('tes.index');
@@ -196,5 +196,3 @@ Route::prefix('schedule')->group(function () {
     Route::get('/index', \App\Http\Livewire\Schedule\Index::class)->name('schedule.index');
 });
 
-Route::resource('events', EventController::class);
-Route::get('events/list', [EventController::class, 'listEvent'])->name('events.list');

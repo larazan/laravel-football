@@ -68,6 +68,11 @@ class MatchStatisticIndex extends Component
         // }  
     }
 
+    public function updatedHomePossesion()
+    {
+        $this->awayPossession = 100 - $this->homePossession;
+    }
+
     public function updated()
     {
         

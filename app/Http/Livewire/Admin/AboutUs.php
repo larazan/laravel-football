@@ -24,7 +24,7 @@ class AboutUs extends Component
     public function updateAbout()
     {
 
-        dd($this->about);
+        // dd($this->about);
         // BusinessSetting::where(['key' => 'about_us'])->update([
         //     'value' => $this->about,
         // ]);

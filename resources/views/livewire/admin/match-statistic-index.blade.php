@@ -31,7 +31,7 @@
         <div class="ri _y">
             <button class="btn bg-white border-slate-200 hover--border-slate-300 yl xy" wire:click="backTo">Back</button>
         </div>
-
+        
     </div>
 
 
@@ -465,7 +465,10 @@
                                                 <label for="title" class="block text-sm font-medium text-gray-700">
                                                     Possesion %
                                                 </label>
-                                                <input wire:model="homePossession" onkeypress="return onlyNumberKey(event)" type="text" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                                                
+                                                <input type="range"  max="100" step="1" value="50" wire:model="homePossession" oninput="rangevalue.value=value"  />
+                                                <output id="rangevalue">50</output>
+                                                
                                             </div>
                                             <div class="col-start-1 sm:col-span-3">
                                                 <label for="title" class="block text-sm font-medium text-gray-700">
@@ -542,7 +545,9 @@
                                                 <label for="title" class="block text-sm font-medium text-gray-700">
                                                     Possesion %
                                                 </label>
-                                                <input wire:model="awayPossession" onkeypress="return onlyNumberKey(event)" type="text" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                                                <input type="range"  max="100" step="1" value="50" wire:model="awayPossession" oninput="rangevalue.value=value"  />
+                                                <output id="rangevalue">50</output>
+                                                
                                             </div>
                                             <div class="col-start-1 sm:col-span-3">
                                                 <label for="title" class="block text-sm font-medium text-gray-700">
@@ -624,3 +629,168 @@
 
 
 </div>
+
+@push('styles')
+<style>
+
+
+input,
+output {
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 1em;
+  font-family: Arial, sans-serif;
+}
+
+output {
+  background: #ff4500;
+  padding: 5px 16px;
+  border-radius: 3px;
+  color: #fff;
+}
+
+input[type="number"] {
+  width: 40px;
+  padding: 4px 5px;
+  border: 1px solid #bbb;
+  border-radius: 3px;
+}
+
+/* input[type="range"]:focus,
+input[type="number"]:focus {
+  box-shadow: 0 0 3px 1px #4b81dd;
+  outline: none;
+} */
+
+input[type="range"] {
+  -webkit-appearance: none;
+  margin-right: 15px;
+  width: 200px;
+  height: 7px;
+  background: #b2b7b8;
+  border-radius: 5px;
+  background-image: linear-gradient(#ff4500, #ff4500);
+  background-size: 50% 100%;
+  background-repeat: no-repeat;
+}
+
+[dir="rtl"] input[type="range"] {
+  background: #ff4500;
+  background-image: linear-gradient(#fff, #fff);
+  background-size: 30% 100%;
+  background-repeat: no-repeat;
+}
+
+/* Input Thumb */
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  background: #ff4500;
+  cursor: ew-resize;
+  box-shadow: 0 0 2px 0 #555;
+  transition: background .3s ease-in-out;
+}
+
+input[type="range"]::-moz-range-thumb {
+  -webkit-appearance: none;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  background: #ff4500;
+  cursor: ew-resize;
+  box-shadow: 0 0 2px 0 #555;
+  transition: background .3s ease-in-out;
+}
+
+input[type="range"]::-ms-thumb {
+  -webkit-appearance: none;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  background: #ff4500;
+  cursor: ew-resize;
+  box-shadow: 0 0 2px 0 #555;
+  transition: background .3s ease-in-out;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+  background: #ff0200;
+}
+
+input[type="range"]::-moz-range-thumb:hover {
+  background: #ff0200;
+}
+
+input[type="range"]::-ms-thumb:hover {
+  background: #ff0200;
+}
+
+/* Input Track */
+input[type=range]::-webkit-slider-runnable-track  {
+  -webkit-appearance: none;
+  box-shadow: none;
+  border: none;
+  background: transparent;
+}
+
+input[type=range]::-moz-range-track {
+  -webkit-appearance: none;
+  box-shadow: none;
+  border: none;
+  background: transparent;
+}
+
+input[type="range"]::-ms-track {
+  -webkit-appearance: none;
+  box-shadow: none;
+  border: none;
+  background: transparent;
+}
+
+
+</style>
+@endpush
+
+@push('js')
+<script>
+    const rangeInputs = document.querySelectorAll('input[type="range"]')
+const numberInput = document.querySelector('input[type="number"]')
+let isRTL = document.documentElement.dir === 'rtl'
+
+function handleInputChange(e) {
+  let target = e.target
+  if (e.target.type !== 'range') {
+    target = document.getElementById('range')
+  } 
+  const min = target.min
+  const max = target.max
+  const val = target.value
+  let percentage = (val - min) * 100 / (max - min)
+  if (isRTL) {
+    percentage = (max - val) 
+  }
+  
+  target.style.backgroundSize = percentage + '% 100%'
+}
+
+rangeInputs.forEach(input => {
+  input.addEventListener('input', handleInputChange)
+})
+
+numberInput.addEventListener('input', handleInputChange)
+
+// Handle element change, check for dir attribute value change
+function callback(mutationList, observer) {  mutationList.forEach(function(mutation) {
+    if (mutation.type === 'attributes' && mutation.attributeName === 'dir') {
+      isRTL = mutation.target.dir === 'rtl'
+    }
+  })
+}
+
+// Listen for body element change
+const observer = new MutationObserver(callback)
+observer.observe(document.documentElement, {attributes: true})
+</script>
+@endpush

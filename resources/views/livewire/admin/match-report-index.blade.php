@@ -11,17 +11,6 @@
             <h1 class="gu teu text-slate-800 font-bold">Report ✨</h1>
         </div>
 
-        <!-- Right: Actions -->
-        <div class="sn am jo az jp ft">
-            <!-- Create contact button -->
-            <button class="btn ho xi ye" wire:click="showCreateModal">
-                <svg class="oo sl du bf ub" viewBox="0 0 16 16">
-                    <path d="M15 7H9V1c0-.6-.4-1-1-1S7 .4 7 1v6H1c-.6 0-1 .4-1 1s.4 1 1 1h6v6c0 .6.4 1 1 1s1-.4 1-1V9h6c.6 0 1-.4 1-1s-.4-1-1-1z"></path>
-                </svg>
-                <span class="hidden trm nq">Fill Statistic</span>
-            </button>
-        </div>
-
     </div>
 
     <!-- More actions -->
@@ -33,7 +22,6 @@
         </div>
 
     </div>
-
 
     <!-- Table -->
     <div class="bg-white bd w-full rounded-sm border border-slate-200 rc">
@@ -102,4 +90,97 @@
 
 
     </div>
+
+    <div class="bg-white bd rounded-sm rc">
+        <div class="flex ak zc qv">
+
+            <!-- Panel -->
+            <div class="uw">
+
+                <!-- Panel body -->
+                <div class="d_ fd">
+
+                    <!-- Business Profile -->
+                    <section>
+                        <h3 class="gf gb text-slate-800 font-bold rt">Report</h3>
+                        <!-- <div class="text-sm">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit.</div> -->
+
+                        <div class="je jc fg jm jb rw">
+                            <div class="jr2 w-full" wire:ignore>
+                                <textarea class=" s ou" colspan="50" wire:model="report" name="report" id="report" style="height: 10rem;"></textarea>
+                            </div>
+                           
+                        </div>
+
+                    </section>
+
+                    <!-- Icon -->
+                    <section>
+                        <h3 class="gf gb text-slate-800 font-bold rt">Image</h3>
+                        <!-- <div class="text-sm">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit.</div> -->
+                        <div class="je jc fg jm jb rw">
+                            <div class="jr2 w-full" x-data="{ isUploading: false, progress: 5 }" x-on:livewire-upload-start="isUploading = true" x-on:livewire-upload-finish="isUploading = false; progress = 5" x-on:livewire-upload-error="isUploading = false" x-on:livewire-upload-progress="progress = $event.detail.progress">
+
+                                <input wire:model="icon" type="file" class="
+                                            file:bg-gradient-to-b file:from-blue-500 file:to-blue-600 
+                                            file:px-6 file:py-3 file:m-5
+                                            file:border-none
+                                            file:rounded
+                                            file:text-white
+                                            file:cursor-pointer
+                                            file:shadow-lg file:shadow-blue-600/50" />
+                                <div x-show.transition="isUploading" class="mt-3 w-full bg-slate-100 mb-6">
+                                    <div class="ho ye2 rounded text-xs font-medium py-[1px] text-center" x-bind:style="`width: ${progress}%`">%</div>
+                                </div>
+                                <div class="flex items-center">
+                                    @if ($oldImage)
+                                    <div class="mr-4">
+                                        <img class="ue sg rounded" src="{{ asset('storage/'.$oldImage) }}" width="32" height="32" alt="logo" width="80" height="80" alt="User upload">
+                                    </div>
+                                    @endif
+
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+                <!-- Panel footer -->
+                <footer>
+                    <div class="flex ak vm vg co border-slate-200">
+                        <div class="flex ls">
+                            <button class="btn ho xi ye ml-3" wire:click="updateReport">Submit</button>
+                        </div>
+                    </div>
+                </footer>
+
+            </div>
+
+        </div>
     </div>
+
+</div>
+
+@push('styles')
+<style>
+.ck-editor__editable {
+    min-height: 10rem;
+}
+</style>
+@endpush
+
+@push('js')
+<script src="https://cdn.ckeditor.com/ckeditor5/27.1.0/classic/ckeditor.js"></script>
+<script type="text/javascript">
+    ClassicEditor
+            .create(document.querySelector('#report'))
+            .then(editor => {
+                editor.model.document.on('change:data', () => {
+                @this.set('report', editor.getData());
+                })
+            })
+            .catch(error => {
+                console.error(error);
+            });
+</script>
+@endpush
