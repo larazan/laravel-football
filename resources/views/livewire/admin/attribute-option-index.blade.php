@@ -225,7 +225,8 @@
                             <div class="">
                                 <div class="">
                                     <div class="flex flex-col space-y-3">
-                                    <div class="col-start-1 sm:col-span-3">
+                                        <input wire:model="attributeId" type="text" disabled="disabled" class=" kb kw kk ky mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                                        <div class="col-start-1 sm:col-span-3">
                                             <label for="title" class="block text-sm font-medium text-gray-700">
                                                 Attribute
                                             </label>
@@ -250,7 +251,7 @@
             <div class="border-slate-200">
                 <div class="flex flex-wrap justify-end fc">
                     <x-button wire:click="closeAttributeModal" class="border-slate-200 hover:text-white hover--border-slate-300 g_">Cancel</x-button>
-                    @if ($attributeId)
+                    @if ($attributeOptionId)
                     <x-button wire:click="updateAttribute" class=" ho xi ye">Update</x-button>
                     @else
                     <x-button wire:click="createAttribute" class=" ho xi ye2">Create</x-button>

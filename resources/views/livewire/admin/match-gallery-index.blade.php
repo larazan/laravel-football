@@ -39,7 +39,7 @@
     <!-- Table -->
     <div class="bg-white bd w-full rounded-sm border border-slate-200 rc">
         <header class="vc vu">
-            <h2 class="gh text-slate-800">Lineup <span class="gq gp">{{ $matchId }}</span></h2>
+            <h2 class="gh text-slate-800">Gallery <span class="gq gp">{{ $matchId }}</span></h2>
         </header>
         <div class="flex flex-col py-4 px-6 space-y-1 mx-auto w-full">
             @foreach ($matchs as $match)

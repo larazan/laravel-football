@@ -16,7 +16,7 @@
 
             <!-- Sidebar -->
             
-                <x-settings.settings-navigation />
+                {{--  <x-settings.settings-navigation /> --}}
                 
             <!-- Panel -->
             <div class="uw">
@@ -68,16 +68,9 @@
                         </div>
 
                         <div class="je jc fg jm jb rw">
-                            <div class="jr2 w-full">
+                            <div class="jr2 w-1/2">
                                 <label class="block text-sm gp rt" for="name">Pinned Club</label>
-                                {{-- 
-                                <select wire:model="pinnedClub" class=" rounded-r border-t border-r border-b block appearance-none w-full bg-white border-gray-300 text-gray-700 py-2 px-4 pr-8 leading-tight focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none">
-                                    <option value="">Select Option</option>
-                                    @foreach($clubs as $club)
-                                    <option value="{{ $club->id }}">{{ $club->name }}</option>
-                                    @endforeach
-                                </select>
-                                --}}
+                                
                                 <!-- Dropdown -->
                                 <div class="relative" x-data="{ open: false, selected: {{ $selectedClub }} }">
                                     <button class="btn fe uo bg-white border-slate-200 hover--border-slate-300 text-slate-500 hover--text-slate-600" aria-label="Select date range" aria-haspopup="true" @click.prevent="open = !open" :aria-expanded="open" aria-expanded="false">
@@ -122,8 +115,56 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="jr2 w-1/2">
+                                <label class="block text-sm gp rt" for="name">Country</label>
+                                <div x-init="select2Alpine">
+                                    <select wire:model="country" x-ref="select" class="form-control" id="select2-dropdown">
+                                        <option value="">Select Option</option>
+                                        @foreach($countries as $country)
+                                        <option value="{{ $country->id }}">{{ $country->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
                         </div>
 
+                        <div class="je jc fg jm jb rw">
+                            <div class="jr2 w-1/3">
+                                <label class="block text-sm gp rt" for="name">Time Zone</label>
+                                <div>
+                                    <select wire:model="timezone" class="form-control">
+                                        <option value="">Select Option</option>
+                                        @foreach($timezone as $tz)
+                                        <option value="{{ $tz->value }}">{{ $tz->text }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="jr2 w-1/3">
+                                <label class="block text-sm gp rt" for="name">Time Format</label>
+                                <div>
+                                    <select wire:model="timeFormat" class="form-control">
+                                        <option value="12">
+                                            12 hour
+                                        </option>
+                                        <option value="24">
+                                            24 hour
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="jr2 w-1/3">
+                                <label class="block text-sm gp rt" for="name">Currency Symbol</label>
+                                <div>
+                                    <select wire:model="currency" class="form-control">
+                                        <option value="">Select Option</option>
+                                        @foreach($currency_code as $currency)
+                                        <option value="{{ $currency->id }}">{{ $currency->currency_code }} ({{ $currency->currency_symbol }})</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
 
                         <div class="je jc fg jm jb rw">
                             <div class="jr ">

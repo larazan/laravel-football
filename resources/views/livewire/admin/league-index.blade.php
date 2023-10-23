@@ -143,10 +143,13 @@
                         <!-- Row -->
                         
                         @if ($teams->count() > 0)
+                        @php
+                        $i = 1
+                        @endphp
                         @foreach ($teams as $team)
                         <tr>
                             <td class="vi wy w_ vo lm">
-                                <div class="gp text-slate-800">1</div>
+                                <div class="gp text-slate-800">{{ $i++ }}</div>
                             </td>
                             <td class="vi wy w_ vo lm">
                                 <div class="flex flex-row items-center space-x-2">

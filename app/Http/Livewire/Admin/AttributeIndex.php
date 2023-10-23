@@ -74,16 +74,16 @@ class AttributeIndex extends Component
     {
         // dd($this->publishedAt);
         $this->validate();
-  
+//   dd($this->required);
         Attribute::create([
             'code' => $this->code,
             'name' => $this->name,
             'type' => $this->type,
             'validation' => $this->validation,
-            'is_required' => $this->required,
-            'is_unique' => $this->unique,
-            'is_filterable' => $this->filterable,
-            'is_configurable' => $this->configurable,
+            'is_required' => $this->required == null ? false : true,
+            'is_unique' => $this->unique == null ? false : true,
+            'is_filterable' => $this->filterable == null ? false : true,
+            'is_configurable' => $this->configurable == null ? false : true,
         ]);
 
         $this->reset();

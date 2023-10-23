@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Admin\ArticleController;
+use App\Http\Controllers\Admin\AttributeController;
 use App\Http\Controllers\Admin\EventController;
 use App\Http\Controllers\Admin\MediaController;
 use App\Http\Controllers\Admin\UserController;
@@ -102,7 +103,14 @@ Route::middleware(['auth:sanctum', 'verified', 'role:admin|author|sales'])->pref
     Route::get('articles', ArticleIndex::class)->name('articles.index');
     //
     Route::get('attributes', AttributeIndex::class)->name('attributes.index');
-    Route::get('attributes/{attributeID}/options', AttributeOptionIndex::class)->name('attribute-options.index');
+    // Route::get('attributes/{attributeId}/options', AttributeOptionIndex::class)->name('attribute-options.index');
+    Route::get('attributes/{attributeID}/options', [AttributeController::class, 'options'])->name('attributes.options');
+    Route::get('attributes/{attributeID}/add-option', [AttributeController::class, 'add_option'])->name('attributes.add_option');
+    Route::post('attributes/options/{attributeID}', [AttributeController::class, 'store_option'])->name('attributes.store_option');
+    Route::delete('attributes/options/{optionID}', [AttributeController::class, 'remove_option'])->name('attributes.remove_option');
+    Route::get('attributes/options/{optionID}/edit', [AttributeController::class, 'edit_option'])->name('attributes.edit_option');
+    Route::put('attributes/options/{optionID}', [AttributeController::class, 'update_option'])->name('attributes.update_option');
+    
     Route::get('awards', AwardIndex::class)->name('awards.index');
     Route::get('brands', BrandIndex::class)->name('brands.index');
     Route::get('category-article', CategoryArticleIndex::class)->name('category-article.index');

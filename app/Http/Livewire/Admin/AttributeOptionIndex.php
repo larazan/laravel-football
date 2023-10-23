@@ -5,7 +5,7 @@ namespace App\Http\Livewire\Admin;
 use App\Models\Attribute;
 use App\Models\AttributeOption;
 use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 use Livewire\WithPagination;
 use Livewire\Component;
 
@@ -14,7 +14,8 @@ class AttributeOptionIndex extends Component
     use WithPagination;
 
     public $showAttributeOptionModal = false;
-
+    public $url;
+    public $paramID;
     public $name;
     public $attributeOptionId;
     public $attributeId;
@@ -37,12 +38,20 @@ class AttributeOptionIndex extends Component
         'name' => 'required|min:3',
     ];
 
-    public function mount($attributeID)
+    public function mount($attributeId)
     {
-        $this->attributeId = $attributeID;
+        $this->attributeId = $attributeId;
+        $this->url = url()->current();
+        $this->paramID = Route::current()->parameter('attributeId');
         $this->attributeName = Attribute::where('id', $this->attributeId)->first()->name;
     }
-    
+   
+    public function updatedAttributeId()
+    {
+        $this->paramID = Route::current()->parameter('attributeId');
+        $this->attributeId = Route::current()->parameter('attributeId');
+        $this->attributeName = Attribute::where('id', $this->attributeId)->first()->name;
+    }
 
     public function showCreateModal()
     {

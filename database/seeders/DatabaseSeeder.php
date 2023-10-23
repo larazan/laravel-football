@@ -7,6 +7,7 @@ namespace Database\Seeders;
 use App\Models\Competition;
 use App\Models\Position;
 use App\Models\TeamLeague;
+use App\Models\Timezone;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -38,7 +39,8 @@ class DatabaseSeeder extends Seeder
             // FootbalerSeeder::class,
             // CategorySeeder::class,
             // BrandSeeder::class,
-            EventSeeder::class,
+            // EventSeeder::class,
+            TimezoneSeeder::class,
     
         ]);
         // \App\Models\User::factory(10)->create();

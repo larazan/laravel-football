@@ -4,6 +4,9 @@ namespace App\Http\Livewire\Admin;
 
 use App\Models\Setting;
 use App\Models\Club;
+use App\Models\Country;
+use App\Models\Currency;
+use App\Models\Timezone;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
@@ -174,6 +177,9 @@ class SettingIndex extends Component
             'settings' => Setting::where('id', $this->settingId)->get(),
             'teams' => Club::OrderBy('id', 'asc')->get()->toArray(),
             'clubs' => Club::orderBy('id', 'asc')->get(),
+            'countries' => Country::orderBy('name', 'asc')->get(),
+            'currency_code' => Currency::orderBy('country', 'asc')->get(),
+            'timezone' => Timezone::orderBy('id', 'asc')->get(),
         ]);
     }
 
