@@ -28,6 +28,7 @@
                     <!-- Business Profile -->
                     <section>
                         <h3 class="gf gb text-slate-800 font-bold rt">General</h3>
+                        <livewire:maintenance-mode />
                         <!-- <div class="text-sm">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit.</div> -->
                         <div class="je jc fg jm jb rw">
                             <div class="jr2 w-full">
@@ -134,26 +135,29 @@
                                 <div>
                                     <select wire:model="timezone" class="form-control">
                                         <option value="">Select Option</option>
-                                        @foreach($timezone as $tz)
+                                        @foreach($timezones as $tz)
                                         <option value="{{ $tz->value }}">{{ $tz->text }}</option>
                                         @endforeach
                                     </select>
                                 </div>
                             </div>
-                            <div class="jr2 w-1/3">
+                            
+                        </div>
+
+                        <div class="je jc fg jm jb rw">
+                        <div class="jr2 w-1/2">
                                 <label class="block text-sm gp rt" for="name">Time Format</label>
                                 <div>
                                     <select wire:model="timeFormat" class="form-control">
-                                        <option value="12">
-                                            12 hour
+                                        @foreach($timeFormatOption as $key => $value)
+                                        <option value="{{ $key }}">
+                                            {{ $value }}
                                         </option>
-                                        <option value="24">
-                                            24 hour
-                                        </option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
-                            <div class="jr2 w-1/3">
+                            <div class="jr2 w-1/2">
                                 <label class="block text-sm gp rt" for="name">Currency Symbol</label>
                                 <div>
                                     <select wire:model="currency" class="form-control">

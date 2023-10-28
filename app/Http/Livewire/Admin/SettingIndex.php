@@ -39,6 +39,15 @@ class SettingIndex extends Component
     public $icon;
     public $settingId = 1;
 
+    public $country;
+    public $timezone;
+    public $timeFormat;
+    public $currency;
+    public $timeFormatOption = [
+        '12' => '12 hour',
+        '24' => '24 hour',
+    ];
+
     protected $rules = [
         'title' => 'required|min:3',
         // 'file' => 'required|image|mimes:jpg,jpeg,png,svg,gif|max:2048',
@@ -61,6 +70,10 @@ class SettingIndex extends Component
             $this->twitter = $setting->twitter;
             $this->facebook = $setting->facebook;
             $this->instagram = $setting->instagram;
+            $this->country = $setting->country;
+            $this->timezone = $setting->timezone;
+            $this->timeFormat = $setting->time_format;
+            $this->currency = $setting->currency;
             $this->icon = $setting->icon;
             $this->oldImage = $setting->small;
             $this->selectedClub = $setting->pinned_club > 0 ? $setting->pinned_club : 0;
@@ -84,6 +97,10 @@ class SettingIndex extends Component
             $this->twitter = $setting->twitter;
             $this->facebook = $setting->facebook;
             $this->instagram = $setting->instagram;
+            $this->country = $setting->country;
+            $this->timezone = $setting->timezone;
+            $this->timeFormat = $setting->time_format;
+            $this->currency = $setting->currency;
             $this->icon = $setting->icon;
             $this->oldImage = $setting->small;
             $this->selectedClub = $setting->pinned_club;
@@ -158,6 +175,10 @@ class SettingIndex extends Component
             'twitter' => $this->twitter,
             'facebook' => $this->facebook,
             'instagram' => $this->instagram,
+            'country' => $this->country,
+            'timezone'  => $this->timezone,
+            'time_format'  => $this->timeFormat,
+            'currency'  => $this->currency,
             'pinned_club' => $this->selectedClub,
             'icon' => $filePath,
         ]);
@@ -179,7 +200,7 @@ class SettingIndex extends Component
             'clubs' => Club::orderBy('id', 'asc')->get(),
             'countries' => Country::orderBy('name', 'asc')->get(),
             'currency_code' => Currency::orderBy('country', 'asc')->get(),
-            'timezone' => Timezone::orderBy('id', 'asc')->get(),
+            'timezones' => Timezone::orderBy('id', 'asc')->get(),
         ]);
     }
 

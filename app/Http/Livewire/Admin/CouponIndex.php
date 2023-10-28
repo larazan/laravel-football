@@ -49,8 +49,15 @@ class CouponIndex extends Component
     public $deleteId = '';
 
     protected $rules = [
-        'name' => 'required|max:255',
+        'title' => 'required|max:255',
+        'code' => 'required|unique:coupons,code',
     ];
+
+    public function mount()
+    {
+        $this->startDate = today()->format('Y-m-d');
+        $this->expireDate = today()->format('Y-m-d');
+    }
 
     public function showCreateModal()
     {
@@ -101,7 +108,7 @@ class CouponIndex extends Component
 
     public function showEditModal($couponId)
     {
-        $this->reset(['name']);
+        $this->reset(['title']);
         $this->couponId = $couponId;
         $coupon = Coupon::find($couponId);
         $this->title = $coupon->title;

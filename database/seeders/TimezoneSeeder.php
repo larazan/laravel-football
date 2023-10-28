@@ -17,7 +17,11 @@ class TimezoneSeeder extends Seeder
     public function run()
     {
         $data = [
-
+            [
+                'value' => 'UTC',
+                'text' => 'UTC',
+                'created_at' => Carbon::now(),
+            ],
             [
                 'value' => 'Etc/GMT+12',
                 'text' => '(GMT-12:00) International Date Line West',

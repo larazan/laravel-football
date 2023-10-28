@@ -20,7 +20,7 @@
 
                         <div class="je jc fg jm jb rw">
                         {!! Form::label('name', 'Name') !!}
-            {!! Form::text('name', null, ['class' => 'form-control']) !!}
+            {!! Form::text('name', null, ['class' => 'form-control ']) !!}
                            
                         </div>
 

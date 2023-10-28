@@ -33,8 +33,9 @@ class User extends Authenticatable
         'password', 
         'address1', 
         'address2', 
-        'province_id', 
-        'city_id', 
+        'country_id',
+        'state',
+        'city',
         'postcode', 
         'profile_photo_path',
     ];

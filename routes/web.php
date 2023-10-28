@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\ArticleController;
 use App\Http\Controllers\Admin\AttributeController;
 use App\Http\Controllers\Admin\EventController;
 use App\Http\Controllers\Admin\MediaController;
+use App\Http\Controllers\Admin\PaymentMethodController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\PlayerStatisticController;
 use App\Http\Controllers\Admin\ReportController;
@@ -33,6 +34,8 @@ use App\Http\Livewire\Admin\CompetitionIndex;
 use App\Http\Livewire\Admin\ContactIndex;
 use App\Http\Livewire\Admin\CouponIndex;
 use App\Http\Livewire\Admin\CurrencyIndex;
+use App\Http\Livewire\Admin\CustomerDetail;
+use App\Http\Livewire\Admin\CustomerIndex;
 use App\Http\Livewire\Dashboard;
 use App\Http\Livewire\Admin\FaqIndex;
 use App\Http\Livewire\Admin\LeagueIndex;
@@ -43,6 +46,7 @@ use App\Http\Livewire\Admin\MatchLineup;
 use App\Http\Livewire\Admin\MatchReportIndex;
 use App\Http\Livewire\Admin\MatchStatisticIndex;
 use App\Http\Livewire\Admin\MediaIndex;
+use App\Http\Livewire\Admin\OrderIndex;
 use App\Http\Livewire\Admin\PartnerIndex;
 use App\Http\Livewire\Admin\PlayerIndex;
 use App\Http\Livewire\Admin\PermissionIndex;
@@ -120,6 +124,8 @@ Route::middleware(['auth:sanctum', 'verified', 'role:admin|author|sales'])->pref
     Route::get('contacts', ContactIndex::class)->name('contacts.index');
     Route::get('coupons', CouponIndex::class)->name('coupons.index');
     Route::get('currencies', CurrencyIndex::class)->name('currencies.index');
+    Route::get('customers', CustomerIndex::class)->name('customers.index');
+    Route::get('customers/{customerId}', CustomerDetail::class)->name('customer-view');
     Route::get('faqs', FaqIndex::class)->name('faqs.index');
     Route::get('leagues', LeagueIndex::class)->name('leagues.index');
     Route::get('team-leagues', TeamLeagueIndex::class)->name('team-leagues.index');
@@ -138,6 +144,8 @@ Route::middleware(['auth:sanctum', 'verified', 'role:admin|author|sales'])->pref
     Route::get('medias', MediaIndex::class)->name('medias.index');
     //
 
+    Route::get('payment-method', [PaymentMethodController::class, 'payment_index'])->name('payment-method');
+    Route::post('payment-method-update/{payment_method}', [PaymentMethodController::class, 'payment_update'])->name('payment-method-update');
     Route::get('partners', PartnerIndex::class)->name('partners.index');
     Route::get('players', PlayerIndex::class)->name('players.index');
     Route::get('womens', WomenFootBall::class)->name('womens.index');

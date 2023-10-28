@@ -21,9 +21,11 @@ return new class extends Migration
 			// $table->boolean('isAdmin')->nullable()->default(0)->after('password');
 			$table->string('address1')->nullable()->after('phone');
 			$table->string('address2')->nullable()->after('address1');
-			$table->integer('province_id')->nullable()->after('address2');
-			$table->integer('city_id')->nullable()->after('province_id');
-			$table->integer('postcode')->nullable()->after('city_id');
+            $table->integer('country_id')->nullable()->after('address2');
+			$table->string('state')->nullable()->after('country_id');
+			$table->string('city')->nullable()->after('country');
+			$table->integer('postcode')->nullable()->after('city');
+			$table->integer('order_count')->default(0)->after('postcode');
         });
     }
 
