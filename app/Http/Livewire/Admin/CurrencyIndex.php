@@ -26,7 +26,7 @@ class CurrencyIndex extends Component
 
     public $search = '';
     public $sort = 'asc';
-    public $perPage = 10;
+    public $perPage = 30;
 
     public $showConfirmModal = false;
     public $deleteId = '';

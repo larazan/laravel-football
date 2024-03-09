@@ -9,12 +9,15 @@
 
             <span> Maintenance Mode</span>
         </div>
-        <div class="relative inline-block w-8 mr-2 align-middle select-none transition duration-200 ease-in">
-            <input type="checkbox" name="toggle" id="toggle" class="toggle-checkbox top-0 absolute block w-10 h-10 rounded-full bg-white border-4 appearance-none cursor-pointer" />
-            <label for="toggle" class="toggle-label block overflow-hidden h-5 rounded-full bg-gray-300 cursor-pointer"></label>
+        <div class="c987k relative inline-block w-8 mr-2 align-middle select-none transition duration-200 ease-in">
+            <input type="checkbox" name="toggle" id="toggle" wire:model="checked" class="cbl3h toggle-checkbox top-0 absolute block w-10 h-10 rounded-full bg-white border-4 appearance-none cursor-pointer" />
+            <label for="toggle" class="ce4zx c717g toggle-label block overflow-hidden h-5 rounded-full bg-gray-300 cursor-pointer">
+                <span class="bg-white cl0q9" aria-hidden="true"></span>
+                <span class="cbl3h">Switch label</span>
+            </label>
         </div>
-        
-        <div class="flex items-center" x-data="{ checked: true }">
+{{-- 
+        <div class="flex items-center" x-data="{ checked: false }">
             <div class="c987k">
                 <input type="checkbox" id="switch-1" class="cbl3h" x-model="checked">
                 <label class="ce4zx c717g" for="switch-1">
@@ -24,8 +27,9 @@
             </div>
             <div class="text-sm ciz4v czgoy clmtf c9o7o" x-text="checked ? 'On' : 'Off'">Off</div>
         </div>
+        --}}
     </div>
-    
+
     <!-- modal delete confirmation -->
     <x-dialog-modal wire:model="showConfirmModal" class="">
         <x-slot name="title" class="border-b bg-slate-200">
@@ -109,60 +113,87 @@
     }
 
     .c987k {
-    position: relative;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    user-select: none;
-    width: 44px;
-}
-.cbl3h {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0,0,0,0);
-    white-space: nowrap;
-    border-width: 0;
-}
-.c987k label {
-    display: block;
-    height: 1.5rem;
-    cursor: pointer;
-    overflow: hidden;
-    border-radius: 9999px;
-}
-.c987k label>span:first-child {
-    position: absolute;
-    display: block;
-    border-radius: 9999px;
-    width: 20px;
-    height: 20px;
-    top: 2px;
-    left: 2px;
-    right: 50%;
-    transition: all .15s ease-out;
-}
-.c717g {
-    --tw-bg-opacity: 1;
-    background-color: rgb(148 163 184/var(--tw-bg-opacity));
-}
-.cl0q9 {
-    --tw-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-    --tw-shadow-colored: 0 1px 2px 0 var(--tw-shadow-color);
-    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),var(--tw-ring-shadow, 0 0 #0000),var(--tw-shadow);
-}
-.cbl3h {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0,0,0,0);
-    white-space: nowrap;
-    border-width: 0;
-}
+        position: relative;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+        width: 44px;
+    }
+
+    .c987k input[type="checkbox"]:checked+label {
+        --tw-bg-opacity: 1;
+        background-color: rgb(99 102 241/var(--tw-bg-opacity));
+    }
+
+    .c987k input[type="checkbox"]:checked+label>span:first-child {
+        left: 22px;
+    }
+
+    .c987k label>span:first-child {
+        position: absolute;
+        display: block;
+        border-radius: 9999px;
+        width: 20px;
+        height: 20px;
+        top: 2px;
+        left: 2px;
+        right: 50%;
+        transition: all .15s ease-out;
+    }
+
+    .cbl3h {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border-width: 0;
+    }
+
+    .c987k label {
+        display: block;
+        height: 1.5rem;
+        cursor: pointer;
+        overflow: hidden;
+        border-radius: 9999px;
+    }
+
+    .c987k label>span:first-child {
+        position: absolute;
+        display: block;
+        border-radius: 9999px;
+        width: 20px;
+        height: 20px;
+        top: 2px;
+        left: 2px;
+        right: 50%;
+        transition: all .15s ease-out;
+    }
+
+    .c717g {
+        --tw-bg-opacity: 1;
+        background-color: rgb(148 163 184/var(--tw-bg-opacity));
+    }
+
+    .cl0q9 {
+        --tw-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+        --tw-shadow-colored: 0 1px 2px 0 var(--tw-shadow-color);
+        box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+    }
+
+    .cbl3h {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border-width: 0;
+    }
 </style>
 @endpush

@@ -17,6 +17,7 @@ class FaqFactory extends Factory
     public function definition()
     {
         return [
+            'category_faq_id' => random_int(1,5),
             'question' => $this->faker->sentence(),
             'answer' => $this->faker->paragraphs(2, true),
             'status' => 'active',

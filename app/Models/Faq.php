@@ -21,8 +21,14 @@ class Faq extends Model
     }
 
     protected $fillable = [
+        'category_faq_id',
         'question',
         'answer',
         'status',
     ];
+
+    public function category()
+    {
+        return $this->hasOne(CategoryFaq::class, 'id', 'category_faq_id');
+    }
 }

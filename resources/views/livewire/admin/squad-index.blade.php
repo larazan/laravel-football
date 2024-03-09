@@ -90,6 +90,9 @@
                                 </div>
                             </th>
                             <th class="vi wy w_ vo lm">
+                                <div class="gh gt">No</div>
+                            </th>
+                            <th class="vi wy w_ vo lm">
                                 <div class="gh gt">Image</div>
                             </th>
                             <th class="vi wy w_ vo lm">
@@ -103,6 +106,7 @@
                             <th class="vi wy w_ vo lm">
                                 <div class="gh gt">Nation</div>
                             </th>
+                           
                             <th class="vi wy w_ vo lm">
                                 <div class="gh gt">Age</div>
                             </th>
@@ -132,7 +136,9 @@
                                     </label>
                                 </div>
                             </td>
-                           
+                            <td class="vi wy w_ vo lm">
+                                <div class="gt ">{{ $player->shirt_number }}</div>
+                            </td>
                             <td class="vi wy w_ vo lm">
                                 <div class="od sy ub mr-2 _b">
                                     @if ($player->small)
@@ -159,6 +165,7 @@
                                 @endif
                                 </div>
                             </td>
+                           
                             <td class="vi wy w_ vo lm">
                                 @if ($player->birth_date > 0)
                                 <div class="gt">{{ \Carbon\Carbon::parse($player->birth_date)->age }} years</div>

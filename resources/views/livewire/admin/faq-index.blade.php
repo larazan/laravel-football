@@ -97,6 +97,9 @@
                                 </div>
                             </th>
                             <th class="vi wy w_ vo lm">
+                                <div class="gh gt">Category</div>
+                            </th>
+                            <th class="vi wy w_ vo lm">
                                 <div class="gh gt">Question</div>
                             </th>
                             <th class="vi wy w_ vo lm">
@@ -129,6 +132,9 @@
                                         <input class="table-item i" type="checkbox" @click="uncheckParent" wire:model="mySelected" value="{{ $faq->id }}">
                                     </label>
                                 </div>
+                            </td>
+                            <td class="vi wy w_ vo lm">
+                                <div class="gp ">{{ $faq->category->name }}</div>
                             </td>
                             <td class="vi wy w_ vo lm">
                                 <div class="gp text-slate-800">{{ substr($faq->question, 0, 80) }}...</div>
@@ -205,6 +211,18 @@
                             <div class="">
                                 <div class="">
                                     <div class="flex flex-col space-y-3">
+                                        <div class="col-span-6 sm:col-span-3">
+                                            <label for="stadion" class="block text-sm font-medium text-gray-700">Category</label>
+                                                <select wire:model="category" class="h-full2 rounded-r border-t border-r border-b block appearance-none w-full bg-white border-gray-300 text-gray-700 py-2 px-4 pr-8 leading-tight focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none">
+                                                    <option value="">Select category</option>
+                                                    @foreach($categories as $cat)
+                                                    <option value="{{ $cat->id }}">{{ $cat->name }}</option>
+                                                    @endforeach
+                                                </select>
+                                                @error('category')
+                                                <div class="go re yl">{{ $message }}</div>
+                                                @enderror
+                                        </div>
                                         <div class="col-start-1 sm:col-span-3">
                                             <label for="title" class="block text-sm font-medium text-gray-700">
                                                 Faq Question

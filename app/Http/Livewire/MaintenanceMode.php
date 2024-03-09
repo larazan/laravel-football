@@ -9,7 +9,18 @@ use Livewire\Component;
 class MaintenanceMode extends Component
 {
     public $config;
+    public $checked;
     public $showConfirmModal = false;
+
+    public function mount()
+    {
+        $this->checked = false;
+    }
+
+    public function updatingChecked()
+    {
+        $this->showConfirmModal = true;
+    }
 
     public function showConfirmModal()
     {

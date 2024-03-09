@@ -23,7 +23,7 @@ return new class extends Migration
 			$table->string('address2')->nullable()->after('address1');
             $table->integer('country_id')->nullable()->after('address2');
 			$table->string('state')->nullable()->after('country_id');
-			$table->string('city')->nullable()->after('country');
+			$table->string('city')->nullable()->after('state');
 			$table->integer('postcode')->nullable()->after('city');
 			$table->integer('order_count')->default(0)->after('postcode');
         });
@@ -37,14 +37,16 @@ return new class extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->renameColumn('first_name', 'name');
+            // $table->renameColumn('first_name', 'name');
+			$table->dropColumn('first_name');
 			$table->dropColumn('last_name');
 			$table->dropColumn('phone');
-			$table->dropColumn('isAdmin');
+			// $table->dropColumn('isAdmin');
 			$table->dropColumn('address1');
 			$table->dropColumn('address2');
-			$table->dropColumn('province_id');
-			$table->dropColumn('city_id');
+			$table->dropColumn('country_id');
+			$table->dropColumn('state');
+			$table->dropColumn('city');
 			$table->dropColumn('postcode');
         });
     }

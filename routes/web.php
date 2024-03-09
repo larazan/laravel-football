@@ -29,6 +29,7 @@ use App\Http\Livewire\Admin\AwardIndex;
 use App\Http\Livewire\Admin\BrandIndex;
 use App\Http\Livewire\Admin\CategoryIndex;
 use App\Http\Livewire\Admin\CategoryArticleIndex;
+use App\Http\Livewire\Admin\CategoryFaqIndex;
 use App\Http\Livewire\Admin\ClubIndex;
 use App\Http\Livewire\Admin\CompetitionIndex;
 use App\Http\Livewire\Admin\ContactIndex;
@@ -118,6 +119,7 @@ Route::middleware(['auth:sanctum', 'verified', 'role:admin|author|sales'])->pref
     Route::get('awards', AwardIndex::class)->name('awards.index');
     Route::get('brands', BrandIndex::class)->name('brands.index');
     Route::get('category-article', CategoryArticleIndex::class)->name('category-article.index');
+    Route::get('category-faq', CategoryFaqIndex::class)->name('category-faq.index');
     Route::get('categories', CategoryIndex::class)->name('categories.index');
     Route::get('clubs', ClubIndex::class)->name('clubs.index');
     Route::get('competitions', CompetitionIndex::class)->name('competitions.index');

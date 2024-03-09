@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Admin;
 
 use App\Models\Faq;
+use App\Models\CategoryFaq;
 use Illuminate\Support\Str;
 use Livewire\WithPagination;
 use Livewire\Component;
@@ -17,6 +18,8 @@ class FaqIndex extends Component
     public $question;
     public $answer;
     public $faqId;
+    public $category;
+    public $categoryId;
     public $faqStatus = 'inactive';
     public $statuses = [
         'active',
@@ -118,6 +121,7 @@ class FaqIndex extends Component
         $this->validate();
 
         Faq::create([
+            'category_faq_id' => $this->category,
             'question' => $this->question,
             'answer' => $this->answer,
             'status' => $this->faqStatus,
@@ -131,6 +135,7 @@ class FaqIndex extends Component
         $this->reset(['question']);
         $this->faqId = $faqId;
         $faq = Faq::find($faqId);
+        $this->category = $faq->category_faq_id;
         $this->question = $faq->question;
         $this->answer = $faq->answer;
         $this->faqStatus = $faq->status;
@@ -143,6 +148,7 @@ class FaqIndex extends Component
 
         $faq = Faq::findOrFail($this->faqId);
         $faq->update([
+            'category_faq_id' => $this->category,
             'question' => $this->question,
             'answer' => $this->answer,
             'status' => $this->faqStatus,
@@ -177,7 +183,8 @@ class FaqIndex extends Component
         $faqs = Faq::OrderBy('created_at', $this->sort)->paginate($this->perPage);
         $this->firstId = count($faqs) > 0 ? $faqs[0]->id : 0;
         return view('livewire.admin.faq-index', [
-            'faqs' => $faqs
+            'faqs' => $faqs,
+            'categories' => CategoryFaq::OrderBy('name', 'asc')->get(),
         ]);
     }
 }
