@@ -71,7 +71,7 @@ class PlayerIndex extends Component
 
     public $search = '';
     public $sort = 'asc';
-    public $perPage = 10;
+    public $perPage = 40;
 
     public $showPlayerDetailModal = false;
     public $showConfirmModal = false;

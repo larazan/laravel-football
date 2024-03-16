@@ -17,7 +17,6 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('link');
-            $table->string('icon')->nullable();
             $table->string('status');
             $table->timestamps();
         });

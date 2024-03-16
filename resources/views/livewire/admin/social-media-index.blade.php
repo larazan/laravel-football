@@ -128,11 +128,6 @@
                             <th class="vi wy w_ vo lm">
                                 <div class="gh gt">Title</div>
                             </th>
-                           
-                            <th class="vi wy w_ vo lm">
-                                <div class="gh gt">Icon</div>
-                            </th>
-
                             <th class="vi wy w_ vo lm">
                                 <div class="gh gt">Link</div>
                             </th>
@@ -164,13 +159,6 @@
                             </td>
                             <td class="vi wy w_ vo lm">
                                 <div class="gp text-slate-800">{{ $socmed->title }}</div>
-                            </td>
-                            <td class="vi wy w_ vo lm">
-                                <div class="gp bg-gray-700">
-                                    @if ($socmed->original)
-                                    <img src="{{ asset($socmed->original) }}" class="object-scale-down h-48 w-96 " alt="{{ $socmed->title }}">
-                                    @endif
-                                </div>
                             </td>
 
                             <td class="vi wy w_ vo lm">
@@ -258,19 +246,6 @@
                                             <input wire:model="link" type="text" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                                         </div>
                                        
-                                        <div class="col-span-6 sm:col-span-3">
-                                            <label for="photo" class="block text-sm font-medium text-gray-700">Icon
-                                            </label>
-                                            <input wire:model="file" type="file" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
-                                            @if ($oldImage)
-                                            Photo Preview:
-                                            <img src="{{ asset('storage/'.$oldImage) }}">
-                                            @endif
-                                            @if ($file)
-                                            Photo Preview:
-                                            <img src="{{ $file->temporaryUrl() }}">
-                                            @endif
-                                        </div>
                                         <div class="col-span-6 sm:col-span-3">
                                             <label for="first-name" class="block text-sm font-medium text-gray-700">Status</label>
                                             <select wire:model="socmedStatus" class="h-full rounded-r border-t border-r border-b block appearance-none w-full bg-white border-gray-300 text-gray-700 py-2 px-4 pr-8 leading-tight focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none">

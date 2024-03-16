@@ -137,7 +137,9 @@
                                 </div>
                             </td>
                             <td class="vi wy w_ vo lm">
-                                <div class="gt ">{{ $player->shirt_number }}</div>
+                                <div class="gn2 ">
+                                   <div class="flex items-center justify-center gn zp px-2 py-1.5 rounded-full bg-gray-700 text-white text-xs"> {{ $player->shirt_number }} </div>
+                                </div>
                             </td>
                             <td class="vi wy w_ vo lm">
                                 <div class="od sy ub mr-2 _b">

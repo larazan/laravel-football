@@ -152,6 +152,7 @@ Route::middleware(['auth:sanctum', 'verified', 'role:admin|author|sales'])->pref
     Route::get('players', PlayerIndex::class)->name('players.index');
     Route::get('womens', WomenFootBall::class)->name('womens.index');
     Route::get('unders', JuniorFootBall::class)->name('unders.index');
+    Route::get('orders', OrderIndex::class)->name('orders.index');
     Route::get('permissions', PermissionIndex::class)->name('permissions.index');
     Route::get('positions', PositionIndex::class)->name('positions.index');
     Route::get('products', ProductIndex::class)->name('products.index');

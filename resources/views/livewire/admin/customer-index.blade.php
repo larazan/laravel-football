@@ -121,6 +121,7 @@
                             <th class="vi wy w_ vo lm">
                                 <div class="gh gt">Name</div>
                             </th>
+
                             <th class="vi wy w_ vo lm">
                                 <div class="gh gt">Email</div>
                             </th>
@@ -130,7 +131,9 @@
                             <th class="vi wy w_ vo lm">
                                 <div class="gh gt">Total Order</div>
                             </th>
-
+                            <th class="vi wy w_ vo lm">
+                                <div class="gh gt">Total Amount</div>
+                            </th>
                             <th class="vi wy w_ vo lm">
                                 <div class="gh gt">Actions</div>
                             </th>
@@ -151,8 +154,9 @@
                                     </label>
                                 </div>
                             </td>
-                            <td class="vi wy w_ vo lm">
-                                <div class="gp text-slate-800">{{ $user->first_name }} {{ $user->last_name }}</div>
+                            <td class="vi wy w_ vo lm flex items-center space-x-1">
+                                <img class="w-8 h-8 rounded-full" src="{{ Avatar::create($user->first_name.' '.$user->last_name)->toBase64() }}" width="32" height="32" alt="{{ $user->first_name }}" />
+                                <div class="gh text-indigo-400 capitalize cursor-pointer" wire:click="routeToDetail({{ $user->id }})">{{ $user->first_name }} {{ $user->last_name }}</div>
                             </td>
                             <td class="vi wy w_ vo lm">
                                 <div class="gp text-slate-800">{{ $user->email }}</div>
@@ -160,10 +164,11 @@
                             <td class="vi wy w_ vo lm">
                                 <div class="gp text-slate-800">{{ $user->phone }}</div>
                             </td>
-
-
                             <td class="vi wy w_ vo lm">
-                                <div>{{ $user->created_at->format('d-m-Y') }}</div>
+                                <div class="text-center">{{ $user->order_count }}</div>
+                            </td>
+                            <td class="vi wy w_ vo lm">
+                                <div>$ 6,500</div>
                             </td>
 
                             <td class="vi wy w_ vo lm of">

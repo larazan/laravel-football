@@ -152,9 +152,28 @@ class CustomerIndex extends Component
 
     public function render()
     {
+        $key = [];
+        if ($this->search) {
+            $key = explode(' ', $this->search);
+        }
+
+        $customers = User::when(count($key) > 0, function ($query) use ($key) {
+            foreach ($key as $value) {
+                $query->orWhere('first_name', 'like', "%{$value}%")
+                    ->orWhere('last_name', 'like', "%{$value}%")
+                    ->orWhere('email', 'like', "%{$value}%")
+                    ->orWhere('phone', 'like', "%{$value}%");
+            };
+        })->orderBy('order_count', 'desc')->paginate($this->perPage);
+
         return view('livewire.admin.customer-index', [
-            'users' => User::search('first_name', $this->search)->orderBy('first_name', $this->sort)->paginate($this->perPage),
+            'users' => User::search('first_name', $this->search)->orderBy('first_name', $this->sort)->orderBy('order_count', 'desc')->where('order_count','>',0)->paginate($this->perPage),
             'countries' => Country::orderBy('name', 'asc')->get(),
         ]);
+    }
+
+    public function routeToDetail($userId)
+    {
+        return redirect('/admin/customers/'.$userId);
     }
 }

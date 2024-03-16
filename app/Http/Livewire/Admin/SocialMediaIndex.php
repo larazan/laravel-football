@@ -18,8 +18,6 @@ class SocialMediaIndex extends Component
     public $name;
     public $socmedId;
     public $link;
-    public $file;
-    public $oldImage;
     public $socmedStatus = 'inactive';
     public $statuses = [
         'active',
@@ -65,20 +63,11 @@ class SocialMediaIndex extends Component
     public function createSocialMedia()
     {
         $this->validate();
-  
-        $new = Str::slug($this->name) . '_' . time();
-        
+          
         $socmed = new SocialMedia;
         $socmed->name = $this->name;
         $socmed->link = $this->link;
         $socmed->status = $this->socmedStatus;
-
-        if (!empty($this->file)) {
-            // IMAGE
-            $filename = $new . '.' . $this->file->getClientOriginalName();
-            $filePath = $this->file->storeAs(SocialMedia::UPLOAD_DIR, $filename, 'public');
-            $socmed->icon = $filePath;
-        }
 
         $socmed->save();
 
@@ -93,7 +82,6 @@ class SocialMediaIndex extends Component
         $socmed = SocialMedia::find($socmedId);
         $this->name = $socmed->name;
         $this->link = $socmed->link;
-        $this->oldImage = $socmed->icon;
         $this->socmedStatus = $socmed->status;
 
         $this->showSocialMediaModal = true;
@@ -103,9 +91,7 @@ class SocialMediaIndex extends Component
     {
         $this->validate();
         $socmed = SocialMedia::findOrFail($this->socmedId);
-        
-        $new = Str::slug($this->name) . '_' . time();
-        
+                
         if ($this->socmedId) {
             if ($socmed) {
                
@@ -113,16 +99,6 @@ class SocialMediaIndex extends Component
                 $socmed->name = $this->name;
                 $socmed->link = $this->link;
                 $socmed->status = $this->socmedStatus;
-
-                if (!empty($this->file)) {
-                    // delete image
-			        $this->deleteImage($this->socmedId);
-
-                    // IMAGE
-                    $filename = $new . '.' . $this->file->getClientOriginalName();
-                    $filePath = $this->file->storeAs(SocialMedia::UPLOAD_DIR, $filename, 'public');
-                    $socmed->icon = $filePath;
-                }
 
                 $socmed->save();
                 
@@ -137,8 +113,6 @@ class SocialMediaIndex extends Component
     public function deleteSocialMedia($socmedId)
     {
         $socmed = SocialMedia::findOrFail($socmedId);
-        // delete image
-        $this->deleteImage($this->socmedId);
         
         $socmed->delete();
         $this->reset();
@@ -161,29 +135,6 @@ class SocialMediaIndex extends Component
     public function resetFilters()
     {
         $this->reset(['search', 'sort', 'perPage']);
-    }
-
-    public function deleteImage($id = null) {
-        $socmedImage = SocialMedia::where(['id' => $id])->first();
-		$path = 'storage/';
-
-        if (Storage::exists($path.$socmedImage->icon)) {
-            Storage::delete($path.$socmedImage->icon);
-		}
-		
-        // if (Storage::exists($path.$socmedImage->small)) {
-        //     Storage::delete($path.$socmedImage->small);
-        // }   
-
-		// if (Storage::exists($path.$socmedImage->medium)) {
-        //     Storage::delete($path.$socmedImage->medium);
-        // }
-
-        // if (Storage::exists($path.$socmedImage->extra_large)) {
-        //     Storage::delete($path.$socmedImage->extra_large);
-        // }
-             
-        return true;
     }
 
     public function render()

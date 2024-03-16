@@ -99,9 +99,9 @@
             </select>
 
             <select wire:model="perPage" id="filter" class="a">
-                <option value="5">5 Per Page</option>
-                <option value="10">10 Per Page</option>
-                <option value="15">15 Per Page</option>
+                <option value="40">40 Per Page</option>
+                <option value="50">50 Per Page</option>
+                <option value="60">60 Per Page</option>
             </select>
         </div>
 

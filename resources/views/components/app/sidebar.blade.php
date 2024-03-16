@@ -1,23 +1,13 @@
-
 <div>
 
     <!-- Sidebar -->
 
     <!-- Sidebar backdrop (mobile only) -->
-    <div 
-        class="hidden m w bg-slate-900 pu tb tex ted bz wr" 
-        :class="sidebarOpen ? 'ba opacity-100' : 'opacity-0 pointer-calendar-none'" 
-        aria-hidden="true" 
-        x-cloak>
+    <div class="hidden m w bg-slate-900 pu tb tex ted bz wr" :class="sidebarOpen ? 'ba opacity-100' : 'opacity-0 pointer-calendar-none'" aria-hidden="true" x-cloak>
     </div>
 
     <!-- Sidebar -->
-    <div 
-        id="sidebar" 
-        class="flex ak g tb x k tea tec teh tts ss lp tth l or tej ttz 2xl:!w-64 ub hs dw we wr wu" 
-        :class="sidebarOpen ? 'translate-x-0' : '-translate-x-64'" 
-        @click.outside="sidebarOpen = false" 
-        @keydown.escape.window="sidebarOpen = false" x-cloak="lg">
+    <div id="sidebar" class="flex ak g tb x k tea tec teh tts ss lp tth l or tej ttz 2xl:!w-64 ub hs dw we wr wu" :class="sidebarOpen ? 'translate-x-0' : '-translate-x-64'" @click.outside="sidebarOpen = false" @keydown.escape.window="sidebarOpen = false" x-cloak="lg">
 
 
         <!-- Sidebar header -->
@@ -52,11 +42,11 @@
 
         <!-- Links -->
         <div class="ff">
-            <!-- Pages group -->
+            <!-- Ecommerce group -->
             <div>
                 <h3 class="go gv text-slate-500 gh vz">
                     <span class="hidden tey ttq 2xl:hidden gn oi" aria-hidden="true">•••</span>
-                    <span class="tex ttj 2xl:block">Pages</span>
+                    <span class="tex ttj 2xl:block">Ecommerce</span>
                 </h3>
                 <ul class="nk">
                     <!-- Dashboard -->
@@ -72,9 +62,9 @@
                             </div>
                         </a>
                     </li>
-                    
-                     <!-- E-Commerce -->
-                     <li class="vn vr rounded-sm n_ ww @if(in_array(Request::segment(2), ['products', 'brands', 'categories', 'attributes', 'product-slide', 'product-review', 'coupons'])){{ 'bg-slate-900' }}@else{{ '' }}@endif" x-data="{ open: false }">
+
+                    <!-- E-Commerce -->
+                    <li class="vn vr rounded-sm n_ ww @if(in_array(Request::segment(2), ['products', 'brands', 'categories', 'attributes', 'product-slide', 'product-review', 'coupons'])){{ 'bg-slate-900' }}@else{{ '' }}@endif" x-data="{ open: false }">
                         <a class="block gj xc ld wt wi" href="#0" @click.prevent="sidebarExpanded ? open = !open : sidebarExpanded = true">
                             <div class="flex items-center fe">
                                 <div class="flex items-center">
@@ -100,7 +90,7 @@
                         </a>
                         <div class="tex ttj 2xl:block">
                             <ul class="me re @if(!in_array(Request::segment(2), ['products', 'brands', 'categories', 'attributes', 'product-slide', 'product-review', 'coupons'])){{ 'hidden' }}@else{ !block }@endif" :class="open ? '!block' : 'hidden'">
-                               
+
                                 <li class="rt ww">
                                     <a class="block @if(in_array(Request::segment(2), ['products'])){{ 'text-indigo-500' }}@else{{ 'gq hover--text-slate-200' }}@endif  wt wi ld" href="{{ url('admin/products') }}">
                                         <span class="text-sm gp ttw tnn 2xl:opacity--100 wr">Products</span>
@@ -134,18 +124,109 @@
                             </ul>
                         </div>
                     </li>
+                    <!-- Orders -->
+                    <li class="vn vr rounded-sm n_ ww @if(in_array(Request::segment(2), ['orders'])){{ 'bg-slate-900' }}@else{{ '' }}@endif">
+                        <a class="block gj xc ld wt wi" href="{{ url('admin/orders') }}">
+                            <div class="flex items-center">
+                                <svg class="ub so oi" viewBox="0 0 24 24">
+                                    <path class="du @if(in_array(Request::segment(2), ['orders'])){{ 'text-indigo-500' }}@else{{ 'g_' }}@endif" d="M8 1v2H3v19h18V3h-5V1h7v23H1V1z"></path>
+                                    <path class="du @if(in_array(Request::segment(2), ['orders'])){{ 'text-indigo-500' }}@else{{ 'g_' }}@endif" d="M1 1h22v23H1z"></path>
+                                    <path class="du @if(in_array(Request::segment(2), ['orders'])){{ 'text-indigo-300' }}@else{{ 'gq' }}@endif" d="M15 10.586L16.414 12 11 17.414 7.586 14 9 12.586l2 2zM5 0h14v4H5z"></path>
+                                </svg>
+                
+                                <span class="text-sm gp ml-3 ttw tnn 2xl:opacity--100 wr">Orders</span>
+                            </div>
+                        </a>
+                    </li>
                     <!-- Customers -->
                     <li class="vn vr rounded-sm n_ ww @if(in_array(Request::segment(2), ['customers'])){{ 'bg-slate-900' }}@else{{ '' }}@endif">
                         <a class="block gj xc ld wt wi" href="{{ url('admin/customers') }}">
                             <div class="flex items-center">
                                 <svg class="ub so oi" viewBox="0 0 24 24">
-                                        <path class="du @if(in_array(Request::segment(2), ['customers'])){{ 'text-indigo-500' }}@else{{ 'g_' }}@endif" d="M18.974 8H22a2 2 0 012 2v6h-2v5a1 1 0 01-1 1h-2a1 1 0 01-1-1v-5h-2v-6a2 2 0 012-2h.974zM20 7a2 2 0 11-.001-3.999A2 2 0 0120 7zM2.974 8H6a2 2 0 012 2v6H6v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5H0v-6a2 2 0 012-2h.974zM4 7a2 2 0 11-.001-3.999A2 2 0 014 7z"></path>
-                                        <path class="du @if(in_array(Request::segment(2), ['customers'])){{ 'text-indigo-300' }}@else{{ 'gq' }}@endif" d="M12 6a3 3 0 110-6 3 3 0 010 6zm2 18h-4a1 1 0 01-1-1v-6H6v-6a3 3 0 013-3h6a3 3 0 013 3v6h-3v6a1 1 0 01-1 1z"></path>
-                                    </svg>
+                                    <path class="du @if(in_array(Request::segment(2), ['customers'])){{ 'text-indigo-500' }}@else{{ 'g_' }}@endif" d="M18.974 8H22a2 2 0 012 2v6h-2v5a1 1 0 01-1 1h-2a1 1 0 01-1-1v-5h-2v-6a2 2 0 012-2h.974zM20 7a2 2 0 11-.001-3.999A2 2 0 0120 7zM2.974 8H6a2 2 0 012 2v6H6v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5H0v-6a2 2 0 012-2h.974zM4 7a2 2 0 11-.001-3.999A2 2 0 014 7z"></path>
+                                    <path class="du @if(in_array(Request::segment(2), ['customers'])){{ 'text-indigo-300' }}@else{{ 'gq' }}@endif" d="M12 6a3 3 0 110-6 3 3 0 010 6zm2 18h-4a1 1 0 01-1-1v-6H6v-6a3 3 0 013-3h6a3 3 0 013 3v6h-3v6a1 1 0 01-1 1z"></path>
+                                </svg>
                                 <span class="text-sm gp ml-3 ttw tnn 2xl:opacity--100 wr">Customers</span>
                             </div>
                         </a>
                     </li>
+
+                    <!--  -->
+
+                    <!-- Event -->
+                    <li class="vn vr rounded-sm n_ ww @if(in_array(Request::segment(2), ['calendar'])){{ 'bg-slate-900' }}@else{{ '' }}@endif">
+                        <a class="block gj xc ld wt wi" href="{{ url('admin/calendar') }}">
+                            <div class="flex items-center">
+                                <svg class="ub so oi" viewBox="0 0 24 24">
+                                    <path class="du @if(in_array(Request::segment(2), ['calendar'])){{ 'text-indigo-500' }}@else{{ 'g_' }}@endif" d="M1 3h22v20H1z"></path>
+                                    <path class="du @if(in_array(Request::segment(2), ['calendar'])){{ 'text-indigo-300' }}@else{{ 'gq' }}@endif" d="M21 3h2v4H1V3h2V1h4v2h10V1h4v2Z"></path>
+                                </svg>
+                                <span class="text-sm gp ml-3 ttw tnn 2xl:opacity--100 wr">Events</span>
+                            </div>
+                        </a>
+                    </li>
+                    <!-- Advertising -->
+                    <li class="vn vr rounded-sm n_ ww @if(in_array(Request::segment(2), ['adv-segments', 'advertisings'])){{ 'bg-slate-900' }}@else{{ '' }}@endif" x-data="{ open: false }">
+                        <a class="block gj xc ld wt wi" href="#0" @click.prevent="sidebarExpanded ? open = !open : sidebarExpanded = true">
+                            <div class="flex items-center fe">
+                                <div class="flex items-center">
+                                    <svg class="ub so oi" viewBox="0 0 24 24">
+                                        <circle class="du @if(in_array(Request::segment(2), ['adv-segments', 'advertisings'])){{ 'text-indigo-500' }}@else{{ 'gq' }}@endif" cx="16" cy="8" r="8"></circle>
+                                        <circle class="du @if(in_array(Request::segment(2), ['adv-segments', 'advertisings'])){{ 'text-indigo-300' }}@else{{ 'g_' }}@endif" cx="8" cy="16" r="8"></circle>
+                                    </svg>
+                                    <!-- <svg class="ub so oi" viewBox="0 0 24 24">
+                                        <path class="du @if(in_array(Request::segment(2), ['adv-segments', 'advertisings'])){{ 'text-indigo-500' }}@else{{ 'gq' }}@endif" d="M13 15l11-7L11.504.136a1 1 0 00-1.019.007L0 7l13 8z"></path>
+                                        <path class="du @if(in_array(Request::segment(2), ['adv-segments', 'advertisings'])){{ 'text-indigo-500' }}@else{{ 'gz' }}@endif" d="M13 15L0 7v9c0 .355.189.685.496.864L13 24v-9z"></path>
+                                        <path class="du @if(in_array(Request::segment(2), ['adv-segments', 'advertisings'])){{ 'text-indigo-500' }}@else{{ 'g_' }}@endif" d="M13 15.047V24l10.573-7.181A.999.999 0 0024 16V8l-11 7.047z"></path>
+                                    </svg> -->
+
+                                    <span class="text-sm gp ml-3 ttw tnn 2xl:opacity--100 wr">Advertisement</span>
+                                </div>
+                                <!-- Icon -->
+                                <div class="flex shrink-0 ml-2 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
+                                    <svg class="w-3 h-3 shrink-0 ml-1 fill-current text-slate-400 @if(in_array(Request::segment(2), ['adv-segments', 'advertisings'])){{ 'rotate-180' }}@endif" :class="open ? 'rotate-180' : 'rotate-0'" viewBox="0 0 12 12">
+                                        <path d="M5.9 11.4L.5 6l1.4-1.4 4 4 4-4L11.3 6z" />
+                                    </svg>
+                                </div>
+                            </div>
+                        </a>
+                        <div class="tex ttj 2xl:block">
+                            <ul class="me re @if(!in_array(Request::segment(2), ['adv-segments', 'advertisings'])){{ 'hidden' }}@else{ !block }@endif" :class="open ? '!block' : 'hidden'">
+                                <li class="rt ww">
+                                    <a class="block @if(in_array(Request::segment(2), ['adv-segments'])){{ 'text-indigo-500' }}@else{{ 'gq hover--text-slate-200' }}@endif wt wi ld" href="{{ url('admin/adv-segments') }}">
+                                        <span class="text-sm gp ttw tnn 2xl:opacity--100 wr">Segment</span>
+                                    </a>
+                                </li>
+                                <li class="rt ww">
+                                    <a class="block @if(in_array(Request::segment(2), ['advertisings'])){{ 'text-indigo-500' }}@else{{ 'gq hover--text-slate-200' }}@endif wt wi ld" href="{{ url('admin/advertisings') }}">
+                                        <span class="text-sm gp ttw tnn 2xl:opacity--100 wr">Advertisings</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <!-- User -->
+                    <li class="vn vr rounded-sm n_ ww @if(in_array(Request::segment(2), ['users'])){{ 'bg-slate-900' }}@else{{ '' }}@endif">
+                        <a class="block gj xc ld wt wi" href="{{ url('admin/users') }}">
+                            <div class="flex items-center">
+                                <svg class="ub so oi" viewBox="0 0 24 24">
+                                    <!-- <path class="du @if(in_array(Request::segment(2), ['users'])){{ 'text-indigo-500' }}@else{{ 'g_' }}@endif" d="M18.974 8H22a2 2 0 012 2v6h-2v5a1 1 0 01-1 1h-2a1 1 0 01-1-1v-5h-2v-6a2 2 0 012-2h.974zM20 7a2 2 0 11-.001-3.999A2 2 0 0120 7zM2.974 8H6a2 2 0 012 2v6H6v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5H0v-6a2 2 0 012-2h.974zM4 7a2 2 0 11-.001-3.999A2 2 0 014 7z"></path> -->
+                                    <path class="du @if(in_array(Request::segment(2), ['users'])){{ 'text-indigo-300' }}@else{{ 'gq' }}@endif" d="M12 6a3 3 0 110-6 3 3 0 010 6zm2 18h-4a1 1 0 01-1-1v-6H6v-6a3 3 0 013-3h6a3 3 0 013 3v6h-3v6a1 1 0 01-1 1z"></path>
+                                </svg>
+                                <span class="text-sm gp ml-3 ttw tnn 2xl:opacity--100 wr">User</span>
+                            </div>
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+            <!-- Clubs group -->
+            <div>
+                <h3 class="go gv text-slate-500 gh vz">
+                    <span class="hidden tey ttq 2xl:hidden gn oi" aria-hidden="true">•••</span>
+                    <span class="tex ttj 2xl:block">Clubs</span>
+                </h3>
+                <ul class="nk">
                     <!-- Competition -->
                     <li class="vn vr rounded-sm n_ ww @if(in_array(Request::segment(2), ['competitions', 'awards', 'trophies'])){{ 'bg-slate-900' }}@else{{ '' }}@endif" x-data="{ open: false }">
                         <a class="block gj xc ld wt wi" href="#0" @click.prevent="sidebarExpanded ? open = !open : sidebarExpanded = true">
@@ -186,7 +267,6 @@
                             </ul>
                         </div>
                     </li>
-
                     <!-- Clubs -->
                     <li class="vn vr rounded-sm n_ ww @if(in_array(Request::segment(2), ['clubs', 'stadions'])){{ 'bg-slate-900' }}@else{{ '' }}@endif" x-data="{ open: false }">
                         <a class="block gj xc ld wt wi" href="#0" @click.prevent="sidebarExpanded ? open = !open : sidebarExpanded = true">
@@ -227,10 +307,10 @@
                         <a class="block gj xc ld wt wi" href="#0" @click.prevent="sidebarExpanded ? open = !open : sidebarExpanded = true">
                             <div class="flex items-center fe">
                                 <div class="flex items-center">
-                                <svg class="ub so oi" viewBox="0 0 24 24">
-                                    <path class="du @if(in_array(Request::segment(2), ['womens', 'unders', 'squads'])){{ 'text-indigo-500' }}@else{{ 'g_' }}@endif" d="M19 5h1v14h-2V7.414L5.707 19.707 5 19H4V5h2v11.586L18.293 4.293 19 5Z"></path>
-                                    <path class="du @if(in_array(Request::segment(2), ['womens', 'unders', 'squads'])){{ 'text-indigo-300' }}@else{{ 'gq' }}@endif" d="M5 9a4 4 0 1 1 0-8 4 4 0 0 1 0 8Zm14 0a4 4 0 1 1 0-8 4 4 0 0 1 0 8ZM5 23a4 4 0 1 1 0-8 4 4 0 0 1 0 8Zm14 0a4 4 0 1 1 0-8 4 4 0 0 1 0 8Z"></path>
-                                </svg>
+                                    <svg class="ub so oi" viewBox="0 0 24 24">
+                                        <path class="du @if(in_array(Request::segment(2), ['womens', 'unders', 'squads'])){{ 'text-indigo-500' }}@else{{ 'g_' }}@endif" d="M19 5h1v14h-2V7.414L5.707 19.707 5 19H4V5h2v11.586L18.293 4.293 19 5Z"></path>
+                                        <path class="du @if(in_array(Request::segment(2), ['womens', 'unders', 'squads'])){{ 'text-indigo-300' }}@else{{ 'gq' }}@endif" d="M5 9a4 4 0 1 1 0-8 4 4 0 0 1 0 8Zm14 0a4 4 0 1 1 0-8 4 4 0 0 1 0 8ZM5 23a4 4 0 1 1 0-8 4 4 0 0 1 0 8Zm14 0a4 4 0 1 1 0-8 4 4 0 0 1 0 8Z"></path>
+                                    </svg>
                                     <!-- <svg class="ub so oi" viewBox="0 0 24 24">
                                         <path class="du @if(in_array(Request::segment(2), ['womens', 'unders', 'squads'])){{ 'text-indigo-500' }}@else{{ 'g_' }}@endif" d="M18.974 8H22a2 2 0 012 2v6h-2v5a1 1 0 01-1 1h-2a1 1 0 01-1-1v-5h-2v-6a2 2 0 012-2h.974zM20 7a2 2 0 11-.001-3.999A2 2 0 0120 7zM2.974 8H6a2 2 0 012 2v6H6v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5H0v-6a2 2 0 012-2h.974zM4 7a2 2 0 11-.001-3.999A2 2 0 014 7z"></path>
                                         <path class="du @if(in_array(Request::segment(2), ['womens', 'unders', 'squads'])){{ 'text-indigo-300' }}@else{{ 'gq' }}@endif" d="M12 6a3 3 0 110-6 3 3 0 010 6zm2 18h-4a1 1 0 01-1-1v-6H6v-6a3 3 0 013-3h6a3 3 0 013 3v6h-3v6a1 1 0 01-1 1z"></path>
@@ -262,7 +342,7 @@
                                         <span class="text-sm gp ttw tnn 2xl:opacity--100 wr">Womens</span>
                                     </a>
                                 </li>
-                               
+
                             </ul>
                         </div>
                     </li>
@@ -287,7 +367,7 @@
                         </a>
                         <div class="tex ttj 2xl:block">
                             <ul class="me re @if(!in_array(Request::segment(2), ['players', 'staffs', 'positions',])){{ 'hidden' }}@else{ !block }@endif" :class="open ? '!block' : 'hidden'">
-                               
+
                                 <li class="rt ww">
                                     <a class="block @if(in_array(Request::segment(2), ['players'])){{ 'text-indigo-500' }}@else{{ 'gq hover--text-slate-200' }}@endif wt wi ld" href="{{ url('admin/players') }}">
                                         <span class="text-sm gp ttw tnn 2xl:opacity--100 wr">Players</span>
@@ -307,23 +387,23 @@
                         </div>
                     </li>
                     <!-- Stadions -->
-                    {{-- 
+                    {{--
                     <li class="vn vr rounded-sm n_ ww @if(in_array(Request::segment(2), ['stadions'])){{ 'bg-slate-900' }}@else{{ '' }}@endif">
-                        <a class="block gj xc ld wt wi" href="{{ url('admin/stadions') }}">
-                            <div class="flex items-center">
-                                <svg class="ub so oi" viewBox="0 0 24 24">
-                                    <circle class="du @if(in_array(Request::segment(2), ['stadions'])){{ 'text-indigo-300' }}@else{{ 'gq' }}@endif" cx="18.5" cy="5.5" r="4.5"></circle>
-                                    <circle class="du @if(in_array(Request::segment(2), ['stadions'])){{ 'text-indigo-500' }}@else{{ 'g_' }}@endif" cx="5.5" cy="5.5" r="4.5"></circle>
-                                    <circle class="du @if(in_array(Request::segment(2), ['stadions'])){{ 'text-indigo-500' }}@else{{ 'g_' }}@endif" cx="18.5" cy="18.5" r="4.5"></circle>
-                                    <circle class="du @if(in_array(Request::segment(2), ['stadions'])){{ 'text-indigo-300' }}@else{{ 'gq' }}@endif" cx="5.5" cy="18.5" r="4.5"></circle>
-                                </svg>
-                                <span class="text-sm gp ml-3 ttw tnn 2xl:opacity--100 wr">Stadions</span>
-                            </div>
-                        </a>
+                    <a class="block gj xc ld wt wi" href="{{ url('admin/stadions') }}">
+                        <div class="flex items-center">
+                            <svg class="ub so oi" viewBox="0 0 24 24">
+                                <circle class="du @if(in_array(Request::segment(2), ['stadions'])){{ 'text-indigo-300' }}@else{{ 'gq' }}@endif" cx="18.5" cy="5.5" r="4.5"></circle>
+                                <circle class="du @if(in_array(Request::segment(2), ['stadions'])){{ 'text-indigo-500' }}@else{{ 'g_' }}@endif" cx="5.5" cy="5.5" r="4.5"></circle>
+                                <circle class="du @if(in_array(Request::segment(2), ['stadions'])){{ 'text-indigo-500' }}@else{{ 'g_' }}@endif" cx="18.5" cy="18.5" r="4.5"></circle>
+                                <circle class="du @if(in_array(Request::segment(2), ['stadions'])){{ 'text-indigo-300' }}@else{{ 'gq' }}@endif" cx="5.5" cy="18.5" r="4.5"></circle>
+                            </svg>
+                            <span class="text-sm gp ml-3 ttw tnn 2xl:opacity--100 wr">Stadions</span>
+                        </div>
+                    </a>
                     </li>
                     --}}
-                     <!-- Partner -->
-                     <li class="vn vr rounded-sm n_ ww @if(in_array(Request::segment(2), ['partners'])){{ 'bg-slate-900' }}@else{{ '' }}@endif">
+                    <!-- Partner -->
+                    <li class="vn vr rounded-sm n_ ww @if(in_array(Request::segment(2), ['partners'])){{ 'bg-slate-900' }}@else{{ '' }}@endif">
                         <a class="block gj xc ld wt wi" href="{{ url('admin/partners') }}">
                             <div class="flex items-center">
                                 <svg class="ub so oi" viewBox="0 0 24 24">
@@ -398,7 +478,15 @@
                             </ul>
                         </div>
                     </li>
-                    <!--  -->
+                </ul>
+            </div>
+            <!-- Pages group -->
+            <div>
+                <h3 class="go gv text-slate-500 gh vz">
+                    <span class="hidden tey ttq 2xl:hidden gn oi" aria-hidden="true">•••</span>
+                    <span class="tex ttj 2xl:block">Pages</span>
+                </h3>
+                <ul class="nk">
                     <!-- News -->
                     <li class="vn vr rounded-sm n_ ww @if(in_array(Request::segment(2), ['articles', 'category-article', 'medias'])){{ 'bg-slate-900' }}@else{{ '' }}@endif" x-data="{ open: false }">
                         <a class="block gj xc ld wt wi" href="#0" @click.prevent="sidebarExpanded ? open = !open : sidebarExpanded = true">
@@ -408,7 +496,7 @@
                                         <path class="du @if(in_array(Request::segment(2), ['articles', 'category-article', 'medias'])){{ 'text-indigo-500' }}@else{{ 'g_' }}@endif" d="M16 13v4H8v-4H0l3-9h18l3 9h-8Z"></path>
                                         <path class="du @if(in_array(Request::segment(2), ['articles', 'category-article', 'medias'])){{ 'text-indigo-300' }}@else{{ 'gq' }}@endif" d="m23.72 12 .229.686A.984.984 0 0 1 24 13v8a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1v-8c0-.107.017-.213.051-.314L.28 12H8v4h8v-4H23.72ZM13 0v7h3l-4 5-4-5h3V0h2Z"></path>
                                     </svg>
-                                    
+
                                     <span class="text-sm gp ml-3 ttw tnn 2xl:opacity--100 wr">News</span>
                                 </div>
                                 <!-- Icon -->
@@ -449,71 +537,69 @@
                             </ul>
                         </div>
                     </li>
-                    <!-- Event -->
-                    <li class="vn vr rounded-sm n_ ww @if(in_array(Request::segment(2), ['calendar'])){{ 'bg-slate-900' }}@else{{ '' }}@endif">
-                        <a class="block gj xc ld wt wi" href="{{ url('admin/calendar') }}">
-                            <div class="flex items-center">
-                                <svg class="ub so oi" viewBox="0 0 24 24">
-                                    <path class="du @if(in_array(Request::segment(2), ['calendar'])){{ 'text-indigo-500' }}@else{{ 'g_' }}@endif" d="M1 3h22v20H1z"></path>
-                                    <path class="du @if(in_array(Request::segment(2), ['calendar'])){{ 'text-indigo-300' }}@else{{ 'gq' }}@endif" d="M21 3h2v4H1V3h2V1h4v2h10V1h4v2Z"></path>
-                                </svg>
-                                <span class="text-sm gp ml-3 ttw tnn 2xl:opacity--100 wr">Events</span>
-                            </div>
-                        </a>
-                    </li>
-                    <!-- Advertising -->
-                    <li class="vn vr rounded-sm n_ ww @if(in_array(Request::segment(2), ['adv-segments', 'advertisings'])){{ 'bg-slate-900' }}@else{{ '' }}@endif" x-data="{ open: false }">
+                    <!-- Pages -->
+                    <li class="vn vr rounded-sm n_ ww @if(in_array(Request::segment(2), ['faqs', 'category-faq', 'about-us', 'privacy-policy', 'term-condition', 'refund-policy', 'shipping-policy'])){{ 'bg-slate-900' }}@else{{ '' }}@endif" x-data="{ open: false }">
                         <a class="block gj xc ld wt wi" href="#0" @click.prevent="sidebarExpanded ? open = !open : sidebarExpanded = true">
                             <div class="flex items-center fe">
                                 <div class="flex items-center">
                                     <svg class="ub so oi" viewBox="0 0 24 24">
-                                        <circle class="du @if(in_array(Request::segment(2), ['adv-segments', 'advertisings'])){{ 'text-indigo-500' }}@else{{ 'gq' }}@endif" cx="16" cy="8" r="8"></circle>
-                                        <circle class="du @if(in_array(Request::segment(2), ['adv-segments', 'advertisings'])){{ 'text-indigo-300' }}@else{{ 'g_' }}@endif" cx="8" cy="16" r="8"></circle>
+                                        <path class="du @if(in_array(Request::segment(2), ['faqs', 'category-faq', 'about-us', 'privacy-policy', 'term-condition', 'refund-policy', 'shipping-policy'])){{ 'text-indigo-500' }}@else{{ 'gq' }}@endif" d="M13 15l11-7L11.504.136a1 1 0 00-1.019.007L0 7l13 8z"></path>
+                                        <path class="du @if(in_array(Request::segment(2), ['faqs', 'category-faq', 'about-us', 'privacy-policy', 'term-condition', 'refund-policy', 'shipping-policy'])){{ 'text-indigo-500' }}@else{{ 'gz' }}@endif" d="M13 15L0 7v9c0 .355.189.685.496.864L13 24v-9z"></path>
+                                        <path class="du @if(in_array(Request::segment(2), ['faqs', 'category-faq', 'about-us', 'privacy-policy', 'term-condition', 'refund-policy', 'shipping-policy'])){{ 'text-indigo-500' }}@else{{ 'g_' }}@endif" d="M13 15.047V24l10.573-7.181A.999.999 0 0024 16V8l-11 7.047z"></path>
                                     </svg>
-                                    <!-- <svg class="ub so oi" viewBox="0 0 24 24">
-                                        <path class="du @if(in_array(Request::segment(2), ['adv-segments', 'advertisings'])){{ 'text-indigo-500' }}@else{{ 'gq' }}@endif" d="M13 15l11-7L11.504.136a1 1 0 00-1.019.007L0 7l13 8z"></path>
-                                        <path class="du @if(in_array(Request::segment(2), ['adv-segments', 'advertisings'])){{ 'text-indigo-500' }}@else{{ 'gz' }}@endif" d="M13 15L0 7v9c0 .355.189.685.496.864L13 24v-9z"></path>
-                                        <path class="du @if(in_array(Request::segment(2), ['adv-segments', 'advertisings'])){{ 'text-indigo-500' }}@else{{ 'g_' }}@endif" d="M13 15.047V24l10.573-7.181A.999.999 0 0024 16V8l-11 7.047z"></path>
-                                    </svg> -->
-                                    
-                                    <span class="text-sm gp ml-3 ttw tnn 2xl:opacity--100 wr">Advertisement</span>
+                                    <span class="text-sm gp ml-3 ttw tnn 2xl:opacity--100 wr">Pages</span>
                                 </div>
                                 <!-- Icon -->
                                 <div class="flex shrink-0 ml-2 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
-                                    <svg class="w-3 h-3 shrink-0 ml-1 fill-current text-slate-400 @if(in_array(Request::segment(2), ['adv-segments', 'advertisings'])){{ 'rotate-180' }}@endif" :class="open ? 'rotate-180' : 'rotate-0'" viewBox="0 0 12 12">
+                                    <svg class="w-3 h-3 shrink-0 ml-1 fill-current text-slate-400 @if(in_array(Request::segment(2), ['faqs', 'category-faq', 'about-us', 'privacy-policy', 'term-condition', 'refund-policy', 'shipping-policy'])){{ 'rotate-180' }}@endif" :class="open ? 'rotate-180' : 'rotate-0'" viewBox="0 0 12 12">
                                         <path d="M5.9 11.4L.5 6l1.4-1.4 4 4 4-4L11.3 6z" />
                                     </svg>
                                 </div>
                             </div>
                         </a>
                         <div class="tex ttj 2xl:block">
-                            <ul class="me re @if(!in_array(Request::segment(2), ['adv-segments', 'advertisings'])){{ 'hidden' }}@else{ !block }@endif" :class="open ? '!block' : 'hidden'">
+                            <ul class="me re @if(!in_array(Request::segment(2), ['faqs', 'category-faq', 'about-us', 'privacy-policy', 'term-condition', 'refund-policy', 'shipping-policy'])){{ 'hidden' }}@else{ !block }@endif" :class="open ? '!block' : 'hidden'">
                                 <li class="rt ww">
-                                    <a class="block @if(in_array(Request::segment(2), ['adv-segments'])){{ 'text-indigo-500' }}@else{{ 'gq hover--text-slate-200' }}@endif wt wi ld" href="{{ url('admin/adv-segments') }}">
-                                        <span class="text-sm gp ttw tnn 2xl:opacity--100 wr">Segment</span>
+                                    <a class="block @if(in_array(Request::segment(2), ['faqs'])){{ 'text-indigo-500' }}@else{{ 'gq hover--text-slate-200' }}@endif wt wi ld" href="{{ url('admin/faqs') }}">
+                                        <span class="text-sm gp ttw tnn 2xl:opacity--100 wr">FAQs</span>
                                     </a>
                                 </li>
                                 <li class="rt ww">
-                                    <a class="block @if(in_array(Request::segment(2), ['advertisings'])){{ 'text-indigo-500' }}@else{{ 'gq hover--text-slate-200' }}@endif wt wi ld" href="{{ url('admin/advertisings') }}">
-                                        <span class="text-sm gp ttw tnn 2xl:opacity--100 wr">Advertisings</span>
+                                    <a class="block @if(in_array(Request::segment(2), ['category-faq'])){{ 'text-indigo-500' }}@else{{ 'gq hover--text-slate-200' }}@endif wt wi ld" href="{{ url('admin/category-faq') }}">
+                                        <span class="text-sm gp ttw tnn 2xl:opacity--100 wr">Category FAQ</span>
                                     </a>
                                 </li>
+                                <li class="rt ww">
+                                    <a class="block @if(in_array(Request::segment(2), ['about-us'])){{ 'text-indigo-500' }}@else{{ 'gq hover--text-slate-200' }}@endif wt wi ld" href="{{ url('admin/about-us') }}">
+                                        <span class="text-sm gp ttw tnn 2xl:opacity--100 wr">About Us</span>
+                                    </a>
+                                </li>
+                                <li class="rt ww">
+                                    <a class="block @if(in_array(Request::segment(2), ['term-condition'])){{ 'text-indigo-500' }}@else{{ 'gq hover--text-slate-200' }}@endif wt wi ld" href="{{ url('admin/term-condition') }}">
+                                        <span class="text-sm gp ttw tnn 2xl:opacity--100 wr">Term and Condition</span>
+                                    </a>
+                                </li>
+
+                                <li class="rt ww">
+                                    <a class="block @if(in_array(Request::segment(2), ['privacy-policy'])){{ 'text-indigo-500' }}@else{{ 'gq hover--text-slate-200' }}@endif wt wi ld" href="{{ url('admin/privacy-policy') }}">
+                                        <span class="text-sm gp ttw tnn 2xl:opacity--100 wr">Privacy Policy</span>
+                                    </a>
+                                </li>
+                                <li class="rt ww">
+                                    <a class="block @if(in_array(Request::segment(2), ['refund-policy'])){{ 'text-indigo-500' }}@else{{ 'gq hover--text-slate-200' }}@endif wt wi ld" href="{{ url('admin/refund-policy') }}">
+                                        <span class="text-sm gp ttw tnn 2xl:opacity--100 wr">Refund Policy</span>
+                                    </a>
+                                </li>
+
+                                <li class="rt ww">
+                                    <a class="block @if(in_array(Request::segment(2), ['shipping-policy'])){{ 'text-indigo-500' }}@else{{ 'gq hover--text-slate-200' }}@endif wt wi ld" href="{{ url('admin/shipping-policy') }}">
+                                        <span class="text-sm gp ttw tnn 2xl:opacity--100 wr">Shipping Policy</span>
+                                    </a>
+                                </li>
+
                             </ul>
                         </div>
                     </li>
-                    <!-- User -->
-                    <li class="vn vr rounded-sm n_ ww @if(in_array(Request::segment(2), ['users'])){{ 'bg-slate-900' }}@else{{ '' }}@endif">
-                        <a class="block gj xc ld wt wi" href="{{ url('admin/users') }}">
-                            <div class="flex items-center">
-                                <svg class="ub so oi" viewBox="0 0 24 24">
-                                    <!-- <path class="du @if(in_array(Request::segment(2), ['users'])){{ 'text-indigo-500' }}@else{{ 'g_' }}@endif" d="M18.974 8H22a2 2 0 012 2v6h-2v5a1 1 0 01-1 1h-2a1 1 0 01-1-1v-5h-2v-6a2 2 0 012-2h.974zM20 7a2 2 0 11-.001-3.999A2 2 0 0120 7zM2.974 8H6a2 2 0 012 2v6H6v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5H0v-6a2 2 0 012-2h.974zM4 7a2 2 0 11-.001-3.999A2 2 0 014 7z"></path> -->
-                                    <path class="du @if(in_array(Request::segment(2), ['users'])){{ 'text-indigo-300' }}@else{{ 'gq' }}@endif" d="M12 6a3 3 0 110-6 3 3 0 010 6zm2 18h-4a1 1 0 01-1-1v-6H6v-6a3 3 0 013-3h6a3 3 0 013 3v6h-3v6a1 1 0 01-1 1z"></path>
-                                </svg>
-                                <span class="text-sm gp ml-3 ttw tnn 2xl:opacity--100 wr">User</span>
-                            </div>
-                        </a>
-                    </li>
-
                 </ul>
             </div>
             <!-- More group -->
@@ -581,69 +667,17 @@
                             </ul>
                         </div>
                     </li>
-                    <!-- Pages -->
-                    <li class="vn vr rounded-sm n_ ww @if(in_array(Request::segment(2), ['about-us', 'privacy-policy', 'term-condition', 'refund-policy', 'shipping-policy'])){{ 'bg-slate-900' }}@else{{ '' }}@endif" x-data="{ open: false }">
-                        <a class="block gj xc ld wt wi" href="#0" @click.prevent="sidebarExpanded ? open = !open : sidebarExpanded = true">
-                            <div class="flex items-center fe">
-                                <div class="flex items-center">
-                                    <svg class="ub so oi" viewBox="0 0 24 24">
-                                        <path class="du @if(in_array(Request::segment(2), ['about-us', 'privacy-policy', 'term-condition', 'refund-policy', 'shipping-policy'])){{ 'text-indigo-500' }}@else{{ 'gq' }}@endif" d="M13 15l11-7L11.504.136a1 1 0 00-1.019.007L0 7l13 8z"></path>
-                                        <path class="du @if(in_array(Request::segment(2), ['about-us', 'privacy-policy', 'term-condition', 'refund-policy', 'shipping-policy'])){{ 'text-indigo-500' }}@else{{ 'gz' }}@endif" d="M13 15L0 7v9c0 .355.189.685.496.864L13 24v-9z"></path>
-                                        <path class="du @if(in_array(Request::segment(2), ['about-us', 'privacy-policy', 'term-condition', 'refund-policy', 'shipping-policy'])){{ 'text-indigo-500' }}@else{{ 'g_' }}@endif" d="M13 15.047V24l10.573-7.181A.999.999 0 0024 16V8l-11 7.047z"></path>
-                                    </svg>
-                                    <span class="text-sm gp ml-3 ttw tnn 2xl:opacity--100 wr">Pages</span>
-                                </div>
-                                <!-- Icon -->
-                                <div class="flex shrink-0 ml-2 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
-                                    <svg class="w-3 h-3 shrink-0 ml-1 fill-current text-slate-400 @if(in_array(Request::segment(2), ['about-us', 'privacy-policy', 'term-condition', 'refund-policy', 'shipping-policy'])){{ 'rotate-180' }}@endif" :class="open ? 'rotate-180' : 'rotate-0'" viewBox="0 0 12 12">
-                                        <path d="M5.9 11.4L.5 6l1.4-1.4 4 4 4-4L11.3 6z" />
-                                    </svg>
-                                </div>
-                            </div>
-                        </a>
-                        <div class="tex ttj 2xl:block">
-                            <ul class="me re @if(!in_array(Request::segment(2), ['about-us', 'privacy-policy', 'term-condition', 'refund-policy', 'shipping-policy'])){{ 'hidden' }}@else{ !block }@endif" :class="open ? '!block' : 'hidden'">
-                                <li class="rt ww">
-                                    <a class="block @if(in_array(Request::segment(2), ['about-us'])){{ 'text-indigo-500' }}@else{{ 'gq hover--text-slate-200' }}@endif wt wi ld" href="{{ url('admin/about-us') }}">
-                                        <span class="text-sm gp ttw tnn 2xl:opacity--100 wr">About Us</span>
-                                    </a>
-                                </li>
-                                <li class="rt ww">
-                                    <a class="block @if(in_array(Request::segment(2), ['term-condition'])){{ 'text-indigo-500' }}@else{{ 'gq hover--text-slate-200' }}@endif wt wi ld" href="{{ url('admin/term-condition') }}">
-                                        <span class="text-sm gp ttw tnn 2xl:opacity--100 wr">Term and Condition</span>
-                                    </a>
-                                </li>
-                               
-                                <li class="rt ww">
-                                    <a class="block @if(in_array(Request::segment(2), ['privacy-policy'])){{ 'text-indigo-500' }}@else{{ 'gq hover--text-slate-200' }}@endif wt wi ld" href="{{ url('admin/privacy-policy') }}">
-                                        <span class="text-sm gp ttw tnn 2xl:opacity--100 wr">Privacy Policy</span>
-                                    </a>
-                                </li>
-                                <li class="rt ww">
-                                    <a class="block @if(in_array(Request::segment(2), ['refund-policy'])){{ 'text-indigo-500' }}@else{{ 'gq hover--text-slate-200' }}@endif wt wi ld" href="{{ url('admin/refund-policy') }}">
-                                        <span class="text-sm gp ttw tnn 2xl:opacity--100 wr">Refund Policy</span>
-                                    </a>
-                                </li>
 
-                                <li class="rt ww">
-                                    <a class="block @if(in_array(Request::segment(2), ['shipping-policy'])){{ 'text-indigo-500' }}@else{{ 'gq hover--text-slate-200' }}@endif wt wi ld" href="{{ url('admin/shipping-policy') }}">
-                                        <span class="text-sm gp ttw tnn 2xl:opacity--100 wr">Shipping Policy</span>
-                                    </a>
-                                </li>
-
-                            </ul>
-                        </div>
-                    </li>
                     <!-- Utility -->
-                    <li class="vn vr rounded-sm n_ ww @if(in_array(Request::segment(2), ['faqs', 'category-faq', 'slides', 'reports', 'subscribers'])){{ 'bg-slate-900' }}@else{{ '' }}@endif" x-data="{ open: false }">
+                    <li class="vn vr rounded-sm n_ ww @if(in_array(Request::segment(2), ['slides', 'reports', 'subscribers'])){{ 'bg-slate-900' }}@else{{ '' }}@endif" x-data="{ open: false }">
                         <a class="block gj xc ld wt wi" href="#0" @click.prevent="sidebarExpanded ? open = !open : sidebarExpanded = true">
                             <div class="flex items-center fe">
                                 <div class="flex items-center">
                                     <svg class="ub so oi" viewBox="0 0 24 24">
-                                        <circle class="du @if(in_array(Request::segment(2), ['faqs',  'category-faq', 'slides', 'reports', 'subscribers'])){{ 'text-indigo-300' }}@else{{ 'gq' }}@endif" cx="18.5" cy="5.5" r="4.5"></circle>
-                                        <circle class="du @if(in_array(Request::segment(2), ['faqs',  'category-faq', 'slides', 'reports', 'subscribers'])){{ 'text-indigo-500' }}@else{{ 'g_' }}@endif" cx="5.5" cy="5.5" r="4.5"></circle>
-                                        <circle class="du @if(in_array(Request::segment(2), ['faqs',  'category-faq', 'slides', 'reports', 'subscribers'])){{ 'text-indigo-500' }}@else{{ 'g_' }}@endif" cx="18.5" cy="18.5" r="4.5"></circle>
-                                        <circle class="du @if(in_array(Request::segment(2), ['faqs',  'category-faq', 'slides', 'reports', 'subscribers'])){{ 'text-indigo-300' }}@else{{ 'gq' }}@endif" cx="5.5" cy="18.5" r="4.5"></circle>
+                                        <circle class="du @if(in_array(Request::segment(2), ['slides', 'reports', 'subscribers'])){{ 'text-indigo-300' }}@else{{ 'gq' }}@endif" cx="18.5" cy="5.5" r="4.5"></circle>
+                                        <circle class="du @if(in_array(Request::segment(2), ['slides', 'reports', 'subscribers'])){{ 'text-indigo-500' }}@else{{ 'g_' }}@endif" cx="5.5" cy="5.5" r="4.5"></circle>
+                                        <circle class="du @if(in_array(Request::segment(2), ['slides', 'reports', 'subscribers'])){{ 'text-indigo-500' }}@else{{ 'g_' }}@endif" cx="18.5" cy="18.5" r="4.5"></circle>
+                                        <circle class="du @if(in_array(Request::segment(2), ['slides', 'reports', 'subscribers'])){{ 'text-indigo-300' }}@else{{ 'gq' }}@endif" cx="5.5" cy="18.5" r="4.5"></circle>
                                     </svg>
                                     <span class="text-sm gp ml-3 ttw tnn 2xl:opacity--100 wr">Utility</span>
                                 </div>
@@ -661,7 +695,7 @@
                             </div>
                         </a>
                         <div class="tex ttj 2xl:block">
-                            <ul class="me re @if(!in_array(Request::segment(2), ['faqs', 'category-faq', 'slides', 'reports', 'subscribers'])){{ 'hidden' }}@else{ !block }@endif" :class="open ? '!block' : 'hidden'">
+                            <ul class="me re @if(!in_array(Request::segment(2), ['slides', 'reports', 'subscribers'])){{ 'hidden' }}@else{ !block }@endif" :class="open ? '!block' : 'hidden'">
                                 <li class="rt ww">
                                     <a class="block @if(in_array(Request::segment(2), ['subscribers'])){{ 'text-indigo-500' }}@else{{ 'gq hover--text-slate-200' }}@endif wt wi ld" href="{{ url('admin/subscribers') }}">
                                         <span class="text-sm gp ttw tnn 2xl:opacity--100 wr">Subscribers</span>
@@ -671,17 +705,8 @@
                                     <a class="block @if(in_array(Request::segment(2), ['reports'])){{ 'text-indigo-500' }}@else{{ 'gq hover--text-slate-200' }}@endif wt wi ld" href="{{ url('admin/reports') }}">
                                         <span class="text-sm gp ttw tnn 2xl:opacity--100 wr">Reports</span>
                                     </a>
-                                </li> 
-                                <li class="rt ww">
-                                    <a class="block @if(in_array(Request::segment(2), ['faqs'])){{ 'text-indigo-500' }}@else{{ 'gq hover--text-slate-200' }}@endif wt wi ld" href="{{ url('admin/faqs') }}">
-                                        <span class="text-sm gp ttw tnn 2xl:opacity--100 wr">FAQs</span>
-                                    </a>
                                 </li>
-                                <li class="rt ww">
-                                    <a class="block @if(in_array(Request::segment(2), ['category-faq'])){{ 'text-indigo-500' }}@else{{ 'gq hover--text-slate-200' }}@endif wt wi ld" href="{{ url('admin/category-faq') }}">
-                                        <span class="text-sm gp ttw tnn 2xl:opacity--100 wr">Category FAQ</span>
-                                    </a>
-                                </li>
+
                                 <li class="rt ww">
                                     <a class="block @if(in_array(Request::segment(2), ['slides'])){{ 'text-indigo-500' }}@else{{ 'gq hover--text-slate-200' }}@endif wt wi ld" href="{{ url('admin/slides') }}">
                                         <span class="text-sm gp ttw tnn 2xl:opacity--100 wr">Slide</span>
@@ -692,7 +717,7 @@
                             </ul>
                         </div>
                     </li>
-                    
+
                 </ul>
             </div>
         </div>

@@ -14,6 +14,7 @@
 
             <div class="bg-white dark:bg-slate-800 rounded-sm border border-slate-200 dark:border-slate-700 cugyv cv1va c4osb cetne">
                 <div class="flex flex-col chmlm crszu">
+                    @php($config=\App\CentralLogics\Helpers::get_business_settings('paypal'))
                     <form action="{{ route('admin.payment-method-update',['paypal']) }}" method="post">
                         @csrf
                         <!-- Card top -->
@@ -21,10 +22,10 @@
                             <div class="flex justify-between">
                                 <span class="text-base font-semibold uppercase">Paypal</span>
                                 <!-- switch -->
-                                <div class="flex items-center space-x-1" x-data="{ checked: true }">
+                                <div class="flex items-center space-x-1" x-data="{ checked: {{$config?($config['status']==1?'true':'false'):'false'}} }" >
                                     <div class="c987k">
-                                        <input type="checkbox" name="status"  value="1" id="switch-1" class="cbl3h" x-model="checked">
-                                        <label class="ce4zx c717g" for="switch-1">
+                                        <input type="checkbox" name="status" value="1" id="switch-paypal" class="cbl3h" x-model="checked">
+                                        <label class="ce4zx c717g" for="switch-paypal">
                                             <span class="bg-white cl0q9" aria-hidden="true"></span>
                                             <span class="cbl3h">Switch label</span>
                                         </label>
@@ -67,6 +68,7 @@
 
             <div class="bg-white dark:bg-slate-800 rounded-sm border border-slate-200 dark:border-slate-700 cugyv cv1va c4osb cetne">
                 <div class="flex flex-col chmlm crszu">
+                @php($config=\App\CentralLogics\Helpers::get_business_settings('stripe'))
                     <form action="{{ route('admin.payment-method-update',['stripe']) }}" method="post">
                         @csrf
                         <!-- Card top -->
@@ -74,10 +76,10 @@
                             <div class="flex justify-between">
                                 <span class="text-base font-semibold uppercase">Stripe</span>
                                 <!-- switch -->
-                                <div class="flex items-center space-x-1" x-data="{ checked: true }">
+                                <div class="flex items-center space-x-1" x-data="{ checked: {{$config?($config['status']==1?'true':'false'):'false'}} }" >
                                     <div class="c987k">
-                                        <input type="checkbox" name="status" value="1" id="switch-1" class="cbl3h" x-model="checked">
-                                        <label class="ce4zx c717g" for="switch-1">
+                                        <input type="checkbox" name="status" value="1" id="switch-stripe" class="cbl3h" x-model="checked">
+                                        <label class="ce4zx c717g" for="switch-stripe">
                                             <span class="bg-white cl0q9" aria-hidden="true"></span>
                                             <span class="cbl3h">Switch label</span>
                                         </label>
@@ -121,6 +123,7 @@
 
             <div class="bg-white dark:bg-slate-800 rounded-sm border border-slate-200 dark:border-slate-700 cugyv cv1va c4osb cetne">
                 <div class="flex flex-col chmlm crszu">
+                @php($config=\App\CentralLogics\Helpers::get_business_settings('razor_pay'))
                     <form action="{{ route('admin.payment-method-update',['razor_pay']) }}" method="post">
                         @csrf
                         <!-- Card top -->
@@ -128,10 +131,10 @@
                             <div class="flex justify-between">
                                 <span class="text-base font-semibold uppercase">razorpay</span>
                                 <!-- switch -->
-                                <div class="flex items-center space-x-1" x-data="{ checked: true }">
+                                <div class="flex items-center space-x-1" x-data="{ checked: {{$config?($config['status']==1?'true':'false'):'false'}} }">
                                     <div class="c987k">
-                                        <input type="checkbox" name="status" value="1" id="switch-1" class="cbl3h" x-model="checked">
-                                        <label class="ce4zx c717g" for="switch-1">
+                                        <input type="checkbox" name="status" value="1" id="switch-razor" class="cbl3h" x-model="checked">
+                                        <label class="ce4zx c717g" for="switch-razor">
                                             <span class="bg-white cl0q9" aria-hidden="true"></span>
                                             <span class="cbl3h">Switch label</span>
                                         </label>
@@ -175,6 +178,7 @@
 
             <div class="bg-white dark:bg-slate-800 rounded-sm border border-slate-200 dark:border-slate-700 cugyv cv1va c4osb cetne">
                 <div class="flex flex-col chmlm crszu">
+                @php($config=\App\CentralLogics\Helpers::get_business_settings('flutterwave'))
                     <form action="{{ route('admin.payment-method-update',['flutterwave']) }}" method="post">
                         @csrf
                         <!-- Card top -->
@@ -182,10 +186,10 @@
                             <div class="flex justify-between">
                                 <span class="text-base font-semibold uppercase">FlutterWave</span>
                                 <!-- switch -->
-                                <div class="flex items-center space-x-1" x-data="{ checked: true }">
+                                <div class="flex items-center space-x-1" x-data="{ checked: {{$config?($config['status']==1?'true':'false'):'false'}} }">
                                     <div class="c987k">
-                                        <input type="checkbox" name="status" value="1" id="switch-1" class="cbl3h" x-model="checked">
-                                        <label class="ce4zx c717g" for="switch-1">
+                                        <input type="checkbox" name="status" value="1" id="switch-flutter" class="cbl3h" x-model="checked">
+                                        <label class="ce4zx c717g" for="switch-flutter">
                                             <span class="bg-white cl0q9" aria-hidden="true"></span>
                                             <span class="cbl3h">Switch label</span>
                                         </label>
@@ -419,7 +423,11 @@
         .c87xd {
             border-top-width: 1px;
         }
+
+       
     </style>
     @endpush
+
+   
 
 </x-app-layout>
