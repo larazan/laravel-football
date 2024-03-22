@@ -102,6 +102,8 @@ class ProductIndex extends Component
     {
         $this->validate();
 
+        $uniqID = Carbon::now()->timestamp . uniqid();
+
         $randId = Str::random(18);
 
         $product = new Product();
@@ -178,7 +180,8 @@ class ProductIndex extends Component
         $this->height = $product->height;
         $this->length = $product->length;
         $this->oldImage = $product->productImages->first()->small;
-        $this->productImages = $product->productImages;
+
+        $this->productImages = ProductImage::where('product_id', $productId)->get();
         $this->productStatus = $product->status;
         $this->showProductModal = true;
     }
@@ -271,6 +274,14 @@ class ProductIndex extends Component
     {
         $product = Product::findOrFail($productId);
         $product->delete();
+
+        // delete multiple image
+        $images = ProductImage::where('product_id', $productId)->get();
+        foreach($images as $image) {
+            // $image->delete();
+            $this->deleteImage($image->id);
+        }
+
         $this->reset();
         $this->dispatchBrowserEvent('banner-message', ['style' => 'danger', 'message' => 'Product deleted successfully']);
     }
@@ -369,5 +380,30 @@ class ProductIndex extends Component
         }
              
         return true;
+    }
+
+    public function deleteSingleImage($id = null) {
+        $productImage = ProductImage::where(['product_id' => $id])->first();
+		$path = 'storage/';
+
+        if (Storage::exists($path.$productImage->original)) {
+            Storage::delete($path.$productImage->original);
+		}
+		
+        if (Storage::exists($path.$productImage->small)) {
+            Storage::delete($path.$productImage->small);
+        }   
+
+		if (Storage::exists($path.$productImage->medium)) {
+            Storage::delete($path.$productImage->medium);
+        }
+
+        if (Storage::exists($path.$productImage->large)) {
+            Storage::delete($path.$productImage->large);
+        }
+             
+        $this->reset();
+        // $this->showProductModal = false;
+        $this->dispatchBrowserEvent('banner-message', ['style' => 'success', 'message' => 'Image Product deleted successfully']);
     }
 }

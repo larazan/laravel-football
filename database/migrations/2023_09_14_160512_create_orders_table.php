@@ -17,6 +17,8 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->string('code')->unique();
 			$table->unsignedBigInteger('user_id');
+			$table->integer('opened')->default(0);
+            $table->integer('opened_cus')->default(0);
 			$table->float('order_amount', 24,2)->default(0.00);
 			$table->string('payment_status')->default('unpaid');
 			$table->string('order_status',50)->default('pending');
@@ -51,6 +53,9 @@ return new class extends Migration
 
 			$table->unsignedBigInteger('approved_by')->nullable();
 			$table->datetime('approved_at')->nullable();
+			$table->unsignedBigInteger('confirmed_by')->nullable();
+			$table->datetime('confirmed_at')->nullable();
+            $table->unsignedBigInteger('payment_confirm_id')->nullable();
 			$table->unsignedBigInteger('cancelled_by')->nullable();
 			$table->datetime('cancelled_at')->nullable();
 			$table->text('cancellation_note')->nullable();

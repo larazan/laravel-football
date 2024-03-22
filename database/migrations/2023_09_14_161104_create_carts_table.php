@@ -14,19 +14,16 @@ return new class extends Migration
     public function up()
     {
         Schema::create('carts', function (Blueprint $table) {
-            $table->id();
-            $table->bigInteger('customer_id')->nullable();
+            $table->string('id');
+            $table->string('session_id');
+            $table->bigInteger('user_id')->nullable();
             $table->bigInteger('product_id')->nullable();
             $table->integer('quantity')->default(1);
             $table->double('price', 8, 2)->default(1);
-            $table->double('tax', 8, 2)->default(1);
             $table->double('discount', 8, 2)->default(1);
-            $table->string('slug')->nullable();
-            $table->string('name')->nullable();
-            $table->string('thumbnail')->nullable();
-            $table->string('shop_info')->nullable();
-            $table->double('shipping_cost', 8, 2)->nullable();
-            $table->string('shipping_type')->nullable();
+            $table->integer('is_checked')->nullable()->default(null);
+            $table->json('attributes');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

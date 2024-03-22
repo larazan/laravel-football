@@ -9,18 +9,25 @@ class Cart extends Model
 {
     use HasFactory;
 
-    protected $casts = [
-        'price' => 'float',
-        'discount' => 'float',
-        'tax' => 'float',
-        'seller_id' => 'integer',
-        'quantity' => 'integer',
-        'shipping_cost'=>'float'
-    ];
+    protected $guarded = [
+		'id',
+		'created_at',
+		'updated_at',
+	];
 
-    public function cart_shipping(){
-        return $this->hasOne(CartShipping::class,'cart_group_id','cart_group_id');
-    }
+    // public function cart_shipping(){
+    //     return $this->hasOne(CartShipping::class,'cart_group_id','cart_group_id');
+    // }
+
+    protected $primaryKey = 'id';
+
+    protected $keyType = 'string';
+
+    public $incrementing = false;
+
+    protected $casts = [
+        'attributes' => 'array',
+    ];
 
     public function product()
     {

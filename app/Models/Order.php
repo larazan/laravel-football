@@ -150,7 +150,7 @@ class Order extends Model
 		}
 
 		if (self::_isOrderCodeExists($orderCode)) {
-			return generateOrderCode();
+			return self::generateCode();
 		}
 
 		return $orderCode;

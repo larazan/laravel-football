@@ -68,6 +68,7 @@ use App\Http\Livewire\Admin\TrophyIndex;
 use App\Http\Livewire\Admin\UserIndex;
 use App\Http\Livewire\Admin\JuniorFootBall;
 use App\Http\Livewire\Admin\WomenFootBall;
+use App\Http\Livewire\Admin\TestIndex;
 
 use App\Http\Livewire\Calendar;
 use App\Http\Livewire\SearchSelect;

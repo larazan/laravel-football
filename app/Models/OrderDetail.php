@@ -38,13 +38,8 @@ class OrderDetail extends Model
         return $this->belongsTo(Order::class, 'order_id');
     }
 
-    public function seller()
-    {
-        return $this->belongsTo(Seller::class, 'seller_id');
-    }
-
-    public function address()
-    {
-        return $this->belongsTo(ShippingAddress::class, 'shipping_address');
-    }
+    // public function address()
+    // {
+    //     return $this->belongsTo(ShippingAddress::class, 'shipping_address');
+    // }
 }

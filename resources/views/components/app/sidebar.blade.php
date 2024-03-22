@@ -133,7 +133,7 @@
                                     <path class="du @if(in_array(Request::segment(2), ['orders'])){{ 'text-indigo-500' }}@else{{ 'g_' }}@endif" d="M1 1h22v23H1z"></path>
                                     <path class="du @if(in_array(Request::segment(2), ['orders'])){{ 'text-indigo-300' }}@else{{ 'gq' }}@endif" d="M15 10.586L16.414 12 11 17.414 7.586 14 9 12.586l2 2zM5 0h14v4H5z"></path>
                                 </svg>
-                
+
                                 <span class="text-sm gp ml-3 ttw tnn 2xl:opacity--100 wr">Orders</span>
                             </div>
                         </a>
@@ -205,18 +205,7 @@
                             </ul>
                         </div>
                     </li>
-                    <!-- User -->
-                    <li class="vn vr rounded-sm n_ ww @if(in_array(Request::segment(2), ['users'])){{ 'bg-slate-900' }}@else{{ '' }}@endif">
-                        <a class="block gj xc ld wt wi" href="{{ url('admin/users') }}">
-                            <div class="flex items-center">
-                                <svg class="ub so oi" viewBox="0 0 24 24">
-                                    <!-- <path class="du @if(in_array(Request::segment(2), ['users'])){{ 'text-indigo-500' }}@else{{ 'g_' }}@endif" d="M18.974 8H22a2 2 0 012 2v6h-2v5a1 1 0 01-1 1h-2a1 1 0 01-1-1v-5h-2v-6a2 2 0 012-2h.974zM20 7a2 2 0 11-.001-3.999A2 2 0 0120 7zM2.974 8H6a2 2 0 012 2v6H6v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5H0v-6a2 2 0 012-2h.974zM4 7a2 2 0 11-.001-3.999A2 2 0 014 7z"></path> -->
-                                    <path class="du @if(in_array(Request::segment(2), ['users'])){{ 'text-indigo-300' }}@else{{ 'gq' }}@endif" d="M12 6a3 3 0 110-6 3 3 0 010 6zm2 18h-4a1 1 0 01-1-1v-6H6v-6a3 3 0 013-3h6a3 3 0 013 3v6h-3v6a1 1 0 01-1 1z"></path>
-                                </svg>
-                                <span class="text-sm gp ml-3 ttw tnn 2xl:opacity--100 wr">User</span>
-                            </div>
-                        </a>
-                    </li>
+
 
                 </ul>
             </div>
@@ -600,7 +589,65 @@
                             </ul>
                         </div>
                     </li>
+
                 </ul>
+            </div>
+
+            <!-- Pages group -->
+            <div>
+                <h3 class="go gv text-slate-500 gh vz">
+                    <span class="hidden tey ttq 2xl:hidden gn oi" aria-hidden="true">•••</span>
+                    <span class="tex ttj 2xl:block">User Management</span>
+                </h3>
+                <ul class="nk">
+                    <!-- User -->
+                    <li class="vn vr rounded-sm n_ ww @if(in_array(Request::segment(2), ['users'])){{ 'bg-slate-900' }}@else{{ '' }}@endif">
+                        <a class="block gj xc ld wt wi" href="{{ url('admin/users') }}">
+                            <div class="flex items-center">
+                                <svg class="ub so oi" viewBox="0 0 24 24">
+                                    <!-- <path class="du @if(in_array(Request::segment(2), ['users'])){{ 'text-indigo-500' }}@else{{ 'g_' }}@endif" d="M18.974 8H22a2 2 0 012 2v6h-2v5a1 1 0 01-1 1h-2a1 1 0 01-1-1v-5h-2v-6a2 2 0 012-2h.974zM20 7a2 2 0 11-.001-3.999A2 2 0 0120 7zM2.974 8H6a2 2 0 012 2v6H6v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5H0v-6a2 2 0 012-2h.974zM4 7a2 2 0 11-.001-3.999A2 2 0 014 7z"></path> -->
+                                    <path class="du @if(in_array(Request::segment(2), ['users'])){{ 'text-indigo-300' }}@else{{ 'gq' }}@endif" d="M12 6a3 3 0 110-6 3 3 0 010 6zm2 18h-4a1 1 0 01-1-1v-6H6v-6a3 3 0 013-3h6a3 3 0 013 3v6h-3v6a1 1 0 01-1 1z"></path>
+                                </svg>
+                                <span class="text-sm gp ml-3 ttw tnn 2xl:opacity--100 wr">User</span>
+                            </div>
+                        </a>
+                    </li>
+                    <!-- Role -->
+                    <li class="vn vr rounded-sm n_ ww @if(in_array(Request::segment(2), ['roles'])){{ 'bg-slate-900' }}@else{{ '' }}@endif">
+                        <a class="block gj xc ld wt wi" href="{{ url('admin/roles') }}">
+                            <div class="flex items-center">
+                                <!-- <svg class="ub so oi" viewBox="0 0 24 24">
+                                    <path class="du @if(in_array(Request::segment(2), ['roles'])){{ 'text-indigo-300' }}@else{{ 'gq' }}@endif" d="M12 6a3 3 0 110-6 3 3 0 010 6zm2 18h-4a1 1 0 01-1-1v-6H6v-6a3 3 0 013-3h6a3 3 0 013 3v6h-3v6a1 1 0 01-1 1z"></path>
+                                </svg> -->
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-user-hexagon">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                    <path d="M12 13a3 3 0 1 0 0 -6a3 3 0 0 0 0 6z" />
+                                    <path d="M6.201 18.744a4 4 0 0 1 3.799 -2.744h4a4 4 0 0 1 3.798 2.741" />
+                                    <path d="M19.875 6.27c.7 .398 1.13 1.143 1.125 1.948v7.284c0 .809 -.443 1.555 -1.158 1.948l-6.75 4.27a2.269 2.269 0 0 1 -2.184 0l-6.75 -4.27a2.225 2.225 0 0 1 -1.158 -1.948v-7.285c0 -.809 .443 -1.554 1.158 -1.947l6.75 -3.98a2.33 2.33 0 0 1 2.25 0l6.75 3.98h-.033z" />
+                                </svg>
+                                <span class="text-sm gp ml-3 ttw tnn 2xl:opacity--100 wr">Roles</span>
+                            </div>
+                        </a>
+                    </li>
+                    <!-- Permission -->
+                    <li class="vn vr rounded-sm n_ ww @if(in_array(Request::segment(2), ['permissions'])){{ 'bg-slate-900' }}@else{{ '' }}@endif">
+                        <a class="block gj xc ld wt wi" href="{{ url('admin/permissions') }}">
+                            <div class="flex items-center">
+                                <!-- <svg class="ub so oi" viewBox="0 0 24 24">
+                                    <path class="du @if(in_array(Request::segment(2), ['permissions'])){{ 'text-indigo-300' }}@else{{ 'gq' }}@endif" d="M12 6a3 3 0 110-6 3 3 0 010 6zm2 18h-4a1 1 0 01-1-1v-6H6v-6a3 3 0 013-3h6a3 3 0 013 3v6h-3v6a1 1 0 01-1 1z"></path>
+                                </svg> -->
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-user-pentagon">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                    <path d="M13.163 2.168l8.021 5.828c.694 .504 .984 1.397 .719 2.212l-3.064 9.43a1.978 1.978 0 0 1 -1.881 1.367h-9.916a1.978 1.978 0 0 1 -1.881 -1.367l-3.064 -9.43a1.978 1.978 0 0 1 .719 -2.212l8.021 -5.828a1.978 1.978 0 0 1 2.326 0z" />
+                                    <path d="M12 13a3 3 0 1 0 0 -6a3 3 0 0 0 0 6z" />
+                                    <path d="M6 20.703v-.703a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v.707" />
+                                </svg>
+                                <span class="text-sm gp ml-3 ttw tnn 2xl:opacity--100 wr">Permissions</span>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+
             </div>
             <!-- More group -->
             <div>
@@ -647,16 +694,7 @@
                                         <span class="text-sm gp ttw tnn 2xl:opacity--100 wr">Payment Method</span>
                                     </a>
                                 </li>
-                                <li class="rt ww">
-                                    <a class="block @if(in_array(Request::segment(2), ['roles'])){{ 'text-indigo-500' }}@else{{ 'gq hover--text-slate-200' }}@endif wt wi ld" href="{{ url('admin/roles') }}">
-                                        <span class="text-sm gp ttw tnn 2xl:opacity--100 wr">Roles</span>
-                                    </a>
-                                </li>
-                                <li class="rt ww">
-                                    <a class="block @if(in_array(Request::segment(2), ['permissions'])){{ 'text-indigo-500' }}@else{{ 'gq hover--text-slate-200' }}@endif wt wi ld" href="{{ url('admin/permissions') }}">
-                                        <span class="text-sm gp ttw tnn 2xl:opacity--100 wr">Permissions</span>
-                                    </a>
-                                </li>
+
 
                                 <li class="rt ww">
                                     <a class="block @if(in_array(Request::segment(2), ['currencies'])){{ 'text-indigo-500' }}@else{{ 'gq hover--text-slate-200' }}@endif wt wi ld" href="{{ url('admin/currencies') }}">

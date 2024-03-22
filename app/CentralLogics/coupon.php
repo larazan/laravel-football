@@ -53,11 +53,11 @@ class CouponLogic
         else if($coupon->coupon_type == 'zone_wise')
         {
             if(json_decode($coupon->data, true)){
-                $data = Store::whereIn('zone_id',json_decode($coupon->data, true))->where('id', $store_id)->first();
-                if(!$data)
-                {
-                    return 404;
-                }
+                // $data = Store::whereIn('zone_id',json_decode($coupon->data, true))->where('id', $store_id)->first();
+                // if(!$data)
+                // {
+                //     return 404;
+                // }
             }
             else
             {

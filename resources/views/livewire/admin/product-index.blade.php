@@ -334,13 +334,13 @@
                                             </div>
                                             <div class="col-start-1 sm:col-span-3">
                                                 <label for="discount" class="block text-sm font-medium text-gray-700">
-                                                    Discount
+                                                    Discount (%)
                                                 </label>
                                                 <input wire:model="discount" type="text" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                                             </div>
                                             <div class="col-start-1 sm:col-span-3">
                                                 <label for="weight" class="block text-sm font-medium text-gray-700">
-                                                Weight
+                                                Weight (gram)
                                                 </label>
                                                 <input wire:model="weight" type="text" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                                             </div>
@@ -349,19 +349,19 @@
                                             
                                             <div class="col-start-1 sm:col-span-3">
                                                 <label for="height" class="block text-sm font-medium text-gray-700">
-                                                Height
+                                                Height (cm)
                                                 </label>
                                                 <input wire:model="height" type="text" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                                             </div>
                                             <div class="col-start-1 sm:col-span-3">
                                                 <label for="length" class="block text-sm font-medium text-gray-700">
-                                                Length
+                                                Length (cm)
                                                 </label>
                                                 <input wire:model="length" type="text" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                                             </div>
                                             <div class="col-start-1 sm:col-span-3">
                                                 <label for="width" class="block text-sm font-medium text-gray-700">
-                                                Width
+                                                Width (cm)
                                                 </label>
                                                 <input wire:model="width" type="text" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                                             </div>
@@ -420,6 +420,22 @@
                                                     <img src="{{ $file->temporaryUrl() }}">
                                                 @endif
                                         </div>
+                                        @if ($productId)
+                                            <div class="col-span-6 sm:col-span-3">
+                                                <div class="grid grid-cols-4 gap-2">
+                                                @foreach (#productImages as $pimage)
+                                                <div class="relative ">
+                                                    <img src="{{ asset('storage/'.$pimage->image) }}" alt="" class="rounded w-16 h-16">
+                                                    <div class="absolute flex w-6 h-6 rounded-full bg-white/30 text-red-500 hover:cursor-pointer" wire:click.prevent='deleteSingleImage({{ $pimage->id }})'>
+                                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+                                                        </svg>
+                                                    </div>
+                                                <div>
+                                                @endforeach
+                                                </div>
+                                            </div>
+                                        @endif
                                     </div>
                                 </div>
                             </div>

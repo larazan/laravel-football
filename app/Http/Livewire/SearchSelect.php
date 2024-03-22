@@ -27,7 +27,8 @@ class SearchSelect extends Component
         if ($this->playerName != NULL) {
             return Player::where('name', 'like', '%'.$this->playerName.'%')->paginate(10);
         } else {
-            return Player::all();
+            // return Player::all();
+            return Player::orderBy('id', 'asc')->paginate(20);
         }
     }
 

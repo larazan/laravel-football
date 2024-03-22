@@ -44,7 +44,9 @@ class DatabaseSeeder extends Seeder
             // EventSeeder::class,
             // TimezoneSeeder::class,
             // ThropySeeder::class,
-            CustomerSeeder::class,
+            // CustomerSeeder::class,
+            AttributeSeeder::class,
+            AttributeOptionSeeder::class,
             
     
         ]);

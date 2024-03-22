@@ -184,15 +184,21 @@
                             </td>
 
                             <td class="vi wy w_ vo lm of">
-                                <div class="fm">
-                                   
+                                <div class="fm flex items-center">
+                                    <button class="gq xv rounded-full" x-on:click="window.livewire.emitTo('show-user-component','showModal', {{$user}})">
+                                        <span class=" d">Show</span>
+                                        <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-eye"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" /><path d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" /></svg>
+                                    </button>
                                     <button class="gq xv rounded-full" wire:click="showEditModal({{ $user->id }})">
                                         <span class=" d">Edit</span>
                                         <svg class="os sf du" viewBox="0 0 32 32">
                                             <path d="M19.7 8.3c-.4-.4-1-.4-1.4 0l-10 10c-.2.2-.3.4-.3.7v4c0 .6.4 1 1 1h4c.3 0 .5-.1.7-.3l10-10c.4-.4.4-1 0-1.4l-4-4zM12.6 22H10v-2.6l6-6 2.6 2.6-6 6zm7.4-7.4L17.4 12l1.6-1.6 2.6 2.6-1.6 1.6z"></path>
                                         </svg>
                                     </button>
-
+                                    <button class="gq xv rounded-full"  x-data={} x-on:click="window.livewire.emitTo('manage-user-roles-component','showModal', {{$user}})">
+                                        <span class=" d">Manage</span>
+                                        <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-user-pentagon"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M13.163 2.168l8.021 5.828c.694 .504 .984 1.397 .719 2.212l-3.064 9.43a1.978 1.978 0 0 1 -1.881 1.367h-9.916a1.978 1.978 0 0 1 -1.881 -1.367l-3.064 -9.43a1.978 1.978 0 0 1 .719 -2.212l8.021 -5.828a1.978 1.978 0 0 1 2.326 0z" /><path d="M12 13a3 3 0 1 0 0 -6a3 3 0 0 0 0 6z" /><path d="M6 20.703v-.703a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v.707" /></svg>
+                                    </button>
                                     <button class="yl xy rounded-full" wire:click="deleteId({{ $user->id }})">
                                         <span class=" d">Delete</span>
                                         <svg class="os sf du" viewBox="0 0 32 32">
@@ -427,3 +433,13 @@
     </x-dialog-modal>
 
 </div>
+
+
+  <div wire:key="show-user">
+    <livewire:show-user-component>
+  </div>
+ 
+  <div wire:key="manage-role">
+    <livewire:manage-user-roles-component>
+  </div>
+ 
