@@ -33,7 +33,6 @@ class Media extends Model
 		'body',
 		'video_url',
 		'original',
-		'large',
 		'medium',
 		'small',
 	];
@@ -45,8 +44,6 @@ class Media extends Model
 
     public const SMALL = '135x141';
 	public const MEDIUM = '312x400';
-	public const LARGE = '600x656';
-	public const EXTRA_LARGE = '1125x1200';
 
 	public const STATUSES = [
         self::ACTIVE => 'Active',

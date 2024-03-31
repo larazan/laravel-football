@@ -86,9 +86,19 @@ class FaqIndex extends Component
 
     public function deleteSelected()
     {
-        Faq::WhereIn('id', $this->mySelected)->delete();
+        // Faq::WhereIn('id', $this->mySelected)->delete();
+
+        if (count($this->mySelected)) {
+            for ($x = 0; $x < count($this->mySelected); $x++) { 
+                Faq::find($this->mySelected[$x])->delete();
+            }
+        }
+
         $this->mySelected = [];
         $this->selectAll = false;
+
+        $this->reset();
+        $this->dispatchBrowserEvent('banner-message', ['style' => 'danger', 'message' => 'Faq deleted successfully']);
     }
 
     public function showCreateModal()

@@ -116,7 +116,6 @@ class MediaIndex extends Component
             $media->original = $filePath;
             $media->small = $resizedImage['small'];
             $media->medium = $resizedImage['medium'];
-            $media->large = $resizedImage['large'];
         }
 
         $media->save();
@@ -177,7 +176,6 @@ class MediaIndex extends Component
                     $media->original = $filePath;
                     $media->small = $resizedImage['small'];
                     $media->medium = $resizedImage['medium'];
-                    $media->large = $resizedImage['large'];
                 }
 
                 $media->save();
@@ -250,14 +248,14 @@ class MediaIndex extends Component
 		}
 
         // LARGE
-		$largeImageFilePath = $folder . '/large/' . $fileName;
-		$size = explode('x', Media::LARGE);
-		list($width, $height) = $size;
+		// $largeImageFilePath = $folder . '/large/' . $fileName;
+		// $size = explode('x', Media::LARGE);
+		// list($width, $height) = $size;
 
-		$largeImageFile = Image::make($image)->fit($width, $height)->stream();
-		if (Storage::put('public/' . $largeImageFilePath, $largeImageFile)) {
-			$resizedImage['large'] = $largeImageFilePath;
-		}
+		// $largeImageFile = Image::make($image)->fit($width, $height)->stream();
+		// if (Storage::put('public/' . $largeImageFilePath, $largeImageFile)) {
+		// 	$resizedImage['large'] = $largeImageFilePath;
+		// }
 
         // EXTRA_LARGE
 		// $extraLargeImageFilePath  = $folder . '/xlarge/' . $fileName;
@@ -288,9 +286,9 @@ class MediaIndex extends Component
             Storage::delete($path.$mediaImage->medium);
         }
 
-        if (Storage::exists($path.$mediaImage->large)) {
-            Storage::delete($path.$mediaImage->large);
-        }
+        // if (Storage::exists($path.$mediaImage->large)) {
+        //     Storage::delete($path.$mediaImage->large);
+        // }
 
         // if (Storage::exists($path.$mediaImage->extra_large)) {
         //     Storage::delete($path.$mediaImage->extra_large);

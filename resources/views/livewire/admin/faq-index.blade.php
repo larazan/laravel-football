@@ -3,9 +3,13 @@
 <!-- Loading -->
 <x-loading-indicator />
 
+<!--
 @dump($firstId)
 @dump($selectAll)
 @dump($mySelected)
+-->
+
+
     <!-- Page header -->
     <div class="je jd jc ii">
 
@@ -79,7 +83,7 @@
         <header class="vc vu">
             <h2 class="gh text-slate-800">Faqs List<span class="gq gp"></span></h2>
         </header>
-        <div x-data="">
+        <div x-data="handleSelect">
 
             <!-- Table -->
             <div class="lf">
@@ -118,7 +122,7 @@
                         </tr>
                     </thead>
                     <!-- Table body -->
-                    <tbody class="text-sm le lr">
+                    <tbody class="text-sm le lr" >
                         <!-- Row -->
                        
 
@@ -129,7 +133,7 @@
                                 <div class="flex items-center">
                                     <label class="inline-flex">
                                         <span class="d">Select</span>
-                                        <input class="table-item i" type="checkbox" @click="uncheckParent" wire:model="mySelected" value="{{ $faq->id }}">
+                                        <input class="table-item i" type="checkbox" @click="uncheckParent" wire:key="{{ $faq->id }}" wire:model.live="mySelected" value="{{ $faq->id }} checked">
                                     </label>
                                 </div>
                             </td>
@@ -137,10 +141,10 @@
                                 <div class="gp ">{{ $faq->category->name }}</div>
                             </td>
                             <td class="vi wy w_ vo lm">
-                                <div class="gp text-slate-800">{{ substr($faq->question, 0, 80) }}...</div>
+                                <div class="gp text-slate-800">{!! nl2br(General::smart_wordwrap($faq->question, 80)) !!}</div>
                             </td>
                             <td class="vi wy w_ vo lm">
-                                <div class="gp ">{{ substr($faq->answer, 0, 80) }}...</div>
+                                <div class="gp ">{!! nl2br(General::smart_wordwrap($faq->answer, 80)) !!}</div>
                             </td>
                             <td class="vi wy w_ vo lm">
                                 @if ($faq->status === 'inactive')
@@ -322,42 +326,43 @@
 
 
 
-<!-- @push('js')
+@push('js')
 <script>
     $('.page-item').on('click', function(event) {
         Livewire.emit('resetMySelected');
     })
     // A basic demo function to handle "select all" functionality
-    // document.addEventListener('alpine:init', () => {
-    //     Alpine.data('handleSelect', () => ({
-    //         selectall: false,
-    //         selectAction() {
-    //             countEl = document.querySelector('.table-items-action');
-    //             if (!countEl) return;
-    //             checkboxes = document.querySelectorAll('input.table-item:checked');
-    //             document.querySelector('.table-items-count').innerHTML = checkboxes.length;
-    //             if (checkboxes.length > 0) {
-    //                 countEl.classList.remove('hidden');
-    //             } else {
-    //                 countEl.classList.add('hidden');
-    //             }
-    //         },
-    //         toggleAll() {
-    //             this.selectall = !this.selectall;
-    //             checkboxes = document.querySelectorAll('input.table-item');
-    //             [...checkboxes].map((el) => {
-    //                 el.checked = this.selectall;
-    //             });
-    //             this.selectAction();
-    //         },
-    //         uncheckParent() {
-    //             this.selectall = false;
-    //             document.getElementById('parent-checkbox').checked = false;
-    //             this.selectAction();
-    //         }
-    //     }))
-    // })
+    document.addEventListener('alpine:init', () => {
+        Alpine.data('handleSelect', () => ({
+            selectall: false,
+            selectAction() {
+                countEl = document.querySelector('.table-items-action');
+                if (!countEl) return;
+                checkboxes = document.querySelectorAll('input.table-item:checked');
+                document.querySelector('.table-items-count').innerHTML = checkboxes.length;
+                if (checkboxes.length > 0) {
+                    countEl.classList.remove('hidden');
+                } else {
+                    countEl.classList.add('hidden');
+                }
+            },
+            toggleAll() {
+                this.selectall = !this.selectall;
+                checkboxes = document.querySelectorAll('input.table-item');
+                [...checkboxes].map((el) => {
+                    el.checked = this.selectall;
+                });
+                this.selectAction();
+            },
+            uncheckParent() {
+                this.selectall = false;
+                document.getElementById('parent-checkbox').checked = false;
+                this.selectAction();
+            }
+        }))
+    })
 
     
 </script>
-@endpush -->
+@endpush 
+    

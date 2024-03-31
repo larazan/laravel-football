@@ -1,0 +1,1 @@
+<div class="{{ $hasNotification ? 'absolute top-0 right-0 w-2.5 h-2.5 bg-rose-500 border-2 border-white rounded-full' : 'hidden' }}"></div>

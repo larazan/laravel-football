@@ -25,7 +25,6 @@ return new class extends Migration
             $table->text('body');
             $table->string('video_url');
             $table->string('original')->nullable();
-            $table->string('large')->nullable();
             $table->string('medium')->nullable();
             $table->string('small')->nullable();
             $table->softDeletes();

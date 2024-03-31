@@ -47,6 +47,7 @@ use App\Http\Livewire\Admin\MatchLineup;
 use App\Http\Livewire\Admin\MatchReportIndex;
 use App\Http\Livewire\Admin\MatchStatisticIndex;
 use App\Http\Livewire\Admin\MediaIndex;
+use App\Http\Livewire\Admin\NotificationIndex;
 use App\Http\Livewire\Admin\OrderIndex;
 use App\Http\Livewire\Admin\PartnerIndex;
 use App\Http\Livewire\Admin\PlayerIndex;
@@ -146,6 +147,8 @@ Route::middleware(['auth:sanctum', 'verified', 'role:admin|author|sales'])->pref
     Route::put('medias/update', [MediaController::class, 'update'])->name('updateMedia');
     Route::get('medias', MediaIndex::class)->name('medias.index');
     //
+
+    Route::get('notifications', NotificationIndex::class)->name('notifications.index');
 
     Route::get('payment-method', [PaymentMethodController::class, 'payment_index'])->name('payment-method');
     Route::post('payment-method-update/{payment_method}', [PaymentMethodController::class, 'payment_update'])->name('payment-method-update');
