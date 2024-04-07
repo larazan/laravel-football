@@ -13,6 +13,7 @@ class PositionIndex extends Component
 
     public $showPositionModal = false;
     public $name;
+    public $abbreviation;
     public $positionId;
     public $parentId;
 
@@ -63,6 +64,7 @@ class PositionIndex extends Component
         
         Position::create([
           'name' => $this->name,
+          'abbreviation' => $this->abbreviation,
           'slug' => Str::slug($this->name),
           'parent_id' => $this->parentId,
           'status' => $this->catStatus,
@@ -78,6 +80,7 @@ class PositionIndex extends Component
         $this->positionId = $positionId;
         $position = Position::find($positionId);
         $this->name = $position->name;
+        $this->abbreviation = $position->abbreviation;
         $this->parentId = $position->parent_id;
         $this->catStatus = $position->status;
         $this->showPositionModal = true;
@@ -90,6 +93,7 @@ class PositionIndex extends Component
         $position = Position::findOrFail($this->positionId);
         $position->update([
             'name' => $this->name,
+            'abbreviation' => $this->abbreviation,
             'slug'     => Str::slug($this->name),
             'parent_id' => $this->parentId,
             'status' => $this->catStatus,

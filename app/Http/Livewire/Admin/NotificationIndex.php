@@ -2,9 +2,9 @@
 
 namespace App\Http\Livewire\Admin;
 
-// use App\Policies\NotificationPolicy;
+use App\Policies\NotificationPolicy;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-// use Illuminate\Notifications\DatabaseNotification;
+use Illuminate\Notifications\DatabaseNotification;
 use Illuminate\Support\Facades\Auth;
 // use Illuminate\View\View;
 use Livewire\Component;
@@ -24,18 +24,18 @@ class NotificationIndex extends Component
     //     // $this->notificationCount = Auth::user()->unreadNotifications()->count();
     // }
 
-    // public function markAsRead(string $notificationId): void
-    // {
-    //     $notification = DatabaseNotification::findOrFail($notificationId);
+    public function markAsRead(string $notificationId): void
+    {
+        $notification = DatabaseNotification::findOrFail($notificationId);
 
-    //     $this->authorize(NotificationPolicy::MARK_AS_READ, $notification);
+        $this->authorize(NotificationPolicy::MARK_AS_READ, $notification);
 
-    //     $notification->markAsRead();
+        $notification->markAsRead();
 
-    //     $this->notificationCount--;
+        $this->notificationCount--;
 
-    //     $this->emit('NotificationMarkedAsRead', $this->notificationCount);
-    // }
+        $this->emit('NotificationMarkedAsRead', $this->notificationCount);
+    }
 
     public function render()
     {

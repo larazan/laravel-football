@@ -219,3 +219,10 @@ Route::prefix('schedule')->group(function () {
     Route::get('/index', \App\Http\Livewire\Schedule\Index::class)->name('schedule.index');
 });
 
+Route::get('search', function() {
+    $query = ''; // <-- Change the query for testing.
+
+    $articles = App\Models\Article::search($query)->get();
+
+    return $articles;
+});

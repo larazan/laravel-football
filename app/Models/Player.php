@@ -7,10 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\Activitylog\LogOptions;
+use Laravel\Scout\Searchable;
 
 class Player extends Model
 {
     use HasFactory, LogsActivity;
+    use Searchable;
 
     public function getActivitylogOptions(): LogOptions
     {
@@ -72,5 +74,14 @@ class Player extends Model
     public function country()
     {
         return $this->belongsTo(Country::class);
+    }
+
+    public function toSearchableArray(): array
+    {
+        return [
+            'id' => $this->id(),
+            'name' => $this->name(),
+            'slug' => $this->slug(),
+        ];
     }
 }

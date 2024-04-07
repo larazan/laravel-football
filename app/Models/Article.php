@@ -8,10 +8,13 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Auth;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\Activitylog\LogOptions;
+use Laravel\Scout\Searchable;
 
 class Article extends Model
 {
-    use HasFactory, LogsActivity;
+    use HasFactory; 
+    use LogsActivity;
+    use Searchable;
 
     public function getActivitylogOptions(): LogOptions
     {
@@ -86,5 +89,14 @@ class Article extends Model
         return $this->morphMany(Comment::class, 'commentable')
             ->latest()
             ->whereNull('parent_id');
+    }
+
+    public function toSearchableArray()
+    {
+        return [
+            'id' => $this->id,
+            'title' => $this->title,
+            'body' => $this->body,
+        ];
     }
 }

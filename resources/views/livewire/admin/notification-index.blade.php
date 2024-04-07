@@ -1,7 +1,7 @@
 <div class="vs jj ttm vl ou uf na">
 
-<!-- Loading -->
-<x-loading-indicator />
+    <!-- Loading -->
+    <x-loading-indicator />
 
     <!-- Page header -->
     <div class="je jd jc ii">
@@ -32,7 +32,7 @@
 
         <!-- Left side -->
         <div class="ri _y">
-        
+
         </div>
 
     </div>
@@ -47,16 +47,77 @@
             <!-- Table -->
             <div class="lf">
                 <table class="ux ou">
-                   
+
+                    <!-- Table header -->
+                    <thead class="go gh gv text-slate-500 hp co cs border-slate-200">
+                        <tr>
+                            <th class="vi wy w_ vo lm">
+                                <div class="gh gt">NO</div>
+                            </th>
+                            <th class="vi wy w_ vo lm">
+                                <div class="gh gt">Type</div>
+                            </th>
+
+                            <th class="vi wy w_ vo lm">
+                                <div class="gh gt">Data</div>
+                            </th>
+                            <th class="vi wy w_ vo lm">
+                                <div class="gh gt">Date</div>
+                            </th>
+                            <th class="vi wy w_ vo lm">
+                                <div class="gh gt">Actions</div>
+                            </th>
+                        </tr>
+                    </thead>
+
                     <!-- Table body -->
-                    <tbody class="text-sm le lr" >
+                    <tbody class="text-sm le lr">
                         <!-- Row -->
-                       
+
                         @if ($notifications->total())
+                        @php
+                        $i = 1
+                        @endphp
                         @foreach ($notifications as $notification)
-                            @includeIf("notifications.{$notification->data['type']}")
+                        <!-- @includeIf("notifications.{$notification->data['first_name']}") -->
+
+                        <tr>
+                            <td class="vi wy w_ vo lm">
+                                <div class="gp text-slate-800">{{ $i++ }}</div>
+                            </td>
+                            <td class="vi wy w_ vo lm">
+                                <div class="gp text-slate-800">{{ $notification->type }}</div>
+                            </td>
+                            <td class="vi wy w_ vo lm">
+                                <div class="gp text-slate-800">
+                                    @foreach ($notification->data as $key => $value)
+                                    {{ $key }} : {{ $value }} <br>
+                                    @endforeach
+                                </div>
+                            </td>
+
+                            <td class="vi wy w_ vo lm">
+                                <div>{{ $notification->created_at->format('d-m-Y') }}</div>
+                            </td>
+
+                            <td class="vi wy w_ vo lm of">
+                                <div class="fm">
+                                    <button class="gq xv rounded-full" wire:click="markAsRead({{ $notification->id }})">
+                                        <span class=" d">Read</span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                                        </svg>
+
+
+                                    </button>
+
+
+                                </div>
+                            </td>
+                        </tr>
+
                         @endforeach
-                       
+
                         @else
                         <tr>
                             <td class="vi wy w_ vo lm" colspan="8">You have no unread notifications</td>
@@ -69,7 +130,5 @@
         </div>
     </div>
 
-    
-    {{ $notifications->links() }}
 
-    
+    {{ $notifications->links() }}

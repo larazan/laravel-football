@@ -131,7 +131,10 @@
                             <th class="vi wy w_ vo lm">
                                 <div class="gh gt">Parent</div>
                             </th>
-                           
+                            <th class="vi wy w_ vo lm">
+                                <div class="gh gt">Abbreviation</div>
+                            </th>
+                            
                             <th class="vi wy w_ vo lm">
                                 <div class="gh gt">Date</div>
                             </th>
@@ -160,7 +163,9 @@
                             <td class="vi wy w_ vo lm">
                                 <div class="gp ">{{ $position->parent ? $position->parent->name : '' }}</div>
                             </td>
-
+                            <td class="vi wy w_ vo lm">
+                                <div class="gp text-slate-800">{{ $position->name }}</div>
+                            </td>
                             <td class="vi wy w_ vo lm">
                                 <div>{{ $position->created_at->format('d-m-Y') }}</div>
                             </td>
@@ -238,7 +243,15 @@
                                             </select>
                                         </div>
 
-                                        
+                                        <div class="col-start-1 sm:col-span-3">
+                                            <label for="title" class="block text-sm font-medium text-gray-700">
+                                            Abbreviation
+                                            </label>
+                                            <input wire:model="abbreviation" type="text" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                                            @error('abbreviation')
+                                                <div class="go re yl">{{ $message }}</div>
+                                            @enderror
+                                        </div>
 
                                     </div>
                                 </div>
