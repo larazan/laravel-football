@@ -242,6 +242,7 @@
                                     <img class="rounded-sm" src="{{ asset('images/generic-male-avatar-300x284.jpg') }}" width="200" height="142" alt="Player 01">
                                     @endif                
                                 </div>
+                              
                             </div>
                             <div class="uw">
                                 <a href="#0">

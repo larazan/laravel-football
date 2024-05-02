@@ -43,7 +43,7 @@ class CustomerDetail extends Component
     {
         return view('livewire.admin.customer-detail', [
             'customer' => User::where('id', $this->customerId)->get(),
-            'orders' => Order::search('id', $this->search)->where(['user_id' => $this->customerId])->orderBy('id', $this->sort)->paginate($this->perPage),
+            'orders' => Order::liveSearch('id', $this->search)->where(['user_id' => $this->customerId])->orderBy('id', $this->sort)->paginate($this->perPage),
         ]);
     }
 }

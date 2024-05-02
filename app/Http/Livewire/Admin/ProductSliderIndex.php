@@ -209,7 +209,7 @@ class ProductSliderIndex extends Component
     public function render()
     {
         return view('livewire.admin.product-slider-index', [
-            'slides' => ProductSlide::search('title', $this->search)->orderBy('position', $this->sort)->paginate($this->perPage)
+            'slides' => ProductSlide::liveSearch('title', $this->search)->orderBy('position', $this->sort)->paginate($this->perPage)
         ]);
     }
 

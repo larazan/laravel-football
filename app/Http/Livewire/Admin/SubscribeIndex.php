@@ -113,7 +113,7 @@ class SubscribeIndex extends Component
     public function render()
     {
         return view('livewire.admin.subscribe-index', [
-            'subscribers' => Newsletter::search('email', $this->search)->orderBy('id', $this->sort)->paginate($this->perPage)
+            'subscribers' => Newsletter::liveSearch('email', $this->search)->orderBy('id', $this->sort)->paginate($this->perPage)
         ]);
     }
 }

@@ -185,7 +185,7 @@ class PartnerIndex extends Component
     public function render()
     {
         return view('livewire.admin.partner-index', [
-            'partners' => Partner::search('title', $this->search)->orderBy('title', $this->sort)->paginate($this->perPage),
+            'partners' => Partner::liveSearch('title', $this->search)->orderBy('title', $this->sort)->paginate($this->perPage),
         ]);
     }
 }

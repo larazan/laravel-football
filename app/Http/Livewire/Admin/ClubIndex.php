@@ -178,7 +178,7 @@ class ClubIndex extends Component
     public function render()
     {
         return view('livewire.admin.club-index', [
-            'clubs' => Club::search('name', $this->search)->orderBy('name', $this->sort)->paginate($this->perPage),
+            'clubs' => Club::liveSearch('name', $this->search)->orderBy('name', $this->sort)->paginate($this->perPage),
             'stadions' => Stadion::OrderBy('name', 'asc')->get(),
         ]);
     }

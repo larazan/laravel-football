@@ -13,6 +13,12 @@ use App\Http\Controllers\Admin\ReportController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PagesController;
+use App\Http\Controllers\MatchController;
+use App\Http\Controllers\StandingController;
+use App\Http\Controllers\SquadController;
+use App\Http\Controllers\NewsController;
 use App\Http\Controllers\CkeditorFileUploadController;
 // Livewire
 use App\Http\Livewire\Admin\AboutUs;
@@ -87,6 +93,29 @@ use App\Http\Livewire\Trix;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+// FRONTEND
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+Route::get('/news', [NewsController::class, 'index'])->name('news');
+Route::get('/news/{slug}', [NewsController::class, 'show']);
+
+Route::get('/match', [MatchController::class, 'index'])->name('match');
+Route::get('/match/{slug}', [MatchController::class, 'show']);
+Route::get('/match/{slug}/lineup', [MatchController::class, 'lineup']);
+Route::get('/match/{slug}/statistic', [MatchController::class, 'statistic']);
+
+Route::get('/standing', [StandingController::class, 'index'])->name('standing');
+
+Route::get('/team', [SquadController::class, 'index'])->name('team');
+Route::get('/team/{slug}', [SquadController::class, 'show']);
+
+Route::get('/contact', [PagesController::class, 'contact']);
+Route::get('/faqs', [PagesController::class, 'faqs']);
+Route::get('/policy', [PagesController::class, 'policy']);
+Route::get('/terms', [PagesController::class, 'terms']);
+
+Route::feeds();
 
 Route::get('/', function () {
     return view('welcome');
@@ -224,5 +253,13 @@ Route::get('search', function() {
 
     $articles = App\Models\Article::search($query)->get();
 
-    return $articles;
+    $players = App\Models\Player::search($query)->paginate(10);
+        // ->where('level', 'senior')
+        // ->where('gender', 'men')
+        // ->orderBy('name', 'asc')
+        // ->paginate(10);
+
+    // return $articles;
+    return $players;
 });
+

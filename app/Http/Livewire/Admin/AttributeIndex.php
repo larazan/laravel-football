@@ -173,7 +173,7 @@ class AttributeIndex extends Component
     public function render()
     {
         return view('livewire.admin.attribute-index', [
-            'attributes' => Attribute::search('name', $this->search)->orderBy('name', $this->sort)->paginate($this->perPage),
+            'attributes' => Attribute::liveSearch('name', $this->search)->orderBy('name', $this->sort)->paginate($this->perPage),
             'types' => Attribute::types(),
             'booleanOptions' => Attribute::booleanOptions(),
             'validations' => Attribute::validations(),

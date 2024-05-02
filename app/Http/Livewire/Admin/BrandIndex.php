@@ -171,7 +171,7 @@ class BrandIndex extends Component
     public function render()
     {
         return view('livewire.admin.brand-index', [
-            'brands' => Brand::search('name', $this->search)->orderBy('name', $this->sort)->paginate($this->perPage)
+            'brands' => Brand::liveSearch('name', $this->search)->orderBy('name', $this->sort)->paginate($this->perPage)
         ]);
     }
 

@@ -144,7 +144,7 @@ class AttributeOptionIndex extends Component
     public function render()
     {
         return view('livewire.admin.attribute-option-index', [
-            'attributeOptions' => AttributeOption::search('name', $this->search)->where('attribute_id', $this->attributeId)->orderBy('name', $this->sort)->paginate($this->perPage),
+            'attributeOptions' => AttributeOption::liveSearch('name', $this->search)->where('attribute_id', $this->attributeId)->orderBy('name', $this->sort)->paginate($this->perPage),
             // 'attribute' => $attribute,
         ]);
     }

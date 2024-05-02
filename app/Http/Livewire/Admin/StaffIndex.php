@@ -245,7 +245,7 @@ class StaffIndex extends Component
     public function render()
     {
         return view('livewire.admin.staff-index', [
-            'staffs' => Staff::search('name', $this->search)->orderBy('name', $this->sort)->paginate($this->perPage),
+            'staffs' => Staff::liveSearch('name', $this->search)->orderBy('name', $this->sort)->paginate($this->perPage),
             'countries' => Country::orderBy('name', 'asc')->get(),
         ]);
     }

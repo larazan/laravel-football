@@ -213,7 +213,7 @@ class SlideIndex extends Component
     public function render()
     {
         return view('livewire.admin.slide-index', [
-            'slides' => Slide::search('title', $this->search)->orderBy('title', $this->sort)->paginate($this->perPage)
+            'slides' => Slide::liveSearch('title', $this->search)->orderBy('title', $this->sort)->paginate($this->perPage)
         ]);
     }
 

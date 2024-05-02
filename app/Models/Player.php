@@ -82,6 +82,8 @@ class Player extends Model
             'id' => $this->id(),
             'name' => $this->name(),
             'slug' => $this->slug(),
+            'level' => $this->level(),
+            'gender' => $this->gender(),
         ];
     }
 }

@@ -84,7 +84,7 @@ class SquadIndex extends Component
 
     public function closeDetailModal()
     {
-        $this->reset();
+        // $this->reset();
         $this->showPlayerDetailModal = false;
     }
 
@@ -96,7 +96,7 @@ class SquadIndex extends Component
     public function render()
     {
         return view('livewire.admin.squad-index', [
-            'players' => Player::search('name', $this->search)->where('club_id', $this->clubId)->orderBy('position_id', $this->sort)->paginate($this->perPage),
+            'players' => Player::liveSearch('name', $this->search)->where('club_id', $this->clubId)->orderBy('position_id', $this->sort)->paginate($this->perPage),
         ]);
     }
 }

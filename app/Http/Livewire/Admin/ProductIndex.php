@@ -57,6 +57,24 @@ class ProductIndex extends Component
         'inactive'
     ];
 
+    public $colors = [
+        'hitam',
+        'merah',
+        'putih',
+        'kuning',
+        'hijau',
+    ];
+
+    public $sizes = [
+        'small',
+        'medium',
+        'large',
+        'xtra large',
+    ];
+
+    public $associatedColors;
+    public $associatedSizes;
+
     public $search = '';
     public $sort = 'asc';
     public $perPage = 10;
@@ -77,6 +95,7 @@ class ProductIndex extends Component
     public function showCreateModal()
     {
         $this->showProductModal = true;
+        $this->emit('refreshColorSelect');
     }
 
     public function closeConfirmModal()
@@ -288,6 +307,8 @@ class ProductIndex extends Component
 
     public function closeProductModal()
     {
+        $this->reset('associatedColors');
+        $this->reset('associatedSizes');
         $this->showProductModal = false;
         $this->reset();
     }
@@ -308,7 +329,7 @@ class ProductIndex extends Component
         return view('livewire.admin.product-index', [
             'categories' => Category::OrderBy('name', 'asc')->get(),
             'brands' => Brand::OrderBy('name', 'asc')->get(),
-            'products' => Product::search('name', $this->search)->orderBy('name', $this->sort)->paginate($this->perPage)
+            'products' => Product::liveSearch('name', $this->search)->orderBy('name', $this->sort)->paginate($this->perPage)
         ]);
     }
 

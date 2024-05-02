@@ -182,6 +182,8 @@
     input[type=file]::file-selector-button:hover {
       background: #0d45a5;
     }
+
+    
   </style>
   @stack('styles')
   <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">

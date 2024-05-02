@@ -402,6 +402,23 @@
                                             </label>
                                             <textarea wire:model="metaDesc" cols="50" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" >{{ $metaDesc }}</textarea>
                                         </div>
+
+                                        <div class="col-start-1 sm:col-span-3">
+                                            <label for="metaTitle" class="block text-sm font-medium text-gray-700">
+                                                Color
+                                            </label>
+                                            <select style="width: 100%" class="select select-bordered w-full select2" id="colorSelect" multiple="multiple">
+                                                @foreach($colors as $color)
+                                                <option id="{{$color}}">{{ __('colors.' . $color) }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="col-start-1 sm:col-span-3">
+                                            <label for="metaDesc" class="block text-sm font-medium text-gray-700">
+                                                Size
+                                            </label>
+                                            <textarea wire:model="metaDesc" cols="50" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" >{{ $metaDesc }}</textarea>
+                                        </div>
                                         
                                     </div>
                                     <div class="mt-6 flex flex-col space-y-3" x-show="tab === 2">
@@ -651,5 +668,30 @@
         @this.set('description', trixEditor.getAttribute('value'))
     })
    
+    document.addEventListener('livewire:load', function(event) {
+
+        @this.on('refreshColorSelect', function() {
+        let associatedColors = [];
+
+        $.each(@this.associatedColors, function(key, associatedColor) {
+            associatedColors.push(associatedColor)
+        });
+
+        $('#colorSelect').val(associatedColors);
+
+        $('#colorSelect').select2({
+            tags: true,
+            tokenSeparators: [',']
+        });
+
+        $('#colorSelect').trigger('change');
+
+        $('#colorSelect').on('change', function(e) {
+            @this.set('associatedColors', $(this).val());
+        });
+        });
+
+    });
+
 </script>
 @endpush

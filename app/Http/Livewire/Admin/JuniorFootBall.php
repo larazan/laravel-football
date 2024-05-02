@@ -362,7 +362,7 @@ class JuniorFootBall extends Component
     public function render()
     {
         return view('livewire.admin.junior-foot-ball', [
-            'players' => Player::search('name', $this->search)->where('level', 'u20')->where('gender', 'men')->where('club_id', $this->clubId)->orderBy('name', $this->sort)->paginate($this->perPage),
+            'players' => Player::liveSearch('name', $this->search)->where('level', 'u20')->where('gender', 'men')->where('club_id', $this->clubId)->orderBy('name', $this->sort)->paginate($this->perPage),
             'clubs' => Club::OrderBy('name', 'asc')->get(),
             'teams' => Club::OrderBy('id', 'asc')->get()->toArray(),
             'positionOption' => Position::OrderBy('name', 'asc')->get(),

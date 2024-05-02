@@ -17,6 +17,7 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')->hourly();
         $schedule->command('fo:generate-sitemap')->daily()->graceTimeInMinutes(25);
+        $schedule->command('fo:post-article-to-twitter')->twiceDaily(14, 18);
     }
 
     /**

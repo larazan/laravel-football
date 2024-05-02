@@ -15,7 +15,8 @@ class GenerateSitemap extends Command
      *
      * @var string
      */
-    protected $signature = 'fo:generate-sitemap';
+    // php artisan fo:generate-sitemap
+     protected $signature = 'fo:generate-sitemap';
 
     /**
      * The console command description.

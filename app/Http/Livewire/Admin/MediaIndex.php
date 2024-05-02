@@ -219,7 +219,7 @@ class MediaIndex extends Component
     public function render()
     {
         return view('livewire.admin.media-index', [
-            'medias' => Media::search('title', $this->search)->orderBy('title', $this->sort)->paginate($this->perPage),
+            'medias' => Media::liveSearch('title', $this->search)->orderBy('title', $this->sort)->paginate($this->perPage),
         ]);
     }
 

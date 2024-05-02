@@ -193,7 +193,7 @@ class MatchReportIndex extends Component
     {
         return view('livewire.admin.match-report-index', [
             'matchs' => Matchs::where('id', $this->matchId)->get(),
-            'reports' => MatchReport::search('id', $this->search)->orderBy('id', $this->sort)->paginate($this->perPage),
+            'reports' => MatchReport::liveSearch('id', $this->search)->orderBy('id', $this->sort)->paginate($this->perPage),
         ]);
     }
 

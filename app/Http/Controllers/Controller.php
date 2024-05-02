@@ -12,4 +12,14 @@ class Controller extends BaseController
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
     protected $data = [];
+
+    protected function loadTheme($view, $data = [])
+	{
+		return view('frontend/'. $view, $data);
+    }
+
+    protected function loadDashboard($view, $data = [])
+	{
+		return view('backend/'. $view, $data);
+    }
 }

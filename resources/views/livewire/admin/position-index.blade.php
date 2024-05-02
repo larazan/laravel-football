@@ -8,7 +8,7 @@
 
         <!-- Left: Title -->
         <div class="ri _y">
-            <h1 class="gu teu text-slate-800 font-bold">Position Article ✨</h1>
+            <h1 class="gu teu text-slate-800 font-bold">Position ✨</h1>
         </div>
 
         <!-- Right: Actions -->
@@ -107,7 +107,7 @@
     <!-- Table -->
     <div class="bg-white bd rounded-sm border border-slate-200 rc">
         <header class="vc vu">
-            <h2 class="gh text-slate-800">Categories <span class="gq gp"></span></h2>
+            <h2 class="gh text-slate-800">Position List <span class="gq gp"></span></h2>
         </header>
         <div x-data="handleSelect">
 

@@ -167,7 +167,7 @@ class CustomerIndex extends Component
         })->orderBy('order_count', 'desc')->paginate($this->perPage);
 
         return view('livewire.admin.customer-index', [
-            'users' => User::search('first_name', $this->search)->orderBy('first_name', $this->sort)->orderBy('order_count', 'desc')->where('order_count','>',0)->paginate($this->perPage),
+            'users' => User::liveSearch('first_name', $this->search)->orderBy('first_name', $this->sort)->orderBy('order_count', 'desc')->where('order_count','>',0)->paginate($this->perPage),
             'countries' => Country::orderBy('name', 'asc')->get(),
         ]);
     }

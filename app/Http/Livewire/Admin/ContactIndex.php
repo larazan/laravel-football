@@ -148,7 +148,7 @@ class ContactIndex extends Component
     public function render()
     {
         return view('livewire.admin.contact-index', [
-            'contacts' => Contact::search('name', $this->search)->orderBy('name', $this->sort)->paginate($this->perPage)
+            'contacts' => Contact::liveSearch('name', $this->search)->orderBy('name', $this->sort)->paginate($this->perPage)
         ]);
     }
 

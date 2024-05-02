@@ -176,7 +176,7 @@ class CompetitionIndex extends Component
     public function render()
     {
         return view('livewire.admin.competition-index', [
-            'competitions' => Competition::search('name', $this->search)->orderBy('name', $this->sort)->paginate($this->perPage)
+            'competitions' => Competition::liveSearch('name', $this->search)->orderBy('name', $this->sort)->paginate($this->perPage)
         ]);
     }
 }

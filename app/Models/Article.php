@@ -6,15 +6,22 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Str;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\Activitylog\LogOptions;
 use Laravel\Scout\Searchable;
+use Spatie\Feed\Feedable;
+use Spatie\Feed\FeedItem;
 
-class Article extends Model
+
+class Article extends Model implements Feedable
 {
     use HasFactory; 
     use LogsActivity;
     use Searchable;
+
+    const TABLE = 'articles';
 
     public function getActivitylogOptions(): LogOptions
     {
@@ -43,6 +50,8 @@ class Article extends Model
         'small',
     ];
 
+    const FEED_PAGE_SIZE = 20;
+
     public const UPLOAD_DIR = 'uploads/articles';
 
     public const SMALL = '135x141';
@@ -61,6 +70,26 @@ class Article extends Model
 	{
 		return self::STATUSES;
 	}
+
+    public function id(): int
+    {
+        return $this->id;
+    }
+
+    public function title(): string
+    {
+        return $this->title;
+    }
+
+    public function body(): string
+    {
+        return $this->body;
+    }
+
+    public function excerpt(int $limit = 100): string
+    {
+        return Str::limit(strip_tags($this->body()), $limit);
+    }
 
     public function user()
     {
@@ -98,5 +127,44 @@ class Article extends Model
             'title' => $this->title,
             'body' => $this->body,
         ];
+    }
+
+    public static function getFeedItems(): Collection
+    {
+        return self::published()
+            ->recent()
+            ->paginate(self::FEED_PAGE_SIZE)
+            ->getCollection();
+    }
+
+    public function toFeedItem(): FeedItem
+    {
+        return FeedItem::create()
+            ->id($this->id())
+            ->title($this->title())
+            ->summary($this->excerpt())
+            ->updated($this->updatedAt())
+            ->link(route('articles.show', $this->slug()))
+            ->authorName($this->author()->name());
+    }
+
+    public function scopeNotShared(Builder $query): Builder
+    {
+        return $query->whereNull('shared_at');
+    }
+
+    public static function nextForSharing(): ?self
+    {
+        return self::notShared()
+            ->published()
+            ->orderBy('created_at', 'asc')
+            ->first();
+    }
+
+    public function markAsPosted()
+    {
+        $this->update([
+            'shared_at' => now(),
+        ]);
     }
 }

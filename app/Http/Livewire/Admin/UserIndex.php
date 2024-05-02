@@ -68,7 +68,7 @@ class UserIndex extends Component
 
     public function updatedQueryRole()
     {
-        $this->roles = Role::search('name', $this->queryRole)->get();
+        $this->roles = Role::liveSearch('name', $this->queryRole)->get();
     }
 
     public function showCreateModal()
@@ -184,28 +184,28 @@ class UserIndex extends Component
     public function render()
     {
         return view('livewire.admin.user-index', [
-            'users' => User::search('first_name', $this->search)->orderBy('first_name', $this->sort)->paginate($this->perPage),
+            'users' => User::liveSearch('first_name', $this->search)->orderBy('first_name', $this->sort)->paginate($this->perPage),
             'roles' => Role::all(),
         ]);
     }
 
-    public function assignRole($roleName)
-    {
-        if ($this->userSelected->hasRole($roleName)) {
-            $this->dispatchBrowserEvent('banner-message', ['style' => 'danger', 'message' => 'Role exists']);
-        }
+    // public function assignRole($roleName)
+    // {
+    //     if ($this->userSelected->hasRole($roleName)) {
+    //         $this->dispatchBrowserEvent('banner-message', ['style' => 'danger', 'message' => 'Role exists']);
+    //     }
 
-        $this->userSelected->assignRole($roleName);
-        $this->dispatchBrowserEvent('banner-message', ['style' => 'success', 'message' => 'Role assigned']);
-    }
+    //     $this->userSelected->assignRole($roleName);
+    //     $this->dispatchBrowserEvent('banner-message', ['style' => 'success', 'message' => 'Role assigned']);
+    // }
 
-    public function removeRole($roleName)
-    {
-        if ($this->userSelected->hasRole($roleName)) {
-            $this->userSelected->removeRole($roleName);
-            $this->dispatchBrowserEvent('banner-message', ['style' => 'success', 'message' => 'Role removed']);
-        }
+    // public function removeRole($roleName)
+    // {
+    //     if ($this->userSelected->hasRole($roleName)) {
+    //         $this->userSelected->removeRole($roleName);
+    //         $this->dispatchBrowserEvent('banner-message', ['style' => 'success', 'message' => 'Role removed']);
+    //     }
 
-        $this->dispatchBrowserEvent('banner-message', ['style' => 'danger', 'message' => 'Role not exists']);
-    }
+    //     $this->dispatchBrowserEvent('banner-message', ['style' => 'danger', 'message' => 'Role not exists']);
+    // }
 }

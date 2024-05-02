@@ -201,7 +201,7 @@ class StadionIndex extends Component
     public function render()
     {
         return view('livewire.admin.stadion-index', [
-            'stadions' => Stadion::search('name', $this->search)->orderBy('name', $this->sort)->paginate($this->perPage)
+            'stadions' => Stadion::liveSearch('name', $this->search)->orderBy('name', $this->sort)->paginate($this->perPage)
         ]);
     }
 

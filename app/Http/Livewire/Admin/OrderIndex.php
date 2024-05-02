@@ -22,7 +22,7 @@ class OrderIndex extends Component
     public function render()
     {
         return view('livewire.admin.order-index', [
-            'orders' => Order::search('order_id', $this->search)->orderBy('id', $this->sort)->paginate($this->perPage),
+            'orders' => Order::liveSearch('order_id', $this->search)->orderBy('id', $this->sort)->paginate($this->perPage),
         ]);
     }
 }

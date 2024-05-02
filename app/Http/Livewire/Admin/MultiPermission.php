@@ -24,7 +24,7 @@ class MultiPermission extends Component
 
     public function updatedQueryPermission()
     {
-        $this->permissions = Permission::search('name', $this->queryPermission)->get();
+        $this->permissions = Permission::liveSearch('name', $this->queryPermission)->get();
     }
 
     public function addPermission($permissionName)

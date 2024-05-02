@@ -179,7 +179,7 @@ class MatchGalleryIndex extends Component
     {   
         return view('livewire.admin.match-gallery-index', [
             'matchs' => Matchs::where('id', $this->matchId)->get(),
-            'galleries' => MatchGallery::search('id', $this->search)->orderBy('id', $this->sort)->paginate($this->perPage),
+            'galleries' => MatchGallery::liveSearch('id', $this->search)->orderBy('id', $this->sort)->paginate($this->perPage),
         ]);
     }
 

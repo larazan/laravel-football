@@ -152,15 +152,15 @@ class RoleIndex extends Component
     //     $this->dispatchBrowserEvent('banner-message', ['style' => 'danger', 'message' => 'Permission deleted successfully']);
     // }
 
-    public function permissionAdded()
-    {
-        $this->dispatchBrowserEvent('banner-message', ['style' => 'success', 'message' => 'Permission Added']);
-        $this->reset();
-    }
+    // public function permissionAdded()
+    // {
+    //     $this->dispatchBrowserEvent('banner-message', ['style' => 'success', 'message' => 'Permission Added']);
+    //     $this->reset();
+    // }
 
-    public function permissionDetached()
-    {
-        $this->dispatchBrowserEvent('banner-message', ['style' => 'success', 'message' => 'Permission detached']);
-        $this->reset();
-    }
+    // public function permissionDetached()
+    // {
+    //     $this->dispatchBrowserEvent('banner-message', ['style' => 'success', 'message' => 'Permission detached']);
+    //     $this->reset();
+    // }
 }

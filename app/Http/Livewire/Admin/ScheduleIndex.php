@@ -340,7 +340,7 @@ class ScheduleIndex extends Component
 
         return view('livewire.admin.schedule-index', [
             'dates' => $dates,
-            // 'schedules' => Schedule::search('id', $this->search)->orderBy('id', $this->sort)->paginate($this->perPage),
+            // 'schedules' => Schedule::liveSearch('id', $this->search)->orderBy('id', $this->sort)->paginate($this->perPage),
             'competitions' => Competition::OrderBy('name', 'asc')->get(),
             'stadions' => Stadion::OrderBy('name', 'asc')->get(),
             'clubs' => Club::OrderBy('id', 'asc')->get(),

@@ -188,7 +188,7 @@ class CouponIndex extends Component
         })->orderBy('id', $this->sort)->paginate($this->perPage);
 
         return view('livewire.admin.coupon-index', [
-            'coupons' => Coupon::search('title', $this->search)->orderBy('title', $this->sort)->paginate($this->perPage),
+            'coupons' => Coupon::liveSearch('title', $this->search)->orderBy('title', $this->sort)->paginate($this->perPage),
         ]);
     }
 }
