@@ -14,12 +14,17 @@ class Controller extends BaseController
     protected $data = [];
 
     protected function loadTheme($view, $data = [])
-	{
-		return view('frontend/'. $view, $data);
+	  {
+		  return view('frontend/'. $view, $data);
     }
 
     protected function loadDashboard($view, $data = [])
-	{
-		return view('backend/'. $view, $data);
+	  {
+		  return view('backend/'. $view, $data);
+    }
+
+    protected function loadShop($view, $data = [])
+    {
+      return view('shop/'. $view, $data);
     }
 }

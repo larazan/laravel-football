@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use App\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
 
-class ArticleRequest extends FormRequest
+class ArticleStoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,13 +24,12 @@ class ArticleRequest extends FormRequest
      */
     public function rules()
     {
-        $rules = [
-            'title' => 'required|unique:articles',
-            'body' => 'string',
-            'article_tags' => 'array|nullable',
+        return [
+            'title'     => ['required', 'max:60', 'min:5'],
+            'body'      => ['required', 'max:300', 'min:5'],
+            'category'  => ['required'],
+            'tags'      => ['array'],
         ];
-
-        return $rules;
     }
 
     public function author(): User
@@ -48,13 +47,13 @@ class ArticleRequest extends FormRequest
         return $this->get('body');
     }
 
-    public function tags(): array
+    public function category(): string
     {
-        return $this->get('article_tags', []);
+        return $this->get('category');
     }
 
-    public function original(): ?string
+    public function tags(): array
     {
-        return $this->get('original');
+        return $this->get('tags', []);
     }
 }

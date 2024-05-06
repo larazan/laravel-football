@@ -2,31 +2,30 @@
 
 namespace App\Jobs;
 
-use App\Models\Article;
-use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Mail;
 
-class UnlikeArticle implements ShouldQueue
+class SendMailOrderReceived implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    private $article;
-    private $user;
+    protected $order;
+    protected $user;
 
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct(Article $article, User $user)
+    public function __construct($order, $user)
     {
-        $this->article = $article;
-        $this->user = $user;
+        $this->order = $order;
+		$this->user = $user;
     }
 
     /**
@@ -36,6 +35,11 @@ class UnlikeArticle implements ShouldQueue
      */
     public function handle()
     {
-        $this->article->dislikedBy($this->user);
+        $tes = env('TES_EMAIL');
+
+        $orderReceivedEmail = new \App\Mail\OrderReceived($this->order);
+		
+		Mail::to($tes)->send($orderReceivedEmail);
+		// Mail::to($this->user->email)->send($orderReceivedEmail);
     }
 }

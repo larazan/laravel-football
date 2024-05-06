@@ -35,4 +35,5 @@ class HomeController extends Controller
 
         return $this->loadTheme('home', $this->data);
     }
+
 }

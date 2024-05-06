@@ -2,6 +2,10 @@
 
 namespace App\Models;
 
+use App\Traits\HasLikes;
+use App\Models\ReplyAble;
+use App\Traits\HasAuthor;
+use App\Traits\HasReplies;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
@@ -20,6 +24,8 @@ class Article extends Model implements Feedable
     use HasFactory; 
     use LogsActivity;
     use Searchable;
+    use HasLikes;
+    use HasReplies;
 
     const TABLE = 'articles';
 
@@ -48,6 +54,13 @@ class Article extends Model implements Feedable
         'large',
         'medium',
         'small',
+    ];
+
+    protected $with = [
+        'category',
+        'tagsRelation',
+        'likesRelation',
+        'authorRelation',
     ];
 
     const FEED_PAGE_SIZE = 20;
@@ -81,6 +94,11 @@ class Article extends Model implements Feedable
         return $this->title;
     }
 
+    public function slug(): string
+    {
+        return $this->slug;
+    }
+
     public function body(): string
     {
         return $this->body;
@@ -89,6 +107,11 @@ class Article extends Model implements Feedable
     public function excerpt(int $limit = 100): string
     {
         return Str::limit(strip_tags($this->body()), $limit);
+    }
+
+    public function replyAbleSubject(): string
+    {
+        return $this->title();
     }
 
     public function user()
