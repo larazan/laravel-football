@@ -35,6 +35,8 @@ class Media extends Model
 		'original',
 		'medium',
 		'small',
+		'meta_title',
+        'meta_description',
 	];
 
 	public const UPLOAD_DIR = 'uploads/medias';

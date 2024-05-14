@@ -33,6 +33,8 @@ class MediaIndex extends Component
     public $file;
     public $oldImage;
     public $mediaStatus = 'inactive';
+    public $metaTitle;
+    public $metaDesc;
     public $statuses = [
         'active',
         'inactive'
@@ -106,6 +108,8 @@ class MediaIndex extends Component
         $media->published = false;
         $media->video_url = $this->videoUrl;
         $media->status = $this->mediaStatus;
+        $media->meta_title = $this->metaTitle;
+        $media->meta_description = $this->metaDesc;
       
         if (!empty($this->file)) {
              // IMAGE
@@ -136,6 +140,8 @@ class MediaIndex extends Component
         $this->publishedAt = $media->published_at;
         $this->published = $media->published;
         $this->oldImage = $media->small;
+        $this->metaTitle = $media->meta_title;
+        $this->metaDesc = $media->meta_description;
         $this->mediaStatus = $media->status;
 
         $this->showMediaModal = true;
@@ -163,6 +169,8 @@ class MediaIndex extends Component
                 $media->published = $this->published;
                 $media->video_url = $this->videoUrl;
                 $media->status = $this->mediaStatus;
+                $media->meta_title = $this->metaTitle;
+                $media->meta_description = $this->metaDesc;
 
                 if (!empty($this->file)) {
                     // delete image
@@ -220,7 +228,7 @@ class MediaIndex extends Component
     {
         return view('livewire.admin.media-index', [
             'medias' => Media::liveSearch('title', $this->search)->orderBy('title', $this->sort)->paginate($this->perPage),
-        ]);
+        ])->layout('components.layouts.app');
     }
 
     private function _resizeImage($image, $fileName, $folder)

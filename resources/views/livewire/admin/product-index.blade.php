@@ -1,7 +1,9 @@
+<x-layouts.app>
+
 <div class="vs jj ttm vl ou uf na">
 
-<!-- Loading -->
-<x-loading-indicator />
+    <!-- Loading -->
+    <x-loading-indicator />
 
     <!-- Page header -->
     <div class="je jd jc ii">
@@ -154,7 +156,7 @@
                     <!-- Table body -->
                     <tbody class="text-sm le lr">
                         <!-- Row -->
-                        
+
 
                         @if ($products->count() > 0)
                         @foreach ($products as $product)
@@ -178,10 +180,10 @@
                             </td>
                             <td class="vi wy w_ vo lm">
                                 <div class="od sy ub mr-2 _b">
-                                    @if ($product->productImages->first())                                        
-                                        <img src="{{ asset('storage/'.$product->productImages->first()->small) }}" class="rounded-full" width="40" height="40" alt="{{ $person->name }}">
+                                    @if ($product->productImages->first())
+                                    <img src="{{ asset('storage/'.$product->productImages->first()->small) }}" class="rounded-full" width="40" height="40" alt="{{ $person->name }}">
                                     @else
-                                        <img src="{{ asset('images/avatar-03.jpg') }}" class="rounded-full" width="40" height="40" alt="{{ $person->name }}">
+                                    <img src="{{ asset('images/avatar-03.jpg') }}" class="rounded-full" width="40" height="40" alt="{{ $person->name }}">
                                     @endif
                                 </div>
                             </td>
@@ -190,12 +192,12 @@
                             </td>
                             <td class="vi wy w_ vo lm">
                                 @if ($product->status === 'inactive')
-                                    <div class="inline-flex gp hf yl rounded-full gn vp vd">{{ $product->status }}</div>
-                                @endif 
+                                <div class="inline-flex gp hf yl rounded-full gn vp vd">{{ $product->status }}</div>
+                                @endif
 
                                 @if ($product->status === 'active')
-                                    <div class="inline-flex gp hc ys rounded-full gn vp vd">{{ $product->status }}</div>
-                                @endif 
+                                <div class="inline-flex gp hc ys rounded-full gn vp vd">{{ $product->status }}</div>
+                                @endif
                             </td>
 
                             <td class="vi wy w_ vo lm">
@@ -205,14 +207,14 @@
                             <td class="vi wy w_ vo lm of">
                                 <div class="fm">
                                     <button class="gq xv rounded-full" wire:click="showEditModal({{ $product->id }})">
-                                    <span class=" d">Edit</span>
+                                        <span class=" d">Edit</span>
                                         <svg class="os sf du" viewBox="0 0 32 32">
                                             <path d="M19.7 8.3c-.4-.4-1-.4-1.4 0l-10 10c-.2.2-.3.4-.3.7v4c0 .6.4 1 1 1h4c.3 0 .5-.1.7-.3l10-10c.4-.4.4-1 0-1.4l-4-4zM12.6 22H10v-2.6l6-6 2.6 2.6-6 6zm7.4-7.4L17.4 12l1.6-1.6 2.6 2.6-1.6 1.6z"></path>
                                         </svg>
                                     </button>
-                                   
+
                                     <button class="yl xy rounded-full" wire:click="deleteId({{ $product->id }})">
-                                    <span class=" d">Delete</span>
+                                        <span class=" d">Delete</span>
                                         <svg class="os sf du" viewBox="0 0 32 32">
                                             <path d="M13 15h2v6h-2zM17 15h2v6h-2z"></path>
                                             <path d="M20 9c0-.6-.4-1-1-1h-6c-.6 0-1 .4-1 1v2H8v2h1v10c0 .6.4 1 1 1h12c.6 0 1-.4 1-1V13h1v-2h-4V9zm-6 1h4v1h-4v-1zm7 3v9H11v-9h10z"></path>
@@ -260,7 +262,7 @@
                                 </div>
                                 <div>
                                     <div class="mt-6 flex flex-col space-y-3" x-show="tab === 0">
-                                        
+
                                         <div class="flex flex-row justify-between">
                                             <div class="col-start-1 sm:col-span-3">
                                                 <label for="name" class="block text-sm font-medium text-gray-700">
@@ -274,13 +276,13 @@
                                                 </label>
                                                 <input wire:model="sku" type="text" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                                             </div>
-                                        </div>  
+                                        </div>
 
                                         <div class="flex flex-row space-x-4 justify-between">
                                             <div class="col-span-6 sm:col-span-3 w-1/2">
                                                 <label for="first-name" class="block text-sm font-medium text-gray-700">Category</label>
                                                 <select wire:model="category" class="h-full2 rounded-r border-t border-r border-b block appearance-none w-full bg-white border-gray-300 text-gray-700 py-2 px-4 pr-8 leading-tight focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none">
-                                                    <option value="" >Select Option</option>
+                                                    <option value="">Select Option</option>
                                                     @foreach($categories as $category)
                                                     <option class="capitalize" value="{{ $category->id }}">{{ $category->name }}</option>
                                                     @endforeach
@@ -289,7 +291,7 @@
                                             <div class="col-span-6 sm:col-span-3 w-1/2">
                                                 <label for="first-name" class="block text-sm font-medium text-gray-700">Brand</label>
                                                 <select wire:model="brand" class="h-full2 rounded-r border-t border-r border-b block appearance-none w-full bg-white border-gray-300 text-gray-700 py-2 px-4 pr-8 leading-tight focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none">
-                                                    <option value="" >Select Option</option>
+                                                    <option value="">Select Option</option>
                                                     @foreach($brands as $brand)
                                                     <option class="capitalize" value="{{ $brand->id }}">{{ $brand->name }}</option>
                                                     @endforeach
@@ -302,160 +304,152 @@
                                                 Description
                                             </label>
                                             @if ($productId)
-                                                <div 
-                                                    x-data="{ trix: @entangle($description).defer }"
-                                                >
-                                                    <input value="{{ $description }}" id="{{ $description }}" name="{{ $description }}" type="hidden" ">
+                                            <div x-data="{ trix: @entangle($description).defer }">
+                                                <input value="{{ $description }}" id="{{ $description }}" name="{{ $description }}" type="hidden" ">
                                                     <div 
                                                         wire:ignore
-                                                        x-on:trix-change.debounce.500ms="trix = $refs.trixInput.value"                                                
-                                                    >
-                                                        <trix-editor 
-                                                            x-ref="trixInput"
-                                                            input="{{ $description }}" 
-                                                            class="overflow-y-scroll" 
-                                                            style="height: 10rem;">
-                                                        </trix-editor>
-                                                    </div>
-                                                </div>      
-                                            @else
-                                                <div wire:ignore>
-                                                    <input id="{{ $trixId }}" type="hidden" name="content" value="{{ $description }}">
-                                                    <trix-editor wire:ignore input="{{ $trixId }}"></trix-editor>
-                                                </div>
-                                            @endif
+                                                        x-on:trix-change.debounce.500ms=" trix=$refs.trixInput.value">
+                                                <trix-editor x-ref="trixInput" input="{{ $description }}" class="overflow-y-scroll" style="height: 10rem;">
+                                                </trix-editor>
+                                            </div>
                                         </div>
-                                        <div class="flex flex-row justify-between space-x-2">
-                                            <div class="col-start-1 sm:col-span-3">
-                                                <label for="price" class="block text-sm font-medium text-gray-700">
-                                                    Price
-                                                </label>
-                                                <input wire:model="price" type="text" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
-                                            </div>
-                                            <div class="col-start-1 sm:col-span-3">
-                                                <label for="discount" class="block text-sm font-medium text-gray-700">
-                                                    Discount (%)
-                                                </label>
-                                                <input wire:model="discount" type="text" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
-                                            </div>
-                                            <div class="col-start-1 sm:col-span-3">
-                                                <label for="weight" class="block text-sm font-medium text-gray-700">
+                                        @else
+                                        <div wire:ignore>
+                                            <input id="{{ $trixId }}" type="hidden" name="content" value="{{ $description }}">
+                                            <trix-editor wire:ignore input="{{ $trixId }}"></trix-editor>
+                                        </div>
+                                        @endif
+                                    </div>
+                                    <div class="flex flex-row justify-between space-x-2">
+                                        <div class="col-start-1 sm:col-span-3">
+                                            <label for="price" class="block text-sm font-medium text-gray-700">
+                                                Price
+                                            </label>
+                                            <input wire:model="price" type="text" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                                        </div>
+                                        <div class="col-start-1 sm:col-span-3">
+                                            <label for="discount" class="block text-sm font-medium text-gray-700">
+                                                Discount (%)
+                                            </label>
+                                            <input wire:model="discount" type="text" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                                        </div>
+                                        <div class="col-start-1 sm:col-span-3">
+                                            <label for="weight" class="block text-sm font-medium text-gray-700">
                                                 Weight (gram)
-                                                </label>
-                                                <input wire:model="weight" type="text" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
-                                            </div>
-                                        </div>
-                                        <div class="flex flex-row justify-between space-x-2">
-                                            
-                                            <div class="col-start-1 sm:col-span-3">
-                                                <label for="height" class="block text-sm font-medium text-gray-700">
-                                                Height (cm)
-                                                </label>
-                                                <input wire:model="height" type="text" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
-                                            </div>
-                                            <div class="col-start-1 sm:col-span-3">
-                                                <label for="length" class="block text-sm font-medium text-gray-700">
-                                                Length (cm)
-                                                </label>
-                                                <input wire:model="length" type="text" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
-                                            </div>
-                                            <div class="col-start-1 sm:col-span-3">
-                                                <label for="width" class="block text-sm font-medium text-gray-700">
-                                                Width (cm)
-                                                </label>
-                                                <input wire:model="width" type="text" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="flex flex-row space-x-4 justify-between">
-                                            <div class="col-span-6 sm:col-span-3 w-1/2">
-                                                <label for="first-name" class="block text-sm font-medium text-gray-700">Publish</label>
-                                                <select wire:model="publishStatus" class="h-full2 rounded-r border-t border-r border-b block appearance-none w-full bg-white border-gray-300 text-gray-700 py-2 px-4 pr-8 leading-tight focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none">
-                                                    <option value="" >Select Option</option>
-                                                    @foreach($status as $key => $value)
-                                                    <option class="capitalize" value="{{ $key }}">{{ $value }}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                            <div class="col-span-6 sm:col-span-3 w-1/2">
-                                                <label for="first-name" class="block text-sm font-medium text-gray-700">Status</label>
-                                                <select wire:model="productStatus" class="h-full2 rounded-r border-t border-r border-b block appearance-none w-full bg-white border-gray-300 text-gray-700 py-2 px-4 pr-8 leading-tight focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none">
-                                                    <option value="" >Select Option</option>
-                                                    @foreach($statuses as $status)
-                                                    <option class="capitalize" value="{{ $status }}">{{ $status }}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
+                                            </label>
+                                            <input wire:model="weight" type="text" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                                         </div>
                                     </div>
-                                    <div class="mt-6 flex flex-col space-y-3" x-show="tab === 1">
-                                        
-                                        <div class="col-start-1 sm:col-span-3">
-                                            <label for="metaTitle" class="block text-sm font-medium text-gray-700">
-                                                Meta Title
-                                            </label>
-                                            <input wire:model="metaTitle" type="text" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
-                                        </div>
-                                        <div class="col-start-1 sm:col-span-3">
-                                            <label for="metaDesc" class="block text-sm font-medium text-gray-700">
-                                                Meta Description
-                                            </label>
-                                            <textarea wire:model="metaDesc" cols="50" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" >{{ $metaDesc }}</textarea>
-                                        </div>
+                                    <div class="flex flex-row justify-between space-x-2">
 
                                         <div class="col-start-1 sm:col-span-3">
-                                            <label for="metaTitle" class="block text-sm font-medium text-gray-700">
-                                                Color
+                                            <label for="height" class="block text-sm font-medium text-gray-700">
+                                                Height (cm)
                                             </label>
-                                            <select style="width: 100%" class="select select-bordered w-full select2" id="colorSelect" multiple="multiple">
-                                                @foreach($colors as $color)
-                                                <option id="{{$color}}">{{ __('colors.' . $color) }}</option>
+                                            <input wire:model="height" type="text" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                                        </div>
+                                        <div class="col-start-1 sm:col-span-3">
+                                            <label for="length" class="block text-sm font-medium text-gray-700">
+                                                Length (cm)
+                                            </label>
+                                            <input wire:model="length" type="text" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                                        </div>
+                                        <div class="col-start-1 sm:col-span-3">
+                                            <label for="width" class="block text-sm font-medium text-gray-700">
+                                                Width (cm)
+                                            </label>
+                                            <input wire:model="width" type="text" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                                        </div>
+                                    </div>
+
+                                    <div class="flex flex-row space-x-4 justify-between">
+                                        <div class="col-span-6 sm:col-span-3 w-1/2">
+                                            <label for="first-name" class="block text-sm font-medium text-gray-700">Publish</label>
+                                            <select wire:model="publishStatus" class="h-full2 rounded-r border-t border-r border-b block appearance-none w-full bg-white border-gray-300 text-gray-700 py-2 px-4 pr-8 leading-tight focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none">
+                                                <option value="">Select Option</option>
+                                                @foreach($status as $key => $value)
+                                                <option class="capitalize" value="{{ $key }}">{{ $value }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
-                                        <div class="col-start-1 sm:col-span-3">
-                                            <label for="metaDesc" class="block text-sm font-medium text-gray-700">
-                                                Size
-                                            </label>
-                                            <textarea wire:model="metaDesc" cols="50" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" >{{ $metaDesc }}</textarea>
-                                        </div>
-                                        
-                                    </div>
-                                    <div class="mt-6 flex flex-col space-y-3" x-show="tab === 2">
-                                        <div class="col-span-6 sm:col-span-3">
-                                            <label for="files" class="block text-sm font-medium text-gray-700">
-                                                Image
-                                            </label>
-                                            <input wire:model="files" multiple type="file" autocomplete="given-name"
-                                                class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
-                                                @if ($oldImage)
-                                                    Old Image:
-                                                    <img src="{{ asset('storage/'.$oldImage) }}">
-                                                @endif
-                                                @if ($file)
-                                                    Image Preview:
-                                                    <img src="{{ $file->temporaryUrl() }}">
-                                                @endif
-                                        </div>
-                                        @if ($productId)
-                                            <div class="col-span-6 sm:col-span-3">
-                                                <div class="grid grid-cols-4 gap-2">
-                                                @foreach (#productImages as $pimage)
-                                                <div class="relative ">
-                                                    <img src="{{ asset('storage/'.$pimage->image) }}" alt="" class="rounded w-16 h-16">
-                                                    <div class="absolute flex w-6 h-6 rounded-full bg-white/30 text-red-500 hover:cursor-pointer" wire:click.prevent='deleteSingleImage({{ $pimage->id }})'>
-                                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
-                                                        </svg>
-                                                    </div>
-                                                <div>
+                                        <div class="col-span-6 sm:col-span-3 w-1/2">
+                                            <label for="first-name" class="block text-sm font-medium text-gray-700">Status</label>
+                                            <select wire:model="productStatus" class="h-full2 rounded-r border-t border-r border-b block appearance-none w-full bg-white border-gray-300 text-gray-700 py-2 px-4 pr-8 leading-tight focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none">
+                                                <option value="">Select Option</option>
+                                                @foreach($statuses as $status)
+                                                <option class="capitalize" value="{{ $status }}">{{ $status }}</option>
                                                 @endforeach
-                                                </div>
-                                            </div>
-                                        @endif
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                                <div class="mt-6 flex flex-col space-y-3" x-show="tab === 1">
+
+                                    <div class="col-start-1 sm:col-span-3">
+                                        <label for="metaTitle" class="block text-sm font-medium text-gray-700">
+                                            Meta Title
+                                        </label>
+                                        <input wire:model="metaTitle" type="text" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                                    </div>
+                                    <div class="col-start-1 sm:col-span-3">
+                                        <label for="metaDesc" class="block text-sm font-medium text-gray-700">
+                                            Meta Description
+                                        </label>
+                                        <textarea wire:model="metaDesc" cols="50" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">{{ $metaDesc }}</textarea>
+                                    </div>
+
+                                    <div class="col-start-1 sm:col-span-3">
+                                        <label for="metaTitle" class="block text-sm font-medium text-gray-700">
+                                            Color
+                                        </label>
+                                        <select style="width: 100%" class="select select-bordered w-full select2" id="colorSelect" multiple="multiple">
+                                            @foreach($colors as $color)
+                                            <option id="{{$color}}">{{ __('colors.' . $color) }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="col-start-1 sm:col-span-3">
+                                        <label for="metaDesc" class="block text-sm font-medium text-gray-700">
+                                            Size
+                                        </label>
+                                        <textarea wire:model="metaDesc" cols="50" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">{{ $metaDesc }}</textarea>
+                                    </div>
+
+                                </div>
+                                <div class="mt-6 flex flex-col space-y-3" x-show="tab === 2">
+                                    <div class="col-span-6 sm:col-span-3">
+                                        <label for="files" class="block text-sm font-medium text-gray-700">
+                                            Image
+                                        </label>
+                                        <input wire:model="files" multiple type="file" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                                        @if ($oldImage)
+                                        Old Image:
+                                        <img src="{{ asset('storage/'.$oldImage) }}">
+                                        @endif
+                                        @if ($file)
+                                        Image Preview:
+                                        <img src="{{ $file->temporaryUrl() }}">
+                                        @endif
+                                    </div>
+                                    @if ($productId)
+                                    <div class="col-span-6 sm:col-span-3">
+                                        <div class="grid grid-cols-4 gap-2">
+                                            @foreach (#productImages as $pimage)
+                                            <div class="relative ">
+                                                <img src="{{ asset('storage/'.$pimage->image) }}" alt="" class="rounded w-16 h-16">
+                                                <div class="absolute flex w-6 h-6 rounded-full bg-white/30 text-red-500 hover:cursor-pointer" wire:click.prevent='deleteSingleImage({{ $pimage->id }})'>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+                                                    </svg>
+                                                </div>
+                                                <div>
+                                                    @endforeach
+                                                </div>
+                                            </div>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
                         </form>
                     </div>
                 </div>
@@ -479,31 +473,31 @@
     <!-- modal delete confirmation -->
     <x-dialog-modal wire:model="showConfirmModal" class="">
 
-        
+
         <x-slot name="title" class="border-b bg-slate-200">
             <span class="font-semibold">Delete Confirm</span>
         </x-slot>
-        
+
 
         <x-slot name="content">
             <div class="border-t">
                 <div class="vc vu ">
                     <div class="fw">
 
-                        
+
+                        <div class="">
                             <div class="">
-                                <div class="">
-                                    <div class="flex flex-col space-y-3">
-                                        <div class="flex max-w-auto text-center justify-center items-center">
-                                            <div class="text-lg font-semibold ">
+                                <div class="flex flex-col space-y-3">
+                                    <div class="flex max-w-auto text-center justify-center items-center">
+                                        <div class="text-lg font-semibold ">
                                             <p>Are you sure want to delete?</p>
-                                            </div>
                                         </div>
-                                        
                                     </div>
+
                                 </div>
                             </div>
-                        
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -561,7 +555,7 @@
                                         </div>
                                         <div class="hidden qx of sf hu rp" aria-hidden="true"></div>
                                     </div>
-                                    
+
                                     <!-- Visit Duration-->
                                     <div class="flex items-center">
                                         <div>
@@ -573,8 +567,8 @@
                                     </div>
                                 </div>
                                 <div class="text-sm ru">
-                                After Laughter is the fifth studio album by American rock band Paramore. It was released on May 12, 2017, through Fueled by Ramen, as a follow-up to their self-titled album Paramore (2013). The album was produced by guitarist Taylor York alongside previous collaborator Justin Meldal-Johnsen. It is the band's first album since the return of drummer Zac Farro, who left the band with his brother Josh in 2010, and the departure of former bassist Jeremy Davis, who left the band in 2015
-                            </div>
+                                    After Laughter is the fifth studio album by American rock band Paramore. It was released on May 12, 2017, through Fueled by Ramen, as a follow-up to their self-titled album Paramore (2013). The album was produced by guitarist Taylor York alongside previous collaborator Justin Meldal-Johnsen. It is the band's first album since the return of drummer Zac Farro, who left the band with his brother Josh in 2010, and the departure of former bassist Jeremy Davis, who left the band in 2015
+                                </div>
                                 <!-- Product meta -->
                                 <div class="flex flex-wrap fe items-center">
                                     <audio id="myTune" controls controlsList="nofullscreen nodownload noremoteplayback">
@@ -655,6 +649,8 @@
 
 </div>
 
+</x-layouts.app>
+
 @push('styles')
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/trix/1.3.1/trix.min.css" />
 @endpush
@@ -667,31 +663,30 @@
     addEventListener("trix-blur", function(event) {
         @this.set('description', trixEditor.getAttribute('value'))
     })
-   
+
     document.addEventListener('livewire:load', function(event) {
 
         @this.on('refreshColorSelect', function() {
-        let associatedColors = [];
+            let associatedColors = [];
 
-        $.each(@this.associatedColors, function(key, associatedColor) {
-            associatedColors.push(associatedColor)
-        });
+            $.each(@this.associatedColors, function(key, associatedColor) {
+                associatedColors.push(associatedColor)
+            });
 
-        $('#colorSelect').val(associatedColors);
+            $('#colorSelect').val(associatedColors);
 
-        $('#colorSelect').select2({
-            tags: true,
-            tokenSeparators: [',']
-        });
+            $('#colorSelect').select2({
+                tags: true,
+                tokenSeparators: [',']
+            });
 
-        $('#colorSelect').trigger('change');
+            $('#colorSelect').trigger('change');
 
-        $('#colorSelect').on('change', function(e) {
-            @this.set('associatedColors', $(this).val());
-        });
+            $('#colorSelect').on('change', function(e) {
+                @this.set('associatedColors', $(this).val());
+            });
         });
 
     });
-
 </script>
 @endpush

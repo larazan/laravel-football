@@ -195,6 +195,6 @@ class FaqIndex extends Component
         return view('livewire.admin.faq-index', [
             'faqs' => $faqs,
             'categories' => CategoryFaq::OrderBy('name', 'asc')->get(),
-        ]);
+        ])->layout('components.layouts.app');
     }
 }

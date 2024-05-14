@@ -1,7 +1,9 @@
+<x-layouts.app>
+
 <div class="vs jj ttm vl ou uf na">
 
-<!-- Loading -->
-<x-loading-indicator />
+    <!-- Loading -->
+    <x-loading-indicator />
 
     <!-- Page header -->
     <div class="je jd jc ii">
@@ -205,7 +207,7 @@
                                 </div>
                             </td>
                         </tr>
-                        
+
                         @if ($slides->count() > 0)
                         @foreach ($slides as $slide)
                         <tr wire:sortable.item="{{ $slide->id }}" wire:key="slide-{{ $slide->id }}" wire:sortable.handle>
@@ -217,7 +219,7 @@
                                     </label>
                                 </div>
                             </td>
-                            <td class="vi wy w_ vo lm of" >
+                            <td class="vi wy w_ vo lm of">
                                 <div class="gp flex items-center">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3.75v4.5m0-4.5h4.5m-4.5 0L9 9M3.75 20.25v-4.5m0 4.5h4.5m-4.5 0L9 15M20.25 3.75h-4.5m4.5 0v4.5m0-4.5L15 9m5.25 11.25h-4.5m4.5 0v-4.5m0 4.5L15 15" />
@@ -326,51 +328,41 @@
                                             </label>
                                             <input wire:model="position" type="number" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                                         </div>
-                                        <div 
-                                            class="col-span-6 sm:col-span-3"
-                                            x-data="{ isUploading: false, progress: 5 }"
-                                            x-on:livewire-upload-start="isUploading = true"
-                                            x-on:livewire-upload-finish="isUploading = false; progress = 5"
-                                            x-on:livewire-upload-error="isUploading = false"
-                                            x-on:livewire-upload-progress="progress = $event.detail.progress"
-                                        >
+                                        <div class="col-span-6 sm:col-span-3" x-data="{ isUploading: false, progress: 5 }" x-on:livewire-upload-start="isUploading = true" x-on:livewire-upload-finish="isUploading = false; progress = 5" x-on:livewire-upload-error="isUploading = false" x-on:livewire-upload-progress="progress = $event.detail.progress">
                                             <label for="photo" class="block text-sm font-medium text-gray-700">Image Slider
                                             </label>
-                                            <input wire:model="filename" type="file" autocomplete="given-name" 
-                                                class=
-                                                    "mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md
+                                            <input wire:model="filename" type="file" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md
                                                     file:bg-gradient-to-b file:from-blue-500 file:to-blue-600 
                                                     file:px-6 file:py-3 file:m-5
                                                     file:border-none
                                                     file:rounded
                                                     file:text-white
                                                     file:cursor-pointer
-                                                    file:shadow-lg file:shadow-blue-600/50" 
-                                            />
+                                                    file:shadow-lg file:shadow-blue-600/50" />
                                             <div x-show.transition="isUploading" class="mt-3 w-full bg-slate-100 mb-6">
-                                            <div class="ho ye2 rounded text-xs font-medium py-[1px] text-center" x-bind:style="`width: ${progress}%`">%</div>
-                                            @if ($oldImage)
-                                            Photo Preview:
-                                            <img src="{{ asset('storage/'.$oldImage) }}">
-                                            @endif
-                                            @if ($file)
-                                            Photo Preview:
-                                            <img src="{{ $file->temporaryUrl() }}">
-                                            @endif
-                                        </div>
+                                                <div class="ho ye2 rounded text-xs font-medium py-[1px] text-center" x-bind:style="`width: ${progress}%`">%</div>
+                                                @if ($oldImage)
+                                                Photo Preview:
+                                                <img src="{{ asset('storage/'.$oldImage) }}">
+                                                @endif
+                                                @if ($file)
+                                                Photo Preview:
+                                                <img src="{{ $file->temporaryUrl() }}">
+                                                @endif
+                                            </div>
 
-                                        <div class="col-span-6 sm:col-span-3">
-                                            <label for="first-name" class="block text-sm font-medium text-gray-700">Status</label>
-                                            <select wire:model="slideStatus" class="h-full rounded-r border-t border-r border-b block appearance-none w-full bg-white border-gray-300 text-gray-700 py-2 px-4 pr-8 leading-tight focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none">
-                                                <option value="">Select Option</option>
-                                                @foreach($statuses as $status)
-                                                <option value="{{ $status }}">{{ $status }}</option>
-                                                @endforeach
-                                            </select>
+                                            <div class="col-span-6 sm:col-span-3">
+                                                <label for="first-name" class="block text-sm font-medium text-gray-700">Status</label>
+                                                <select wire:model="slideStatus" class="h-full rounded-r border-t border-r border-b block appearance-none w-full bg-white border-gray-300 text-gray-700 py-2 px-4 pr-8 leading-tight focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none">
+                                                    <option value="">Select Option</option>
+                                                    @foreach($statuses as $status)
+                                                    <option value="{{ $status }}">{{ $status }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
                         </form>
                     </div>
                 </div>
@@ -394,31 +386,31 @@
     <!-- modal delete confirmation -->
     <x-dialog-modal wire:model="showConfirmModal" class="">
 
-        
+
         <x-slot name="title" class="border-b bg-slate-200">
             <span class="font-semibold">Delete Confirm</span>
         </x-slot>
-        
+
 
         <x-slot name="content">
             <div class="border-t">
                 <div class="vc vu ">
                     <div class="fw">
 
-                        
+
+                        <div class="">
                             <div class="">
-                                <div class="">
-                                    <div class="flex flex-col space-y-3">
-                                        <div class="flex max-w-auto text-center justify-center items-center">
-                                            <div class="text-lg font-semibold ">
+                                <div class="flex flex-col space-y-3">
+                                    <div class="flex max-w-auto text-center justify-center items-center">
+                                        <div class="text-lg font-semibold ">
                                             <p>Are you sure want to delete?</p>
-                                            </div>
                                         </div>
-                                        
                                     </div>
+
                                 </div>
                             </div>
-                        
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -435,3 +427,5 @@
     </x-dialog-modal>
 
 </div>
+
+</x-layouts.app>

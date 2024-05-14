@@ -241,7 +241,7 @@ class MatchIndex extends Component
             'stadions' => Stadion::OrderBy('name', 'asc')->get(),
             'clubs' => Club::OrderBy('name', 'asc')->get(),
             'seasonOption' => $seasons,
-        ]);
+        ])->layout('components.layouts.app');
     }
 
     public function routeToLineup($matchId)

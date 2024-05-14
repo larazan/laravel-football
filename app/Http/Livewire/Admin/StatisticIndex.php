@@ -165,6 +165,6 @@ class StatisticIndex extends Component
 
     public function render()
     {
-        return view('livewire.admin.statistic-index');
+        return view('livewire.admin.statistic-index')->layout('components.layouts.app');
     }
 }

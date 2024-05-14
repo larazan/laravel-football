@@ -177,6 +177,6 @@ class AttributeIndex extends Component
             'types' => Attribute::types(),
             'booleanOptions' => Attribute::booleanOptions(),
             'validations' => Attribute::validations(),
-        ]);
+        ])->layout('components.layouts.app');
     }
 }

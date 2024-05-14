@@ -44,6 +44,6 @@ class NotificationIndex extends Component
 
         return view('livewire.admin.notification-index', [
             'notifications' => Auth::user()->unreadNotifications()->paginate(10, ['*'], 'page', $lastPage),
-        ]);
+        ])->layout('components.layouts.app');
     }
 }

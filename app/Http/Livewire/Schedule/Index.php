@@ -18,7 +18,7 @@ class Index extends Component
 
     public function render()
     {
-        return view('livewire.schedule.index');
+        return view('livewire.schedule.index')->layout('components.layouts.app');
     }
 
     public function getEvents($start, $end): array

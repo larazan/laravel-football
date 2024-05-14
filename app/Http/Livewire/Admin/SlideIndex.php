@@ -214,7 +214,7 @@ class SlideIndex extends Component
     {
         return view('livewire.admin.slide-index', [
             'slides' => Slide::liveSearch('title', $this->search)->orderBy('title', $this->sort)->paginate($this->perPage)
-        ]);
+        ])->layout('components.layouts.app');
     }
 
     private function _resizeImage($image, $fileName, $folder)

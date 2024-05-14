@@ -1,3 +1,5 @@
+<x-layouts.app>
+
 <div class="vs jj ttm vl ou uf na">
 
     <!-- Loading -->
@@ -132,3 +134,7 @@
 
 
     {{ $notifications->links() }}
+
+</div>
+
+</x-layouts.app>

@@ -222,7 +222,7 @@ class PlayerIndex extends Component
         $this->height = $player->height;
         $this->weight = $player->weight;
         $this->nationality = $player->country_id;
-        $this->code = $player->country->code;
+        $this->code = $player->country ? $player->country->code : null;
         $this->age = Carbon::parse($player->birth_date)->age;
         $this->oldImage = $player->small;
         $this->facebook = $player->facebook;
@@ -357,7 +357,7 @@ class PlayerIndex extends Component
             'teams' => Club::OrderBy('id', 'asc')->get()->toArray(),
             'positionOption' => Position::OrderBy('name', 'asc')->get(),
             'countries' => Country::orderBy('name', 'asc')->get(),
-        ]);
+        ])->layout('components.layouts.app');
     }
 
     private function _resizeImage($image, $fileName, $folder)

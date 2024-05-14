@@ -1,7 +1,9 @@
+<x-layouts.app>
+
 <div class="vs jj ttm vl ou uf na">
 
-<!-- Loading -->
-<x-loading-indicator />
+    <!-- Loading -->
+    <x-loading-indicator />
 
     <!-- Page header -->
     <div class="je jd jc ii">
@@ -128,7 +130,7 @@
                             <th class="vi wy w_ vo lm">
                                 <div class="gh gt">Name</div>
                             </th>
-                           
+
                             <th class="vi wy w_ vo lm">
                                 <div class="gh gt">Date</div>
                             </th>
@@ -140,7 +142,7 @@
                     <!-- Table body -->
                     <tbody class="text-sm le lr">
                         <!-- Row -->
-                        
+
                         @if ($roles->count() > 0)
                         @foreach ($roles as $role)
                         <tr>
@@ -164,18 +166,22 @@
                                 <div class="fm flex items-center">
                                     <button class="gq xv rounded-full" x-on:click="window.livewire.emitTo('show-role-component','showModal', {{$role}})">
                                         <span class=" d">Show</span>
-                                        <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-eye"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" /><path d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" /></svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-eye">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                            <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+                                            <path d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" />
+                                        </svg>
                                     </button>
                                     <!-- <button class="gq xv rounded-full" wire:click="showEditModal({{ $role->id }})"> -->
                                     <button class="gq xv rounded-full" x-on:click="window.livewire.emitTo('edit-role-component','showModal', {{$role}})">
-                                    <span class=" d">Edit</span>
+                                        <span class=" d">Edit</span>
                                         <svg class="os sf du" viewBox="0 0 32 32">
                                             <path d="M19.7 8.3c-.4-.4-1-.4-1.4 0l-10 10c-.2.2-.3.4-.3.7v4c0 .6.4 1 1 1h4c.3 0 .5-.1.7-.3l10-10c.4-.4.4-1 0-1.4l-4-4zM12.6 22H10v-2.6l6-6 2.6 2.6-6 6zm7.4-7.4L17.4 12l1.6-1.6 2.6 2.6-1.6 1.6z"></path>
                                         </svg>
                                     </button>
 
                                     <button class="yl xy rounded-full" wire:click="deleteId({{ $role->id }})">
-                                    <span class=" d">Delete</span>
+                                        <span class=" d">Delete</span>
                                         <svg class="os sf du" viewBox="0 0 32 32">
                                             <path d="M13 15h2v6h-2zM17 15h2v6h-2z"></path>
                                             <path d="M20 9c0-.6-.4-1-1-1h-6c-.6 0-1 .4-1 1v2H8v2h1v10c0 .6.4 1 1 1h12c.6 0 1-.4 1-1V13h1v-2h-4V9zm-6 1h4v1h-4v-1zm7 3v9H11v-9h10z"></path>
@@ -224,11 +230,11 @@
                                             </label>
                                             <input wire:model="name" type="text" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                                             @error('name')
-                                                <div class="go re yl">{{ $message }}</div>
+                                            <div class="go re yl">{{ $message }}</div>
                                             @enderror
                                         </div>
                                         @if ($roleId)
-                                        <div class="" >
+                                        <div class="">
                                             @if ($roler)
                                             <div>{{ $roler->name }}</div>
                                             <livewire:multi-permission :role="$roler" />
@@ -261,31 +267,31 @@
     <!-- modal delete confirmation -->
     <x-dialog-modal wire:model="showConfirmModal" class="">
 
-        
+
         <x-slot name="title" class="border-b bg-slate-200">
             <span class="font-semibold">Delete Confirm</span>
         </x-slot>
-        
+
 
         <x-slot name="content">
             <div class="border-t">
                 <div class="vc vu ">
                     <div class="fw">
 
-                        
+
+                        <div class="">
                             <div class="">
-                                <div class="">
-                                    <div class="flex flex-col space-y-3">
-                                        <div class="flex max-w-auto text-center justify-center items-center">
-                                            <div class="text-lg font-semibold ">
+                                <div class="flex flex-col space-y-3">
+                                    <div class="flex max-w-auto text-center justify-center items-center">
+                                        <div class="text-lg font-semibold ">
                                             <p>Are you sure want to delete?</p>
-                                            </div>
                                         </div>
-                                        
                                     </div>
+
                                 </div>
                             </div>
-                        
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -304,11 +310,13 @@
 </div>
 
 
-  <div wire:key="edit-role">
+<div wire:key="edit-role">
     <livewire:edit-role-component>
-  </div>
-  
+</div>
 
-  <div wire:key="show-role">
+
+<div wire:key="show-role">
     <livewire:show-role-component>
-  </div>
+</div>
+
+</x-layouts.app>

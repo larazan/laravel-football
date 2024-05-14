@@ -1,3 +1,5 @@
+<x-layouts.app>
+
 <div class="vs jj ttm vl ou uf na">
 
     <!-- Welcome banner -->
@@ -854,3 +856,4 @@
 
 </div>
 
+</x-layouts.app>

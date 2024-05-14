@@ -172,6 +172,6 @@ class TrophyIndex extends Component
         return view('livewire.admin.trophy-index', [
             'trophies' => Trophy::orderBy('id', $this->sort)->paginate($this->perPage),
             'competitions' => Competition::orderBy('id', 'asc')->get()
-        ]);
+        ])->layout('components.layouts.app');
     }
 }

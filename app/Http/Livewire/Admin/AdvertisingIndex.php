@@ -266,6 +266,6 @@ class AdvertisingIndex extends Component
         return view('livewire.admin.advertising-index', [
             'advertisings' => Advertising::liveSearch('title', $this->search)->orderBy('title', $this->sort)->paginate($this->perPage),
             'segments' => AdvertisingSegment::orderBy('title', $this->sort)->get(),
-        ]);
+        ])->layout('components.layouts.app');
     }
 }

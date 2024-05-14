@@ -144,7 +144,7 @@ class StaffIndex extends Component
         $this->birthDate = $staff->birth_date;
         $this->birthLocation = $staff->birth_location;
         $this->nationality = $staff->country_id;
-        $this->country = $staff->country->name;
+        $this->country = $staff->country ? $staff->country->name : null;
         $this->bio = $staff->bio;
         $this->contractFrom = $staff->contract_from;
         $this->contractUntil = $staff->contract_until;
@@ -247,7 +247,7 @@ class StaffIndex extends Component
         return view('livewire.admin.staff-index', [
             'staffs' => Staff::liveSearch('name', $this->search)->orderBy('name', $this->sort)->paginate($this->perPage),
             'countries' => Country::orderBy('name', 'asc')->get(),
-        ]);
+        ])->layout('components.layouts.app');
     }
 
     private function _resizeImage($image, $fileName, $folder)

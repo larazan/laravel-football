@@ -8,12 +8,17 @@ use Livewire\Component;
 
 class ShippingPolicy extends Component
 {
-    public $shippingPolicy;
+    public $body;
+    public $trixId;
 
     public function mount()
     {
         $data = BusinessSetting::where(['key' => 'shipping_policy'])->first();
-        $this->shippingPolicy = $data;
+        if ($data) {
+            $this->body = $data->value;
+        } else {
+            $this->body = $data;
+        }
     }
 
     // public function updatedShippingPolicy()
@@ -24,13 +29,13 @@ class ShippingPolicy extends Component
     public function updateShippingPolicy()
     {
 
-        dd($this->shippingPolicy);
+        dd($this->body);
         // BusinessSetting::where(['key' => 'shipping_policy'])->update([
         //     'value' => $this->shippingPolicy,
         // ]);
 
         DB::table('business_settings')->updateOrInsert(['key' => 'shipping_policy'], [
-            'value' => $this->shippingPolicy,
+            'value' => $this->body,
         ]);
 
         $this->dispatchBrowserEvent('banner-message', ['style' => 'success', 'message' => 'Shipping Policy updated successfully']);
@@ -38,6 +43,6 @@ class ShippingPolicy extends Component
 
     public function render()
     {
-        return view('livewire.admin.shipping-policy');
+        return view('livewire.admin.shipping-policy')->layout('components.layouts.app');
     }
 }

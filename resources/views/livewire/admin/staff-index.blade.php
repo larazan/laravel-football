@@ -1,3 +1,5 @@
+<x-layouts.app>
+
 <div class="vs jj ttm vl ou uf na">
 
     <!-- Loading -->
@@ -472,7 +474,11 @@
                                     <div class="flex items-center vr">
                                         <div class="rp">
                                             <div class="flex items-center">
-                                                <div class="text-xl font-bold text-slate-800 mr-2">{{ $country }}</div>
+                                                <div class="text-xl font-bold text-slate-800 mr-2">
+                                                @if ($country == 'null')    
+                                                    {{ $country }}
+                                                @endif
+                                                </div>
                                             </div>
                                             <div class="text-sm text-slate-500">Nationality</div>
                                         </div>
@@ -538,7 +544,7 @@
 
 </div>
 
-
+</x-layouts.app>
 
 
 

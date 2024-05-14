@@ -1,7 +1,9 @@
+<x-layouts.app>
+
 <div class="vs jj ttm vl ou uf na">
 
-<!-- Loading -->
-<x-loading-indicator />
+    <!-- Loading -->
+    <x-loading-indicator />
 
     <!-- Page header -->
     <div class="je jd jc ii">
@@ -15,7 +17,7 @@
         <div class="sn am jo az jp ft">
 
             <!-- Search form -->
-            {{-- 
+            {{--
             <form class="y">
                 <label for="action-search" class="d">Search</label>
                 <input wire:model="search" id="action-search" class="s me xq" type="search" placeholder="Search by name">
@@ -93,18 +95,18 @@
 
             <!-- Filter button -->
             <select wire:model="perSeason" id="filter" class="a">
-                <option value="" >Season</option>
+                <option value="">Season</option>
                 @foreach($seasonOption as $seas)
                 <option value="{{ $seas }}">{{ $seas }}</option>
                 @endforeach
             </select>
-            
+
             <select wire:model="sort" id="sort" class="a">
                 <option value="asc">Asc</option>
                 <option value="desc">Desc</option>
             </select>
 
-           
+
         </div>
 
     </div>
@@ -133,7 +135,7 @@
                             <th class="vi wy w_ vo lm">
                                 <div class="gh gt">Season</div>
                             </th>
-                            
+
                             <th class="vi wy w_ vo lm">
                                 <div class="gh gt">Team</div>
                             </th>
@@ -148,7 +150,7 @@
                     <!-- Table body -->
                     <tbody class="text-sm le lr">
                         <!-- Row -->
-                        
+
                         @if ($teams->count() > 0)
                         @foreach ($teams as $team)
                         <tr>
@@ -163,7 +165,7 @@
                             <td class="vi wy w_ vo lm">
                                 <div class="gp text-slate-800">{{ $team->season }}</div>
                             </td>
-                           
+
                             <td class="vi wy w_ vo lm">
                                 <div class="flex flex-row items-center space-x-2">
                                     @if ($team->club->logo)
@@ -182,14 +184,14 @@
                             <td class="vi wy w_ vo lm of">
                                 <div class="fm">
                                     <button class="gq xv rounded-full" wire:click="showEditModal({{ $team->id }})">
-                                    <span class=" d">Edit</span>
+                                        <span class=" d">Edit</span>
                                         <svg class="os sf du" viewBox="0 0 32 32">
                                             <path d="M19.7 8.3c-.4-.4-1-.4-1.4 0l-10 10c-.2.2-.3.4-.3.7v4c0 .6.4 1 1 1h4c.3 0 .5-.1.7-.3l10-10c.4-.4.4-1 0-1.4l-4-4zM12.6 22H10v-2.6l6-6 2.6 2.6-6 6zm7.4-7.4L17.4 12l1.6-1.6 2.6 2.6-1.6 1.6z"></path>
                                         </svg>
                                     </button>
 
                                     <button class="yl xy rounded-full" wire:click="deleteId({{ $team->id }})">
-                                    <span class=" d">Delete</span>
+                                        <span class=" d">Delete</span>
                                         <svg class="os sf du" viewBox="0 0 32 32">
                                             <path d="M13 15h2v6h-2zM17 15h2v6h-2z"></path>
                                             <path d="M20 9c0-.6-.4-1-1-1h-6c-.6 0-1 .4-1 1v2H8v2h1v10c0 .6.4 1 1 1h12c.6 0 1-.4 1-1V13h1v-2h-4V9zm-6 1h4v1h-4v-1zm7 3v9H11v-9h10z"></path>
@@ -235,7 +237,7 @@
                                         <div class="col-span-6 sm:col-span-3">
                                             <label for="season" class="block text-sm font-medium text-gray-700">Season</label>
                                             <select wire:model="season" class="h-full rounded-r border-t border-r border-b block appearance-none w-full bg-white border-gray-300 text-gray-700 py-2 px-4 pr-8 leading-tight focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none">
-                                                <option value="" >Select Option</option>
+                                                <option value="">Select Option</option>
                                                 @foreach($seasonOption as $season)
                                                 <option value="{{ $season }}">{{ $season }}</option>
                                                 @endforeach
@@ -243,16 +245,16 @@
                                         </div>
                                         <div class="col-span-6 sm:col-span-3">
                                             <label for="team" class="block text-sm font-medium text-gray-700">Team {{ $selectedClub }}</label>
-                                            
+
                                             <!-- Dropdown -->
                                             <div class="relative absolute2 " x-data="{ open: false, selected: {{ $selectedClub }} }">
                                                 <button class="btn fe uo bg-white border-slate-200 hover--border-slate-300 text-slate-500 hover--text-slate-600" aria-label="Select date range" aria-haspopup="true" @click.prevent="open = !open" :aria-expanded="open" aria-expanded="false">
                                                     <div class="flex items-center">
 
                                                         <div class="mr-2">
-                                                        @if ($selectedClub > 0)
+                                                            @if ($selectedClub > 0)
                                                             <img src="{{ asset('storage/'.$klubs[$selectedClub-1]['logo']) }}" class="w-6 rounded" alt="foto" />
-                                                        @endif
+                                                            @endif
                                                         </div>
                                                         <span x-text="selected === 0 ? $refs.options.children[selected].children[1].innerHTML : $refs.options.children[selected].children[2].innerHTML">Last Month</span>
                                                     </div>
@@ -287,9 +289,9 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        <!-- end dropdown -->
+                                            <!-- end dropdown -->
                                         </div>
-                                        
+
                                     </div>
                                 </div>
                             </div>
@@ -316,31 +318,31 @@
     <!-- modal delete confirmation -->
     <x-dialog-modal wire:model="showConfirmModal" class="">
 
-        
+
         <x-slot name="title" class="border-b bg-slate-200">
             <span class="font-semibold">Delete Confirm</span>
         </x-slot>
-        
+
 
         <x-slot name="content">
             <div class="border-t">
                 <div class="vc vu ">
                     <div class="fw">
 
-                        
+
+                        <div class="">
                             <div class="">
-                                <div class="">
-                                    <div class="flex flex-col space-y-3">
-                                        <div class="flex max-w-auto text-center justify-center items-center">
-                                            <div class="text-lg font-semibold ">
+                                <div class="flex flex-col space-y-3">
+                                    <div class="flex max-w-auto text-center justify-center items-center">
+                                        <div class="text-lg font-semibold ">
                                             <p>Are you sure want to delete?</p>
-                                            </div>
                                         </div>
-                                        
                                     </div>
+
                                 </div>
                             </div>
-                        
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -357,3 +359,5 @@
     </x-dialog-modal>
 
 </div>
+
+</x-layouts.app>

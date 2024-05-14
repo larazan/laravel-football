@@ -64,6 +64,6 @@ class Create extends Component
 
     public function render()
     {
-        return view('livewire.schedule.create');
+        return view('livewire.schedule.create')->layout('components.layouts.app');
     }
 }

@@ -330,7 +330,7 @@ class ProductIndex extends Component
             'categories' => Category::OrderBy('name', 'asc')->get(),
             'brands' => Brand::OrderBy('name', 'asc')->get(),
             'products' => Product::liveSearch('name', $this->search)->orderBy('name', $this->sort)->paginate($this->perPage)
-        ]);
+        ])->layout('components.layouts.app');
     }
 
     private function _resizeImage($image, $fileName, $folder)

@@ -1,3 +1,5 @@
+<x-layouts.app>
+
 <div class="vs jj ttm vl ou uf na">
 
     <!-- Page header -->
@@ -433,3 +435,5 @@
     </x-dialog-modal>
 
 </div>
+
+</x-layouts.app>

@@ -35,8 +35,16 @@ class TeamLeagueIndex extends Component
     public function mount()
     {
         $this->date = today()->format('Y-m-d');
+        $monthEvent = 8;
+        $monthNow = Carbon::now()->format('m');
         $yearNow = Carbon::now()->format('Y');
-        $this->perSeason = $yearNow . '/' . $yearNow + 1;
+        $yearEvent = ($monthNow < $monthEvent) ? $yearNow - 1 : $yearNow;
+
+        if ($monthNow < $monthEvent && $yearNow > $yearEvent) {
+            $this->perSeason = $yearNow - 1 . '/' . $yearNow;
+        } elseif ($monthNow >= $monthEvent) {
+            $this->perSeason = $yearNow . '/' . $yearNow + 1;
+        }
         $this->selectedClub = 0;
     }
 
@@ -185,6 +193,6 @@ class TeamLeagueIndex extends Component
             'klubs' => Club::OrderBy('id', 'asc')->get()->toArray(),
             'clubs' => Club::OrderBy('name', 'asc')->get(),
             'seasonOption' => $seasons,
-        ]);
+        ])->layout('components.layouts.app');
     }
 }

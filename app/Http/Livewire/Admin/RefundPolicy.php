@@ -8,12 +8,17 @@ use Livewire\Component;
 
 class RefundPolicy extends Component
 {
-    public $refundPolicy;
+    public $body;
+    public $trixId;
 
     public function mount()
     {
         $data = BusinessSetting::where(['key' => 'refund_policy'])->first();
-        $this->refundPolicy = $data;
+        if ($data) {
+            $this->body = $data->value;
+        } else {
+            $this->body = $data;
+        }
     }
 
     // public function updatedRefundPolicy()
@@ -24,13 +29,13 @@ class RefundPolicy extends Component
     public function updateRefundPolicy()
     {
 
-        dd($this->refundPolicy);
+        dd($this->body);
         // BusinessSetting::where(['key' => 'refund_policy'])->update([
         //     'value' => $this->refundPolicy,
         // ]);
 
         DB::table('business_settings')->updateOrInsert(['key' => 'refund_policy'], [
-            'value' => $this->refundPolicy,
+            'value' => $this->body,
         ]);
 
         $this->dispatchBrowserEvent('banner-message', ['style' => 'success', 'message' => 'Refund Policy updated successfully']);
@@ -38,6 +43,6 @@ class RefundPolicy extends Component
 
     public function render()
     {
-        return view('livewire.admin.refund-policy');
+        return view('livewire.admin.refund-policy')->layout('components.layouts.app');
     }
 }

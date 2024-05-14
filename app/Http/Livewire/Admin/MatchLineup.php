@@ -151,7 +151,7 @@ class MatchLineup extends Component
             'matchs' => Matchs::where('id', $this->matchId)->get(),
             'home_players' => Player::where('club_id', $home_team)->get(), 
             'away_players' => Player::where('club_id', $away_team)->get(), 
-        ]);
+        ])->layout('components.layouts.app');
     }
 
     public function backTo()

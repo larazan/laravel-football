@@ -118,6 +118,6 @@ class PermissionIndex extends Component
     {
         return view('livewire.admin.permission-index', [
             'permissions' => Permission::OrderBy('id', $this->sort)->paginate($this->perPage),
-        ]);
+        ])->layout('components.layouts.app');
     }
 }

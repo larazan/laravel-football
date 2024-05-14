@@ -1,3 +1,5 @@
+<x-layouts.app>
+
 <div class="vs jj ttm vl ou uf na">
 
     <!-- Loading -->
@@ -415,7 +417,7 @@
                                             <label for="bio" class="block text-sm font-medium text-gray-700">
                                                 Bio
                                             </label>
-                                            <textarea wire:model="bio" id="bio" cols="50" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">{{ $bio }}</textarea>
+                                            <!-- <textarea wire:model="bio" id="bio" cols="50" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">{{ $bio }}</textarea> -->
                                             <div class="body-content" wire:ignore>
                                                 <trix-editor class="trix-content" x-ref="trix" wire:model.debounce.500ms="content" wire:key="trix-content-unique-key"></trix-editor>
                                             </div>
@@ -658,7 +660,7 @@
 
 </div>
 
-
+</x-layouts.app>
 
 
 

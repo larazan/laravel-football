@@ -367,7 +367,7 @@ class WomenFootBall extends Component
             'teams' => Club::OrderBy('id', 'asc')->get()->toArray(),
             'positionOption' => Position::OrderBy('name', 'asc')->get(),
             'countries' => Country::orderBy('name', 'asc')->get(),
-        ]);
+        ])->layout('components.layouts.app');
     }
 
     private function _resizeImage($image, $fileName, $folder)

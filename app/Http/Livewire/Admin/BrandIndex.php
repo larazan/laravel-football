@@ -172,7 +172,7 @@ class BrandIndex extends Component
     {
         return view('livewire.admin.brand-index', [
             'brands' => Brand::liveSearch('name', $this->search)->orderBy('name', $this->sort)->paginate($this->perPage)
-        ]);
+        ])->layout('components.layouts.app');
     }
 
     private function _resizeImage($image, $fileName, $folder)

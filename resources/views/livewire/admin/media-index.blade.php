@@ -1,3 +1,5 @@
+<x-layouts.app>
+
 <div class="vs jj ttm vl ou uf na">
 
     <!-- Loading -->
@@ -259,9 +261,13 @@
                     <div class="fw">
 
                         <form>
-                            <div class="">
-                                <div class="">
-                                    <div class="flex flex-col space-y-3">
+                            <div class="my-3 md:mt-0 md:col-span-2" x-data="{tab: 0}">
+                                <div class="mb-5 flex border border-black overflow-hidden">
+                                    <button class="px-4 py-2 w-full font-bold" :class="{ 'active bg-gray-800 text-white': tab === 0 }" x-on:click.prevent="tab = 0">General</button>
+                                    <button class="px-4 py-2 w-full font-bold" :class="{ 'active bg-gray-800 text-white': tab === 1 }" x-on:click.prevent="tab = 1">Meta</button>
+                                </div>
+                                <div>
+                                    <div class="mt-6 flex flex-col space-y-3" x-show="tab === 0">
                                         <div class="col-start-1 sm:col-span-3">
                                             <label for="title" class="block text-sm font-medium text-gray-700">
                                                 Media Title
@@ -330,6 +336,21 @@
                                             </select>
                                         </div>
                                     </div>
+
+                                    <div class="mt-6 flex flex-col space-y-3" x-show="tab === 1">
+                                        <div class="col-start-1 sm:col-span-3">
+                                            <label for="title" class="block text-sm font-medium text-gray-700">
+                                                Meta Title
+                                            </label>
+                                            <input wire:model="metaTitle" type="text" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                                        </div>
+                                        <div class="col-start-1 sm:col-span-3">
+                                            <label for="title" class="block text-sm font-medium text-gray-700">
+                                                Meta Description
+                                            </label>
+                                            <textarea wire:model="metaDesc" type="text" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"></textarea>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </form>
@@ -396,6 +417,8 @@
     </x-dialog-modal>
 
 </div>
+
+</x-layouts.app>
 
 @push('styles')
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/trix/1.3.1/trix.min.css" />

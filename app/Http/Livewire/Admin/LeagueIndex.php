@@ -40,7 +40,8 @@ class LeagueIndex extends Component
     public $clubName;
 
     public $perSeason;
-    
+    public $monthNow;
+    public $yearNow;
 
     public $showConfirmModal = false;
     public $deleteId = '';
@@ -53,8 +54,20 @@ class LeagueIndex extends Component
 
     public function mount()
     {
+        $monthEvent = 8;
+        // $yearEvent = 2023;
+        $monthNow = Carbon::now()->format('m');
         $yearNow = Carbon::now()->format('Y');
-        $this->perSeason = $yearNow . '/' . $yearNow + 1;
+        $yearEvent = $monthNow < $monthEvent ? $yearNow - 1 : $yearNow;
+        
+        $this->monthNow = $monthNow;
+        $this->yearNow = $yearEvent;
+        if ($monthNow < $monthEvent && $yearNow > $yearEvent) {
+            $this->perSeason = $yearNow - 1 . '/' . $yearNow;
+        } elseif ($monthNow >= $monthEvent) {
+            $this->perSeason = $yearNow . '/' . $yearNow + 1;
+        }
+        
     }
 
     public function updated()
@@ -224,7 +237,7 @@ class LeagueIndex extends Component
             'teams' => TeamLeague::where('season', $this->perSeason)->orderBy('total_points', 'desc')->get(),
             'clubs' => Club::OrderBy('name', 'asc')->get(),
             'seasonOption' => $seasons,
-        ]);
+        ])->layout('components.layouts.app');
     }
 
     public function addLeague()

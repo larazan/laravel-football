@@ -8,12 +8,17 @@ use Livewire\Component;
 
 class PrivacyPolicy extends Component
 {
-    public $privacyPolicy;
+    public $body;
+    public $trixId;
 
     public function mount()
     {
         $data = BusinessSetting::where(['key' => 'privacy_policy'])->first();
-        $this->privacyPolicy = $data;
+        if ($data) {
+            $this->body = $data->value;
+        } else {
+            $this->body = $data;
+        }
     }
 
     // public function updatedPrivacyPolicy()
@@ -24,13 +29,13 @@ class PrivacyPolicy extends Component
     public function updatePrivacyPolicy()
     {
 
-        dd($this->privacyPolicy);
+        dd($this->body);
         // BusinessSetting::where(['key' => 'privacy_policy'])->update([
         //     'value' => $this->privacyPolicy,
         // ]);
 
         DB::table('business_settings')->updateOrInsert(['key' => 'privacy_policy'], [
-            'value' => $this->privacyPolicy,
+            'value' => $this->body,
         ]);
 
         $this->dispatchBrowserEvent('banner-message', ['style' => 'success', 'message' => 'Privacy Policy updated successfully']);
@@ -38,6 +43,6 @@ class PrivacyPolicy extends Component
 
     public function render()
     {
-        return view('livewire.admin.privacy-policy');
+        return view('livewire.admin.privacy-policy')->layout('components.layouts.app');
     }
 }

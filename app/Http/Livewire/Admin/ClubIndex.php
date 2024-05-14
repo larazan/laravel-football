@@ -180,6 +180,6 @@ class ClubIndex extends Component
         return view('livewire.admin.club-index', [
             'clubs' => Club::liveSearch('name', $this->search)->orderBy('name', $this->sort)->paginate($this->perPage),
             'stadions' => Stadion::OrderBy('name', 'asc')->get(),
-        ]);
+        ])->layout('components.layouts.app');
     }
 }

@@ -120,6 +120,6 @@ class CategoryFaqIndex extends Component
     {
         return view('livewire.admin.category-faq-index', [
             'categories' => CategoryFaq::liveSearch('name', $this->search)->orderBy('name', $this->sort)->paginate($this->perPage)
-        ]);
+        ])->layout('components.layouts.app');
     }
 }

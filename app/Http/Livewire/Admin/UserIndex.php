@@ -186,7 +186,7 @@ class UserIndex extends Component
         return view('livewire.admin.user-index', [
             'users' => User::liveSearch('first_name', $this->search)->orderBy('first_name', $this->sort)->paginate($this->perPage),
             'roles' => Role::all(),
-        ]);
+        ])->layout('components.layouts.app');
     }
 
     // public function assignRole($roleName)

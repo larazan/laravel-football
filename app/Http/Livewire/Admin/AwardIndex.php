@@ -151,6 +151,6 @@ class AwardIndex extends Component
         return view('livewire.admin.award-index', [
             'awards' => Award::liveSearch('id', $this->search)->orderBy('id', $this->sort)->paginate($this->perPage),
             'competitions' => Competition::OrderBy('name', $this->sort)->get()
-        ]);
+        ])->layout('components.layouts.app');
     }
 }

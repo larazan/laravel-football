@@ -26,9 +26,9 @@
                     @endif 
 
                     @if ($notification->type === 'App\Notifications\NewUserNotification') 
-                        @forelse ($notifications as $n)
-                            User {{ $n['first_name'] }} {{ $n['last_name'] }} ({{ $n['email'] }}) has just registered.
-                        @endforelse
+                        @foreach ($notifications as $n)
+                            User {{ $n['data']['first_name'] }} {{ $n['data']['last_name'] }} ({{ $n['data']['email'] }}) has just registered.
+                        @endforeach
                     @endif
             </span>
             <span class="block text-xs font-medium text-slate-400">{{ $notification->created_at->format('d-m-Y') }}</span>

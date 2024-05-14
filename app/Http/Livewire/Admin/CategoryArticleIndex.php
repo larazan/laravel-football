@@ -123,6 +123,6 @@ class CategoryArticleIndex extends Component
     {
         return view('livewire.admin.category-article-index', [
             'categories' => CategoryArticle::liveSearch('name', $this->search)->orderBy('name', $this->sort)->paginate($this->perPage)
-        ]);
+        ])->layout('components.layouts.app');
     }
 }

@@ -1,3 +1,5 @@
+<x-layouts.app>
+
 <div class="vs jj ttm vl ou uf na">
 
     <!-- Loading -->
@@ -246,3 +248,5 @@
 
 
 </div>
+
+</x-layouts.app>

@@ -210,7 +210,7 @@ class ProductSliderIndex extends Component
     {
         return view('livewire.admin.product-slider-index', [
             'slides' => ProductSlide::liveSearch('title', $this->search)->orderBy('position', $this->sort)->paginate($this->perPage)
-        ]);
+        ])->layout('components.layouts.app');
     }
 
     private function _resizeImage($image, $fileName, $folder)

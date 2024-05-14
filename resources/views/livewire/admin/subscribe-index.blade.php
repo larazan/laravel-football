@@ -1,7 +1,9 @@
+<x-layouts.app>
+
 <div class="vs jj ttm vl ou uf na">
 
-<!-- Loading -->
-<x-loading-indicator />
+    <!-- Loading -->
+    <x-loading-indicator />
 
     <!-- Page header -->
     <div class="je jd jc ii">
@@ -127,7 +129,7 @@
                             <th class="vi wy w_ vo lm">
                                 <div class="gh gt">Email</div>
                             </th>
-                           
+
                             <th class="vi wy w_ vo lm">
                                 <div class="gh gt">Status</div>
                             </th>
@@ -154,7 +156,7 @@
                             <td class="vi wy w_ vo lm">
                                 <div class="gp text-slate-800">dominik@mail.com</div>
                             </td>
-                           
+
                             <td class="vi wy w_ vo lm">
                                 <div class="inline-flex gp hf yl rounded-full gn vp vd">Overdue</div>
                             </td>
@@ -197,15 +199,15 @@
                             <td class="vi wy w_ vo lm">
                                 <div class="gp text-slate-800 capitalize">{{ $subscriber->email }}</div>
                             </td>
-                           
+
                             <td class="vi wy w_ vo lm">
                                 @if ($subscriber->status === 0)
-                                    <div class="inline-flex gp hf yl rounded-full gn vp vd">{{ $subscriber->status }}</div>
-                                @endif 
+                                <div class="inline-flex gp hf yl rounded-full gn vp vd">{{ $subscriber->status }}</div>
+                                @endif
 
                                 @if ($subscriber->status === 1)
-                                    <div class="inline-flex gp hc ys rounded-full gn vp vd">{{ $subscriber->status }}</div>
-                                @endif 
+                                <div class="inline-flex gp hc ys rounded-full gn vp vd">{{ $subscriber->status }}</div>
+                                @endif
                             </td>
 
                             <td class="vi wy w_ vo lm">
@@ -215,14 +217,14 @@
                             <td class="vi wy w_ vo lm of">
                                 <div class="fm">
                                     <button class="gq xv rounded-full" wire:click="showEditModal({{ $subscriber->id }})">
-                                    <span class=" d">Edit</span>
+                                        <span class=" d">Edit</span>
                                         <svg class="os sf du" viewBox="0 0 32 32">
                                             <path d="M19.7 8.3c-.4-.4-1-.4-1.4 0l-10 10c-.2.2-.3.4-.3.7v4c0 .6.4 1 1 1h4c.3 0 .5-.1.7-.3l10-10c.4-.4.4-1 0-1.4l-4-4zM12.6 22H10v-2.6l6-6 2.6 2.6-6 6zm7.4-7.4L17.4 12l1.6-1.6 2.6 2.6-1.6 1.6z"></path>
                                         </svg>
                                     </button>
 
                                     <button class="yl xy rounded-full" wire:click="deleteId({{ $subscriber->id }})">
-                                    <span class=" d">Delete</span>
+                                        <span class=" d">Delete</span>
                                         <svg class="os sf du" viewBox="0 0 32 32">
                                             <path d="M13 15h2v6h-2zM17 15h2v6h-2z"></path>
                                             <path d="M20 9c0-.6-.4-1-1-1h-6c-.6 0-1 .4-1 1v2H8v2h1v10c0 .6.4 1 1 1h12c.6 0 1-.4 1-1V13h1v-2h-4V9zm-6 1h4v1h-4v-1zm7 3v9H11v-9h10z"></path>
@@ -246,7 +248,7 @@
 
     {{ $subscribers->links() }}
 
-<livewire:newsletter-form />
+    <livewire:newsletter-form />
 
     <x-dialog-modal wire:model="showSubscriberModal" class="">
 
@@ -273,19 +275,19 @@
                                             </label>
                                             <input wire:model="email" type="email" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                                             @error('email')
-                                                <div class="go re yl">{{ $message }}</div>
+                                            <div class="go re yl">{{ $message }}</div>
                                             @enderror
                                         </div>
                                         <div class="col-span-6 sm:col-span-3">
                                             <label for="newsletterSubscriberStatus" class="block text-sm font-medium text-gray-700">Status</label>
                                             <select wire:model="newsletterSubscriberStatus" class="h-full rounded-r border-t border-r border-b block appearance-none w-full bg-white border-gray-300 text-gray-700 py-2 px-4 pr-8 leading-tight focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none">
-                                                <option value="" >Select Option</option>
+                                                <option value="">Select Option</option>
                                                 @foreach($statuses as $key => $name)
                                                 <option value="{{ $key }}">{{ $name }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
-                                        
+
                                     </div>
                                 </div>
                             </div>
@@ -312,31 +314,31 @@
     <!-- modal delete confirmation -->
     <x-dialog-modal wire:model="showConfirmModal" class="">
 
-        
+
         <x-slot name="title" class="border-b bg-slate-200">
             <span class="font-semibold">Delete Confirm</span>
         </x-slot>
-        
+
 
         <x-slot name="content">
             <div class="border-t">
                 <div class="vc vu ">
                     <div class="fw">
 
-                        
+
+                        <div class="">
                             <div class="">
-                                <div class="">
-                                    <div class="flex flex-col space-y-3">
-                                        <div class="flex max-w-auto text-center justify-center items-center">
-                                            <div class="text-lg font-semibold ">
+                                <div class="flex flex-col space-y-3">
+                                    <div class="flex max-w-auto text-center justify-center items-center">
+                                        <div class="text-lg font-semibold ">
                                             <p>Are you sure want to delete?</p>
-                                            </div>
                                         </div>
-                                        
                                     </div>
+
                                 </div>
                             </div>
-                        
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -353,3 +355,5 @@
     </x-dialog-modal>
 
 </div>
+
+</x-layouts.app>

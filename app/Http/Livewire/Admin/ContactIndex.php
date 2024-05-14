@@ -149,7 +149,7 @@ class ContactIndex extends Component
     {
         return view('livewire.admin.contact-index', [
             'contacts' => Contact::liveSearch('name', $this->search)->orderBy('name', $this->sort)->paginate($this->perPage)
-        ]);
+        ])->layout('components.layouts.app');
     }
 
     // Reply

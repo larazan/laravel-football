@@ -299,9 +299,9 @@ class ArticleIndex extends Component
     public function render()
     {
         return view('livewire.admin.article-index', [
-            'articles' => Article::liveSearch('title', $this->search)->orderBy('title', $this->sort)->paginate($this->perPage),
+            'articles' => Article::search('title', $this->search)->orderBy('title', $this->sort)->paginate($this->perPage),
             'categories' => CategoryArticle::OrderBy('name', $this->sort)->get()
-        ]);
+        ])->layout('components.layouts.app');
     }
 
     private function _resizeImage($image, $fileName, $folder)

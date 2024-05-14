@@ -132,6 +132,6 @@ class CurrencyIndex extends Component
     {
         return view('livewire.admin.currency-index', [
             'currencies' => Currency::liveSearch('country', $this->search)->orderBy('country', $this->sort)->paginate($this->perPage)
-        ]);
+        ])->layout('components.layouts.app');
     }
 }

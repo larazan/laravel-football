@@ -201,7 +201,7 @@ class SettingIndex extends Component
             'countries' => Country::orderBy('name', 'asc')->get(),
             'currency_code' => Currency::orderBy('country', 'asc')->get(),
             'timezones' => Timezone::orderBy('id', 'asc')->get(),
-        ]);
+        ])->layout('components.layouts.app');
     }
 
     private function _resizeImage($image, $fileName, $folder)

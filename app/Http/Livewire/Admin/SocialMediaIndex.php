@@ -141,6 +141,6 @@ class SocialMediaIndex extends Component
     {
         return view('livewire.admin.social-media-index', [
             'socmeds' => SocialMedia::liveSearch('name', $this->search)->orderBy('name', $this->sort)->paginate($this->perPage),
-        ]);
+        ])->layout('components.layouts.app');
     }
 }

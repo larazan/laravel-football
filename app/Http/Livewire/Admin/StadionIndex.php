@@ -202,7 +202,7 @@ class StadionIndex extends Component
     {
         return view('livewire.admin.stadion-index', [
             'stadions' => Stadion::liveSearch('name', $this->search)->orderBy('name', $this->sort)->paginate($this->perPage)
-        ]);
+        ])->layout('components.layouts.app');
     }
 
     private function _resizeImage($image, $fileName, $folder)

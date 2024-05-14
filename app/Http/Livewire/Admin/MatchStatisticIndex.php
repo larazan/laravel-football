@@ -241,7 +241,7 @@ class MatchStatisticIndex extends Component
         return view('livewire.admin.match-statistic-index', [
             'matchs' => Matchs::where('id', $this->matchId)->get(),
             'statistics' => MatchStatistic::where('match_id', $this->matchId)->get(),
-        ]);
+        ])->layout('components.layouts.app');
     }
 
     public function backTo()

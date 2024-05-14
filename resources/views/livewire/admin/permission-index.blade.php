@@ -1,7 +1,9 @@
+<x-layouts.app>
+
 <div class="vs jj ttm vl ou uf na">
 
-<!-- Loading -->
-<x-loading-indicator />
+    <!-- Loading -->
+    <x-loading-indicator />
 
     <!-- Page header -->
     <div class="je jd jc ii">
@@ -128,7 +130,7 @@
                             <th class="vi wy w_ vo lm">
                                 <div class="gh gt">Name</div>
                             </th>
-                           
+
                             <th class="vi wy w_ vo lm">
                                 <div class="gh gt">Date</div>
                             </th>
@@ -140,7 +142,7 @@
                     <!-- Table body -->
                     <tbody class="text-sm le lr">
                         <!-- Row -->
-                        
+
                         @if ($permissions->count() > 0)
                         @foreach ($permissions as $permission)
                         <tr>
@@ -162,11 +164,11 @@
 
                             <td class="vi wy w_ vo lm of">
                                 <div class="fm flex items-center">
-                                    <button class="gq xv rounded-full"  x-on:click="window.livewire.emitTo('show-permission-component','showModal', {{$permission}})">
+                                    <button class="gq xv rounded-full" x-on:click="window.livewire.emitTo('show-permission-component','showModal', {{$permission}})">
                                         <span class=" d">Show</span>
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" />
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" />
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
                                         </svg>
 
                                     </button>
@@ -178,7 +180,7 @@
                                     </button>
 
                                     <button class="yl xy rounded-full" wire:click="deleteId({{ $permission->id }})">
-                                    <span class=" d">Delete</span>
+                                        <span class=" d">Delete</span>
                                         <svg class="os sf du" viewBox="0 0 32 32">
                                             <path d="M13 15h2v6h-2zM17 15h2v6h-2z"></path>
                                             <path d="M20 9c0-.6-.4-1-1-1h-6c-.6 0-1 .4-1 1v2H8v2h1v10c0 .6.4 1 1 1h12c.6 0 1-.4 1-1V13h1v-2h-4V9zm-6 1h4v1h-4v-1zm7 3v9H11v-9h10z"></path>
@@ -227,10 +229,10 @@
                                             </label>
                                             <input wire:model="name" type="text" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                                             @error('name')
-                                                <div class="go re yl">{{ $message }}</div>
+                                            <div class="go re yl">{{ $message }}</div>
                                             @enderror
                                         </div>
-                                       
+
 
                                     </div>
                                 </div>
@@ -258,31 +260,31 @@
     <!-- modal delete confirmation -->
     <x-dialog-modal wire:model="showConfirmModal" class="">
 
-        
+
         <x-slot name="title" class="border-b bg-slate-200">
             <span class="font-semibold">Delete Confirm</span>
         </x-slot>
-        
+
 
         <x-slot name="content">
             <div class="border-t">
                 <div class="vc vu ">
                     <div class="fw">
 
-                        
+
+                        <div class="">
                             <div class="">
-                                <div class="">
-                                    <div class="flex flex-col space-y-3">
-                                        <div class="flex max-w-auto text-center justify-center items-center">
-                                            <div class="text-lg font-semibold ">
+                                <div class="flex flex-col space-y-3">
+                                    <div class="flex max-w-auto text-center justify-center items-center">
+                                        <div class="text-lg font-semibold ">
                                             <p>Are you sure want to delete?</p>
-                                            </div>
                                         </div>
-                                        
                                     </div>
+
                                 </div>
                             </div>
-                        
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -300,7 +302,9 @@
 
 </div>
 
- 
-  <div wire:key="show-permission">
+
+<div wire:key="show-permission">
     <livewire:show-permission-component>
-  </div>
+</div>
+
+</x-layouts.app>

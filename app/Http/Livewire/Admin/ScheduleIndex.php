@@ -349,7 +349,7 @@ class ScheduleIndex extends Component
             'hourOption' => $hours,
             'minuteOption' => $minutes,
             
-        ]);
+        ])->layout('components.layouts.app');
     }
 
     public function export()
