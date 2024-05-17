@@ -1,4 +1,4 @@
-<x-layouts.app>
+
 
 <div>
     <x-adminlte-modal id="createScheduleModal" title="予定登録" theme="info" v-centered scrollable wire:ignore.self>
@@ -38,7 +38,7 @@
 
 </div>
 
-</x-layouts.app>
+
 
 @push('js')
     <script>

@@ -1,4 +1,4 @@
-<x-layouts.app>
+
 
 <div>
     <div id="calendar-container" wire:ignore>
@@ -6,7 +6,7 @@
     </div>
 </div>
 
-</x-layouts.app>
+
 
 @push('js')
 <script>

@@ -1,4 +1,4 @@
-<x-layouts.app>
+
 
 <div class="vs jj ttm vl ou uf na">
 
@@ -649,7 +649,7 @@
 
 </div>
 
-</x-layouts.app>
+
 
 @push('styles')
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/trix/1.3.1/trix.min.css" />

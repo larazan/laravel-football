@@ -1,4 +1,4 @@
-<x-layouts.app>
+
 
 <div class="vs jj ttm vl ou uf na">
 
@@ -307,4 +307,3 @@
     <livewire:show-permission-component>
 </div>
 
-</x-layouts.app>

@@ -1,4 +1,4 @@
-<x-layouts.app>
+
 
 <div class="vs jj ttm vl ou uf na">
 
@@ -449,4 +449,3 @@
     <livewire:manage-user-roles-component>
 </div>
 
-</x-layouts.app>

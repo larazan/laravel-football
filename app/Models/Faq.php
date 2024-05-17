@@ -25,6 +25,7 @@ class Faq extends Model
         'question',
         'answer',
         'status',
+        'order_position'
     ];
 
     public function category()

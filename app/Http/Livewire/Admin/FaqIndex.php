@@ -197,4 +197,13 @@ class FaqIndex extends Component
             'categories' => CategoryFaq::OrderBy('name', 'asc')->get(),
         ])->layout('components.layouts.app');
     }
+
+    public function updateFaqOrder($items) 
+    {
+        foreach ($items as $item) {
+            Faq::find($item['value'])->update(['order_position' => $item['order']]);
+        }
+
+        $this->dispatchBrowserEvent('banner-message', ['style' => 'success', 'message' => 'Faq sorted successfully']);
+    }
 }

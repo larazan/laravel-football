@@ -1,4 +1,3 @@
-<x-layouts.app>
 
 <div class="vs jj ttm vl ou uf na">
 
@@ -124,19 +123,23 @@
                         </tr>
                     </thead>
                     <!-- Table body -->
-                    <tbody class="text-sm le lr">
+                    <tbody class="text-sm le lr" wire:sortable="updateFaqOrder">
                         <!-- Row -->
 
 
                         @if ($faqs->count() > 0)
                         @foreach ($faqs as $faq)
-                        <tr>
+                        <tr wire:sortable.item="{{ $faq->id }}" wire:key="faq-{{ $faq->id }}" wire:sortable.handle>
                             <td class="vi wy w_ vo lm of">
-                                <div class="flex items-center">
+                                <div class="flex items-center space-x-2">
                                     <label class="inline-flex">
                                         <span class="d">Select</span>
                                         <input class="table-item i" type="checkbox" @click="uncheckParent" wire:key="{{ $faq->id }}" wire:model.live="mySelected" value="{{ $faq->id }} checked">
                                     </label>
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3.75v4.5m0-4.5h4.5m-4.5 0L9 9M3.75 20.25v-4.5m0 4.5h4.5m-4.5 0L9 15M20.25 3.75h-4.5m4.5 0v4.5m0-4.5L15 9m5.25 11.25h-4.5m4.5 0v-4.5m0 4.5L15 15" />
+</svg>
+
                                 </div>
                             </td>
                             <td class="vi wy w_ vo lm">
@@ -326,9 +329,20 @@
 
 </div>
 
-</x-layouts.app>
+@push('styles')
+    <style>
+        .draggable-mirror {
+            background-color: white;
+            width: 950px;
+            display: flex;
+            justify-content: space-between;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        }
+    </style>
+@endpush
 
 @push('js')
+<script src="https://cdn.jsdelivr.net/gh/livewire/sortable@v0.x.x/dist/livewire-sortable.js"></script>
 <script>
     $('.page-item').on('click', function(event) {
         Livewire.emit('resetMySelected');
