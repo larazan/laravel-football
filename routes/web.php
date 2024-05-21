@@ -20,6 +20,7 @@ use App\Http\Controllers\StandingController;
 use App\Http\Controllers\SquadController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\CkeditorFileUploadController;
+use App\Http\Controllers\LineupTest;
 // Livewire
 use App\Http\Livewire\Admin\AboutUs;
 use App\Http\Livewire\Admin\PrivacyPolicy;
@@ -123,6 +124,7 @@ Route::get('/', function () {
 
 Route::middleware(['auth:sanctum', 'verified', 'role:admin|author|sales'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('dashboard', Dashboard::class);
+    Route::get('lineup', [LineupTest::class, 'index']);
     
     Route::get('about-us', AboutUs::class)->name('about-us.index');
     Route::get('privacy-policy', PrivacyPolicy::class)->name('privacy-policy.index');
