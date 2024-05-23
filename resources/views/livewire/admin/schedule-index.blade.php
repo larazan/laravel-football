@@ -11,7 +11,7 @@
 
         <!-- Left: Title -->
         <div class="ri _y">
-            <h1 class="gu teu text-slate-800 font-bold">Schedule ✨</h1>
+            <h1 class="gu teu text-slate-800 font-bold">Schedule</h1>
         </div>
 
         <!-- Right: Actions -->
@@ -343,6 +343,15 @@
                                         </div>
 
                                         <div class="flex justify-between">
+                                            <div class="col-span-1 sm:col-span-3">
+                                                <label for="position" class="block text-sm font-medium text-gray-700">Venue</label>
+                                                <select wire:model="position" class="h-full2 rounded-r border-t border-r border-b block appearance-none w-full bg-white border-gray-300 text-gray-700 py-2 px-4 pr-8 leading-tight focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none capitalize">
+                                                    <option value="">Select Option</option>
+                                                    @foreach($positionOption as $pos)
+                                                    <option value="{{ $pos }}">{{ $pos }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
                                             <div class="col-span-6 sm:col-span-3">
                                                 <label for="stadionId" class="block text-sm font-medium text-gray-700">Stadion</label>
                                                 <select wire:model="stadionId" class="h-full2 rounded-r border-t border-r border-b block appearance-none w-full bg-white border-gray-300 text-gray-700 py-2 px-4 pr-8 leading-tight focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none">
@@ -352,21 +361,13 @@
                                                     @endforeach
                                                 </select>
                                             </div>
-                                            <div class="col-span-1 sm:col-span-3">
-                                                <label for="position" class="block text-sm font-medium text-gray-700">Venue</label>
-                                                <select wire:model="position" class="h-full2 rounded-r border-t border-r border-b block appearance-none w-full bg-white border-gray-300 text-gray-700 py-2 px-4 pr-8 leading-tight focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none">
-                                                    <option value="">Select Option</option>
-                                                    @foreach($positionOption as $pos)
-                                                    <option value="{{ $pos }}">{{ $pos }}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
+                                            
                                         </div>
 
                                         <div class="flex justify-between">
 
                                             <div class="col-span-1 sm:col-span-3">
-                                                <label for="opponent" class="block text-sm font-medium text-gray-700">Opponent {{ $selectedClub }}</label>
+                                                <label for="opponent" class="block text-sm font-medium text-gray-700">Opponent</label>
 
                                                 <!-- Dropdown -->
                                                 <div class="relative absolute2 " x-data="{ open: false, selected: {{ $selectedClub }} }">

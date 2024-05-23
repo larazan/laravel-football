@@ -75,6 +75,6 @@ class Calendar extends Component
         $this->events = json_encode($eve);
         return view('livewire.calendar', [
             'events' => $this->events
-        ]);
+        ])->layout('components.layouts.app');
     }
 }

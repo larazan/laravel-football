@@ -10,7 +10,7 @@
 
         <!-- Left: Title -->
         <div class="ri _y">
-            <h1 class="gu teu text-slate-800 font-bold">Competition ✨</h1>
+            <h1 class="gu teu text-slate-800 font-bold">Competition</h1>
         </div>
         
         <!-- Right: Actions -->

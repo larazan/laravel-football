@@ -10,7 +10,7 @@
 
         <!-- Left: Title -->
         <div class="ri _y">
-            <h1 class="gu teu text-slate-800 font-bold">Customer ID #{{ $customerId }} ✨</h1>
+            <h1 class="gu teu text-slate-800 font-bold">Customer ID #{{ $customerId }}</h1>
             <span class="text-sm text-gray-500">Joined at: 29 february 2024 12:44 pm</span>
         </div>
 

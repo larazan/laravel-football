@@ -72,6 +72,9 @@ use App\Http\Livewire\Admin\StadionIndex;
 use App\Http\Livewire\Admin\StaffIndex;
 use App\Http\Livewire\Admin\StatisticIndex;
 use App\Http\Livewire\Admin\SubscribeIndex;
+use App\Http\Livewire\Admin\TrainingIndex;
+use App\Http\Livewire\Admin\TrainingTypeIndex;
+use App\Http\Livewire\Admin\TrainingSessionIndex;
 use App\Http\Livewire\Admin\TrophyIndex;
 use App\Http\Livewire\Admin\UserIndex;
 use App\Http\Livewire\Admin\JuniorFootBall;
@@ -83,6 +86,8 @@ use App\Http\Livewire\SearchSelect;
 use App\Http\Livewire\MultiSelect;
 use App\Http\Livewire\Tags;
 use App\Http\Livewire\Trix;
+use App\Models\TrainingSession;
+use App\Models\TrainingType;
 
 /*
 |--------------------------------------------------------------------------
@@ -123,7 +128,7 @@ Route::get('/', function () {
 });
 
 Route::middleware(['auth:sanctum', 'verified', 'role:admin|author|sales'])->prefix('admin')->name('admin.')->group(function () {
-    Route::get('dashboard', Dashboard::class);
+    Route::get('dashboard', Dashboard::class)->name('dashboard');
     Route::get('lineup', [LineupTest::class, 'index']);
     
     Route::get('about-us', AboutUs::class)->name('about-us.index');
@@ -201,6 +206,9 @@ Route::middleware(['auth:sanctum', 'verified', 'role:admin|author|sales'])->pref
     Route::get('settings', SettingIndex::class)->name('settings.index');
     Route::get('slides', SlideIndex::class)->name('slides.index');
     Route::get('social-medias', SocialMediaIndex::class)->name('social-medias.index');
+    Route::get('trainings', TrainingIndex::class)->name('trainings.index');
+    Route::get('training-type', TrainingTypeIndex::class)->name('training-type.index');
+    Route::get('training-session', TrainingSessionIndex::class)->name('training-session.index');
     Route::get('trophies', TrophyIndex::class)->name('trophies.index');
     Route::get('users', UserIndex::class)->name('users.index');
 

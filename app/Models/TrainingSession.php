@@ -17,8 +17,8 @@ class TrainingSession extends Model
 		'updated_at',
 	];
 
-    public function team()
+    public function type()
     {
-        return $this->belongsTo(TrainingType::class);
+        return $this->belongsTo(TrainingType::class, 'training_type_id');
     }
 }

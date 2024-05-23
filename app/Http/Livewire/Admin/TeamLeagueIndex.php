@@ -34,6 +34,7 @@ class TeamLeagueIndex extends Component
 
     public function mount()
     {
+        $this->selectedClub = 0;
         $this->date = today()->format('Y-m-d');
         $monthEvent = 8;
         $monthNow = Carbon::now()->format('m');
@@ -45,19 +46,37 @@ class TeamLeagueIndex extends Component
         } elseif ($monthNow >= $monthEvent) {
             $this->perSeason = $yearNow . '/' . $yearNow + 1;
         }
-        $this->selectedClub = 0;
+        
     }
 
     public function boot()
     {
+        // $this->selectedClub = 0;
+        $monthEvent = 8;
+        $monthNow = Carbon::now()->format('m');
         $yearNow = Carbon::now()->format('Y');
-        $this->perSeason = $yearNow . '/' . $yearNow + 1;
+        $yearEvent = ($monthNow < $monthEvent) ? $yearNow - 1 : $yearNow;
+
+        if ($monthNow < $monthEvent && $yearNow > $yearEvent) {
+            $this->perSeason = $yearNow - 1 . '/' . $yearNow;
+        } elseif ($monthNow >= $monthEvent) {
+            $this->perSeason = $yearNow . '/' . $yearNow + 1;
+        }
     }
 
     public function hydrate()
     {
+        // $this->selectedClub = 0;
+        $monthEvent = 8;
+        $monthNow = Carbon::now()->format('m');
         $yearNow = Carbon::now()->format('Y');
-        $this->perSeason = $yearNow . '/' . $yearNow + 1;
+        $yearEvent = ($monthNow < $monthEvent) ? $yearNow - 1 : $yearNow;
+
+        if ($monthNow < $monthEvent && $yearNow > $yearEvent) {
+            $this->perSeason = $yearNow - 1 . '/' . $yearNow;
+        } elseif ($monthNow >= $monthEvent) {
+            $this->perSeason = $yearNow . '/' . $yearNow + 1;
+        }
     }
 
     public function seasoned()

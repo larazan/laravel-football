@@ -45,7 +45,7 @@ class ScheduleIndex extends Component
     public $positionOption = [
         'away',
         'home',
-        // 'neutral'
+        'neutral'
     ];
     public $scheduleId;
     public $scheduleStatus = 'inactive';
@@ -58,6 +58,8 @@ class ScheduleIndex extends Component
     public $sort = 'asc';
     public $perPage = 10;
     public $perSeason;
+    public $monthNow;
+    public $yearNow;
 
     public $showConfirmModal = false;
     public $deleteId = '';
@@ -68,24 +70,64 @@ class ScheduleIndex extends Component
 
     public function mount()
     {
+        $this->selectedClub = 0;
         $this->fixtureDate = today()->format('Y-m-d');
+        $monthEvent = 8;
+        // $yearEvent = 2023;
+        $monthNow = Carbon::now()->format('m');
         $yearNow = Carbon::now()->format('Y');
-        $this->perSeason = $yearNow . '/' . $yearNow + 1;
-        $this->selectedClub = 7;
+        $yearEvent = $monthNow < $monthEvent ? $yearNow - 1 : $yearNow;
+        
+        $this->monthNow = $monthNow;
+        $this->yearNow = $yearEvent;
+        if ($monthNow < $monthEvent && $yearNow > $yearEvent) {
+            $this->perSeason = $yearNow - 1 . '/' . $yearNow;
+            $this->season = $yearNow - 1 . '/' . $yearNow;
+        } elseif ($monthNow >= $monthEvent) {
+            $this->perSeason = $yearNow . '/' . $yearNow + 1;
+            $this->season = $yearNow . '/' . $yearNow + 1;
+        }
+        
     }
 
     public function boot()
     {
         $this->currentClubId = Schedule::pinnedClub();
+        $monthEvent = 8;
+        // $yearEvent = 2023;
+        $monthNow = Carbon::now()->format('m');
         $yearNow = Carbon::now()->format('Y');
-        $this->perSeason = $yearNow . '/' . $yearNow + 1;
+        $yearEvent = $monthNow < $monthEvent ? $yearNow - 1 : $yearNow;
+        
+        $this->monthNow = $monthNow;
+        $this->yearNow = $yearEvent;
+        if ($monthNow < $monthEvent && $yearNow > $yearEvent) {
+            $this->perSeason = $yearNow - 1 . '/' . $yearNow;
+            $this->season = $yearNow - 1 . '/' . $yearNow;
+        } elseif ($monthNow >= $monthEvent) {
+            $this->perSeason = $yearNow . '/' . $yearNow + 1;
+            $this->season = $yearNow . '/' . $yearNow + 1;
+        }
     }
 
     public function hydrate()
     {
         $this->currentClubId = Schedule::pinnedClub();
+        $monthEvent = 8;
+        // $yearEvent = 2023;
+        $monthNow = Carbon::now()->format('m');
         $yearNow = Carbon::now()->format('Y');
-        $this->perSeason = $yearNow . '/' . $yearNow + 1;
+        $yearEvent = $monthNow < $monthEvent ? $yearNow - 1 : $yearNow;
+        
+        $this->monthNow = $monthNow;
+        $this->yearNow = $yearEvent;
+        if ($monthNow < $monthEvent && $yearNow > $yearEvent) {
+            $this->perSeason = $yearNow - 1 . '/' . $yearNow;
+            $this->season = $yearNow - 1 . '/' . $yearNow;
+        } elseif ($monthNow >= $monthEvent) {
+            $this->perSeason = $yearNow . '/' . $yearNow + 1;
+            $this->season = $yearNow . '/' . $yearNow + 1;
+        }
     }
 
     public function showCreateModal()
@@ -200,8 +242,12 @@ class ScheduleIndex extends Component
         $this->awayTeamId = $schedule->away_team;
         if ($schedule->home_team == $this->currentClubId) {
             $this->selectedClub = $schedule->away_team;
-        } else {
+            $this->position = 'home';
+        } elseif ($schedule->home_team != $this->currentClubId) {
             $this->selectedClub = $schedule->home_team;
+            $this->position = 'away';
+        } else {
+            $this->position = 'neutral';
         }
 
         $this->fullTimeHomeGoal = $schedule->full_time_home_goal;
@@ -210,8 +256,11 @@ class ScheduleIndex extends Component
         $this->hour = $schedule->hour;
         $this->minute = $schedule->minute;
         $this->scheduleStatus = $schedule->status;
-        $this->showScheduleModal = true;
+        
+        
+        
 
+        $this->showScheduleModal = true;
         
     }
     

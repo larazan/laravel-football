@@ -8,7 +8,7 @@
 
         <!-- Left: Title -->
         <div class="ri _y">
-            <h1 class="gu teu text-slate-800 font-bold">Training Session ✨</h1>
+            <h1 class="gu teu text-slate-800 font-bold">Training Session</h1>
         </div>
         
         <!-- Right: Actions -->
@@ -120,8 +120,7 @@
                             <th class="vi wy w_ vo lm of">
                                 <div class="flex items-center">
                                     <label class="inline-flex">
-                                        <span class="d">Select all</span>
-                                        <input id="parent-checkbox" class="i" type="checkbox" @click="toggleAll">
+                                        NO
                                     </label>
                                 </div>
                             </th>
@@ -153,8 +152,7 @@
                             <td class="vi wy w_ vo lm of">
                                 <div class="flex items-center">
                                     <label class="inline-flex">
-                                        <span class="d">Select</span>
-                                        <input class="table-item i" type="checkbox" @click="uncheckParent">
+                                    {{ ($sessions->currentpage()-1) * $sessions->perpage() + $loop->index + 1 }}
                                     </label>
                                 </div>
                             </td>
@@ -165,7 +163,7 @@
                                 <div class="gp text-slate-800">{{ $session->type->name }}</div>   
                             </td>
                             <td class="vi wy w_ vo lm">
-                                <div class="gp text-slate-800">{{ $session->focus }}</div>
+                                <div class="gp text-slate-800">{!! nl2br(General::smart_wordwrap($session->focus, 60)) !!}</div>
                             </td>
 
                             <td class="vi wy w_ vo lm">

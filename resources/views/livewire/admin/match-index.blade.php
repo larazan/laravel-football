@@ -10,7 +10,7 @@
 
         <!-- Left: Title -->
         <div class="ri _y">
-            <h1 class="gu teu text-slate-800 font-bold">Matchs ✨</h1>
+            <h1 class="gu teu text-slate-800 font-bold">Matchs</h1>
         </div>
 
         <!-- Right: Actions -->
@@ -414,7 +414,7 @@
         <x-slot name="footer">
             <div class="border-slate-200">
                 <div class="flex flex-wrap justify-end fc">
-                    <x-button wire:click="closeMatchsModal" class="border-slate-200 hover:text-white hover--border-slate-300 g_">Cancel</x-button>
+                    <x-button wire:click.prevent="closeMatchsModal" class="border-slate-200 hover:text-white hover--border-slate-300 g_">Cancel</x-button>
                     @if ($matchId)
                     <x-button wire:click="updateMatchs" class=" ho xi ye">Update</x-button>
                     @else

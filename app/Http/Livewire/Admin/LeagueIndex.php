@@ -70,10 +70,36 @@ class LeagueIndex extends Component
         
     }
 
-    public function updated()
+    public function boot()
     {
+        // $this->selectedClub = 0;
+        $monthEvent = 8;
+        $monthNow = Carbon::now()->format('m');
         $yearNow = Carbon::now()->format('Y');
-        $this->perSeason = $yearNow . '/' . $yearNow + 1;
+        $yearEvent = ($monthNow < $monthEvent) ? $yearNow - 1 : $yearNow;
+
+        if ($monthNow < $monthEvent && $yearNow > $yearEvent) {
+            $this->perSeason = $yearNow - 1 . '/' . $yearNow;
+        } elseif ($monthNow >= $monthEvent) {
+            $this->perSeason = $yearNow . '/' . $yearNow + 1;
+        }
+    }
+
+    public function hydrate()
+    {
+        $monthEvent = 8;
+        // $yearEvent = 2023;
+        $monthNow = Carbon::now()->format('m');
+        $yearNow = Carbon::now()->format('Y');
+        $yearEvent = $monthNow < $monthEvent ? $yearNow - 1 : $yearNow;
+        
+        $this->monthNow = $monthNow;
+        $this->yearNow = $yearEvent;
+        if ($monthNow < $monthEvent && $yearNow > $yearEvent) {
+            $this->perSeason = $yearNow - 1 . '/' . $yearNow;
+        } elseif ($monthNow >= $monthEvent) {
+            $this->perSeason = $yearNow . '/' . $yearNow + 1;
+        }
     }
 
     public function showCreateModal()
@@ -207,7 +233,10 @@ class LeagueIndex extends Component
     public function closeTeamLeagueModal()
     {
         $this->showLeagueModal = false;
-        $this->reset();
+        $this->reset([
+            'leagueId',
+            'date'
+        ]);
         $this->resetValidation();
     }
 

@@ -9,7 +9,7 @@
     <div class="rc">
 
         <!-- Title -->
-        <h1 class="gu teu text-slate-800 font-bold">About Us ✨</h1>
+        <h1 class="gu teu text-slate-800 font-bold">About Us</h1>
 
     </div>
 

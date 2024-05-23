@@ -52,6 +52,8 @@ class MatchIndex extends Component
     public $sort = 'asc';
     public $perPage = 10;
     public $perSeason;
+    public $monthNow;
+    public $yearNow;
 
     public $showConfirmModal = false;
     public $deleteId = '';
@@ -62,14 +64,53 @@ class MatchIndex extends Component
 
     public function mount()
     {
+        $monthEvent = 8;
+        // $yearEvent = 2023;
+        $monthNow = Carbon::now()->format('m');
         $yearNow = Carbon::now()->format('Y');
-        $this->perSeason = $yearNow . '/' . $yearNow + 1;
+        $yearEvent = $monthNow < $monthEvent ? $yearNow - 1 : $yearNow;
+        
+        $this->monthNow = $monthNow;
+        $this->yearNow = $yearEvent;
+        if ($monthNow < $monthEvent && $yearNow > $yearEvent) {
+            $this->perSeason = $yearNow - 1 . '/' . $yearNow;
+        } elseif ($monthNow >= $monthEvent) {
+            $this->perSeason = $yearNow . '/' . $yearNow + 1;
+        }
+    }
+
+    public function boot()
+    {
+        $monthEvent = 8;
+        // $yearEvent = 2023;
+        $monthNow = Carbon::now()->format('m');
+        $yearNow = Carbon::now()->format('Y');
+        $yearEvent = $monthNow < $monthEvent ? $yearNow - 1 : $yearNow;
+        
+        $this->monthNow = $monthNow;
+        $this->yearNow = $yearEvent;
+        if ($monthNow < $monthEvent && $yearNow > $yearEvent) {
+            $this->perSeason = $yearNow - 1 . '/' . $yearNow;
+        } elseif ($monthNow >= $monthEvent) {
+            $this->perSeason = $yearNow . '/' . $yearNow + 1;
+        }
     }
 
     public function hydrate()
     {
+        $monthEvent = 8;
+        // $yearEvent = 2023;
+        $monthNow = Carbon::now()->format('m');
         $yearNow = Carbon::now()->format('Y');
-        $this->perSeason = $yearNow . '/' . $yearNow + 1;
+        $yearEvent = $monthNow < $monthEvent ? $yearNow - 1 : $yearNow;
+        
+        $this->monthNow = $monthNow;
+        $this->yearNow = $yearEvent;
+        if ($monthNow < $monthEvent && $yearNow > $yearEvent) {
+            $this->perSeason = $yearNow - 1 . '/' . $yearNow;
+        } elseif ($monthNow >= $monthEvent) {
+            $this->perSeason = $yearNow . '/' . $yearNow + 1;
+        }
     }
 
     public function showCreateModal()
@@ -149,7 +190,7 @@ class MatchIndex extends Component
 
     public function showEditModal($matchId)
     {
-        $this->reset();
+        // $this->reset();
         $this->matchId = $matchId;
         $match = Matchs::find($matchId);
         $this->season = $match->season;
@@ -162,6 +203,7 @@ class MatchIndex extends Component
         $this->date = $match->fixture_match;
         $this->fullTimeResult = $match->full_time_result;
         $this->matchStatus = $match->status;
+
         $this->showMatchsModal = true;
     }
     
@@ -217,12 +259,16 @@ class MatchIndex extends Component
     public function closeMatchsModal()
     {
         $this->showMatchsModal = false;
-        $this->reset();
+        $this->reset([
+            'matchId',
+            'date',
+        ]);
+        $this->resetValidation();
     }
 
     public function resetFilters()
     {
-        $this->reset(['search', 'sort', 'perPage']);
+        $this->reset(['search', 'sort', 'perPage', 'perSeason']);
     }
 
     public function render()
