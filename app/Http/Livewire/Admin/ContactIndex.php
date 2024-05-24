@@ -16,6 +16,7 @@ class ContactIndex extends Component
     public $showContactModal = false;
     public $showAnswerModal = false;
 
+    // public $title;
     public $name;
     public $email;
     public $message;

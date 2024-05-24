@@ -50,7 +50,7 @@ class DatabaseSeeder extends Seeder
             
             // FormationSeeder::class,
             // ArticleSeeder::class,
-            TrainingSeeder::class,
+            // TrainingSeeder::class,
         ]);
         // \App\Models\User::factory(10)->create();
 

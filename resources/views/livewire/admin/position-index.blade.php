@@ -166,7 +166,7 @@
                                 <div class="gp ">{{ $position->parent ? $position->parent->name : '' }}</div>
                             </td>
                             <td class="vi wy w_ vo lm">
-                                <div class="gp text-slate-800">{{ $position->name }}</div>
+                                <div class="gp text-slate-800">{{ $position->abbreviation }}</div>
                             </td>
                             <td class="vi wy w_ vo lm">
                                 <div>{{ $position->created_at->format('d-m-Y') }}</div>

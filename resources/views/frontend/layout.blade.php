@@ -9,13 +9,16 @@
     <title>
         {{ isset($title) ? $title.' | ' : '' }}
         {{ config('app.name') }}
-        {{ is_active('home') ? '- The Laravel Community Portal' : '' }}
+        {{ General::is_active('home') ? '- The Laravel Community Portal' : '' }}
     </title>
     
     <meta name="description" content="The Laravel portal for problem solving, knowledge sharing and community building." />
 
+    
+    @vite(['resources/css/app.css'])
     <link rel="stylesheet" href="{{ asset('frontend/css/main.css') }}" />
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.0/dist/cdn.min.js"></script>
+
     @stack('meta')
 
     <!-- CSS -->
@@ -25,11 +28,11 @@
 
 <body>
 
-@include('layouts._header')
+@include('frontend.layouts._header')
 
 @yield('content')
 
-@include('layouts._footer')
+@include('frontend.layouts._footer')
 
 @stack('modals')
 

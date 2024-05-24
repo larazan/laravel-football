@@ -217,7 +217,6 @@
         </div>
     </div>
 
-    <x-pagination-table />
     {{ $contacts->links() }}
 
     <x-dialog-modal wire:model="showContactModal" class="">
@@ -297,17 +296,14 @@
     <!-- modal delete confirmation -->
     <x-dialog-modal wire:model="showConfirmModal" class="">
 
-
         <x-slot name="title" class="border-b bg-slate-200">
             <span class="font-semibold">Delete Confirm</span>
         </x-slot>
-
 
         <x-slot name="content">
             <div class="border-t">
                 <div class="vc vu ">
                     <div class="fw">
-
 
                         <div class="">
                             <div class="">
@@ -338,7 +334,8 @@
     </x-dialog-modal>
 
     <!-- modal reply -->
-    <x-dialog-modal wire:model="showContactModal" class="">
+    {{-- 
+    <x-dialog-modal wire:model="showAnswerModal" class="">
 
         @if ($contactId)
         <x-slot name="title" class="border-b">Reply Contact</x-slot>
@@ -398,6 +395,6 @@
 
         </x-slot>
     </x-dialog-modal>
-
+    --}}
 </div>
 

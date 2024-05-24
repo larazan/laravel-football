@@ -1,51 +1,51 @@
-<header className=" z-20 flex flex-col w-full">
-        <div className="flex w-full top-0 md:m-0 px-4 md:px-5 py-4 md:py-3  items-center justify-between bg-[#dc052d]">
-          <div className="flex items-center justify-between mx-auto w-full lg:w-1/2">
-            <div className="flex w-full md:w-3/5 justify-between space-x-4">
-              <div className="flex space-x-2 md:space-x-4 lg:space-x-2 w-full items-center">
-                <div className="flex justify-center items-center">
-                  <a href="/">
+<header class=" z-20 flex flex-col w-full" x-data="{ menuOpen: false, textD: 'test' }">
+        <div class="flex w-full top-0 md:m-0 px-4 md:px-5 py-4 md:py-3  items-center justify-between bg-[#dc052d]">
+          <div class="flex items-center justify-between mx-auto w-full lg:w-1/2">
+            <div class="flex w-full md:w-3/5 justify-between space-x-4">
+              <div class="flex space-x-2 md:space-x-4 lg:space-x-2 w-full items-center">
+                <div class="flex justify-center items-center">
+                  <a href="{{ url('home') }}">
                     <image
                     src="{{ asset('assets/img/fcbayern.svg') }}"
-                      className="h-9 w-9 md:h-12 md:w-12"
+                      class="h-9 w-9 md:h-12 md:w-12"
                       alt=""
                     />
                   </a>
                 </div>
-                <a href="/" className="leading-tight">
-                  <span className="text-base md:text-2xl lg:text-lg leading-tight text-white font-bold">
+                <a href="{{ url('home') }}" class="leading-tight">
+                  <span class="text-base md:text-2xl lg:text-lg leading-tight text-white font-bold">
                     FC Bayern Munchen
                   </span>
                 </a>
               </div>
             </div>
-            <div className="md:hidden mr-2">
-              <a href={"/login"} className="flex flex-row space-x-1 items-center">
-                <div className="text-white">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6">
-  <path strokeLinecap="round" strokeLinejoin="round" d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z" />
-</svg>
+            <div class="md:hidden mr-2">
+              <a href="{{ url('home') }}" class="flex flex-row space-x-1 items-center">
+                <div class="text-white">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" class="w-6 h-6">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
 
                 </div>
-                <span className="text-base text-white font-semibold">Login</span>
+                <span class="text-base text-white font-semibold">Login</span>
               </a>
             </div>
-            <div className="flex flex-col space-y-2">
-              <div className="hidden md:flex space-x-4 items-center justify-end ">
-                <a href={"/contact"}>
-                  <div className="text-white font-semibold text-sm">
+            <div class="flex flex-col space-y-2">
+              <div class="hidden md:flex space-x-4 items-center justify-end ">
+                <a href="{{ url('home') }}">
+                  <div class="text-white font-semibold text-sm">
                     Contact
                   </div>
                 </a>
-                <a href={"/account/profile"}>
-                  <div className="text-white font-semibold text-sm">
+                <a href="{{ url('home') }}">
+                  <div class="text-white font-semibold text-sm">
                     Profile
                   </div>
                 </a>
                 <div>
                   <select
                     name="version"
-                    className="input-select flex rounded px-2 py-1 items-center bg-[#dc052d]  font-semibold text-white text-sm"
+                    class="input-select flex rounded px-2 py-1 items-center bg-[#dc052d]  font-semibold text-white text-sm"
                   >
                     <option value="all">English</option>
                     <option value="all">Chinese</option>
@@ -53,15 +53,15 @@
                     <option value="boilerplate">Spainish</option>
                   </select>
                 </div>
-                <a href={"/login"}>
-                  <div className="text-white">
+                <a href="{{ url('home') }}">
+                  <div class="text-white">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       fill="none"
                       viewBox="0 0 24 24"
-                      strokeWidth={1.5}
+                      strokeWidth="1.5"
                       stroke="currentColor"
-                      className="w-7 h-7"
+                      class="w-7 h-7"
                     >
                       <path
                         strokeLinecap="round"
@@ -72,20 +72,20 @@
                   </div>
                 </a>
               </div>
-              <div className="hidden md:flex space-x-2 items-center justify-end">
-                <div className="text-xs text-white">presented by</div>
-                <button className="flex justify-center items-center rounded bg-white">
-                  <image src="{{ asset('assets/img/partners/telekom_logo_header_neu.svg') }}" className="" alt="" />
+              <div class="hidden md:flex space-x-2 items-center justify-end">
+                <div class="text-xs text-white">presented by</div>
+                <button class="flex justify-center items-center rounded bg-white">
+                  <image src="{{ asset('assets/img/partners/telekom_logo_header_neu.svg') }}" class="" alt="" />
                 </button>
-                <a href={"/shop"} className="flex justify-center py-1 px-1 space-x-1 items-center rounded bg-white">
-                  <span className="text-[#dc052d]">
+                <a href="{{ url('home') }}" class="flex justify-center py-1 px-1 space-x-1 items-center rounded bg-white">
+                  <span class="text-[#dc052d]">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       fill="none"
                       viewBox="0 0 24 24"
-                      strokeWidth={1}
+                      strokeWidth="1"
                       stroke="currentColor"
-                      className="w-5 h-5"
+                      class="w-5 h-5"
                     >
                       <path
                         strokeLinecap="round"
@@ -94,22 +94,25 @@
                       />
                     </svg>
                   </span>
-                  <div className="text-[#dc052d] font-semibold text-sm">
+                  <div class="text-[#dc052d] font-semibold text-sm">
                     Online store
                   </div>
                 </a>
               </div>
             </div>
-            <section className="MOBILE-MENU flex md:hidden justify-start items-between z-50">
+            <section class="MOBILE-MENU flex md:hidden justify-start items-between z-50">
               <div
-                className="HAMBURGER-ICON space-y-2 w-fit md:justify-start cursor-pointer text-white"
-                onClick={clickMenu}
+                class="HAMBURGER-ICON space-y-2 w-fit md:justify-start cursor-pointer text-white"
+                @click="menuOpen = !menuOpen" 
+                aria-controls="menubar" 
+                :aria-expanded="menuOpen" 
+                aria-expanded="false"
               >
                 <svg
                   viewBox="0 0 24 24"
                   fill="currentColor"
                   xmlns="http://www.w3.org/2000/svg"
-                  className="w-6 h-6"
+                  class="w-6 h-6"
                 >
                   <path
                     fillRule="evenodd"
@@ -119,36 +122,36 @@
                 </svg>
               </div>
               <div
-                className={` ${
-                  openMenu === false ? "hidden" : "flex flex-col"
-                } bg-[#dc052d] w-full h-[100vh] z-10 fixed top-0 left-0 text-white text-4xl font-bold  flex-1 flex-col justify-between`}
+                id="menubar"
+                :class="menuOpen ? 'flex flex-col' : 'hidden'" 
+                class=" hidden2 bg-[#dc052d]  w-full h-[100vh] z-10 fixed top-0 left-0 text-white text-4xl font-bold  flex-1 flex-col justify-between"
               >
-                <div className="flex flex-col">
-                  <div className="flex flex-row justify-between items-center px-4 py-4">
-                    <div className="flex flex-row space-x-4 w-full items-center">
-                      <div className="flex justify-center items-center">
-                        <a href="/">
+                <div class="flex flex-col">
+                  <div class="flex flex-row justify-between items-center px-4 py-4">
+                    <div class="flex flex-row space-x-4 w-full items-center">
+                      <div class="flex justify-center items-center">
+                        <a href="{{ url('home') }}">
                           <image
                             src="{{ asset('assets/img/fcbayern.svg') }}"
-                            className="h-10 w-10 md:h-12 md:w-12"
+                            class="h-10 w-10 md:h-12 md:w-12"
                             alt=""
                           />
                         </a>
                       </div>
-                      <div className="">
-                      <a href="/">
-                        <div className="text-lg md:text-2xl text-white font-bold">
+                      <div class="">
+                      <a href="{{ url('home') }}">
+                        <div class="text-lg md:text-2xl text-white font-bold">
                           FC Bayern Munchen
                         </div>
                       </a>
                       </div>
                     </div>
                     <div
-                      className="cursor-pointer rounded-full px-.5 py-1 bg-white"
-                      onClick={clickMenu}
+                      class="cursor-pointer rounded-full px-.5 py-1 bg-white"
+                      @click.stop="menuOpen = !menuOpen"
                     >
                       <svg
-                        className="h-6 w-8 text-red-500"
+                        class="h-6 w-8 text-red-500"
                         viewBox="0 0 24 24"
                         fill="none"
                         stroke="currentColor"
@@ -161,42 +164,42 @@
                       </svg>
                     </div>
                   </div>
-                  <div className="w-full py-5">
-                    <ul className="flex flex-col min-h-[250px]">
-                      <li className="flex w-full text-lg border-b">
-                        <a className="px-6 py-3 w-full " href="/news">
+                  <div class="w-full py-5">
+                    <ul class="flex flex-col min-h-[250px]">
+                      <li class="flex w-full text-lg border-b">
+                        <a class="px-6 py-3 w-full " href="{{ url('home') }}">
                           News
                         </a>
                       </li>
-                      <li className="flex w-full text-lg border-b">
-                        <a className="px-6 py-3 w-full" href="/media">
+                      <li class="flex w-full text-lg border-b">
+                        <a class="px-6 py-3 w-full" href="{{ url('home') }}">
                           Bayern TV
                         </a>
                       </li>
-                      <li className="flex w-full text-lg border-b">
-                        <a className="px-6 py-3 w-full" href="/match">
+                      <li class="flex w-full text-lg border-b">
+                        <a class="px-6 py-3 w-full" href="{{ url('home') }}">
                           Matches
                         </a>
                       </li>
-                      <li className="flex w-full text-lg border-b">
-                        <a className="px-6 py-3 w-full" href="/teams">
+                      <li class="flex w-full text-lg border-b">
+                        <a class="px-6 py-3 w-full" href="{{ url('home') }}">
                           Teams
                         </a>
                       </li>
-                      <li className="flex w-full text-lg border-b">
-                        <a className="px-6 py-3 w-full" href="/club">
+                      <li class="flex w-full text-lg border-b">
+                        <a class="px-6 py-3 w-full" href="{{ url('home') }}">
                           Club
                         </a>
                       </li>
-                      <li className="flex w-full text-lg border-b">
-                        <a className="px-6 py-3 w-full" href="/blog">
+                      <li class="flex w-full text-lg border-b">
+                        <a class="px-6 py-3 w-full" href="{{ url('home') }}">
                           Fans
                         </a>
                       </li>
-                      <li className="flex w-full text-lg border-b">
+                      <li class="flex w-full text-lg border-b">
                         <a
-                          className="px-6 py-3 w-full"
-                          href="/shop"
+                          class="px-6 py-3 w-full"
+                          href="{{ url('home') }}"
                           target="_blank"
                         >
                           Shop
@@ -212,58 +215,59 @@
 
         
       </header>
-      <div className="hidden md:block py-0 pt-1 px-5 bg-[#c60428] sticky top-0 z-30">
-          <div className="flex space-x-4 lg:space-x-2 items-center mx-auto w-full lg:w-1/2">
+
+      <div class="hidden md:block py-0 pt-1 px-5 bg-[#c60428] sticky top-0 z-30">
+          <div class="flex space-x-4 lg:space-x-2 items-center mx-auto w-full lg:w-1/2">
             <a
-              href={"/news"}
-              className={`py-1.5 px-1  border-b-2 ${pathname == "/news" ? 'border-white' : 'border-[#c60428]'} hover:border-white `}
+              href="{{ url('home') }}"
+              class="py-1.5 px-1  border-b-2 hover:border-white @if(!in_array(Request::segment(1), ['home'])){{ 'border-white' }}@else{ 'border-[#c60428]' }@endif"
             >
-              <span className="font-semibold text-white tracking-tight">News</span>
+              <span class="font-semibold text-white tracking-tight">News</span>
             </a>
             <a
-              href={"/media"}
-              className={`py-1.5 px-1  border-b-2 ${pathname == "/media" ? 'border-white' : 'border-[#c60428]'} hover:border-white `}
+              href="{{ url('home') }}"
+              class="py-1.5 px-1  border-b-2 hover:border-white @if(!in_array(Request::segment(1), ['home'])){{ 'border-white' }}@else{ 'border-[#c60428]' }@endif"
             >
-              <span className="font-semibold text-white tracking-tight">FC Bayern TV</span>
+              <span class="font-semibold text-white tracking-tight">FC Bayern TV</span>
             </a>
             <a
-              href={"/match"}
-              className={`py-1.5 px-1  border-b-2 ${pathname == "/match" ? 'border-white' : 'border-[#c60428]'} hover:border-white `}
+              href="{{ url('home') }}"
+              class="py-1.5 px-1  border-b-2 hover:border-white @if(!in_array(Request::segment(1), ['home'])){{ 'border-white' }}@else{ 'border-[#c60428]' }@endif"
             >
-              <span className="font-semibold text-white tracking-tight">Matches</span>
+              <span class="font-semibold text-white tracking-tight">Matches</span>
             </a>
             <a
-              href={"/teams"}
-              className={`py-1.5 px-1  border-b-2 ${pathname == "/teams" ? 'border-white' : 'border-[#c60428]'} hover:border-white `}
+              href="{{ url('home') }}"
+              class="py-1.5 px-1  border-b-2 hover:border-white @if(!in_array(Request::segment(1), ['home'])){{ 'border-white' }}@else{ 'border-[#c60428]' }@endif"
             >
-              <span className="font-semibold text-white tracking-tight">Teams</span>
+              <span class="font-semibold text-white tracking-tight">Teams</span>
             </a>
             <a
-              href={"/club"}
-              className={`py-1.5 px-1  border-b-2 ${pathname == "/club" ? 'border-white' : 'border-[#c60428]'} hover:border-white `}
+              href="{{ url('home') }}"
+              class="py-1.5 px-1  border-b-2 hover:border-white @if(!in_array(Request::segment(1), ['home'])){{ 'border-white' }}@else{ 'border-[#c60428]' }@endif"
             >
-              <span className="font-semibold text-white tracking-tight">Club</span>
+              <span class="font-semibold text-white tracking-tight">Club</span>
             </a>
             <a
-              href={"/fans"}
-              className={`py-1.5 px-1  border-b-2 ${pathname == "/fans" ? 'border-white' : 'border-[#c60428]'} hover:border-white `}
+              href="{{ url('home') }}"
+              class="py-1.5 px-1  border-b-2 hover:border-white @if(!in_array(Request::segment(1), ['home'])){{ 'border-white' }}@else{ 'border-[#c60428]' }@endif"
             >
-              <span className="font-semibold text-white tracking-tight">Fans</span>
+              <span class="font-semibold text-white tracking-tight">Fans</span>
             </a>
             <a
-              href={"/ticket"}
-              className={`py-1.5 px-1  border-b-2 ${pathname == "/ticket" ? 'border-white' : 'border-[#c60428]'} hover:border-white `}
+              href="{{ url('home') }}"
+              class="py-1.5 px-1  border-b-2 hover:border-white @if(!in_array(Request::segment(1), ['home'])){{ 'border-white' }}@else{ 'border-[#c60428]' }@endif" 
             >
-              <span className="font-semibold text-white tracking-tight">Tickets</span>
+              <span class="font-semibold text-white tracking-tight">Tickets</span>
             </a>
-            <button className="text-white" onClick={clickSearch}>
+            <button class="text-white" onClick={clickSearch}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
-                strokeWidth={2}
+                strokeWidth="2"
                 stroke="currentColor"
-                className="w-4 h-4"
+                class="w-4 h-4"
               >
                 <path
                   strokeLinecap="round"

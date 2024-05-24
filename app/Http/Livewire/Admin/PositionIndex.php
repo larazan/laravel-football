@@ -133,7 +133,7 @@ class PositionIndex extends Component
     public function render()
     {
         return view('livewire.admin.position-index', [
-            'positions' => Position::liveSearch('name', $this->search)->orderBy('name', $this->sort)->paginate($this->perPage)
+            'positions' => Position::liveSearch('name', $this->search)->orderBy('id', $this->sort)->paginate($this->perPage)
         ])->layout('components.layouts.app');
     }
 }

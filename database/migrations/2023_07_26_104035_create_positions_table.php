@@ -18,7 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('parent_id')->nullable();
             $table->string('name');
             $table->string('slug');
-            $table->string('abbreviation')->nullable();
+            $table->string('abbreviation', 10)->nullable();
             $table->timestamps();
 
             $table->foreign('parent_id')->references('id')->on('positions');

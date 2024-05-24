@@ -25,21 +25,6 @@ class PositionSeeder extends Seeder
                 'created_at' => Carbon::now(),
             ],
             [
-                'name' => 'Defender',
-                'slug' => 'defender',
-                'created_at' => Carbon::now(),
-            ],
-            [
-                'name' => 'Midfielder',
-                'slug' => 'midfielder',
-                'created_at' => Carbon::now(),
-            ],
-            [
-                'name' => 'Attacker',
-                'slug' => 'attacker',
-                'created_at' => Carbon::now(),
-            ],
-            [
                 'name' => 'Right Back',
                 'slug' => 'right-back',
                 'abbreviation' => 'RB',

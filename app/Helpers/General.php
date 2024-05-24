@@ -4,6 +4,25 @@ namespace App\Helpers;
 
 class General
 {
+	
+	/**
+	 * Sets the menu item class for an active route.
+	 */
+	public static function active(mixed $routes, bool $condition = true): string
+	{
+		return call_user_func_array([app('router'), 'is'], (array) $routes) && $condition ? 'active' : '';
+	}
+
+
+	/**
+	 * Determines if the given routes are active.
+	 */
+	public static function is_active(mixed $routes): bool
+	{
+		return (bool) call_user_func_array([app('router'), 'is'], (array) $routes);
+	}
+
+	
     /**
 	 * Generate multilevel select input
 	 *

@@ -1,78 +1,78 @@
-<footer className="flex flex-col space-y-1 bg-[#dc052d] min-h-screen">
-        <div className="flex flex-col space-y-6 mx-auto py-6 md:py-6 w-11/12 md:w-7/12 lg:w-1/2 justify-center items-center">
+<footer class="flex flex-col space-y-1 bg-[#dc052d] min-h-screen">
+        <div class="flex flex-col space-y-6 mx-auto py-6 md:py-6 w-11/12 md:w-7/12 lg:w-1/2 justify-center items-center">
           <div>
-            <span className="uppercase text-base md:text-lg text-white font-bold">
+            <span class="uppercase text-base md:text-lg text-white font-bold">
               partner
             </span>
           </div>
-          <div className="flex flex-wrap justify-center gap-2 items-center">
+          <div class="flex flex-wrap justify-center gap-2 items-center">
             <a
               href="/"
-              className="flex w-[70px] h-[40px]  md:w-[100px] md:h-[80px]  justify-center py-2 px-2"
+              class="flex w-[70px] h-[40px]  md:w-[100px] md:h-[80px]  justify-center py-2 px-2"
             >
-              <image src="{{ asset('assets/img/partners/Telecom.svg') }}" className="" alt="" />
+              <image src="{{ asset('assets/img/partners/Telekom.svg') }}" class="" alt="" />
             </a>
             <a
               href="/"
-              className="flex w-[70px] h-[40px]  md:w-[100px] md:h-[80px]  justify-center py-2 px-2"
+              class="flex w-[70px] h-[40px]  md:w-[100px] md:h-[80px]  justify-center py-2 px-2"
             >
-              <image src="{{ asset('assets/img/partners/neu-Adidas.svg') }}" className="" alt="" />
+              <image src="{{ asset('assets/img/partners/neu-Adidas.svg') }}" class="" alt="" />
             </a>
             <a
               href="/"
-              className="flex w-[70px] h-[40px]  md:w-[100px] md:h-[80px]  justify-center py-2 px-2"
+              class="flex w-[70px] h-[40px]  md:w-[100px] md:h-[80px]  justify-center py-2 px-2"
             >
-              <image src="{{ asset('assets/img/partners/Audi.svg') }}" className="" alt="" />
+              <image src="{{ asset('assets/img/partners/Audi.svg') }}" class="" alt="" />
             </a>
             <a
               href="/"
-              className="flex w-[70px] h-[40px]  md:w-[100px] md:h-[80px]  justify-center py-2 px-2"
+              class="flex w-[70px] h-[40px]  md:w-[100px] md:h-[80px]  justify-center py-2 px-2"
             >
-              <image src="{{ asset('assets/img/partners/Allianz.svg') }}" className="" alt="" />
+              <image src="{{ asset('assets/img/partners/Allianz.svg') }}" class="" alt="" />
             </a>
             <a
               href="/"
-              className="flex w-[70px] h-[40px]  md:w-[100px] md:h-[80px]  justify-center py-2 px-2"
+              class="flex w-[70px] h-[40px]  md:w-[100px] md:h-[80px]  justify-center py-2 px-2"
             >
-              <image src="{{ asset('assets/img/partners/Adobe_Corporate_25px.svg') }}" className="" alt="" />
+              <image src="{{ asset('assets/img/partners/Adobe_Corporate_25px.svg') }}" class="" alt="" />
             </a>
             <a
               href="/"
-              className="flex w-[70px] h-[40px]  md:w-[100px] md:h-[80px]  justify-center py-2 px-2"
+              class="flex w-[70px] h-[40px]  md:w-[100px] md:h-[80px]  justify-center py-2 px-2"
             >
-              <image src="{{ asset('assets/img/partners/Konami.svg') }}" className="" alt="" />
+              <image src="{{ asset('assets/img/partners/Konami.svg') }}" class="" alt="" />
             </a>
             <a
               href="/"
-              className="flex w-[70px] h-[40px]  md:w-[100px] md:h-[80px]  justify-center py-2 px-2"
+              class="flex w-[70px] h-[40px]  md:w-[100px] md:h-[80px]  justify-center py-2 px-2"
             >
-              <image src="{{ asset('assets/img/partners/Libertex.svg') }}" className="" alt="" />
+              <image src="{{ asset('assets/img/partners/Libertex.svg') }}" class="" alt="" />
             </a>
             <a
               href="/"
-              className="flex w-[70px] h-[40px]  md:w-[100px] md:h-[80px]  justify-center py-2 px-2"
+              class="flex w-[70px] h-[40px]  md:w-[100px] md:h-[80px]  justify-center py-2 px-2"
             >
-              <image src="{{ asset('assets/img/partners/Sap.svg') }}" className="" alt="" />
+              <image src="{{ asset('assets/img/partners/Sap.svg') }}" class="" alt="" />
             </a>
             <a
               href="/"
-              className="flex w-[70px] h-[40px]  md:w-[100px] md:h-[80px]  justify-center py-2 px-2"
+              class="flex w-[70px] h-[40px]  md:w-[100px] md:h-[80px]  justify-center py-2 px-2"
             >
-              <image src="{{ asset('assets/img/partners/Tipico.svg') }}" className="" alt="" />
+              <image src="{{ asset('assets/img/partners/Tipico.svg') }}" class="" alt="" />
             </a>
             <a
               href="/"
-              className="flex w-[70px] h-[40px]  md:w-[100px] md:h-[80px]  justify-center py-2 px-2"
+              class="flex w-[70px] h-[40px]  md:w-[100px] md:h-[80px]  justify-center py-2 px-2"
             >
-              <image src="{{ asset('assets/img/partners/Viesmann_02.svg') }}" className="" alt="" />
+              <image src="{{ asset('assets/img/partners/Viesmann-02.svg') }}" class="" alt="" />
             </a>
           </div>
         </div>
-        <div className="flex mx-auto  w-11/12 md:w-9/12 py-4 justify-center items-center">
-          <div className="container2 grid grid-cols-2 mx-auto gap-x-20 md:gap-x-7 gap-y-8 sm:grid-cols-3 md:grid-cols-4 text-white">
-            <div className="flex flex-col space-y-1">
-              <h2 className="font-semibold text-sm">News</h2>
-              <div className="flex flex-col font-thin space-y-1 text-sm dark:text-white">
+        <div class="flex mx-auto  w-11/12 md:w-9/12 py-4 justify-center items-center">
+          <div class="container2 grid grid-cols-2 mx-auto gap-x-20 md:gap-x-7 gap-y-8 sm:grid-cols-3 md:grid-cols-4 text-white">
+            <div class="flex flex-col space-y-1">
+              <h2 class="font-semibold text-sm">News</h2>
+              <div class="flex flex-col font-thin space-y-1 text-sm dark:text-white">
                 <a rel="noopener noreferrer" href="#">
                   FC Bayern TV
                 </a>
@@ -81,9 +81,9 @@
                 </a>
               </div>
             </div>
-            <div className="flex flex-col space-y-1">
-              <h2 className="font-semibold text-sm">Club</h2>
-              <div className="flex flex-col font-thin space-y-1 text-sm dark:text-white">
+            <div class="flex flex-col space-y-1">
+              <h2 class="font-semibold text-sm">Club</h2>
+              <div class="flex flex-col font-thin space-y-1 text-sm dark:text-white">
                 <a rel="noopener noreferrer" href="#">
                   Matches
                 </a>
@@ -102,9 +102,9 @@
                
               </div>
             </div>
-            <div className="flex flex-col space-y-1">
-              <h2 className="font-semibold text-sm">Teams</h2>
-              <div className="flex flex-col font-thin space-y-1 text-sm dark:text-white">
+            <div class="flex flex-col space-y-1">
+              <h2 class="font-semibold text-sm">Teams</h2>
+              <div class="flex flex-col font-thin space-y-1 text-sm dark:text-white">
                 <a rel="noopener noreferrer" href="#">
                   Mens First team
                 </a>
@@ -120,9 +120,9 @@
                
               </div>
             </div>
-            <div className="flex flex-col space-y-1 ">
-              <h2 className="font-semibold text-sm">Online Store</h2>
-              <div className="flex flex-col font-thin space-y-1 text-sm dark:text-white">
+            <div class="flex flex-col space-y-1 ">
+              <h2 class="font-semibold text-sm">Online Store</h2>
+              <div class="flex flex-col font-thin space-y-1 text-sm dark:text-white">
                 <a rel="noopener noreferrer" href="#">
                   Kits/Training
                 </a>
@@ -139,29 +139,29 @@
             </div>
           </div>
         </div>
-        <div className="flex flex-col space-y-6 mx-auto text-white py-6 w-11/12 md:w-7/12 justify-center items-center">
+        <div class="flex flex-col space-y-6 mx-auto text-white py-6 w-11/12 md:w-7/12 justify-center items-center">
           <div>
             <image src="{{ asset('assets/img/fcb-logo.svg') }}" alt="" />
           </div>
-          <div className="flex flex-wrap justify-center gap-2 md:justify-around  md:space-x-4">
+          <div class="flex flex-wrap justify-center gap-2 md:justify-around  md:space-x-4">
             <a href="/">
-              <span className="font-bold text-xs md:text-sm text-white">fcbayern.com</span>
+              <span class="font-bold text-xs md:text-sm text-white">fcbayern.com</span>
             </a>
             <a href="/">
-              <span className="font-bold text-xs md:text-sm text-white">Basketball</span>
+              <span class="font-bold text-xs md:text-sm text-white">Basketball</span>
             </a>
             <a href="/">
-              <span className="font-bold text-xs md:text-sm text-white">
+              <span class="font-bold text-xs md:text-sm text-white">
                 Allianz Arena
               </span>
             </a>
             <a href="/">
-              <span className="font-bold text-xs md:text-sm text-white">Media Center</span>
+              <span class="font-bold text-xs md:text-sm text-white">Media Center</span>
             </a>
           </div>
-          <div className="flex justify-around space-x-4 OuQGd">
-            <a href="/" className="text-white">
-              <span className="text-white">
+          <div class="flex justify-around space-x-4 OuQGd">
+            <a href="/" class="text-white">
+              <span class="text-white">
                 <svg
                   height="32"
                   width="32"
@@ -169,7 +169,7 @@
                   preserveAspectRatio="xMidYMid meet"
                   role="img"
                   xmlns="http://www.w3.org/2000/svg"
-                  className="eCHnXp"
+                  class="eCHnXp"
                 >
                   <title>icon</title>
                   <path
@@ -180,8 +180,8 @@
                 </svg>
               </span>
             </a>
-            <a href="/" className="text-white">
-              <span className="text-white">
+            <a href="/" class="text-white">
+              <span class="text-white">
                 <svg
                   height="32"
                   width="32"
@@ -189,7 +189,7 @@
                   preserveAspectRatio="xMidYMid meet"
                   role="img"
                   xmlns="http://www.w3.org/2000/svg"
-                  className="base-icon__StyledIconSvg-sc-fzrbhv-0 eCHnXp"
+                  class="base-icon__StyledIconSvg-sc-fzrbhv-0 eCHnXp"
                 >
                   <title>icon</title>
                   <path
@@ -200,8 +200,8 @@
                 </svg>
               </span>
             </a>
-            <a href="/" className="text-white">
-              <span className="text-white">
+            <a href="/" class="text-white">
+              <span class="text-white">
                 <svg
                   height="32"
                   width="32"
@@ -209,7 +209,7 @@
                   preserveAspectRatio="xMidYMid meet"
                   role="img"
                   xmlns="http://www.w3.org/2000/svg"
-                  className="base-icon__StyledIconSvg-sc-fzrbhv-0 eCHnXp"
+                  class="base-icon__StyledIconSvg-sc-fzrbhv-0 eCHnXp"
                 >
                   <title>icon</title>
                   <path
@@ -220,8 +220,8 @@
                 </svg>
               </span>
             </a>
-            <a href="/" className="text-white">
-              <span className="text-white">
+            <a href="/" class="text-white">
+              <span class="text-white">
                 <svg
                   height="32"
                   width="32"
@@ -229,7 +229,7 @@
                   preserveAspectRatio="xMidYMid meet"
                   role="img"
                   xmlns="http://www.w3.org/2000/svg"
-                  className="base-icon__StyledIconSvg-sc-fzrbhv-0 eCHnXp"
+                  class="base-icon__StyledIconSvg-sc-fzrbhv-0 eCHnXp"
                 >
                   <title>icon</title>
                   <path
@@ -245,8 +245,8 @@
                 </svg>
               </span>
             </a>
-            <a href="/" className="text-white">
-              <span className="text-white">
+            <a href="/" class="text-white">
+              <span class="text-white">
                 <svg
                   height="32"
                   width="32"
@@ -254,7 +254,7 @@
                   preserveAspectRatio="xMidYMid meet"
                   role="img"
                   xmlns="http://www.w3.org/2000/svg"
-                  className="base-icon__StyledIconSvg-sc-fzrbhv-0 eCHnXp"
+                  class="base-icon__StyledIconSvg-sc-fzrbhv-0 eCHnXp"
                 >
                   <title>icon</title>
                   <path
@@ -265,8 +265,8 @@
                 </svg>
               </span>
             </a>
-            <a href="/" className="text-white">
-              <span className="text-white">
+            <a href="/" class="text-white">
+              <span class="text-white">
                 <svg
                   height="32"
                   width="32"
@@ -274,7 +274,7 @@
                   preserveAspectRatio="xMidYMid meet"
                   role="img"
                   xmlns="http://www.w3.org/2000/svg"
-                  className="base-icon__StyledIconSvg-sc-fzrbhv-0 eCHnXp"
+                  class="base-icon__StyledIconSvg-sc-fzrbhv-0 eCHnXp"
                 >
                   <title>icon</title>
                   <path
@@ -285,8 +285,8 @@
                 </svg>
               </span>
             </a>
-            <a href="/" className="text-white">
-              <span className="text-white">
+            <a href="/" class="text-white">
+              <span class="text-white">
                 <svg
                   height="32"
                   width="32"
@@ -294,7 +294,7 @@
                   preserveAspectRatio="xMidYMid meet"
                   role="img"
                   xmlns="http://www.w3.org/2000/svg"
-                  className="base-icon__StyledIconSvg-sc-fzrbhv-0 eCHnXp"
+                  class="base-icon__StyledIconSvg-sc-fzrbhv-0 eCHnXp"
                 >
                   <title>icon</title>
                   <path
@@ -307,24 +307,24 @@
             </a>
           </div>
         </div>
-        <div className="flex justify-between mx-auto text-white py-6  w-11/12 md:w-11/12 lg:w-1/2 items-center">
-          <div className="flex flex-col">
-            <div className="flex space-x-2">
+        <div class="flex justify-between mx-auto text-white py-6  w-11/12 md:w-11/12 lg:w-1/2 items-center">
+          <div class="flex flex-col">
+            <div class="flex space-x-2">
               <a href="/">
-                <span className="text-xs text-white leading-tight">Privacy Policy</span>
+                <span class="text-xs text-white leading-tight">Privacy Policy</span>
               </a>
               <a href="/">
-                <span className="text-xs text-white leading-tight">Terms and Conditions</span>
+                <span class="text-xs text-white leading-tight">Terms and Conditions</span>
               </a>
               <a href="/">
-                <span className="text-xs text-white leading-tight">FAQ</span>
+                <span class="text-xs text-white leading-tight">FAQ</span>
               </a>
               <a href="/">
-                <span className="text-xs text-white leading-tight">Contact</span>
+                <span class="text-xs text-white leading-tight">Contact</span>
               </a>
             </div>
             <div>
-              <span className="text-xs text-white">
+              <span class="text-xs text-white">
                 ©&nbsp;FC Bayern München AG&nbsp;–&nbsp;2023
               </span>
             </div>

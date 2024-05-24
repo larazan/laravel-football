@@ -14,18 +14,6 @@
         <!-- Right: Actions -->
         <div class="sn am jo az jp ft">
 
-            <!-- Search form -->
-            <form class="y">
-                <label for="action-search" class="d">Search</label>
-                <input wire:model="search" id="action-search" class="s me xq" type="search" placeholder="Search by name">
-                <button class="g w j kk" type="submit" aria-label="Search">
-                    <svg class="oo sl ub du gq kj ml-3 mr-2" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M7 14c-3.86 0-7-3.14-7-7s3.14-7 7-7 7 3.14 7 7-3.14 7-7 7zM7 2C4.243 2 2 4.243 2 7s2.243 5 5 5 5-2.243 5-5-2.243-5-5-5z"></path>
-                        <path d="M15.707 14.293L13.314 11.9a8.019 8.019 0 01-1.414 1.414l2.393 2.393a.997.997 0 001.414 0 .999.999 0 000-1.414z"></path>
-                    </svg>
-                </button>
-            </form>
-
             <!-- Create training button -->
             <button class="btn ho xi ye" wire:click="showCreateModal">
                 <svg class="oo sl du bf ub" viewBox="0 0 16 16">
@@ -56,39 +44,6 @@
                 </div>
             </div>
 
-            <!-- Dropdown -->
-            <!-- <div class="y" x-data="{ open: false, selected: 2 }">
-                <button class="btn fe un bg-white border-slate-200 hover--border-slate-300 text-slate-500 hover--text-slate-600" aria-label="Select date range" aria-haspopup="true" @click.prevent="open = !open" :aria-expanded="open" aria-expanded="false">
-                    <span class="flex items-center">
-                        <svg class="oo sl du text-slate-500 ub mr-2" viewBox="0 0 16 16">
-                            <path d="M15 2h-2V0h-2v2H9V0H7v2H5V0H3v2H1a1 1 0 00-1 1v12a1 1 0 001 1h14a1 1 0 001-1V3a1 1 0 00-1-1zm-1 12H2V6h12v8z"></path>
-                        </svg>
-                        <span x-text="$refs.options.children[selected].children[1].innerHTML">Last Month</span>
-                    </span>
-                    <svg class="ub nz du gq" width="11" height="7" viewBox="0 0 11 7">
-                        <path d="M5.4 6.8L0 1.4 1.4 0l4 4 4-4 1.4 1.4z"></path>
-                    </svg>
-                </button>
-                <div class="tk g z q ou bg-white border border-slate-200 va rounded bd la re" @click.outside="open = false" @keydown.escape.window="open = false" x-show="open" x-transition:enter="wt wa ws au" x-transition:enter-start="opacity-0 uq" x-transition:enter-end="ba uj" x-transition:leave="wt wa ws" x-transition:leave-start="ba" x-transition:leave-end="opacity-0" style="display: none;">
-                    <div class="gp text-sm g_" x-ref="options">
-                        <button tabindex="0" class="flex items-center ou xr vf vn al" :class="selected === 0 &amp;&amp; 'text-indigo-500'" @click="selected = 0;open = false" @focus="open = true" @focusout="open = false">
-                            <svg class="ub mr-2 du text-indigo-500 invisible" :class="selected !== 0 &amp;&amp; 'invisible'" width="12" height="9" viewBox="0 0 12 9">
-                                <path d="M10.28.28L3.989 6.575 1.695 4.28A1 1 0 00.28 5.695l3 3a1 1 0 001.414 0l7-7A1 1 0 0010.28.28z"></path>
-                            </svg>
-                            <span>Today</span>
-                        </button>
-
-                        <button tabindex="0" class="flex items-center ou xr vf vn al text-indigo-500" :class="selected === 2 &amp;&amp; 'text-indigo-500'" @click="selected = 2;open = false" @focus="open = true" @focusout="open = false">
-                            <svg class="ub mr-2 du text-indigo-500" :class="selected !== 2 &amp;&amp; 'invisible'" width="12" height="9" viewBox="0 0 12 9">
-                                <path d="M10.28.28L3.989 6.575 1.695 4.28A1 1 0 00.28 5.695l3 3a1 1 0 001.414 0l7-7A1 1 0 0010.28.28z"></path>
-                            </svg>
-                            <span>Last Month</span>
-                        </button>
-
-                    </div>
-                </div>
-            </div> -->
-
             <!-- Filter button -->
             <select wire:model="sort" id="sort" class="a">
                 <option value="asc">Asc</option>
@@ -117,11 +72,11 @@
                     <!-- Table header -->
                     <thead class="go gh capitalize text-slate-500 hp co cs border-slate-200">
                         <tr>
-                            <th class="vi wy w_ vo lm border">
-                                <div class="gh gn flex items-center">
-                                    <label class="inline-flex">
-                                        NO
-                                    </label>
+                            <th class="vi wy w_ vo lm border ">
+                                <div class="gh flex items-center">
+                                    <div class="px-2">
+                                        
+                                    </div>
                                 </div>
                             </th>
                             <th class="vi wy w_ vo lm border us">
@@ -171,111 +126,111 @@
                     <!-- Table body -->
                     <tbody>
                         <tr class="border">
-                            <td class="border">
+                            <td class="border go gh capitalize text-slate-500 hp co cs border-slate-200">
                                 <div class="flex items-center justify-center">S1</div>
                             </td class="border">
                             <td class="border">
-                                <div class="flex items-center justify-center jt hl gh">
+                                <div class="flex items-center justify-center jt hl gh s xq border-2 cursor-pointer">
                                     <span>Attacking</span>
                                 </div>
                             </td class="border">
                             <td class="border">
-                                <div class="flex items-center justify-center jt ho gh">
+                                <div class="flex items-center justify-center jt ho gh s xq border-2 cursor-pointer">
                                     <span>Physical</span>
                                 </div>
                             </td class="border">
                             <td class="border">
-                                <div class="flex items-center justify-center jt hi gh">
+                                <div class="flex items-center justify-center jt hi gh s xq border-2 cursor-pointer">
                                     <span>Rest</span>
                                 </div>
                             </td class="border">
                             <td class="border">
-                                <div class="flex items-center justify-center jt hu gh">
+                                <div class="flex items-center justify-center jt hu gh s xq border-2 cursor-pointer">
                                     <span>Attacking</span>
                                 </div>
                             </td class="border">
                             <td class="border">
-                                <div class="flex items-center justify-center jt ha gh">
+                                <div class="flex items-center justify-center jt ha gh s xq border-2 cursor-pointer">
                                     <span>Attacking</span>
                                 </div>
                             </td class="border">
                             <td class="border">
-                                <div class="flex items-center justify-center jt hl gh">
+                                <div class="flex items-center justify-center jt hl gh s xq border-2 cursor-pointer">
                                     <span>Attacking</span>
                                 </div>
                             </td class="border">
                             <td class="border">
-                                <div class="flex items-center justify-center jt hf gh">
+                                <div class="flex items-center justify-center jt hf gh s xq border-2 cursor-pointer">
                                     <span>Libur</span>
                                 </div>
                             </td class="border">
                         </tr>
-                        <tr>
-                            <td class="border">
+                        <tr class="border">
+                            <td class="border go gh capitalize text-slate-500 hp co cs border-slate-200">
                                 <div class="flex items-center justify-center">S2</div>
                             </td class="border">
                             <td class="border">
-                                <div class="flex items-center justify-center jt hf gh">
+                                <div class="flex items-center justify-center jt hf gh s xq border-2 cursor-pointer">
                                     <span>Attacking</span>
                                 </div>
                             </td class="border">
                             <td class="border">
-                                <div class="flex items-center justify-center jt hc gh">
+                                <div class="flex items-center justify-center jt hc gh s xq border-2 cursor-pointer">
                                     <span>Attacking</span>
                                 </div>
                             </td class="border">
                             <td class="border">
-                                <div class="flex items-center justify-center jt hh gh">
+                                <div class="flex items-center justify-center jt hh gh s xq border-2 cursor-pointer">
                                     <span>Attacking</span>
                                 </div>
                             </td class="border">
                             <td class="border">
-                                <div class="flex items-center justify-center jt hp gh">
+                                <div class="flex items-center justify-center jt hp gh s xq border-2 cursor-pointer">
                                     <span>Attacking</span>
                                 </div>
                             </td class="border">
                             <td class="border">
-                                <div class="flex items-center justify-center jt hd gh">
+                                <div class="flex items-center justify-center jt hd gh s xq border-2 cursor-pointer">
                                     <span>Attacking</span>
                                 </div>
                             </td class="border">
                             <td class="border">
-                                <div class="flex items-center justify-center jt hv gh">
+                                <div class="flex items-center justify-center jt hv gh s xq border-2 cursor-pointer">
                                     <span>Attacking</span>
                                 </div>
                             </td class="border">
                         </tr>
-                        <tr>
-                            <td class="border">
+                        <tr class="border">
+                            <td class="border go gh capitalize text-slate-500 hp co cs border-slate-200">
                                 <div class="flex items-center justify-center">S3</div>
                             </td class="border">
                             <td class="border">
-                                <div class="flex items-center justify-center jt hj gh">
+                                <div class="flex items-center justify-center jt hj gh s xq border-2 cursor-pointer">
                                     <span>Attacking</span>
                                 </div>
                             </td class="border">
                             <td class="border">
-                                <div class="flex items-center justify-center jt hg gh">
+                                <div class="flex items-center justify-center jt hg gh s xq border-2 cursor-pointer">
                                     <span>Attacking</span>
                                 </div>
                             </td class="border">
                             <td class="border">
-                                <div class="flex items-center justify-center jt hy gh">
+                                <div class="flex items-center justify-center jt hy gh s xq border-2 cursor-pointer">
                                     <span>Attacking</span>
                                 </div>
                             </td class="border">
                             <td class="border">
-                                <div class="flex items-center justify-center jt hb gh">
+                                <div class="flex items-center justify-center jt hb gh s xq border-2 cursor-pointer">
                                     <span>Attacking</span>
                                 </div>
                             </td class="border">
                             <td class="border">
-                                <div class="flex items-center justify-center jt hw gh">
+                                <div class="flex items-center justify-center jt hw gh s xq border-2 cursor-pointer">
                                     <span>Attacking</span>
                                 </div>
                             </td class="border">
                             <td class="border">
-                                <div class="flex items-center justify-center jt hx gh">
+                                <div class="flex items-center justify-center jt hx gh s xq border-2 cursor-pointer">
                                     <span>Attacking</span>
                                 </div>
                             </td class="border">
@@ -287,6 +242,120 @@
             </div>
         </div>
     </div>
-   
+
+    <x-dialog-modal wire:model="showTrainingModal" class="">
+
+        @if ($trainingId)
+        <x-slot name="title" class="border-b">Update Training</x-slot>
+        @else
+        <x-slot name="title" class="border-b bg-slate-200">
+            <span class="font-semibold">Create Training</span>
+        </x-slot>
+        @endif
+
+        <x-slot name="content">
+            <div class="border-t">
+                <div class="vc vu ">
+                    <div class="fw">
+
+                        <form>
+                            <div class="">
+                                <div class="">
+                                    <div class="flex flex-col space-y-3">
+                                        <div class="flex justify-between">
+                                            <div class="col-span-1 sm:col-span-3">
+                                                <label for="type" class="block text-sm font-medium text-gray-700">Training Type</label>
+                                                <select wire:model="type" class="h-full2 rounded-r border-t border-r border-b block appearance-none w-full bg-white border-gray-300 text-gray-700 py-2 px-4 pr-8 leading-tight focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none">
+                                                    <option value="">Select Option</option>
+                                                    @foreach($types as $t)
+                                                    <option value="{{ $t->id }}">{{ $t->name }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            <div class="col-span-1 sm:col-span-3">
+                                                <label for="sessionId" class="block text-sm font-medium text-gray-700">Training Session</label>
+                                                <select wire:model="sessionId" class="h-full2 rounded-r border-t border-r border-b block appearance-none w-full bg-white border-gray-300 text-gray-700 py-2 px-4 pr-8 leading-tight focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none">
+                                                    <option value="">Select Option</option>
+                                                    @foreach($sessions as $s)
+                                                    <option value="{{ $s->id }}">{{ $s->name }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="flex justify-between">
+                                            <div class="col-start-1 sm:col-span-3">
+                                                <label for="date" class="block text-sm font-medium text-gray-700">
+                                                    Training Date
+                                                </label>
+                                                <x-flatpicker wire:model="date"></x-flatpicker>
+                                            </div>
+                                            <div class="col-span-1 sm:col-span-3">
+                                                <label for="day" class="block text-sm font-medium text-gray-700">Day Option</label>
+                                                <select wire:model="day" class="h-full2 rounded-r border-t border-r border-b block appearance-none w-full bg-white border-gray-300 text-gray-700 py-2 px-4 pr-8 leading-tight focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none capitalize">
+                                                    <option value="">Select Option</option>
+                                                    @foreach($dayOption as $d)
+                                                    <option value="{{ $d }}">{{ $d }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="flex justify-between">
+                                            <div class="col-span-1 sm:col-span-3">
+                                                <label for="session" class="block text-sm font-medium text-gray-700">Session</label>
+                                                <select wire:model="session" class="h-full2 rounded-r border-t border-r border-b block appearance-none w-full bg-white border-gray-300 text-gray-700 py-2 px-4 pr-8 leading-tight focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none capitalize">
+                                                    <option value="">Select Option</option>
+                                                    @foreach($sessionOption as $ses)
+                                                    <option value="{{ $ses }}">{{ $ses }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            <div class="col-span-1 sm:col-span-3">
+                                                <label for="intensity" class="block text-sm font-medium text-gray-700">Intensity</label>
+                                                <select wire:model="intensity" class="h-full2 rounded-r border-t border-r border-b block appearance-none w-full bg-white border-gray-300 text-gray-700 py-2 px-4 pr-8 leading-tight focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none capitalize">
+                                                    <option value="">Select Option</option>
+                                                    @foreach($intensityOption as $i)
+                                                    <option value="{{ $i }}">{{ $i }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="flex flex-row justify-between">
+                                            <div class="col-start-1 sm:col-span-3">
+                                                <label for="color" class="block text-sm font-medium text-gray-700">
+                                                    Color
+                                                </label>
+                                                <select wire:model="color" class="h-full2 rounded-r border-t border-r border-b block appearance-none w-full bg-white border-gray-300 text-gray-700 py-2 px-4 pr-8 leading-tight focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none capitalize">
+                                                    <option value="">Select Option</option>
+                                                    @foreach($colorOption as $c)
+                                                    <option value="{{ $c }}">{{ $c }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </x-slot>
+        <x-slot name="footer">
+            <div class="border-slate-200">
+                <div class="flex flex-wrap justify-end fc">
+                    <x-button wire:click.prevent="closeTrainingModal" class="border-slate-200 hover:text-white hover--border-slate-300 g_">Cancel</x-button>
+                    @if ($trainingId)
+                    <x-button wire:click="updateTraining" class=" ho xi ye">Update</x-button>
+                    @else
+                    <x-button wire:click="createTraining" class=" ho xi ye2">Create</x-button>
+                    @endif
+                </div>
+            </div>
+
+        </x-slot>
+    </x-dialog-modal>
 
 </div>
