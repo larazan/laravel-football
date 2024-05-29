@@ -116,7 +116,7 @@ Route::get('/standing', [StandingController::class, 'index'])->name('standing');
 Route::get('/team', [SquadController::class, 'index'])->name('team');
 Route::get('/team/{slug}', [SquadController::class, 'show']);
 
-Route::get('/contact', [PagesController::class, 'contact']);
+Route::get('/contact', [PagesController::class, 'contact'])->name('contact');
 Route::get('/faqs', [PagesController::class, 'faqs']);
 Route::get('/policy', [PagesController::class, 'policy']);
 Route::get('/terms', [PagesController::class, 'terms']);
@@ -235,8 +235,8 @@ Route::get('/eve', [DashboardController::class, 'tesEvents'])->name('eve.index')
 Route::get('/pesan', [DashboardController::class, 'testMessage'])->name('tes.pesan');
 
 // Contact
-Route::get('/contact', [ContactController::class, 'show'])->name('contact.show');
-Route::post('/contact', [ContactController::class, 'submit'])->name('contact.submit');
+// Route::get('/contact', [ContactController::class, 'show'])->name('contact.show');
+// Route::post('/contact', [ContactController::class, 'submit'])->name('contact.submit');
 
 // Comment
 Route::post('{post}/comment/store', [CommentController::class, 'show'])->name('comment.store');

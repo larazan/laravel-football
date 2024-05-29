@@ -29,6 +29,7 @@
 <body>
 
 @include('frontend.layouts._header')
+@include('frontend.components._gotop')
 
 @yield('content')
 

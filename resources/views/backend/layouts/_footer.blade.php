@@ -1,167 +1,11 @@
-<footer class="flex flex-col space-y-1 bg-[#dc052d] h-full">
-        <div class="flex flex-col space-y-6 mx-auto py-6 md:py-6 w-11/12 md:w-7/12 lg:w-1/2 justify-center items-center">
-          <div>
-            <span class="uppercase text-base md:text-lg text-white font-bold">
-              partner
-            </span>
-          </div>
-          <div class="flex flex-wrap justify-center gap-2 items-center">
-            <a
-              href="/"
-              class="flex w-[70px] h-[40px]  md:w-[100px] md:h-[80px]  justify-center py-2 px-2"
-            >
-              <image src="{{ asset('assets/img/partners/Telekom.svg') }}" class="" alt="" />
-            </a>
-            <a
-              href="/"
-              class="flex w-[70px] h-[40px]  md:w-[100px] md:h-[80px]  justify-center py-2 px-2"
-            >
-              <image src="{{ asset('assets/img/partners/neu-Adidas.svg') }}" class="" alt="" />
-            </a>
-            <a
-              href="/"
-              class="flex w-[70px] h-[40px]  md:w-[100px] md:h-[80px]  justify-center py-2 px-2"
-            >
-              <image src="{{ asset('assets/img/partners/Audi.svg') }}" class="" alt="" />
-            </a>
-            <a
-              href="/"
-              class="flex w-[70px] h-[40px]  md:w-[100px] md:h-[80px]  justify-center py-2 px-2"
-            >
-              <image src="{{ asset('assets/img/partners/Allianz.svg') }}" class="" alt="" />
-            </a>
-            <a
-              href="/"
-              class="flex w-[70px] h-[40px]  md:w-[100px] md:h-[80px]  justify-center py-2 px-2"
-            >
-              <image src="{{ asset('assets/img/partners/Adobe_Corporate_25px.svg') }}" class="" alt="" />
-            </a>
-            <a
-              href="/"
-              class="flex w-[70px] h-[40px]  md:w-[100px] md:h-[80px]  justify-center py-2 px-2"
-            >
-              <image src="{{ asset('assets/img/partners/Konami.svg') }}" class="" alt="" />
-            </a>
-            <a
-              href="/"
-              class="flex w-[70px] h-[40px]  md:w-[100px] md:h-[80px]  justify-center py-2 px-2"
-            >
-              <image src="{{ asset('assets/img/partners/Libertex.svg') }}" class="" alt="" />
-            </a>
-            <a
-              href="/"
-              class="flex w-[70px] h-[40px]  md:w-[100px] md:h-[80px]  justify-center py-2 px-2"
-            >
-              <image src="{{ asset('assets/img/partners/Sap.svg') }}" class="" alt="" />
-            </a>
-            <a
-              href="/"
-              class="flex w-[70px] h-[40px]  md:w-[100px] md:h-[80px]  justify-center py-2 px-2"
-            >
-              <image src="{{ asset('assets/img/partners/Tipico.svg') }}" class="" alt="" />
-            </a>
-            <a
-              href="/"
-              class="flex w-[70px] h-[40px]  md:w-[100px] md:h-[80px]  justify-center py-2 px-2"
-            >
-              <image src="{{ asset('assets/img/partners/Viesmann-02.svg') }}" class="" alt="" />
-            </a>
-          </div>
-        </div>
-        <div class="flex mx-auto  w-11/12 md:w-9/12 py-4 justify-center items-center">
-          <div class="container2 grid grid-cols-2 mx-auto gap-x-20 md:gap-x-7 gap-y-8 sm:grid-cols-3 md:grid-cols-4 text-white">
-            <div class="flex flex-col space-y-1">
-              <h2 class="font-semibold text-sm">News</h2>
-              <div class="flex flex-col font-thin space-y-1 text-sm dark:text-white">
-                <a rel="noopener noreferrer" href="#">
-                  FC Bayern TV
-                </a>
-                <a rel="noopener noreferrer" href="#">
-                  News
-                </a>
-              </div>
-            </div>
-            <div class="flex flex-col space-y-1">
-              <h2 class="font-semibold text-sm">Club</h2>
-              <div class="flex flex-col font-thin space-y-1 text-sm dark:text-white">
-                <a rel="noopener noreferrer" href="#">
-                  Matches
-                </a>
-                <a rel="noopener noreferrer" href="#">
-                  Standing
-                </a>
-                <a rel="noopener noreferrer" href="#">
-                  History
-                </a>
-                <a rel="noopener noreferrer" href="#">
-                  Tickets
-                </a>
-                <a rel="noopener noreferrer" href="#">
-                  Fans
-                </a>
-               
-              </div>
-            </div>
-            <div class="flex flex-col space-y-1">
-              <h2 class="font-semibold text-sm">Teams</h2>
-              <div class="flex flex-col font-thin space-y-1 text-sm dark:text-white">
-                <a rel="noopener noreferrer" href="#">
-                  Mens First team
-                </a>
-                <a rel="noopener noreferrer" href="#">
-                  Women team
-                </a>
-                <a rel="noopener noreferrer" href="#">
-                  Esport
-                </a>
-                <a rel="noopener noreferrer" href="#">
-                  Under 21 
-                </a>
-               
-              </div>
-            </div>
-            <div class="flex flex-col space-y-1 ">
-              <h2 class="font-semibold text-sm">Online Store</h2>
-              <div class="flex flex-col font-thin space-y-1 text-sm dark:text-white">
-                <a rel="noopener noreferrer" href="#">
-                  Kits/Training
-                </a>
-                <a rel="noopener noreferrer" href="#">
-                  Clothing
-                </a>
-                <a rel="noopener noreferrer" href="#">
-                  New Arrival
-                </a>
-                <a rel="noopener noreferrer" href="#">
-                  Accessories
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="flex flex-col space-y-6 mx-auto text-white py-6 w-11/12 md:w-7/12 justify-center items-center">
-          <div>
-            <image src="{{ asset('assets/img/fcb-logo.svg') }}" alt="" />
-          </div>
-          <div class="flex flex-wrap justify-center gap-2 md:justify-around  md:space-x-4">
-            <a href="/">
-              <span class="font-bold text-xs md:text-sm text-white">fcbayern.com</span>
-            </a>
-            <a href="/">
-              <span class="font-bold text-xs md:text-sm text-white">Basketball</span>
-            </a>
-            <a href="/">
-              <span class="font-bold text-xs md:text-sm text-white">
-                Allianz Arena
-              </span>
-            </a>
-            <a href="/">
-              <span class="font-bold text-xs md:text-sm text-white">Media Center</span>
-            </a>
-          </div>
-          <div class="flex justify-around space-x-4 OuQGd">
-            <a href="/" class="text-white">
-              <span class="text-white">
+<footer className="flex flex-col space-y-1 bg-[#dc052d] ">
+        
+        
+        <div className="flex mx-auto text-white pt-6 w-11/12 md:w-11/12 justify-center2 items-center">
+
+          <div className="flex justify-around space-x-4 OuQGd">
+            <Link href={"/"} className="text-white">
+              <span className="text-white">
                 <svg
                   height="32"
                   width="32"
@@ -169,7 +13,7 @@
                   preserveAspectRatio="xMidYMid meet"
                   role="img"
                   xmlns="http://www.w3.org/2000/svg"
-                  class="eCHnXp"
+                  className="eCHnXp"
                 >
                   <title>icon</title>
                   <path
@@ -179,9 +23,9 @@
                   ></path>
                 </svg>
               </span>
-            </a>
-            <a href="/" class="text-white">
-              <span class="text-white">
+            </Link>
+            <Link href={"/"} className="text-white">
+              <span className="text-white">
                 <svg
                   height="32"
                   width="32"
@@ -189,7 +33,7 @@
                   preserveAspectRatio="xMidYMid meet"
                   role="img"
                   xmlns="http://www.w3.org/2000/svg"
-                  class="base-icon__StyledIconSvg-sc-fzrbhv-0 eCHnXp"
+                  className="base-icon__StyledIconSvg-sc-fzrbhv-0 eCHnXp"
                 >
                   <title>icon</title>
                   <path
@@ -199,9 +43,9 @@
                   ></path>
                 </svg>
               </span>
-            </a>
-            <a href="/" class="text-white">
-              <span class="text-white">
+            </Link>
+            <Link href={"/"} className="text-white">
+              <span className="text-white">
                 <svg
                   height="32"
                   width="32"
@@ -209,7 +53,7 @@
                   preserveAspectRatio="xMidYMid meet"
                   role="img"
                   xmlns="http://www.w3.org/2000/svg"
-                  class="base-icon__StyledIconSvg-sc-fzrbhv-0 eCHnXp"
+                  className="base-icon__StyledIconSvg-sc-fzrbhv-0 eCHnXp"
                 >
                   <title>icon</title>
                   <path
@@ -219,9 +63,9 @@
                   ></path>
                 </svg>
               </span>
-            </a>
-            <a href="/" class="text-white">
-              <span class="text-white">
+            </Link>
+            <Link href={"/"} className="text-white">
+              <span className="text-white">
                 <svg
                   height="32"
                   width="32"
@@ -229,7 +73,7 @@
                   preserveAspectRatio="xMidYMid meet"
                   role="img"
                   xmlns="http://www.w3.org/2000/svg"
-                  class="base-icon__StyledIconSvg-sc-fzrbhv-0 eCHnXp"
+                  className="base-icon__StyledIconSvg-sc-fzrbhv-0 eCHnXp"
                 >
                   <title>icon</title>
                   <path
@@ -244,9 +88,9 @@
                   ></path>
                 </svg>
               </span>
-            </a>
-            <a href="/" class="text-white">
-              <span class="text-white">
+            </Link>
+            <Link href={"/"} className="text-white">
+              <span className="text-white">
                 <svg
                   height="32"
                   width="32"
@@ -254,7 +98,7 @@
                   preserveAspectRatio="xMidYMid meet"
                   role="img"
                   xmlns="http://www.w3.org/2000/svg"
-                  class="base-icon__StyledIconSvg-sc-fzrbhv-0 eCHnXp"
+                  className="base-icon__StyledIconSvg-sc-fzrbhv-0 eCHnXp"
                 >
                   <title>icon</title>
                   <path
@@ -264,9 +108,9 @@
                   ></path>
                 </svg>
               </span>
-            </a>
-            <a href="/" class="text-white">
-              <span class="text-white">
+            </Link>
+            <Link href={"/"} className="text-white">
+              <span className="text-white">
                 <svg
                   height="32"
                   width="32"
@@ -274,7 +118,7 @@
                   preserveAspectRatio="xMidYMid meet"
                   role="img"
                   xmlns="http://www.w3.org/2000/svg"
-                  class="base-icon__StyledIconSvg-sc-fzrbhv-0 eCHnXp"
+                  className="base-icon__StyledIconSvg-sc-fzrbhv-0 eCHnXp"
                 >
                   <title>icon</title>
                   <path
@@ -284,9 +128,9 @@
                   ></path>
                 </svg>
               </span>
-            </a>
-            <a href="/" class="text-white">
-              <span class="text-white">
+            </Link>
+            <Link href={"/"} className="text-white">
+              <span className="text-white">
                 <svg
                   height="32"
                   width="32"
@@ -294,7 +138,7 @@
                   preserveAspectRatio="xMidYMid meet"
                   role="img"
                   xmlns="http://www.w3.org/2000/svg"
-                  class="base-icon__StyledIconSvg-sc-fzrbhv-0 eCHnXp"
+                  className="base-icon__StyledIconSvg-sc-fzrbhv-0 eCHnXp"
                 >
                   <title>icon</title>
                   <path
@@ -304,35 +148,35 @@
                   ></path>
                 </svg>
               </span>
-            </a>
+            </Link>
           </div>
         </div>
-        <div class="flex justify-between mx-auto text-white py-6  w-11/12 md:w-11/12 lg:w-1/2 items-center">
-          <div class="flex flex-col">
-            <div class="flex space-x-2">
-              <a href="{{ url('/policy') }}">
-                <span class="text-xs text-white leading-tight">Privacy Policy</span>
-              </a>
-              <a href="{{ url('/terms') }}">
-                <span class="text-xs text-white leading-tight">Terms and Conditions</span>
-              </a>
-              <a href="{{ url('/faqs') }}">
-                <span class="text-xs text-white leading-tight">FAQ</span>
-              </a>
-              <a href="{{ url('/contact') }}">
-                <span class="text-xs text-white leading-tight">Contact</span>
-              </a>
+        <div className="flex justify-between mx-auto text-white pb-6  w-11/12 md:w-11/12 lg:w-1/2 items-center">
+          <div className="flex flex-col">
+            <div className="flex space-x-2">
+              <Link href={"/"}>
+                <span className="text-xs text-white">Privacy Policy</span>
+              </Link>
+              <Link href={"/"}>
+                <span className="text-xs text-white">Terms and Conditions</span>
+              </Link>
+              <Link href={"/"}>
+                <span className="text-xs text-white">FAQ</span>
+              </Link>
+              <Link href={"/"}>
+                <span className="text-xs text-white">Contact</span>
+              </Link>
             </div>
             <div>
-              <span class="text-xs text-white">
+              <span className="text-xs text-white">
                 ©&nbsp;FC Bayern München AG&nbsp;–&nbsp;2023
               </span>
             </div>
           </div>
           <div>
-            <a href="/">
-              <image src="{{ asset('assets/img/Bundesliga.svg') }}" alt="" />
-            </a>
+            <Link href={"/"}>
+              <Image src={bundesliga} alt="" />
+            </Link>
           </div>
         </div>
       </footer>

@@ -1,6 +1,6 @@
 <div class="fixed inset-0 z-50 overflow-hidden flex items-start top-[10%] md:top-[10%] mb-4 justify-center transform px-4 sm:px-6 ">
             <div class="relative bg-white overflow-auto max-w-3xl w-full max-h-full rounded2 shadow-lg">
-              {/* Search form */}
+             
               <section class="overflow-hidden  shadow-2xl md:grid md:grid-cols-1">
                 <button
                   class="absolute flex top-1 right-1 md:top-2 md:right-2 rounded-full bg-white shadow-xl px-1 py-1 md:p-2 cursor-pointer"

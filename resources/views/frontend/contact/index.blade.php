@@ -1,5 +1,6 @@
 @extends('frontend.layout')
 
+@section('content')
 <div class="h-max flex flex-col py-0 md:py-6 px-6 bg-[#f5f7f9]">
     <div class="mx-auto w-1/2 lg:w-1/2">
         <div class="py-5">
@@ -52,3 +53,4 @@
         </form>
     </div>
 </div>
+@endsection
