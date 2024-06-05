@@ -1,25 +1,25 @@
-<main className="bg-white min-h-screen">
+<main class="bg-white min-h-screen">
         <ProfileNav />
 
-        <div className="flex flex-col md:flex-row py-3 mx-auto w-11/12 space-y-6 md:space-x-5 mt-5 md:mt-10">
-          <div className="flex w-full md:w-9/12 flex-col space-y-2">
-            <div className="flex space-x-2">
+        <div class="flex flex-col md:flex-row py-3 mx-auto w-11/12 space-y-6 md:space-x-5 mt-5 md:mt-10">
+          <div class="flex w-full md:w-9/12 flex-col space-y-2">
+            <div class="flex space-x-2">
               <div>
-                <span className="text-lg font-semibold uppercase text-gray-800">
+                <span class="text-lg font-semibold uppercase text-gray-800">
                   Order
                 </span>
               </div>
-              <span className="text-lg font-semibold uppercase text-gray-800">
+              <span class="text-lg font-semibold uppercase text-gray-800">
                 #1071
               </span>
             </div>
             <div>
-              <span className="text-sm font-semibold text-gray-500">
+              <span class="text-sm font-semibold text-gray-500">
                 Placed on July 03, 2023 10:23 AM
               </span>
             </div>
-            <div className="flex flex-wrap justify items-center space-x-22">
-              <div className="flex min-w-[160px]2 mr-2 mb-2 space-x-1 items-center justify-center rounded-sm bg-gray-50 hover:bg-gray-100 cursor-pointer px-2 py-1.5 border border-gray-700">
+            <div class="flex flex-wrap justify items-center space-x-22">
+              <div class="flex min-w-[160px]2 mr-2 mb-2 space-x-1 items-center justify-center rounded-sm bg-gray-50 hover:bg-gray-100 cursor-pointer px-2 py-1.5 border border-gray-700">
                 <div>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -27,7 +27,7 @@
                     viewBox="0 0 24 24"
                     strokeWidth={1.5}
                     stroke="currentColor"
-                    className="w-4 h-4"
+                    class="w-4 h-4"
                   >
                     <path
                       strokeLinecap="round"
@@ -36,7 +36,7 @@
                     />
                   </svg>
                 </div>
-                <span className="flex font-semibold text-sm">Request Return</span>
+                <span class="flex font-semibold text-sm">Request Return</span>
                 <div>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -44,7 +44,7 @@
                     viewBox="0 0 24 24"
                     strokeWidth={1.5}
                     stroke="currentColor"
-                    className="w-4 h-4"
+                    class="w-4 h-4"
                   >
                     <path
                       strokeLinecap="round"
@@ -54,7 +54,7 @@
                   </svg>
                 </div>
               </div>
-              <Link href={"/account/invoice"} className="flex min-w-[160px]2 mr-2 mb-2 space-x-1 items-center justify-center rounded-sm bg-gray-50 hover:bg-gray-100 cursor-pointer px-2 py-1.5 border border-gray-700">
+              <Link href={"/account/invoice"} class="flex min-w-[160px]2 mr-2 mb-2 space-x-1 items-center justify-center rounded-sm bg-gray-50 hover:bg-gray-100 cursor-pointer px-2 py-1.5 border border-gray-700">
                 <div>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -62,7 +62,7 @@
                     viewBox="0 0 24 24"
                     strokeWidth={1.5}
                     stroke="currentColor"
-                    className="w-4 h-4"
+                    class="w-4 h-4"
                   >
                     <path
                       strokeLinecap="round"
@@ -71,7 +71,7 @@
                     />
                   </svg>
                 </div>
-                <span className="flex font-semibold text-sm">Request Invoice</span>
+                <span class="flex font-semibold text-sm">Request Invoice</span>
                 <div>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -79,7 +79,7 @@
                     viewBox="0 0 24 24"
                     strokeWidth={1.5}
                     stroke="currentColor"
-                    className="w-4 h-4"
+                    class="w-4 h-4"
                   >
                     <path
                       strokeLinecap="round"
@@ -89,7 +89,7 @@
                   </svg>
                 </div>
               </Link>
-              <div className="flex mr-2 mb-2 space-x-1 items-center justify-center rounded-sm bg-gray-50 hover:bg-gray-100 cursor-pointer px-2 py-1.5 border border-gray-700">
+              <div class="flex mr-2 mb-2 space-x-1 items-center justify-center rounded-sm bg-gray-50 hover:bg-gray-100 cursor-pointer px-2 py-1.5 border border-gray-700">
                 <div>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -97,7 +97,7 @@
                     viewBox="0 0 24 24"
                     strokeWidth={1.5}
                     stroke="currentColor"
-                    className="w-4 h-4"
+                    class="w-4 h-4"
                   >
                     <path
                       strokeLinecap="round"
@@ -106,7 +106,7 @@
                     />
                   </svg>
                 </div>
-                <span className="font-semibold text-sm">Reorder</span>
+                <span class="font-semibold text-sm">Reorder</span>
                 <div>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -114,7 +114,7 @@
                     viewBox="0 0 24 24"
                     strokeWidth={1.5}
                     stroke="currentColor"
-                    className="w-4 h-4"
+                    class="w-4 h-4"
                   >
                     <path
                       strokeLinecap="round"
@@ -125,78 +125,78 @@
                 </div>
               </div>
             </div>
-            <div className="overflow-x-auto py-2 ">
-              <table className="min-w-full text-sm">
-                <thead className="bg-white border-y border-gray-300">
-                  <tr className="text-left2">
-                    <th className="text-sm text-center p-3 capitalize text-gray-500">
+            <div class="overflow-x-auto py-2 ">
+              <table class="min-w-full text-sm">
+                <thead class="bg-white border-y border-gray-300">
+                  <tr class="text-left2">
+                    <th class="text-sm text-center p-3 capitalize text-gray-500">
                       <p>Product</p>
                     </th>
-                    <th className="text-sm text-center p-3 uppercase text-gray-500">
+                    <th class="text-sm text-center p-3 uppercase text-gray-500">
                       <p>SKU</p>
                     </th>
-                    <th className="text-sm text-center p-3 capitalize text-gray-500">
+                    <th class="text-sm text-center p-3 capitalize text-gray-500">
                       <p>price</p>
                     </th>
-                    <th className="text-sm text-center p-3 capitalize text-gray-500">
+                    <th class="text-sm text-center p-3 capitalize text-gray-500">
                       <p>quantity</p>
                     </th>
-                    <th className="text-sm text-center p-3 capitalize text-gray-500">
+                    <th class="text-sm text-center p-3 capitalize text-gray-500">
                       <p>total</p>
                     </th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr className="bg-white text-gray-800 border-y border-gray-300 font-semibold ">
-                    <td className="text-sm p-2 w-[120px] capitalize text-gray-600">
-                      <div className="flex flex-col leading-tight">
-                        <div className="flex justify-center px-2 py-2 border border-gray-300 rounded-sm cursor-pointer bg-gray-50 hover:bg-gray-200">
+                  <tr class="bg-white text-gray-800 border-y border-gray-300 font-semibold ">
+                    <td class="text-sm p-2 w-[120px] capitalize text-gray-600">
+                      <div class="flex flex-col leading-tight">
+                        <div class="flex justify-center px-2 py-2 border border-gray-300 rounded-sm cursor-pointer bg-gray-50 hover:bg-gray-200">
                           Frieskies Seafood Sensations Dry Cat Food
                         </div>
                       </div>
                     </td>
-                    <td className="text-sm text-center p-4 ">
+                    <td class="text-sm text-center p-4 ">
                       <p>1234</p>
                     </td>
-                    <td className="text-sm text-center p-4">
+                    <td class="text-sm text-center p-4">
                       <p>$200.00</p>
                     </td>
-                    <td className="text-sm text-center p-4">
+                    <td class="text-sm text-center p-4">
                       <p>1</p>
                     </td>
-                    <td className="text-sm text-right p-4 uppercase">
+                    <td class="text-sm text-right p-4 uppercase">
                       <p>$200.00</p>
                     </td>
                   </tr>
-                  <tr className="bg-white text-gray-800 border-y border-gray-300 font-semibold ">
-                    <td colspan="4" className="text-sm text-left px-4 py-2">
+                  <tr class="bg-white text-gray-800 border-y border-gray-300 font-semibold ">
+                    <td colspan="4" class="text-sm text-left px-4 py-2">
                       <p>Subtotal</p>
                     </td>
-                    <td className="text-sm text-right px-4 py-2">
+                    <td class="text-sm text-right px-4 py-2">
                       <p>$200.00</p>
                     </td>
                   </tr>
-                  <tr className="bg-white text-gray-800 border-y border-gray-300 font-semibold ">
-                    <td colspan="4" className="text-sm text-left px-4 py-2">
+                  <tr class="bg-white text-gray-800 border-y border-gray-300 font-semibold ">
+                    <td colspan="4" class="text-sm text-left px-4 py-2">
                       <p>Shipping (Standard Shipping)</p>
                     </td>
-                    <td className="text-sm text-right px-4 py-2">
+                    <td class="text-sm text-right px-4 py-2">
                       <p>$10.00</p>
                     </td>
                   </tr>
-                  <tr className="bg-white text-gray-800 border-y border-gray-300 font-bold ">
-                    <td colspan="4" className="text-sm text-left px-4 py-2">
+                  <tr class="bg-white text-gray-800 border-y border-gray-300 font-bold ">
+                    <td colspan="4" class="text-sm text-left px-4 py-2">
                       <p>Total</p>
                     </td>
-                    <td className="text-sm text-right px-4 py-2">
+                    <td class="text-sm text-right px-4 py-2">
                       <p>$210.00</p>
                     </td>
                   </tr>
                 </tbody>
               </table>
             </div>
-            <div className="flex">
-              <Link href={"/account/orders"} className="flex space-x-1 items-center justify-center rounded-sm bg-gray-50 hover:bg-gray-100 cursor-pointer px-3 py-1.5 border border-gray-700">
+            <div class="flex">
+              <Link href={"/account/orders"} class="flex space-x-1 items-center justify-center rounded-sm bg-gray-50 hover:bg-gray-100 cursor-pointer px-3 py-1.5 border border-gray-700">
                 <div>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -204,7 +204,7 @@
                     viewBox="0 0 24 24"
                     strokeWidth={1.5}
                     stroke="currentColor"
-                    className="w-4 h-4"
+                    class="w-4 h-4"
                   >
                     <path
                       strokeLinecap="round"
@@ -213,28 +213,28 @@
                     />
                   </svg>
                 </div>
-                <span className="font-semibold text-sm">Back</span>
+                <span class="font-semibold text-sm">Back</span>
               </Link>
             </div>
           </div>
-          <div className="flex w-full md:w-3/12 flex-col space-y-4 md:space-y-6 text-gray-900">
-            <div className="flex flex-col space-y-2 px-3 py-3 rounded-md bg-gray-100 border border-gray-300">
+          <div class="flex w-full md:w-3/12 flex-col space-y-4 md:space-y-6 text-gray-900">
+            <div class="flex flex-col space-y-2 px-3 py-3 rounded-md bg-gray-100 border border-gray-300">
               <div>
-                <h3 className="text-lg font-bold">Billing Address</h3>
+                <h3 class="text-lg font-bold">Billing Address</h3>
               </div>
-              <div className="flex items-center space-x-2">
+              <div class="flex items-center space-x-2">
                 <div>
-                  <span className="text-sm font-bold">Payment Status:</span>
+                  <span class="text-sm font-bold">Payment Status:</span>
                 </div>
-                <span className="text-sm text-gray-500 font-semibold">
+                <span class="text-sm text-gray-500 font-semibold">
                   Paid
                 </span>
               </div>
-              <div className="flex flex-col text-md font-semibold text-gray-500">
+              <div class="flex flex-col text-md font-semibold text-gray-500">
                 <div>
                   <span>John Smith</span>
                 </div>
-                <div className="leading-tight">
+                <div class="leading-tight">
                   <span>151 Oconnor street Ottawa ON K2P 2L8</span>
                 </div>
                 <div>
@@ -242,23 +242,23 @@
                 </div>
               </div>
             </div>
-            <div className="flex flex-col space-y-2 px-3 py-3 rounded-md bg-gray-100 border border-gray-300">
+            <div class="flex flex-col space-y-2 px-3 py-3 rounded-md bg-gray-100 border border-gray-300">
               <div>
-                <h3 className="text-lg font-bold">Shipping Address</h3>
+                <h3 class="text-lg font-bold">Shipping Address</h3>
               </div>
-              <div className="flex items-center space-x-2">
+              <div class="flex items-center space-x-2">
                 <div>
-                  <span className="text-sm font-bold">Fulfillment Status:</span>
+                  <span class="text-sm font-bold">Fulfillment Status:</span>
                 </div>
-                <span className="text-sm text-gray-500 font-semibold">
+                <span class="text-sm text-gray-500 font-semibold">
                   Fulfilled
                 </span>
               </div>
-              <div className="flex flex-col text-md font-semibold text-gray-500">
+              <div class="flex flex-col text-md font-semibold text-gray-500">
                 <div>
                   <span>John Smith</span>
                 </div>
-                <div className="leading-tight">
+                <div class="leading-tight">
                   <span>151 Oconnor street Ottawa ON K2P 2L8</span>
                 </div>
                 <div>

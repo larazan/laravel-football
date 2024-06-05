@@ -1,14 +1,14 @@
-<main className="bg-white min-h-screen">
+<main class="bg-white min-h-screen">
         <ProfileNav />
 
-        <div className="h-max flex flex-col py-0 ">
-          <div className="flex flex-col py-4 px-2 md:px-6 space-y-3 mx-auto w-full ">
-            <div className=" flex flex-row space-x-2  mx-auto w-12/12 md:w-11/12 bg-green-100 rounded py-2 px-2  border-l-8 border-green-500">
-              <div className="flex flex-row leading-tight">
-                <span className="text-sm md:text-base text-slate-900 font-semibold ">
+        <div class="h-max flex flex-col py-0 ">
+          <div class="flex flex-col py-4 px-2 md:px-6 space-y-3 mx-auto w-full ">
+            <div class=" flex flex-row space-x-2  mx-auto w-12/12 md:w-11/12 bg-green-100 rounded py-2 px-2  border-l-8 border-green-500">
+              <div class="flex flex-row leading-tight">
+                <span class="text-sm md:text-base text-slate-900 font-semibold ">
                   By submitting your details, you agree to the use of your data
                   by City Football Group in accordance with our{" "}
-                  <a href="#" className="underline">
+                  <a href="#" class="underline">
                     Privacy Policy.{" "}
                   </a>
                   We use your data to personalise and improve your experience on
@@ -18,30 +18,30 @@
               </div>
             </div>
 
-            <div className=" relative mx-auto w-full md:w-11/12 border-2 rounded-lg shadow-lg space-y-4 py-3 pb-7 bg-white">
-              <div className="px-5">
-                <span className="text-lg font-bold tracking-tighter uppercase">
+            <div class=" relative mx-auto w-full md:w-11/12 border-2 rounded-lg shadow-lg space-y-4 py-3 pb-7 bg-white">
+              <div class="px-5">
+                <span class="text-lg font-bold tracking-tighter uppercase">
                   about you
                 </span>
               </div>
-              <div className="flex flex-col md:flex-row space-y-3 md:space-y-0 md:space-x-2 mx-auto w-11/12 md:w-11/12">
-                <div className="w-full md:w-1/2 flex flex-col space-y-1 ">
-                  <label className="text-sm md:text-base font-semibold block text-gray-800">
+              <div class="flex flex-col md:flex-row space-y-3 md:space-y-0 md:space-x-2 mx-auto w-11/12 md:w-11/12">
+                <div class="w-full md:w-1/2 flex flex-col space-y-1 ">
+                  <label class="text-sm md:text-base font-semibold block text-gray-800">
                     Name
                   </label>
                   <input
-                    className="w-full bg-white py-3 px-3 text-sm  focus:outline-none outline-none focus:border-blue-400 border border-gray-800 rounded text-gray-800 font-mabry"
+                    class="w-full bg-white py-3 px-3 text-sm  focus:outline-none outline-none focus:border-blue-400 border border-gray-800 rounded text-gray-800 font-mabry"
                     type="email"
                     placeholder="Name"
                     value={"Alda Boran"}
                   />
                 </div>
-                <div className="w-full md:w-1/2 flex flex-col space-y-1 ">
-                  <label className="text-sm md:text-base font-semibold block text-gray-800">
+                <div class="w-full md:w-1/2 flex flex-col space-y-1 ">
+                  <label class="text-sm md:text-base font-semibold block text-gray-800">
                     Gender
                   </label>
-                  <div className="flex flex-row space-x-2">
-                    <select className=" py-3 px-3 text-sm bg-white focus:outline-none outline-none focus:border-blue-400 border border-gray-800 rounded text-gray-800 font-mabry">
+                  <div class="flex flex-row space-x-2">
+                    <select class=" py-3 px-3 text-sm bg-white focus:outline-none outline-none focus:border-blue-400 border border-gray-800 rounded text-gray-800 font-mabry">
                       <option value="1">Male</option>
                       <option value="2">Female</option>
                     </select>
@@ -49,26 +49,26 @@
                 </div>
               </div>
 
-              <div className="flex flex-col md:flex-row space-y-3 md:space-y-0 md:space-x-2 mx-auto w-11/12 md:w-11/12">
-                <div className="w-full md:w-1/2 flex flex-col space-y-1 ">
-                  <label className="text-sm md:text-base font-semibold block text-gray-800">
+              <div class="flex flex-col md:flex-row space-y-3 md:space-y-0 md:space-x-2 mx-auto w-11/12 md:w-11/12">
+                <div class="w-full md:w-1/2 flex flex-col space-y-1 ">
+                  <label class="text-sm md:text-base font-semibold block text-gray-800">
                     Date of Birth
                   </label>
-                  <div className="relative items-center">
+                  <div class="relative items-center">
                     <input
-                      className="w-full bg-white py-3 px-3 text-sm  focus:outline-none outline-none focus:border-blue-400 border border-gray-800 rounded text-gray-800 font-mabry"
+                      class="w-full bg-white py-3 px-3 text-sm  focus:outline-none outline-none focus:border-blue-400 border border-gray-800 rounded text-gray-800 font-mabry"
                       type="text"
                       placeholder="date Birth"
                       value={"03 April 2000"}
                     />
-                    <button className="absolute inline-block bottom-3 right-4 ">
+                    <button class="absolute inline-block bottom-3 right-4 ">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
                         viewBox="0 0 24 24"
                         strokeWidth={1.5}
                         stroke="currentColor"
-                        className="w-6 h-6"
+                        class="w-6 h-6"
                       >
                         <path
                           strokeLinecap="round"
@@ -79,13 +79,13 @@
                     </button>
                   </div>
                 </div>
-                <div className="w-full md:w-1/2 flex flex-col space-y-1 ">
-                  <label className="text-sm md:text-base font-semibold block text-gray-800">
+                <div class="w-full md:w-1/2 flex flex-col space-y-1 ">
+                  <label class="text-sm md:text-base font-semibold block text-gray-800">
                     Email
                   </label>
-                  <div className="relative items-center">
+                  <div class="relative items-center">
                     <input
-                      className="w-full bg-white py-3 px-3 text-sm  focus:outline-none outline-none focus:border-blue-400 border border-gray-800 rounded text-gray-800 font-mabry"
+                      class="w-full bg-white py-3 px-3 text-sm  focus:outline-none outline-none focus:border-blue-400 border border-gray-800 rounded text-gray-800 font-mabry"
                       type="text"
                       placeholder="email"
                       value={"purunjamu@gmail.com"}
@@ -95,59 +95,59 @@
               </div>
             </div>
 
-            <div className=" relative mx-auto w-full md:w-11/12 border-2 rounded-lg shadow-lg space-y-4 py-3 pb-7 bg-white">
-              <div className="px-5">
-                <span className="text-lg font-bold tracking-tighter uppercase">
+            <div class=" relative mx-auto w-full md:w-11/12 border-2 rounded-lg shadow-lg space-y-4 py-3 pb-7 bg-white">
+              <div class="px-5">
+                <span class="text-lg font-bold tracking-tighter uppercase">
                   Address
                 </span>
               </div>
 
-              <div className="flex flex-col md:flex-row space-y-3 md:space-y-0 md:space-x-2 mx-auto w-11/12 md:w-11/12">
-                <div className="w-full md:w-1/2 flex flex-col space-y-1 ">
-                  <label className="text-sm md:text-base font-semibold block text-gray-800">
+              <div class="flex flex-col md:flex-row space-y-3 md:space-y-0 md:space-x-2 mx-auto w-11/12 md:w-11/12">
+                <div class="w-full md:w-1/2 flex flex-col space-y-1 ">
+                  <label class="text-sm md:text-base font-semibold block text-gray-800">
                     Address1
                   </label>
-                  <div className="relative items-center">
+                  <div class="relative items-center">
                     <input
-                      className="w-full bg-white py-3 px-3 text-sm  focus:outline-none outline-none focus:border-blue-400 border border-gray-800 rounded text-gray-800 font-mabry"
+                      class="w-full bg-white py-3 px-3 text-sm  focus:outline-none outline-none focus:border-blue-400 border border-gray-800 rounded text-gray-800 font-mabry"
                       type="text"
                       placeholder="address1"
                     />
                   </div>
                 </div>
-                <div className="w-full md:w-1/2 flex flex-col space-y-1 ">
-                  <label className="text-sm md:text-base font-semibold block text-gray-800">
+                <div class="w-full md:w-1/2 flex flex-col space-y-1 ">
+                  <label class="text-sm md:text-base font-semibold block text-gray-800">
                     Address2
                   </label>
-                  <div className="relative items-center">
+                  <div class="relative items-center">
                     <input
-                      className="w-full bg-white py-3 px-3 text-sm  focus:outline-none outline-none focus:border-blue-400 border border-gray-800 rounded text-gray-800 font-mabry"
+                      class="w-full bg-white py-3 px-3 text-sm  focus:outline-none outline-none focus:border-blue-400 border border-gray-800 rounded text-gray-800 font-mabry"
                       type="text"
                       placeholder="address2"
                     />
                   </div>
                 </div>
               </div>
-              <div className="flex flex-col md:flex-row space-y-3 md:space-y-0 md:space-x-2 mx-auto w-11/12 md:w-11/12">
-                <div className="w-full md:w-1/2 flex flex-col space-y-1 ">
-                  <label className="text-sm md:text-base font-semibold block text-gray-800">
+              <div class="flex flex-col md:flex-row space-y-3 md:space-y-0 md:space-x-2 mx-auto w-11/12 md:w-11/12">
+                <div class="w-full md:w-1/2 flex flex-col space-y-1 ">
+                  <label class="text-sm md:text-base font-semibold block text-gray-800">
                     City
                   </label>
-                  <div className="relative items-center">
+                  <div class="relative items-center">
                     <input
-                      className="w-full bg-white py-3 px-3 text-sm  focus:outline-none outline-none focus:border-blue-400 border border-gray-800 rounded text-gray-800 font-mabry"
+                      class="w-full bg-white py-3 px-3 text-sm  focus:outline-none outline-none focus:border-blue-400 border border-gray-800 rounded text-gray-800 font-mabry"
                       type="text"
                       placeholder="city"
                     />
                   </div>
                 </div>
-                <div className="w-full md:w-1/2 flex flex-col space-y-1 ">
-                  <label className="text-sm md:text-base font-semibold block text-gray-800">
+                <div class="w-full md:w-1/2 flex flex-col space-y-1 ">
+                  <label class="text-sm md:text-base font-semibold block text-gray-800">
                     Post Code / Zip Code
                   </label>
-                  <div className="relative items-center">
+                  <div class="relative items-center">
                     <input
-                      className="w-full bg-white py-3 px-3 text-sm  focus:outline-none outline-none focus:border-blue-400 border border-gray-800 rounded text-gray-800 font-mabry"
+                      class="w-full bg-white py-3 px-3 text-sm  focus:outline-none outline-none focus:border-blue-400 border border-gray-800 rounded text-gray-800 font-mabry"
                       type="text"
                       placeholder="Post code"
                     />
@@ -156,32 +156,32 @@
               </div>
             </div>
 
-            <div className=" relative mx-auto w-full md:w-11/12 border-2 rounded-lg shadow-lg space-y-4 py-3 pb-7 bg-white">
-              <div className="px-5">
-                <span className="text-lg font-bold tracking-tighter uppercase">
+            <div class=" relative mx-auto w-full md:w-11/12 border-2 rounded-lg shadow-lg space-y-4 py-3 pb-7 bg-white">
+              <div class="px-5">
+                <span class="text-lg font-bold tracking-tighter uppercase">
                   Phone number
                 </span>
               </div>
 
-              <div className="flex flex-col md:flex-row space-y-3 md:space-y-0 md:space-x-2 mx-auto w-11/12 md:w-11/12">
-                <div className="w-full md:w-1/2 flex flex-col space-y-1 ">
-                  <label className="text-sm md:text-base font-semibold block text-gray-800">
+              <div class="flex flex-col md:flex-row space-y-3 md:space-y-0 md:space-x-2 mx-auto w-11/12 md:w-11/12">
+                <div class="w-full md:w-1/2 flex flex-col space-y-1 ">
+                  <label class="text-sm md:text-base font-semibold block text-gray-800">
                     Home Phone
                   </label>
-                  <div className="relative items-center">
+                  <div class="relative items-center">
                     <input
-                      className="w-full bg-white py-3 px-3 text-sm  focus:outline-none outline-none focus:border-blue-400 border border-gray-800 rounded text-gray-800 font-mabry"
+                      class="w-full bg-white py-3 px-3 text-sm  focus:outline-none outline-none focus:border-blue-400 border border-gray-800 rounded text-gray-800 font-mabry"
                       type="text"
                       placeholder="21219923"
                     />
-                    <button className="absolute inline-block bottom-3 right-4 ">
+                    <button class="absolute inline-block bottom-3 right-4 ">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
                         viewBox="0 0 24 24"
                         strokeWidth={1.5}
                         stroke="currentColor"
-                        className="w-6 h-6"
+                        class="w-6 h-6"
                       >
                         <path
                           strokeLinecap="round"
@@ -192,24 +192,24 @@
                     </button>
                   </div>
                 </div>
-                <div className="w-full md:w-1/2 flex flex-col space-y-1 ">
-                  <label className="text-sm md:text-base font-semibold block text-gray-800">
+                <div class="w-full md:w-1/2 flex flex-col space-y-1 ">
+                  <label class="text-sm md:text-base font-semibold block text-gray-800">
                     Mobile Number
                   </label>
-                  <div className="relative items-center">
+                  <div class="relative items-center">
                     <input
-                      className="w-full bg-white py-3 px-3 text-sm  focus:outline-none outline-none focus:border-blue-400 border border-gray-800 rounded text-gray-800 font-mabry"
+                      class="w-full bg-white py-3 px-3 text-sm  focus:outline-none outline-none focus:border-blue-400 border border-gray-800 rounded text-gray-800 font-mabry"
                       type="text"
                       placeholder="21219923"
                     />
-                    <button className="absolute inline-block bottom-3 right-4 ">
+                    <button class="absolute inline-block bottom-3 right-4 ">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
                         viewBox="0 0 24 24"
                         strokeWidth={1.5}
                         stroke="currentColor"
-                        className="w-6 h-6"
+                        class="w-6 h-6"
                       >
                         <path
                           strokeLinecap="round"
@@ -226,8 +226,8 @@
 
             </div>
 
-            <div className="mx-auto w-full md:w-11/12  py-3 pb-7 ">
-              <div className="flex justify-center w-full py-2 rounded-md bg-blue-700 hover:bg-blue-800 cursor-pointer text-lg text-white tracking-tighter uppercase font-semibold">
+            <div class="mx-auto w-full md:w-11/12  py-3 pb-7 ">
+              <div class="flex justify-center w-full py-2 rounded-md bg-blue-700 hover:bg-blue-800 cursor-pointer text-lg text-white tracking-tighter uppercase font-semibold">
                 <span>Submit Change</span>
               </div>
             </div>

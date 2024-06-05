@@ -1,11 +1,11 @@
-<footer className="flex flex-col space-y-1 bg-[#dc052d] ">
+<footer class="flex flex-col space-y-1 bg-[#dc052d] ">
         
         
-        <div className="flex mx-auto text-white pt-6 w-11/12 md:w-11/12 justify-center2 items-center">
+        <div class="flex mx-auto text-white pt-6 w-11/12 md:w-11/12 justify-center2 items-center">
 
-          <div className="flex justify-around space-x-4 OuQGd">
-            <Link href={"/"} className="text-white">
-              <span className="text-white">
+          <div class="flex justify-around space-x-4 OuQGd">
+            <Link href={"/"} class="text-white">
+              <span class="text-white">
                 <svg
                   height="32"
                   width="32"
@@ -13,7 +13,7 @@
                   preserveAspectRatio="xMidYMid meet"
                   role="img"
                   xmlns="http://www.w3.org/2000/svg"
-                  className="eCHnXp"
+                  class="eCHnXp"
                 >
                   <title>icon</title>
                   <path
@@ -24,8 +24,8 @@
                 </svg>
               </span>
             </Link>
-            <Link href={"/"} className="text-white">
-              <span className="text-white">
+            <Link href={"/"} class="text-white">
+              <span class="text-white">
                 <svg
                   height="32"
                   width="32"
@@ -33,7 +33,7 @@
                   preserveAspectRatio="xMidYMid meet"
                   role="img"
                   xmlns="http://www.w3.org/2000/svg"
-                  className="base-icon__StyledIconSvg-sc-fzrbhv-0 eCHnXp"
+                  class="base-icon__StyledIconSvg-sc-fzrbhv-0 eCHnXp"
                 >
                   <title>icon</title>
                   <path
@@ -44,8 +44,8 @@
                 </svg>
               </span>
             </Link>
-            <Link href={"/"} className="text-white">
-              <span className="text-white">
+            <Link href={"/"} class="text-white">
+              <span class="text-white">
                 <svg
                   height="32"
                   width="32"
@@ -53,7 +53,7 @@
                   preserveAspectRatio="xMidYMid meet"
                   role="img"
                   xmlns="http://www.w3.org/2000/svg"
-                  className="base-icon__StyledIconSvg-sc-fzrbhv-0 eCHnXp"
+                  class="base-icon__StyledIconSvg-sc-fzrbhv-0 eCHnXp"
                 >
                   <title>icon</title>
                   <path
@@ -64,8 +64,8 @@
                 </svg>
               </span>
             </Link>
-            <Link href={"/"} className="text-white">
-              <span className="text-white">
+            <Link href={"/"} class="text-white">
+              <span class="text-white">
                 <svg
                   height="32"
                   width="32"
@@ -73,7 +73,7 @@
                   preserveAspectRatio="xMidYMid meet"
                   role="img"
                   xmlns="http://www.w3.org/2000/svg"
-                  className="base-icon__StyledIconSvg-sc-fzrbhv-0 eCHnXp"
+                  class="base-icon__StyledIconSvg-sc-fzrbhv-0 eCHnXp"
                 >
                   <title>icon</title>
                   <path
@@ -89,8 +89,8 @@
                 </svg>
               </span>
             </Link>
-            <Link href={"/"} className="text-white">
-              <span className="text-white">
+            <Link href={"/"} class="text-white">
+              <span class="text-white">
                 <svg
                   height="32"
                   width="32"
@@ -98,7 +98,7 @@
                   preserveAspectRatio="xMidYMid meet"
                   role="img"
                   xmlns="http://www.w3.org/2000/svg"
-                  className="base-icon__StyledIconSvg-sc-fzrbhv-0 eCHnXp"
+                  class="base-icon__StyledIconSvg-sc-fzrbhv-0 eCHnXp"
                 >
                   <title>icon</title>
                   <path
@@ -109,8 +109,8 @@
                 </svg>
               </span>
             </Link>
-            <Link href={"/"} className="text-white">
-              <span className="text-white">
+            <Link href={"/"} class="text-white">
+              <span class="text-white">
                 <svg
                   height="32"
                   width="32"
@@ -118,7 +118,7 @@
                   preserveAspectRatio="xMidYMid meet"
                   role="img"
                   xmlns="http://www.w3.org/2000/svg"
-                  className="base-icon__StyledIconSvg-sc-fzrbhv-0 eCHnXp"
+                  class="base-icon__StyledIconSvg-sc-fzrbhv-0 eCHnXp"
                 >
                   <title>icon</title>
                   <path
@@ -129,8 +129,8 @@
                 </svg>
               </span>
             </Link>
-            <Link href={"/"} className="text-white">
-              <span className="text-white">
+            <Link href={"/"} class="text-white">
+              <span class="text-white">
                 <svg
                   height="32"
                   width="32"
@@ -138,7 +138,7 @@
                   preserveAspectRatio="xMidYMid meet"
                   role="img"
                   xmlns="http://www.w3.org/2000/svg"
-                  className="base-icon__StyledIconSvg-sc-fzrbhv-0 eCHnXp"
+                  class="base-icon__StyledIconSvg-sc-fzrbhv-0 eCHnXp"
                 >
                   <title>icon</title>
                   <path
@@ -151,24 +151,24 @@
             </Link>
           </div>
         </div>
-        <div className="flex justify-between mx-auto text-white pb-6  w-11/12 md:w-11/12 lg:w-1/2 items-center">
-          <div className="flex flex-col">
-            <div className="flex space-x-2">
+        <div class="flex justify-between mx-auto text-white pb-6  w-11/12 md:w-11/12 lg:w-1/2 items-center">
+          <div class="flex flex-col">
+            <div class="flex space-x-2">
               <Link href={"/"}>
-                <span className="text-xs text-white">Privacy Policy</span>
+                <span class="text-xs text-white">Privacy Policy</span>
               </Link>
               <Link href={"/"}>
-                <span className="text-xs text-white">Terms and Conditions</span>
+                <span class="text-xs text-white">Terms and Conditions</span>
               </Link>
               <Link href={"/"}>
-                <span className="text-xs text-white">FAQ</span>
+                <span class="text-xs text-white">FAQ</span>
               </Link>
               <Link href={"/"}>
-                <span className="text-xs text-white">Contact</span>
+                <span class="text-xs text-white">Contact</span>
               </Link>
             </div>
             <div>
-              <span className="text-xs text-white">
+              <span class="text-xs text-white">
                 ©&nbsp;FC Bayern München AG&nbsp;–&nbsp;2023
               </span>
             </div>

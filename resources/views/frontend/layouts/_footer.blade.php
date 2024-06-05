@@ -74,7 +74,7 @@
               <h2 class="font-semibold text-sm">News</h2>
               <div class="flex flex-col font-thin space-y-1 text-sm dark:text-white">
                 <a rel="noopener noreferrer" href="#">
-                  FC Bayern TV
+                  <span class="text-white">FC Bayern TV</span>
                 </a>
                 <a rel="noopener noreferrer" href="#">
                   News

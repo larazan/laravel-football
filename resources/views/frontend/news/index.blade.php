@@ -1,5 +1,7 @@
 @extends('frontend.layout')
 
+@section('content')
+
 <div class="h-max  flex flex-row space-x-6 px-2 md:px-6 py-4 md:py-4 justify-center2 items-center2 bg-[#f5f7f9]">
     <div class="flex flex-col space-y-4 mx-auto w-full lg:w-1/2">
         <div class="flex flex-row justify-between mx-auto w-full md:w-12/12 space-x-6 items-center">
@@ -90,3 +92,5 @@
         </div>
     </div>
 </div>
+
+@endsection

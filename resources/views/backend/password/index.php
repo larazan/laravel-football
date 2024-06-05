@@ -1,19 +1,19 @@
-<main className="bg-white bg-opacity-252 min-h-screen ">
+<main class="bg-white bg-opacity-252 min-h-screen ">
         <ProfileNav />
 
-        <div className="py-3 mx-auto w-11/12 ">
-          <div className="flex w-full flex-col space-y-2">
-            <div className="pt-5">
-              <span className="text-base font-semibold tracking-tight text-gray-800">
+        <div class="py-3 mx-auto w-11/12 ">
+          <div class="flex w-full flex-col space-y-2">
+            <div class="pt-5">
+              <span class="text-base font-semibold tracking-tight text-gray-800">
                 To change your password we have to take you to bayern.com
               </span>
             </div>
-            <div className="flex w-full">
+            <div class="flex w-full">
               <Link
                 href={"/change_password"}
-                className="px-3 py-2 border-2 border-slate-900 flex items-center space-x-2 justify-between"
+                class="px-3 py-2 border-2 border-slate-900 flex items-center space-x-2 justify-between"
               >
-                <span className="uppercase font-semibold">update password</span>
+                <span class="uppercase font-semibold">update password</span>
                 <span>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -21,7 +21,7 @@
                     viewBox="0 0 24 24"
                     strokeWidth={1.5}
                     stroke="currentColor"
-                    className="w-5 h-5"
+                    class="w-5 h-5"
                   >
                     <path
                       strokeLinecap="round"
