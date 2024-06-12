@@ -23,6 +23,7 @@ class SquadController extends Controller
     public function show($slug)
     {
         $player = Player::where('slug', $slug)->first();
+        // dd($player);
 
         // build breadcrumb data array
 		$breadcrumbs_data['current_page_title'] = $player->name;

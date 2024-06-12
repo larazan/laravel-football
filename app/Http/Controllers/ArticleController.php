@@ -25,7 +25,7 @@ class ArticleController extends Controller
 		$this->data['breadcrumbs_data'] = $breadcrumbs_data;
 
 		$this->data['articles'] = $articles->paginate(9);
-		return $this->loadTheme('blogs.index', $this->data);
+		return $this->loadTheme('news.index', $this->data);
     }
     
     public function show($slug)
@@ -33,7 +33,7 @@ class ArticleController extends Controller
 		$article = Article::active()->where('slug', $slug)->first();
 
 		if (!$article) {
-			return redirect('blogs');
+			return redirect('news');
 		}
 
 		$this->data['article'] = $article;
@@ -46,7 +46,7 @@ class ArticleController extends Controller
 		$breadcrumbs_data['breadcrumbs_array'] = $this->_generate_breadcrumbs_array($article->id);
 		$this->data['breadcrumbs_data'] = $breadcrumbs_data;
 
-		return $this->loadTheme('blogs.detail', $this->data);
+		return $this->loadTheme('news.detail', $this->data);
     }
     
     public function _generate_breadcrumbs_array($id) {
@@ -54,9 +54,9 @@ class ArticleController extends Controller
 		// $breadcrumbs_array[$homepage_url] = 'Home';
 		
 		// get sub cat title
-		$sub_cat_title = 'Blogs';
+		$sub_cat_title = 'News';
 		// get sub cat url
-		$sub_cat_url = url('blogs');
+		$sub_cat_url = url('news');
 	
 		$breadcrumbs_array[$sub_cat_url] = $sub_cat_title;
 		return $breadcrumbs_array;

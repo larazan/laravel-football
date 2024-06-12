@@ -29,6 +29,7 @@ class ArticleFactory extends Factory
             'body' => $this->faker->paragraphs(3, true),
             'article_tags' => 'news, test, first',
             'meta_title' => $this->faker->sentence(),
+            'meta_keyword' => $this->faker->words(5, true),
             'meta_description' => $this->faker->unique()->word,
         ];
     }

@@ -21,7 +21,7 @@ class MatchController extends Controller
         $monthNow = Carbon::now()->format('m');
         $yearNow = Carbon::now()->format('Y');
         $yearEvent = $monthNow < $monthEvent ? $yearNow - 1 : $yearNow;
-        $yearNow = $yearEvent;
+        // $yearNow = $yearEvent;
         
         if ($monthNow < $monthEvent && $yearNow > $yearEvent) {
             $perSeason = $yearNow - 1 . '/' . $yearNow;
@@ -30,6 +30,8 @@ class MatchController extends Controller
             $perSeason = $yearNow . '/' . $yearNow + 1;
             $season = $yearNow . '/' . $yearNow + 1;
         }
+
+        // dd($perSeason);
 
         $dates = Schedule::selectRaw('id, slug, season, competition_id, stadion_id, home_team, away_team, fixture_match, hour, minute, DATE_FORMAT(fixture_match, "%M") as match_date, DATE_FORMAT(fixture_match, "%m") as match_month')
             ->orderBy('match_month', 'asc')

@@ -48,16 +48,14 @@
                 </div>
               </div>
           </div>
-          {statistics.map((data, index) => {
-            return (
+          @foreach($statistics as $s)
               <div
                 class="flex w-full justify-between items-center space-y-0 py-1"
-                key={index}
               >
                 <div class="flex w-1/12">
-                  <div class={`flex ${data.home > data.away ? 'bg-[#c60428] text-white' : 'text-[#002f6c]'} px-2 py-1  rounded-full `}>
+                  <div class="flex @if($s->home > $s->away){ 'bg-[#c60428] text-white' }@else{ 'text-[#002f6c]' }@endif px-2 py-1  rounded-full">
                     <span class="text-xs font-bold ">
-                      {data.home}
+                      {{ $s->home }}
                     </span>
                   </div>
                 </div>
@@ -66,22 +64,21 @@
                     
                     <div class="w-8/12 text-center leading-tight">
                       <span class="text-xs md:text-sm font-bold text-[#002f6c]">
-                        {data.title}
+                        {{ $s->title }}
                       </span>
                     </div>
                     
                   </div>
                 </div>
                 <div class="flex w-1/12 justify-end">
-                <div class={`flex ${data.away > data.home ? 'bg-[#98c5e9] text-[#002f6c]' : 'text-[#002f6c]'}  rounded-full px-2 py-1`}>
+                <div class="flex @if($s->away > $s->home){ 'bg-[#98c5e9] text-[#002f6c]' }@else{ 'text-[#002f6c]' }@endif rounded-full px-2 py-1">
                     <span class="text-xs font-bold ">
-                      {data.away}
+                      {{ $s->away }}
                     </span>
                   </div>
                 </div>
               </div>
-            );
-          })}
+            @endforeach
         </div>
         
       </div>

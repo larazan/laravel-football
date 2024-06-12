@@ -17,7 +17,6 @@ class StandingController extends Controller
         $monthNow = Carbon::now()->format('m');
         $yearNow = Carbon::now()->format('Y');
         $yearEvent = $monthNow < $monthEvent ? $yearNow - 1 : $yearNow;
-        $yearNow = $yearEvent;
         
         if ($monthNow < $monthEvent && $yearNow > $yearEvent) {
             $perSeason = $yearNow - 1 . '/' . $yearNow;

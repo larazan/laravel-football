@@ -27,7 +27,7 @@ class Article extends Model implements Feedable
     use HasLikes;
     use HasReplies;
 
-    const TABLE = 'articles';
+    protected $table = 'articles';
 
     public function getActivitylogOptions(): LogOptions
     {
@@ -56,12 +56,7 @@ class Article extends Model implements Feedable
         'small',
     ];
 
-    protected $with = [
-        'category',
-        'tagsRelation',
-        'likesRelation',
-        'authorRelation',
-    ];
+    protected $with = [];
 
     const FEED_PAGE_SIZE = 20;
 
@@ -119,9 +114,15 @@ class Article extends Model implements Feedable
         return $this->belongsTo(User::class);
     }
 
+    public function category($categoryId)
+    {
+        $cat = CategoryArticle::find($categoryId)->first();
+        return $cat->name;
+    }
+
     public function categoryArticles()
     {
-        return $this->belongsToMany(CategoryArticle::class, 'article_categories');
+        return $this->belongsToMany(CategoryArticle::class);
     }
 
     public function scopePublished($query, $published = true)

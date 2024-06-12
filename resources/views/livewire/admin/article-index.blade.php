@@ -137,6 +137,9 @@
                                 <div class="gh gt">Title</div>
                             </th>
                             <th class="vi wy w_ vo lm">
+                                <div class="gh gt">Category</div>
+                            </th>
+                            <th class="vi wy w_ vo lm">
                                 <div class="gh gt">Image</div>
                             </th>
                             <th class="vi wy w_ vo lm">
@@ -159,7 +162,6 @@
                     <!-- Table body -->
                     <tbody class="text-sm le lr">
                         <!-- Row -->
-
                         @if ($articles->count() > 0)
                         @foreach ($articles as $article)
                         <tr>
@@ -172,18 +174,24 @@
                                 </div>
                             </td>
                             <td class="vi wy w_ vo lm">
-                                <div class="gp text-slate-800">{{ $article->title }}</div>
+                                <div class="gp text-slate-800">{!! nl2br(General::smart_wordwrap($article->title, 40)) !!}</div>
+                            </td>
+                            <td class="vi wy w_ vo lm">
+                                <div class="gp text-slate-800">{{ $article->category($article->category_id) }}</div>
                             </td>
                             <td class="vi wy w_ vo lm">
                                 <div class="gp ">
+                                    
+                                    @if($article->small)
                                     <img src="{{ asset('storage/'.$articles->small) }}" class="object-scale-down h-48 w-96" alt="{{ $article->title }}">
+                                    @endif
                                 </div>
                             </td>
                             <td class="vi wy w_ vo lm">
-                                <div class="gp ">{{ $article->author }}</div>
+                                <div class="gp ">{{ $article->user->first_name." ".$article->user->first_name }}</div>
                             </td>
                             <td class="vi wy w_ vo lm">
-                                <div class="gp ">{{ $article->published_at }}</div>
+                                <div class="gp ">{{ Carbon\Carbon::parse($article->published_at)->format('D, m/y') }}</div>
                             </td>
                             <td class="vi wy w_ vo lm">
                                 @if ($article->status === 'inactive')

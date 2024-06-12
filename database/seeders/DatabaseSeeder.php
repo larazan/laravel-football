@@ -49,7 +49,7 @@ class DatabaseSeeder extends Seeder
             // AttributeOptionSeeder::class,
             
             // FormationSeeder::class,
-            // ArticleSeeder::class,
+            ArticleSeeder::class,
             // TrainingSeeder::class,
         ]);
         // \App\Models\User::factory(10)->create();

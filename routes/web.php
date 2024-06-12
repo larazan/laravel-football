@@ -10,6 +10,8 @@ use App\Http\Controllers\Admin\PaymentMethodController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\PlayerStatisticController;
 use App\Http\Controllers\Admin\ReportController;
+
+use App\Http\Controllers\ArticleController as News;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\DashboardController;
@@ -18,7 +20,7 @@ use App\Http\Controllers\PagesController;
 use App\Http\Controllers\MatchController;
 use App\Http\Controllers\StandingController;
 use App\Http\Controllers\SquadController;
-use App\Http\Controllers\NewsController;
+use App\Http\Controllers\NewsController as Media;
 use App\Http\Controllers\CkeditorFileUploadController;
 use App\Http\Controllers\LineupTest;
 // Livewire
@@ -103,8 +105,11 @@ use App\Models\TrainingType;
 // FRONTEND
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
-Route::get('/news', [NewsController::class, 'index'])->name('news');
-Route::get('/news/{slug}', [NewsController::class, 'show']);
+Route::get('/news', [News::class, 'index'])->name('news');
+Route::get('/news/{slug}', [News::class, 'show']);
+
+Route::get('/media', [Media::class, 'index'])->name('media');
+Route::get('/media/{slug}', [Media::class, 'show']);
 
 Route::get('/match', [MatchController::class, 'index'])->name('match');
 Route::get('/match/{slug}', [MatchController::class, 'show']);

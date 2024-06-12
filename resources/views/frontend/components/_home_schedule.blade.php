@@ -2,10 +2,10 @@
         
 
         <div class="relative flex flex-row mx-auto w-full md:w-12/12 justify-between items-center">
-          {scrollX !== 0 && (
+          
             <div class="top-[40%] left-0">
               <button
-                onClick={() => slide(-shiftN)}
+                
                 class="none absolute top-[35%] -left-0 md:-left-5 z-10 cursor-pointer rounded-full px-2 py-2 bg-[#002f6c] border-2 border-gray-800 shadow text-white"
               >
                 <svg
@@ -24,11 +24,10 @@
                 </svg>
               </button>
             </div>
-          )}
-          {!scrolEnd && (
+          
             <div class="top-[40%] right-0">
               <button
-                onClick={() => slide(+shiftN)}
+                
                 class="none absolute top-[35%] -right-0 md:-right-5 z-10 cursor-pointer rounded-full px-2 py-2 bg-[#002f6c] border-2 border-gray-800 shadow text-white"
               >
                 <svg
@@ -47,12 +46,11 @@
                 </svg>
               </button>
             </div>
-          )}
-          {/*  */}
+          
           <div
             class="mb-[1em] flex flex-row overflow-x-auto scroll-smooth custom-scrollbar"
             ref={scrl}
-            onScroll={scrollCheck}
+            
           >
             {matchData.map((data, index) => {
               return (
@@ -116,7 +114,7 @@
               );
             })}
 
-            {/*  */}
+           
             <div class="transition-all duration-150 flex mr-[.5em] ">
               <div class="flex w-[180px] h-[150px] justify-center bg-white">
                 <div class=" bg-white  flex ">

@@ -13,7 +13,6 @@ class ContactController extends Controller
     public function show()
     {
         return view('contacts.show');
-
     }
 
     public function submit(ContactRequest $request)

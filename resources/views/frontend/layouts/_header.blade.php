@@ -219,26 +219,26 @@
       <div class="hidden md:block py-0 pt-1 px-5 bg-[#c60428] sticky top-0 z-30">
           <div class="flex space-x-4 lg:space-x-2 items-center mx-auto w-full lg:w-1/2">
             <a
-              href="{{ url('home') }}"
-              class="py-1.5 px-1  border-b-2 hover:border-white @if(!in_array(Request::segment(1), ['home'])){{ 'border-[#c60428]' }}@else{ 'border-white' }@endif"
+              href="{{ route('news') }}"
+              class="py-1.5 px-1  border-b-2 hover:border-white @if(!in_array(Request::segment(1), ['news'])){{ 'border-[#c60428]' }}@else{ 'border-white' }@endif"
             >
               <span class="font-semibold text-white tracking-tight">News</span>
             </a>
             <a
-              href="{{ url('home') }}"
-              class="py-1.5 px-1  border-b-2 hover:border-white @if(!in_array(Request::segment(1), ['home'])){{ 'border-[#c60428]' }}@else{ 'border-white' }@endif"
+              href="{{ route('media') }}"
+              class="py-1.5 px-1  border-b-2 hover:border-white @if(!in_array(Request::segment(1), ['media'])){{ 'border-[#c60428]' }}@else{ 'border-white' }@endif"
             >
               <span class="font-semibold text-white tracking-tight">FC Bayern TV</span>
             </a>
             <a
-              href="{{ url('home') }}"
-              class="py-1.5 px-1  border-b-2 hover:border-white @if(!in_array(Request::segment(1), ['home'])){{ 'border-[#c60428]' }}@else{ 'border-white' }@endif"
+              href="{{ route('match') }}"
+              class="py-1.5 px-1  border-b-2 hover:border-white @if(!in_array(Request::segment(1), ['match'])){{ 'border-[#c60428]' }}@else{ 'border-white' }@endif"
             >
               <span class="font-semibold text-white tracking-tight">Matches</span>
             </a>
             <a
-              href="{{ url('home') }}"
-              class="py-1.5 px-1  border-b-2 hover:border-white @if(!in_array(Request::segment(1), ['home'])){{ 'border-[#c60428]' }}@else{ 'border-white' }@endif"
+              href="{{ route('team') }}"
+              class="py-1.5 px-1  border-b-2 hover:border-white @if(!in_array(Request::segment(1), ['team'])){{ 'border-[#c60428]' }}@else{ 'border-white' }@endif"
             >
               <span class="font-semibold text-white tracking-tight">Teams</span>
             </a>
