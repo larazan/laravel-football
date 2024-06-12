@@ -39,14 +39,14 @@
         </div>
         <div class="w-full">
             <div class="relative w-full">
-                <img alt="" loading="lazy" width="520" height="293" decoding="async" data-nimg="1" class="w-full object-contain" srcset="/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fnews1.0fc2c1ff.png&amp;w=640&amp;q=75 1x, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fnews1.0fc2c1ff.png&amp;w=1080&amp;q=75 2x" src="/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fnews1.0fc2c1ff.png&amp;w=1080&amp;q=75" style="color: transparent;">
+                <img alt="" class="w-full object-contain"  src="{{ url('assets/img/news/news1.png') }}">
             </div>
         </div>
         <div class="flex mx-auto  w-12/12 md:w-12/12 py-2 justify-center2 items-center">
             <div class="grid grid-cols-2 mx-auto gap-x-7 gap-y-8 sm:grid-cols-1 md:grid-cols-2">
                 <div class=" bg-white group flex flex-col overflow-hidden hover:scale-105 shadow ">
                     <a class="relative" href="/news/1">
-                        <img alt="" loading="lazy" width="520" height="293" decoding="async" data-nimg="1" class="w-full object-cover" srcset="/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fnews2.4e494174.png&amp;w=640&amp;q=75 1x, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fnews2.4e494174.png&amp;w=1080&amp;q=75 2x" src="/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fnews2.4e494174.png&amp;w=1080&amp;q=75" style="color: transparent;">
+                        <img alt=""  class="w-full object-cover" src="{{ url('assets/img/news/news2.png') }}">
                         <div class="absolute opacity-0 group-hover:opacity-75 z-20 inset-0 mix-blend-overlay w-full bg-gradient-to-br from-purple-hot to-teal"></div>
                     </a>
                     <div class="px-3 py-2 pb-4 flex flex-col space-y-1 leading-tight">
@@ -58,7 +58,7 @@
                 </div>
                 <div class=" bg-white group flex flex-col overflow-hidden hover:scale-105 shadow ">
                     <a class="relative" href="/news/1">
-                        <img alt="" loading="lazy" width="520" height="293" decoding="async" data-nimg="1" class="w-full" srcset="/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fnews3.929778de.png&amp;w=640&amp;q=75 1x, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fnews3.929778de.png&amp;w=1080&amp;q=75 2x" src="/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fnews3.929778de.png&amp;w=1080&amp;q=75" style="color: transparent;">
+                        <img alt=""  class="w-full" src="{{ url('assets/img/news/news3.png') }}">
                         <div class="absolute opacity-0 group-hover:opacity-75 z-20 inset-0 mix-blend-overlay w-full bg-gradient-to-br from-purple-hot to-teal"></div>
                     </a>
                     <div class="px-3 py-2 pb-4 flex flex-col space-y-1 leading-tight">
@@ -68,7 +68,7 @@
                 </div>
                 <div class=" bg-white group flex flex-col overflow-hidden hover:scale-105 shadow ">
                     <a class="relative" href="/news/1">
-                        <img alt="" loading="lazy" width="520" height="293" decoding="async" data-nimg="1" class="w-full" srcset="/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fnews4.d4e2e7b3.png&amp;w=640&amp;q=75 1x, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fnews4.d4e2e7b3.png&amp;w=1080&amp;q=75 2x" src="/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fnews4.d4e2e7b3.png&amp;w=1080&amp;q=75" style="color: transparent;">
+                        <img alt=""  class="w-full" src="{{ url('assets/img/news/news4.png') }}">
                         <div class="absolute opacity-0 group-hover:opacity-75 z-20 inset-0 mix-blend-overlay w-full bg-gradient-to-br from-purple-hot to-teal"></div>
                     </a>
                     <div class="px-3 py-2 pb-4 flex flex-col space-y-1 leading-tight">
@@ -78,7 +78,7 @@
                 </div>
                 <div class=" bg-white group flex flex-col overflow-hidden hover:scale-105 shadow ">
                     <a class="relative" href="/news/1">
-                    <img alt="" loading="lazy" width="520" height="293" decoding="async" data-nimg="1" class="w-full" srcset="/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fnews5.83d0ea49.png&amp;w=640&amp;q=75 1x, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fnews5.83d0ea49.png&amp;w=1080&amp;q=75 2x" src="/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fnews5.83d0ea49.png&amp;w=1080&amp;q=75" style="color: transparent;">
+                    <img alt=""  class="w-full" src="{{ url('assets/img/news/news5.png') }}">
                         <div class="absolute opacity-0 group-hover:opacity-75 z-20 inset-0 mix-blend-overlay w-full bg-gradient-to-br from-purple-hot to-teal"></div>
                     </a>
                     <div class="px-3 py-2 pb-4 flex flex-col space-y-1 leading-tight">

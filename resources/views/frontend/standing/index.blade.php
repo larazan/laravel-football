@@ -38,6 +38,7 @@
                   <div class="flex flex-wrap md:flex-nowrap items-center justify-center space-x-2">
                     
                     <!-- Sort -->
+                    @include('frontend.components._sort_season')
 
                     <button class="flex rounded px-2 py-1 items-center bg-blue-100 hover:bg-blue-200 border border-indigo-300">
                       <span class=" font-semibold text-[#002f6c] text-sm">
@@ -81,25 +82,34 @@
                         </tr>
                     </thead>
                     <tbody>
-                    
+                    @if ($teams->count() > 0)
+                        @php
+                        $i = 1
+                        @endphp
+                        @foreach ($teams as $team)
                         <tr class="py-4 h-11 border-b" >
-                            <td class={`w-1/12 text-center py-1 border-l-2 ${index <= 3 ? 'border-green-400' : index >= 15 ? 'border-red-400' : 'border-white' } `}>
-                              <span class="text-xs uppercase font-bold text-[#002f6c]">{index+1}</span>
+                            <td class="w-1/12 text-center py-1 border-l-2 border-white">
+                              <span class="text-xs uppercase font-bold text-[#002f6c]">{{ $i++ }}</span>
                             </td>
                             <td class="w-5/12">
                                 <div class="flex space-x-2 items-center">
-                                    <img src="{{ url('assets/img/clubs/bayern.png') }}" alt="" class="w-7" />
-                                <span class="text-xs uppercase font-semibold md:font-bold justify-start text-[#002f6c]">{data.club}</span>
+                                    <img src="{{ asset('storage/'.$team->club->logo) }}" alt="" class="w-7" />
+                                    <span class="text-xs uppercase font-semibold md:font-bold justify-start text-[#002f6c]">{{ $team->club->name }}</span>
                                 </div>
                             </td>
-                            <td class="w-1/12 text-center"><span class="text-xs uppercase font-bold text-[#002f6c]">{data.gameplay}</span></td>
-                            <td class="w-1/12 text-center"><span class="text-xs uppercase font-bold text-[#002f6c]">{data.win}</span></td>
-                            <td class="w-1/12 text-center"><span class="text-xs uppercase font-bold text-[#002f6c]">{data.draw}</span></td>
-                            <td class="w-1/12 text-center"><span class="text-xs uppercase font-bold text-[#002f6c]">{data.lose}</span></td>
-                            <td class="w-1/12 text-center"><span class="text-xs uppercase font-bold text-[#002f6c]">{data.score}</span></td>
-                            <td class="w-1/12 text-center"><span class="text-xs uppercase font-bold text-[#002f6c]">{data.sd}</span></td>
+                            <td class="w-1/12 text-center"><span class="text-xs uppercase font-bold text-[#002f6c]">{{ $team->total_wins + $team->total_draws + $team->total_losses }}</span></td>
+                            <td class="w-1/12 text-center"><span class="text-xs uppercase font-bold text-[#002f6c]">{{ $team->total_wins }}</span></td>
+                            <td class="w-1/12 text-center"><span class="text-xs uppercase font-bold text-[#002f6c]">{{ $team->total_draws }}</span></td>
+                            <td class="w-1/12 text-center"><span class="text-xs uppercase font-bold text-[#002f6c]">{{ $team->total_losses }}</span></td>
+                            <td class="w-1/12 text-center"><span class="text-xs uppercase font-bold text-[#002f6c]">{{ $team->total_goals }} : {{ $team->total_goalsreceived }}</span></td>
+                            <td class="w-1/12 text-center"><span class="text-xs uppercase font-bold text-[#002f6c]">{{ $team->total_points }}</span></td>
                         </tr>
-                        
+                        @endforeach
+                        @else
+                        <tr>
+                            <td class="vi wy w_ vo lm" colspan="8">No records found</td>
+                        </tr>
+                        @endif
                     </tbody>
                 </table>
             </div>

@@ -4,7 +4,7 @@
 
 <div class="h-max flex flex-col py-0 md:py-6  bg-[#f5f7f9]">
     <div class="mx-auto w-full lg:w-1/2">
-        <img alt="" loading="lazy" width="1200" height="600" decoding="async" data-nimg="1" srcset="/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fmuller_training.e6df6b7e.png&amp;w=1200&amp;q=75 1x, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fmuller_training.e6df6b7e.png&amp;w=3840&amp;q=75 2x" src="/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fmuller_training.e6df6b7e.png&amp;w=3840&amp;q=75" style="color: transparent;">
+        <img alt="" src="{{ url('assets/img/muller_training.png') }}">
     </div>
 </div>
 

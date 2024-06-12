@@ -45,4 +45,9 @@ class Stadion extends Model
     {
         return $this->belongsTo(Club::class);
     }
+
+    public function schedules()
+    {
+        return $this->belongsToMany(Schedule::class);
+    }
 }

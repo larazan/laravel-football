@@ -17,7 +17,7 @@
                     Matchdays
                   </span>
                 </button>
-                <a href={'/standing'}>
+                <a href="{{ route('standing') }}">
                 <button class="flex rounded mr-2 mt-2 px-2 py-1 items-center bg-blue-100 hover:bg-blue-200">
                   <span class=" font-semibold text-[#002f6c] text-sm">
                     Standings
@@ -34,12 +34,14 @@
                 <div class="flex flex-wrap md:flex-nowrap justify-end space-x-2">
                  
                   <!-- SortSeason -->
+                  @include('frontend.components._sort_season')
 
                 </div>
                 <div class="flex space-x-2 justify-end">
                   <div class="flex flex-wrap md:flex-nowrap items-center space-x-2">
                    
                     <!-- SortCompetition -->
+                    @include('frontend.components._sort_competition')
 
                     <button class="hidden md:flex rounded px-2 py-1 items-center bg-blue-100 hover:bg-blue-200 border border-indigo-300">
                       <span class=" font-semibold text-[#002f6c] text-sm">
@@ -169,22 +171,23 @@
               </span>
             </div>
             <div class="flex flex-col space-y-6 py-4">
-
+            @if ($dates->count() > 0)
+              @foreach ($dates as $date => $schedules)
               <div class="flex flex-col">
                 <div class="flex px-3 md:px-6  w-full md:w-12/12 ">
                   <span class="text-lg font-bold text-[#002f6c] uppercase">
-                    September
+                  {{ $date }}
                   </span>
                 </div>
-               
-                    <a href="">
+                @foreach ($schedules as $schedule)
+                    <a href="{{ url('match/' . $schedule->slug) }}">
                       <div class="flex flex-col w-full px-3 md:px-6 hover:bg-gray-100" key={index}>
                         <div class="flex flex-col w-full h-24 py-1.5 border-y">
                           <div class="flex justify-between">
                             <div class="flex flex-col ">
                               <div>
                                 <span class="text-xs text-gray-400">
-                                  {data.time}
+                                {{ Carbon\Carbon::parse($schedule->fixture_match)->format('D, m/y') }} - {{ $schedule->hour }}:{{ $schedule->minute }}
                                 </span>
                               </div>
                             </div>
@@ -192,7 +195,7 @@
                             <div class="flex flex-col items-end">
                               <div>
                                 <span class="text-xs text-gray-400">
-                                  {data.competition}
+                                {{ $schedule->competition->name }}
                                 </span>
                               </div>
                             </div>
@@ -201,27 +204,27 @@
                             <div class="flex w-5/12 md:w-1/3 ">
                               <div>
                                 <span class="text-sm font-bold text-[#002f6c]">
-                                  {data.home_team}
+                                {{ $schedule->home->name }}
                                 </span>
                               </div>
                             </div>
                             <div class="flex flex-col mx-auto2 w-2/12 md:w-1/3 items-center">
                               <div class="flex items-center md:space-x-5">
                                 <div class="w-8">
-                                  <img src="{{ url('assets/img/clubs/bayern.png') }}" alt="" />
+                                  <img src="{{ asset('storage/'.$schedule->home->logo) }}" alt="" />
                                 </div>
                                 <div class="w-6 md:w-16 flex items-center justify-center">
                                   <span class="text-2xl font-bold">-</span>
                                 </div>
                                 <div class="w-8">
-                                  <img src="{{ url('assets/img/clubs/leverkusen.png') }}" alt="" />
+                                  <img src="{{ asset('storage/'.$schedule->away->logo) }}" alt="" />
                                 </div>
                               </div>
                             </div>
                             <div class="flex w-5/12 md:w-1/3 justify-end items-end2">
                               <div>
                                 <span class="text-sm font-bold text-[#002f6c]">
-                                  {data.away_team}
+                                {{ $schedule->away->name }}
                                 </span>
                               </div>
                             </div>
@@ -229,15 +232,20 @@
                           <div class="flex flex-col mx-auto w-full md:w-1/3 justify-end items-center">
                             <div>
                               <span class="text-xs text-gray-400">
-                                {data.stadium}
+                                {{ $schedule->stadion->name }}
                               </span>
                             </div>
                           </div>
                         </div>
                       </div>
                     </a>
-                   
+                @endforeach
               </div>
+              @endforeach
+            @else            
+            <div class="vi wy w_ vo lm">No records found</div>       
+            @endif
+
             </div>
           </div>
         </div>
