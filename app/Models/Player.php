@@ -66,6 +66,12 @@ class Player extends Model
         return $this->belongsToMany(Lineup::class)->latest();
     }
 
+    public function posName($id)
+    {
+        $pos = Position::find($id)->first();
+        return $pos->name;
+    }
+
     public function position()
     {
         return $this->belongsTo(Position::class);

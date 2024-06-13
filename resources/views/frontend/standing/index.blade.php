@@ -88,7 +88,7 @@
                         @endphp
                         @foreach ($teams as $team)
                         <tr class="py-4 h-11 border-b" >
-                            <td class="w-1/12 text-center py-1 border-l-2 border-white">
+                            <td class="w-1/12 text-center py-1 border-l-2  @if( in_array($i, ['1','2','3']) ){{ 'border-green-500' }}@elseif( in_array($i, ['4','5']) ){{ 'border-indigo-600' }}@elseif( in_array($i, ['16','17','18']) ){{ 'border-red-500' }}@else{{ 'border-white' }}@endif">
                               <span class="text-xs uppercase font-bold text-[#002f6c]">{{ $i++ }}</span>
                             </td>
                             <td class="w-5/12">
