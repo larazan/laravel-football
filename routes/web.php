@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\PlayerStatisticController;
 use App\Http\Controllers\Admin\ReportController;
 
 use App\Http\Controllers\ArticleController as News;
+use App\Http\Controllers\ClubController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\DashboardController;
@@ -108,6 +109,9 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/news', [News::class, 'index'])->name('news');
 Route::get('/news/{slug}', [News::class, 'show']);
 Route::get('/news/tag/{tag}', [News::class, 'showByTag']);
+
+Route::get('/club', [ClubController::class, 'index'])->name('club');
+Route::get('/club/{slug}', [ClubController::class, 'show']);
 
 Route::get('/media', [Media::class, 'index'])->name('media');
 Route::get('/media/{slug}', [Media::class, 'show']);

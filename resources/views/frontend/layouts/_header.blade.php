@@ -243,8 +243,8 @@
               <span class="font-semibold text-white tracking-tight">Teams</span>
             </a>
             <a
-              href="{{ url('home') }}"
-              class="py-1.5 px-1  border-b-2 hover:border-white @if(!in_array(Request::segment(1), ['home'])){{ 'border-[#c60428]' }}@else{ 'border-white' }@endif"
+              href="{{ url('club') }}"
+              class="py-1.5 px-1  border-b-2 hover:border-white @if(!in_array(Request::segment(1), ['club'])){{ 'border-[#c60428]' }}@else{ 'border-white' }@endif"
             >
               <span class="font-semibold text-white tracking-tight">Club</span>
             </a>
