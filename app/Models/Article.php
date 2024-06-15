@@ -104,6 +104,13 @@ class Article extends Model implements Feedable
         return Str::limit(strip_tags($this->body()), $limit);
     }
 
+    public function readTime()
+    {
+        $minutes = round(str_word_count($this->body()) / 200);
+
+        return $minutes == 0 ? 1 : $minutes;
+    }
+
     public function replyAbleSubject(): string
     {
         return $this->title();
@@ -135,6 +142,11 @@ class Article extends Model implements Feedable
         return $query->whereHas('tagsRelation', function ($query) use ($tag) {
             $query->where('tags.slug', $tag);
         });
+    }
+
+    public function scopeActive(Builder $query): Builder
+    {
+        return $query->where('status', self::ACTIVE);
     }
 
     public function comments() 

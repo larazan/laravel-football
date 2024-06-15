@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Article;
 use App\Models\Media;
 use Illuminate\Http\Request;
 
@@ -17,7 +18,7 @@ class NewsController extends Controller
     
     public function index(Request $request)
 	{
-		$medias = Media::orderBy('created_at', 'DESC')->paginate();
+		$medias = Article::active()->orderBy('created_at', 'DESC')->paginate();
 
 		// build breadcrumb data array
 		$breadcrumbs_data['current_page_title'] = '';

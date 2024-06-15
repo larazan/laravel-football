@@ -189,6 +189,7 @@ return [
         Maatwebsite\Excel\ExcelServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
         Darryldecode\Cart\CartServiceProvider::class,
+        Jorenvh\Share\Providers\ShareServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -221,6 +222,7 @@ return [
         'PDF' => Barryvdh\DomPDF\Facade::class,
         'General' => App\Helpers\General::class,
         'Cart' => Darryldecode\Cart\Facades\CartFacade::class,
+        'Share' => Jorenvh\Share\ShareFacade::class,
     ])->toArray(),
 
 ];

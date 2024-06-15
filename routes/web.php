@@ -107,6 +107,7 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::get('/news', [News::class, 'index'])->name('news');
 Route::get('/news/{slug}', [News::class, 'show']);
+Route::get('/news/tag/{tag}', [News::class, 'showByTag']);
 
 Route::get('/media', [Media::class, 'index'])->name('media');
 Route::get('/media/{slug}', [Media::class, 'show']);

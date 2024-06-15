@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="h-max flex flex-col py-0 md:py-6  bg-[#f5f7f9]">
+<div class="h-max flex flex-col py-0 bg-[#f5f7f9]">
     <div class="mx-auto w-full lg:w-1/2">
         <img alt="" src="{{ url('assets/img/muller_training.png') }}">
     </div>
@@ -12,17 +12,17 @@
     <div class="flex flex-col space-y-3 mx-auto w-11/12 md:w-8/12 lg:w-1/2 justify-center">
         <div class="flex pt-3 flex-row justify-between md:justify-normal space-x-3">
             <div>
-                <span class="text-sm font-semibold text-[#dc052d]">Individual Training</span>
+                <span class="text-sm font-semibold text-[#dc052d]">{{ $article->category($article->category_id) }}</span>
             </div>
             <div>
-                <span class="text-xs md:text-sm font-semibold text-gray-400">Fri, 21/07/23, 20:45 GMT+7</span>
+                <span class="text-xs md:text-sm font-semibold text-gray-400">{{ $article->created_at->format('D, m/Y') }} - {{ $article->readTime() }} min read</span>
             </div>
         </div>
         <div>
-            <h1 class="text-2xl leading-tight font-bold text-[#002f6c]">Thomas Muller to stay in Munich</h1>
+            <h1 class="text-2xl leading-tight font-bold text-[#002f6c]">{{ $article->title }}</h1>
         </div>
         <div class="md:py-6 pb-6 text-gray-800">
-            <p>Thomas Muller will continue to train at Sabaner strabe while FC Bayern head off fot this years Audi Summer Tour in Tokyo and Singapore on Monday. This is because of muscular problems in his left hip. Following consultations with coaches and medical team, the attacker will remain in Munich and use the facilities at the clubs training ground.</p>
+            {{ $article->body }}
         </div>
     </div>
     <div class="flex flex-row py-4 md:py-6 border-y">
@@ -31,28 +31,27 @@
                 <div>
                     <span class="text-sm font-semibold text-gray-400">Topics of this article</span>
                 </div>
+                @if(!empty($tags))  
                 <div>
                     <div class="flex flex-wrap ">
-                        <button class="flex mr-2 mt-2 rounded px-2 py-1 items-center bg-blue-100 hover:bg-blue-200">
-                            <span class=" font-semibold text-[#002f6c] text-sm">News</span>
-                        </button>
-                        <button class="flex mr-2 mt-2 rounded px-2 py-1 items-center bg-blue-100 hover:bg-blue-200">
-                            <span class=" font-semibold text-[#002f6c] text-sm">Thomas Muller</span>
-                        </button>
-                        <button class="flex mr-2 mt-2 rounded px-2 py-1 items-center bg-blue-100 hover:bg-blue-200">
-                            <span class=" font-semibold text-[#002f6c] text-sm">Training</span>
-                        </button>
-                        <button class="flex mr-2 mt-2 rounded px-2 py-1 items-center bg-blue-100 hover:bg-blue-200">
-                            <span class=" font-semibold text-[#002f6c] text-sm">Audi Summer Tour 2023</span>
-                        </button>
+                        @foreach($tags as $t)
+                        <a href="{{ url('news/tag/' . $t) }}" class="flex mr-2 mt-2 rounded px-2 py-1 items-center bg-blue-100 hover:bg-blue-200">
+                            <span class=" font-semibold text-[#002f6c] text-sm">{{ $t }}</span>
+                        </a>
+                        @endforeach
+                        
                     </div>
                 </div>
+                @else
+                    <div></div>
+                @endif
             </div>
             <div class="flex flex-col w-1/2 space-y-3">
                 <div>
                     <span class="text-sm font-semibold text-gray-400">Share this article</span>
                 </div>
-                <div class="flex space-x-4 OuQGd">
+                {!! $shareComponent !!}
+                <div class="hidden flex2 space-x-4 OuQGd">
                     <a class="" href="/">
                         <span class="text-[#002f6c]">
                             <svg height="28" width="28" viewBox="0 0 24 24" preserveAspectRatio="xMidYMid meet" role="img" xmlns="http://www.w3.org/2000/svg" class="base-icon__StyledIconSvg-sc-fzrbhv-0 eCHnXp">
@@ -99,90 +98,65 @@
     </div>
 </div>
 
+<!-- NewsRelated -->
 <div class="h-max flex flex-col space-y-3 px-0 md:px-6 py-4 md:py-4 justify-center2 items-center2 bg-[#f5f7f9]">
-    <div class="mx-auto w-12/12 md:w-12/12 lg:w-1/2">
-        <div class="flex flex-row justify-between mx-auto md:mx-0 w-11/12 md:w-12/12 lg:w-1/2 space-x-6 items-center">
-            <a class="flex space-x-1 items-center hover:opacity-80" href="/">
-                <span class="text-lg md:text-2xl font-bold text-[#002f6c] uppercase">Related News</span>
-            </a>
-        </div>
-        <div class="flex flex-row flex-wrap  mx-auto w-full md:w-12/12 ">
-            <div class="px-3 py-3 w-1/2 md:w-1/3 lg:w-1/3">
-                <div class=" bg-white group flex flex-col overflow-hidden hover:scale-105 shadow ">
-                    <a class="relative" href="/news/one">
-                        <img alt="" loading="lazy" width="520" height="293" decoding="async" data-nimg="1" class="w-full" srcset="/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Ffans1.b55b6a25.png&amp;w=640&amp;q=75 1x, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Ffans1.b55b6a25.png&amp;w=1080&amp;q=75 2x" src="/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Ffans1.b55b6a25.png&amp;w=1080&amp;q=75" style="color: transparent;">
-                        <div class="absolute opacity-0 group-hover:opacity-75 z-20 inset-0 mix-blend-overlay w-full bg-gradient-to-br from-purple-hot to-teal"></div>
-                    </a>
-                    <div class="px-3 py-2 pb-4 flex flex-col space-y-1 leading-tight">
-                        <div class="font-semibold text-xs md:text-xs uppercase text-red-500">Membership</div>
-                        <a href="/news/one">
-                            <span class="font-semibold text-base md:text-md text-[#002f6c] leading-tight">Become part of the FC Bayern family!</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="px-3 py-3 w-1/2 md:w-1/3 lg:w-1/3">
-                <div class=" bg-white group flex flex-col overflow-hidden hover:scale-105 shadow ">
-                    <a class="relative" href="/news/one">
-                        <img alt="" loading="lazy" width="520" height="293" decoding="async" data-nimg="1" class="w-full" srcset="/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Ffans2.8e4e29db.png&amp;w=640&amp;q=75 1x, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Ffans2.8e4e29db.png&amp;w=1080&amp;q=75 2x" src="/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Ffans2.8e4e29db.png&amp;w=1080&amp;q=75" style="color: transparent;">
-                        <div class="absolute opacity-0 group-hover:opacity-75 z-20 inset-0 mix-blend-overlay w-full bg-gradient-to-br from-purple-hot to-teal"></div>
-                    </a>
-                    <div class="px-3 py-2 pb-4 flex flex-col space-y-1 leading-tight">
-                        <div class="font-semibold text-xs md:text-xs uppercase text-red-500">Membership</div>
-                        <a href="/news/one">
-                            <span class="font-semibold text-base md:text-md text-[#002f6c] leading-tight">Become part of the FC Bayern family!</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="px-3 py-3 w-1/2 md:w-1/3 lg:w-1/3">
-                <div class=" bg-white group flex flex-col overflow-hidden hover:scale-105 shadow ">
-                    <a class="relative" href="/news/one">
-                        <img alt="" loading="lazy" width="660" height="367" decoding="async" data-nimg="1" class="w-full" srcset="/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fdigital1.77d92f4b.png&amp;w=750&amp;q=75 1x, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fdigital1.77d92f4b.png&amp;w=1920&amp;q=75 2x" src="/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fdigital1.77d92f4b.png&amp;w=1920&amp;q=75" style="color: transparent;">
-                        <div class="absolute opacity-0 group-hover:opacity-75 z-20 inset-0 mix-blend-overlay w-full bg-gradient-to-br from-purple-hot to-teal"></div>
-                    </a>
-                    <div class="px-3 py-2 pb-4 flex flex-col space-y-1 leading-tight">
-                        <div class="font-semibold text-xs md:text-xs uppercase text-red-500">Membership</div>
-                        <a href="/news/one">
-                            <span class="font-semibold text-base md:text-md text-[#002f6c] leading-tight">Become part of the FC Bayern family!</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="px-3 py-3 w-1/2 md:w-1/3 lg:w-1/3">
-                <div class=" bg-white group flex flex-col overflow-hidden hover:scale-105 shadow ">
-                    <a class="relative" href="/news/one">
-                        <img alt="" loading="lazy" width="520" height="293" decoding="async" data-nimg="1" class="w-full" srcset="/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Ffans1.b55b6a25.png&amp;w=640&amp;q=75 1x, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Ffans1.b55b6a25.png&amp;w=1080&amp;q=75 2x" src="/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Ffans1.b55b6a25.png&amp;w=1080&amp;q=75" style="color: transparent;">
-                        <div class="absolute opacity-0 group-hover:opacity-75 z-20 inset-0 mix-blend-overlay w-full bg-gradient-to-br from-purple-hot to-teal"></div>
-                    </a>
-                    <div class="px-3 py-2 pb-4 flex flex-col space-y-1 leading-tight">
-                        <div class="font-semibold text-xs md:text-xs uppercase text-red-500">Membership</div>
-                        <a href="/news/one">
-                            <span class="font-semibold text-base md:text-md text-[#002f6c] leading-tight">Become part of the FC Bayern family!</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="px-3 py-3 w-1/2 md:w-1/3 lg:w-1/3">
-                <div class=" bg-white group flex flex-col overflow-hidden hover:scale-105 shadow "><a class="relative" href="/news/one"><img alt="" loading="lazy" width="520" height="293" decoding="async" data-nimg="1" class="w-full" srcset="/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Ffans2.8e4e29db.png&amp;w=640&amp;q=75 1x, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Ffans2.8e4e29db.png&amp;w=1080&amp;q=75 2x" src="/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Ffans2.8e4e29db.png&amp;w=1080&amp;q=75" style="color: transparent;">
-                        <div class="absolute opacity-0 group-hover:opacity-75 z-20 inset-0 mix-blend-overlay w-full bg-gradient-to-br from-purple-hot to-teal"></div>
-                    </a>
-                    <div class="px-3 py-2 pb-4 flex flex-col space-y-1 leading-tight">
-                        <div class="font-semibold text-xs md:text-xs uppercase text-red-500">Membership</div><a href="/news/one"><span class="font-semibold text-base md:text-md text-[#002f6c] leading-tight">Become part of the FC Bayern family!</span></a>
-                    </div>
-                </div>
-            </div>
-            <div class="px-3 py-3 w-1/2 md:w-1/3 lg:w-1/3">
-                <div class=" bg-white group flex flex-col overflow-hidden hover:scale-105 shadow "><a class="relative" href="/news/one"><img alt="" loading="lazy" width="660" height="367" decoding="async" data-nimg="1" class="w-full" srcset="/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fdigital1.77d92f4b.png&amp;w=750&amp;q=75 1x, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fdigital1.77d92f4b.png&amp;w=1920&amp;q=75 2x" src="/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fdigital1.77d92f4b.png&amp;w=1920&amp;q=75" style="color: transparent;">
-                        <div class="absolute opacity-0 group-hover:opacity-75 z-20 inset-0 mix-blend-overlay w-full bg-gradient-to-br from-purple-hot to-teal"></div>
-                    </a>
-                    <div class="px-3 py-2 pb-4 flex flex-col space-y-1 leading-tight">
-                        <div class="font-semibold text-xs md:text-xs uppercase text-red-500">Membership</div><a href="/news/one"><span class="font-semibold text-base md:text-md text-[#002f6c] leading-tight">Become part of the FC Bayern family!</span></a>
-                    </div>
-                </div>
-            </div>
-        </div>
+  <div class="mx-auto w-12/12 md:w-12/12 lg:w-1/2">
+
+    <div class="flex flex-row justify-between mx-auto md:mx-0 w-11/12 md:w-12/12 lg:w-1/2 space-x-6 items-center">
+      <a href="/" class="flex space-x-1 items-center hover:opacity-80">
+        <span class="text-lg md:text-2xl font-bold text-[#002f6c] uppercase">
+          Related News
+        </span>
+      </a>
+
     </div>
+    <div class="flex flex-row flex-wrap  mx-auto w-full md:w-12/12 ">
+
+      @foreach($articles as $article)
+      <div class="px-3 py-3 w-1/2 md:w-1/3 lg:w-1/3">
+        <div class=" bg-white group flex flex-col overflow-hidden hover:scale-105 shadow ">
+          <a href="{{ url('news/'. $article->slug) }}" class="relative">
+            <img src="{{ url('assets/img/fans/fans1.png') }}" alt="" class="w-full" />
+            <div class="absolute opacity-0 group-hover:opacity-75 z-20 inset-0 mix-blend-overlay w-full bg-gradient-to-br from-purple-hot to-teal"></div>
+          </a>
+          <div class="px-3 py-2 pb-4 flex flex-col space-y-1 leading-tight">
+            <div class="font-semibold text-xs md:text-xs uppercase text-red-500">
+              {{ $article->category($article->category_id) }}
+            </div>
+            <a href="{{ url('news/'. $article->slug) }}">
+              <span class="font-semibold text-base md:text-md text-[#002f6c] leading-tight">{{ $article->title }}</span>
+            </a>
+          </div>
+        </div>
+      </div>
+      @endforeach
+
+    </div>
+  </div>
 </div>
 
 @endsection
+
+@push('style')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+<style>
+    div#social-links {
+        /* background-color: #ccc; */
+        display: flex;
+        /* margin: 0 auto; */
+        max-width: 260px;
+    }
+    div#social-links ul li {
+        display: inline-block;
+    }          
+    div#social-links ul li a {
+        border-radius: 100%;
+        padding: 7px 10px;
+        /* border: 1px solid #ccc; */
+        margin: 1px;
+        font-size: 20px;
+        color: #222;
+        background-color: #dbeafe;
+    }
+</style>
+@endpush
