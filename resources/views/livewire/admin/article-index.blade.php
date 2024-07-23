@@ -317,17 +317,60 @@
                                                 Body
                                             </label>
                                             @if ($articleId)
-                                            <div x-data="{ trix: @entangle($body).defer }">
+                                            {{-- 
+                                            <div class="hidden" x-data="{ trix: @entangle($body).defer }">
                                                 <input value="{{ $body }}" id="{{ $body }}" name="{{ $body }}" type="hidden" />
                                                 <div wire:ignore x-on:trix-change.debounce.500ms=" trix=$refs.trixInput.value">
                                                     <trix-editor x-ref="trixInput" input="{{ $body }}" class="overflow-y-scroll" style="height: 10rem;"></trix-editor>
                                                 </div>
                                             </div>
+                                            --}}
+                                            <div class="mt-2 bg-gray-100" wire:ignore>
+                                                    <div 
+                                                        class="h-64 bg-gray-50" 
+                                                        x-data 
+                                                        x-ref="quillEditor" 
+                                                        x-init="
+                                                            quill = new Quill($refs.quillEditor, {theme: 'snow'});
+                                                            quill.root.innerHTML = $body;
+                                                            quill.on('text-change', function () {
+                                                                $dispatch('quill-input', quill.root.innerHTML);
+                                                            });
+                                                        "
+                                                        x-on:quill-input.debounce.2000ms="@this.set('body', $event.detail)"
+                                                    >
+                                                        {!! $body !!}
+                                                    </div>
+                                                </div>
                                             @else
+                                            {{-- 
                                             <div wire:ignore>
                                                 <input id="{{ $trixId }}" type="hidden" name="content" value="{{ $body }}" />
                                                 <trix-editor wire:ignore input="{{ $trixId }}" class="overflow-y-scroll" style="height: 10rem;"></trix-editor>
                                             </div>
+                                            --}}
+                                            <div class="@if($articleId == null){{ 'block' }}@else{{ 'hidden' }}@endif mt-2 bg-white border border-gray-200" wire:ignore>
+                                                    <div 
+                                                        class="h-64" 
+                                                        x-data x-ref="quillEditor" 
+                                                        x-init="
+                                                            quill = new Quill($refs.quillEditor, {
+                                                                theme: 'snow',
+                                                                modules: {
+                                                                    toolbar: [
+                                                                        [{ header: [1, 2, false] }],
+                                                                        ['bold', 'italic', 'underline'],
+                                                                        ['image', 'code-block']
+                                                                    ]
+                                                                },
+                                                            });
+                                                            quill.on('text-change', function() {
+                                                                $dispatch('quill-input', quill.root.innerHTML);
+                                                            });" 
+                                                        x-on:quill-input.debounce.2000ms="@this.set('body', $event.detail)">
+                                                        {!! $body !!}
+                                                    </div>
+                                                </div>
                                             @endif
                                         </div>
 
@@ -336,7 +379,7 @@
                                                 Tags
                                             </label>
                                             <div>
-                                                <div x-data="{tags: @entangle('articleTags'), newTag: '' }">
+                                                <div x-data="{tags: @entangle('tags'), newTag: '' }">
                                                     <template x-for="tag in tags">
                                                         <input type="hidden" :value="tag" name="tags">
                                                     </template>
@@ -344,8 +387,8 @@
                                                     <div class="max-w-sm w-full ">
                                                         <div class="tags-input">
 
-                                                            <input class="shadow appearance-none border rounded2 w-full py-3 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Enter some tags" @keydown.enter.prevent="if (newTag.trim() !== '') tags.push(newTag.trim()); newTag = ''" @keydown.backspace="if (newTag.trim() === '') tags.pop()" x-model="newTag" />
-
+                                                            <input class="appearance-none border py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mt-1 focus:ring-indigo-500 focus:border-2 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-600" placeholder="Enter some tags" @keydown.enter.prevent="if (newTag.trim() !== '') tags.push(newTag.trim()); newTag = ''" @keydown.backspace="if (newTag.trim() === '') tags.pop()" x-model="newTag">
+                                                            
                                                             <template x-for="tag in tags" :key="tag">
                                                                 <div class="bg-gray-200 inline-flex items-center text-sm rounded mt-2 mr-1">
                                                                     <span class="ml-2 mr-1 leading-relaxed truncate max-w-xs" x-text="tag"></span>
@@ -356,6 +399,7 @@
                                                                     </button>
                                                                 </div>
                                                             </template>
+                                                            
                                                         </div>
                                                     </div>
                                                 </div>
@@ -506,16 +550,18 @@
 
 
 @push('styles')
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/trix/1.3.1/trix.min.css" />
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/trix/1.3.1/trix.min.css" /> -->
+<link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
 @endpush
 
 @push('js')
-<script src="https://cdnjs.cloudflare.com/ajax/libs/trix/1.3.1/trix.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/trix/1.3.1/trix.min.js"></script> -->
+<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
 <script>
-    var trixEditor = document.getElementById("{{ $trixId }}")
+    // var trixEditor = document.getElementById("{{ $trixId }}")
 
-    addEventListener("trix-blur", function(event) {
-        @this.set('body', trixEditor.getAttribute('value'))
-    })
+    // addEventListener("trix-blur", function(event) {
+    //     @this.set('body', trixEditor.getAttribute('value'))
+    // })
 </script>
 @endpush

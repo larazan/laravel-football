@@ -2,28 +2,35 @@
 
 @section('content')
 
-<div className="flex flex-col bg-white min-h-screen ">
-    <div className="flex flex-col space-y-1 py-2 md:py-4 mx-auto w-11/12">
+<div class="flex flex-col bg-white min-h-screen ">
+    <div class="flex flex-col space-y-1 py-2 md:py-4 mx-auto w-11/12">
 
-        <h1 className="text-4xl font-bold md:leading-9 text-black">
-        New striker for new season
+        <h1 class="text-2xl md:text-4xl font-bold md:font-bold pt-2 md:leading-9 text-black">
+            New striker for new season
         </h1>
-        <div className="flex flex-col space-y-1">
-            <p className="text-sm font-semibold text-[#757575]">
-                By Brigitt Earley
-            </p>
-
-            <span className="text-xs text-gray-900">January 6, 2024</span>
+        <div class="flex flex-col md:flex-row md:justify-between space-y-5 md:space-y-0 py-2 md:items-center">
+            <div class="flex flex-col space-y-1">
+                <p class="text-sm font-semibold text-[#757575]">
+                    By Brigitt Earley
+                </p>
+                <div class="flex space-x-2">
+                    <span class="text-xs text-gray-900">January 6, 2024</span>
+                    <span class="text-xs text-gray-900">10 min read</span>
+                </div>
+            </div>
+            <div>
+            {!! $shareComponent !!}
+            </div>
         </div>
     </div>
-    <div className="relative2 z-0 mx-auto w-11/12 overflow-hidden bg-grayish h-[230px] md:h-[363px]">
-        <img src="{{ url('assets/img/history/detail1.jpg') }}" alt="" className=" object-cover h-full" />
+    <div class="relative2 z-0 mx-auto w-11/12 overflow-hidden bg-grayish h-[230px] md:h-[363px]">
+        <img src="{{ url('assets/img/history/detail1.jpg') }}" alt="" class="w-full object-cover h-full" />
     </div>
 
-    <div className="flex flex-row w-full">
-        <div className="flex flex-1 flex-col items-center justify-center relative">
-            <div className="flex flex-1 flex-col pb-18 max-w-md md:max-w-2xl ">
-                <section className="w-full mx-auto  mt-0 md:mt-0 px-5 markdown-blog">
+    <div class="flex flex-row w-full">
+        <div class="flex flex-1 flex-col items-center justify-center relative">
+            <div class="flex flex-1 flex-col pb-18 max-w-md md:max-w-2xl ">
+                <section class="w-full mx-auto  mt-0 md:mt-0 px-5 markdown-blog">
                     <article>
                         <p>
                             Hlozek joined head coach Gerardo Seoane and his squad for the team&lsquo;s training camp in Austria in July. Florian Wirtz also made the trip to continue his rehabilitation after his cruciate ligament injury in March.
@@ -61,7 +68,7 @@
                             exceptions.
                         </p>
                         <p>Follow these steps:</p>
-                        <ol className="list-disc">
+                        <ol class="list-disc">
                             <li>
                                 Simply stick your finger in the soil to judge how far down
                                 it feels dry.
@@ -91,7 +98,7 @@
                             following:
                         </p>
 
-                        <ol className="list-disc">
+                        <ol class="list-disc">
                             <li>Sunburn</li>
                             <li>Infestations</li>
                             <li>Root rot</li>
@@ -207,7 +214,7 @@
                         <h3>Step 3: Prepare The Soil</h3>
                         <p>Here are the steps to prepare the soil:</p>
 
-                        <ol className="list-disc">
+                        <ol class="list-disc">
                             <li>
                                 Now you’ll want to add some fresh soil to the container.
                                 Don’t use the old soil, as it’s likely contaminated.
@@ -255,40 +262,40 @@
     </div>
 </div>
 
-<div className="flex flex-row py-4 md:py-6 border-y">
-    <div className="flex flex-col space-y-3 md:space-y-0 md:flex-row mx-auto w-11/12 md:w-8/12 lg:w-1/2">
-        <div className="flex flex-col w-full md:w-1/2 ">
+<div class="flex flex-row py-4 md:py-6 border-y">
+    <div class="flex flex-col space-y-3 md:space-y-0 md:flex-row mx-auto w-11/12 md:w-8/12 lg:w-1/2">
+        <div class="flex flex-col w-full md:w-1/2 ">
             <div>
-                <span className="text-sm font-semibold text-gray-400">Topics of this article</span>
+                <span class="text-sm font-semibold text-gray-400">Topics of this article</span>
             </div>
             <div>
-                <div className="flex flex-wrap ">
-                    <button className="flex mr-2 mt-2 rounded px-2 py-1 items-center bg-blue-100 hover:bg-blue-200">
-                        <span className=" font-semibold text-[#002f6c] text-sm">
+                <div class="flex flex-wrap ">
+                    <button class="flex mr-2 mt-2 rounded px-2 py-1 items-center bg-blue-100 hover:bg-blue-200">
+                        <span class=" font-semibold text-[#002f6c] text-sm">
                             News
                         </span>
                     </button>
-                    <button className="flex mr-2 mt-2 rounded px-2 py-1 items-center bg-blue-100 hover:bg-blue-200">
-                        <span className=" font-semibold text-[#002f6c] text-sm">
+                    <button class="flex mr-2 mt-2 rounded px-2 py-1 items-center bg-blue-100 hover:bg-blue-200">
+                        <span class=" font-semibold text-[#002f6c] text-sm">
                             Thomas Muller
                         </span>
                     </button>
-                    <button className="flex mr-2 mt-2 rounded px-2 py-1 items-center bg-blue-100 hover:bg-blue-200">
-                        <span className=" font-semibold text-[#002f6c] text-sm">
+                    <button class="flex mr-2 mt-2 rounded px-2 py-1 items-center bg-blue-100 hover:bg-blue-200">
+                        <span class=" font-semibold text-[#002f6c] text-sm">
                             Training
                         </span>
                     </button>
-                    <button className="flex mr-2 mt-2 rounded px-2 py-1 items-center bg-blue-100 hover:bg-blue-200">
-                        <span className=" font-semibold text-[#002f6c] text-sm">
+                    <button class="flex mr-2 mt-2 rounded px-2 py-1 items-center bg-blue-100 hover:bg-blue-200">
+                        <span class=" font-semibold text-[#002f6c] text-sm">
                             Audi Summer Tour 2023
                         </span>
                     </button>
                 </div>
             </div>
         </div>
-        <div className="flex flex-col w-1/2 space-y-3">
+        <div class="flex flex-col w-full md:w-1/2 space-y-3">
             <div>
-                <span className="text-sm font-semibold text-gray-400">Share this article</span>
+                <span class="text-sm font-semibold text-gray-400">Share this article</span>
             </div>
             {!! $shareComponent !!}
 
@@ -297,45 +304,45 @@
 </div>
 
 <!-- related -->
-<div className="h-max mx-auto w-full lg:w-1/2 flex flex-col space-y-3 px-3 md:px-6 lg:px-0 py-0 md:py-4 justify-center2 items-center2 bg-transparent">
-    <div className="flex flex-row justify-between mx-auto w-full md:w-12/12 space-x-6 items-center">
-        <div className="flex space-x-1 items-center">
-            <span className="text-lg md:text-2xl font-bold text-[#002f6c] uppercase">
+<div class="h-max mx-auto w-full lg:w-1/2 flex flex-col space-y-3 px-3 md:px-6 lg:px-0 py-0 md:py-4 justify-center2 items-center2 bg-transparent">
+    <div class="flex flex-row justify-between mx-auto w-full md:w-12/12 space-x-6 items-center">
+        <div class="flex space-x-1 items-center">
+            <span class="text-lg md:text-2xl font-bold text-[#002f6c] uppercase">
                 Related Article
             </span>
         </div>
     </div>
 
-    <div className="relative py-3 flex flex-row mx-auto w-full md:w-12/12 justify-between items-center">
+    <div class="relative py-3 flex flex-row mx-auto w-full md:w-12/12 justify-between items-center">
 
-        <div className="top-[40%] left-0">
-            <button className="none absolute top-[35%] -left-0 md:-left-5 z-20 cursor-pointer rounded-full px-2 py-2 bg-[#002f6c] border-2 border-gray-800 shadow text-white">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={3} stroke="currentColor" className="w-6 h-6">
+        <div class="top-[40%] left-0">
+            <button class="none absolute top-[35%] -left-0 md:-left-5 z-20 cursor-pointer rounded-full px-2 py-2 bg-[#002f6c] border-2 border-gray-800 shadow text-white">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={3} stroke="currentColor" class="w-6 h-6">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
                 </svg>
             </button>
         </div>
 
-        <div className="top-[40%] right-0">
-            <button className="none absolute top-[35%] -right-0 md:-right-5 z-20 cursor-pointer rounded-full px-2 py-2 bg-[#002f6c] border-2 border-gray-800 shadow text-white">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={3} stroke="currentColor" className="w-6 h-6">
+        <div class="top-[40%] right-0">
+            <button class="none absolute top-[35%] -right-0 md:-right-5 z-20 cursor-pointer rounded-full px-2 py-2 bg-[#002f6c] border-2 border-gray-800 shadow text-white">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={3} stroke="currentColor" class="w-6 h-6">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
                 </svg>
             </button>
         </div>
 
-        <div className="mb-[1em] flex flex-row overflow-x-hidden">
+        <div class="mb-[1em] flex flex-row overflow-x-hidden2 overflow-x-auto scroll-smooth custom-scrollbar">
             @foreach($articles as $article)
-            <div className="transition-all duration-150 flex mr-[.9em] " key={index}>
-                <div className="flex w-[280px] md:w-[350px] justify-center bg-white border border-gray-700 shadow hover:shadow-lg">
-                    <div className=" bg-white flex flex-col ">
-                        <a href="{{ url('club/'. $article->slug) }}" className="relative">
-                            <div className="absolute z-10 bottom-0 h-40 w-full bg-gradient-to-b from-transparent to-[#0a1016]"></div>
-                            <Image src="{{ url('assets/img/fans/fans1.png') }}" alt="" className="w-full object-cover" />
+            <div class="transition-all duration-150 flex mr-[.9em] " key={index}>
+                <div class="flex w-[280px] md:w-[350px] justify-center bg-white border border-gray-700 shadow hover:shadow-lg">
+                    <div class=" bg-white flex flex-col ">
+                        <a href="{{ url('club/'. $article->slug) }}" class="relative">
+                            <div class="absolute z-10 bottom-0 h-40 w-full bg-gradient-to-b from-transparent to-[#0a1016]"></div>
+                            <Image src="{{ url('assets/img/fans/fans1.png') }}" alt="" class="w-full object-cover" />
                         </a>
-                        <div className="px-3 py-2 pb-4 flex flex-col space-y-1 leading-tight">
+                        <div class="px-3 py-2 pb-4 flex flex-col space-y-1 leading-tight">
                             <a href="{{ url('club/'. $article->slug) }}">
-                                <span className="font-bold text-base md:text-md text-slate-800 leading-tight">
+                                <span class="font-bold text-base md:text-md text-slate-800 leading-tight">
                                     {{ $article->title }}
                                 </span>
                             </a>

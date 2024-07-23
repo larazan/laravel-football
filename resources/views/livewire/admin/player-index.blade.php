@@ -5,6 +5,8 @@
     <!-- Loading -->
     <x-loading-indicator />
 
+    @dump(json_encode($subCategory))
+
     <!-- Page header -->
     <div class="je jd jc ii">
 
@@ -50,6 +52,16 @@
 
         <!-- Right side -->
         <div class="sn am jo az jp ft">
+
+            <x-multiple 
+                :subCategory="$subCategory" 
+            />
+
+            <!-- [
+                        ['value' => 'laravel', 'text' => 'Laravel', 'selected' => false], 
+                        ['value' => 'alpineJs', 'text' => 'Alpine JS', 'selected' => false], 
+                        ['value' => 'livewire', 'text' => 'Livewire', 'selected' => false]
+                    ] -->
 
             <!-- Delete button -->
             <div class="table-items-action hidden">

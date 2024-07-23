@@ -57,7 +57,7 @@
                     </button>
                 </div>
 
-                <div class="mb-[1em] flex flex-row overflow-x-hidden">
+                <div class="mb-[1em] flex flex-row overflow-x-hidden2 overflow-x-auto scroll-smooth custom-scrollbar">
 
                     <div class="transition-all duration-150 flex mr-[.9em] ">
                         <div class="flex w-[280px] md:w-[350px] justify-center bg-white border border-gray-700 shadow hover:shadow-lg">

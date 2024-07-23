@@ -28,6 +28,11 @@ class SlideIndex extends Component
         'active',
         'inactive'
     ];
+    public $category;
+    public $categories = [
+        'home',
+        'news'
+    ];
 
     public $search = '';
     public $sort = 'asc';
@@ -78,6 +83,7 @@ class SlideIndex extends Component
         $slide->url = $this->url;
         $slide->position = $this->position;
         $slide->status = $this->slideStatus;
+        $slide->category = $this->category;
 
         if (!empty($this->file)) {
             // IMAGE
@@ -119,6 +125,7 @@ class SlideIndex extends Component
         $this->position = $slide->position;
         $this->oldImage = $slide->small;
         $this->slideStatus = $slide->status;
+        $this->category = $slide->category;
 
         $this->showSlideModal = true;
     }
@@ -154,7 +161,8 @@ class SlideIndex extends Component
                 $slide->url = $this->url;
                 $slide->position = $this->position;
                 $slide->status = $this->slideStatus;
-
+                $slide->category = $this->category;
+                
                 if (!empty($this->file)) {
                     // delete image
 			        $this->deleteImage($this->slideId);

@@ -215,6 +215,8 @@ class ScheduleIndex extends Component
     public function slugGenerate($season, $competitionId, $homeId, $awayId)
     {
         // 2023_bundesliga_fcbayern_vs_hamburg
+        $s = explode('/', $season);
+        $newSeason = $s[0] .'-'. $s[1];
 
         $competition = Competition::find($competitionId);
         $this->competition = $competition->slug;
@@ -225,7 +227,7 @@ class ScheduleIndex extends Component
         $away = Club::find($awayId);
         $this->awayTeam = $away->slug;
 
-        $slug = $season . '_' . $this->competition . '_' . $this->homeTeam . '_vs_' . $this->awayTeam . '_' . time();
+        $slug = $newSeason . '_' . $this->competition . '_' . $this->homeTeam . '_vs_' . $this->awayTeam . '_' . time();
         return $slug;
     } 
 

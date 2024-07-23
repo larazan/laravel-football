@@ -77,6 +77,9 @@ class PlayerIndex extends Component
     public $showConfirmModal = false;
     public $deleteId = '';
 
+    public $subCategory;
+    public $selected = [];
+
     protected $rules = [
         'name' => 'required',
             // 'file' => 'required|image|mimes:jpg,jpeg,png,svg,gif|max:2048',
@@ -88,6 +91,74 @@ class PlayerIndex extends Component
         $this->contractUntil = today()->format('Y-m-d');
         $this->birthDate = today()->format('Y-m-d');
         $this->selectedClub = 11;
+
+        $this->subCategory = collect([
+            [
+                'value' => 1,
+                'text' => 'Biscuit',
+                'selected' => false
+            ],
+            [
+                'value' => 2,
+                'text' => 'Chocolate',
+                'selected' => false
+            ],
+            [
+                'value' => 3,
+                'text' => 'Wafer',
+                'selected' => false
+            ],
+            [
+                'value' => 4,
+                'text' => 'Wafer',
+                'selected' => false
+            ],
+            [
+                'value' => 5,
+                'text' => 'Wafer',
+                'selected' => false
+            ],
+            [
+                'value' => 6,
+                'text' => 'Wafer',
+                'selected' => false
+            ],
+            [
+                'value' => 7,
+                'text' => 'Wafer',
+                'selected' => false
+            ],
+            [
+                'value' => 8,
+                'text' => 'Wafer',
+                'selected' => false
+            ],
+            [
+                'value' => 9,
+                'text' => 'Wafer',
+                'selected' => false
+            ],
+            [
+                'value' => 10,
+                'text' => 'Wafer',
+                'selected' => false
+            ],
+            [
+                'value' => 11,
+                'text' => 'Wafer',
+                'selected' => false
+            ],
+            [
+                'value' => 12,
+                'text' => 'Wafer',
+                'selected' => false
+            ],
+            [
+                'value' => 13,
+                'text' => 'Wafer',
+                'selected' => false
+            ],
+        ]);
     } 
 
     public function showCreateModal()
@@ -408,7 +479,7 @@ class PlayerIndex extends Component
 	}
 
     public function deleteImage($id = null) {
-        $playerImage = Player::where(['id' => $id])->first();
+        $playerImage = Player::where(['value' => $id])->first();
 		$path = 'storage/';
 
         if (Storage::exists($path.$playerImage->original)) {

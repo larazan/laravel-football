@@ -21,6 +21,9 @@
 
     @stack('meta')
 
+    @include('frontend.layouts._favicons')
+    @include('frontend.layouts._social')
+
     <!-- CSS -->
     
     @stack('style')

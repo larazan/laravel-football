@@ -2,9 +2,34 @@
 
 @section('content')
 
+<!-- Slider -->
+<div class="mx-60 swiper mySwiper">
+    <div class="swiper-wrapper">
+
+        <div class="swiper-slide flex justify-center md:items-center items-start w-screen relative">
+            <img class="object-cover2 w-full h-full" src="{{ url('assets/img/slides/slide2.jpg') }}" alt="image" />
+        </div>
+        <div class="swiper-slide flex justify-center md:items-center items-start w-screen relative">
+            <img class="object-cover2 w-full h-full" src="{{ url('assets/img/slides/slide3.jpg') }}" alt="image" />
+        </div>
+        <div class="swiper-slide flex justify-center md:items-center items-start w-screen relative">
+            <img class="object-cover2 w-full h-full" src="{{ url('assets/img/slides/slide4.jpg') }}" alt="image" />
+        </div>
+        <div class="swiper-slide flex justify-center md:items-center items-start w-screen relative">
+            <img class="object-cover2 w-full h-full" src="{{ url('assets/img/slides/slide5.jpg') }}" alt="image" />
+        </div>
+        <div class="swiper-slide flex justify-center md:items-center items-start w-screen relative">
+            <img class="object-cover2 w-full h-full" src="{{ url('assets/img/slides/slide6.jpg') }}" alt="image" />
+        </div>
+
+    </div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-pagination"></div>
+</div>
+
 <!-- Schedule -->
 <div class="h-max mx-auto w-full lg:w-1/2 flex flex-col space-y-3 md:px-6 lg:px-0 py-0 md:py-4 justify-center2 items-center2 bg-white">
-
 
     <div class="relative flex flex-row mx-auto w-full md:w-12/12 justify-between items-center">
 
@@ -174,102 +199,90 @@
 <!-- Media -->
 <div class="h-max flex mx-auto w-full lg:w-1/2 px-0 md:px-6 py-0 md:py-4 justify-center2 items-center2 bg-[#000e29]">
     <div class="flex flex-col space-y-3  py-6 mx-auto w-full md:w-12/12 ">
-      <div class="flex justify-between items-center">
-        <span class="text-white text-base px-3 md:text-2xl uppercase font-semibold">FC Bayern TV</span>
-          <a href={"/"} class="flex items-center space-x-2 text-blue-500" >
-            <span class="text-sm ">Show more</span>
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-  <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
-</svg>
+        <div class="flex justify-between items-center">
+            <span class="text-white text-base px-3 md:text-2xl uppercase font-semibold">FC Bayern TV</span>
+            <a href={"/"} class="flex items-center space-x-2 text-blue-500">
+                <span class="text-sm ">Show more</span>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+                </svg>
 
-          </a>
+            </a>
         </div>
 
         <div class=" grid grid-cols-2 md:grid-cols-4 lg:grid-cols-2 mx-auto w-full md:w-12/12 ">
-          <div class="px-3 py-3 w-full">
-            <div class=" bg-[#121f38] group flex flex-col overflow-hidden hover:scale-105 ">
-              <a
-                href="https://statamic.com/blog/statamic-4-unleashed"
-                class="relative"
-              >
-                <img src="{{ url('assets/img/230710-choupo_leistungsdiagnostik-1.png') }}" alt="" class="w-full" />
-                <div class="absolute opacity-0 group-hover:opacity-75 z-20 inset-0 mix-blend-overlay w-full bg-gradient-to-br from-purple-hot to-teal"></div>
-              </a>
-              <div class="px-3 py-2 pb-4 flex flex-col space-y-1 leading-tight">
-                <div class="font-semibold text-xs uppercase text-white">
-                  Video
+            <div class="px-3 py-3 w-full">
+                <div class=" bg-[#121f38] group flex flex-col overflow-hidden hover:scale-105 ">
+                    <a href="https://statamic.com/blog/statamic-4-unleashed" class="relative">
+                        <img src="{{ url('assets/img/230710-choupo_leistungsdiagnostik-1.png') }}" alt="" class="w-full" />
+                        <div class="absolute opacity-0 group-hover:opacity-75 z-20 inset-0 mix-blend-overlay w-full bg-gradient-to-br from-purple-hot to-teal"></div>
+                    </a>
+                    <div class="px-3 py-2 pb-4 flex flex-col space-y-1 leading-tight">
+                        <div class="font-semibold text-xs uppercase text-white">
+                            Video
+                        </div>
+                        <h3 class="font-semibold text-[16px] text-white">
+                            <a href="https://statamic.com/blog/statamic-4-unleashed">
+                                Here we go again! Choupo-Moting & Co begin pre-season
+                            </a>
+                        </h3>
+                    </div>
                 </div>
-                <h3 class="font-semibold text-[16px] text-white">
-                  <a href="https://statamic.com/blog/statamic-4-unleashed">
-                  Here we go again! Choupo-Moting & Co begin pre-season
-                  </a>
-                </h3>
-              </div>
             </div>
-          </div>
-          <div class="px-3 py-3 w-full">
-          <div class=" bg-[#121f38] group flex flex-col overflow-hidden hover:scale-105 ">
-            <a
-              href="https://statamic.com/blog/statamic-4-unleashed"
-              class="relative"
-            >
-              <img src="{{ url('assets/img/230623-interview-guerreiro-16-9.png') }}" alt="" class="w-full" />
-              <div class="absolute opacity-0 group-hover:opacity-75 z-20 inset-0 mix-blend-overlay w-full bg-gradient-to-br from-purple-hot to-teal"></div>
-            </a>
-            <div class="px-3 py-2 pb-4 flex flex-col space-y-1 leading-tight">
-              <div class="font-semibold text-xs uppercase text-white">
-                Video
-              </div>
-              <h3 class="font-semibold text-[16px] text-white">
-                <a href="https://statamic.com/blog/statamic-4-unleashed">
-                Here we go again! Choupo-Moting & Co begin pre-season
-                </a>
-              </h3>
+            <div class="px-3 py-3 w-full">
+                <div class=" bg-[#121f38] group flex flex-col overflow-hidden hover:scale-105 ">
+                    <a href="https://statamic.com/blog/statamic-4-unleashed" class="relative">
+                        <img src="{{ url('assets/img/230623-interview-guerreiro-16-9.png') }}" alt="" class="w-full" />
+                        <div class="absolute opacity-0 group-hover:opacity-75 z-20 inset-0 mix-blend-overlay w-full bg-gradient-to-br from-purple-hot to-teal"></div>
+                    </a>
+                    <div class="px-3 py-2 pb-4 flex flex-col space-y-1 leading-tight">
+                        <div class="font-semibold text-xs uppercase text-white">
+                            Video
+                        </div>
+                        <h3 class="font-semibold text-[16px] text-white">
+                            <a href="https://statamic.com/blog/statamic-4-unleashed">
+                                Here we go again! Choupo-Moting & Co begin pre-season
+                            </a>
+                        </h3>
+                    </div>
+                </div>
             </div>
-          </div>
-          </div>
-          <div class="px-3 py-3 w-full">
-          <div class=" bg-[#121f38] group flex flex-col overflow-hidden hover:scale-105 ">
-            <a
-              href="https://statamic.com/blog/statamic-4-unleashed"
-              class="relative"
-            >
-              <img src="{{ url('assets/img/230709-hernandez-get.png') }}" alt="" class="w-full" />
-              <div class="absolute opacity-0 group-hover:opacity-75 z-20 inset-0 mix-blend-overlay w-full bg-gradient-to-br from-purple-hot to-teal"></div>
-            </a>
-            <div class="px-3 py-2 pb-4 flex flex-col space-y-1 leading-tight">
-              <div class="font-semibold text-xs uppercase text-white">
-                Video
-              </div>
-              <h3 class="font-semibold text-[16px] text-white">
-                <a href="https://statamic.com/blog/statamic-4-unleashed">
-                Here we go again! Choupo-Moting & Co begin pre-season
-                </a>
-              </h3>
+            <div class="px-3 py-3 w-full">
+                <div class=" bg-[#121f38] group flex flex-col overflow-hidden hover:scale-105 ">
+                    <a href="https://statamic.com/blog/statamic-4-unleashed" class="relative">
+                        <img src="{{ url('assets/img/230709-hernandez-get.png') }}" alt="" class="w-full" />
+                        <div class="absolute opacity-0 group-hover:opacity-75 z-20 inset-0 mix-blend-overlay w-full bg-gradient-to-br from-purple-hot to-teal"></div>
+                    </a>
+                    <div class="px-3 py-2 pb-4 flex flex-col space-y-1 leading-tight">
+                        <div class="font-semibold text-xs uppercase text-white">
+                            Video
+                        </div>
+                        <h3 class="font-semibold text-[16px] text-white">
+                            <a href="https://statamic.com/blog/statamic-4-unleashed">
+                                Here we go again! Choupo-Moting & Co begin pre-season
+                            </a>
+                        </h3>
+                    </div>
+                </div>
             </div>
-          </div>
-          </div>
-          <div class="px-3 py-3 w-full">
-          <div class=" bg-[#121f38] group flex flex-col overflow-hidden hover:scale-105 ">
-            <a
-              href="https://statamic.com/blog/statamic-4-unleashed"
-              class="relative"
-            >
-              <img src="{{ url('assets/img/230708-bayerischer-sportpreis-ehrung-musiala-StMI.png') }}" alt="" class="w-full" />
-              <div class="absolute opacity-0 group-hover:opacity-75 z-20 inset-0 mix-blend-overlay w-full bg-gradient-to-br from-purple-hot to-teal"></div>
-            </a>
-            <div class="px-3 py-2 pb-4 flex flex-col space-y-1 leading-tight">
-              <div class="font-semibold text-xs uppercase text-white">
-                Video
-              </div>
-              <h3 class="font-semibold text-[16px] text-white">
-                <a href="https://statamic.com/blog/statamic-4-unleashed">
-                Here we go again! Choupo-Moting & Co begin pre-season
-                </a>
-              </h3>
+            <div class="px-3 py-3 w-full">
+                <div class=" bg-[#121f38] group flex flex-col overflow-hidden hover:scale-105 ">
+                    <a href="https://statamic.com/blog/statamic-4-unleashed" class="relative">
+                        <img src="{{ url('assets/img/230708-bayerischer-sportpreis-ehrung-musiala-StMI.png') }}" alt="" class="w-full" />
+                        <div class="absolute opacity-0 group-hover:opacity-75 z-20 inset-0 mix-blend-overlay w-full bg-gradient-to-br from-purple-hot to-teal"></div>
+                    </a>
+                    <div class="px-3 py-2 pb-4 flex flex-col space-y-1 leading-tight">
+                        <div class="font-semibold text-xs uppercase text-white">
+                            Video
+                        </div>
+                        <h3 class="font-semibold text-[16px] text-white">
+                            <a href="https://statamic.com/blog/statamic-4-unleashed">
+                                Here we go again! Choupo-Moting & Co begin pre-season
+                            </a>
+                        </h3>
+                    </div>
+                </div>
             </div>
-          </div>
-          </div>
         </div>
     </div>
 </div>
@@ -345,3 +358,25 @@
 </div>
 
 @endsection
+
+@push('style')
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+@endpush
+
+@push('js')
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script>
+    var swiper = new Swiper(".mySwiper", {
+        cssMode: true,
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        },
+        pagination: {
+            el: ".swiper-pagination",
+        },
+        mousewheel: true,
+        keyboard: true,
+    });
+</script>
+@endpush

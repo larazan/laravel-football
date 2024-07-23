@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Article;
+use App\Models\Club;
+use App\Models\Competition;
 use App\Models\Matchs;
 use App\Models\Schedule;
 use Illuminate\Http\Request;
@@ -11,7 +14,18 @@ class MatchController extends Controller
 {
     public function __construct()
     {
-        
+      $shareComponent = \Share::page(
+        'https://www.positronx.io/create-autocomplete-search-in-laravel-with-typeahead-js/',
+        'Your share text comes here',
+    )
+    ->facebook()
+    ->twitter()
+    ->linkedin()
+    ->telegram()
+    ->whatsapp()        
+    ->reddit();
+
+$this->data['shareComponent'] = $shareComponent;
     }
     
     public function index()
@@ -45,10 +59,28 @@ class MatchController extends Controller
 
     public function show($slug)
     {
-        $match = Matchs::where('slug', $slug)->get();
+      $s = explode('_', $slug);
+      
+      $schedule = Schedule::where('slug', $slug)->first();
+      $season = $schedule->season;
+      $competition_id = $schedule->competition_id;
+      $home = $schedule->home_team;
+      $away = $schedule->awaay_team;
 
-        $this->data['match'] = $match;
-        return $this->loadTheme('match.detail', $this->data);
+      $limit = 6;
+      $this->data['articles'] = Article::active()->where('slug', '!=', $slug)->orderBy('id', 'DESC')->limit($limit)->get();
+
+      $competiton = Competition::where('id', $competition_id)->first();
+      $home_team = Club::where('id', $home)->first();
+      $away_team = Club::where('id', $away)->first();
+
+      $this->data['schedule'] = $schedule;
+      $this->data['season'] = $season;
+      $this->data['competiton'] = $competiton;
+      $this->data['home_team'] = $home_team;
+      $this->data['away_team'] = $away_team;
+
+      return $this->loadTheme('match.detail', $this->data);
     }
 
     public function lineup($slug)

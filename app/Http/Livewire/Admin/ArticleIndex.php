@@ -26,7 +26,8 @@ class ArticleIndex extends Component
     public $body;
     public $status;
     public $articleId;
-    public $articleTags = [];
+    public $articleTags;
+    public $tags = [];
     public $categoryId;
     public $file;
     public $author;
@@ -62,7 +63,7 @@ class ArticleIndex extends Component
     {
         $this->publishedAt = today()->format('Y-m-d');
         $this->trixId = 'trix-' . uniqid();
-        $this->articleTags = ['sss', 'vvv'];
+        $this->tags = isset($this->articleTags) ? explode(',', $this->articleTags) : [];
     }
 
     public function openInput()
@@ -152,7 +153,7 @@ class ArticleIndex extends Component
         $article->slug = Str::slug($this->title);
         $article->rand_id = Str::random(10);
         $article->body = $this->body;
-        $article->article_tags = $this->articleTags;
+        $article->article_tags = implode(',', $this->tags);
         $article->author = $this->author;
         $article->url = $this->url;
         $article->embed_url = $this->embedUrl;
@@ -186,6 +187,7 @@ class ArticleIndex extends Component
         $this->title = $article->title;
         $this->body = $article->body;
         $this->articleTags = $article->article_tags;
+        $this->tags = isset($this->articleTags) ? explode(',', $this->articleTags) : [];
         $this->author = $article->author;
         $this->url = $article->url;
         $this->embedUrl = $article->embed_url;
@@ -233,7 +235,7 @@ class ArticleIndex extends Component
                 $article->slug = Str::slug($this->title);
                 $article->rand_id = Str::random(10);
                 $article->body = $this->body;
-                $article->article_tags = $this->articleTags;
+                $article->article_tags = implode(',', $this->tags);
                 $article->author = $this->author;
                 $article->url = $this->url;
                 $article->embed_url = $this->embedUrl;
@@ -289,9 +291,9 @@ class ArticleIndex extends Component
     {
         $this->reset(
             [
-            'search',
-            'sort',
-            'perPage',
+                'search',
+                'sort',
+                'perPage',
             ]
         );
     }

@@ -3,7 +3,29 @@
 @section('content')
 
 <div class="bg-[#00091a] w-full h-full">
-    <SlideMedia />
+    <!-- Slider -->
+<div class="mx-60 swiper mySwiper">
+    <div class="swiper-wrapper">
+
+        <div class="swiper-slide flex justify-center md:items-center items-start w-screen relative">
+            <img class="object-cover2 w-full h-full" src="{{ url('assets/img/media/slide2.png') }}" alt="image" />
+        </div>
+        <div class="swiper-slide flex justify-center md:items-center items-start w-screen relative">
+            <img class="object-cover2 w-full h-full" src="{{ url('assets/img/media/slide3.png') }}" alt="image" />
+        </div>
+        <div class="swiper-slide flex justify-center md:items-center items-start w-screen relative">
+            <img class="object-cover2 w-full h-full" src="{{ url('assets/img/media/slide4.jpg') }}" alt="image" />
+        </div>
+        <div class="swiper-slide flex justify-center md:items-center items-start w-screen relative">
+            <img class="object-cover2 w-full h-full" src="{{ url('assets/img/media/slide1.png') }}" alt="image" />
+        </div>
+        
+
+    </div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-pagination"></div>
+</div>
 
     <div class="h-max mx-auto w-full lg:w-1/2 flex flex-col space-y-4 md:px-4 py-5 md:py-4 lg:px-0 justify-center2 items-center2 bg-transparent">
         <div class="flex flex-row justify-between mx-auto w-full md:w-12/12 space-x-6 items-center">
@@ -72,7 +94,7 @@
             </div>
 
 
-            <div class="mb-[1em] flex flex-row overflow-x-hidden">
+            <div class="mb-[1em] flex flex-row overflow-x-hidden2 overflow-x-auto scroll-smooth custom-scrollbar">
                 @foreach($medias as $m)
                 <div class="transition-all duration-150 flex mr-[.9em] ">
                     <div class="relative flex w-[280px] md:w-[350px] justify-center bg-white border border-gray-700 rounded shadow hover:shadow-lg">
@@ -110,3 +132,25 @@
 </div>
 
 @endsection
+
+@push('style')
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+@endpush
+
+@push('js')
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script>
+    var swiper = new Swiper(".mySwiper", {
+        cssMode: true,
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        },
+        pagination: {
+            el: ".swiper-pagination",
+        },
+        mousewheel: true,
+        keyboard: true,
+    });
+</script>
+@endpush

@@ -104,7 +104,7 @@ use App\Models\TrainingType;
 */
 
 // FRONTEND
-Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::get('/news', [News::class, 'index'])->name('news');
 Route::get('/news/{slug}', [News::class, 'show']);
@@ -131,11 +131,11 @@ Route::get('/faqs', [PagesController::class, 'faqs']);
 Route::get('/policy', [PagesController::class, 'policy']);
 Route::get('/terms', [PagesController::class, 'terms']);
 
-Route::feeds();
+// Route::feeds();
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Route::middleware(['auth:sanctum', 'verified', 'role:admin|author|sales'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('dashboard', Dashboard::class)->name('dashboard');

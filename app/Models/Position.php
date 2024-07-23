@@ -33,6 +33,6 @@ class Position extends Model
 
     public function players()
     {
-        return $this->belongsToMany(Player::class, 'players');
+        return $this->belongsToMany(Player::class, 'player_positions');
     }
 }

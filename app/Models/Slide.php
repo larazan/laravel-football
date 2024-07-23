@@ -26,6 +26,7 @@ class Slide extends Model
 		'url',
 		'position',
 		'status',
+		'category',
 		'body',
 		'original',
 		'extra_large',
