@@ -94,7 +94,7 @@
             </div>
 
 
-            <div class="mb-[1em] flex flex-row overflow-x-hidden2 overflow-x-auto scroll-smooth custom-scrollbar">
+            <div class="mb-[1em] pb-4 flex flex-row overflow-x-hidden2 overflow-x-auto scroll-smooth custom-scrollbar">
                 @foreach($medias as $m)
                 <div class="transition-all duration-150 flex mr-[.9em] ">
                     <div class="relative flex w-[280px] md:w-[350px] justify-center bg-white border border-gray-700 rounded shadow hover:shadow-lg">
@@ -151,6 +151,9 @@
         },
         mousewheel: true,
         keyboard: true,
+        autoplay: {
+            delay: 5000,
+        },
     });
 </script>
 @endpush

@@ -359,24 +359,24 @@
                                         </div>
                                         
                                         <div class="flex flex-row justify-between">
-                                        <div class="col-start-1 sm:col-span-3">
-                                            <label for="first-name" class="block text-sm font-medium text-gray-700">Status</label>
-                                            <select wire:model="slideStatus" class="h-full2 rounded-r border-t border-r border-b block appearance-none w-full bg-white border-gray-300 text-gray-700 py-2 px-4 pr-8 leading-tight focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none capitalize">
-                                                <option value="" >Select Option</option>
-                                                @foreach($statuses as $status)
-                                                <option value="{{ $status }}">{{ $status }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                        <div class="col-start-1 sm:col-span-3">
-                                            <label for="first-name" class="block text-sm font-medium text-gray-700">Category</label>
-                                            <select wire:model="category" class="h-full2 rounded-r border-t border-r border-b block appearance-none w-full bg-white border-gray-300 text-gray-700 py-2 px-4 pr-8 leading-tight focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none capitalize">
-                                                <option value="" >Select Option</option>
-                                                @foreach($categories as $cat)
-                                                <option value="{{ $cat }}">{{ $cat }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
+                                            <div class="col-start-1 sm:col-span-3">
+                                                <label for="first-name" class="block text-sm font-medium text-gray-700">Status</label>
+                                                <select wire:model="slideStatus" class="h-full2 rounded-r border-t border-r border-b block appearance-none w-full bg-white border-gray-300 text-gray-700 py-2 px-4 pr-8 leading-tight focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none capitalize">
+                                                    <option value="" >Select Option</option>
+                                                    @foreach($statuses as $status)
+                                                    <option value="{{ $status }}">{{ $status }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            <div class="col-start-1 sm:col-span-3">
+                                                <label for="first-name" class="block text-sm font-medium text-gray-700">Category</label>
+                                                <select wire:model="category" class="h-full2 rounded-r border-t border-r border-b block appearance-none w-full bg-white border-gray-300 text-gray-700 py-2 px-4 pr-8 leading-tight focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none capitalize">
+                                                    <option value="" >Select Option</option>
+                                                    @foreach($categories as $cat)
+                                                    <option value="{{ $cat }}">{{ $cat }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

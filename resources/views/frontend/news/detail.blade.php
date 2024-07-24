@@ -110,10 +110,10 @@
       </a>
 
     </div>
-    <div class="flex flex-row flex-wrap  mx-auto w-full md:w-12/12 ">
+    <div class="mx-auto w-full md:w-12/12 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-2">
 
       @foreach($articles as $article)
-      <div class="px-3 py-3 w-1/2 md:w-1/3 lg:w-1/3">
+      <div class="px-3 py-3 ">
         <div class=" bg-white group flex flex-col overflow-hidden hover:scale-105 shadow ">
           <a href="{{ url('news/'. $article->slug) }}" class="relative">
             <img src="{{ url('assets/img/fans/fans1.png') }}" alt="" class="w-full" />

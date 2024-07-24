@@ -19,6 +19,8 @@ class ClubIndex extends Component
     public $sizeTol = '600x600';
     public $name;
     public $info;
+    public $homeKit;
+    public $awayKit;
     public $stadion;
     public $stadionId;
     public $clubId;
@@ -76,6 +78,8 @@ class ClubIndex extends Component
         $club->name = $this->name;
         $club->slug = Str::slug($this->name);
         $club->info = $this->info;
+        $club->home_kit = $this->homeKit;
+        $club->away_kit = $this->awayKit;
         $club->stadion_id = $this->stadion;
         $club->status = $this->clubStatus;
 
@@ -99,6 +103,8 @@ class ClubIndex extends Component
         $club = Club::find($clubId);
         $this->name = $club->name;
         $this->info = $club->info;
+        $this->homeKit = $club->home_kit;
+        $this->awayKit = $club->away_kit;
         $this->stadion = $club->stadion_id;
         $this->oldImage = $club->logo;
         $this->clubStatus = $club->status;
@@ -119,6 +125,8 @@ class ClubIndex extends Component
                 $club->name = $this->name;
                 $club->slug = Str::slug($this->name);
                 $club->info = $this->info;
+                $club->home_kit = $this->homeKit;
+                $club->away_kit = $this->awayKit;
                 $club->stadion_id = $this->stadion;
                 $club->status = $this->clubStatus;
 

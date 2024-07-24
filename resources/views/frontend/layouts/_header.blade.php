@@ -4,7 +4,7 @@
             <div class="flex w-full md:w-3/5 justify-between space-x-4">
               <div class="flex space-x-2 md:space-x-4 lg:space-x-2 w-full items-center">
                 <div class="flex justify-center items-center">
-                  <a href="{{ url('home') }}">
+                  <a href="{{ url('/') }}">
                     <image
                     src="{{ asset('assets/img/fcbayern.svg') }}"
                       class="h-9 w-9 md:h-12 md:w-12"
@@ -12,7 +12,7 @@
                     />
                   </a>
                 </div>
-                <a href="{{ url('home') }}" class="leading-tight">
+                <a href="{{ url('/') }}" class="leading-tight">
                   <span class="text-base md:text-2xl lg:text-lg leading-tight text-white font-bold">
                     FC Bayern Munchen
                   </span>
@@ -167,32 +167,32 @@
                   <div class="w-full py-5">
                     <ul class="flex flex-col min-h-[250px]">
                       <li class="flex w-full text-lg border-b">
-                        <a class="px-6 py-3 w-full " href="{{ url('home') }}">
+                        <a class="px-6 py-3 w-full " href="{{ url('news') }}">
                           News
                         </a>
                       </li>
                       <li class="flex w-full text-lg border-b">
-                        <a class="px-6 py-3 w-full" href="{{ url('home') }}">
+                        <a class="px-6 py-3 w-full" href="{{ url('media') }}">
                           Bayern TV
                         </a>
                       </li>
                       <li class="flex w-full text-lg border-b">
-                        <a class="px-6 py-3 w-full" href="{{ url('home') }}">
+                        <a class="px-6 py-3 w-full" href="{{ url('match') }}">
                           Matches
                         </a>
                       </li>
                       <li class="flex w-full text-lg border-b">
-                        <a class="px-6 py-3 w-full" href="{{ url('home') }}">
+                        <a class="px-6 py-3 w-full" href="{{ url('team') }}">
                           Teams
                         </a>
                       </li>
                       <li class="flex w-full text-lg border-b">
-                        <a class="px-6 py-3 w-full" href="{{ url('home') }}">
+                        <a class="px-6 py-3 w-full" href="{{ url('club') }}">
                           Club
                         </a>
                       </li>
                       <li class="flex w-full text-lg border-b">
-                        <a class="px-6 py-3 w-full" href="{{ url('home') }}">
+                        <a class="px-6 py-3 w-full" href="{{ url('fans') }}">
                           Fans
                         </a>
                       </li>
@@ -249,14 +249,14 @@
               <span class="font-semibold text-white tracking-tight">Club</span>
             </a>
             <a
-              href="{{ url('home') }}"
-              class="py-1.5 px-1  border-b-2 hover:border-white @if(!in_array(Request::segment(1), ['home'])){{ 'border-[#c60428]' }}@else{ 'border-white' }@endif"
+              href="{{ url('fans') }}"
+              class="py-1.5 px-1  border-b-2 hover:border-white @if(!in_array(Request::segment(1), ['fans'])){{ 'border-[#c60428]' }}@else{ 'border-white' }@endif"
             >
               <span class="font-semibold text-white tracking-tight">Fans</span>
             </a>
             <a
-              href="{{ url('home') }}"
-              class="py-1.5 px-1  border-b-2 hover:border-white @if(!in_array(Request::segment(1), ['home'])){{ 'border-[#c60428]' }}@else{ 'border-white' }@endif" 
+              href="{{ url('tickets') }}"
+              class="py-1.5 px-1  border-b-2 hover:border-white @if(!in_array(Request::segment(1), ['tickets'])){{ 'border-[#c60428]' }}@else{ 'border-white' }@endif" 
             >
               <span class="font-semibold text-white tracking-tight">Tickets</span>
             </a>

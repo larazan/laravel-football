@@ -317,7 +317,7 @@
         </div>
 
 
-        <div class="mb-[1em] flex flex-row overflow-x-auto scroll-smooth custom-scrollbar">
+        <div class="mb-[1em] pb-4 flex flex-row overflow-x-auto scroll-smooth custom-scrollbar">
             @foreach($awards as $award)
             <div class="transition-all duration-150 flex mr-[.5em] ">
                 <div class="flex w-[130px] md:w-[180px] p-5 justify-center bg-white shadow hover:shadow-lg">
@@ -377,6 +377,9 @@
         },
         mousewheel: true,
         keyboard: true,
+        autoplay: {
+            delay: 5000,
+        },
     });
 </script>
 @endpush

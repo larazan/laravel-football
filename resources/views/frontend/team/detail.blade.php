@@ -62,7 +62,7 @@
 
 <div class="h-max flex flex-col space-y-3 px-4 lg:px-0 py-3 md:py-4 justify-center2 items-center2 bg-[#f5f7f9]">
   <!-- submenu -->
-  <div class=" space-y-2">
+  <div class="mx-auto w-full lg:w-1/2 space-y-2">
     <div class="flex flex-row justify-between mx-auto w-full md:w-12/12 space-x-6 items-center">
       <span class="text-2xl font-bold text-[#002f6c]">Personal</span>
     </div>
@@ -82,8 +82,6 @@
   </div>
   <div class="flex flex-col md:flex-row md:divide-x gap-3 space-y-3 md:space-x-3 mx-auto w-full lg:w-1/2">
     <div class="w-full md:w-1/2 flex flex-col space-y-4">
-
-
 
       <div class="grid grid-cols-2 gap-5">
         <div class="flex flex-col py-2 px-2 border-b">
@@ -418,39 +416,20 @@
 </div>
 
 <!-- NewsRelated -->
-<div class="h-max flex flex-col space-y-3 px-0 md:px-6 py-4 md:py-4 justify-center2 items-center2 bg-[#f5f7f9]">
+<div class="h-max flex flex-col space-y-3 px-2 md:px-6 py-4 md:py-4 justify-center2 items-center2 bg-[#f5f7f9]">
   <div class="mx-auto w-12/12 md:w-12/12 lg:w-1/2">
 
-
-    <div class="flex flex-row justify-between mx-auto md:mx-0 w-11/12 md:w-12/12 lg:w-1/2 space-x-6 items-center">
-      <a href="/" class="flex space-x-1 items-center hover:opacity-80">
+    <div class="flex flex-row justify-between mx-auto md:mx-0 w-11/12 md:w-12/12 lg:w-1/2 items-center">
+      <a href="/" class="flex items-center hover:opacity-80">
         <span class="text-lg md:text-2xl font-bold text-[#002f6c] uppercase">
           Related News
         </span>
       </a>
-
     </div>
-    <div class="flex flex-row flex-wrap  mx-auto w-full md:w-12/12 ">
-
-      <div class="px-3 py-3 w-1/2 md:w-1/3 lg:w-1/3">
-        <div class=" bg-white group flex flex-col overflow-hidden hover:scale-105 shadow ">
-          <a href="/news/one" class="relative">
-            <img src="{{ url('assets/img/fans/fans2.png') }}" alt="" class="w-full" />
-            <div class="absolute opacity-0 group-hover:opacity-75 z-20 inset-0 mix-blend-overlay w-full bg-gradient-to-br from-purple-hot to-teal"></div>
-          </a>
-          <div class="px-3 py-2 pb-4 flex flex-col space-y-1 leading-tight">
-            <div class="font-semibold text-xs md:text-xs uppercase text-red-500">
-              Membership
-            </div>
-            <a href="/news/one">
-              <span class="font-semibold text-base md:text-md text-[#002f6c] leading-tight">Become part of the FC Bayern family!</span>
-            </a>
-          </div>
-        </div>
-      </div>
+    <div class="mx-auto w-full md:w-12/12 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-2">
 
       @foreach($articles as $article)
-      <div class="px-3 py-3 w-1/2 md:w-1/3 lg:w-1/3">
+      <div class="px-3 py-3 ">
         <div class=" bg-white group flex flex-col overflow-hidden hover:scale-105 shadow ">
           <a href="{{ url('news/'. $article->slug) }}" class="relative">
             <img src="{{ url('assets/img/fans/fans1.png') }}" alt="" class="w-full" />

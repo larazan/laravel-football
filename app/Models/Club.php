@@ -26,6 +26,8 @@ class Club extends Model
         'logo',
         'stadion_id',
         'info'.
+        'home_kit'.
+        'away_kit'.
         'status',
     ];
 
