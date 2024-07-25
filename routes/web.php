@@ -131,6 +131,19 @@ Route::get('/faqs', [PagesController::class, 'faqs']);
 Route::get('/policy', [PagesController::class, 'policy']);
 Route::get('/terms', [PagesController::class, 'terms']);
 
+// Dashboard
+Route::group(['prefix' => 'account', 'as' => 'account'], function() {
+    Route::get('/', [DashboardController::class, 'index'])->name('account.index');
+    Route::get('/profile', [DashboardController::class, 'profile'])->name('profile');
+    // Route::post('/', [DashboardController::class, 'changeProfile'])->name('account.changeprofile');
+    Route::get('/notification', [DashboardController::class, 'notification'])->name('notification');
+    Route::get('/orders', [DashboardController::class, 'orders'])->name('orders');
+    Route::get('/orders/{id}', [DashboardController::class, 'orderDetail'])->name('orders.detail');
+    Route::get('/invoice/{id}', [DashboardController::class, 'invoice'])->name('orders.invoice');
+    Route::get('/change-password', [DashboardController::class, 'password'])->name('change.password');
+});
+
+
 // Route::feeds();
 
 // Route::get('/', function () {

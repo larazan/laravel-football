@@ -14,6 +14,46 @@ use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
 {
+    public function index()
+    {
+        return $this->loadDashboard('home');
+    }
+
+    public function profile()
+    {
+        return $this->loadDashboard('profile.index');
+    }
+
+    public function changeProfile()
+    {
+
+    }
+
+    public function notification()
+    {
+        return $this->loadDashboard('notification.index');
+    }
+
+    public function orders()
+    {
+        return $this->loadDashboard('orders.index');
+    }
+
+    public function orderDetail()
+    {
+        return $this->loadDashboard('orders.detail');
+    }
+
+    public function invoice()
+    {
+        return $this->loadDashboard('orders.invoice');
+    }
+
+    public function password()
+    {
+        return $this->loadDashboard('password.index');
+    }
+
 
     public function tesEvents()
     {
@@ -44,7 +84,7 @@ class DashboardController extends Controller
     }
 
 
-    public function index()
+    public function coba()
     {
         $seasonNow = Carbon::now()->format('Y') . '/' . Carbon::now()->format('Y') + 1;
 

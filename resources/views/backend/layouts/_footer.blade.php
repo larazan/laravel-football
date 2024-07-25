@@ -1,10 +1,9 @@
 <footer class="flex flex-col space-y-1 bg-[#dc052d] ">
-        
-        
+  
         <div class="flex mx-auto text-white pt-6 w-11/12 md:w-11/12 justify-center2 items-center">
 
           <div class="flex justify-around space-x-4 OuQGd">
-            <Link href={"/"} class="text-white">
+            <a href="/" class="text-white">
               <span class="text-white">
                 <svg
                   height="32"
@@ -23,8 +22,8 @@
                   ></path>
                 </svg>
               </span>
-            </Link>
-            <Link href={"/"} class="text-white">
+            </a>
+            <a href="/" class="text-white">
               <span class="text-white">
                 <svg
                   height="32"
@@ -43,8 +42,8 @@
                   ></path>
                 </svg>
               </span>
-            </Link>
-            <Link href={"/"} class="text-white">
+            </a>
+            <a href="/" class="text-white">
               <span class="text-white">
                 <svg
                   height="32"
@@ -63,8 +62,8 @@
                   ></path>
                 </svg>
               </span>
-            </Link>
-            <Link href={"/"} class="text-white">
+            </a>
+            <a href="/" class="text-white">
               <span class="text-white">
                 <svg
                   height="32"
@@ -88,8 +87,8 @@
                   ></path>
                 </svg>
               </span>
-            </Link>
-            <Link href={"/"} class="text-white">
+            </a>
+            <a href="/" class="text-white">
               <span class="text-white">
                 <svg
                   height="32"
@@ -108,8 +107,8 @@
                   ></path>
                 </svg>
               </span>
-            </Link>
-            <Link href={"/"} class="text-white">
+            </a>
+            <a href="/" class="text-white">
               <span class="text-white">
                 <svg
                   height="32"
@@ -128,8 +127,8 @@
                   ></path>
                 </svg>
               </span>
-            </Link>
-            <Link href={"/"} class="text-white">
+            </a>
+            <a href="/" class="text-white">
               <span class="text-white">
                 <svg
                   height="32"
@@ -148,24 +147,24 @@
                   ></path>
                 </svg>
               </span>
-            </Link>
+            </a>
           </div>
         </div>
         <div class="flex justify-between mx-auto text-white pb-6  w-11/12 md:w-11/12 lg:w-1/2 items-center">
           <div class="flex flex-col">
             <div class="flex space-x-2">
-              <Link href={"/"}>
+              <a href="/">
                 <span class="text-xs text-white">Privacy Policy</span>
-              </Link>
-              <Link href={"/"}>
+              </a>
+              <a href="/">
                 <span class="text-xs text-white">Terms and Conditions</span>
-              </Link>
-              <Link href={"/"}>
+              </a>
+              <a href="/">
                 <span class="text-xs text-white">FAQ</span>
-              </Link>
-              <Link href={"/"}>
+              </a>
+              <a href="/">
                 <span class="text-xs text-white">Contact</span>
-              </Link>
+              </a>
             </div>
             <div>
               <span class="text-xs text-white">
@@ -174,9 +173,9 @@
             </div>
           </div>
           <div>
-            <Link href={"/"}>
-              <Image src={bundesliga} alt="" />
-            </Link>
+            <a href="/">
+              <img src="{{ asset('assets/img/Bundesliga.svg') }}" alt="" />
+            </a>
           </div>
         </div>
       </footer>
