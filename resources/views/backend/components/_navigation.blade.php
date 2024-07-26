@@ -31,9 +31,12 @@
             </a>
         </li>
         <li class=" border-b-4 border-white md:-mt-px">
-            <a class="inline-block p-3" href="/">
+        <form method="POST" action="{{ route('logout') }}" x-data>
+                    @csrf
+            <a class="inline-block p-3" href="{{ route('logout') }}">
                 <span class="md:inline text-red-600 font-bold">Logout</span>
             </a>
+            </form>
         </li>
     </ul>
 </div>
