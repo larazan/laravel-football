@@ -1,15 +1,21 @@
-<header className=" bg-[#98c5e9] w-full top-0 left-0 right-0 h-[7vh] md:h-[9vh] flex items-center justify-center opacity-100 z-[200] ">
-        <nav className="mx-auto w-full px-2 md:w-11/12 flex items-center justify-between">
-          <section className="w-1/3 flex justify-start items-between z-20">
+<header 
+  class=" bg-[#98c5e9] w-full top-0 left-0 right-0 h-[7vh] md:h-[9vh] flex items-center justify-center opacity-100 z-[200] "
+  x-data="{ openMenu: false }"
+  >
+        <nav class="mx-auto w-full px-2 md:w-11/12 flex items-center justify-between">
+          <section class="w-1/3 flex justify-start items-between z-20">
             <div
-              className="space-y-2 w-fit md:justify-start cursor-pointer text-slate-800"
-              onClick={clickMenu}
+              class="space-y-2 w-fit md:justify-start cursor-pointer text-slate-800"
+              @click="openMenu = !openMenu" 
+              aria-controls="menubar" 
+              :aria-expanded="openMenu" 
+              aria-expanded="false"
             >
               <svg
                 viewBox="0 0 24 24"
                 fill="currentColor"
                 xmlns="http://www.w3.org/2000/svg"
-                className="w-8 h-8 md:w-8 md:h-8"
+                class="w-8 h-8 md:w-8 md:h-8"
               >
                 <path
                   fillRule="evenodd"
@@ -19,36 +25,36 @@
               </svg>
             </div>
             <div
-              className={` ${
-                openMenu === false ? "hidden" : "flex flex-col"
-              } bg-[#001838] w-full h-[100vh] z-10 fixed top-0 left-0 text-white text-4xl font-bold  flex-1 flex-col justify-between`}
+              id="menubar"
+              :class="openMenu ? 'flex flex-col' : 'hidden'" 
+              class="flex-col bg-[#001838] w-full h-[100vh] z-10 fixed top-0 left-0 text-white text-4xl font-bold  flex-1 justify-between"
             >
-              <div className="flex flex-col">
-                <div className="flex bg-[#98c5e9] flex-row justify-between items-center px-4 py-4">
-                  <div className=" flex flex-row space-x-4 w-full items-center">
-                    <div className="flex justify-center items-center">
-                      <Link href={"/"}>
-                        <Image
-                          src={logo}
-                          className="h-10 w-10 md:h-12 md:w-12"
+              <div class="flex flex-col">
+                <div class="flex bg-[#98c5e9] flex-row justify-between items-center px-4 py-4">
+                  <div class=" flex flex-row space-x-4 w-full items-center">
+                    <div class="flex justify-center items-center">
+                      <a href="{{ url('/') }}">
+                        <image
+                          src="{{ asset('/assets/img/logo.svg') }}"
+                          class="h-10 w-10 md:h-12 md:w-12"
                           alt=""
                         />
-                      </Link>
+                      </a>
                     </div>
-                    <div className="">
-                      <Link href={"/"}>
-                        <div className="text-lg md:text-2xl font-bold text-[#001838]">
+                    <div class="">
+                      <a href="{{ url('/') }}">
+                        <div class="text-lg md:text-2xl font-bold text-[#001838]">
                           Manchester City
                         </div>
-                      </Link>
+                      </a>
                     </div>
                   </div>
                   <div
-                    className="cursor-pointer rounded-full px-.5 py-1 bg-[#001838]"
-                    onClick={clickMenu}
+                    class="cursor-pointer rounded-full px-.5 py-1 bg-[#001838]"
+                    @click.stop="openMenu = !openMenu"
                   >
                     <svg
-                      className="h-6 w-8 text-white"
+                      class="h-6 w-8 text-white"
                       viewBox="0 0 24 24"
                       fill="none"
                       stroke="currentColor"
@@ -61,73 +67,73 @@
                     </svg>
                   </div>
                 </div>
-                <div className="w-full py-5">
-                  <ul className="flex flex-col min-h-[250px]">
-                    <li className="flex w-full text-lg md:text-2xl uppercase">
-                      <Link
-                        className="px-6 py-3 w-full hover:underline tracking-tighter"
-                        href="/category"
+                <div class="w-full py-5">
+                  <ul class="flex flex-col min-h-[250px]">
+                    <li class="flex w-full text-lg md:text-2xl uppercase">
+                      <a
+                        class="px-6 py-3 w-full hover:underline tracking-tighter"
+                        href="{{ url('/') }}"
                       >
                         Sale
-                      </Link>
+                      </a>
                     </li>
-                    <li className="flex w-full text-lg md:text-2xl uppercase">
-                      <Link
-                        className="px-6 py-3 w-full hover:underline tracking-tighter"
-                        href="/category"
+                    <li class="flex w-full text-lg md:text-2xl uppercase">
+                      <a
+                        class="px-6 py-3 w-full hover:underline tracking-tighter"
+                        href="{{ url('/') }}"
                       >
                         Kits
-                      </Link>
+                      </a>
                     </li>
-                    <li className="flex w-full text-lg md:text-2xl uppercase">
-                      <Link
-                        className="px-6 py-3 w-full hover:underline tracking-tighter"
-                        href="/category"
+                    <li class="flex w-full text-lg md:text-2xl uppercase">
+                      <a
+                        class="px-6 py-3 w-full hover:underline tracking-tighter"
+                        href="{{ url('/') }}"
                       >
                         Shop by Player
-                      </Link>
+                      </a>
                     </li>
-                    <li className="flex w-full text-lg md:text-2xl uppercase">
-                      <Link
-                        className="px-6 py-3 w-full hover:underline tracking-tighter"
-                        href="/category"
+                    <li class="flex w-full text-lg md:text-2xl uppercase">
+                      <a
+                        class="px-6 py-3 w-full hover:underline tracking-tighter"
+                        href="{{ url('/') }}"
                       >
                         Training
-                      </Link>
+                      </a>
                     </li>
-                    <li className="flex w-full text-lg md:text-2xl uppercase">
-                      <Link
-                        className="px-6 py-3 w-full hover:underline tracking-tighter"
-                        href="/category"
+                    <li class="flex w-full text-lg md:text-2xl uppercase">
+                      <a
+                        class="px-6 py-3 w-full hover:underline tracking-tighter"
+                        href="{{ url('/') }}"
                       >
                         lifestyle
-                      </Link>
+                      </a>
                     </li>
-                    <li className="flex w-full text-lg md:text-2xl uppercase">
-                      <Link
-                        className="px-6 py-3 w-full hover:underline tracking-tighter"
-                        href="/category"
+                    <li class="flex w-full text-lg md:text-2xl uppercase">
+                      <a
+                        class="px-6 py-3 w-full hover:underline tracking-tighter"
+                        href="{{ url('/') }}"
                       >
                         Gifts
-                      </Link>
+                      </a>
                     </li>
-                    <li className="flex w-full text-lg md:text-2xl uppercase">
-                      <Link
-                        className="px-6 py-3 w-full hover:underline tracking-tighter"
+                    <li class="flex w-full text-lg md:text-2xl uppercase">
+                      <a
+                        class="px-6 py-3 w-full hover:underline tracking-tighter"
                         href="/login"
                       >
                         Login
-                      </Link>
+                      </a>
                     </li>
-                    <li className="flex w-full text-lg  uppercase">
-                      <Link
-                        className="flex items-center px-6 py-3 w-full"
+                    <li class="flex w-full text-lg  uppercase">
+                      <a
+                        class="flex items-center px-6 py-3 w-full"
                         href="/cart"
                         target="_blank"
                       >
                         <svg
                           focusable="false"
-                          className="a-icon icon--bag sub-menu__cart stroke-white fill-obsidian-blue mr-1"
+                          class="a-icon icon--bag sub-menu__cart stroke-white fill-obsidian-blue mr-1"
                           viewBox="0 0 30 30"
                           width="40px"
                           height="40px"
@@ -145,26 +151,26 @@
                             stroke-linejoin="round"
                           ></path>
                         </svg>
-                        <span className="tracking-tighter">Bag</span>
-                      </Link>
+                        <span class="tracking-tighter">Bag</span>
+                      </a>
                     </li>
                   </ul>
                 </div>
               </div>
             </div>
           </section>
-          <div className="w-1/3 flex items-center justify-center">
-            <Link href={"/shop"}>
-              <Image
-                src={logo}
+          <div class="w-1/3 flex items-center justify-center">
+            <a href={"/shop"}>
+              <image
+                src="{{ asset('/assets/img/logo.svg') }}"
                 alt="logo/img"
-                className={`w-10 md:w-12 h-auto ${navState && "filter brightness-0"}`}
+                class="w-10 md:w-12 h-auto"
               />
-            </Link>
+            </a>
           </div>
-          <div className="w-1/3 flex justify-end">
-            <ul className="flex items-center justify-center gap-4">
-              <li className="hidden md:grid items-center">
+          <div class="w-1/3 flex justify-end">
+            <ul class="flex items-center justify-center gap-4">
+              <li class="hidden md:grid items-center">
                 <button onClick={clickSearch}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -172,7 +178,7 @@
                   viewBox="0 0 24 24"
                   strokeWidth={1.5}
                   stroke="currentColor"
-                  className="text-slate-900 transition-all duration-300 w-6 h-6"
+                  class="text-slate-900 transition-all duration-300 w-6 h-6"
                 >
                   <path
                     strokeLinecap="round"
@@ -182,15 +188,15 @@
                 </svg>
                 </button>
               </li>
-              <li className="hidden md:grid items-center">
-                <Link href={"/wishlist"}>
+              <li class="hidden md:grid items-center">
+                <a href={"/wishlist"}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
                   strokeWidth={1.5}
                   stroke="currentColor"
-                  className="w-6 h-6 text-slate-900 transition-all duration-300"
+                  class="w-6 h-6 text-slate-900 transition-all duration-300"
                 >
                   <path
                     strokeLinecap="round"
@@ -198,16 +204,15 @@
                     d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"
                   />
                 </svg>
-                </Link>
+                </a>
               </li>
-              <li className="grid items-center">
-                <UserMenu />
+              <li class="grid items-center">
+                <!-- <UserMenu /> -->
               </li>
-              <li className="grid items-center">
+              <li class="grid items-center">
                 <button
                   type="button"
-                  onClick={() => setIsOpen(!isOpen)}
-                  className="border-none outline-none active:scale-110 transition-all duration-300 relative"
+                  class="border-none outline-none active:scale-110 transition-all duration-300 relative"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -215,7 +220,7 @@
                     viewBox="0 0 24 24"
                     strokeWidth={1.5}
                     stroke="currentColor"
-                    className="text-slate-900 transition-all duration-300 w-6 h-6"
+                    class="text-slate-900 transition-all duration-300 w-6 h-6"
                   >
                     <path
                       strokeLinecap="round"
@@ -224,14 +229,8 @@
                     />
                   </svg>
 
-                  <div
-                    className={`absolute top-3 right-1 shadow w-4 h-4 text-[0.65rem] leading-tight font-medium rounded-full flex items-center justify-center cursor-pointer hover:scale-110 transition-all duration-300 ${
-                      navState
-                        ? "bg-slate-900 text-slate-100 shadow-slate-900"
-                        : "bg-slate-100 text-slate-900 shadow-slate-100"
-                    }`}
-                  >
-                    {totalQTY}
+                  <div class="absolute top-3 right-1 shadow w-4 h-4 text-[0.65rem] leading-tight font-medium rounded-full flex items-center justify-center cursor-pointer hover:scale-110 transition-all duration-300 bg-slate-100 text-slate-900 shadow-slate-100">
+                    3
                   </div>
                 </button>
               </li>

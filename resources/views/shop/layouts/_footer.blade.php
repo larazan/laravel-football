@@ -1,32 +1,32 @@
-<section className="mx-auto w-full padding-x padding-t">
-        <footer className="bg-[#98c5e9] w-full">
-          <div className="mx-auto w-11/12 py-4 md:py-8 flex flex-col md:flex-row space-y-3 md:justify-between items-center flex-wrap2 ">
-            <div className="w-full md:w-8/12 flex flex-row items-center justify-around md:justify-start">
-              <div className=" flex space-x-4 leading-tight">
-                <Link href={"/"}>
-                  <span className="text-sm tracking-tighter md:text-lg font-bold text-slate-800">
+<section class="mx-auto w-full padding-x padding-t">
+        <footer class="bg-[#98c5e9] w-full">
+          <div class="mx-auto w-11/12 py-4 md:py-8 flex flex-col md:flex-row space-y-3 md:justify-between items-center flex-wrap2 ">
+            <div class="w-full md:w-8/12 flex flex-row items-center justify-around md:justify-start">
+              <div class=" flex space-x-4 leading-tight">
+                <a href="{{ url('/') }}">
+                  <span class="text-sm tracking-tighter md:text-lg font-bold text-slate-800">
                     Delivery & Shipping
                   </span>
-                </Link>
-                <Link href={"/"}>
-                  <span className="text-sm tracking-tighter md:text-lg font-bold text-slate-800">
+                </a>
+                <a href="{{ url('/') }}">
+                  <span class="text-sm tracking-tighter md:text-lg font-bold text-slate-800">
                     Track Order
                   </span>
-                </Link>
-                <Link href={"/"}>
-                  <span className="text-sm tracking-tighter md:text-lg font-bold text-slate-800">FAQ</span>
-                </Link>
-                <Link href={"/"}>
-                  <span className="text-sm tracking-tighter md:text-lg font-bold text-slate-800">
+                </a>
+                <a href="{{ url('/') }}">
+                  <span class="text-sm tracking-tighter md:text-lg font-bold text-slate-800">FAQ</span>
+                </a>
+                <a href="{{ url('/') }}">
+                  <span class="text-sm tracking-tighter md:text-lg font-bold text-slate-800">
                     Contact
                   </span>
-                </Link>
+                </a>
               </div>
             </div>
-            <div className="w-full md:w-6/12 flex flex-row justify-center md:justify-end">
-              <div className="flex space-x-4">
-                <Link href={"/"} className="text-slate-800">
-                  <span className="text-slate-800">
+            <div class="w-full md:w-6/12 flex flex-row justify-center md:justify-end">
+              <div class="flex space-x-4">
+                <a href="{{ url('/') }}" class="text-slate-800">
+                  <span class="text-slate-800">
                     <svg
                       height="28"
                       width="28"
@@ -34,7 +34,7 @@
                       preserveAspectRatio="xMidYMid meet"
                       role="img"
                       xmlns="http://www.w3.org/2000/svg"
-                      className="eCHnXp"
+                      class="eCHnXp"
                     >
                       <title>icon</title>
                       <path
@@ -44,9 +44,9 @@
                       ></path>
                     </svg>
                   </span>
-                </Link>
-                <Link href={"/"} className="text-slate-800">
-                  <span className="text-slate-800">
+                </a>
+                <a href="{{ url('/') }}" class="text-slate-800">
+                  <span class="text-slate-800">
                     <svg
                       height="28"
                       width="28"
@@ -54,7 +54,7 @@
                       preserveAspectRatio="xMidYMid meet"
                       role="img"
                       xmlns="http://www.w3.org/2000/svg"
-                      className="base-icon__StyledIconSvg-sc-fzrbhv-0 eCHnXp"
+                      class="base-icon__StyledIconSvg-sc-fzrbhv-0 eCHnXp"
                     >
                       <title>icon</title>
                       <path
@@ -64,9 +64,9 @@
                       ></path>
                     </svg>
                   </span>
-                </Link>
-                <Link href={"/"} className="text-slate-800">
-                  <span className="text-slate-800">
+                </a>
+                <a href="{{ url('/') }}" class="text-slate-800">
+                  <span class="text-slate-800">
                     <svg
                       height="28"
                       width="28"
@@ -74,7 +74,7 @@
                       preserveAspectRatio="xMidYMid meet"
                       role="img"
                       xmlns="http://www.w3.org/2000/svg"
-                      className="base-icon__StyledIconSvg-sc-fzrbhv-0 eCHnXp"
+                      class="base-icon__StyledIconSvg-sc-fzrbhv-0 eCHnXp"
                     >
                       <title>icon</title>
                       <path
@@ -84,9 +84,9 @@
                       ></path>
                     </svg>
                   </span>
-                </Link>
-                <Link href={"/"} className="text-slate-800">
-                  <span className="text-slate-800">
+                </a>
+                <a href="{{ url('/') }}" class="text-slate-800">
+                  <span class="text-slate-800">
                     <svg
                       height="28"
                       width="28"
@@ -94,7 +94,7 @@
                       preserveAspectRatio="xMidYMid meet"
                       role="img"
                       xmlns="http://www.w3.org/2000/svg"
-                      className="base-icon__StyledIconSvg-sc-fzrbhv-0 eCHnXp"
+                      class="base-icon__StyledIconSvg-sc-fzrbhv-0 eCHnXp"
                     >
                       <title>icon</title>
                       <path
@@ -109,37 +109,37 @@
                       ></path>
                     </svg>
                   </span>
-                </Link>
+                </a>
               </div>
             </div>
           </div>
-          <div className="bg-white py-4">
-            <div className="mx-auto w-11/12 flex flex-col md:flex-row space-y-2 justify-between text-slate-800-400  max-sm:flex-col max-sm:items-center">
-              <div className="w-full md:w-1/2 flex flex-1 justify-center md:justify-start items-center gap-2 font-montserrat cursor-pointer">
-                <div className="flex space-x-3">
-                  <Link href={"/"}>
-                    <span className="text-xs tracking-tighter md:text-sm font-bold text-slate-800">
+          <div class="bg-white py-4">
+            <div class="mx-auto w-11/12 flex flex-col md:flex-row space-y-2 justify-between text-slate-800-400  max-sm:flex-col max-sm:items-center">
+              <div class="w-full md:w-1/2 flex flex-1 justify-center md:justify-start items-center gap-2 font-montserrat cursor-pointer">
+                <div class="flex space-x-3">
+                  <a href="{{ url('/') }}">
+                    <span class="text-xs tracking-tighter md:text-sm font-bold text-slate-800">
                       Privacy Policy
                     </span>
-                  </Link>
-                  <Link href={"/"}>
-                    <span className="text-xs tracking-tighter md:text-sm font-bold text-slate-800">
+                  </a>
+                  <a href="{{ url('/') }}">
+                    <span class="text-xs tracking-tighter md:text-sm font-bold text-slate-800">
                       Terms & Conditions
                     </span>
-                  </Link>
-                  <Link href={"/"}>
-                    <span className="text-xs tracking-tighter md:text-sm font-bold text-slate-800">
+                  </a>
+                  <a href="{{ url('/') }}">
+                    <span class="text-xs tracking-tighter md:text-sm font-bold text-slate-800">
                       Return Policy
                     </span>
-                  </Link>
+                  </a>
                   
                 </div>
               </div>
-              <div className="w-11/12 md:w-1/2">
-                <div className="flex space-x-3">
-                  <Link href={"/"}>
-                    <Image src={payment1} alt="" />
-                  </Link>
+              <div class="w-11/12 md:w-1/2">
+                <div class="flex space-x-3">
+                  <a href="{{ url('/') }}">
+                    <image src="{{ asset('assets/img/payment/payment1.svg') }}" alt="" />
+                  </a>
                 </div>
               </div>
             </div>

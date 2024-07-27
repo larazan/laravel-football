@@ -31,7 +31,7 @@
 <body>
 
 @include('shop.layouts._header')
-@include('frontend.components._gotop')
+@include('shop.components._scrollTop')
 
 @yield('content')
 

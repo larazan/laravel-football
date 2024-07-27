@@ -1,15 +1,15 @@
 <aside
-      className={`${
+      class={`${
         isOpen ? "right-0" : "-right-full"
       } transform overflow-auto ease-in-out translate-x-0 w-full bg-white fixed top-0 h-full shadow-2xl md:w-[35vw] transition-all duration-300 z-30 `}
     >
-      <div className="flex items-center justify-between px-3 py-6 border-b">
-        <div className="uppercase text-sm md:text-lg tracking-tighter font-semibold text-[#001838]">
+      <div class="flex items-center justify-between px-3 py-6 border-b">
+        <div class="uppercase text-sm md:text-lg tracking-tighter font-semibold text-[#001838]">
           Shopping Bag (0)
         </div>
         <div
           onClick={handleClose}
-          className="cursor-pointer w-8 h-8 flex justify-center items-center"
+          class="cursor-pointer w-8 h-8 flex justify-center items-center"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -17,7 +17,7 @@
             viewBox="0 0 24 24"
             strokeWidth={1.5}
             stroke="currentColor"
-            className="w-6 h-6 text-slate-900"
+            class="w-6 h-6 text-slate-900"
           >
             <path
               strokeLinecap="round"
@@ -27,23 +27,23 @@
           </svg>
         </div>
       </div>
-      <div className="flex  flex-col gap-y-2 h-[520px] lg:h-[640px] px-2 overflow-y-auto overflow-x-hidden ">
+      <div class="flex  flex-col gap-y-2 h-[520px] lg:h-[640px] px-2 overflow-y-auto overflow-x-hidden ">
         <ProductItem />
       </div>
       
-      <div className="fixed bottom-4 w-full space-y-2 px-2">
-        <div className="flex w-full justify-between items-center ">
-          <div className="uppercase font-semibold text-slate-900">
-            <span className="mr-2">Total:</span> $ 200.00
+      <div class="fixed bottom-4 w-full space-y-2 px-2">
+        <div class="flex w-full justify-between items-center ">
+          <div class="uppercase font-semibold text-slate-900">
+            <span class="mr-2">Total:</span> $ 200.00
           </div>
-          <div className="cursor-pointer py-4 bg-red-500 text-white w-8 h-8 rounded-md flex justify-center items-center text-xl">
+          <div class="cursor-pointer py-4 bg-red-500 text-white w-8 h-8 rounded-md flex justify-center items-center text-xl">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
               strokeWidth={1.5}
               stroke="currentColor"
-              className="w-5 h-5"
+              class="w-5 h-5"
             >
               <path
                 strokeLinecap="round"
@@ -55,13 +55,13 @@
         </div>
         <Link
           href={"/cart"}
-          className="bg-[#001838] hover:opacity-80 uppercase tracking-tight text-white rounded flex p-3 justify-center items-center w-full font-semibold"
+          class="bg-[#001838] hover:opacity-80 uppercase tracking-tight text-white rounded flex p-3 justify-center items-center w-full font-semibold"
         >
           View Cart
         </Link>
         <Link
           href={"/checkout"}
-          className="bg-[#3bd6ff] hover:opacity-80 uppercase tracking-tight rounded text-[#001838] border border-[#001838] flex p-3 justify-center items-center w-full font-semibold"
+          class="bg-[#3bd6ff] hover:opacity-80 uppercase tracking-tight rounded text-[#001838] border border-[#001838] flex p-3 justify-center items-center w-full font-semibold"
         >
           Checkout
         </Link>

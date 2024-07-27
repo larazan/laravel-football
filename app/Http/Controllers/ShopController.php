@@ -36,7 +36,13 @@ class ShopController extends Controller
         $this->data['category'] = $category;
         $this->data['products'] = $products;
 
-        return $this->loadShop('category', $this->data);
+        return $this->loadShop('product.index', $this->data);
+    }
+
+    public function detail($slug)
+    {
+        $this->data['slug'] = $slug;
+        return $this->loadShop('product.detail', $this->data);
     }
 
     public function productDetail($slug)
