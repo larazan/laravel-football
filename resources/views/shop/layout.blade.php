@@ -28,7 +28,7 @@
     @stack('style')
 </head>
 
-<body>
+<body x-data="{ sidebarOpen: false }" >
 
 @include('shop.layouts._header')
 @include('shop.components._scrollTop')

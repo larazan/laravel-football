@@ -77,7 +77,7 @@
                   <span class="font-bold text-gray-900">For all our happy plants.</span>{" "}
                   <a
                     class="hidden underline hover:no-underline text-gray-900"
-                    href="/page/guarantee"
+                    href="{{ url('/') }}"
                   >
                     Read more about our guarantees
                   </a>

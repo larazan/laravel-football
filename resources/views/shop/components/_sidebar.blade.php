@@ -1,14 +1,17 @@
 <aside
-      class={`${
-        isOpen ? "right-0" : "-right-full"
-      } transform overflow-auto ease-in-out translate-x-0 w-full bg-white fixed top-0 h-full shadow-2xl md:w-[35vw] transition-all duration-300 z-30 `}
-    >
+      class="transform overflow-auto ease-in-out translate-x-0 w-full bg-white fixed top-0 h-full shadow-2xl md:w-[35vw] transition-all duration-300 z-30"
+      :class="sidebarOpen ? 'right-0' : '-right-full'"
+      @click.outside="sidebarOpen = false" 
+      @keydown.escape.window="sidebarOpen = false" 
+      aria-hidden="true" 
+      x-cloak
+      >
       <div class="flex items-center justify-between px-3 py-6 border-b">
         <div class="uppercase text-sm md:text-lg tracking-tighter font-semibold text-[#001838]">
           Shopping Bag (0)
         </div>
         <div
-          onClick={handleClose}
+          @click.stop="sidebarOpen = !sidebarOpen"
           class="cursor-pointer w-8 h-8 flex justify-center items-center"
         >
           <svg
@@ -53,18 +56,18 @@
             </svg>
           </div>
         </div>
-        <Link
-          href={"/cart"}
+        <a
+          href="{{ url('/') }}"
           class="bg-[#001838] hover:opacity-80 uppercase tracking-tight text-white rounded flex p-3 justify-center items-center w-full font-semibold"
         >
           View Cart
-        </Link>
-        <Link
-          href={"/checkout"}
+        </a>
+        <a
+          href="{{ url('/') }}"
           class="bg-[#3bd6ff] hover:opacity-80 uppercase tracking-tight rounded text-[#001838] border border-[#001838] flex p-3 justify-center items-center w-full font-semibold"
         >
           Checkout
-        </Link>
+        </a>
       </div>
 
       

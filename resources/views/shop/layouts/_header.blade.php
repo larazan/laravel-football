@@ -208,10 +208,14 @@
               </li>
               <li class="grid items-center">
                 <!-- <UserMenu /> -->
+                @include('shop.components._profileMenu')
               </li>
               <li class="grid items-center">
                 <button
                   type="button"
+                  @click.stop="sidebarOpen = !sidebarOpen"
+                    aria-controls="sidebar"
+                    :aria-expanded="sidebarOpen"
                   class="border-none outline-none active:scale-110 transition-all duration-300 relative"
                 >
                   <svg

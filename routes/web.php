@@ -126,7 +126,8 @@ Route::get('/standing', [StandingController::class, 'index'])->name('standing');
 Route::get('/team', [SquadController::class, 'index'])->name('team');
 Route::get('/team/{slug}', [SquadController::class, 'show']);
 
-Route::get('/contact', [PagesController::class, 'contact'])->name('contact');
+Route::get('/contact', [ContactController::class, 'index'])->name('contact');
+Route::get('/contact', [ContactController::class, 'submit'])->name('contact.submit');
 Route::get('/faqs', [PagesController::class, 'faqs']);
 Route::get('/policy', [PagesController::class, 'policy']);
 Route::get('/terms', [PagesController::class, 'terms']);
@@ -153,6 +154,12 @@ Route::group(['prefix' => 'account', 'as' => 'account'], function() {
 Route::middleware(['auth:sanctum', 'verified', 'role:admin|author|sales'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('dashboard', Dashboard::class)->name('dashboard');
     Route::get('lineup', [LineupTest::class, 'index']);
+
+    Route::prefix('blog')->name('blogs.')->group(function () {
+        Route::get('create', \App\Http\Livewire\Admin\Blog\Create::class)->name('create');
+        Route::get('all', \App\Http\Livewire\Admin\Blog\Index::class)->name('all');
+        Route::get('{articleId}/update', \App\Http\Livewire\Admin\Blog\Edit::class)->name('edit');
+    });
     
     Route::get('about-us', AboutUs::class)->name('about-us.index');
     Route::get('privacy-policy', PrivacyPolicy::class)->name('privacy-policy.index');
