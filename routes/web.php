@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\PlayerStatisticController;
 use App\Http\Controllers\Admin\ReportController;
 
 use App\Http\Controllers\ArticleController as News;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\ClubController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ContactController;
@@ -21,6 +22,7 @@ use App\Http\Controllers\PagesController;
 use App\Http\Controllers\MatchController;
 use App\Http\Controllers\StandingController;
 use App\Http\Controllers\SquadController;
+use App\Http\Controllers\ShopController;
 use App\Http\Controllers\NewsController as Media;
 use App\Http\Controllers\CkeditorFileUploadController;
 use App\Http\Controllers\LineupTest;
@@ -144,6 +146,18 @@ Route::group(['prefix' => 'account', 'as' => 'account'], function() {
     Route::get('/change-password', [DashboardController::class, 'password'])->name('change.password');
 });
 
+// Shop
+Route::prefix('shop')->group(function () {
+    Route::get('/', [ShopController::class, 'index'])->name('shop.index');
+    Route::get('/all', [ShopController::class, 'category'])->name('shop.all');
+    Route::get('/product/{slug}', [ShopController::class, 'detail'])->name('shop.show');
+
+    Route::get('/carts', [CartController::class, 'index']);
+    Route::get('/carts/remove/{cartID}', [CartController::class, 'destroy']);
+    Route::post('/carts', [CartController::class, 'store']);
+    Route::post('/carts/add-cart', [CartController::class, 'addCart'])->name('add-cart');
+    Route::post('/carts/update', [CartController::class, 'update']);
+});
 
 // Route::feeds();
 

@@ -11,8 +11,8 @@
                 <image alt="Trainer" src="{{ asset('assets/img/promo1.jpg') }}" class="h-full w-full object-cover md:h-full" />
 
                 <button class="absolute flex top-1 right-1 md:top-2 md:right-2 rounded-full bg-white shadow-xl px-1 py-1 md:p-2 cursor-pointer" @click="showModal = !showModal">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={3} stroke="currentColor" class="w-5 h-5 text-[#1d494e]">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width={3} stroke="currentColor" class="w-5 h-5 text-[#1d494e]">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
                     </svg>
                 </button>
 

@@ -1,5 +1,5 @@
 <section class="">
-  <image src="{{ asset('assets/img/hero_homekit_foden_mobile.jpg') }}" alt="" />
+  <image src="{{ asset('assets/img/hero_homekit_foden_mobile.jpg') }}" alt="hero" />
 </section>
 <div class="px-2 bg-white text-slate-900 text-center max-w-[800px] mx-auto my-[20px] md:my-[80px]">
   <div class="text-[20px] md:text-[34px] mb-5 font-semibold leading-tight">

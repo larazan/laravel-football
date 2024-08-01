@@ -31,7 +31,7 @@ class ProductFactory extends Factory
             'uploads/products/original/product12_1657179938.jpg',
         ];
 
-        $image = Str::of($images)->snake()->lower();
+        // $image = Str::of($images)->snake()->lower();
         
         return [
             'rand_id' => $randId, 
@@ -47,9 +47,11 @@ class ProductFactory extends Factory
             'width' => 1, 
             'height' => 1, 
             'length' => 1, 
-            'short_description' => $this->faker->words(8, true), 
+            // 'short_description' => $this->faker->words(8, true), 
             'description' => $this->faker->paragraph(), 
-            'status' => 1,
+            'status' => 'active',
+            'brand_id' => 1,
+            'category_id' => 1,
         ];
     }
 }

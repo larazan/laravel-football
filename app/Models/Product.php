@@ -6,39 +6,42 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
-use Spatie\Activitylog\Traits\LogsActivity;
-use Spatie\Activitylog\LogOptions;
+// use Spatie\Activitylog\Traits\LogsActivity;
+// use Spatie\Activitylog\LogOptions;
 
 class Product extends Model
 {
-	use HasFactory, LogsActivity;
+	use HasFactory; 
+	// use LogsActivity;
 
-    public function getActivitylogOptions(): LogOptions
-    {
-        return LogOptions::defaults()
-        ->logUnguarded()
-        ->setDescriptionForEvent(fn(string $eventName) => "This model has been {$eventName} by: ". Auth::user() ? Auth::user()->first_name .' '. Auth::user()->last_name : 'admin');
-        // Chain fluent methods for configuration options
-    }
+    // public function getActivitylogOptions(): LogOptions
+    // {
+    //     return LogOptions::defaults()
+    //     ->logUnguarded()
+    //     ->setDescriptionForEvent(fn(string $eventName) => "This model has been {$eventName} by: ". Auth::user() ? Auth::user()->first_name .' '. Auth::user()->last_name : 'admin');
+    //     // Chain fluent methods for configuration options
+    // }
 
     protected $fillable = [
 		'rand_id',
-		'code',
+		// 'code',
 		'parent_id',
 		'user_id',
 		'sku',
 		'type',
 		'name',
 		'slug',
-		'images',
-		'thumbnail',
+		'short_desc',
+		'description',
+		// 'images',
+		// 'thumbnail',
 		'published',
 		'discount_type',
-		'current_stock',
-		'featured_status',
+		// 'current_stock',
+		// 'featured_status',
 		'meta_title',
 		'meta_description',
-		'meta_image',
+		// 'meta_image',
 		'price',
 		'discount',
 		'weight',

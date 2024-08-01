@@ -121,17 +121,17 @@ class ShopController extends Controller
     //
     public function index()
     {
-        $featured_products = Product::where('status', '1')->take(15)->get();
+        $featured_products = Product::where('status', 'active')->paginate(10);
         $this->data['products'] = $featured_products;
         
         return $this->loadShop('home', $this->data);
     }
 
-    public function category($slug)
+    public function category($slug = 'shirt')
     {
         if (Category::where('slug', $slug)->exists()) {
             $category = Category::where('slug', $slug)->first();
-            $products = Product::where('category_id', $category->id)->where('status', '0')->get();
+            $products = Product::where('category_id', $category->id)->where('status', 'active')->paginate(12);
         } else {
             return redirect('/')->with('status', "slug doesn exists");
         }

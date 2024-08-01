@@ -33,8 +33,9 @@ return new class extends Migration
             $table->decimal('width', 10, 2)->nullable();
             $table->decimal('height', 10, 2)->nullable();
             $table->decimal('length', 10, 2)->nullable();
+            $table->string('short_desc')->nullable();
             $table->text('description')->nullable();
-            $table->string('status')->default('active');
+            $table->string('status', 10)->default('active');
             $table->timestamps();
             $table->softDeletes();
 

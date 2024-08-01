@@ -16,6 +16,7 @@
 
     
     @vite(['resources/css/app.css'])
+    @livewireStyles
     <link rel="stylesheet" href="{{ asset('frontend/css/main.css') }}" />
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.0/dist/cdn.min.js"></script>
 
@@ -39,7 +40,7 @@
 @include('frontend.layouts._footer')
 
 @stack('modals')
-
+@livewireScripts
 @stack('js')
 
 </body>

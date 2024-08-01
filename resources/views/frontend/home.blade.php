@@ -49,7 +49,7 @@
             </button>
         </div>
 
-        <div class="mb-[1em] flex flex-row overflow-x-auto scroll-smooth custom-scrollbar" ref={scrl}>
+        <div class="mb-[1em] flex flex-row overflow-x-auto scroll-smooth custom-scrollbar" >
             @foreach($schedules as $s)
 
             <div class="transition-all duration-150 flex mr-[.5em] ">
@@ -82,7 +82,6 @@
                                     </div>
                                 </div>
                                 @endif
-
 
                                 <div>
                                     <span class="text-xs md:text-sm text-gray-500">

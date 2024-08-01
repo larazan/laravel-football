@@ -4,6 +4,8 @@
 
 @include('shop.components._adsModal')
 
+@dump($products)
+
 <div class="bg-white">
 @include('shop.components._hero')
 
