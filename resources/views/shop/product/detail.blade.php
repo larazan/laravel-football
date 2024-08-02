@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="w-full py-5 md:py-5 bg-[#f5f7f9]">
-        <ToastContainer />
+        
         <div class="w-full max-w-[1280px] px-5 md:px-10 mx-auto">
           <div class="flex flex-col md:flex-row md:px-10 gap-[50px] lg:gap-[100px]">
             <!-- left column start -->
@@ -49,31 +49,22 @@
 
                 <!-- SIZE START -->
                 <div id="sizesGrid" class="grid grid-cols-3 gap-2">
-                  {sizeData.map((item, i) => (
+                  @foreach($sizeData as $s)
                     <div
-                      key={i}
-                      class={`border-2 rounded-md text-center text-slate-900 py-3 font-medium ${
-                        item.enabled
-                          ? "hover:border-black cursor-pointer"
-                          : "cursor-not-allowed bg-black/[0.1] opacity-50"
-                      } ${selectedSize === item.size ? "border-black" : ""}`}
-                      onClick={() => {
-                        setSelectedSize(item.size);
-                        setShowError(false);
-                      }}
+                      class="border-2 rounded-md text-center text-slate-900 py-3 font-medium hover:border-black cursor-pointer "
                     >
-                      {item.size}
+                      {{ $s['size'] }}
                     </div>
-                  ))}
+                  @endforeach
                 </div>
                 <!-- SIZE END -->
 <!--  -->
                 <!-- SHOW ERROR START -->
-                {showError && (
+                
                   <div class="text-red-600 mt-1">
                     Size selection is required
                   </div>
-                )}
+                
                 <!-- SHOW ERROR END -->
               </div>
               <!-- PRODUCT SIZE RANGE END -->
@@ -81,17 +72,6 @@
               <!-- ADD TO CART BUTTON START -->
               <button
                 class="w-full py-2 md:py-4 rounded bg-[#001838] text-white text-lg font-medium transition-transform active:scale-95 mb-3 hover:opacity-80 uppercase tracking-tighter"
-                onClick={() => {
-                  if (!selectedSize) {
-                    setShowError(true);
-                    document.getElementById("sizesGrid").scrollIntoView({
-                      block: "center",
-                      behavior: "smooth",
-                    });
-                  } else {
-                    notify();
-                  }
-                }}
               >
                 Add to Cart
               </button>

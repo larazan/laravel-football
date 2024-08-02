@@ -129,3 +129,4 @@
 </header>
 
 @include('shop.components._sidebar')
+@include('shop.components._newsfeed')

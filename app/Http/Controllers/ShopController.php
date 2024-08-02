@@ -110,6 +110,33 @@ class ShopController extends Controller
                 'us' => '3XL',
             ],
         ]);
+
+        $sizeData = collect([
+            [
+              'size' => "S",
+              'enabled' => true,
+            ],
+            [
+              'size' => "M",
+              'enabled' => true,
+            ],
+            [
+              'size' => "L",
+              'enabled' => true,
+            ],
+            [
+              'size' => "XL",
+              'enabled' => true,
+            ],
+            [
+              'size' => "XXL",
+              'enabled' => true,
+            ],
+            [
+              'size' => "3XL",
+              'enabled' => true,
+            ],
+          ]);
         
         $this->data['categories'] = Category::parentCategories()
 			->orderBy('name', 'DESC')
@@ -117,6 +144,7 @@ class ShopController extends Controller
 
         $this->data['measurements'] = $measurements;
         $this->data['conversions'] = $conversions;
+        $this->data['sizeData'] = $sizeData;
     }
     //
     public function index()
@@ -144,9 +172,37 @@ class ShopController extends Controller
 
     public function detail($slug)
     {
+        $limit = 3;
+		$products = Product::active()->limit($limit)->get();
+		$product = Product::active()->where('slug', $slug)->first();
+
+		if (!$product) {
+			return redirect('products');
+		}
+
+        $this->data['product'] = $product;
+		$this->data['products'] = $products;
+		// build breadcrumb data array
+		$breadcrumbs_data['current_page_title'] = $product->name;
+		$breadcrumbs_data['breadcrumbs_array'] = $this->_generate_breadcrumbs_array($product->id);
+		$this->data['breadcrumbs_data'] = $breadcrumbs_data;
+
         $this->data['slug'] = $slug;
         return $this->loadShop('product.detail', $this->data);
     }
+
+    public function _generate_breadcrumbs_array($id) {
+		$homepage_url = url('/');
+		$breadcrumbs_array[$homepage_url] = 'Home';
+		
+		// get sub cat title
+		$sub_cat_title = 'Products';
+		// get sub cat url
+		$sub_cat_url = url('products');
+	
+		$breadcrumbs_array[$sub_cat_url] = $sub_cat_title;
+		return $breadcrumbs_array;
+	}
 
     public function productDetail($slug)
     {

@@ -1,8 +1,11 @@
+@props([
+ 'carts' => false 
+])
+
 <aside 
   id="minicart" 
   :class="minicartOpen ? 'right-0' : '-right-full'" 
   class="transform overflow-auto ease-in-out translate-x-0 w-full bg-white fixed top-0 h-full shadow-2xl md:w-[35vw] transition-all duration-300 z-30" 
-  
   aria-hidden="true"
 >
   <div class="flex items-center justify-between px-3 py-6 border-b">
@@ -15,8 +18,21 @@
       </svg>
     </div>
   </div>
-  <div class="flex  flex-col gap-y-2 h-[520px] lg:h-[640px] px-2 overflow-y-auto overflow-x-hidden ">
+  
+  <div class="flex @if($carts){{ 'flex-col gap-y-2' }}@else{{ '' }}@endif  h-[520px] lg:h-[640px] w-full px-2 overflow-y-auto overflow-x-hidden ">
+    @if($carts)
     <ProductItem />
+    @else
+    <div class="flex flex-col gap-y-3 h-full w-full justify-center items-center">
+    <image src="{{ asset('assets/img/empty-cart.jpg') }}" width=300 height=300 class="w-[300px] md:w-[400px]" alt="empty-cart" />
+      <div class="flex tracking-tight uppercase font-bold text-slate-900">
+        your cart is empty
+      </div>
+      <a href="{{ url('shop/all') }}" class="bg-[#73dfb7] hover:bg-white capitalize tracking-tight rounded-full text-[#001838] border-2 border-[#73dfb7] flex py-3 px-10 justify-center items-center  font-semibold">
+        Continue Shopping
+      </a>
+    </div>
+    @endif
   </div>
 
   <div class="fixed bottom-4 w-full space-y-2 px-2">
@@ -38,3 +54,4 @@
     </a>
   </div>
 </aside>
+<div :class="minicartOpen ? 'block' : 'hidden'" class="hidden2 opacity-50 fixed inset-0 z-20 bg-black"></div>

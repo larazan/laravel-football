@@ -29,7 +29,7 @@
     @stack('style')
 </head>
 
-<body x-data="{ minicartOpen: false, openMenu: false }" >
+<body x-data="{ minicartOpen: false, openMenu: false, filterOpen: false }" >
 
 @include('shop.layouts._header')
 @include('shop.components._scrollTop')

@@ -2,6 +2,10 @@
 
 @section('content')
 
+<div x-data="scrollProgress()" x-init="init()" x-cloak class="fixed inset-x-0 top-0 z-50">
+  <div class="h-2 bg-blue-500" :style="`width: ${percent}%`"></div>
+</div>
+
 <div class="h-max flex flex-col py-0 bg-[#f5f7f9]">
     <div class="mx-auto w-full lg:w-1/2">
         <img alt="" src="{{ url('assets/img/muller_training.png') }}">
@@ -159,4 +163,22 @@
         background-color: #dbeafe;
     }
 </style>
+@endpush
+
+@push('js')
+<script>
+const scrollProgress = () => {
+  return {
+    init() {
+      window.addEventListener('scroll', () => {
+        let winScroll = document.body.scrollTop || document.documentElement.scrollTop
+        let height = document.documentElement.scrollHeight - document.documentElement.clientHeight
+        this.percent = Math.round((winScroll / height) * 100)
+      })
+    },
+    circumference: 30 * 2 * Math.PI,
+    percent: 0,
+  }
+}
+</script>
 @endpush

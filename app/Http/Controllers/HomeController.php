@@ -21,7 +21,7 @@ class HomeController extends Controller
 			->get();
 
         // Schedule
-        $monthEvent = 8;
+        $monthEvent = 9; //8
         // $yearEvent = 2023;
         $monthNow = Carbon::now()->format('m');
         $yearNow = Carbon::now()->format('Y');

@@ -77,7 +77,7 @@
                 <button class="flex justify-center items-center rounded bg-white">
                   <image src="{{ asset('assets/img/partners/telekom_logo_header_neu.svg') }}" class="" alt="" />
                 </button>
-                <a href="{{ url('home') }}" class="flex justify-center py-1 px-1 space-x-1 items-center rounded bg-white">
+                <a href="{{ url('shop') }}" class="flex justify-center py-1 px-1 space-x-1 items-center rounded bg-white">
                   <span class="text-[#dc052d]">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"

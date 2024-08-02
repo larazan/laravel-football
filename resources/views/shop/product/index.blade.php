@@ -16,7 +16,7 @@
             </div>
         </div>
 
-        <div class="flex relative pt-3 items-center  bg-white" x-data="{ filterOpen: false }">
+        <div class="flex relative pt-3 items-center  bg-white">
             <div class="flex flex-col md:flex-row md:justify-between items-center mx-auto w-full px-0 md:px-0 md:w-11/12 border-y border-black divide-y md:divide-y-0 md:divide-x-2 divide-black">
                 <div class="flex w-full md:w-1/2 py-2">
                     <button 
