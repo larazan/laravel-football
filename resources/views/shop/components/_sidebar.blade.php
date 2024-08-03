@@ -7,13 +7,14 @@
   :class="minicartOpen ? 'right-0' : '-right-full'" 
   class="transform overflow-auto ease-in-out translate-x-0 w-full bg-white fixed top-0 h-full shadow-2xl md:w-[35vw] transition-all duration-300 z-30" 
   aria-hidden="true"
+  x-cloak
 >
   <div class="flex items-center justify-between px-3 py-6 border-b">
-    <div class="uppercase text-sm md:text-lg tracking-tighter font-semibold text-[#001838]">
+    <div class="uppercase text-md md:text-lg tracking-tighter font-semibold md:font-bold text-[#001838]">
       Shopping Bag (0)
     </div>
-    <div @click.stop="minicartOpen = !minicartOpen" class="cursor-pointer w-8 h-8 flex justify-center items-center">
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width={1.5} stroke="currentColor" class="w-6 h-6 text-slate-900">
+    <div @click.stop="minicartOpen = !minicartOpen" class="cursor-pointer w-8 h-8 flex justify-center items-center bg-white hover:bg-slate-50 rounded-full shadow">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width=1.5 stroke="currentColor" class="w-5 h-5 md:w-6 md:h-6 text-slate-900">
         <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
       </svg>
     </div>
@@ -24,7 +25,7 @@
     <ProductItem />
     @else
     <div class="flex flex-col gap-y-3 h-full w-full justify-center items-center">
-    <image src="{{ asset('assets/img/empty-cart.jpg') }}" width=300 height=300 class="w-[300px] md:w-[400px]" alt="empty-cart" />
+    <image src="{{ asset('assets/img/empty-cart.png') }}" width=300 height=300 class="w-[300px] md:w-[400px]" alt="empty-cart" />
       <div class="flex tracking-tight uppercase font-bold text-slate-900">
         your cart is empty
       </div>
@@ -35,7 +36,7 @@
     @endif
   </div>
 
-  <div class="fixed bottom-4 w-full space-y-2 px-2">
+  <div class="fixed bottom-4 w-full space-y-2 px-4">
     <div class="flex w-full justify-between items-center ">
       <div class="uppercase font-semibold text-slate-900">
         <span class="mr-2">Total:</span> $ 200.00
@@ -46,10 +47,10 @@
         </svg>
       </div>
     </div>
-    <a href="{{ url('/') }}" class="bg-[#001838] hover:opacity-80 uppercase tracking-tight text-white rounded flex p-3 justify-center items-center w-full font-semibold">
+    <a href="{{ url('/') }}" class="bg-[#001838] hover:bg-white uppercase tracking-tight text-white hover:text-[#001838] border-2 border-[#001838] rounded flex p-3 justify-center items-center w-full font-semibold">
       View Cart
     </a>
-    <a href="{{ url('/') }}" class="bg-[#3bd6ff] hover:opacity-80 uppercase tracking-tight rounded text-[#001838] border border-[#001838] flex p-3 justify-center items-center w-full font-semibold">
+    <a href="{{ url('/') }}" class="bg-[#3bd6ff] hover:bg-white uppercase tracking-tight rounded text-[#001838] border-2 border-[#3bd6ff] flex p-3 justify-center items-center w-full font-semibold">
       Checkout
     </a>
   </div>

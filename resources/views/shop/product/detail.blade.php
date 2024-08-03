@@ -2,6 +2,8 @@
 
 @section('content')
 
+@include('shop.components._breadcrumb')
+
 <div class="w-full py-5 md:py-5 bg-[#f5f7f9]">
         
         <div class="w-full max-w-[1280px] px-5 md:px-10 mx-auto">
@@ -35,7 +37,7 @@
                 incl. of taxes
               </div>
               <div class="text-sm md:text-md font-medium text-black/[0.5] mb-10">
-                {`(Also includes all applicable duties)`}
+                (Also includes all applicable duties)
               </div>
 
               <!-- PRODUCT SIZE RANGE START -->
@@ -43,7 +45,7 @@
                 <!-- HEADING START -->
                 <div class="flex items-center justify-between mb-2">
                   <div class="text-md text-slate-900 font-semibold tracking-tight uppercase">Select Size</div>
-                  <SizeGuide />
+                  @include('shop.components._sizeGuide')
                 </div>
                 <!-- HEADING END -->
 
@@ -78,13 +80,13 @@
               <!-- ADD TO CART BUTTON END -->
 
               <!-- WHISHLIST BUTTON START -->
-              <button class="w-full py-2 md:py-4 rounded border bg-[#3bd6ff] border-black text-slate-900 text-base md:text-lg font-medium transition-transform active:scale-95 flex items-center justify-center gap-2 hover:opacity-75 mb-10 uppercase tracking-tighter">
-                Whishlist
+              <button class="w-full py-2 md:py-3 rounded border-2 bg-[#3bd6ff] border-[#3bd6ff] text-slate-900 hover:text-[#3bd6ff] text-base md:text-lg font-medium transition-transform active:scale-95 flex items-center justify-center gap-2 hover:bg-white mb-10 uppercase tracking-tight2">
+                Wishlist
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
-                  stroke-width={1.5}
+                  stroke-width=1.5
                   stroke="currentColor"
                   class="w-5 h-5 md:w-6 md:h-6"
                 >
@@ -117,5 +119,7 @@
           </div>
         </div>
       </div>
+
+      @include('shop.components._suggest')
 
 @endsection

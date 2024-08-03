@@ -26,6 +26,7 @@ class ProductIndex extends Component
     public $sku;
     public $type;
     public $name;
+    public $shortDesc;
     public $description;
     public $productId;
     public $file;
@@ -133,6 +134,7 @@ class ProductIndex extends Component
         $product->name = $this->name;
         $product->slug = Str::slug($this->name) . '_' . $randId;
         $product->sku = $this->sku;
+        $product->short_desc = $this->shortDesc;
         $product->description = $this->description;
         $product->meta_title = $this->metaTitle;
         $product->meta_description = $this->metaDesc;
@@ -185,6 +187,7 @@ class ProductIndex extends Component
         $this->sku = $product->sku;
         $this->type = $product->type;
         $this->name = $product->name;
+        $this->shortDesc = $product->short_desc;
         $this->description = $product->description;
         $this->publishStatus = $product->published;
         $this->discountType = $product->discount_type;
@@ -245,6 +248,7 @@ class ProductIndex extends Component
                 $product->name = $this->name;
                 $product->slug = Str::slug($this->name) . '_' . $randId;
                 $product->sku = $this->sku;
+                $product->short_desc = $this->shortDesc;
                 $product->description = $this->description;
                 $product->meta_title = $this->metaTitle;
                 $product->meta_description = $this->metaDesc;

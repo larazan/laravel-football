@@ -49,7 +49,7 @@
         <div class="w-full max-w-[1280px] px-5 py-1 md:px-10 mx-auto bg-white">
             <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-5 py-5 md:my-1 px-0 md:px-0">
                 @foreach($products as $p)
-                <a href="{{ url('/') }}" class="transform overflow-hidden bg-transparent duration-200 hover:scale-105 cursor-pointer" key={index}>
+                <a href="{{ url('shop/product/'. $p->slug) }}" class="transform overflow-hidden bg-transparent duration-200 hover:scale-105 cursor-pointer" key={index}>
                     <div class="bg-[#f4f4f4] p-2 rounded-md">
                         <image width="500" height="500" src="{{ asset('assets/img/product/product3.png') }}" alt="{{ $p->name }}" />
                     </div>

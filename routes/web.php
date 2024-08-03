@@ -18,6 +18,7 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\MatchController;
 use App\Http\Controllers\StandingController;
@@ -157,6 +158,8 @@ Route::prefix('shop')->group(function () {
     Route::post('/carts', [CartController::class, 'store']);
     Route::post('/carts/add-cart', [CartController::class, 'addCart'])->name('add-cart');
     Route::post('/carts/update', [CartController::class, 'update']);
+
+    Route::get('/checkout', [OrderController::class, 'checkout']);
 });
 
 // Route::feeds();

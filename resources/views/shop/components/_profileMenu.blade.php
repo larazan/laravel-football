@@ -1,4 +1,4 @@
-<div class="relative inline-flex" x-data="{ open: false }">
+<div class="relative inline-flex" x-data="{ open: false }" x-cloak>
   @if(Auth::check())
   <button class="w-8 h-8 flex items-center justify-center bg-transparent hover:bg-slate-200 transition duration-150 rounded-full" aria-haspopup="true" @click.prevent="open = !open" :aria-expanded="open">
     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width=1.5 stroke="currentColor" class="w-6 h-6 text-slate-900">

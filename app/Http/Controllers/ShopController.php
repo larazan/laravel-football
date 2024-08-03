@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
@@ -139,9 +140,9 @@ class ShopController extends Controller
           ]);
         
         $this->data['categories'] = Category::parentCategories()
-			->orderBy('name', 'DESC')
-			->get();
-
+            ->orderBy('name', 'DESC')
+            ->get();
+        $this->data['brands'] = Brand::orderBy('id', 'DESC')->get();
         $this->data['measurements'] = $measurements;
         $this->data['conversions'] = $conversions;
         $this->data['sizeData'] = $sizeData;
@@ -172,20 +173,20 @@ class ShopController extends Controller
 
     public function detail($slug)
     {
-        $limit = 3;
-		$products = Product::active()->limit($limit)->get();
-		$product = Product::active()->where('slug', $slug)->first();
+        $limit = 8;
+        $products = Product::active()->limit($limit)->get();
+        $product = Product::active()->where('slug', $slug)->first();
 
-		if (!$product) {
-			return redirect('products');
-		}
+        if (!$product) {
+          return redirect('products');
+        }
 
         $this->data['product'] = $product;
-		$this->data['products'] = $products;
-		// build breadcrumb data array
-		$breadcrumbs_data['current_page_title'] = $product->name;
-		$breadcrumbs_data['breadcrumbs_array'] = $this->_generate_breadcrumbs_array($product->id);
-		$this->data['breadcrumbs_data'] = $breadcrumbs_data;
+        $this->data['products'] = $products;
+        // build breadcrumb data array
+        $breadcrumbs_data['current_page_title'] = $product->name;
+        $breadcrumbs_data['breadcrumbs_array'] = $this->_generate_breadcrumbs_array($product->id);
+        $this->data['breadcrumbs_data'] = $breadcrumbs_data;
 
         $this->data['slug'] = $slug;
         return $this->loadShop('product.detail', $this->data);

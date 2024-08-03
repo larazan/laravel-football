@@ -28,9 +28,9 @@ class OrderController extends Controller
 	 */
 	public function __construct()
 	{
-		parent::__construct();
+		// parent::__construct();
 
-		$this->middleware('auth');
+		// $this->middleware('auth');
 
 	}
 
@@ -109,49 +109,49 @@ class OrderController extends Controller
 	 */
 	public function checkout()
 	{
-		$items = Basket::select(DB::raw("baskets.product_id, 
-									baskets.id as id_basket,
-									baskets.user_id, 
-									baskets.qty, 
-									baskets.is_checked, 
-									products.name,
-									products.price,
-									products.weight,
-									product_images.small as gambar, 
-									shops.name as nama_toko,
-									users.city_id
-									"))
-						->where('baskets.user_id', Auth::user()->id)
-						->leftJoin('products', 'products.id', '=', 'baskets.product_id' )
-						->leftJoin('product_brands', 'product_brands.product_id', '=', 'products.id')
-						->leftJoin('product_categories', 'product_categories.product_id', '=', 'products.id')
-						->leftJoin('categories', 'categories.id', '=', 'product_categories.category_id')
-						->leftJoin('brands', 'brands.id', '=', 'product_brands.brand_id')
-						->leftJoin('shops', 'shops.user_id', '=', 'products.user_id')
-						->leftJoin('users', 'users.id', '=', 'products.user_id')
-						->leftJoin(DB::raw('(SELECT MAX(id) as max_id, product_id FROM product_images GROUP BY product_id  )
-							img'), 
-						function($join)
-						{
-						$join->on('products.id', '=', 'img.product_id');
-						})
-						->join('product_images', 'product_images.id', 'img.max_id')
-						->whereNull('baskets.deleted_at')
-						->where('baskets.is_checked', 1)
-						->get();
+		// $items = Basket::select(DB::raw("baskets.product_id, 
+		// 							baskets.id as id_basket,
+		// 							baskets.user_id, 
+		// 							baskets.qty, 
+		// 							baskets.is_checked, 
+		// 							products.name,
+		// 							products.price,
+		// 							products.weight,
+		// 							product_images.small as gambar, 
+		// 							shops.name as nama_toko,
+		// 							users.city_id
+		// 							"))
+		// 				->where('baskets.user_id', Auth::user()->id)
+		// 				->leftJoin('products', 'products.id', '=', 'baskets.product_id' )
+		// 				->leftJoin('product_brands', 'product_brands.product_id', '=', 'products.id')
+		// 				->leftJoin('product_categories', 'product_categories.product_id', '=', 'products.id')
+		// 				->leftJoin('categories', 'categories.id', '=', 'product_categories.category_id')
+		// 				->leftJoin('brands', 'brands.id', '=', 'product_brands.brand_id')
+		// 				->leftJoin('shops', 'shops.user_id', '=', 'products.user_id')
+		// 				->leftJoin('users', 'users.id', '=', 'products.user_id')
+		// 				->leftJoin(DB::raw('(SELECT MAX(id) as max_id, product_id FROM product_images GROUP BY product_id  )
+		// 					img'), 
+		// 				function($join)
+		// 				{
+		// 				$join->on('products.id', '=', 'img.product_id');
+		// 				})
+		// 				->join('product_images', 'product_images.id', 'img.max_id')
+		// 				->whereNull('baskets.deleted_at')
+		// 				->where('baskets.is_checked', 1)
+		// 				->get();
 
-		$this->_updateTax();				
-		$this->data['orders'] = $items;
-		// 
+		// $this->_updateTax();				
+		// $this->data['orders'] = $items;
+		// // 
 
-		$this->data['totalWeight'] = $this->_getTotalWeight() / 1000;
-		$this->data['tax'] = $this->_getTax();
+		// $this->data['totalWeight'] = $this->_getTotalWeight() / 1000;
+		// $this->data['tax'] = $this->_getTax();
 
-		$this->data['provinces'] = $this->getProvinces();
-		$this->data['cities'] = isset(Auth::user()->province_id) ? $this->getCities(Auth::user()->province_id) : [];
-		$this->data['user'] = Auth::user();
+		// $this->data['provinces'] = $this->getProvinces();
+		// $this->data['cities'] = isset(Auth::user()->province_id) ? $this->getCities(Auth::user()->province_id) : [];
+		// $this->data['user'] = Auth::user();
 
-		return $this->loadTheme('orders.checkout', $this->data);
+		return $this->loadShop('checkout.index');
 	}
     
     //

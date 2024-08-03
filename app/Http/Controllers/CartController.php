@@ -32,7 +32,7 @@ class CartController extends Controller
         // var_dump($items); exit;
 		$this->data['items'] =  $items;
 
-		return $this->loadTheme('carts.index', $this->data);
+		return $this->loadShop('cart.index', $this->data);
     }
 
     /**

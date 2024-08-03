@@ -1,4 +1,16 @@
-<div class="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
+<button 
+  class="text-xs hover:text-slate-700 hover:underline font-medium text-black/[0.5] cursor-pointer" 
+  type="button"
+  @click="sizeGuide = true"
+>
+  Size Guide
+</button>
+
+<div 
+  :class="sizeGuide ? 'flex' : 'hidden'"
+  class="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none"
+  x-cloak
+>
   <div class="relative w-auto my-6 mx-auto max-w-3xl">
     <!--content-->
     <div class="border-0 rounded shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
@@ -7,7 +19,7 @@
         <h2 class=" text-2xl text-slate-900 uppercase tracking-tighter font-semibold">
           Men&lsquo;s Jersey Sizing Chart
         </h2>
-        <button class="p-1 ml-auto bg-transparent border-0 text-black  float-right text-3xl leading-none font-semibold outline-none focus:outline-none" onClick="setShowModal(false)">
+        <button @click.stop="sizeGuide = !sizeGuide" class="p-1 ml-auto rounded-full shadow bg-transparent border-0 text-black hover:bg-slate-50  float-right text-3xl leading-none font-semibold outline-none focus:outline-none">
           <span class="bg-transparent text-black  h-6 w-6 text-2xl block outline-none focus:outline-none">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width=1 stroke="currentColor" class="w-6 h-6">
               <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
@@ -53,7 +65,7 @@
                   </td>
                 </tr>
                 @foreach($measurements as $m)
-                
+
                 <tr class="bg-white text-gray-800 border-b border-opacity-20 dark:border-gray-700 dark:bg-gray-900">
                   <td class="p-2 capitalize font-bold">
                     <p>{{ $m['title'] }}</p>
@@ -144,7 +156,7 @@
 
                 </tr>
                 @foreach($conversions as $s)
-                
+
                 <tr class="bg-white text-gray-800 border-b border-opacity-20 dark:border-gray-700 dark:bg-gray-900">
                   <td class="p-2 capitalize font-bold">
                     <p>{{ $s['uk'] }}</p>
@@ -175,4 +187,4 @@
     </div>
   </div>
 </div>
-<div class="opacity-25 fixed inset-0 z-40 bg-black"></div>
+<div :class="sizeGuide ? 'block' : 'hidden'" class="opacity-25 fixed inset-0 z-40 bg-black"></div>

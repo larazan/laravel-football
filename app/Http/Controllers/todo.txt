@@ -1,3 +1,5 @@
 shop
 contact
 
+sort in category
+filter in category
