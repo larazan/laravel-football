@@ -20,6 +20,12 @@
     <link rel="stylesheet" href="{{ asset('frontend/css/main.css') }}" />
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.0/dist/cdn.min.js"></script>
 
+    <style>
+       [x-cloak] {
+            display: none;
+        }
+    </style>
+    
     @stack('meta')
 
     @include('frontend.layouts._favicons')

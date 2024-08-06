@@ -125,6 +125,7 @@
                 id="menubar"
                 :class="menuOpen ? 'flex flex-col' : 'hidden'" 
                 class=" hidden2 bg-[#dc052d]  w-full h-[100vh] z-10 fixed top-0 left-0 text-white text-4xl font-bold  flex-1 flex-col justify-between"
+                x-cloak
               >
                 <div class="flex flex-col">
                   <div class="flex flex-row justify-between items-center px-4 py-4">

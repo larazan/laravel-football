@@ -12,7 +12,7 @@
         @foreach($products as $p)  
        
               <a
-                href="{{ url('/') }}"
+                href="{{ url('shop/product/'. $p->slug) }}"
                 class="transform overflow-hidden bg-white duration-200 hover:scale-105 cursor-pointer"
               >
                 <div class="bg-[#f3f6f9] p-2">

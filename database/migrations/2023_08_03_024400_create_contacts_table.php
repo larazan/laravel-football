@@ -17,11 +17,13 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email');
+            $table->string('subject');
             $table->text('message');
             $table->string('status',10);
             $table->tinyInteger('opened')->default(0);
-            $table->string('feedback')->default(0);
-            $table->longText('reply')->nullable();
+            $table->tinyInteger('feedback')->default(0);
+            $table->text('reply')->nullable();
+            $table->timestamp('reply_at')->nullable();
             $table->timestamps();
         });
     }

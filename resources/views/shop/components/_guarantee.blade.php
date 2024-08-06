@@ -74,7 +74,7 @@
               <div class="[&amp;_p:first-of-type]:text-base [&amp;_p:first-of-type]:lg:text-3xl [&amp;_p:last-child]:text-sm [&amp;_p:last-child]:lg:text-base pl-3 xl:pl-6 mt-3 xl:mt-0">
                 <p class="font-bold text-gray-900">30 day health guarantee</p>
                 <p>
-                  <span class="font-bold text-gray-900">For all our happy plants.</span>{" "}
+                  <span class="font-bold text-gray-900">For all our happy plants.</span>
                   <a
                     class="hidden underline hover:no-underline text-gray-900"
                     href="{{ url('/') }}"
@@ -86,26 +86,6 @@
               </div>
             </div>
           </div>
-          {/* <div class="md:hidden [&amp;_ul_li+li]:mt-5 [&amp;_ul_li]:before:mr-4 [&amp;_ul_li]:before:content-['\2713']">
-            <ul class='text-gray-900'>
-              <li>
-                Delivery <span class="font-bold">throughout Europe</span>
-              </li>
-              <li>
-                <span class="font-bold">
-                  Free shipping for orders over €75,-
-                </span>
-              </li>
-              <li>
-                <a
-                  class="underline hover:no-underline"
-                  href="/page/guarantee"
-                >
-                  <span class="font-bold">30 day</span> PLNTS health
-                  guarantee
-                </a>
-              </li>
-            </ul>
-          </div> */}
+         
         </div>
       </div>

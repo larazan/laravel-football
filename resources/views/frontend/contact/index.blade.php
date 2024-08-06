@@ -1,7 +1,7 @@
 @extends('frontend.layout')
 
 @section('content')
-<div class="h-max flex flex-col py-0 md:py-6 px-6 bg-[#f5f7f9]">
+<div class="h-max flex flex-col py-0 md:py-6 px-6 bg-[#f5f7f9]" x-data="{ alertShow: true }">
     @if ($message = Session::get('success'))
         <div class="bg-green-200 px-6 py-4 my-4 rounded-md text-lg flex items-center mx-auto max-w-lg">
             <svg viewBox="0 0 24 24" class="text-green-600 w-5 h-5 sm:w-5 sm:h-5 mr-3">
@@ -23,36 +23,61 @@
         <span class="text-red-800">{{ $message }}</span>
     </div>
 	@endif
-    <div class="mx-auto w-1/2 lg:w-1/2">
+
+    <!-- message error -->
+    @if($errors->any())
+    <div class="flex justify-between bg-red-100 border border-red-400 text-red-700 px-4 py-3 my-2 rounded" role="alert" x-show="alertShow">
+        <ul>
+            @foreach ($errors->all() as $error)
+            <li>
+                <span class="block sm:inline pl-2">
+                    {{ $error }}
+                </span>
+            </li>
+            @endforeach
+        </ul>
+        <span class="inline" @click="alertShow = !alertShow">
+            <svg class="fill-current h-6 w-6" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                <title>Close</title>
+                <path
+                    d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z" />
+            </svg>
+        </span>
+    </div>
+    @endif
+
+    <div class="mx-auto w-full md:w-1/2 lg:w-1/2 mb-8">
         <div class="py-5">
-            <span class="text-2xl font-bold">
+            <span class="text-lg md:text-2xl leading-tight font-bold">
                 Cant find the answer to your question in our FAQ? Contact Us
             </span>
         </div>
         <form method="POST" action="{{ route('contact.submit') }}" class="w-full max-w-lg">
             @csrf
-            <div class="flex flex-wrap -mx-3 mb-6">
-                <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                    <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="first-name">
-                        First Name*
+            <div class="flex flex-wrap -mx-3 mb-1">
+                <div class="w-full px-3">
+                    <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="name">
+                        Name*
                     </label>
-                    <input class="appearance-none block w-full bg-blue-100 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="first-name" type="text" name="first_name" placeholder="first name" />
-                    <p class="text-red-500 text-xs italic">Please fill out this field.</p>
-                </div>
-                <div class="w-full md:w-1/2 px-3">
-                    <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="last-name">
-                        Last Name*
-                    </label>
-                    <input class="appearance-none block w-full bg-blue-100 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="last-name" type="text" name="last_name" placeholder="last name" />
+                    <input class="appearance-none block w-full bg-blue-100 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="name" type="text" name="name" />
+                    <!-- <p class="text-red-500 text-xs italic">Please fill out this field.</p> -->
                 </div>
             </div>
-            <div class="flex flex-wrap -mx-3 mb-6">
+            <div class="flex flex-wrap -mx-3 mb-1">
                 <div class="w-full px-3">
                     <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="email">
                         E-mail*
                     </label>
                     <input class="appearance-none block w-full bg-blue-100 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="email" type="email" name="email" />
-                    <p class="text-gray-600 text-xs italic">Some tips - as long as needed</p>
+                </div>
+            </div>
+            <div class="flex flex-wrap -mx-3 mb-3">
+                <div class="w-full px-3">
+                    <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="subject">
+                        Subject*
+                    </label>
+                    <input class="appearance-none block w-full bg-blue-100 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="subject" type="text" name="subject" />
+                    <p class="text-gray-600 text-xs italic">Some tips - what you needed</p>
                 </div>
             </div>
             <div class="flex flex-wrap -mx-3 mb-6">

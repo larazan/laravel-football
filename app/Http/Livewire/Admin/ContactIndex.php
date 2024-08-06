@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Admin;
 
 use App\Mail\ReplyContactMail;
+use Carbon\Carbon;
 use App\Models\Contact;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
@@ -15,21 +16,19 @@ class ContactIndex extends Component
 
     public $showContactModal = false;
     public $showAnswerModal = false;
-
-    // public $title;
+    public $contactId;
     public $name;
     public $email;
+    public $subject;
     public $message;
+    public $reply;
+    public $feedback;
     public $opened;
     public $openedStatus = [
         0 => 'no',
         1 => 'yes',
     ];
-    public $reply;
-    public $feedback;
-    public $contactId;
-    public $competition;
-    public $competitionId;
+    
     public $contactStatus = 'inactive';
     public $statuses = [
         'active',
@@ -95,6 +94,20 @@ class ContactIndex extends Component
         $this->dispatchBrowserEvent('banner-message', ['style' => 'success', 'message' => 'Genre created successfully']);
     }
 
+    public function createReply()
+    {
+        $this->validate();
+        
+        Contact::find($this->contactId)->update(
+            [
+                'reply' => $this->reply, 
+                'reply_at' => Carbon::now()
+            ]);
+
+        $this->reset();
+        $this->dispatchBrowserEvent('banner-message', ['style' => 'success', 'message' => 'Category created successfully']);
+    }
+
     public function showEditModal($contactId)
     {
         $this->contactId = $contactId;
@@ -155,19 +168,22 @@ class ContactIndex extends Component
 
     // Reply
 
+    // Reply
+
     public function showReplyModal($contactId)
     {
+        $this->showAnswerModal = true;
+
         $this->contactId = $contactId;
         $contact = Contact::findOrFail($this->contactId);
         $this->name = $contact->name;
+        $this->email = $contact->email;
         $this->message = $contact->message;
-
-        $this->showAnswerModal = true;
+        
     }
 
-    public function replyContact($contactId)
+    public function replyContact()
     {
-        $this->contactId = $contactId;
         $contact = Contact::findOrFail($this->contactId);
         $this->name = $contact->name;
         $this->email = $contact->email;
@@ -175,6 +191,7 @@ class ContactIndex extends Component
         // save reply
         $contact->reply = $this->reply;
         $contact->feedback = 1;
+        $contact->reply_at = Carbon::now();
         $contact->save();
         // email reply
         Mail::to($this->email)->send(new ReplyContactMail($this->name, $this->email, $this->message, $this->reply));

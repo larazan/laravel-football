@@ -130,7 +130,8 @@ Route::get('/team', [SquadController::class, 'index'])->name('team');
 Route::get('/team/{slug}', [SquadController::class, 'show']);
 
 Route::get('/contact', [ContactController::class, 'index'])->name('contact');
-Route::get('/contact', [ContactController::class, 'submit'])->name('contact.submit');
+Route::post('/contact', [ContactController::class, 'submit'])->name('contact.submit');
+
 Route::get('/faqs', [PagesController::class, 'faqs']);
 Route::get('/policy', [PagesController::class, 'policy']);
 Route::get('/terms', [PagesController::class, 'terms']);

@@ -8,6 +8,12 @@
   class="transform overflow-auto ease-in-out translate-x-0 w-full bg-white fixed top-0 h-full shadow-2xl md:w-[35vw] transition-all duration-300 z-30" 
   aria-hidden="true"
   x-cloak
+  x-transition:enter="transition ease-gentle duration-300"
+  x-transition:enter-start="translate-x-full"
+  x-transition:enter-end="translate-x-0"
+  x-transition:leave="transition ease-gentle duration-300"
+  x-transition:leave-start="translate-x-0"
+  x-transition:leave-end="translate-x-full"
 >
   <div class="flex items-center justify-between px-3 py-6 border-b">
     <div class="uppercase text-md md:text-lg tracking-tighter font-semibold md:font-bold text-[#001838]">
@@ -47,10 +53,10 @@
         </svg>
       </div>
     </div>
-    <a href="{{ url('/') }}" class="bg-[#001838] hover:bg-white uppercase tracking-tight text-white hover:text-[#001838] border-2 border-[#001838] rounded flex p-3 justify-center items-center w-full font-semibold">
+    <a href="{{ url('shop/carts') }}" class="bg-[#001838] hover:bg-white uppercase tracking-tight text-white hover:text-[#001838] border-2 border-[#001838] rounded flex p-3 justify-center items-center w-full font-semibold">
       View Cart
     </a>
-    <a href="{{ url('/') }}" class="bg-[#3bd6ff] hover:bg-white uppercase tracking-tight rounded text-[#001838] border-2 border-[#3bd6ff] flex p-3 justify-center items-center w-full font-semibold">
+    <a href="{{ url('shop/checkout') }}" class="bg-[#3bd6ff] hover:bg-white uppercase tracking-tight rounded text-[#001838] border-2 border-[#3bd6ff] flex p-3 justify-center items-center w-full font-semibold">
       Checkout
     </a>
   </div>

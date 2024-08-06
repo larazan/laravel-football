@@ -134,10 +134,13 @@
                                 <div class="gh gt">Email</div>
                             </th>
                             <th class="vi wy w_ vo lm">
+                                <div class="gh gt">Subject</div>
+                            </th>
+                            <th class="vi wy w_ vo lm">
                                 <div class="gh gt">Message</div>
                             </th>
                             <th class="vi wy w_ vo lm">
-                                <div class="gh gt">Status</div>
+                                <div class="gh gt">Reply</div>
                             </th>
                             <th class="vi wy w_ vo lm">
                                 <div class="gh gt">Date</div>
@@ -169,16 +172,19 @@
                                 <div class="gp text-slate-800">{{ $contact->email }}</div>
                             </td>
                             <td class="vi wy w_ vo lm">
-                                <div class="gp text-slate-800">{{ $contact->message }}</div>
+                                <div class="gp ">{{ $contact->subject }}</div>
                             </td>
                             <td class="vi wy w_ vo lm">
-                                @if ($contact->feedback === 0)
-                                <div class="inline-flex gp hf yl rounded-full gn vp vd">unreplied</div>
-                                @endif
-
-                                @if ($contact->feedback === 1)
-                                <div class="inline-flex gp hc ys rounded-full gn vp vd">replied</div>
-                                @endif
+                                <div class="gp ">{!! nl2br(General::smart_wordwrap($contact->message, 80)) !!}</div>
+                            </td>
+                            <td class="vi wy w_ vo lm">
+                                <div class="gp ">
+                                    @if ($contact->reply_at)
+                                    {!! nl2br(General::smart_wordwrap($contact->reply, 40)) !!}
+                                    @else
+                                    <div class="inline-flex gp hf yl rounded-full gn vp vd">belum dibalas</div>
+                                    @endif
+                                </div>
                             </td>
 
                             <td class="vi wy w_ vo lm">
@@ -187,6 +193,13 @@
 
                             <td class="vi wy w_ vo lm of">
                                 <div class="fm">
+                                <button class="gq xv rounded-full" wire:click="showReplyModal({{ $contact->id }})">
+                                        <span class=" d">Reply</span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 15 3 9m0 0 6-6M3 9h12a6 6 0 0 1 0 12h-3" />
+                                        </svg>
+                                    </button>
+
                                     <button class="gq xv rounded-full" wire:click="showEditModal({{ $contact->id }})">
                                         <span class=" d">Edit</span>
                                         <svg class="os sf du" viewBox="0 0 32 32">
@@ -334,67 +347,64 @@
     </x-dialog-modal>
 
     <!-- modal reply -->
-    {{-- 
     <x-dialog-modal wire:model="showAnswerModal" class="">
 
-        @if ($contactId)
-        <x-slot name="title" class="border-b">Reply Contact</x-slot>
-        @endif
+<x-slot name="title" class="border-b">Reply Contact</x-slot>
 
-        <x-slot name="content">
-            <div class="border-t">
-                <div class="vc vu ">
-                    <div class="fw">
+<x-slot name="content">
+    <div class="border-t">
+        <div class="vc vu ">
+            <div class="fw">
 
-                        <form>
-                            <div class="">
-                                <div class="">
-                                    <div class="flex flex-col space-y-3">
-                                        <div class="col-start-1 sm:col-span-3">
-                                            <label for="name" class="block text-sm font-medium text-gray-700">
-                                                Name
-                                            </label>
-                                            <input wire:model="name" type="text" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
-                                        </div>
-
-                                        <div class="col-span-6 sm:col-span-3">
-                                            <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
-                                            <input wire:model="email" type="email" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
-
-                                        </div>
-                                        <div class="col-start-1 sm:col-span-3">
-                                            <label for="message" class="block text-sm font-medium text-gray-700">
-                                                Message
-                                            </label>
-                                            <textarea wire:model="message" cols="50" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"></textarea>
-                                        </div>
-                                        <div class="col-start-1 sm:col-span-3">
-                                            <label for="reply" class="block text-sm font-medium text-gray-700">
-                                                Reply
-                                            </label>
-                                            <textarea wire:model="reply" cols="50" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"></textarea>
-                                        </div>
-
-                                    </div>
+                <form>
+                    <div class="">
+                        <div class="">
+                            <div class="flex flex-col space-y-3">
+                                <div class="col-start-1 sm:col-span-3">
+                                    <label for="name" class="block text-sm font-medium text-gray-700">
+                                        Name
+                                    </label>
+                                    <input wire:model="name" type="text" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                                 </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </x-slot>
-        <x-slot name="footer">
-            <div class="border-slate-200">
-                <div class="flex flex-wrap justify-end fc">
-                    <x-button wire:click="closeReplyModal" class="border-slate-200 hover:text-white hover--border-slate-300 g_">Cancel</x-button>
-                    @if ($contactId)
-                    <x-button wire:click="replyContact" class=" ho xi ye">Update</x-button>
-                    @endif
-                </div>
-            </div>
 
-        </x-slot>
-    </x-dialog-modal>
-    --}}
+                                <div class="col-span-6 sm:col-span-3">
+                                    <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                                    <input wire:model="email" type="email" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+
+                                </div>
+                                <div class="col-start-1 sm:col-span-3">
+                                    <label for="message" class="block text-sm font-medium text-gray-700">
+                                        Message
+                                    </label>
+                                    <textarea wire:model="message" cols="50" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"></textarea>
+                                </div>
+                                <div class="col-start-1 sm:col-span-3">
+                                    <label for="reply" class="block text-sm font-medium text-gray-700">
+                                        Reply
+                                    </label>
+                                    <textarea wire:model="reply" cols="50" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"></textarea>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</x-slot>
+<x-slot name="footer">
+    <div class="border-slate-200">
+        <div class="flex flex-wrap justify-end fc">
+            <x-button wire:click="closeReplyModal" class="border-slate-200 hover:text-white hover--border-slate-300 g_">Cancel</x-button>
+            @if ($contactId)
+            <x-button wire:click="replyContact" class=" ho xi ye">Reply</x-button>
+            @endif
+        </div>
+    </div>
+
+</x-slot>
+</x-dialog-modal>
+
 </div>
 

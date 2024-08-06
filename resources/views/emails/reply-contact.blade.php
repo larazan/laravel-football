@@ -1,10 +1,16 @@
 <x-mail::message>
-# Introduction
+# Hi {{ $name }},
 
-The body of your message.
+## Your Message.
+# {{ $content }}
 
-<x-mail::button :url="''">
-Button Text
+---------------------------------------------
+
+## Our Reply
+- # {{ $reply }} -
+
+<x-mail::button :url="'$url'">
+Visit Our Website
 </x-mail::button>
 
 Thanks,<br>
