@@ -12,6 +12,8 @@ class Category extends Model
 {
     use HasFactory, LogsActivity;
 
+    protected $table = 'categories';
+
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()
@@ -30,9 +32,9 @@ class Category extends Model
         return $this->belongsTo(Category::class, 'parent_id');
     }
 
-    public function products()
+    public function product()
     {
-        return $this->belongsToMany(Product::class, 'category_id');
+        return $this->hasMany(Product::class);
     }
 
     public function scopeParentCategories($query)

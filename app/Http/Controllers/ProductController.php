@@ -258,13 +258,13 @@ class ProductController extends Controller
 	}
 
 	public function _generate_breadcrumbs_array($id) {
-		$homepage_url = url('/');
+		$homepage_url = url('/shop');
 		$breadcrumbs_array[$homepage_url] = 'Home';
 		
 		// get sub cat title
 		$sub_cat_title = 'Products';
 		// get sub cat url
-		$sub_cat_url = url('products');
+		$sub_cat_url = url('/shop/all');
 	
 		$breadcrumbs_array[$sub_cat_url] = $sub_cat_title;
 		return $breadcrumbs_array;

@@ -6,10 +6,10 @@
 
 <div class="w-full py-5 md:py-5 bg-[#f5f7f9]">
         
-        <div class="w-full max-w-[1280px] px-5 md:px-10 mx-auto">
+        <div class="w-full max-w-[1280px] px-4 md:px-6 mx-auto">
           <div class="flex flex-col md:flex-row md:px-10 gap-[50px] lg:gap-[100px]">
             <!-- left column start -->
-            <div class="w-full md:w-auto flex-[1.5] max-w-[500px] lg:max-w-full mx-auto lg:mx-0">
+            <div class="w-full md:w-auto flex max-w-[400px] lg:max-w-full mx-auto lg:mx-0">
               @include('shop.components._productSlider')
             </div>
             <!-- left column end -->
@@ -18,12 +18,12 @@
             <div class="flex-[1] py-3 md:py-0">
               <!-- PRODUCT TITLE -->
               <div class="text-lg md:text-[24px] text-slate-900 font-semibold mb-2 leading-tight">
-                <span>Manchester City Home Jersey 2023/2024</span>
+                <span class="capitalize">{{ $product->name }}</span>
               </div>
 
               <!-- PRODUCT SUBTITLE -->
               <div class="text-base md:text-lg text-slate-500 font-semibold mb-5 leading-tight">
-                lorem ipsum dolor sit amet
+                lorem ipsum dolor sit amet 
               </div>
 
               <!-- PRODUCT PRICE -->
@@ -102,16 +102,7 @@
               <div class="text-slate-900">
                 <div class="text-lg font-bold mb-5 md:mb-2">Product Details</div>
                 <div class="markdown text-md mb-5 leading-tight md:leading-snug">
-                  With the Manchester City 2023/24 Home Kit, we celebrate the
-                  20th anniversary of City at the Etihad Stadium and all those
-                  who call it home. Inspired by the stadium walkways and the
-                  jersey worn during the inaugural season. Featuring the club
-                  crest and PUMA Cat logo on the chest. Designed with a modern
-                  V-neck and executed in a sophisticated classic short sleevefor
-                  kids&lsquo;. Details include the words CITY embroided in the
-                  back of the neck and the Etihad stadium print inside the
-                  neckline. Be at home with the 2023/24 season&lsquo;s Man City
-                  Home jersey.
+                  {{ $product->description }}
                 </div>
               </div>
             </div>

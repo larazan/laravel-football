@@ -102,9 +102,9 @@ class Product extends Model
 	 *
 	 * @return void
 	 */
-	public function categories()
+	public function category()
 	{
-		return $this->belongsToMany(Category::class);
+		return $this->belongsTo(Category::class, 'category_id');
 	}
 
 	public function brands()

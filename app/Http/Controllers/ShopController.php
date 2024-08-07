@@ -193,17 +193,20 @@ class ShopController extends Controller
     }
 
     public function _generate_breadcrumbs_array($id) {
-		$homepage_url = url('/');
-		$breadcrumbs_array[$homepage_url] = 'Home';
-		
-		// get sub cat title
-		$sub_cat_title = 'Products';
-		// get sub cat url
-		$sub_cat_url = url('products');
-	
-		$breadcrumbs_array[$sub_cat_url] = $sub_cat_title;
-		return $breadcrumbs_array;
-	}
+      $product = Product::findOrFail($id);
+      $category = $product->category->name;
+
+      $homepage_url = url('/shop');
+      $breadcrumbs_array[$homepage_url] = 'Home';
+      
+      // get sub cat title
+      $sub_cat_title = $category; //'Products';
+      // get sub cat url
+      $sub_cat_url = url('shop/all');
+    
+      $breadcrumbs_array[$sub_cat_url] = $sub_cat_title;
+      return $breadcrumbs_array;
+	  }
 
     public function productDetail($slug)
     {
