@@ -1,3 +1,7 @@
+admin
+    training schedule
+    player positons
+
 shop
 contact
 

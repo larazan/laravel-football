@@ -4,22 +4,16 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-class Multiple extends Component
+class Calendar extends Component
 {
-    // public $options = [];
-    // public $selected = [];
-    public $trackBy;
-    public $label;
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct( $trackBy = 'value', $label = 'name')
+    public function __construct()
     {
-        
-        $this->trackBy = $trackBy;
-        $this->label = $label;
+        //
     }
 
     /**
@@ -29,6 +23,6 @@ class Multiple extends Component
      */
     public function render()
     {
-        return view('components.multiple');
+        return view('components.calendar');
     }
 }

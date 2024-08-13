@@ -10,6 +10,7 @@ use App\Models\Club;
 use App\Models\Country;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\ImageManagerStatic as Image;
 use Livewire\WithPagination;
@@ -18,6 +19,10 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class PlayerIndex extends Component
 {
+    public $selectedPosition;
+    public $selectedPos = [5,6,7];
+    public $multiselect = [];
+    public $positions;
     use WithFileUploads, WithPagination;
     
     public $selectedClub;
@@ -110,55 +115,96 @@ class PlayerIndex extends Component
             ],
             [
                 'value' => 4,
-                'text' => 'Wafer',
+                'text' => 'Cookies',
                 'selected' => false
             ],
             [
                 'value' => 5,
-                'text' => 'Wafer',
+                'text' => 'Sandwich',
                 'selected' => false
             ],
             [
                 'value' => 6,
-                'text' => 'Wafer',
+                'text' => 'Kebab',
                 'selected' => false
             ],
             [
                 'value' => 7,
-                'text' => 'Wafer',
+                'text' => 'Egg Roll',
                 'selected' => false
             ],
             [
                 'value' => 8,
-                'text' => 'Wafer',
+                'text' => 'Milo',
                 'selected' => false
             ],
             [
                 'value' => 9,
-                'text' => 'Wafer',
+                'text' => 'Kitkat',
                 'selected' => false
             ],
             [
                 'value' => 10,
-                'text' => 'Wafer',
+                'text' => 'Mashmellow',
                 'selected' => false
             ],
             [
                 'value' => 11,
-                'text' => 'Wafer',
+                'text' => 'Prinkle',
                 'selected' => false
             ],
             [
                 'value' => 12,
-                'text' => 'Wafer',
+                'text' => 'Fritos',
                 'selected' => false
             ],
             [
                 'value' => 13,
-                'text' => 'Wafer',
+                'text' => 'Hershey',
                 'selected' => false
             ],
         ]);
+
+        $newArr = [];
+        $sPos = [
+            [
+                'id' => 10,
+                'name' => 'LWB',
+                'selected' => true
+            ],
+            [
+                'id' => 17,
+                'name' => 'ST',
+                'selected' => true
+            ],
+        ];
+        foreach($sPos as $key => $s) {
+            array_push($newArr, $s['id']);
+        }
+        $this->selectedPosition = $newArr;
+
+        // Position 
+        $statePos = [];
+        $pos = Position::whereIn('id', $this->selectedPos)->get();
+        foreach($pos as $p) {
+            array_push($statePos, [
+                'id' => $p->id,
+                'name' => $p->abbreviation,
+            ]);
+        }
+
+        $this->multiselect = $statePos;
+
+        $newPos = [];
+        $positions = Position::get();
+        foreach($positions as $p) {
+            array_push($newPos, [
+                'id' => $p->id,
+                'name' => $p->abbreviation,
+            ]);
+        }
+
+        $this->positions = $newPos;
     } 
 
     public function showCreateModal()
@@ -187,6 +233,7 @@ class PlayerIndex extends Component
 
     public function createPlayer()
     {
+        dd($this->multiselect);
         $this->validate();
   
         $new = Str::slug($this->name) . '_' . time();
@@ -207,7 +254,7 @@ class PlayerIndex extends Component
         $player->weight = $this->weight;
         $player->prefered_foot = $this->preferedFoot;
         $player->shirt_number = $this->shirtNumber;
-        $player->position_id = $this->position;
+        // $player->position_id = $this->position;
         $player->facebook = $this->facebook;
         $player->instagram = $this->instagram;
         $player->twitter = $this->twitter;
@@ -226,6 +273,14 @@ class PlayerIndex extends Component
         }
 
         $player->save();
+
+        // position
+        // sync to pivot table
+        $arrayPosition = [];
+        foreach($this->multiselect as $key => $s) {
+            array_push($arrayPosition, $s['id']);
+        }
+        $player->positions()->sync($arrayPosition);
 
         // Player::create([
         //     'name' => $this->name,
@@ -253,7 +308,8 @@ class PlayerIndex extends Component
         $this->level = $player->level;
         $this->gender = $player->gender;
         $this->name = $player->name;
-        $this->position = $player->position_id;
+        // $this->position = $player->position_id;
+        $this->multiselect = $player->positions->pluck('id')->toArray();
         $this->birthDate = $player->birth_date;
         $this->birthLocation = $player->birth_location;
         $this->nationality = $player->country_id;
@@ -282,7 +338,8 @@ class PlayerIndex extends Component
         $this->level = $player->level;
         $this->gender = $player->gender;
         $this->name = $player->name;
-        $this->position = $player->position->name;
+        // $this->position = $player->position->name;
+        $this->multiselect = $player->positions->pluck('id')->toArray();
         $this->birthDate = $player->birth_date;
         $this->birthLocation = $player->birth_location;
         $this->bio = $player->bio;
@@ -350,7 +407,7 @@ class PlayerIndex extends Component
                 $player->weight = $this->weight;
                 $player->prefered_foot = $this->preferedFoot;
                 $player->shirt_number = $this->shirtNumber;
-                $player->position_id = $this->position;
+                // $player->position_id = $this->position;
                 $player->facebook = $this->facebook;
                 $player->instagram = $this->instagram;
                 $player->twitter = $this->twitter;
@@ -372,6 +429,14 @@ class PlayerIndex extends Component
                 }
                 
                 $player->save();
+
+                // position
+                // sync to pivot table
+                $arrayPosition = [];
+                foreach($this->multiselect as $key => $s) {
+                    array_push($arrayPosition, $s['id']);
+                }
+                $player->positions()->sync($arrayPosition);
             }
         }
 
@@ -424,7 +489,7 @@ class PlayerIndex extends Component
     {
         return view('livewire.admin.player-index', [
             'players' => Player::liveSearch('name', $this->search)->where('level', 'senior')->where('gender', 'men')->orderBy('name', $this->sort)->paginate($this->perPage),
-            'clubs' => Club::OrderBy('name', 'asc')->get(),
+            'clubs' => Club::OrderBy('id', 'asc')->get(),
             'teams' => Club::OrderBy('id', 'asc')->get()->toArray(),
             'positionOption' => Position::OrderBy('name', 'asc')->get(),
             'countries' => Country::orderBy('name', 'asc')->get(),

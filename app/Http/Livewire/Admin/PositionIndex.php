@@ -31,7 +31,7 @@ class PositionIndex extends Component
     ];
 
     protected $rules = [
-        'name' => 'required|max:255',
+        'name' => 'required|max:255|unique:positions,name',
     ];
 
     public function showCreateModal()

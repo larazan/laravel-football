@@ -4,20 +4,22 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-class Multiple extends Component
+class Multiselect extends Component
 {
-    // public $options = [];
-    // public $selected = [];
+    public $options = [];
+    public $selected = [];
     public $trackBy;
     public $label;
+
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct( $trackBy = 'value', $label = 'name')
+    public function __construct($options, $selected = [], $trackBy = 'id', $label = 'name')
     {
-        
+        $this->options = $options;
+        $this->selected = $selected;
         $this->trackBy = $trackBy;
         $this->label = $label;
     }
@@ -29,6 +31,6 @@ class Multiple extends Component
      */
     public function render()
     {
-        return view('components.multiple');
+        return view('components.multiselect');
     }
 }

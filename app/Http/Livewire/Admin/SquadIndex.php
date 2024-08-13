@@ -18,8 +18,13 @@ use Carbon\Carbon;
 use Maatwebsite\Excel\Facades\Excel;
 
 class SquadIndex extends Component
-{
+{   
     use WithPagination, WithFileUploads;
+
+    public $selectedPos = [5,6,7];
+    public $multiselect = [];
+    public $positions;
+    // public $selected = [1,2];
 
     public $selectedClub;
     public $counter = 0;
@@ -90,11 +95,39 @@ class SquadIndex extends Component
         $this->contractFrom = today()->format('Y-m-d');
         $this->contractUntil = today()->format('Y-m-d');
         $this->birthDate = today()->format('Y-m-d');
+
+        // Position 
+        $statePos = [];
+        $pos = Position::whereIn('id', $this->selectedPos)->get();
+        foreach($pos as $p) {
+            array_push($statePos, [
+                'id' => $p->id,
+                'name' => $p->abbreviation,
+            ]);
+        }
+
+        $this->multiselect = $statePos;
+
+        $newPos = [];
+        $positions = Position::get();
+        foreach($positions as $p) {
+            array_push($newPos, [
+                'id' => $p->id,
+                'name' => $p->abbreviation,
+            ]);
+        }
+
+        $this->positions = $newPos;
     }
 
     public function hydrate()
     {
         $this->clubId = Schedule::pinnedClub();
+    }
+
+    public function selectPos()
+    {
+        dd($this->positions);
     }
 
     public function showCreateModal()

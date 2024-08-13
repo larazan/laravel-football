@@ -98,7 +98,13 @@
                                                             <div class="max-w-sm w-full ">
                                                                 <div class="tags-input">
 
-                                                                    <input class="appearance-none border py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mt-1 focus:ring-indigo-500 focus:border-2 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-600" placeholder="Enter some tags" @keydown.enter.prevent="if (newTag.trim() !== '') tags.push(newTag.trim()); newTag = ''" @keydown.backspace="if (newTag.trim() === '') tags.pop()" x-model="newTag">
+                                                                    <input 
+                                                                        class="appearance-none border py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mt-1 focus:ring-indigo-500 focus:border-2 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-600" 
+                                                                        placeholder="Enter some tags" 
+                                                                        @keydown.enter.prevent="if (newTag.trim() !== '') tags.push(newTag.trim()); newTag = ''" 
+                                                                        @keydown.backspace="if (newTag.trim() === '') tags.pop()" 
+                                                                        x-model="newTag"
+                                                                    >
 
                                                                     <template x-for="tag in tags" :key="tag">
                                                                         <div class="bg-gray-200 inline-flex items-center text-sm rounded mt-2 mr-1">

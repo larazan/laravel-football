@@ -5,7 +5,7 @@
     <!-- Loading -->
     <x-loading-indicator />
 
-    @dump(json_encode($subCategory))
+@dump($selectedPosition)
 
     <!-- Page header -->
     <div class="je jd jc ii">
@@ -53,15 +53,11 @@
         <!-- Right side -->
         <div class="sn am jo az jp ft">
 
-            <x-multiple 
-                :subCategory="$subCategory" 
-            />
+        <x-multiselect
+            wire:model="multiselect"
+            :options="$positions"
+        /> 
 
-            <!-- [
-                        ['value' => 'laravel', 'text' => 'Laravel', 'selected' => false], 
-                        ['value' => 'alpineJs', 'text' => 'Alpine JS', 'selected' => false], 
-                        ['value' => 'livewire', 'text' => 'Livewire', 'selected' => false]
-                    ] -->
 
             <!-- Delete button -->
             <div class="table-items-action hidden">
@@ -351,7 +347,11 @@
 
                                             <div class="col-start-1 sm:col-span-3">
                                                 <label for="position" class="block text-sm font-medium text-gray-700">Position</label>
-                                                <select wire:model="position" class=" rounded-r border-t border-r border-b block appearance-none w-full bg-white border-gray-300 text-gray-700 py-2 px-4 pr-8 leading-tight focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none">
+                                                <x-multiselect
+                                                    wire:model="multiselect"
+                                                    :options="$positions"
+                                                /> 
+                                                <select wire:model="position" class="hidden rounded-r border-t border-r border-b block2 appearance-none w-full bg-white border-gray-300 text-gray-700 py-2 px-4 pr-8 leading-tight focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none">
                                                     <option value="">Select Option</option>
                                                     @foreach($positionOption as $pos)
                                                     <option value="{{ $pos->id }}">{{ $pos->name }}</option>

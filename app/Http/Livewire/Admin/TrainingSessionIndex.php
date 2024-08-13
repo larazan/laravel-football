@@ -35,6 +35,7 @@ class TrainingSessionIndex extends Component
 
     protected $rules = [
         'name' => 'required',
+        'focus' => 'required',
     ];
 
     public function showCreateModal()
@@ -63,7 +64,6 @@ class TrainingSessionIndex extends Component
 ///////
     public function createSession()
     {
-
         TrainingSession::create([
           'name' => $this->name,
           'training_type_id' => $this->type,
@@ -85,7 +85,7 @@ class TrainingSessionIndex extends Component
     public function loadSession()
     {
         $session = TrainingSession::findOrFail($this->sessionId);
-        $this->name = $session->year;
+        $this->name = $session->name;
         $this->type = $session->training_type_id;
         $this->focus = $session->focus;
         $this->note = $session->note;

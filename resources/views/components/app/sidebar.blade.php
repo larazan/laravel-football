@@ -7,13 +7,12 @@
     </div>
 
     <!-- Sidebar -->
-    <div id="sidebar" class="flex ak g tb x k tea tec teh tts ss lp tth l or tej ttz 2xl:!w-64 ub hs dw we wr wu" 
+    <div id="sidebar" class="flex ak g tb x k tea tec teh tts ss lp tth l or tej ttz 2xl:!w-64 ub hs dw we wr wu overflow-y-auto overflow-scroll" 
         :class="sidebarOpen ? 'translate-x-0' : '-translate-x-64'" 
         @click.outside="sidebarOpen = false" 
         @keydown.escape.window="sidebarOpen = false" 
         x-cloak="lg"
     >
-
 
         <!-- Sidebar header -->
         <div class="flex fe nx vq j_">
@@ -526,20 +525,20 @@
                 </h3>
                 <ul class="nk">
                     <!-- News -->
-                    <li class="vn vr rounded-sm n_ ww @if(in_array(Request::segment(2), ['articles', 'category-article', 'medias'])){{ 'bg-slate-900' }}@else{{ '' }}@endif" x-data="{ open: false }">
+                    <li class="vn vr rounded-sm n_ ww @if(in_array(Request::segment(2), ['blog', 'category-article', 'medias'])){{ 'bg-slate-900' }}@else{{ '' }}@endif" x-data="{ open: false }">
                         <a class="block gj xc ld wt wi" href="#0" @click.prevent="sidebarExpanded ? open = !open : sidebarExpanded = true">
                             <div class="flex items-center fe">
                                 <div class="flex items-center">
                                     <svg class="ub so oi" viewBox="0 0 24 24">
-                                        <path class="du @if(in_array(Request::segment(2), ['articles', 'category-article', 'medias'])){{ 'text-indigo-500' }}@else{{ 'g_' }}@endif" d="M16 13v4H8v-4H0l3-9h18l3 9h-8Z"></path>
-                                        <path class="du @if(in_array(Request::segment(2), ['articles', 'category-article', 'medias'])){{ 'text-indigo-300' }}@else{{ 'gq' }}@endif" d="m23.72 12 .229.686A.984.984 0 0 1 24 13v8a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1v-8c0-.107.017-.213.051-.314L.28 12H8v4h8v-4H23.72ZM13 0v7h3l-4 5-4-5h3V0h2Z"></path>
+                                        <path class="du @if(in_array(Request::segment(2), ['blog', 'category-article', 'medias'])){{ 'text-indigo-500' }}@else{{ 'g_' }}@endif" d="M16 13v4H8v-4H0l3-9h18l3 9h-8Z"></path>
+                                        <path class="du @if(in_array(Request::segment(2), ['blog', 'category-article', 'medias'])){{ 'text-indigo-300' }}@else{{ 'gq' }}@endif" d="m23.72 12 .229.686A.984.984 0 0 1 24 13v8a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1v-8c0-.107.017-.213.051-.314L.28 12H8v4h8v-4H23.72ZM13 0v7h3l-4 5-4-5h3V0h2Z"></path>
                                     </svg>
 
                                     <span class="text-sm gp ml-3 ttw tnn 2xl:opacity--100 wr">News</span>
                                 </div>
                                 <!-- Icon -->
                                 <div class="flex shrink-0 ml-2 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
-                                    <svg class="w-3 h-3 shrink-0 ml-1 fill-current text-slate-400 @if(in_array(Request::segment(2), ['articles', 'category-article', 'medias'])){{ 'rotate-180' }}@endif" :class="open ? 'rotate-180' : 'rotate-0'" viewBox="0 0 12 12">
+                                    <svg class="w-3 h-3 shrink-0 ml-1 fill-current text-slate-400 @if(in_array(Request::segment(2), ['blog', 'category-article', 'medias'])){{ 'rotate-180' }}@endif" :class="open ? 'rotate-180' : 'rotate-0'" viewBox="0 0 12 12">
                                         <path d="M5.9 11.4L.5 6l1.4-1.4 4 4 4-4L11.3 6z" />
                                     </svg>
                                 </div>
@@ -551,9 +550,9 @@
                             </div>
                         </a>
                         <div class="tex ttj 2xl:block">
-                            <ul class="me re @if(!in_array(Request::segment(2), ['articles', 'category-article', 'medias'])){{ 'hidden' }}@else{ !block }@endif" :class="open ? '!block' : 'hidden'">
+                            <ul class="me re @if(!in_array(Request::segment(2), ['blog', 'category-article', 'medias'])){{ 'hidden' }}@else{ !block }@endif" :class="open ? '!block' : 'hidden'">
                                 <li class="rt ww">
-                                    <a class="block @if(in_array(Request::segment(2), ['articles'])){{ 'text-indigo-500' }}@else{{ 'gq hover--text-slate-200' }}@endif wt wi ld" href="{{ url('admin/articles') }}">
+                                    <a class="block @if(in_array(Request::segment(2), ['blog'])){{ 'text-indigo-500' }}@else{{ 'gq hover--text-slate-200' }}@endif wt wi ld" href="{{ url('admin/blog/all') }}">
                                         <span class="text-sm gp ttw tnn 2xl:opacity--100 wr">Article</span>
                                     </a>
                                 </li>
@@ -576,27 +575,32 @@
                         </div>
                     </li>
                     <!-- Pages -->
-                    <li class="vn vr rounded-sm n_ ww @if(in_array(Request::segment(2), ['faqs', 'category-faq', 'about-us', 'privacy-policy', 'term-condition', 'refund-policy', 'shipping-policy'])){{ 'bg-slate-900' }}@else{{ '' }}@endif" x-data="{ open: false }">
+                    <li class="vn vr rounded-sm n_ ww @if(in_array(Request::segment(2), ['contacts', 'faqs', 'category-faq', 'about-us', 'privacy-policy', 'term-condition', 'refund-policy', 'shipping-policy'])){{ 'bg-slate-900' }}@else{{ '' }}@endif" x-data="{ open: false }">
                         <a class="block gj xc ld wt wi" href="#0" @click.prevent="sidebarExpanded ? open = !open : sidebarExpanded = true">
                             <div class="flex items-center fe">
                                 <div class="flex items-center">
                                     <svg class="ub so oi" viewBox="0 0 24 24">
-                                        <path class="du @if(in_array(Request::segment(2), ['faqs', 'category-faq', 'about-us', 'privacy-policy', 'term-condition', 'refund-policy', 'shipping-policy'])){{ 'text-indigo-500' }}@else{{ 'gq' }}@endif" d="M13 15l11-7L11.504.136a1 1 0 00-1.019.007L0 7l13 8z"></path>
-                                        <path class="du @if(in_array(Request::segment(2), ['faqs', 'category-faq', 'about-us', 'privacy-policy', 'term-condition', 'refund-policy', 'shipping-policy'])){{ 'text-indigo-500' }}@else{{ 'gz' }}@endif" d="M13 15L0 7v9c0 .355.189.685.496.864L13 24v-9z"></path>
-                                        <path class="du @if(in_array(Request::segment(2), ['faqs', 'category-faq', 'about-us', 'privacy-policy', 'term-condition', 'refund-policy', 'shipping-policy'])){{ 'text-indigo-500' }}@else{{ 'g_' }}@endif" d="M13 15.047V24l10.573-7.181A.999.999 0 0024 16V8l-11 7.047z"></path>
+                                        <path class="du @if(in_array(Request::segment(2), ['contacts', 'faqs', 'category-faq', 'about-us', 'privacy-policy', 'term-condition', 'refund-policy', 'shipping-policy'])){{ 'text-indigo-500' }}@else{{ 'gq' }}@endif" d="M13 15l11-7L11.504.136a1 1 0 00-1.019.007L0 7l13 8z"></path>
+                                        <path class="du @if(in_array(Request::segment(2), ['contacts', 'faqs', 'category-faq', 'about-us', 'privacy-policy', 'term-condition', 'refund-policy', 'shipping-policy'])){{ 'text-indigo-500' }}@else{{ 'gz' }}@endif" d="M13 15L0 7v9c0 .355.189.685.496.864L13 24v-9z"></path>
+                                        <path class="du @if(in_array(Request::segment(2), ['contacts', 'faqs', 'category-faq', 'about-us', 'privacy-policy', 'term-condition', 'refund-policy', 'shipping-policy'])){{ 'text-indigo-500' }}@else{{ 'g_' }}@endif" d="M13 15.047V24l10.573-7.181A.999.999 0 0024 16V8l-11 7.047z"></path>
                                     </svg>
                                     <span class="text-sm gp ml-3 ttw tnn 2xl:opacity--100 wr">Pages</span>
                                 </div>
                                 <!-- Icon -->
                                 <div class="flex shrink-0 ml-2 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
-                                    <svg class="w-3 h-3 shrink-0 ml-1 fill-current text-slate-400 @if(in_array(Request::segment(2), ['faqs', 'category-faq', 'about-us', 'privacy-policy', 'term-condition', 'refund-policy', 'shipping-policy'])){{ 'rotate-180' }}@endif" :class="open ? 'rotate-180' : 'rotate-0'" viewBox="0 0 12 12">
+                                    <svg class="w-3 h-3 shrink-0 ml-1 fill-current text-slate-400 @if(in_array(Request::segment(2), ['contacts', 'faqs', 'category-faq', 'about-us', 'privacy-policy', 'term-condition', 'refund-policy', 'shipping-policy'])){{ 'rotate-180' }}@endif" :class="open ? 'rotate-180' : 'rotate-0'" viewBox="0 0 12 12">
                                         <path d="M5.9 11.4L.5 6l1.4-1.4 4 4 4-4L11.3 6z" />
                                     </svg>
                                 </div>
                             </div>
                         </a>
                         <div class="tex ttj 2xl:block">
-                            <ul class="me re @if(!in_array(Request::segment(2), ['faqs', 'category-faq', 'about-us', 'privacy-policy', 'term-condition', 'refund-policy', 'shipping-policy'])){{ 'hidden' }}@else{ !block }@endif" :class="open ? '!block' : 'hidden'">
+                            <ul class="me re @if(!in_array(Request::segment(2), ['contacts', 'faqs', 'category-faq', 'about-us', 'privacy-policy', 'term-condition', 'refund-policy', 'shipping-policy'])){{ 'hidden' }}@else{ !block }@endif" :class="open ? '!block' : 'hidden'">
+                                <li class="rt ww">
+                                    <a class="block @if(in_array(Request::segment(2), ['contacts'])){{ 'text-indigo-500' }}@else{{ 'gq hover--text-slate-200' }}@endif wt wi ld" href="{{ url('admin/contacts') }}">
+                                        <span class="text-sm gp ttw tnn 2xl:opacity--100 wr">Contact</span>
+                                    </a>
+                                </li>
                                 <li class="rt ww">
                                     <a class="block @if(in_array(Request::segment(2), ['faqs'])){{ 'text-indigo-500' }}@else{{ 'gq hover--text-slate-200' }}@endif wt wi ld" href="{{ url('admin/faqs') }}">
                                         <span class="text-sm gp ttw tnn 2xl:opacity--100 wr">FAQs</span>
@@ -759,21 +763,21 @@
                     </li>
 
                     <!-- Utility -->
-                    <li class="vn vr rounded-sm n_ ww @if(in_array(Request::segment(2), ['slides', 'reports', 'subscribers', 'contacts'])){{ 'bg-slate-900' }}@else{{ '' }}@endif" x-data="{ open: false }">
+                    <li class="vn vr rounded-sm n_ ww @if(in_array(Request::segment(2), ['slides', 'reports', 'subscribers'])){{ 'bg-slate-900' }}@else{{ '' }}@endif" x-data="{ open: false }">
                         <a class="block gj xc ld wt wi" href="#0" @click.prevent="sidebarExpanded ? open = !open : sidebarExpanded = true">
                             <div class="flex items-center fe">
                                 <div class="flex items-center">
                                     <svg class="ub so oi" viewBox="0 0 24 24">
-                                        <circle class="du @if(in_array(Request::segment(2), ['slides', 'reports', 'subscribers', 'contacts'])){{ 'text-indigo-300' }}@else{{ 'gq' }}@endif" cx="18.5" cy="5.5" r="4.5"></circle>
-                                        <circle class="du @if(in_array(Request::segment(2), ['slides', 'reports', 'subscribers', 'contacts'])){{ 'text-indigo-500' }}@else{{ 'g_' }}@endif" cx="5.5" cy="5.5" r="4.5"></circle>
-                                        <circle class="du @if(in_array(Request::segment(2), ['slides', 'reports', 'subscribers', 'contacts'])){{ 'text-indigo-500' }}@else{{ 'g_' }}@endif" cx="18.5" cy="18.5" r="4.5"></circle>
-                                        <circle class="du @if(in_array(Request::segment(2), ['slides', 'reports', 'subscribers', 'contacts'])){{ 'text-indigo-300' }}@else{{ 'gq' }}@endif" cx="5.5" cy="18.5" r="4.5"></circle>
+                                        <circle class="du @if(in_array(Request::segment(2), ['slides', 'reports', 'subscribers'])){{ 'text-indigo-300' }}@else{{ 'gq' }}@endif" cx="18.5" cy="5.5" r="4.5"></circle>
+                                        <circle class="du @if(in_array(Request::segment(2), ['slides', 'reports', 'subscribers'])){{ 'text-indigo-500' }}@else{{ 'g_' }}@endif" cx="5.5" cy="5.5" r="4.5"></circle>
+                                        <circle class="du @if(in_array(Request::segment(2), ['slides', 'reports', 'subscribers'])){{ 'text-indigo-500' }}@else{{ 'g_' }}@endif" cx="18.5" cy="18.5" r="4.5"></circle>
+                                        <circle class="du @if(in_array(Request::segment(2), ['slides', 'reports', 'subscribers'])){{ 'text-indigo-300' }}@else{{ 'gq' }}@endif" cx="5.5" cy="18.5" r="4.5"></circle>
                                     </svg>
                                     <span class="text-sm gp ml-3 ttw tnn 2xl:opacity--100 wr">Utility</span>
                                 </div>
                                 <!-- Icon -->
                                 <div class="flex shrink-0 ml-2 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
-                                    <svg class="w-3 h-3 shrink-0 ml-1 fill-current text-slate-400 @if(in_array(Request::segment(2), ['slides', 'reports', 'subscribers', 'contacts'])){{ 'rotate-180' }}@endif" :class="open ? 'rotate-180' : 'rotate-0'" viewBox="0 0 12 12">
+                                    <svg class="w-3 h-3 shrink-0 ml-1 fill-current text-slate-400 @if(in_array(Request::segment(2), ['slides', 'reports', 'subscribers'])){{ 'rotate-180' }}@endif" :class="open ? 'rotate-180' : 'rotate-0'" viewBox="0 0 12 12">
                                         <path d="M5.9 11.4L.5 6l1.4-1.4 4 4 4-4L11.3 6z" />
                                     </svg>
                                 </div>
@@ -785,7 +789,7 @@
                             </div>
                         </a>
                         <div class="tex ttj 2xl:block">
-                            <ul class="me re @if(!in_array(Request::segment(2), ['slides', 'reports', 'subscribers', 'contacts'])){{ 'hidden' }}@else{ !block }@endif" :class="open ? '!block' : 'hidden'">
+                            <ul class="me re @if(!in_array(Request::segment(2), ['slides', 'reports', 'subscribers'])){{ 'hidden' }}@else{ !block }@endif" :class="open ? '!block' : 'hidden'">
                                 <li class="rt ww">
                                     <a class="block @if(in_array(Request::segment(2), ['subscribers'])){{ 'text-indigo-500' }}@else{{ 'gq hover--text-slate-200' }}@endif wt wi ld" href="{{ url('admin/subscribers') }}">
                                         <span class="text-sm gp ttw tnn 2xl:opacity--100 wr">Subscribers</span>
@@ -803,11 +807,6 @@
                                     </a>
                                 </li>
 
-                                <li class="rt ww">
-                                    <a class="block @if(in_array(Request::segment(2), ['contacts'])){{ 'text-indigo-500' }}@else{{ 'gq hover--text-slate-200' }}@endif wt wi ld" href="{{ url('admin/contacts') }}">
-                                        <span class="text-sm gp ttw tnn 2xl:opacity--100 wr">Contacts</span>
-                                    </a>
-                                </li>
                             </ul>
                         </div>
                     </li>

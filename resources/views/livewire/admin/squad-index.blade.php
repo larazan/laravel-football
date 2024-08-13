@@ -5,6 +5,9 @@
     <!-- Loading -->
     <x-loading-indicator />
 
+    @dump($positions)
+    @dump($multiselect)
+
     <!-- Page header -->
     <div class="je jd jc ii">
 
@@ -44,10 +47,16 @@
 
         <!-- Left side -->
         <div class="ri _y">
-
+            
         </div>
 
         <!-- Right side -->
+
+        <x-multiselect
+            wire:model="multiselect"
+            :options="$positions"
+        /> 
+
         <div class="sn am jo az jp ft">
 
             <!-- Delete button -->
@@ -80,7 +89,7 @@
         <header class="vc vu">
             <h2 class="gh text-slate-800">Players <span class="gq gp"></span></h2>
         </header>
-        <div x-data="handleSelect">
+        <div >
 
             <!-- Table -->
             <div class="lf">
