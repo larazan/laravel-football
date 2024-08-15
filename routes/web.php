@@ -25,6 +25,7 @@ use App\Http\Controllers\StandingController;
 use App\Http\Controllers\SquadController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\NewsController as Media;
+use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\CkeditorFileUploadController;
 use App\Http\Controllers\LineupTest;
 // Livewire
@@ -161,6 +162,7 @@ Route::prefix('shop')->group(function () {
     Route::post('/carts/update', [CartController::class, 'update']);
 
     Route::get('/checkout', [OrderController::class, 'checkout']);
+    Route::get('/whislist', [WishlistController::class, 'index']);
 });
 
 // Route::feeds();

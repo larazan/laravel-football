@@ -14,5 +14,3 @@
     @endforeach
 </div>
 
-$calendar = Calendar::buildMonth(year: 2022, month: 2);
-$calendar = Calendar::buildYear(2022);

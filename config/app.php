@@ -221,6 +221,7 @@ return [
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
         'PDF' => Barryvdh\DomPDF\Facade::class,
         'General' => App\Helpers\General::class,
+        'Calendar' => App\Support\Calendar::class,
         'Cart' => Darryldecode\Cart\Facades\CartFacade::class,
         'Share' => Jorenvh\Share\ShareFacade::class,
     ])->toArray(),
