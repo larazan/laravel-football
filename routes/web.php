@@ -162,7 +162,7 @@ Route::prefix('shop')->group(function () {
     Route::post('/carts/update', [CartController::class, 'update']);
 
     Route::get('/checkout', [OrderController::class, 'checkout']);
-    Route::get('/whislist', [WishlistController::class, 'index']);
+    Route::get('/wishlist', [WishlistController::class, 'index']);
 });
 
 // Route::feeds();

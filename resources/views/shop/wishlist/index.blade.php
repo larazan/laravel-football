@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="h-max flex flex-col space-y-3 px-0 md:px-6 py-4 md:py-4 justify-center2 items-center2 bg-[#f5f7f9]">
+<div class="h-[calc(100vh-204px)] flex flex-col space-y-3 px-0 md:px-6 py-4 md:py-4 justify-center2 items-center2 bg-[#f5f7f9]">
     <div class="mx-auto w-full md:w-12/12 lg:w-1/2">
         <a
             href="/"
