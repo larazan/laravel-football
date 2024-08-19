@@ -2,8 +2,11 @@ admin
     training schedule
     player positons
 
+    product variant etc size color 
+
+
 shop
-contact
+
 
 sort in category
 filter in category

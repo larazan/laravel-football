@@ -28,6 +28,7 @@ use App\Http\Controllers\NewsController as Media;
 use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\CkeditorFileUploadController;
 use App\Http\Controllers\LineupTest;
+use App\Http\Controllers\SearchController;
 // Livewire
 use App\Http\Livewire\Admin\AboutUs;
 use App\Http\Livewire\Admin\PrivacyPolicy;
@@ -162,6 +163,7 @@ Route::prefix('shop')->group(function () {
     Route::post('/carts/update', [CartController::class, 'update']);
 
     Route::get('/checkout', [OrderController::class, 'checkout']);
+    Route::get('/search', [SearchController::class, 'index']);
     Route::get('/wishlist', [WishlistController::class, 'index']);
 });
 

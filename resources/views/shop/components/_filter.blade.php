@@ -6,7 +6,7 @@
 
     <div class="flex justify-end w-1/2">
       <div @click.stop="filterOpen = !filterOpen" class="cursor-pointer w-8 h-8 flex justify-center items-center rounded-full shadow bg-white hover:bg-slate-50">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width={2} stroke="currentColor" class="w-6 h-6 text-gray-900">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width=2 stroke="currentColor" class="w-6 h-6 text-gray-900">
           <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
         </svg>
       </div>
@@ -70,7 +70,7 @@
       </div>
     </div>
     <!-- end Size -->
-    
+
     <!-- category -->
     <div class="bg-white py-0 flex flex-col w-full" x-data="{ open:false }">
       <button @click="open = !open" class="flex items-center justify-between py-3 group font-semibold md:font-bold">
@@ -87,20 +87,20 @@
       </button>
       <div :class="open ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'" class="grid overflow-hidden transition-all duration-300 ease-in-out text-slate-600 text-sm">
         <!-- content filter -->
-      <div class="overflow-hidden pb-0">
-        <div class="duration-300 px-0 pb-3">
-          <ul>
-            <li class="pl-2">
-              <div class="inline-flex items-center">
-                <input type="checkbox" name="" id="" class="bg-white" />
-                <label for="" class="text-sm  ml-2 text-gray-500">Category A</label>
-              </div>
-            </li>
-          </ul>
+        <div class="overflow-hidden pb-0">
+          <div class="duration-300 px-0 pb-3">
+            <ul>
+              <li class="pl-2">
+                <div class="inline-flex items-center">
+                  <input type="checkbox" name="" id="" class="bg-white" />
+                  <label for="" class="text-sm  ml-2 text-gray-500">Category A</label>
+                </div>
+              </li>
+            </ul>
+          </div>
         </div>
+        <!-- end content filter -->
       </div>
-    <!-- end content filter -->
-    </div>
     </div>
     <!-- end categories -->
 
@@ -120,69 +120,104 @@
       </button>
       <div :class="open ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'" class="grid overflow-hidden transition-all duration-300 ease-in-out text-slate-600 text-sm">
         <!-- content filter -->
-      <div class="overflow-hidden pb-0">
-        <div class="duration-300 px-0 pb-3">
-          <ul>
-            <li class="pl-2">
-              <div class="inline-flex items-center">
-                <input type="checkbox" name="" id="" class="bg-white" />
-                <label for="" class="text-sm  ml-2 text-gray-500">Brand A</label>
-              </div>
-            </li>
-          </ul>
+        <div class="overflow-hidden pb-0">
+          <div class="duration-300 px-0 pb-3">
+            <ul>
+              <li class="pl-2">
+                <div class="inline-flex items-center">
+                  <input type="checkbox" name="" id="" class="bg-white" />
+                  <label for="" class="text-sm  ml-2 text-gray-500">Brand A</label>
+                </div>
+              </li>
+            </ul>
+          </div>
         </div>
+        <!-- end content filter -->
       </div>
-    <!-- end content filter -->
-    </div>
     </div>
     <!-- end brand -->
-    
-    <DropFilter title="Price">
-      <div class="overflow-hidden pb-0">
-        <div class="duration-300 px-4">
-          <div>
+    <!-- price range -->
+    <div class="w-full" title="Price">
+      <div class="w-full overflow-hidden pb-0">
+        <div class="pt-2">
+          <span class="text-sm font-bold uppercase text-gray-900">Price</span>
+        </div>
+
+        <div class="pt-3">
+          <div x-data="range()" x-init="mintrigger(); maxtrigger()" class="relative px-4 max-w-xl w-full">
             <div>
-              <div class="mb-3 flex items-center justify-between text-sm">
-                Between €0 and €300
-                <button class="cursor-pointer inline-block leading-none select-none text-center focus:outline-none disabled:cursor-not-allowed max-h-10 relative p-0 text-sm text-primary transition-all hover:underline invisible opacity-0" type="button" data-variant="null_null"></button>
+              <input type="range" step="100" x-bind:min="min" x-bind:max="max" x-on:input="mintrigger" x-model="minprice" class="absolute pointer-events-none appearance-none z-20 h-2 w-full opacity-0 cursor-pointer">
+              <input type="range" step="100" x-bind:min="min" x-bind:max="max" x-on:input="maxtrigger" x-model="maxprice" class="absolute pointer-events-none appearance-none z-20 h-2 w-full opacity-0 cursor-pointer">
+              <div class="relative z-10 h-2">
+                <div class="absolute z-10 left-0 right-0 bottom-0 top-0 rounded-md bg-gray-200"></div>
+                <div class="absolute z-20 top-0 bottom-0 rounded-md bg-green-300" x-bind:style="'right:'+maxthumb+'%; left:'+minthumb+'%'"></div>
+                <div class="absolute z-30 w-6 h-6 top-0 left-0 bg-green-300 rounded-full -mt-2" x-bind:style="'left: '+minthumb+'%'"></div>
+                <div class="absolute z-30 w-6 h-6 top-0 right-0 bg-green-300 rounded-full -mt-2" x-bind:style="'right: '+maxthumb+'%'"></div>
               </div>
-              <div class="relative my-6 flex h-auto w-full px-2" style=" transform: scale(1); cursor: inherit ">
-                <div class="h-[1px] w-full self-center before:absolute before:left-0 before:h-[1px] before:w-2 before:bg-[#707070] after:absolute after:right-0 after:h-[1px] after:w-2 after:bg-[#707070]" style=" background:linear-gradient(to right, #707070 0%, #707070 0%, #debe48 0%, #debe48 100%, #707070 100%, #707070 100%);">
-                  <div style="
-                            position: absolute;
-                            z-index: 0;
-                            cursor: grab;
-                            touch-action: none;
-                            user-select: none;
-                            transform: translate(-8px, -7.5px);
-                          " tabindex="0" aria-valuemax="300" aria-valuemin="0" aria-valuenow="0" draggable="false" role="slider" class="flex h-4 w-4 items-center justify-center rounded-full bg-primary outline-none transition-shadow">
-                    <span class="border-1 absolute -top-12 hidden rounded-[4px] border-black bg-white px-4 py-2 text-[14px] opacity-0 shadow-lg transition-opacity md:inline-block invisible">
-                      €0
-                    </span>
-                  </div>
-                  <div style="
-                            position: absolute;
-                            z-index: 1;
-                            cursor: grab;
-                            touch-action: none;
-                            user-select: none;
-                            transform: translate(217.328px, -7.5px);
-                          " tabindex="0" aria-valuemax="300" aria-valuemin="0" aria-valuenow="300" draggable="false" role="slider" class="flex h-4 w-4 items-center justify-center rounded-full bg-primary outline-none transition-shadow">
-                    <span class="border-1 absolute -top-12 hidden rounded-[4px] border-black bg-white px-4 py-2 text-[14px] opacity-0 shadow-lg transition-opacity md:inline-block invisible">
-                      €300
-                    </span>
-                  </div>
-                </div>
+            </div>
+
+            <div class="flex items-center justify-between pt-5 space-x-4 text-sm text-gray-700">
+              <div>
+                <input type="text" maxlength="5" x-on:input.debounce="mintrigger" x-model="minprice"
+                  wire:model.debounce.300="minPrice"
+                  class="w-20 px-2 py-1 text-center border border-gray-200 focus:border-yellow-400 focus:outline-none">
+              </div>
+              <div>
+                <input type="text" maxlength="5" x-on:input.debounce.300="maxtrigger" x-model="maxprice"
+                  wire:model.debounce="maxPrice"
+                  class="w-20 px-2 py-1 text-center border border-gray-200 focus:border-yellow-400 focus:outline-none">
               </div>
             </div>
           </div>
         </div>
+
+        <div class="w-full duration-300 px-4 pb-3">
+          <div class="w-full mx-auto lg:max-w-3xl space-y-2">
+            <div class="text-center text-sm text-slate-700 font-medium" x-text="`${prices[value].contacts} contacts/month`"></div>
+            <div class="relative flex items-center" :style="`--progress:${progress};--segments-width:${segmentsWidth}`">
+              <div class="
+                absolute left-2.5 right-2.5 h-1.5 bg-slate-200 rounded-full overflow-hidden
+                before:absolute
+                before:inset-0
+                before:bg-gradient-to-r
+                before:from-slate-200
+                before:to-slate-200
+                before:[mask-image:_linear-gradient(to_right,theme(colors.white),theme(colors.white)_var(--progress),transparent_var(--progress))]
+                after:absolute
+                after:inset-0
+                after:bg-[repeating-linear-gradient(to_right,transparent,transparent_calc(var(--segments-width)-1px),theme(colors.white/.7)_calc(var(--segments-width)-1px),theme(colors.white/.7)_calc(var(--segments-width)+1px))]
+                [&[x-cloak]]:hidden
+            " aria-hidden="true" x-cloak></div>
+              <input class="
+                relative appearance-none cursor-pointer w-full bg-transparent focus:outline-none bg-slate-200
+                [&::-webkit-slider-thumb]:appearance-none
+                [&::-webkit-slider-thumb]:h-4
+                [&::-webkit-slider-thumb]:w-4
+                [&::-webkit-slider-thumb]:border-gray-400
+                [&::-webkit-slider-thumb]:rounded-full
+                [&::-webkit-slider-thumb]:bg-blue-500
+                [&::-webkit-slider-thumb]:shadow
+                [&::-webkit-slider-thumb]:focus-visible:ring
+                [&::-webkit-slider-thumb]:focus-visible:ring-indigo-300
+                [&::-moz-range-thumb]:h-4
+                [&::-moz-range-thumb]:w-4                            
+                [&::-moz-range-thumb]:rounded-full
+                [&::-moz-range-thumb]:bg-blue-500
+                [&::-moz-range-thumb]:border
+                [&::-moz-range-thumb]:shadow
+                [&::-moz-range-thumb]:focus-visible:ring
+                [&::-moz-range-thumb]:focus-visible:ring-indigo-300                            
+            " type="range" min="0" :max="prices.length - 1" :aria-valuetext="`${prices[value].contacts} contacts/month`" aria-label="Pricing Slider" x-model="value">
+            </div>
+          </div>
+
+        </div>
       </div>
-    </DropFilter>
+    </div>
 
-    
 
-    <div>
+
+    <div class="pt-4">
       <div class="bg-[#73dfb7] hover:bg-white uppercase  rounded-full text-slate-800 border-2 border-[#73dfb7] flex p-3 justify-center items-center w-full font-semibold cursor-pointer">
         Filter
       </div>
@@ -191,3 +226,72 @@
 </div>
 
 <div :class="filterOpen ? 'block' : 'hidden'" class=" opacity-50 fixed inset-0 z-30 bg-black"></div>
+
+@push('style')
+<style>
+input[type=range]::-webkit-slider-thumb {
+	pointer-events: all;
+	width: 24px;
+	height: 24px;
+	-webkit-appearance: none;
+  
+/* @apply w-6 h-6 appearance-none pointer-events-auto; */
+}
+</style>
+@endpush
+
+@push('js')
+<script>
+  function range() {
+    return {
+      minprice: 1000,
+      maxprice: 7000,
+      min: 100,
+      max: 10000,
+      minthumb: 0,
+      maxthumb: 0,
+
+      mintrigger() {
+        this.validation();
+        this.minprice = Math.min(this.minprice, this.maxprice - 500);
+        this.minthumb = ((this.minprice - this.min) / (this.max - this.min)) * 100;
+      },
+
+      // maxtrigger() {
+      //   this.maxprice = Math.max(this.maxprice, this.minprice + 500); 
+      //   this.maxthumb = 100 - (((this.maxprice - this.min) / (this.max - this.min)) * 100);    
+      // }, 
+
+      maxtrigger() {
+        this.validation();
+        this.maxprice = Math.max(this.maxprice, this.minprice + 200);
+        this.maxthumb = 100 - (((this.maxprice - this.min) / (this.max - this.min)) * 100);
+      },
+
+      validation() {
+        if (/^\d*$/.test(this.minprice)) {
+          if (this.minprice > this.max) {
+            this.minprice = 9500;
+          }
+          if (this.minprice < this.min) {
+            this.minprice = this.min;
+          }
+        } else {
+          this.minprice = 0;
+        }
+        if (/^\d*$/.test(this.maxprice)) {
+          if (this.maxprice > this.max) {
+            this.maxprice = this.max;
+          }
+          if (this.maxprice < this.min) {
+            this.maxprice = 200;
+          }
+        } else {
+          this.maxprice = 10000;
+        }
+      }
+
+    }
+  }
+</script>
+@endpush

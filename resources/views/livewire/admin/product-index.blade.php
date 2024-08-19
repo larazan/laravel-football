@@ -181,9 +181,9 @@
                             <td class="vi wy w_ vo lm">
                                 <div class="od sy ub mr-2 _b">
                                     @if ($product->productImages->first())
-                                    <img src="{{ asset('storage/'.$product->productImages->first()->small) }}" class="rounded-full" width="40" height="40" alt="{{ $person->name }}">
+                                    <img src="{{ asset('storage/'.$product->productImages->first()->small) }}" class="rounded-full" width="40" height="40" alt="{{ $product->name }}">
                                     @else
-                                    <img src="{{ asset('images/avatar-03.jpg') }}" class="rounded-full" width="40" height="40" alt="{{ $person->name }}">
+                                    <img src="{{ asset('images/avatar-03.jpg') }}" class="rounded-full" width="40" height="40" alt="{{ $product->name }}">
                                     @endif
                                 </div>
                             </td>

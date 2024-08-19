@@ -5,9 +5,14 @@ namespace App\Http\Livewire\Frontend\Product;
 use App\Models\Brand;
 use App\Models\Product;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class Index extends Component
 {
+    use WithPagination;
+
+    protected $paginationTheme = 'bootstrap';
+    
     public $products;
     public $category;
     public $brandInputs = [];
