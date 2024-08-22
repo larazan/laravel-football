@@ -28,11 +28,11 @@
     <!-- Table -->
     <div class="bg-white bd w-full rounded-sm border border-slate-200 rc">
         <header class="vc vu">
-            <h2 class="gh text-slate-800">Team Comparison <span class="gq gp">{{ $matchId }}</span></h2>
+            <h2 class="gh text-slate-800">Match Report <span class="gq gp">{{ $matchId }}</span></h2>
         </header>
         <div class="flex flex-col py-4 px-6 space-y-1 mx-auto w-full">
             @foreach ($matchs as $match)
-            <div class="flex justify-between items-center h-14 py-1.5 border-y ">
+            <div class="flex justify-between items-center min-h-14 py-1.5 border-y ">
                 <div class="flex w-1/6 items-center">
                     <div class="w-8">
                         @if ($match->home->logo)
@@ -62,7 +62,7 @@
                         </div>
                         <div class="justify-center">
                             <span class="text-xs font-semibold text-gray-600">
-                                Stadium: Allianz Arena, Munich
+                                Stadium: {{ $match->stadion->name }}
                             </span>
                         </div>
                         <div class="justify-center">
@@ -73,8 +73,8 @@
                     </div>
                 </div>
                 <div class="flex w-1/6 justify-end items-center">
-                    <div class="mr-2">
-                        <span class="text-sm font-bold text-[#002f6c]">
+                    <div class="mr-2 flex">
+                        <span class="text-right text-sm font-bold text-[#002f6c]">
                             {{ $match->away->name }}
                         </span>
                     </div>
@@ -90,14 +90,7 @@
             @endforeach
         </div>
 
-
-    </div>
-
-    <div class="bg-white bd rounded-sm rc">
-        <div class="flex ak zc qv">
-
-            <!-- Panel -->
-            <div class="uw">
+        <div class="uw">
 
                 <!-- Panel body -->
                 <div class="d_ fd">
@@ -123,9 +116,10 @@
                         <div class="je jc fg jm jb rw">
                             <div class="jr2 w-full" x-data="{ isUploading: false, progress: 5 }" x-on:livewire-upload-start="isUploading = true" x-on:livewire-upload-finish="isUploading = false; progress = 5" x-on:livewire-upload-error="isUploading = false" x-on:livewire-upload-progress="progress = $event.detail.progress">
 
-                                <input wire:model="icon" type="file" class="
+                                <input wire:model="file" type="file" class="
                                             file:bg-gradient-to-b file:from-blue-500 file:to-blue-600 
-                                            file:px-6 file:py-3 file:m-5
+                                            file:px-6 file:py-3 
+                                            file:m-2
                                             file:border-none
                                             file:rounded
                                             file:text-white
@@ -140,7 +134,13 @@
                                         <img class="ue sg rounded" src="{{ asset('storage/'.$oldImage) }}" width="32" height="32" alt="logo" width="80" height="80" alt="User upload">
                                     </div>
                                     @endif
-
+                                    @if ($file)
+                                    <div class="flex flex-col pt-2 space-y-2">
+                                        <span class="text-sm font-semibold">Photo Preview:</span>
+                                        <div class="w-62">
+                                            <img src="{{ $file->temporaryUrl() }}" class="object-cover h-48 w-96">
+                                        </div>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -158,7 +158,6 @@
 
             </div>
 
-        </div>
     </div>
 
 </div>

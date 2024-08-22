@@ -212,7 +212,7 @@
 
                                 <input wire:model="icon" type="file" class="
                                             file:bg-gradient-to-b file:from-blue-500 file:to-blue-600 
-                                            file:px-6 file:py-3 file:m-5
+                                            file:px-6 file:py-3 file:m-2
                                             file:border-none
                                             file:rounded
                                             file:text-white
@@ -253,11 +253,10 @@
                                 <div class="">
                                     <div class="flex flex-col space-y-3">
                                         <div class="col-span-6 sm:col-span-3" x-data="{ isUploading: false, progress: 5 }" x-on:livewire-upload-start="isUploading = true" x-on:livewire-upload-finish="isUploading = false; progress = 5" x-on:livewire-upload-error="isUploading = false" x-on:livewire-upload-progress="progress = $event.detail.progress">
-                                            <label for="photo" class="block text-sm font-medium text-gray-700">Image Slider
-                                            </label>
+                                            <label for="photo" class="hidden block2 text-sm font-medium text-gray-700"></label>
                                             <input wire:model="file" type="file" autocomplete="given-name" class="
                                                     file:bg-gradient-to-b file:from-blue-500 file:to-blue-600 
-                                                    file:px-6 file:py-3 file:m-5
+                                                    file:px-6 file:py-3 file:m-2
                                                     file:border-none
                                                     file:rounded
                                                     file:text-white

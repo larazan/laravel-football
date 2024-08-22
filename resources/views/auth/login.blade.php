@@ -53,10 +53,10 @@
     <x-header-registration />
 <section class=" bg-white min-h-[800px]">
         <div class="relative">
-          <Image src="{{ asset('assets/img/download.svg') }}" alt="bg" />
+          <Image src="{{ asset('assets/img/download.svg') }}" alt="bg" class="w-full" />
         </div>
-        <div class="absolute top-64 flex justify-center items-center">
-          <div class="relative mx-auto w-11/12 md:w-8/12 border-2 rounded-lg shadow-lg space-y-4 py-5  bg-white">
+        <div class="absolute mx-auto w-full top-64 flex justify-center items-center">
+          <div class="relative mx-auto w-11/12 md:w-8/12 lg:w-6/12 border-2 rounded-lg shadow-lg space-y-4 py-5  bg-white">
             <div class="absolute m-auto left-0 right-0 -top-7 w-9/12 md:w-1/2 rounded border-2 border-gray-800  ">
               <div class="flex flex-row w-full items-center">
                 <a

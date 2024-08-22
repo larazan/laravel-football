@@ -1,6 +1,6 @@
 admin
     training schedule
-    player positons
+    lineup
 
     product variant etc size color 
 

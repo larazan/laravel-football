@@ -367,10 +367,10 @@
                                         <div class="flex justify-between">
 
                                             <div class="col-span-1 sm:col-span-3">
-                                                <label for="opponent" class="block text-sm font-medium text-gray-700">Opponent</label>
+                                                <label for="opponent" class="block text-sm font-medium text-gray-700">Opponent {{ $selectedClub }}</label>
 
                                                 <!-- Dropdown -->
-                                                <div class="relative absolute2 " x-data="{ open: false, selected: {{ $selectedClub }} }">
+                                                <div class="relative absolute2 " x-data="{ open: false, selected: {{ $selectedClub }} }" x-cloak>
                                                     <button class="btn fe uo bg-white border-slate-200 hover--border-slate-300 text-slate-500 hover--text-slate-600" aria-label="Select date range" aria-haspopup="true" @click.prevent="open = !open" :aria-expanded="open" aria-expanded="false">
                                                         <div class="flex items-center">
 

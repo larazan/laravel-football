@@ -1,8 +1,7 @@
 <footer class="flex flex-col space-y-1 bg-[#dc052d] ">
 
-    <div class="flex mx-auto text-white pt-6 w-11/12 md:w-11/12 justify-center2 items-center">
-
-        <div class="flex justify-around space-x-4 OuQGd">
+    <div class="flex mx-auto text-white pt-6 w-11/12 md:w-11/12 lg:w-1/2 justify-center2 items-center">
+        <div class="flex justify-around space-x-4">
             <a href="{{ url('/') }}" class="text-white">
                 <span class="text-white">
                     <svg height="32" width="32" viewBox="0 0 24 24" preserveAspectRatio="xMidYMid meet" role="img" xmlns="http://www.w3.org/2000/svg" class="eCHnXp">

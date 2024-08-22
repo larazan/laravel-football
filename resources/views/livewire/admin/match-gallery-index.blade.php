@@ -1,5 +1,3 @@
-
-
 <div class="vs jj ttm vl ou uf na">
 
     <!-- Loading -->
@@ -10,7 +8,7 @@
 
         <!-- Left: Title -->
         <div class="ri _y">
-            <h1 class="gu teu text-slate-800 font-bold">Gallery</h1>
+            <h1 class="gu teu text-slate-800 font-bold">Match Gallery</h1>
         </div>
 
         <!-- Right: Actions -->
@@ -41,11 +39,11 @@
     <!-- Table -->
     <div class="bg-white bd w-full rounded-sm border border-slate-200 rc">
         <header class="vc vu">
-            <h2 class="gh text-slate-800">Gallery <span class="gq gp">{{ $matchId }}</span></h2>
+            <h2 class="gh text-slate-800">Match Gallery <span class="gq gp">{{ $matchId }}</span></h2>
         </header>
         <div class="flex flex-col py-4 px-6 space-y-1 mx-auto w-full">
             @foreach ($matchs as $match)
-            <div class="flex justify-between items-center h-14 py-1.5 border-y ">
+            <div class="flex justify-between items-center min-h-14 py-1.5 border-y ">
                 <div class="flex w-1/6 items-center">
                     <div class="w-8">
                         @if ($match->home->logo)
@@ -75,7 +73,7 @@
                         </div>
                         <div class="justify-center">
                             <span class="text-xs font-semibold text-gray-600">
-                                Stadium: Allianz Arena, Munich
+                                Stadium: {{ $match->stadion->name }}
                             </span>
                         </div>
                         <div class="justify-center">
@@ -86,8 +84,8 @@
                     </div>
                 </div>
                 <div class="flex w-1/6 justify-end items-center">
-                    <div class="mr-2">
-                        <span class="text-sm font-bold text-[#002f6c]">
+                    <div class="mr-2 flex">
+                        <span class="text-right text-sm font-bold text-[#002f6c]">
                             {{ $match->away->name }}
                         </span>
                     </div>
@@ -210,10 +208,11 @@
 
                                         <div class="col-span-6 sm:col-span-3" x-data="{ isUploading: false, progress: 5 }" x-on:livewire-upload-start="isUploading = true" x-on:livewire-upload-finish="isUploading = false; progress = 5" x-on:livewire-upload-error="isUploading = false" x-on:livewire-upload-progress="progress = $event.detail.progress">
                                             <label for="photo" class="block text-sm font-medium text-gray-700">Match photo</label>
-                                            <input wire:model="filename" type="file" autocomplete="given-name" class="
+                                            <input wire:model="file" type="file" autocomplete="given-name" class="
                                                     mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md
                                                     file:bg-gradient-to-b file:from-blue-500 file:to-blue-600 
-                                                    file:px-6 file:py-3 file:m-5
+                                                    file:px-6 file:py-3 
+                                                    file:m-2
                                                     file:border-none
                                                     file:rounded
                                                     file:text-white
@@ -226,15 +225,18 @@
                                                 <img src="{{ asset('storage/'.$oldImage) }}">
                                                 @endif
                                                 @if ($file)
-                                                Photo Preview:
-                                                <img src="{{ $file->temporaryUrl() }}">
-                                                @endif
-                                            </div>
+                                                <div class="flex flex-col pt-2 space-y-2">
+                                                    <span class="text-sm font-semibold">Photo Preview:</span>
+                                                    <div class="w-62">
+                                                        <img src="{{ $file->temporaryUrl() }}" class="object-cover h-48 w-96">
+                                                    </div>
+                                                    @endif
+                                                </div>
 
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
                         </form>
                     </div>
                 </div>
@@ -296,4 +298,3 @@
     </x-dialog-modal>
 
 </div>
-

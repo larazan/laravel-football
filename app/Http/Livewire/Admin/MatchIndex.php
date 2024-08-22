@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Admin;
 use App\Models\Matchs;
 use App\Models\Competition;
 use App\Models\Club;
+use App\Models\Setting;
 use App\Models\Stadion;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
@@ -18,6 +19,7 @@ class MatchIndex extends Component
     public $showMatchsModal = false;
     public $match;
     public $season;
+    public $opponent;
     public $competition;
     public $competitionId;
     public $stadion;
@@ -64,7 +66,7 @@ class MatchIndex extends Component
 
     public function mount()
     {
-        $monthEvent = 8;
+        $monthEvent = 9;
         // $yearEvent = 2023;
         $monthNow = Carbon::now()->format('m');
         $yearNow = Carbon::now()->format('Y');
@@ -81,7 +83,7 @@ class MatchIndex extends Component
 
     public function boot()
     {
-        $monthEvent = 8;
+        $monthEvent = 9;
         // $yearEvent = 2023;
         $monthNow = Carbon::now()->format('m');
         $yearNow = Carbon::now()->format('Y');
@@ -98,7 +100,7 @@ class MatchIndex extends Component
 
     public function hydrate()
     {
-        $monthEvent = 8;
+        $monthEvent = 9;
         // $yearEvent = 2023;
         $monthNow = Carbon::now()->format('m');
         $yearNow = Carbon::now()->format('Y');
@@ -203,6 +205,14 @@ class MatchIndex extends Component
         $this->date = $match->fixture_match;
         $this->fullTimeResult = $match->full_time_result;
         $this->matchStatus = $match->status;
+        
+        if ($match->home_team != Setting::selectedClub()) {
+            $this->position = 'away';
+            $this->opponent = $match->home_team;
+        } else {
+            $this->position = 'home';
+            $this->opponent = $match->away_team;
+        }
 
         $this->showMatchsModal = true;
     }

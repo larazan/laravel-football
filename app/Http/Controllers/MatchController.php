@@ -30,7 +30,7 @@ class MatchController extends Controller
     
     public function index()
     {
-        $monthEvent = 8;
+        $monthEvent = 9;
         // $yearEvent = 2023;
         $monthNow = Carbon::now()->format('m');
         $yearNow = Carbon::now()->format('Y');

@@ -72,7 +72,7 @@ class ScheduleIndex extends Component
     {
         $this->selectedClub = 0;
         $this->fixtureDate = today()->format('Y-m-d');
-        $monthEvent = 8;
+        $monthEvent = 9;
         // $yearEvent = 2023;
         $monthNow = Carbon::now()->format('m');
         $yearNow = Carbon::now()->format('Y');
@@ -93,7 +93,7 @@ class ScheduleIndex extends Component
     public function boot()
     {
         $this->currentClubId = Schedule::pinnedClub();
-        $monthEvent = 8;
+        $monthEvent = 9;
         // $yearEvent = 2023;
         $monthNow = Carbon::now()->format('m');
         $yearNow = Carbon::now()->format('Y');
@@ -113,7 +113,7 @@ class ScheduleIndex extends Component
     public function hydrate()
     {
         $this->currentClubId = Schedule::pinnedClub();
-        $monthEvent = 8;
+        $monthEvent = 9;
         // $yearEvent = 2023;
         $monthNow = Carbon::now()->format('m');
         $yearNow = Carbon::now()->format('Y');
@@ -208,7 +208,7 @@ class ScheduleIndex extends Component
             'status' => $this->scheduleStatus,
         ]);
 
-        $this->reset();
+        $this->reset(['selectedClub', 'position']);
         $this->dispatchBrowserEvent('banner-message', ['style' => 'success', 'message' => 'Schedule created successfully']);
     }
 
@@ -320,7 +320,7 @@ class ScheduleIndex extends Component
             }
         }
 
-        $this->reset();
+        $this->reset(['selectedClub', 'position']);
         $this->showScheduleModal = false;
         $this->dispatchBrowserEvent('banner-message', ['style' => 'success', 'message' => 'Schedule updated successfully']);
     }
@@ -352,6 +352,8 @@ class ScheduleIndex extends Component
                 'hour',
                 'minute',
                 'scheduleStatus',
+                'selectedClub',
+                'position',
             ]
         );
         $this->resetValidation();

@@ -140,7 +140,7 @@ class MatchReportIndex extends Component
             }
         }
 
-        $this->reset();
+        // $this->reset();
         $this->showMatchReportModal = false;
         $this->dispatchBrowserEvent('banner-message', ['style' => 'success', 'message' => 'MatchReport updated successfully']);
     }
@@ -152,7 +152,7 @@ class MatchReportIndex extends Component
 		$this->deleteImage($this->matchReportId);
         
         $matchReport->delete();
-        $this->reset();
+        // $this->reset();
         $this->dispatchBrowserEvent('banner-message', ['style' => 'danger', 'message' => 'MatchReport deleted successfully']);
     }
 
@@ -169,6 +169,8 @@ class MatchReportIndex extends Component
 
     public function updateReport()
     {
+        dd($this->report);
+        dd($this->file);
         $this->validate();
   
         $new = Str::random(5) . '_' . time();

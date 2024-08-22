@@ -20,6 +20,8 @@ class Setting extends Model
         // Chain fluent methods for configuration options
     }
 
+    protected $table = 'settings';
+
     protected $fillable = [
         'title', 
         'meta_description', 
@@ -50,4 +52,10 @@ class Setting extends Model
 	public const SMALL = '135x75';
 
     public const ID = 1;
+
+    public static function selectedClub()
+	{
+        $setting = static::findOrFail(static::ID)->first();
+		return $setting->pinned_club;
+	}
 }

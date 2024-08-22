@@ -40,11 +40,11 @@
     <!-- Table -->
     <div class="bg-white bd w-full rounded-sm border border-slate-200 rc">
         <header class="vc vu">
-            <h2 class="gh text-slate-800">Team Comparison <span class="gq gp">{{ $matchId }}</span></h2>
+            <h2 class="gh text-slate-800">Match Statistic Comparison <span class="gq gp">{{ $matchId }}</span></h2>
         </header>
         <div class="flex flex-col py-4 px-6 space-y-1 mx-auto w-full">
             @foreach ($matchs as $match)
-            <div class="flex justify-between items-center h-14 py-1.5 border-y ">
+            <div class="flex justify-between items-center min-h-14 py-1.5 border-y ">
                 <div class="flex w-1/6 items-center">
                     <div class="w-8">
                         @if ($match->home->logo)
@@ -74,7 +74,7 @@
                         </div>
                         <div class="justify-center">
                             <span class="text-xs font-semibold text-gray-600">
-                                Stadium: Allianz Arena, Munich
+                                Stadium: {{ $match->stadion->name }}
                             </span>
                         </div>
                         <div class="justify-center">
@@ -85,8 +85,8 @@
                     </div>
                 </div>
                 <div class="flex w-1/6 justify-end items-center">
-                    <div class="mr-2">
-                        <span class="text-sm font-bold text-[#002f6c]">
+                    <div class="mr-2 flex ">
+                        <span class="text-right text-sm font-bold text-[#002f6c]">
                             {{ $match->away->name }}
                         </span>
                     </div>

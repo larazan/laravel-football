@@ -348,10 +348,10 @@
                                         <div class="flex justify-between">
                                             <div class="col-span-1 sm:col-span-3">
                                                 <label for="position" class="block text-sm font-medium text-gray-700">Venue</label>
-                                                <select wire:model="position" class="h-full2 rounded-r border-t border-r border-b block appearance-none w-full bg-white border-gray-300 text-gray-700 py-2 px-4 pr-8 leading-tight focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none">
+                                                <select wire:model="position" class="h-full2 capitalize rounded-r border-t border-r border-b block appearance-none w-full bg-white border-gray-300 text-gray-700 py-2 px-4 pr-8 leading-tight focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none">
                                                     <option value="">Select Option</option>
                                                     @foreach($positionOption as $pos)
-                                                    <option value="{{ $pos }}">{{ $pos }}</option>
+                                                    <option value="{{ $pos }}" >{{ $pos }}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
