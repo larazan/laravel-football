@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Frontend\Wishlist;
 
 use App\Models\Wishlist;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class Index extends Component
@@ -16,7 +17,12 @@ class Index extends Component
 
     public function render()
     {
-        $wishlist = Wishlist::where('user_id', auth()->user()->id)->get();
+        if (Auth::check()) {
+            $wishlist = Wishlist::where('user_id', Auth::user()->id)->get();
+        } else {
+            $wishlist = [];
+        }
+        
         return view('livewire.frontend.wishlist.index', [
             'wishlist' => $wishlist
         ]);

@@ -12,7 +12,6 @@
                                     <div 
                                         class="text-xs text-slate-800 font-normal leading-none max-w-full flex-initial"
                                          x-text="option['name']"
-                                        
                                     ></div>
                                     <div class="flex flex-auto flex-row-reverse">
                                         <div x-on:click.stop="remove(option)">

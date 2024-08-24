@@ -15,7 +15,7 @@
 
   <div class="divide-y">
     <!-- Size -->
-    <div class="bg-white py-0 flex flex-col w-full" x-data="{ open:false }">
+    <div class="bg-white py-0 flex flex-col w-full" x-data="{ open:true }">
       <button @click="open = !open" class="flex items-center justify-between py-3 group font-semibold md:font-bold">
         <span class="text-sm font-bold uppercase text-gray-900">Size</span>
 

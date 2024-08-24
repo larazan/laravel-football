@@ -101,7 +101,7 @@ class AppointmentsCalendar extends LivewireCalendar
 
     public function render()
     {
-        return view('livewire.admin.appointments-calendar');
+        // return view('livewire.admin.appointments-calendar');
         return parent::render()->with([
             'unscheduledEvents' => $this->unscheduledEvents()
         ]);

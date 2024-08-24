@@ -19,6 +19,7 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class PlayerIndex extends Component
 {
+    public $clubSelect;
     public $selectedPosition;
     public $selectedPos = [5,6,7];
     public $multiselect = [];
@@ -95,7 +96,7 @@ class PlayerIndex extends Component
         $this->contractFrom = today()->format('Y-m-d');
         $this->contractUntil = today()->format('Y-m-d');
         $this->birthDate = today()->format('Y-m-d');
-        $this->selectedClub = 11;
+        $this->selectedClub = 1;
 
         $this->subCategory = collect([
             [
@@ -301,7 +302,7 @@ class PlayerIndex extends Component
 
     public function showEditModal($playerId)
     {
-        $this->reset(['name']);
+        $this->reset(['name',]);
         $this->playerId = $playerId;
         $player = Player::find($playerId);
         $this->selectedClub = $player->club_id;
@@ -477,20 +478,21 @@ class PlayerIndex extends Component
             'instagram',
             'twitter',
             'playerStatus',
+            'selectedClub'
         ]);
     }
 
     public function resetFilters()
     {
-        $this->reset(['search', 'sort', 'perPage']);
+        $this->reset(['search', 'sort', 'perPage', 'selectedClub']);
     }
 
     public function render()
     {
         return view('livewire.admin.player-index', [
             'players' => Player::liveSearch('name', $this->search)->where('level', 'senior')->where('gender', 'men')->orderBy('name', $this->sort)->paginate($this->perPage),
-            'clubs' => Club::OrderBy('id', 'asc')->get(),
-            'teams' => Club::OrderBy('id', 'asc')->get()->toArray(),
+            'clubs' => Club::Select('id', 'name', 'logo')->orderBy('id', 'asc')->get(),
+            'teams' => Club::Select('id', 'name', 'logo')->orderBy('id', 'asc')->get()->toArray(),
             'positionOption' => Position::OrderBy('name', 'asc')->get(),
             'countries' => Country::orderBy('name', 'asc')->get(),
         ])->layout('components.layouts.app');

@@ -28,7 +28,7 @@
                     </button>
                 </div>
                 <div class="w-full md:w-1/2 py-2">
-                    <!-- <SortOpt /> -->
+                    @include('shop.components._sortOption')
                 </div>
 
 

@@ -5,14 +5,12 @@
     <!-- Loading -->
     <x-loading-indicator />
 
-@dump($selectedPosition)
-
     <!-- Page header -->
     <div class="je jd jc ii">
 
         <!-- Left: Title -->
         <div class="ri _y">
-            <h1 class="gu teu text-slate-800 font-bold">Player</h1>
+            <h1 class="gu teu text-slate-800 font-bold">Player {{ $clubSelect }}</h1>
         </div>
 
         <!-- Right: Actions -->
@@ -53,11 +51,13 @@
         <!-- Right side -->
         <div class="sn am jo az jp ft">
 
-        <x-multiselect
-            wire:model="multiselect"
-            :options="$positions"
-        /> 
+            <livewire:custom-select
+                :selected="$selectedClub"
+                :items="$teams"
+                label="Favorite fruit"
+            />
 
+            <!-- ['Apple','Banana','Strawberry'] -->
 
             <!-- Delete button -->
             <div class="table-items-action hidden">
@@ -265,7 +265,7 @@
 
     {{ $players->links() }}
 
-    <x-dialog-modal wire:model="showPlayerModal" class="">
+    <x-dialog-modal wire:model="showPlayerModal" class="" x-cloak>
 
         @if ($playerId)
         <x-slot name="title" class="border-b">Update Player</x-slot>
@@ -299,16 +299,20 @@
                                             <label for="club" class="block text-sm font-medium text-gray-700">Club</label>
 
                                             <!-- Dropdown -->
-                                            <div class="relative absolute2 " x-data="{ open: false, selected: {{ $selectedClub }} }">
-                                                <button class="btn fe uo bg-white border-slate-200 hover--border-slate-300 text-slate-500 hover--text-slate-600" aria-label="Select date range" aria-haspopup="true" @click.prevent="open = !open" :aria-expanded="open" aria-expanded="false">
+                                            <div class="relative absolute2 " 
+                                                x-data="{ open: false, selected: {{ $selectedClub }} }"
+                                            >
+                                                <button x-ref="button" class="btn fe uo bg-white border-slate-200 hover--border-slate-300 text-slate-500 hover--text-slate-600" aria-label="Select date range" aria-haspopup="true" @click.prevent="open = !open" :aria-expanded="open" aria-expanded="false">
                                                     <div class="flex items-center">
 
                                                         <div class="mr-2">
                                                             @if ($selectedClub > 0)
-                                                            <img src="{{ asset('storage/'.$teams[$selectedClub-1]['logo']) }}" class="w-6 rounded" alt="foto" />
+                                                            <img src="{{ asset('storage/'.$teams[$selectedClub-1]['logo']) }}" class="w-6 rounded" alt="{{ $teams[$selectedClub-1]['name'] }}" />
                                                             @endif
                                                         </div>
-                                                        <span x-text="selected === 0 ? $refs.options.children[selected].children[1].innerHTML : $refs.options.children[selected].children[2].innerHTML">Last Month</span>
+                                                        
+                                                        <span x-text="selected === 0 ? $refs.options.children[selected].children[1].innerHTML : $refs.options.children[selected].children[2].innerHTML"></span>
+                                                        
                                                     </div>
                                                     <svg class="ub nz du gq" width="11" height="7" viewBox="0 0 11 7">
                                                         <path d="M5.4 6.8L0 1.4 1.4 0l4 4 4-4 1.4 1.4z"></path>
@@ -325,8 +329,8 @@
 
                                                         </div>
                                                         @foreach ($clubs as $club)
-                                                        <div tabindex="0" class="flex items-center  ou xr vf vn al" :class="selected === {{ $club->id }} &amp;&amp; 'text-indigo-500'" @click="selected = {{ $club->id }};open = false; $wire.selectedClub= {{ $club->id }}" @focus="open = true" @focusout="open = false">
-                                                            <svg class="ub mr-2 du text-indigo-500 invisible" :class="selected !== {{ $club->id }} &amp;&amp; 'invisible'" width="12" height="9" viewBox="0 0 12 9">
+                                                        <div tabindex="0" class="flex items-center  ou xr vf vn al" :class="selected === {{ $club->id }} && 'text-indigo-500'" @click="selected = {{ $club->id }};open = false; $wire.selectedClub= {{ $club->id }}" @focus="open = true" @focusout="open = false">
+                                                            <svg class="ub mr-2 du text-indigo-500 invisible" :class="selected !== {{ $club->id }} && 'invisible'" width="12" height="9" viewBox="0 0 12 9">
                                                                 <path d="M10.28.28L3.989 6.575 1.695 4.28A1 1 0 00.28 5.695l3 3a1 1 0 001.414 0l7-7A1 1 0 0010.28.28z"></path>
                                                             </svg>
                                                             @if ($club->logo)
@@ -351,12 +355,14 @@
                                                     wire:model="multiselect"
                                                     :options="$positions"
                                                 /> 
+                                                {{-- 
                                                 <select wire:model="position" class="hidden rounded-r border-t border-r border-b block2 appearance-none w-full bg-white border-gray-300 text-gray-700 py-2 px-4 pr-8 leading-tight focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none">
                                                     <option value="">Select Option</option>
                                                     @foreach($positionOption as $pos)
                                                     <option value="{{ $pos->id }}">{{ $pos->name }}</option>
                                                     @endforeach
                                                 </select>
+                                                --}}
                                             </div>
                                             <div class="col-start-1 sm:col-span-3">
                                                 <label for="shirtNumber" class="block text-sm font-medium text-gray-700">

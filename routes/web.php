@@ -31,6 +31,7 @@ use App\Http\Controllers\LineupTest;
 use App\Http\Controllers\SearchController;
 // Livewire
 use App\Http\Livewire\Admin\AboutUs;
+use App\Http\Livewire\Admin\AppointmentsCalendar;
 use App\Http\Livewire\Admin\PrivacyPolicy;
 use App\Http\Livewire\Admin\TermCondition;
 use App\Http\Livewire\Admin\RefundPolicy;
@@ -138,6 +139,8 @@ Route::get('/faqs', [PagesController::class, 'faqs']);
 Route::get('/policy', [PagesController::class, 'policy']);
 Route::get('/terms', [PagesController::class, 'terms']);
 
+Route::get('/search', [SearchController::class, 'search'])->name('page.search');
+
 // Dashboard
 Route::group(['prefix' => 'account', 'as' => 'account'], function() {
     Route::get('/', [DashboardController::class, 'index'])->name('account.index');
@@ -163,7 +166,7 @@ Route::prefix('shop')->group(function () {
     Route::post('/carts/update', [CartController::class, 'update']);
 
     Route::get('/checkout', [OrderController::class, 'checkout']);
-    Route::get('/search', [SearchController::class, 'index']);
+    Route::get('/search', [SearchController::class, 'index'])->name('shop.search');
     Route::get('/wishlist', [WishlistController::class, 'index']);
 });
 
@@ -277,6 +280,7 @@ Route::middleware(['auth:sanctum', 'verified', 'role:admin|author|sales'])->pref
     Route::get('select', SearchSelect::class)->name('select.index');
     Route::get('tag', Tags::class)->name('tag.index');
     Route::get('trix', Trix::class)->name('trix.index');
+    Route::get('appointment', AppointmentsCalendar::class)->name('appoint.index');
 
     Route::resource('events', EventController::class);
     Route::get('events/list', [EventController::class, 'listEvent'])->name('events.list');

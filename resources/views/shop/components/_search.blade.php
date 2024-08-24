@@ -8,7 +8,7 @@
         id="menubar" x-cloak
         x-show="openSearch"
         :class="openSearch ? 'right-0' : '-right-1'"
-        class="flex flex-col bg-white opacity-90 w-full h-[100vh] z-10 fixed top-0 text-white text-4xl font-bold  flex-1 justify-between transform overflow-auto ease-in-out -translate-x-0 transition-all duration-300"
+        class="flex flex-col bg-white opacity-952 w-full h-[100vh] z-20 fixed top-0 text-white text-4xl font-bold  flex-1 justify-between transform overflow-auto ease-in-out -translate-x-0 transition-all duration-300"
         x-transition:enter="transition ease-gentle duration-300"
         x-transition:enter-start="-translate-y-full"
         x-transition:enter-end="translate-y-0"
@@ -30,7 +30,8 @@
                 <div class="flex flex-col space-y-1 max-w-sm w-full md:max-w-lg">
                     <span class="text-sm font-semibold">What are you looking for?</span>
                     <div class="">
-                        <form class="flex items-center relative">
+                        <form action="{{ route('shop.search') }}" method="GET" class="flex items-center relative">
+                            @csrf
                             <div class="flex w-full items-center rounded-lg bg-gray-100 h-12 border border-slate-300 px-1 py-3">
                                 <button class="static inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-transparent text-gray-400 h-10 px-2 py-2 " type="submit">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
@@ -38,7 +39,7 @@
                                         <path d="m21 21-4.3-4.3"></path>
                                     </svg>
                                 </button>
-                                <input class="relative flex h-12 bg-transparent px-1 py-3 border-none ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 w-full lg:w-[600px] focus-visible:ring-transparent" placeholder="search product">
+                                <input type="text" name="search" class="relative flex h-12 bg-transparent px-1 py-3 border-none ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 w-full lg:w-[600px] focus-visible:ring-transparent" placeholder="search product">
                             </div>
                         </form>
                     </div>

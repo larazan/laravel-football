@@ -1,9 +1,9 @@
 admin
     training schedule
     lineup
-
+    select club in matchs
     product variant etc size color 
-
+    upload multiple image product
 
 shop
 

@@ -5,7 +5,6 @@
     <!-- Loading -->
     <x-loading-indicator />
 
-    @dump($positions)
     @dump($multiselect)
 
     <!-- Page header -->
